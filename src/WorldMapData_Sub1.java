@@ -162,17 +162,17 @@ public class WorldMapData_Sub1 extends WorldMapData {
 
    }
 
-   static void parsePlayerSynchronizationMask(PacketBuffer buffer, int int_0, Player player, int maskSize) {
+   static void parsePlayerSynchronizationMask(PacketBuffer buffer, int index, Player player, int mask) {
       byte byte_0 = -1;
       int info;
-      if ((maskSize & 0x200) != 0) {
+      if ((mask & 0x200) != 0) {
          player.graphic = buffer.method713();
          info = buffer.method706();
          player.graphicHeight = info >> 16;
-         player.graphicsDelay = (info & 0xFFFF) + Client.gameCycle;
+         player.graphicDelay = (info & 0xFFFF) + Client.gameCycle;
          player.currentAnimation = 0;
          player.anInt530 = 0;
-         if (player.graphicsDelay > Client.gameCycle) {
+         if (player.graphicDelay > Client.gameCycle) {
             player.currentAnimation = -1;
          }
 
@@ -181,11 +181,11 @@ public class WorldMapData_Sub1 extends WorldMapData {
          }
       }
 
-      if ((maskSize & 0x800) != 0) {
-         Class27.aByteArray3[int_0] = buffer.method728();
+      if ((mask & 0x800) != 0) {
+         Class27.aByteArray3[index] = buffer.method728();
       }
 
-      if ((maskSize & 0x8) != 0) {
+      if ((mask & 0x8) != 0) {
          player.overhead = buffer.readString();
          if (player.overhead.charAt(0) == 126) {
             player.overhead = player.overhead.substring(1);
@@ -204,8 +204,8 @@ public class WorldMapData_Sub1 extends WorldMapData {
       int int_4;
       int int_5;
       int int_9;
-      if ((maskSize & 0x40) != 0) {
-         info = buffer.method711();
+      if ((mask & 0x40) != 0) {
+         info = buffer.readNegUByte();
          int int_6;
          int int_7;
          int int_8;
@@ -248,13 +248,13 @@ public class WorldMapData_Sub1 extends WorldMapData {
          }
       }
 
-      if ((maskSize & 0x100) != 0) {
+      if ((mask & 0x100) != 0) {
          byte_0 = buffer.readByte();
       }
 
-      if ((maskSize & 0x4) != 0) {
+      if ((mask & 0x4) != 0) {
          info = buffer.readUnsignedShort();
-         Permission permission_0 = (Permission) Class1.forOrdinal(Class44.method272(), buffer.method711());
+         Permission permission_0 = (Permission) Class1.forOrdinal(Class44.method272(), buffer.readNegUByte());
          boolean bool_1 = buffer.method709() == 1;
          int_4 = buffer.readUnsignedByte();
          int_5 = buffer.offset;
@@ -294,39 +294,39 @@ public class WorldMapData_Sub1 extends WorldMapData {
          buffer.offset = int_5 + int_4;
       }
 
-      if ((maskSize & 0x80) != 0) {
+      if ((mask & 0x80) != 0) {
          player.interacting = buffer.method713();
          if (player.interacting == 65535) {
             player.interacting = -1;
          }
       }
 
-      if ((maskSize & 0x10) != 0) {
-         info = buffer.method711();
-         byte[] bytes_0 = new byte[info];
-         Buffer buffer_0 = new Buffer(bytes_0);
-         buffer.method731(bytes_0, 0, info);
-         Class27.aBufferArray1[int_0] = buffer_0;
-         player.decodeApperance(buffer_0);
+      if ((mask & 0x10) != 0) {
+         int length = buffer.readNegUByte();
+         byte[] data = new byte[length];
+         Buffer appearanceBuffer = new Buffer(data);
+         buffer.readData(data, 0, length);
+         Class27.playerSynchronizationBuffers[index] = appearanceBuffer;
+         player.decodeAppearance(appearanceBuffer);
       }
 
-      if ((maskSize & 0x1000) != 0) {
+      if ((mask & 0x1000) != 0) {
          for (info = 0; info < 3; info++) {
             player.actions[info] = buffer.readString();
          }
       }
 
-      if ((maskSize & 0x20) != 0) {
+      if ((mask & 0x20) != 0) {
          info = buffer.readUnsignedShortOb1();
          if (info == 65535) {
             info = -1;
          }
 
-         int_3 = buffer.method711();
+         int_3 = buffer.readNegUByte();
          Class9.method150(player, info, int_3);
       }
 
-      if ((maskSize & 0x400) != 0) {
+      if ((mask & 0x400) != 0) {
          player.anInt536 = buffer.method728();
          player.anInt537 = buffer.method728();
          player.anInt538 = buffer.method728();
@@ -351,7 +351,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
          player.anInt511 = 0;
       }
 
-      if ((maskSize & 0x2) != 0) {
+      if ((mask & 0x2) != 0) {
          player.anInt510 = buffer.readUnsignedShortOb1();
          if (player.queueSize == 0) {
             player.orientation = player.anInt510;
@@ -367,7 +367,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
             if (byte_0 != -1) {
                byte_1 = byte_0;
             } else {
-               byte_1 = Class27.aByteArray3[int_0];
+               byte_1 = Class27.aByteArray3[index];
             }
 
             player.method1095(player.anInt602, player.anInt603, byte_1);

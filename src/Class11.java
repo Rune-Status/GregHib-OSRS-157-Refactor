@@ -35,7 +35,7 @@ public class Class11 implements Interface2 {
          } else if (Client.localInteractingIndex == int_0) {
             throw new RuntimeException();
          } else {
-            Class27.anIntArray18[int_0] = (player_0.anInt600 << 28) + (ItemLayer.baseX + player_0.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player_0.pathY[0] >> 13);
+            Class27.anIntArray18[int_0] = (player_0.currentPlane << 28) + (ItemLayer.baseX + player_0.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player_0.pathY[0] >> 13);
             if (player_0.anInt510 != -1) {
                Class27.anIntArray19[int_0] = player_0.anInt510;
             } else {
@@ -186,9 +186,9 @@ public class Class11 implements Interface2 {
                   player_0.method1095(int_7, int_8, Class27.aByteArray3[int_0]);
                }
 
-               player_0.anInt600 = (byte)(int_4 + player_0.anInt600 & 0x3);
+               player_0.currentPlane = (byte)(int_4 + player_0.currentPlane & 0x3);
                if (Client.localInteractingIndex == int_0) {
-                  Ignore.plane = player_0.anInt600;
+                  Ignore.plane = player_0.currentPlane;
                }
 
             } else {
@@ -212,9 +212,9 @@ public class Class11 implements Interface2 {
                   player_0.aBool83 = false;
                }
 
-               player_0.anInt600 = (byte)(int_4 + player_0.anInt600 & 0x3);
+               player_0.currentPlane = (byte)(int_4 + player_0.currentPlane & 0x3);
                if (Client.localInteractingIndex == int_0) {
-                  Ignore.plane = player_0.anInt600;
+                  Ignore.plane = player_0.currentPlane;
                }
 
             }

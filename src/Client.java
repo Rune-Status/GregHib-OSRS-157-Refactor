@@ -950,7 +950,7 @@ public final class Client extends GameEngine {
 
             WidgetNode widgetnode_1;
             if (ServerPacket.aServerPacket33 == class46_0.serverPacket) {
-               int_1 = packetbuffer_0.method711();
+               int_1 = packetbuffer_0.readNegUByte();
                int_0 = packetbuffer_0.method713();
                int_2 = packetbuffer_0.method714();
                widgetnode_1 = (WidgetNode) componentTable.get((long)int_2);
@@ -1354,7 +1354,7 @@ public final class Client extends GameEngine {
                Class27.localPlayerIndexCount = 0;
 
                for (int_1 = 0; int_1 < 2048; int_1++) {
-                  Class27.aBufferArray1[int_1] = null;
+                  Class27.playerSynchronizationBuffers[int_1] = null;
                   Class27.aByteArray3[int_1] = 1;
                }
 
@@ -3168,14 +3168,14 @@ public final class Client extends GameEngine {
                   }
 
                   if (WorldMapData_Sub1.method602() && KeyFocusListener.aBoolArray3[82] && KeyFocusListener.aBoolArray3[81] && anInt636 != 0) {
-                     int_2 = Class4.localPlayer.anInt600 - anInt636;
+                     int_2 = Class4.localPlayer.currentPlane - anInt636;
                      if (int_2 < 0) {
                         int_2 = 0;
                      } else if (int_2 > 3) {
                         int_2 = 3;
                      }
 
-                     if (int_2 != Class4.localPlayer.anInt600) {
+                     if (int_2 != Class4.localPlayer.currentPlane) {
                         int_3 = Class4.localPlayer.pathX[0] + ItemLayer.baseX;
                         int_4 = Class4.localPlayer.pathY[0] + ItemLayer.baseY;
                         packetnode_1 = Actor.method953(ClientPacket.aClientPacket18, aClass46_1.anISAACCipher1);
@@ -3749,7 +3749,7 @@ public final class Client extends GameEngine {
                   Class27.localPlayerIndexCount = 0;
 
                   for (int_0 = 0; int_0 < 2048; int_0++) {
-                     Class27.aBufferArray1[int_0] = null;
+                     Class27.playerSynchronizationBuffers[int_0] = null;
                      Class27.aByteArray3[int_0] = 1;
                   }
 
@@ -3822,7 +3822,7 @@ public final class Client extends GameEngine {
                   componentTable = new HashTable(8);
                   aWidget12 = null;
                   Class9.method147();
-                  aPlayerComposition1.method504((int[]) null, new int[] {0, 0, 0, 0, 0}, false, -1);
+                  aPlayerComposition1.updateAppearance((int[]) null, new int[] {0, 0, 0, 0, 0}, false, -1);
 
                   for (int_0 = 0; int_0 < 8; int_0++) {
                      playerOptions[int_0] = null;

@@ -220,7 +220,7 @@ public class Class46 {
                IndexData indexdata_1 = Class4.indexModels;
                KitDefinition.identKit_ref = indexdata_0;
                KitDefinition.anIndexDataBase15 = indexdata_1;
-               KitDefinition.anInt441 = KitDefinition.identKit_ref.fileCount(3);
+               KitDefinition.count = KitDefinition.identKit_ref.fileCount(3);
                IndexData indexdata_2 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_3 = Class4.indexModels;
                boolean bool_0 = Client.lowMemory;

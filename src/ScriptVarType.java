@@ -541,7 +541,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int_2 = packetbuffer_0.readUnsignedByte();
             int_3 = (int_2 >> 4 & 0x7) + Class23.anInt75;
             int_4 = (int_2 & 0x7) + GameObject.anInt222;
-            int_5 = packetbuffer_0.method711();
+            int_5 = packetbuffer_0.readNegUByte();
             if (int_3 >= 0 && int_4 >= 0 && int_3 < 104 && int_4 < 104) {
                int_3 = int_3 * 128 + 64;
                int_4 = int_4 * 128 + 64;
@@ -555,11 +555,11 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int int_11;
             int int_12;
             if (Class59.aClass59_5 == class59_0) {
-               int_0 = packetbuffer_0.method711() * 4;
+               int_0 = packetbuffer_0.readNegUByte() * 4;
                int_1 = packetbuffer_0.method713();
                int_2 = packetbuffer_0.method710() * 4;
                int_3 = packetbuffer_0.readUnsignedByte();
-               int_4 = packetbuffer_0.method711();
+               int_4 = packetbuffer_0.readNegUByte();
                byte byte_4 = packetbuffer_0.method715();
                int_6 = packetbuffer_0.readUnsignedByte();
                int_7 = (int_6 >> 4 & 0x7) + Class23.anInt75;
@@ -597,7 +597,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                int_0 = packetbuffer_0.readUnsignedShort();
                int_1 = packetbuffer_0.readUnsignedShort();
                int_2 = packetbuffer_0.readUnsignedShort();
-               int_3 = packetbuffer_0.method711();
+               int_3 = packetbuffer_0.readNegUByte();
                int_4 = (int_3 >> 4 & 0x7) + Class23.anInt75;
                int_5 = (int_3 & 0x7) + GameObject.anInt222;
                if (int_4 >= 0 && int_5 >= 0 && int_4 < 104 && int_5 < 104) {
@@ -618,7 +618,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                Item item_1;
                if (Class59.aClass59_7 == class59_0) {
                   int_0 = packetbuffer_0.readUnsignedShort();
-                  int_1 = packetbuffer_0.method711();
+                  int_1 = packetbuffer_0.readNegUByte();
                   int_2 = (int_1 >> 4 & 0x7) + Class23.anInt75;
                   int_3 = (int_1 & 0x7) + GameObject.anInt222;
                   int_4 = packetbuffer_0.readUnsignedShortOb1();
@@ -637,7 +637,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                } else {
                   if (Class59.aClass59_1 == class59_0) {
                      int_0 = packetbuffer_0.readUnsignedByte();
-                     int_1 = packetbuffer_0.method711();
+                     int_1 = packetbuffer_0.readNegUByte();
                      int_2 = (int_1 >> 4 & 0x7) + Class23.anInt75;
                      int_3 = (int_1 & 0x7) + GameObject.anInt222;
                      int_4 = packetbuffer_0.method710();

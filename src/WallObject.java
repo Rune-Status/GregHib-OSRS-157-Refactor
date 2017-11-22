@@ -79,7 +79,7 @@ public final class WallObject {
 
          Class40.method259(int_1, int_0, true);
       } else {
-         boolean bool_1 = packetbuffer_0.method711() == 1;
+         boolean bool_1 = packetbuffer_0.readNegUByte() == 1;
          int_1 = packetbuffer_0.method713();
          int_2 = packetbuffer_0.method712();
          int_3 = packetbuffer_0.readUnsignedShort();

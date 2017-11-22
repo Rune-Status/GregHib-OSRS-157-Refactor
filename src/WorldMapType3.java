@@ -105,12 +105,12 @@ public class WorldMapType3 implements WorldMapSectionBase {
    }
 
    static void method575() {
-      int int_0 = Class27.localPlayerIndexCount;
-      int[] ints_0 = Class27.localPlayerIndices;
+      int localPlayers = Class27.localPlayerIndexCount;
+      int[] playerIndices = Class27.localPlayerIndices;
 
-      for (int int_1 = 0; int_1 < int_0; int_1++) {
-         if (ints_0[int_1] != Client.anInt667 && ints_0[int_1] != Client.localInteractingIndex) {
-            Class67.method413(Client.cachedPlayers[ints_0[int_1]], true);
+      for (int index = 0; index < localPlayers; index++) {
+         if (playerIndices[index] != Client.anInt667 && playerIndices[index] != Client.localInteractingIndex) {
+            Class67.method413(Client.cachedPlayers[playerIndices[index]], true);
          }
       }
 

@@ -16,25 +16,25 @@ public class PlayerComposition {
       aNodeCache1 = new NodeCache(260);
    }
 
-   public void method504(int[] ints_0, int[] ints_1, boolean bool_0, int int_0) {
-      if (ints_0 == null) {
-         ints_0 = new int[12];
+   public void updateAppearance(int[] models, int[] colours, boolean female, int npcId) {
+      if (models == null) {
+         models = new int[12];
 
-         for (int int_1 = 0; int_1 < 7; int_1++) {
-            for (int int_2 = 0; int_2 < KitDefinition.anInt441; int_2++) {
-               KitDefinition kitdefinition_0 = Class70.getKitDefinition(int_2);
-               if (kitdefinition_0 != null && !kitdefinition_0.nonSelectable && kitdefinition_0.bodyPartId == int_1 + (bool_0 ? 7 : 0)) {
-                  ints_0[anIntArray46[int_1]] = int_2 + 256;
+         for (int part = 0; part < 7; part++) {
+            for (int index = 0; index < KitDefinition.count; index++) {
+               KitDefinition kit = Class70.getKitDefinition(index);
+               if (kit != null && !kit.nonSelectable && kit.bodyPartId == part + (female ? 7 : 0)) {
+                  models[anIntArray46[part]] = index + 256;
                   break;
                }
             }
          }
       }
 
-      this.equipmentIds = ints_0;
-      this.bodyPartColours = ints_1;
-      this.isFemale = bool_0;
-      this.transformedNpcId = int_0;
+      this.equipmentIds = models;
+      this.bodyPartColours = colours;
+      this.isFemale = female;
+      this.transformedNpcId = npcId;
       this.setHash();
    }
 
@@ -260,11 +260,11 @@ public class PlayerComposition {
                if (!bool_0) {
                   --int_1;
                   if (int_1 < 0) {
-                     int_1 = KitDefinition.anInt441 - 1;
+                     int_1 = KitDefinition.count - 1;
                   }
                } else {
                   ++int_1;
-                  if (int_1 >= KitDefinition.anInt441) {
+                  if (int_1 >= KitDefinition.count) {
                      int_1 = 0;
                   }
                }
@@ -315,7 +315,7 @@ public class PlayerComposition {
 
    public void method510(boolean bool_0) {
       if (this.isFemale != bool_0) {
-         this.method504((int[]) null, this.bodyPartColours, bool_0, -1);
+         this.updateAppearance((int[]) null, this.bodyPartColours, bool_0, -1);
       }
    }
 

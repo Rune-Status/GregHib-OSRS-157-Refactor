@@ -244,17 +244,17 @@ public class ServerPacket {
                      int_4 -= 2048;
                   }
 
-                  int int_5 = actor_0.anInt517;
+                  int int_5 = actor_0.halfTurnAnimation;
                   if (int_4 >= -256 && int_4 <= 256) {
-                     int_5 = actor_0.anInt516;
+                     int_5 = actor_0.walkingAnimation;
                   } else if (int_4 >= 256 && int_4 < 768) {
-                     int_5 = actor_0.anInt519;
+                     int_5 = actor_0.quarterAnticlockwiseTurnAnimation;
                   } else if (int_4 >= -768 && int_4 <= -256) {
-                     int_5 = actor_0.anInt518;
+                     int_5 = actor_0.quarterClockwiseTurnAnimation;
                   }
 
                   if (int_5 == -1) {
-                     int_5 = actor_0.anInt516;
+                     int_5 = actor_0.walkingAnimation;
                   }
 
                   actor_0.poseAnimation = int_5;
@@ -300,8 +300,8 @@ public class ServerPacket {
                      int_6 <<= 1;
                   }
 
-                  if (int_6 >= 8 && actor_0.poseAnimation == actor_0.anInt516 && actor_0.anInt520 != -1) {
-                     actor_0.poseAnimation = actor_0.anInt520;
+                  if (int_6 >= 8 && actor_0.poseAnimation == actor_0.walkingAnimation && actor_0.runAnimation != -1) {
+                     actor_0.poseAnimation = actor_0.runAnimation;
                   }
 
                   if (int_0 != int_2 || int_1 != int_3) {
@@ -412,10 +412,10 @@ public class ServerPacket {
                }
 
                if (actor_0.poseAnimation == actor_0.idlePoseAnimation && (actor_0.anInt532 > 25 || bool_1)) {
-                  if (actor_0.anInt514 != -1) {
-                     actor_0.poseAnimation = actor_0.anInt514;
+                  if (actor_0.turnAnimation != -1) {
+                     actor_0.poseAnimation = actor_0.turnAnimation;
                   } else {
-                     actor_0.poseAnimation = actor_0.anInt516;
+                     actor_0.poseAnimation = actor_0.walkingAnimation;
                   }
                }
             } else {
@@ -430,7 +430,7 @@ public class ServerPacket {
                   if (actor_0.anInt515 != -1) {
                      actor_0.poseAnimation = actor_0.anInt515;
                   } else {
-                     actor_0.poseAnimation = actor_0.anInt516;
+                     actor_0.poseAnimation = actor_0.walkingAnimation;
                   }
                }
             }
@@ -462,7 +462,7 @@ public class ServerPacket {
          }
       }
 
-      if (actor_0.graphic != -1 && Client.gameCycle >= actor_0.graphicsDelay) {
+      if (actor_0.graphic != -1 && Client.gameCycle >= actor_0.graphicDelay) {
          if (actor_0.currentAnimation < 0) {
             actor_0.currentAnimation = 0;
          }

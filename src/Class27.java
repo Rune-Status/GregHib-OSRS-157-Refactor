@@ -2,7 +2,7 @@ public class Class27 {
 
    static byte[] updateFlags;
    static byte[] aByteArray3;
-   static Buffer[] aBufferArray1;
+   static Buffer[] playerSynchronizationBuffers;
    static int localPlayerIndexCount;
    static int[] localPlayerIndices;
    static int externalPlayerCount;
@@ -17,7 +17,7 @@ public class Class27 {
    static {
       updateFlags = new byte[2048];
       aByteArray3 = new byte[2048];
-      aBufferArray1 = new Buffer[2048];
+      playerSynchronizationBuffers = new Buffer[2048];
       localPlayerIndexCount = 0;
       localPlayerIndices = new int[2048];
       externalPlayerCount = 0;

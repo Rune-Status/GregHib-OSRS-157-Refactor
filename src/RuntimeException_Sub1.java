@@ -4,7 +4,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
 
    public static int revision;
    public static Applet anApplet2;
-   public static String aString32;
+   public static String localPlayerName;
    String aString33;
    Throwable aThrowable1;
 

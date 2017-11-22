@@ -1075,12 +1075,12 @@ public final class Class14 {
             npc_0.angle = 0;
          }
 
-         npc_0.anInt516 = npc_0.composition.anInt491;
-         npc_0.anInt517 = npc_0.composition.anInt496;
-         npc_0.anInt518 = npc_0.composition.anInt497;
-         npc_0.anInt519 = npc_0.composition.anInt498;
+         npc_0.walkingAnimation = npc_0.composition.anInt491;
+         npc_0.halfTurnAnimation = npc_0.composition.anInt496;
+         npc_0.quarterClockwiseTurnAnimation = npc_0.composition.anInt497;
+         npc_0.quarterAnticlockwiseTurnAnimation = npc_0.composition.anInt498;
          npc_0.idlePoseAnimation = npc_0.composition.anInt490;
-         npc_0.anInt514 = npc_0.composition.anInt492;
+         npc_0.turnAnimation = npc_0.composition.anInt492;
          npc_0.anInt515 = npc_0.composition.anInt493;
          npc_0.method1067(Class4.localPlayer.pathX[0] + int_3, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
       }
@@ -1101,10 +1101,10 @@ public final class Class14 {
             npc_0.graphic = packetbuffer_0.method712();
             int_2 = packetbuffer_0.method714();
             npc_0.graphicHeight = int_2 >> 16;
-            npc_0.graphicsDelay = (int_2 & 0xFFFF) + Client.gameCycle;
+            npc_0.graphicDelay = (int_2 & 0xFFFF) + Client.gameCycle;
             npc_0.currentAnimation = 0;
             npc_0.anInt530 = 0;
-            if (npc_0.graphicsDelay > Client.gameCycle) {
+            if (npc_0.graphicDelay > Client.gameCycle) {
                npc_0.currentAnimation = -1;
             }
 
@@ -1114,7 +1114,7 @@ public final class Class14 {
          }
 
          if ((int_1 & 0x4) != 0) {
-            int_2 = packetbuffer_0.method711();
+            int_2 = packetbuffer_0.readNegUByte();
             int int_5;
             int int_6;
             int int_8;
@@ -1200,12 +1200,12 @@ public final class Class14 {
             npc_0.composition = Class27.getNpcDefinition(packetbuffer_0.method712());
             npc_0.anInt513 = npc_0.composition.anInt489;
             npc_0.anInt533 = npc_0.composition.anInt502;
-            npc_0.anInt516 = npc_0.composition.anInt491;
-            npc_0.anInt517 = npc_0.composition.anInt496;
-            npc_0.anInt518 = npc_0.composition.anInt497;
-            npc_0.anInt519 = npc_0.composition.anInt498;
+            npc_0.walkingAnimation = npc_0.composition.anInt491;
+            npc_0.halfTurnAnimation = npc_0.composition.anInt496;
+            npc_0.quarterClockwiseTurnAnimation = npc_0.composition.anInt497;
+            npc_0.quarterAnticlockwiseTurnAnimation = npc_0.composition.anInt498;
             npc_0.idlePoseAnimation = npc_0.composition.anInt490;
-            npc_0.anInt514 = npc_0.composition.anInt492;
+            npc_0.turnAnimation = npc_0.composition.anInt492;
             npc_0.anInt515 = npc_0.composition.anInt493;
          }
 

@@ -256,7 +256,7 @@ public class Class36 {
                         int_1 = Class39.intStack[Class23.intStackSize];
                         coordinates_2 = new Coordinates(Class39.intStack[Class23.intStackSize + 1]);
                         worldmapdata_0 = BaseVarType.method647().method18(int_1);
-                        int int_3 = Class4.localPlayer.anInt600;
+                        int int_3 = Class4.localPlayer.currentPlane;
                         int int_4 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
                         int int_5 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
                         Coordinates coordinates_1 = new Coordinates(int_3, int_4, int_5);

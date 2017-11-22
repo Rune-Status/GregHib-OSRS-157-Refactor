@@ -19,9 +19,9 @@ public final class Player extends Actor {
    int anInt597;
    int anInt598;
    int anInt599;
-   int anInt600;
+   int currentPlane;
    String name;
-   int anInt601;
+   int localPlayerIndex;
    int anInt602;
    int anInt603;
    int anInt604;
@@ -168,7 +168,7 @@ public final class Player extends Actor {
                   Client.anAClass2_Sub1_1.anInt162 = 1;
                   Client.anAClass2_Sub1_1.anInt163 = 1;
                   AClass2_Sub1 aclass2_sub1_0 = Client.anAClass2_Sub1_1;
-                  int int_6 = Class49.method316(int_2, int_3, int_5, aclass2_sub1_0, Client.collisionMaps[this.anInt600], true, Client.anIntArray146, Client.anIntArray147);
+                  int int_6 = Class49.method316(int_2, int_3, int_5, aclass2_sub1_0, Client.collisionMaps[this.currentPlane], true, Client.anIntArray146, Client.anIntArray147);
                   if (int_6 >= 1) {
                      for (int int_7 = 0; int_7 < int_6 - 1; int_7++) {
                         player_1.method1094(Client.anIntArray146[int_7], Client.anIntArray147[int_7], (byte) 2);
@@ -187,93 +187,91 @@ public final class Player extends Actor {
 
    }
 
-   void decodeApperance(Buffer buffer_0) {
-      buffer_0.offset = 0;
-      int int_0 = buffer_0.readUnsignedByte();
-      this.skullIcon = buffer_0.readByte();
-      this.overheadIcon = buffer_0.readByte();
-      int int_1 = -1;
+   void decodeAppearance(Buffer buffer) {
+      buffer.offset = 0;
+      int gender = buffer.readUnsignedByte();
+      this.skullIcon = buffer.readByte();
+      this.overheadIcon = buffer.readByte();
+      int npcId = -1;
       this.team = 0;
-      int[] ints_0 = new int[12];
+      int[] appearanceModels = new int[12];
 
-      int int_3;
-      int int_4;
-      for (int int_2 = 0; int_2 < 12; int_2++) {
-         int_3 = buffer_0.readUnsignedByte();
-         if (int_3 == 0) {
-            ints_0[int_2] = 0;
+      for (int bodyPart = 0; bodyPart < 12; bodyPart++) {
+         int reset = buffer.readUnsignedByte();
+         if (reset == 0) {
+            appearanceModels[bodyPart] = 0;
          } else {
-            int_4 = buffer_0.readUnsignedByte();
-            ints_0[int_2] = int_4 + (int_3 << 8);
-            if (int_2 == 0 && ints_0[0] == 65535) {
-               int_1 = buffer_0.readUnsignedShort();
+            int id = buffer.readUnsignedByte();
+            appearanceModels[bodyPart] = id + (reset << 8);
+            if (bodyPart == 0 && appearanceModels[0] == 65535) {
+               npcId = buffer.readUnsignedShort();
                break;
             }
 
-            if (ints_0[int_2] >= 512) {
-               int int_5 = CacheableNode_Sub2.getItemDefinition(ints_0[int_2] - 512).anInt504;
-               if (int_5 != 0) {
-                  this.team = int_5;
+            if (appearanceModels[bodyPart] >= 512) {
+               int team = CacheableNode_Sub2.getItemDefinition(appearanceModels[bodyPart] - 512).anInt504;
+               if (team != 0) {
+                  this.team = team;
                }
             }
          }
       }
 
-      int[] ints_1 = new int[5];
+      int[] appearanceColours = new int[5];
 
-      for (int_3 = 0; int_3 < 5; int_3++) {
-         int_4 = buffer_0.readUnsignedByte();
-         if (int_4 < 0 || int_4 >= PlayerComposition.colorsToReplace[int_3].length) {
-            int_4 = 0;
+      for (int index = 0; index < 5; index++) {
+         int colour = buffer.readUnsignedByte();
+         if (colour < 0 || colour >= PlayerComposition.colorsToReplace[index].length) {
+            colour = 0;
          }
 
-         ints_1[int_3] = int_4;
+         appearanceColours[index] = colour;
       }
 
-      super.idlePoseAnimation = buffer_0.readUnsignedShort();
+      super.idlePoseAnimation = buffer.readUnsignedShort();
       if (super.idlePoseAnimation == 65535) {
          super.idlePoseAnimation = -1;
       }
 
-      super.anInt514 = buffer_0.readUnsignedShort();
-      if (super.anInt514 == 65535) {
-         super.anInt514 = -1;
+      super.turnAnimation = buffer.readUnsignedShort();
+      if (super.turnAnimation == 65535) {
+         super.turnAnimation = -1;
       }
 
-      super.anInt515 = super.anInt514;
-      super.anInt516 = buffer_0.readUnsignedShort();
-      if (super.anInt516 == 65535) {
-         super.anInt516 = -1;
+      super.anInt515 = super.turnAnimation;
+      super.walkingAnimation = buffer.readUnsignedShort();
+      if (super.walkingAnimation == 65535) {
+         super.walkingAnimation = -1;
       }
 
-      super.anInt517 = buffer_0.readUnsignedShort();
-      if (super.anInt517 == 65535) {
-         super.anInt517 = -1;
+      super.halfTurnAnimation = buffer.readUnsignedShort();
+      if (super.halfTurnAnimation == 65535) {
+         super.halfTurnAnimation = -1;
       }
 
-      super.anInt518 = buffer_0.readUnsignedShort();
-      if (super.anInt518 == 65535) {
-         super.anInt518 = -1;
+      super.quarterClockwiseTurnAnimation = buffer.readUnsignedShort();
+      if (super.quarterClockwiseTurnAnimation == 65535) {
+         super.quarterClockwiseTurnAnimation = -1;
       }
 
-      super.anInt519 = buffer_0.readUnsignedShort();
-      if (super.anInt519 == 65535) {
-         super.anInt519 = -1;
+      super.quarterAnticlockwiseTurnAnimation = buffer.readUnsignedShort();
+      if (super.quarterAnticlockwiseTurnAnimation == 65535) {
+         super.quarterAnticlockwiseTurnAnimation = -1;
       }
 
-      super.anInt520 = buffer_0.readUnsignedShort();
-      if (super.anInt520 == 65535) {
-         super.anInt520 = -1;
+      super.runAnimation = buffer.readUnsignedShort();
+      if (super.runAnimation == 65535) {
+         super.runAnimation = -1;
       }
 
-      this.name = buffer_0.readString();
+      this.name = buffer.readString();
       if (this == Class4.localPlayer) {
-         RuntimeException_Sub1.aString32 = this.name;
+         RuntimeException_Sub1.localPlayerName = this.name;
       }
 
-      this.combatLevel = buffer_0.readUnsignedByte();
-      this.totalLevel = buffer_0.readUnsignedShort();
-      this.hidden = buffer_0.readUnsignedByte() == 1;
+      this.combatLevel = buffer.readUnsignedByte();
+      this.totalLevel = buffer.readUnsignedShort();
+      this.hidden = buffer.readUnsignedByte() == 1;
       if (Client.socketType == 0 && Client.rights >= 2) {
          this.hidden = false;
       }
@@ -282,7 +280,7 @@ public final class Player extends Actor {
          this.composition = new PlayerComposition();
       }
 
-      this.composition.method504(ints_0, ints_1, int_0 == 1, int_1);
+      this.composition.updateAppearance(appearanceModels, appearanceColours, gender == 1, npcId);
    }
 
    static void method1096() {

@@ -305,7 +305,7 @@ public class Buffer extends Node {
       return int_0 < 128 ? this.readUnsignedByte() : this.readUnsignedShort() - 32768;
    }
 
-   public int method711() {
+   public int readNegUByte() {
       return this.payload[this.offset++] - 128 & 0xFF;
    }
 
@@ -595,9 +595,9 @@ public class Buffer extends Node {
       this.payload[this.offset - int_0 - 1] = (byte)int_0;
    }
 
-   public void method731(byte[] bytes_0, int int_0, int int_1) {
-      for (int int_2 = int_1 + int_0 - 1; int_2 >= int_0; --int_2) {
-         bytes_0[int_2] = this.payload[this.offset++];
+   public void readData(byte[] data, int offset, int length) {
+      for (int i = length + offset - 1; i >= offset; --i) {
+         data[i] = this.payload[this.offset++];
       }
 
    }
