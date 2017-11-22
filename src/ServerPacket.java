@@ -389,9 +389,9 @@ public class ServerPacket {
             }
          }
 
-         if (actor.anInt510 != -1 && (actor.queueSize == 0 || actor.anInt512 > 0)) {
-            actor.orientation = actor.anInt510;
-            actor.anInt510 = -1;
+         if (actor.nextStepOrientation != -1 && (actor.queueSize == 0 || actor.anInt512 > 0)) {
+            actor.orientation = actor.nextStepOrientation;
+            actor.nextStepOrientation = -1;
          }
 
          int_0 = actor.orientation - actor.angle & 0x7FF;

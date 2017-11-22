@@ -195,22 +195,21 @@ public class WorldMapData_Sub1 extends WorldMapData {
          }
 
          player.aBool71 = false;
-         player.anInt524 = 0;
-         player.anInt525 = 0;
-         player.anInt523 = 150;
+         player.textColour = 0;
+         player.textEffect = 0;
+         player.textCycle = 150;
       }
 
-      int int_3;
       int int_4;
       int int_5;
-      int int_9;
+      int type;
       if ((mask & 0x40) != 0) {
          info = buffer.readNegUByte();
          int int_6;
          int int_7;
          int int_8;
          if (info > 0) {
-            for (int_3 = 0; int_3 < info; int_3++) {
+            for (int i = 0; i < info; i++) {
                int_4 = -1;
                int_5 = -1;
                int_6 = -1;
@@ -231,16 +230,16 @@ public class WorldMapData_Sub1 extends WorldMapData {
             }
          }
 
-         int_3 = buffer.method710();
-         if (int_3 > 0) {
-            for (int_7 = 0; int_7 < int_3; int_7++) {
+         int length = buffer.method710();
+         if (length > 0) {
+            for (int_7 = 0; int_7 < length; int_7++) {
                int_4 = buffer.getUSmart();
                int_5 = buffer.getUSmart();
                if (int_5 != 32767) {
                   int_6 = buffer.getUSmart();
                   int_8 = buffer.method709();
-                  int_9 = int_5 > 0 ? buffer.method709() : int_8;
-                  player.method952(int_4, Client.gameCycle, int_5, int_6, int_8, int_9);
+                  type = int_5 > 0 ? buffer.method709() : int_8;
+                  player.method952(int_4, Client.gameCycle, int_5, int_6, int_8, type);
                } else {
                   player.method951(int_4);
                }
@@ -253,45 +252,45 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x4) != 0) {
-         info = buffer.readUnsignedShort();
-         Permission permission_0 = (Permission) Class1.forOrdinal(Class44.method272(), buffer.readNegUByte());
-         boolean bool_1 = buffer.method709() == 1;
-         int_4 = buffer.readUnsignedByte();
-         int_5 = buffer.offset;
+         int textInfo = buffer.readUnsignedShort();
+         Permission permission = (Permission) Class1.forOrdinal(Class44.method272(), buffer.readNegUByte());
+         boolean bool_1 = buffer.method709() == 1;//Resizable?
+         int length = buffer.readUnsignedByte();
+         int offset = buffer.offset;
          if (player.name != null && player.composition != null) {
-            boolean bool_0 = false;
-            if (permission_0.aBool46 && Tile.isIgnored(player.name)) {
-               bool_0 = true;
+            boolean ignored = false;
+            if (permission.aBool46 && Tile.isIgnored(player.name)) {
+               ignored = true;
             }
 
-            if (!bool_0 && Client.anInt694 == 0 && !player.hidden) {
-               Class27.aBuffer2.offset = 0;
-               buffer.method732(Class27.aBuffer2.payload, 0, int_4);
-               Class27.aBuffer2.offset = 0;
-               String string_0 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(Class27.aBuffer2)));
-               player.overhead = string_0.trim();
-               player.anInt524 = info >> 8;
-               player.anInt525 = info & 0xFF;
-               player.anInt523 = 150;
+            if (!ignored && Client.onTutorialIsland == 0 && !player.hidden) {
+               Class27.chatBuffer.offset = 0;
+               buffer.readReverseData(Class27.chatBuffer.payload, 0, length);
+               Class27.chatBuffer.offset = 0;
+               String text = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(Class27.chatBuffer)));
+               player.overhead = text.trim();
+               player.textColour = textInfo >> 8;
+               player.textEffect = textInfo & 0xFF;
+               player.textCycle = 150;
                player.aBool71 = bool_1;
-               player.inSequence = player != Class4.localPlayer && permission_0.aBool46 && "" != Client.aString37 && string_0.toLowerCase().indexOf(Client.aString37) == -1;
-               if (permission_0.aBool45) {
-                  int_9 = bool_1 ? 91 : 1;
+               player.inSequence = player != Class4.localPlayer && permission.aBool46 && "" != Client.aString37 && text.toLowerCase().indexOf(Client.aString37) == -1;
+               if (permission.aBool45) {
+                  type = bool_1 ? 91 : 1;
                } else {
-                  int_9 = bool_1 ? 90 : 2;
+                  type = bool_1 ? 90 : 2;
                }
 
-               if (permission_0.anInt302 != -1) {
-                  int int_10 = permission_0.anInt302;
-                  String string_1 = "<img=" + int_10 + ">";
-                  Class34.sendGameMessage(int_9, string_1 + player.name, string_0);
+               if (permission.iconSpriteId != -1) {
+                  int spriteId = permission.iconSpriteId;
+                  String icon = "<img=" + spriteId + ">";
+                  Class34.sendGameMessage(type, icon + player.name, text);
                } else {
-                  Class34.sendGameMessage(int_9, player.name, string_0);
+                  Class34.sendGameMessage(type, player.name, text);
                }
             }
          }
 
-         buffer.offset = int_5 + int_4;
+         buffer.offset = offset + length;
       }
 
       if ((mask & 0x80) != 0) {
@@ -317,13 +316,12 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x20) != 0) {
-         info = buffer.readUnsignedShortOb1();
-         if (info == 65535) {
-            info = -1;
-         }
+         int animationId = buffer.readUnsignedShortOb1();
+         if (animationId == 65535)
+            animationId = -1;
 
-         int_3 = buffer.readNegUByte();
-         Class9.method150(player, info, int_3);
+         int neg = buffer.readNegUByte();
+         Class9.animate(player, animationId, neg);
       }
 
       if ((mask & 0x400) != 0) {
@@ -352,10 +350,10 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x2) != 0) {
-         player.anInt510 = buffer.readUnsignedShortOb1();
+         player.nextStepOrientation = buffer.readUnsignedShortOb1();
          if (player.queueSize == 0) {
-            player.orientation = player.anInt510;
-            player.anInt510 = -1;
+            player.orientation = player.nextStepOrientation;
+            player.nextStepOrientation = -1;
          }
       }
 

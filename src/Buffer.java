@@ -602,11 +602,10 @@ public class Buffer extends Node {
 
    }
 
-   public void method732(byte[] bytes_0, int int_0, int int_1) {
-      for (int int_2 = int_0; int_2 < int_1 + int_0; int_2++) {
-         bytes_0[int_2] = (byte)(this.payload[this.offset++] - 128);
+   public void readReverseData(byte[] data, int length, int offset) {
+      for (int i = length; i < offset + length; i++) {
+         data[i] = (byte)(this.payload[this.offset++] - 128);
       }
-
    }
 
    public boolean checkCrc() {

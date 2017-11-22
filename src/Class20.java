@@ -265,7 +265,7 @@ public class Class20 implements Comparator {
                         byte_0 = 1;
                      } else if (int_0 == 3101) {
                         Class23.intStackSize -= 2;
-                        Class9.method150(Class4.localPlayer, Class39.intStack[Class23.intStackSize], Class39.intStack[Class23.intStackSize + 1]);
+                        Class9.animate(Class4.localPlayer, Class39.intStack[Class23.intStackSize], Class39.intStack[Class23.intStackSize + 1]);
                         byte_0 = 1;
                      } else if (int_0 == 3103) {
                         PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.cipher);
@@ -909,11 +909,11 @@ public class Class20 implements Comparator {
 
                                  for (int_2 = 0; int_2 < permissions_0.length; int_2++) {
                                     Permission permission_0 = permissions_0[int_2];
-                                    if (permission_0.anInt302 != -1) {
-                                       int_5 = permission_0.anInt302;
+                                    if (permission_0.iconSpriteId != -1) {
+                                       int_5 = permission_0.iconSpriteId;
                                        string_7 = "<img=" + int_5 + ">";
                                        if (string_2.startsWith(string_7)) {
-                                          string_2 = string_2.substring(6 + Integer.toString(permission_0.anInt302).length());
+                                          string_2 = string_2.substring(6 + Integer.toString(permission_0.iconSpriteId).length());
                                           break;
                                        }
                                     }

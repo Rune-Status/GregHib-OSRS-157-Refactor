@@ -1105,16 +1105,16 @@ public class DynamicObject extends Renderable {
       }
    }
 
-   static void addChatMessage(int int_0, String string_0, String string_1, String string_2) {
-      ChatLineBuffer chatlinebuffer_0 = (ChatLineBuffer) Class34.chatLineMap.get(Integer.valueOf(int_0));
-      if (chatlinebuffer_0 == null) {
-         chatlinebuffer_0 = new ChatLineBuffer();
-         Class34.chatLineMap.put(Integer.valueOf(int_0), chatlinebuffer_0);
+   static void addChatMessage(int type, String name, String text, String sender) {
+      ChatLineBuffer lineBuffer = (ChatLineBuffer) Class34.chatLineMap.get(Integer.valueOf(type));
+      if (lineBuffer == null) {
+         lineBuffer = new ChatLineBuffer();
+         Class34.chatLineMap.put(Integer.valueOf(type), lineBuffer);
       }
 
-      MessageNode messagenode_0 = chatlinebuffer_0.addMessage(int_0, string_0, string_1, string_2);
-      Class34.anIterableHashTable1.put(messagenode_0, (long)messagenode_0.id);
-      Class34.aClass77_1.method464(messagenode_0);
+      MessageNode message = lineBuffer.addMessage(type, name, text, sender);
+      Class34.anIterableHashTable1.put(message, (long)message.id);
+      Class34.aClass77_1.method464(message);
       Client.chatCycle = Client.cycleCntr;
    }
 

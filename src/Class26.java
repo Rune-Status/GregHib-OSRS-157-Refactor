@@ -306,9 +306,9 @@ public class Class26 {
                Client.anIntArray161[Client.anInt691] = Class50.aFont3.verticalSpace;
                Client.anIntArray159[Client.anInt691] = Client.screenY;
                Client.anIntArray160[Client.anInt691] = Client.screenX;
-               Client.anIntArray163[Client.anInt691] = actor_0.anInt524;
-               Client.anIntArray165[Client.anInt691] = actor_0.anInt525;
-               Client.anIntArray167[Client.anInt691] = actor_0.anInt523;
+               Client.anIntArray163[Client.anInt691] = actor_0.textColour;
+               Client.anIntArray165[Client.anInt691] = actor_0.textEffect;
+               Client.anIntArray167[Client.anInt691] = actor_0.textCycle;
                Client.aStringArray6[Client.anInt691] = actor_0.overhead;
                ++Client.anInt691;
             }

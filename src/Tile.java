@@ -147,19 +147,19 @@ public final class Tile extends Node {
       }
    }
 
-   static boolean isIgnored(String string_0) {
-      if (string_0 == null) {
+   static boolean isIgnored(String name) {
+      if (name == null) {
          return false;
       } else {
-         String string_1 = PacketBuffer.method908(string_0, Class24.aClass109_1);
+         String username = PacketBuffer.method908(name, Class24.aClass109_1);
 
          for (int int_0 = 0; int_0 < Client.ignoreCount; int_0++) {
-            Ignore ignore_0 = Client.ignores[int_0];
-            if (string_1.equalsIgnoreCase(PacketBuffer.method908(ignore_0.name, Class24.aClass109_1))) {
+            Ignore ignore = Client.ignores[int_0];
+            if (username.equalsIgnoreCase(PacketBuffer.method908(ignore.name, Class24.aClass109_1))) {
                return true;
             }
 
-            if (string_1.equalsIgnoreCase(PacketBuffer.method908(ignore_0.previousName, Class24.aClass109_1))) {
+            if (username.equalsIgnoreCase(PacketBuffer.method908(ignore.previousName, Class24.aClass109_1))) {
                return true;
             }
          }

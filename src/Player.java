@@ -153,7 +153,7 @@ public final class Player extends Actor {
          super.animation = -1;
       }
 
-      super.anInt510 = -1;
+      super.nextStepOrientation = -1;
       if (int_0 >= 0 && int_0 < 104 && int_1 >= 0 && int_1 < 104) {
          if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
             if (byte_0 == 2) {

@@ -221,19 +221,19 @@ public class WorldMapData {
    }
 
    static void method306() {
-      Client.anInt694 = 0;
+      Client.onTutorialIsland = 0;
       int int_0 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
       int int_1 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
       if (int_0 >= 3053 && int_0 <= 3156 && int_1 >= 3056 && int_1 <= 3136) {
-         Client.anInt694 = 1;
+         Client.onTutorialIsland = 1;
       }
 
       if (int_0 >= 3072 && int_0 <= 3118 && int_1 >= 9492 && int_1 <= 9535) {
-         Client.anInt694 = 1;
+         Client.onTutorialIsland = 1;
       }
 
-      if (Client.anInt694 == 1 && int_0 >= 3139 && int_0 <= 3199 && int_1 >= 3008 && int_1 <= 3062) {
-         Client.anInt694 = 0;
+      if (Client.onTutorialIsland == 1 && int_0 >= 3139 && int_0 <= 3199 && int_1 >= 3008 && int_1 <= 3062) {
+         Client.onTutorialIsland = 0;
       }
 
    }

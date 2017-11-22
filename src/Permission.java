@@ -9,13 +9,13 @@ public enum Permission implements RSEnum {
 
    static int[] anIntArray67;
    final int anInt301;
-   public final int anInt302;
+   public final int iconSpriteId;
    public final boolean aBool45;
    public final boolean aBool46;
 
    Permission(int int_1, int int_2, boolean bool_0, boolean bool_1, boolean bool_2) {
       this.anInt301 = int_1;
-      this.anInt302 = int_2;
+      this.iconSpriteId = int_2;
       this.aBool45 = bool_1;
       this.aBool46 = bool_2;
    }

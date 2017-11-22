@@ -19,13 +19,13 @@ public class MessageNode extends CacheableNode {
       this.value = string_2;
    }
 
-   void setMessage(int int_0, String string_0, String string_1, String string_2) {
+   void setMessage(int type, String name, String sender, String value) {
       this.id = RSCanvas.method747();
       this.tick = Client.gameCycle;
-      this.type = int_0;
-      this.name = string_0;
-      this.sender = string_1;
-      this.value = string_2;
+      this.type = type;
+      this.name = name;
+      this.sender = sender;
+      this.value = value;
    }
 
    static void method946(IndexDataBase indexdatabase_0, IndexDataBase indexdatabase_1, boolean bool_0, int int_0) {

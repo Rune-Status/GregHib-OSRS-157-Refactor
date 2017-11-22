@@ -4,7 +4,7 @@ public abstract class Actor extends Renderable {
    int[] pathX;
    int queueSize;
    int[] hitsplatCycles;
-   int anInt510;
+   int nextStepOrientation;
    boolean aBool69;
    int anInt511;
    int[] pathY;
@@ -36,9 +36,9 @@ public abstract class Actor extends Renderable {
    int graphic;
    boolean inSequence;
    int currentAnimation;
-   int anInt523;
-   int anInt524;
-   int anInt525;
+   int textCycle;
+   int textColour;
+   int textEffect;
    int graphicHeight;
    int interacting;
    boolean aBool70;
@@ -74,9 +74,9 @@ public abstract class Actor extends Renderable {
       this.runAnimation = -1;
       this.overhead = null;
       this.inSequence = false;
-      this.anInt523 = 100;
-      this.anInt524 = 0;
-      this.anInt525 = 0;
+      this.textCycle = 100;
+      this.textColour = 0;
+      this.textEffect = 0;
       this.aByte4 = 0;
       this.anIntArray110 = new int[4];
       this.hitsplatTypes = new int[4];
@@ -86,7 +86,7 @@ public abstract class Actor extends Renderable {
       this.combatInfoList = new CombatInfoList();
       this.interacting = -1;
       this.aBool70 = false;
-      this.anInt510 = -1;
+      this.nextStepOrientation = -1;
       this.poseAnimation = -1;
       this.poseFrame = 0;
       this.anInt527 = 0;
@@ -114,26 +114,25 @@ public abstract class Actor extends Renderable {
       return false;
    }
 
-   void method949(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
+   void method949(int int_0, int type, int int_2, int int_3, int cycle, int int_5) {
       boolean bool_0 = true;
       boolean bool_1 = true;
 
-      int int_6;
-      for (int_6 = 0; int_6 < 4; int_6++) {
-         if (this.hitsplatCycles[int_6] > int_4) {
+      for (int index = 0; index < 4; index++) {
+         if (this.hitsplatCycles[index] > cycle) {
             bool_0 = false;
          } else {
             bool_1 = false;
          }
       }
 
-      int_6 = -1;
+      int index = -1;
       int int_7 = -1;
       int int_8 = 0;
       if (int_0 >= 0) {
-         CacheableNode_Sub6 cacheablenode_sub6_0 = AClass3_Sub2.method753(int_0);
-         int_7 = cacheablenode_sub6_0.anInt482;
-         int_8 = cacheablenode_sub6_0.anInt484;
+         CacheableNode_Sub6 cache = AClass3_Sub2.method753(int_0);
+         int_7 = cache.anInt482;
+         int_8 = cache.anInt484;
       }
 
       int int_9;
@@ -142,7 +141,7 @@ public abstract class Actor extends Renderable {
             return;
          }
 
-         int_6 = 0;
+         index = 0;
          int_9 = 0;
          if (int_7 == 0) {
             int_9 = this.hitsplatCycles[0];
@@ -153,16 +152,16 @@ public abstract class Actor extends Renderable {
          for (int int_10 = 1; int_10 < 4; int_10++) {
             if (int_7 == 0) {
                if (this.hitsplatCycles[int_10] < int_9) {
-                  int_6 = int_10;
+                  index = int_10;
                   int_9 = this.hitsplatCycles[int_10];
                }
             } else if (int_7 == 1 && this.hitsplatTypes[int_10] < int_9) {
-               int_6 = int_10;
+               index = int_10;
                int_9 = this.hitsplatTypes[int_10];
             }
          }
 
-         if (int_7 == 1 && int_9 >= int_1) {
+         if (int_7 == 1 && int_9 >= type) {
             return;
          }
       } else {
@@ -173,19 +172,19 @@ public abstract class Actor extends Renderable {
          for (int_9 = 0; int_9 < 4; int_9++) {
             byte byte_0 = this.aByte4;
             this.aByte4 = (byte)((this.aByte4 + 1) % 4);
-            if (this.hitsplatCycles[byte_0] <= int_4) {
-               int_6 = byte_0;
+            if (this.hitsplatCycles[byte_0] <= cycle) {
+               index = byte_0;
                break;
             }
          }
       }
 
-      if (int_6 >= 0) {
-         this.anIntArray110[int_6] = int_0;
-         this.hitsplatTypes[int_6] = int_1;
-         this.anIntArray111[int_6] = int_2;
-         this.anIntArray112[int_6] = int_3;
-         this.hitsplatCycles[int_6] = int_4 + int_8 + int_5;
+      if (index >= 0) {
+         this.anIntArray110[index] = int_0;
+         this.hitsplatTypes[index] = type;
+         this.anIntArray111[index] = int_2;
+         this.anIntArray112[index] = int_3;
+         this.hitsplatCycles[index] = cycle + int_8 + int_5;
       }
    }
 
@@ -221,7 +220,7 @@ public abstract class Actor extends Renderable {
 
    }
 
-   void method952(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
+   void method952(int int_0, int cycle, int int_2, int int_3, int int_4, int type) {
       CombatInfo2 combatinfo2_0 = (CombatInfo2) CombatInfo2.aNodeCache7.get((long)int_0);
       CombatInfo2 combatinfo2_1;
       if (combatinfo2_0 != null) {
@@ -247,7 +246,7 @@ public abstract class Actor extends Renderable {
       for (combatinfolistholder_1 = (CombatInfoListHolder) this.combatInfoList.method454(); combatinfolistholder_1 != null; combatinfolistholder_1 = (CombatInfoListHolder) this.combatInfoList.method456()) {
          ++int_7;
          if (combatinfolistholder_1.combatInfo2.anInt459 == combatinfo2_0.anInt459) {
-            combatinfolistholder_1.method648(int_1 + int_3, int_4, int_5, int_2);
+            combatinfolistholder_1.method648(cycle + int_3, int_4, type, int_2);
             return;
          }
 
@@ -269,7 +268,7 @@ public abstract class Actor extends Renderable {
             CombatInfoList.method459(combatinfolistholder_1, combatinfolistholder_2);
          }
 
-         combatinfolistholder_1.method648(int_1 + int_3, int_4, int_5, int_2);
+         combatinfolistholder_1.method648(cycle + int_3, int_4, type, int_2);
          if (int_7 >= 4) {
             combatinfolistholder_0.unlink();
          }

@@ -828,26 +828,26 @@ public class Class9 {
       return World.method558(string_0, int_0, "openjs");
    }
 
-   static void method150(Player player_0, int int_0, int int_1) {
-      if (player_0.animation == int_0 && int_0 != -1) {
-         int int_2 = ItemLayer.getAnimation(int_0).replyMode;
+   static void animate(Player player, int animation, int disabledAnimation) {
+      if (player.animation == animation && animation != -1) {
+         int int_2 = ItemLayer.getAnimation(animation).replyMode;
          if (int_2 == 1) {
-            player_0.actionFrame = 0;
-            player_0.anInt528 = 0;
-            player_0.actionAnimationDisable = int_1;
-            player_0.anInt529 = 0;
+            player.actionFrame = 0;
+            player.anInt528 = 0;
+            player.actionAnimationDisable = disabledAnimation;
+            player.anInt529 = 0;
          }
 
          if (int_2 == 2) {
-            player_0.anInt529 = 0;
+            player.anInt529 = 0;
          }
-      } else if (int_0 == -1 || player_0.animation == -1 || ItemLayer.getAnimation(int_0).forcedPriority >= ItemLayer.getAnimation(player_0.animation).forcedPriority) {
-         player_0.animation = int_0;
-         player_0.actionFrame = 0;
-         player_0.anInt528 = 0;
-         player_0.actionAnimationDisable = int_1;
-         player_0.anInt529 = 0;
-         player_0.anInt511 = player_0.queueSize;
+      } else if (animation == -1 || player.animation == -1 || ItemLayer.getAnimation(animation).forcedPriority >= ItemLayer.getAnimation(player.animation).forcedPriority) {
+         player.animation = animation;
+         player.actionFrame = 0;
+         player.anInt528 = 0;
+         player.actionAnimationDisable = disabledAnimation;
+         player.anInt529 = 0;
+         player.anInt511 = player.queueSize;
       }
 
    }

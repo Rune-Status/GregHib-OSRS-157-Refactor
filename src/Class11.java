@@ -36,8 +36,8 @@ public class Class11 implements Interface2 {
             throw new RuntimeException();
          } else {
             Class27.locationHashes[int_0] = (player_0.currentPlane << 28) + (ItemLayer.baseX + player_0.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player_0.pathY[0] >> 13);
-            if (player_0.anInt510 != -1) {
-               Class27.anIntArray19[int_0] = player_0.anInt510;
+            if (player_0.nextStepOrientation != -1) {
+               Class27.anIntArray19[int_0] = player_0.nextStepOrientation;
             } else {
                Class27.anIntArray19[int_0] = player_0.orientation;
             }

@@ -1012,7 +1012,7 @@ public final class Class14 {
       PendingSpawn.method673();
 
       int int_0;
-      NPC npc_0;
+      NPC npc;
       int int_1;
       int int_2;
       int int_3;
@@ -1030,12 +1030,12 @@ public final class Class14 {
             bool_1 = true;
          }
 
-         npc_0 = Client.cachedNPCs[int_0];
+         npc = Client.cachedNPCs[int_0];
          Client.npcIndices[++Client.npcIndexesCount - 1] = int_0;
-         npc_0.anInt531 = Client.gameCycle;
+         npc.anInt531 = Client.gameCycle;
          int_1 = Client.anIntArray158[packetbuffer_0.getBits(3)];
          if (bool_1) {
-            npc_0.orientation = npc_0.angle = int_1;
+            npc.orientation = npc.angle = int_1;
          }
 
          int_2 = packetbuffer_0.getBits(1);
@@ -1055,7 +1055,7 @@ public final class Class14 {
             }
          }
 
-         npc_0.composition = Class27.getNpcDefinition(packetbuffer_0.getBits(14));
+         npc.composition = Class27.getNpcDefinition(packetbuffer_0.getBits(14));
          if (bool_0) {
             int_7 = packetbuffer_0.getBits(8);
             if (int_7 > 127) {
@@ -1069,20 +1069,20 @@ public final class Class14 {
          }
 
          int_4 = packetbuffer_0.getBits(1);
-         npc_0.anInt513 = npc_0.composition.anInt489;
-         npc_0.anInt533 = npc_0.composition.anInt502;
-         if (npc_0.anInt533 == 0) {
-            npc_0.angle = 0;
+         npc.anInt513 = npc.composition.anInt489;
+         npc.anInt533 = npc.composition.anInt502;
+         if (npc.anInt533 == 0) {
+            npc.angle = 0;
          }
 
-         npc_0.walkingAnimation = npc_0.composition.anInt491;
-         npc_0.halfTurnAnimation = npc_0.composition.anInt496;
-         npc_0.quarterClockwiseTurnAnimation = npc_0.composition.anInt497;
-         npc_0.quarterAnticlockwiseTurnAnimation = npc_0.composition.anInt498;
-         npc_0.idlePoseAnimation = npc_0.composition.anInt490;
-         npc_0.turnAnimation = npc_0.composition.anInt492;
-         npc_0.anInt515 = npc_0.composition.anInt493;
-         npc_0.method1067(Class4.localPlayer.pathX[0] + int_3, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
+         npc.walkingAnimation = npc.composition.anInt491;
+         npc.halfTurnAnimation = npc.composition.anInt496;
+         npc.quarterClockwiseTurnAnimation = npc.composition.anInt497;
+         npc.quarterAnticlockwiseTurnAnimation = npc.composition.anInt498;
+         npc.idlePoseAnimation = npc.composition.anInt490;
+         npc.turnAnimation = npc.composition.anInt492;
+         npc.anInt515 = npc.composition.anInt493;
+         npc.method1067(Class4.localPlayer.pathX[0] + int_3, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
       }
 
       packetbuffer_0.byteAccess();
@@ -1090,26 +1090,26 @@ public final class Class14 {
       int int_10;
       for (int_0 = 0; int_0 < Client.pendingNpcFlagsCount; int_0++) {
          int_10 = Client.pendingNpcFlagsIndices[int_0];
-         npc_0 = Client.cachedNPCs[int_10];
+         npc = Client.cachedNPCs[int_10];
          int_1 = packetbuffer_0.readUnsignedByte();
          if ((int_1 & 0x8) != 0) {
-            npc_0.overhead = packetbuffer_0.readString();
-            npc_0.anInt523 = 100;
+            npc.overhead = packetbuffer_0.readString();
+            npc.textCycle = 100;
          }
 
          if ((int_1 & 0x2) != 0) {
-            npc_0.graphic = packetbuffer_0.method712();
+            npc.graphic = packetbuffer_0.method712();
             int_2 = packetbuffer_0.method714();
-            npc_0.graphicHeight = int_2 >> 16;
-            npc_0.graphicDelay = (int_2 & 0xFFFF) + Client.gameCycle;
-            npc_0.currentAnimation = 0;
-            npc_0.anInt530 = 0;
-            if (npc_0.graphicDelay > Client.gameCycle) {
-               npc_0.currentAnimation = -1;
+            npc.graphicHeight = int_2 >> 16;
+            npc.graphicDelay = (int_2 & 0xFFFF) + Client.gameCycle;
+            npc.currentAnimation = 0;
+            npc.anInt530 = 0;
+            if (npc.graphicDelay > Client.gameCycle) {
+               npc.currentAnimation = -1;
             }
 
-            if (npc_0.graphic == 65535) {
-               npc_0.graphic = -1;
+            if (npc.graphic == 65535) {
+               npc.graphic = -1;
             }
          }
 
@@ -1136,7 +1136,7 @@ public final class Class14 {
                   }
 
                   int_8 = packetbuffer_0.getUSmart();
-                  npc_0.method949(int_7, int_5, int_4, int_6, Client.gameCycle, int_8);
+                  npc.method949(int_7, int_5, int_4, int_6, Client.gameCycle, int_8);
                }
             }
 
@@ -1149,9 +1149,9 @@ public final class Class14 {
                      int_6 = packetbuffer_0.getUSmart();
                      int_8 = packetbuffer_0.method710();
                      int int_9 = int_5 > 0 ? packetbuffer_0.method710() : int_8;
-                     npc_0.method952(int_4, Client.gameCycle, int_5, int_6, int_8, int_9);
+                     npc.method952(int_4, Client.gameCycle, int_5, int_6, int_8, int_9);
                   } else {
-                     npc_0.method951(int_4);
+                     npc.method951(int_4);
                   }
                }
             }
@@ -1164,55 +1164,55 @@ public final class Class14 {
             }
 
             int_3 = packetbuffer_0.method710();
-            if (int_2 == npc_0.animation && int_2 != -1) {
+            if (int_2 == npc.animation && int_2 != -1) {
                int_7 = ItemLayer.getAnimation(int_2).replyMode;
                if (int_7 == 1) {
-                  npc_0.actionFrame = 0;
-                  npc_0.anInt528 = 0;
-                  npc_0.actionAnimationDisable = int_3;
-                  npc_0.anInt529 = 0;
+                  npc.actionFrame = 0;
+                  npc.anInt528 = 0;
+                  npc.actionAnimationDisable = int_3;
+                  npc.anInt529 = 0;
                }
 
                if (int_7 == 2) {
-                  npc_0.anInt529 = 0;
+                  npc.anInt529 = 0;
                }
-            } else if (int_2 == -1 || npc_0.animation == -1 || ItemLayer.getAnimation(int_2).forcedPriority >= ItemLayer.getAnimation(npc_0.animation).forcedPriority) {
-               npc_0.animation = int_2;
-               npc_0.actionFrame = 0;
-               npc_0.anInt528 = 0;
-               npc_0.actionAnimationDisable = int_3;
-               npc_0.anInt529 = 0;
-               npc_0.anInt511 = npc_0.queueSize;
+            } else if (int_2 == -1 || npc.animation == -1 || ItemLayer.getAnimation(int_2).forcedPriority >= ItemLayer.getAnimation(npc.animation).forcedPriority) {
+               npc.animation = int_2;
+               npc.actionFrame = 0;
+               npc.anInt528 = 0;
+               npc.actionAnimationDisable = int_3;
+               npc.anInt529 = 0;
+               npc.anInt511 = npc.queueSize;
             }
          }
 
          if ((int_1 & 0x40) != 0) {
             int_2 = packetbuffer_0.readUnsignedShort();
             int_3 = packetbuffer_0.readUnsignedShortOb1();
-            int_7 = npc_0.x - (int_2 - ItemLayer.baseX - ItemLayer.baseX) * 64;
-            int_4 = npc_0.y - (int_3 - ItemLayer.baseY - ItemLayer.baseY) * 64;
+            int_7 = npc.x - (int_2 - ItemLayer.baseX - ItemLayer.baseX) * 64;
+            int_4 = npc.y - (int_3 - ItemLayer.baseY - ItemLayer.baseY) * 64;
             if (int_7 != 0 || int_4 != 0) {
-               npc_0.anInt510 = (int)(Math.atan2((double)int_7, (double)int_4) * 325.949D) & 0x7FF;
+               npc.nextStepOrientation = (int)(Math.atan2((double)int_7, (double)int_4) * 325.949D) & 0x7FF;
             }
          }
 
          if ((int_1 & 0x1) != 0) {
-            npc_0.composition = Class27.getNpcDefinition(packetbuffer_0.method712());
-            npc_0.anInt513 = npc_0.composition.anInt489;
-            npc_0.anInt533 = npc_0.composition.anInt502;
-            npc_0.walkingAnimation = npc_0.composition.anInt491;
-            npc_0.halfTurnAnimation = npc_0.composition.anInt496;
-            npc_0.quarterClockwiseTurnAnimation = npc_0.composition.anInt497;
-            npc_0.quarterAnticlockwiseTurnAnimation = npc_0.composition.anInt498;
-            npc_0.idlePoseAnimation = npc_0.composition.anInt490;
-            npc_0.turnAnimation = npc_0.composition.anInt492;
-            npc_0.anInt515 = npc_0.composition.anInt493;
+            npc.composition = Class27.getNpcDefinition(packetbuffer_0.method712());
+            npc.anInt513 = npc.composition.anInt489;
+            npc.anInt533 = npc.composition.anInt502;
+            npc.walkingAnimation = npc.composition.anInt491;
+            npc.halfTurnAnimation = npc.composition.anInt496;
+            npc.quarterClockwiseTurnAnimation = npc.composition.anInt497;
+            npc.quarterAnticlockwiseTurnAnimation = npc.composition.anInt498;
+            npc.idlePoseAnimation = npc.composition.anInt490;
+            npc.turnAnimation = npc.composition.anInt492;
+            npc.anInt515 = npc.composition.anInt493;
          }
 
          if ((int_1 & 0x20) != 0) {
-            npc_0.interacting = packetbuffer_0.readUnsignedShort();
-            if (npc_0.interacting == 65535) {
-               npc_0.interacting = -1;
+            npc.interacting = packetbuffer_0.readUnsignedShort();
+            if (npc.interacting == 65535) {
+               npc.interacting = -1;
             }
          }
       }

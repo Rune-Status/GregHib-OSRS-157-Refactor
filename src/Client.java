@@ -259,7 +259,7 @@ public final class Client extends GameEngine {
     static String clanChatName;
     static Class20 aClass20_1;
     static int anInt693;
-    static int anInt694;
+    static int onTutorialIsland;
     static long[] aLongArray4;
     static int anInt695;
     static String[] playerOptions;
@@ -372,7 +372,7 @@ public final class Client extends GameEngine {
         anInt693 = 0;
         aBool91 = false;
         anInt627 = 0;
-        anInt694 = 0;
+        onTutorialIsland = 0;
         cachedPlayers = new Player[2048];
         localInteractingIndex = -1;
         anInt678 = 0;
@@ -1836,12 +1836,12 @@ public final class Client extends GameEngine {
                         bool_8 = true;
                     }
 
-                    if (!bool_8 && anInt694 == 0) {
+                    if (!bool_8 && onTutorialIsland == 0) {
                         aLongArray4[anInt696] = long_0;
                         anInt696 = (anInt696 + 1) % 100;
                         String string_6 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(packetbuffer_0)));
-                        if (permission_1.anInt302 != -1) {
-                            int_7 = permission_1.anInt302;
+                        if (permission_1.iconSpriteId != -1) {
+                            int_7 = permission_1.iconSpriteId;
                             string_3 = "<img=" + int_7 + ">";
                             DynamicObject.addChatMessage(9, string_3 + string_4, string_6, Preferences.method419(long_1));
                         } else {
@@ -2460,7 +2460,7 @@ public final class Client extends GameEngine {
                         bool_2 = true;
                     }
 
-                    if (!bool_2 && anInt694 == 0) {
+                    if (!bool_2 && onTutorialIsland == 0) {
                         aLongArray4[anInt696] = long_5;
                         anInt696 = (anInt696 + 1) % 100;
                         String string_2 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(packetbuffer_0)));
@@ -2471,8 +2471,8 @@ public final class Client extends GameEngine {
                             byte_0 = 3;
                         }
 
-                        if (permission_0.anInt302 != -1) {
-                            int_7 = permission_0.anInt302;
+                        if (permission_0.iconSpriteId != -1) {
+                            int_7 = permission_0.iconSpriteId;
                             string_3 = "<img=" + int_7 + ">";
                             Class34.sendGameMessage(byte_0, string_3 + string_4, string_2);
                         } else {
@@ -3107,9 +3107,9 @@ public final class Client extends GameEngine {
 
                         for (int_1 = 0; int_1 < Class27.localPlayerIndexCount; int_1++) {
                             Player player_0 = cachedPlayers[ints_0[int_1]];
-                            if (player_0 != null && player_0.anInt523 > 0) {
-                                --player_0.anInt523;
-                                if (player_0.anInt523 == 0) {
+                            if (player_0 != null && player_0.textCycle > 0) {
+                                --player_0.textCycle;
+                                if (player_0.textCycle == 0) {
                                     player_0.overhead = null;
                                 }
                             }
@@ -3118,9 +3118,9 @@ public final class Client extends GameEngine {
                         for (int_1 = 0; int_1 < npcIndexesCount; int_1++) {
                             int_2 = npcIndices[int_1];
                             NPC npc_0 = cachedNPCs[int_2];
-                            if (npc_0 != null && npc_0.anInt523 > 0) {
-                                --npc_0.anInt523;
-                                if (npc_0.anInt523 == 0) {
+                            if (npc_0 != null && npc_0.textCycle > 0) {
+                                --npc_0.textCycle;
+                                if (npc_0.textCycle == 0) {
                                     npc_0.overhead = null;
                                 }
                             }

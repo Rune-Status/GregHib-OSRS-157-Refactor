@@ -12,7 +12,7 @@ public class Class27 {
    static int[] anIntArray20;
    static int playerCount;
    static int[] playerIndexes;
-   static Buffer aBuffer2;
+   static Buffer chatBuffer;
 
    static {
       updateFlags = new byte[2048];
@@ -27,7 +27,7 @@ public class Class27 {
       anIntArray20 = new int[2048];
       playerCount = 0;
       playerIndexes = new int[2048];
-      aBuffer2 = new Buffer(new byte[5000]);
+      chatBuffer = new Buffer(new byte[5000]);
    }
 
    public static NPCComposition getNpcDefinition(int int_0) {
