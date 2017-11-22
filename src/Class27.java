@@ -7,7 +7,7 @@ public class Class27 {
    static int[] localPlayerIndices;
    static int externalPlayerCount;
    static int[] externalPlayerIndices;
-   static int[] anIntArray18;
+   static int[] locationHashes;
    static int[] anIntArray19;
    static int[] anIntArray20;
    static int playerCount;
@@ -22,7 +22,7 @@ public class Class27 {
       localPlayerIndices = new int[2048];
       externalPlayerCount = 0;
       externalPlayerIndices = new int[2048];
-      anIntArray18 = new int[2048];
+      locationHashes = new int[2048];
       anIntArray19 = new int[2048];
       anIntArray20 = new int[2048];
       playerCount = 0;

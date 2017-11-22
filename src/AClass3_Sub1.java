@@ -76,7 +76,7 @@ public final class AClass3_Sub1 extends AClass3 {
          }
 
          Client.anInt686 = Class39.intStack[Class23.intStackSize + 2];
-         PacketNode packetnode_3 = Actor.method953(ClientPacket.aClientPacket95, Client.aClass46_1.anISAACCipher1);
+         PacketNode packetnode_3 = Actor.method953(ClientPacket.aClientPacket95, Client.aClass46_1.cipher);
          packetnode_3.packetBuffer.putByte(Client.anInt683);
          packetnode_3.packetBuffer.putByte(Huffman.aClass106_4.anInt207);
          packetnode_3.packetBuffer.putByte(Client.anInt686);
@@ -91,7 +91,7 @@ public final class AClass3_Sub1 extends AClass3 {
             Class23.intStackSize -= 2;
             int_1 = Class39.intStack[Class23.intStackSize];
             int_2 = Class39.intStack[Class23.intStackSize + 1];
-            PacketNode packetnode_2 = Actor.method953(ClientPacket.aClientPacket89, Client.aClass46_1.anISAACCipher1);
+            PacketNode packetnode_2 = Actor.method953(ClientPacket.aClientPacket89, Client.aClass46_1.cipher);
             packetnode_2.packetBuffer.putByte(Projectile.getLength(string_0) + 2);
             packetnode_2.packetBuffer.putString(string_0);
             packetnode_2.packetBuffer.putByte(int_1 - 1);
@@ -264,7 +264,7 @@ public final class AClass3_Sub1 extends AClass3 {
                   }
                }
 
-               PacketNode packetnode_1 = Actor.method953(ClientPacket.aClientPacket91, Client.aClass46_1.anISAACCipher1);
+               PacketNode packetnode_1 = Actor.method953(ClientPacket.aClientPacket91, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.putByte(0);
                int int_5 = packetnode_1.packetBuffer.offset;
                packetnode_1.packetBuffer.putByte(int_1);
@@ -351,7 +351,7 @@ public final class AClass3_Sub1 extends AClass3 {
                   Class28.scriptStringStackSize -= 2;
                   string_0 = Class39.scriptStringStack[Class28.scriptStringStackSize];
                   String string_2 = Class39.scriptStringStack[Class28.scriptStringStackSize + 1];
-                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket88, Client.aClass46_1.anISAACCipher1);
+                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket88, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putShort(0);
                   int_4 = packetnode_0.packetBuffer.offset;
                   packetnode_0.packetBuffer.putString(string_0);
@@ -487,7 +487,7 @@ public final class AClass3_Sub1 extends AClass3 {
 
    static void method752(String string_0) {
       if (DynamicObject.clanMembers != null) {
-         PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket87, Client.aClass46_1.anISAACCipher1);
+         PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket87, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putByte(Projectile.getLength(string_0));
          packetnode_0.packetBuffer.putString(string_0);
          Client.aClass46_1.method282(packetnode_0);

@@ -8,7 +8,7 @@ public class Class34 {
    static final IterableHashTable anIterableHashTable1;
    static final Class77 aClass77_1;
    static IndexData indexSprites;
-   static int anInt95;
+   static int playerPin;
 
    static {
       chatLineMap = new HashMap();

@@ -45,7 +45,7 @@ final class Class45 implements Comparator {
                   }
 
                   Client.anInt658 = Client.cycleCntr;
-                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket94, Client.aClass46_1.anISAACCipher1);
+                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket94, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putByte(Projectile.getLength(string_0));
                   packetnode_0.packetBuffer.putString(string_0);
                   Client.aClass46_1.method282(packetnode_0);

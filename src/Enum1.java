@@ -52,7 +52,7 @@ public enum Enum1 implements RSEnum {
             if (Class51.method329(Preferences.getWidgetConfig(widget_0), int_0 - 1)) {
                PacketNode packetnode_0;
                if (int_0 == 1) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket19, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket19, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -60,7 +60,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 2) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket20, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket20, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -68,7 +68,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 3) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket21, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket21, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -76,7 +76,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 4) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket25, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket25, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -84,7 +84,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 5) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket26, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket26, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -92,7 +92,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 6) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket27, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket27, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -100,7 +100,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 7) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket28, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket28, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -108,7 +108,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 8) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket29, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket29, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -116,7 +116,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 9) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket30, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket30, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);
@@ -124,7 +124,7 @@ public enum Enum1 implements RSEnum {
                }
 
                if (int_0 == 10) {
-                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket31, Client.aClass46_1.anISAACCipher1);
+                  packetnode_0 = Actor.method953(ClientPacket.aClientPacket31, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putInt(int_1);
                   packetnode_0.packetBuffer.putShort(int_2);
                   packetnode_0.packetBuffer.putShort(int_3);

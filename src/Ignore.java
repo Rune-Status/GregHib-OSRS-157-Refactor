@@ -18,7 +18,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket57, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket57, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.method720(int_3 >> 14 & 0x7FFF);
          packetnode_0.packetBuffer.putShort(GameEngine.selectedItemIndex);
          packetnode_0.packetBuffer.method720(ItemLayer.baseY + int_1);
@@ -34,7 +34,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket51, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket51, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putShort(int_0 + ItemLayer.baseX);
          packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
          packetnode_0.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
@@ -49,7 +49,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket60, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket60, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putShortLE(int_0 + ItemLayer.baseX);
          packetnode_0.packetBuffer.putShort(int_3 >> 14 & 0x7FFF);
          packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
@@ -62,7 +62,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket24, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket24, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.method719(int_0 + ItemLayer.baseX);
          packetnode_0.packetBuffer.method719(ItemLayer.baseY + int_1);
          packetnode_0.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
@@ -75,7 +75,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket48, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket48, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putShortLE(int_3 >> 14 & 0x7FFF);
          packetnode_0.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
          packetnode_0.packetBuffer.method720(ItemLayer.baseY + int_1);
@@ -88,7 +88,7 @@ public class Ignore {
          Client.anInt645 = 0;
          Client.destinationX = int_0;
          Client.destinationY = int_1;
-         packetnode_0 = Actor.method953(ClientPacket.aClientPacket66, Client.aClass46_1.anISAACCipher1);
+         packetnode_0 = Actor.method953(ClientPacket.aClientPacket66, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
          packetnode_0.packetBuffer.putShortLE(int_3 >> 14 & 0x7FFF);
          packetnode_0.packetBuffer.method719(int_0 + ItemLayer.baseX);
@@ -106,7 +106,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket68, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket68, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.putShort(GameEngine.selectedItemIndex);
                packetnode_1.packetBuffer.method720(KeyFocusListener.anInt128);
                packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
@@ -123,7 +123,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket64, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket64, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.method720(int_3);
                packetnode_1.packetBuffer.method718(Class26.anInt87);
                packetnode_1.packetBuffer.method720(Client.anInt656);
@@ -139,7 +139,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket54, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket54, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_1.packetBuffer.method720(int_3);
                Client.aClass46_1.method282(packetnode_1);
@@ -153,7 +153,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket42, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket42, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.method720(int_3);
                packetnode_1.packetBuffer.method729(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                Client.aClass46_1.method282(packetnode_1);
@@ -167,7 +167,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket56, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket56, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.putShortLE(int_3);
                packetnode_1.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                Client.aClass46_1.method282(packetnode_1);
@@ -181,7 +181,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket59, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket59, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_1.packetBuffer.putShort(int_3);
                Client.aClass46_1.method282(packetnode_1);
@@ -195,7 +195,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_1 = Actor.method953(ClientPacket.aClientPacket62, Client.aClass46_1.anISAACCipher1);
+               packetnode_1 = Actor.method953(ClientPacket.aClientPacket62, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_1.packetBuffer.method720(int_3);
                Client.aClass46_1.method282(packetnode_1);
@@ -211,7 +211,7 @@ public class Ignore {
                   Client.anInt645 = 0;
                   Client.destinationX = int_0;
                   Client.destinationY = int_1;
-                  packetnode_1 = Actor.method953(ClientPacket.aClientPacket61, Client.aClass46_1.anISAACCipher1);
+                  packetnode_1 = Actor.method953(ClientPacket.aClientPacket61, Client.aClass46_1.cipher);
                   packetnode_1.packetBuffer.method719(KeyFocusListener.anInt128);
                   packetnode_1.packetBuffer.putShortLE(int_3);
                   packetnode_1.packetBuffer.method720(GameEngine.selectedItemIndex);
@@ -228,7 +228,7 @@ public class Ignore {
                   Client.anInt645 = 0;
                   Client.destinationX = int_0;
                   Client.destinationY = int_1;
-                  packetnode_1 = Actor.method953(ClientPacket.aClientPacket67, Client.aClass46_1.anISAACCipher1);
+                  packetnode_1 = Actor.method953(ClientPacket.aClientPacket67, Client.aClass46_1.cipher);
                   packetnode_1.packetBuffer.method718(Class26.anInt87);
                   packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                   packetnode_1.packetBuffer.putShort(int_3);
@@ -242,7 +242,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket23, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket23, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_0.packetBuffer.method718(Class48.anInt111);
                packetnode_0.packetBuffer.method720(int_0 + ItemLayer.baseX);
@@ -258,7 +258,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket50, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket50, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
                packetnode_0.packetBuffer.method720(int_0 + ItemLayer.baseX);
                packetnode_0.packetBuffer.method719(Client.anInt656);
@@ -273,7 +273,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket33, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket33, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.method720(int_0 + ItemLayer.baseX);
                packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
                packetnode_0.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
@@ -286,7 +286,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket35, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket35, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.method720(int_3);
                packetnode_0.packetBuffer.method719(int_0 + ItemLayer.baseX);
                packetnode_0.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
@@ -299,7 +299,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket38, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket38, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putShortLE(ItemLayer.baseY + int_1);
                packetnode_0.packetBuffer.method719(int_0 + ItemLayer.baseX);
                packetnode_0.packetBuffer.method719(int_3);
@@ -312,7 +312,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket40, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket40, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_0.packetBuffer.method720(ItemLayer.baseY + int_1);
                packetnode_0.packetBuffer.putShort(int_0 + ItemLayer.baseX);
@@ -325,7 +325,7 @@ public class Ignore {
                Client.anInt645 = 0;
                Client.destinationX = int_0;
                Client.destinationY = int_1;
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket46, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket46, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.method719(int_3);
                packetnode_0.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                packetnode_0.packetBuffer.putShortLE(int_0 + ItemLayer.baseX);
@@ -348,7 +348,7 @@ public class Ignore {
                   }
 
                   if (bool_0) {
-                     packetnode_2 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.anISAACCipher1);
+                     packetnode_2 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
                      packetnode_2.packetBuffer.putInt(int_1);
                      Client.aClass46_1.method282(packetnode_2);
                   }
@@ -391,7 +391,7 @@ public class Ignore {
                   }
 
                   if (int_2 == 26) {
-                     packetnode_0 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.anISAACCipher1);
+                     packetnode_0 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.cipher);
                      Client.aClass46_1.method282(packetnode_0);
 
                      for (WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) Client.componentTable.method68()) {
@@ -407,7 +407,7 @@ public class Ignore {
                   } else {
                      Widget widget_1;
                      if (int_2 == 28) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putInt(int_1);
                         Client.aClass46_1.method282(packetnode_0);
                         widget_1 = PendingSpawn.method671(int_1);
@@ -417,7 +417,7 @@ public class Ignore {
                            DynamicObject.method1064(int_6);
                         }
                      } else if (int_2 == 29) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putInt(int_1);
                         Client.aClass46_1.method282(packetnode_0);
                         widget_1 = PendingSpawn.method671(int_1);
@@ -435,7 +435,7 @@ public class Ignore {
                            WorldMapData.method305(Client.aWidget12);
                         }
                      } else if (int_2 == 31) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket55, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket55, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putShort(int_0);
                         packetnode_0.packetBuffer.method719(int_3);
                         packetnode_0.packetBuffer.putShortLE(KeyFocusListener.anInt128);
@@ -447,7 +447,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 32) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket17, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket17, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.method718(Class26.anInt87);
                         packetnode_0.packetBuffer.method719(int_3);
                         packetnode_0.packetBuffer.putShortLE(int_0);
@@ -458,7 +458,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 33) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket79, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket79, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putShortLE(int_3);
                         packetnode_0.packetBuffer.method718(int_1);
                         packetnode_0.packetBuffer.method720(int_0);
@@ -467,7 +467,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 34) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket14, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket14, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putInt(int_1);
                         packetnode_0.packetBuffer.putShort(int_3);
                         packetnode_0.packetBuffer.putShort(int_0);
@@ -476,7 +476,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 35) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket43, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket43, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putShort(int_3);
                         packetnode_0.packetBuffer.method719(int_0);
                         packetnode_0.packetBuffer.method718(int_1);
@@ -485,7 +485,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 36) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket53, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket53, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.method726(int_1);
                         packetnode_0.packetBuffer.method719(int_3);
                         packetnode_0.packetBuffer.method720(int_0);
@@ -494,7 +494,7 @@ public class Ignore {
                         Class59.aWidget3 = PendingSpawn.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 37) {
-                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket36, Client.aClass46_1.anISAACCipher1);
+                        packetnode_0 = Actor.method953(ClientPacket.aClientPacket36, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.method720(int_3);
                         packetnode_0.packetBuffer.method726(int_1);
                         packetnode_0.packetBuffer.method720(int_0);
@@ -520,7 +520,7 @@ public class Ignore {
                         }
 
                         if (int_2 == 39) {
-                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket80, Client.aClass46_1.anISAACCipher1);
+                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket80, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.method720(int_3);
                            packetnode_0.packetBuffer.method719(int_0);
                            packetnode_0.packetBuffer.method726(int_1);
@@ -529,7 +529,7 @@ public class Ignore {
                            Class59.aWidget3 = PendingSpawn.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 40) {
-                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket32, Client.aClass46_1.anISAACCipher1);
+                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket32, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.putShortLE(int_0);
                            packetnode_0.packetBuffer.putInt(int_1);
                            packetnode_0.packetBuffer.putShortLE(int_3);
@@ -538,7 +538,7 @@ public class Ignore {
                            Class59.aWidget3 = PendingSpawn.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 41) {
-                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket47, Client.aClass46_1.anISAACCipher1);
+                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket47, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.method720(int_3);
                            packetnode_0.packetBuffer.putShort(int_0);
                            packetnode_0.packetBuffer.method718(int_1);
@@ -547,7 +547,7 @@ public class Ignore {
                            Class59.aWidget3 = PendingSpawn.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 42) {
-                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket83, Client.aClass46_1.anISAACCipher1);
+                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket83, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.putShortLE(int_3);
                            packetnode_0.packetBuffer.putShortLE(int_0);
                            packetnode_0.packetBuffer.method718(int_1);
@@ -556,7 +556,7 @@ public class Ignore {
                            Class59.aWidget3 = PendingSpawn.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 43) {
-                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket44, Client.aClass46_1.anISAACCipher1);
+                           packetnode_0 = Actor.method953(ClientPacket.aClientPacket44, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.method718(int_1);
                            packetnode_0.packetBuffer.method719(int_3);
                            packetnode_0.packetBuffer.putShortLE(int_0);
@@ -573,7 +573,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method729(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               packetnode_1.packetBuffer.putShortLE(int_3);
                               Client.aClass46_1.method282(packetnode_1);
@@ -587,7 +587,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket45, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket45, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method719(int_3);
                               packetnode_1.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               Client.aClass46_1.method282(packetnode_1);
@@ -601,7 +601,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket41, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket41, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.putShort(int_3);
                               packetnode_1.packetBuffer.method729(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               Client.aClass46_1.method282(packetnode_1);
@@ -615,7 +615,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket70, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket70, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method719(int_3);
                               packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               Client.aClass46_1.method282(packetnode_1);
@@ -629,7 +629,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket63, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket63, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method729(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               packetnode_1.packetBuffer.method720(int_3);
                               Client.aClass46_1.method282(packetnode_1);
@@ -643,7 +643,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket22, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket22, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               packetnode_1.packetBuffer.method719(int_3);
                               Client.aClass46_1.method282(packetnode_1);
@@ -657,7 +657,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket65, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket65, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               packetnode_1.packetBuffer.putShortLE(int_3);
                               Client.aClass46_1.method282(packetnode_1);
@@ -671,7 +671,7 @@ public class Ignore {
                               Client.anInt645 = 0;
                               Client.destinationX = int_0;
                               Client.destinationY = int_1;
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket76, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket76, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.putByte(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                               packetnode_1.packetBuffer.method720(int_3);
                               Client.aClass46_1.method282(packetnode_1);
@@ -682,7 +682,7 @@ public class Ignore {
                                  if (int_2 == 58) {
                                     widget_2 = Class74.method447(int_1, int_0);
                                     if (widget_2 != null) {
-                                       packetnode_1 = Actor.method953(ClientPacket.aClientPacket16, Client.aClass46_1.anISAACCipher1);
+                                       packetnode_1 = Actor.method953(ClientPacket.aClientPacket16, Client.aClass46_1.cipher);
                                        packetnode_1.packetBuffer.method718(Class26.anInt87);
                                        packetnode_1.packetBuffer.putShort(Client.anInt676);
                                        packetnode_1.packetBuffer.putShort(widget_2.itemId);
@@ -701,7 +701,7 @@ public class Ignore {
                                     Client.anInt645 = 0;
                                     Client.destinationX = int_0;
                                     Client.destinationY = int_1;
-                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket52, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket52, Client.aClass46_1.cipher);
                                     packetnode_0.packetBuffer.putShort(int_3 >> 14 & 0x7FFF);
                                     packetnode_0.packetBuffer.method716(KeyFocusListener.aBoolArray3[82] ? 1 : 0);
                                     packetnode_0.packetBuffer.putShort(int_0 + ItemLayer.baseX);
@@ -715,7 +715,7 @@ public class Ignore {
                                     Client.anInt642 = int_5;
                                     Client.cursorState = 2;
                                     Client.anInt645 = 0;
-                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket90, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket90, Client.aClass46_1.cipher);
                                     packetnode_0.packetBuffer.method720(int_3 >> 14 & 0x7FFF);
                                     Client.aClass46_1.method282(packetnode_0);
                                     break label807;
@@ -734,7 +734,7 @@ public class Ignore {
                                        }
 
                                        if (npccomposition_0 != null) {
-                                          packetnode_2 = Actor.method953(ClientPacket.aClientPacket49, Client.aClass46_1.anISAACCipher1);
+                                          packetnode_2 = Actor.method953(ClientPacket.aClientPacket49, Client.aClass46_1.cipher);
                                           packetnode_2.packetBuffer.method720(npccomposition_0.id);
                                           Client.aClass46_1.method282(packetnode_2);
                                        }
@@ -747,7 +747,7 @@ public class Ignore {
                                     Client.anInt642 = int_5;
                                     Client.cursorState = 2;
                                     Client.anInt645 = 0;
-                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket39, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_0 = Actor.method953(ClientPacket.aClientPacket39, Client.aClass46_1.cipher);
                                     packetnode_0.packetBuffer.method719(int_3);
                                     Client.aClass46_1.method282(packetnode_0);
                                     break label807;
@@ -758,7 +758,7 @@ public class Ignore {
                                     if (widget_2 != null && widget_2.itemQuantities[int_0] >= 100000) {
                                        Class34.sendGameMessage(27, "", widget_2.itemQuantities[int_0] + " x " + CacheableNode_Sub2.getItemDefinition(int_3).name);
                                     } else {
-                                       packetnode_1 = Actor.method953(ClientPacket.aClientPacket39, Client.aClass46_1.anISAACCipher1);
+                                       packetnode_1 = Actor.method953(ClientPacket.aClientPacket39, Client.aClass46_1.cipher);
                                        packetnode_1.packetBuffer.method719(int_3);
                                        Client.aClass46_1.method282(packetnode_1);
                                     }
@@ -834,7 +834,7 @@ public class Ignore {
          }
 
          if (int_0 == 326) {
-            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket69, Client.aClass46_1.anISAACCipher1);
+            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket69, Client.aClass46_1.cipher);
             Client.aPlayerComposition1.method511(packetnode_0.packetBuffer);
             Client.aClass46_1.method282(packetnode_0);
             return true;

@@ -47,7 +47,7 @@ public class Class85 {
                 int int_6 = info >> 16;
                 int int_7 = info >> 8 & 0x255;
                 int int_8 = info & 0x255;
-                Class27.anIntArray18[index] = (int_7 << 14) + int_8 + (int_6 << 28);
+                Class27.locationHashes[index] = (int_7 << 14) + int_8 + (int_6 << 28);
                 Class27.anIntArray19[index] = 0;
                 Class27.anIntArray20[index] = -1;
                 Class27.externalPlayerIndices[++Class27.externalPlayerCount - 1] = index;

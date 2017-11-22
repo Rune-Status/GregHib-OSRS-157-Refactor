@@ -301,7 +301,7 @@ public class ItemContainer extends Node {
                            int_24 = int_19 * int_22 - int_18 * int_21 >> 11;
                            int int_30 = int_23 + Class4.localPlayer.x >> 7;
                            int_25 = Class4.localPlayer.y - int_24 >> 7;
-                           PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket85, Client.aClass46_1.anISAACCipher1);
+                           PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket85, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.putByte(18);
                            packetnode_0.packetBuffer.method720(int_25 + ItemLayer.baseY);
                            packetnode_0.packetBuffer.method720(int_30 + ItemLayer.baseX);

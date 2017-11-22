@@ -259,7 +259,7 @@ public class Varcs {
    }
 
    static void method544() {
-      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket86, Client.aClass46_1.anISAACCipher1);
+      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket86, Client.aClass46_1.cipher);
       packetnode_0.packetBuffer.putByte(0);
       Client.aClass46_1.method282(packetnode_0);
    }

@@ -268,7 +268,7 @@ public class Class20 implements Comparator {
                         Class9.method150(Class4.localPlayer, Class39.intStack[Class23.intStackSize], Class39.intStack[Class23.intStackSize + 1]);
                         byte_0 = 1;
                      } else if (int_0 == 3103) {
-                        PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.anISAACCipher1);
+                        PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.cipher);
                         Client.aClass46_1.method282(packetnode_4);
 
                         for (widgetnode_0 = (WidgetNode) Client.componentTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) Client.componentTable.method68()) {
@@ -290,7 +290,7 @@ public class Class20 implements Comparator {
                            int_9 = Class27.method225(string_2);
                         }
 
-                        packetnode_1 = Actor.method953(ClientPacket.aClientPacket73, Client.aClass46_1.anISAACCipher1);
+                        packetnode_1 = Actor.method953(ClientPacket.aClientPacket73, Client.aClass46_1.cipher);
                         packetnode_1.packetBuffer.putInt(int_9);
                         Client.aClass46_1.method282(packetnode_1);
                         byte_0 = 1;
@@ -298,14 +298,14 @@ public class Class20 implements Comparator {
                         PacketNode packetnode_2;
                         if (int_0 == 3105) {
                            string_2 = Class39.scriptStringStack[--Class28.scriptStringStackSize];
-                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket71, Client.aClass46_1.anISAACCipher1);
+                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket71, Client.aClass46_1.cipher);
                            packetnode_2.packetBuffer.putByte(string_2.length() + 1);
                            packetnode_2.packetBuffer.putString(string_2);
                            Client.aClass46_1.method282(packetnode_2);
                            byte_0 = 1;
                         } else if (int_0 == 3106) {
                            string_2 = Class39.scriptStringStack[--Class28.scriptStringStackSize];
-                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket72, Client.aClass46_1.anISAACCipher1);
+                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket72, Client.aClass46_1.cipher);
                            packetnode_2.packetBuffer.putByte(string_2.length() + 1);
                            packetnode_2.packetBuffer.putString(string_2);
                            Client.aClass46_1.method282(packetnode_2);
@@ -321,22 +321,22 @@ public class Class20 implements Comparator {
                               Player player_0 = Client.cachedPlayers[ints_0[int_4]];
                               if (player_0 != null && player_0 != Class4.localPlayer && player_0.name != null && player_0.name.equalsIgnoreCase(string_0)) {
                                  if (int_1 == 1) {
-                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.cipher);
                                     packetnode_3.packetBuffer.method729(0);
                                     packetnode_3.packetBuffer.putShortLE(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 4) {
-                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket70, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket70, Client.aClass46_1.cipher);
                                     packetnode_3.packetBuffer.method719(ints_0[int_4]);
                                     packetnode_3.packetBuffer.method716(0);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 6) {
-                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket22, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket22, Client.aClass46_1.cipher);
                                     packetnode_3.packetBuffer.method716(0);
                                     packetnode_3.packetBuffer.method719(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 7) {
-                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket65, Client.aClass46_1.anISAACCipher1);
+                                    packetnode_3 = Actor.method953(ClientPacket.aClientPacket65, Client.aClass46_1.cipher);
                                     packetnode_3.packetBuffer.method721(0);
                                     packetnode_3.packetBuffer.putShortLE(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
@@ -384,7 +384,7 @@ public class Class20 implements Comparator {
                            byte_0 = 1;
                         } else if (int_0 == 3115) {
                            int_1 = Class39.intStack[--Class23.intStackSize];
-                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket74, Client.aClass46_1.anISAACCipher1);
+                           packetnode_2 = Actor.method953(ClientPacket.aClientPacket74, Client.aClass46_1.cipher);
                            packetnode_2.packetBuffer.putShort(int_1);
                            Client.aClass46_1.method282(packetnode_2);
                            byte_0 = 1;
@@ -398,7 +398,7 @@ public class Class20 implements Comparator {
                            } else if (string_3.length() > 500) {
                               byte_0 = 1;
                            } else {
-                              PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket77, Client.aClass46_1.anISAACCipher1);
+                              PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket77, Client.aClass46_1.cipher);
                               packetnode_0.packetBuffer.putShort(1 + Projectile.getLength(string_0) + Projectile.getLength(string_3));
                               packetnode_0.packetBuffer.putByte(int_1);
                               packetnode_0.packetBuffer.putString(string_0);
@@ -784,7 +784,7 @@ public class Class20 implements Comparator {
                            } else if (int_0 == 3604) {
                               string_2 = Class39.scriptStringStack[--Class28.scriptStringStackSize];
                               int_9 = Class39.intStack[--Class23.intStackSize];
-                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket75, Client.aClass46_1.anISAACCipher1);
+                              packetnode_1 = Actor.method953(ClientPacket.aClientPacket75, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.putByte(Projectile.getLength(string_2) + 1);
                               packetnode_1.packetBuffer.method721(int_9);
                               packetnode_1.packetBuffer.putString(string_2);
@@ -824,7 +824,7 @@ public class Class20 implements Comparator {
                                                 if (PacketBuffer.method908(Class4.localPlayer.name, Class24.aClass109_1).equals(string_0)) {
                                                    Class34.sendGameMessage(30, "", "You can\'t add yourself to your own friend list");
                                                 } else {
-                                                   packetnode_1 = Actor.method953(ClientPacket.aClientPacket78, Client.aClass46_1.anISAACCipher1);
+                                                   packetnode_1 = Actor.method953(ClientPacket.aClientPacket78, Client.aClass46_1.cipher);
                                                    packetnode_1.packetBuffer.putByte(Projectile.getLength(string_2));
                                                    packetnode_1.packetBuffer.putString(string_2);
                                                    Client.aClass46_1.method282(packetnode_1);
@@ -884,7 +884,7 @@ public class Class20 implements Comparator {
                                              }
 
                                              Client.anInt658 = Client.cycleCntr;
-                                             packetnode_3 = Actor.method953(ClientPacket.aClientPacket81, Client.aClass46_1.anISAACCipher1);
+                                             packetnode_3 = Actor.method953(ClientPacket.aClientPacket81, Client.aClass46_1.cipher);
                                              packetnode_3.packetBuffer.putByte(Projectile.getLength(string_2));
                                              packetnode_3.packetBuffer.putString(string_2);
                                              Client.aClass46_1.method282(packetnode_3);

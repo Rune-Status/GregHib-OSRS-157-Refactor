@@ -1,18 +1,16 @@
 public class Class86 {
 
-   static IndexDataBase anIndexDataBase6;
+    static IndexDataBase anIndexDataBase6;
 
-   static void method494() {
-      int int_0 = Class27.localPlayerIndexCount;
-      int[] ints_0 = Class27.localPlayerIndices;
+    static void method494() {
+        int localPlayerCount = Class27.localPlayerIndexCount;
+        int[] playerIndices = Class27.localPlayerIndices;
 
-      for (int int_1 = 0; int_1 < int_0; int_1++) {
-         Player player_0 = Client.cachedPlayers[ints_0[int_1]];
-         if (player_0 != null) {
-            ServerPacket.method355(player_0);
-         }
-      }
-
-   }
+        for (int index = 0; index < localPlayerCount; index++) {
+            Player player = Client.cachedPlayers[playerIndices[index]];
+            if (player != null)
+                ServerPacket.method355(player);
+        }
+    }
 
 }

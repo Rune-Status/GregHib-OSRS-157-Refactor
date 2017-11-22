@@ -2,13 +2,13 @@ import java.math.BigInteger;
 
 public class Class29 {
 
-   static final BigInteger aBigInteger1;
+   static final BigInteger RSA_EXPONENT;
    protected static int canvasHeight;
-   static final BigInteger aBigInteger2;
+   static final BigInteger RSA_MODULUS;
 
    static {
-      aBigInteger1 = new BigInteger("65537");
-      aBigInteger2 = new BigInteger(
+      RSA_EXPONENT = new BigInteger("65537");
+      RSA_MODULUS = new BigInteger(
               "130432457810679476904565393154427251594638947092754914384116769020036380667550262385684124753868605764278039166596436719051433495807085364990201594984763235100405852515826951420490095148946066976253977346137924586072721620091675779176616902350121341023526402639882943624264270364410054189753410336830705125431");
    }
 

@@ -897,7 +897,7 @@ public class Class9 {
                if (PacketBuffer.method908(Class4.localPlayer.name, Class24.aClass109_1).equals(string_1)) {
                   Class34.sendGameMessage(31, "", "You can\'t add yourself to your own ignore list");
                } else {
-                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket93, Client.aClass46_1.anISAACCipher1);
+                  PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket93, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putByte(Projectile.getLength(string_0));
                   packetnode_0.packetBuffer.putString(string_0);
                   Client.aClass46_1.method282(packetnode_0);

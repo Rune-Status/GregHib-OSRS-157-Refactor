@@ -1,0 +1,3 @@
+Packets
+1 - static region update
+2 - dynamic region update

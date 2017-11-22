@@ -415,17 +415,17 @@ public class Buffer extends Node {
       this.payload[this.offset++] = (byte)(int_0 >> 8);
    }
 
-   public void encryptRsa(BigInteger biginteger_0, BigInteger biginteger_1) {
-      int int_0 = this.offset;
+   public void encryptRsa(BigInteger exponent, BigInteger modulus) {
+      int length = this.offset;
       this.offset = 0;
-      byte[] bytes_0 = new byte[int_0];
-      this.readBytes(bytes_0, 0, int_0);
-      BigInteger biginteger_2 = new BigInteger(bytes_0);
-      BigInteger biginteger_3 = biginteger_2.modPow(biginteger_0, biginteger_1);
-      byte[] bytes_1 = biginteger_3.toByteArray();
+      byte[] buffer = new byte[length];
+      this.readBytes(buffer, 0, length);
+      BigInteger bigInteger = new BigInteger(buffer);
+      BigInteger rsa = bigInteger.modPow(exponent, modulus);
+      byte[] data = rsa.toByteArray();
       this.offset = 0;
-      this.putShort(bytes_1.length);
-      this.putBytes(bytes_1, 0, bytes_1.length);
+      this.putShort(data.length);
+      this.putBytes(data, 0, data.length);
    }
 
    public void method726(int int_0) {

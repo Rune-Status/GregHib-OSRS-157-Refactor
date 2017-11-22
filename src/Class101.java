@@ -15,8 +15,8 @@ public class Class101 {
       ++Client.aClass46_1.anInt104;
       if (Client.aClass46_1.anInt104 >= 50 || bool_0) {
          Client.aClass46_1.anInt104 = 0;
-         if (!Client.socketError && Client.aClass46_1.method277() != null) {
-            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket1, Client.aClass46_1.anISAACCipher1);
+         if (!Client.socketError && Client.aClass46_1.createSocket() != null) {
+            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket1, Client.aClass46_1.cipher);
             Client.aClass46_1.method282(packetnode_0);
 
             try {

@@ -17,7 +17,7 @@ public class WidgetNode extends Node {
       } else {
          Client.aClass100_1.method526();
          Class110.setGameState(40);
-         MessageNode.aRSSocket2 = Client.aClass46_1.method277();
+         MessageNode.aRSSocket2 = Client.aClass46_1.createSocket();
          Client.aClass46_1.method279();
       }
    }

@@ -483,7 +483,7 @@ public class DynamicObject extends Renderable {
                   for (int_1 = 0; int_1 < 13; int_1++) {
                      for (int_2 = 0; int_2 < 13; int_2++) {
                         boolean bool_3 = false;
-                        int_6 = Client.anIntArrayArrayArray2[int_9][int_1][int_2];
+                        int_6 = Client.localRegions[int_9][int_1][int_2];
                         if (int_6 != -1) {
                            int_40 = int_6 >> 24 & 0x3;
                            int_15 = int_6 >> 1 & 0x3;
@@ -509,7 +509,7 @@ public class DynamicObject extends Renderable {
 
                for (int_9 = 0; int_9 < 13; int_9++) {
                   for (int_1 = 0; int_1 < 13; int_1++) {
-                     int_2 = Client.anIntArrayArrayArray2[0][int_9][int_1];
+                     int_2 = Client.localRegions[0][int_9][int_1];
                      if (int_2 == -1) {
                         PendingSpawn.method674(int_9 * 8, int_1 * 8, 8, 8);
                      }
@@ -524,7 +524,7 @@ public class DynamicObject extends Renderable {
                   for (int_1 = 0; int_1 < 13; int_1++) {
                      label1150:
                      for (int_2 = 0; int_2 < 13; int_2++) {
-                        int_3 = Client.anIntArrayArrayArray2[int_9][int_1][int_2];
+                        int_3 = Client.localRegions[int_9][int_1][int_2];
                         if (int_3 != -1) {
                            int_6 = int_3 >> 24 & 0x3;
                            int_40 = int_3 >> 1 & 0x3;
@@ -1064,7 +1064,7 @@ public class DynamicObject extends Renderable {
             ObjectComposition.aNodeCache9.reset();
             PacketNode packetnode_0;
             if (AClass3.clientInstance.method1091()) {
-               packetnode_0 = Actor.method953(ClientPacket.aClientPacket9, Client.aClass46_1.anISAACCipher1);
+               packetnode_0 = Actor.method953(ClientPacket.aClientPacket9, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putInt(1057001181);
                Client.aClass46_1.method282(packetnode_0);
             }
@@ -1088,7 +1088,7 @@ public class DynamicObject extends Renderable {
             Class110.setGameState(30);
             Enum2.method642();
             WorldMapData_Sub1.method608();
-            packetnode_0 = Actor.method953(ClientPacket.aClientPacket96, Client.aClass46_1.anISAACCipher1);
+            packetnode_0 = Actor.method953(ClientPacket.aClientPacket96, Client.aClass46_1.cipher);
             Client.aClass46_1.method282(packetnode_0);
             GameEngine.timer.method585();
 

@@ -122,7 +122,7 @@ public class MessageNode extends CacheableNode {
             Class25.password = "";
          }
 
-         Class34.anInt95 = 0;
+         Class34.playerPin = 0;
          Class97.aString11 = "";
          Class25.aBool12 = true;
          Class25.worldSelectShown = false;

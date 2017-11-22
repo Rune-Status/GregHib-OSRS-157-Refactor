@@ -762,7 +762,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
    }
 
    static void method469() {
-      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket11, Client.aClass46_1.anISAACCipher1);
+      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket11, Client.aClass46_1.cipher);
       PacketBuffer packetbuffer_0 = packetnode_0.packetBuffer;
       int int_0 = Client.isResized ? 2 : 1;
       packetbuffer_0.putByte(int_0);

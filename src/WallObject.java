@@ -29,123 +29,117 @@ public final class WallObject {
       return new IndexData(indexfile_0, MilliTimer.anIndexFile3, int_0, bool_0, bool_1, bool_2);
    }
 
-   static void xteaChanged(boolean bool_0, PacketBuffer packetbuffer_0) {
-      Client.isDynamicRegion = bool_0;
-      int int_1;
-      int int_2;
-      int int_3;
-      int int_4;
-      int int_5;
-      int int_6;
+   static void xteaChanged(boolean dynamic, PacketBuffer buffer) {
+      Client.isDynamicRegion = dynamic;
       if (!Client.isDynamicRegion) {
-         int int_0 = packetbuffer_0.method713();
-         int_1 = packetbuffer_0.readUnsignedShortOb1();
-         int_2 = packetbuffer_0.readUnsignedShort();
-         Class38.xteaKeys = new int[int_2][4];
+         int regionY = buffer.method713();
+         int regionX = buffer.readUnsignedShortOb1();
+         int mapCount = buffer.readUnsignedShort();
+         Class38.xteaKeys = new int[mapCount][4];
 
-         for (int_3 = 0; int_3 < int_2; int_3++) {
-            for (int_4 = 0; int_4 < 4; int_4++) {
-               Class38.xteaKeys[int_3][int_4] = packetbuffer_0.readInt();
+         for (int map = 0; map < mapCount; map++) {
+            for (int z = 0; z < 4; z++) {
+               Class38.xteaKeys[map][z] = buffer.readInt();
             }
          }
 
-         Script.mapRegions = new int[int_2];
-         Varbit.landMapFileIds = new int[int_2];
-         Varbit.landRegionFileIds = new int[int_2];
-         Class55.aByteArrayArray3 = new byte[int_2][];
-         Class10.aByteArrayArray1 = new byte[int_2][];
-         boolean bool_2 = false;
-         if ((int_1 / 8 == 48 || int_1 / 8 == 49) && int_0 / 8 == 48) {
-            bool_2 = true;
+         Script.mapRegions = new int[mapCount];
+         Varbit.landMapFileIds = new int[mapCount];
+         Varbit.landRegionFileIds = new int[mapCount];
+         Class55.aByteArrayArray3 = new byte[mapCount][];
+         Class10.aByteArrayArray1 = new byte[mapCount][];
+         boolean inTutorialIsland = false;
+         if ((regionX / 8 == 48 || regionX / 8 == 49) && regionY / 8 == 48) {
+            inTutorialIsland = true;
          }
 
-         if (int_1 / 8 == 48 && int_0 / 8 == 148) {
-            bool_2 = true;
+         if (regionX / 8 == 48 && regionY / 8 == 148) {
+            inTutorialIsland = true;
          }
 
-         int_2 = 0;
+         mapCount = 0;
 
-         for (int_4 = (int_1 - 6) / 8; int_4 <= (int_1 + 6) / 8; int_4++) {
-            for (int_5 = (int_0 - 6) / 8; int_5 <= (int_0 + 6) / 8; int_5++) {
-               int_6 = int_5 + (int_4 << 8);
-               if (!bool_2 || int_5 != 49 && int_5 != 149 && int_5 != 147 && int_4 != 50 && (int_4 != 49 || int_5 != 47)) {
-                  Script.mapRegions[int_2] = int_6;
-                  Varbit.landMapFileIds[int_2] = Class23.indexMaps.getFile("m" + int_4 + "_" + int_5);
-                  Varbit.landRegionFileIds[int_2] = Class23.indexMaps.getFile("l" + int_4 + "_" + int_5);
-                  ++int_2;
+         for (int x = (regionX - 6) / 8; x <= (regionX + 6) / 8; x++) {
+            for (int y = (regionY - 6) / 8; y <= (regionY + 6) / 8; y++) {
+               int regionId = y + (x << 8);
+               if (!inTutorialIsland || y != 49 && y != 149 && y != 147 && x != 50 && (x != 49 || y != 47)) {
+                  Script.mapRegions[mapCount] = regionId;
+                  Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + x + "_" + y);
+                  Varbit.landRegionFileIds[mapCount] = Class23.indexMaps.getFile("l" + x + "_" + y);
+                  ++mapCount;
                }
             }
          }
 
-         Class40.method259(int_1, int_0, true);
+         Class40.method259(regionX, regionY, true);
       } else {
-         boolean bool_1 = packetbuffer_0.readNegUByte() == 1;
-         int_1 = packetbuffer_0.method713();
-         int_2 = packetbuffer_0.method712();
-         int_3 = packetbuffer_0.readUnsignedShort();
-         packetbuffer_0.bitAccess();
+         boolean bool_1 = buffer.readNegUByte() == 1;
+         int regionY = buffer.method713();
+         int regionX = buffer.method712();
+         int mapCount = buffer.readUnsignedShort();
+         buffer.bitAccess();
 
-         int int_7;
-         for (int_4 = 0; int_4 < 4; int_4++) {
-            for (int_5 = 0; int_5 < 13; int_5++) {
-               for (int_6 = 0; int_6 < 13; int_6++) {
-                  int_7 = packetbuffer_0.getBits(1);
-                  if (int_7 == 1) {
-                     Client.anIntArrayArrayArray2[int_4][int_5][int_6] = packetbuffer_0.getBits(26);
+         int visible;
+         for (int z = 0; z < 4; z++) {
+            for (int x = 0; x < 13; x++) {
+               for (int y = 0; y < 13; y++) {
+                  visible = buffer.getBits(1);
+                  if (visible == 1) {
+                     Client.localRegions[z][x][y] = buffer.getBits(26);
                   } else {
-                     Client.anIntArrayArrayArray2[int_4][int_5][int_6] = -1;
+                     Client.localRegions[z][x][y] = -1;
                   }
                }
             }
          }
 
-         packetbuffer_0.byteAccess();
-         Class38.xteaKeys = new int[int_3][4];
+         buffer.byteAccess();
+         Class38.xteaKeys = new int[mapCount][4];
 
-         for (int_4 = 0; int_4 < int_3; int_4++) {
-            for (int_5 = 0; int_5 < 4; int_5++) {
-               Class38.xteaKeys[int_4][int_5] = packetbuffer_0.readInt();
+         for (int x = 0; x < mapCount; x++) {
+            for (int y = 0; y < 4; y++) {
+               Class38.xteaKeys[x][y] = buffer.readInt();
             }
          }
 
-         Script.mapRegions = new int[int_3];
-         Varbit.landMapFileIds = new int[int_3];
-         Varbit.landRegionFileIds = new int[int_3];
-         Class55.aByteArrayArray3 = new byte[int_3][];
-         Class10.aByteArrayArray1 = new byte[int_3][];
-         int_3 = 0;
+         Script.mapRegions = new int[mapCount];
+         Varbit.landMapFileIds = new int[mapCount];
+         Varbit.landRegionFileIds = new int[mapCount];
+         Class55.aByteArrayArray3 = new byte[mapCount][];
+         Class10.aByteArrayArray1 = new byte[mapCount][];
+         mapCount = 0;
 
-         for (int_4 = 0; int_4 < 4; int_4++) {
-            for (int_5 = 0; int_5 < 13; int_5++) {
-               for (int_6 = 0; int_6 < 13; int_6++) {
-                  int_7 = Client.anIntArrayArrayArray2[int_4][int_5][int_6];
-                  if (int_7 != -1) {
-                     int int_8 = int_7 >> 14 & 0x3FF;
-                     int int_9 = int_7 >> 3 & 0x7FF;
-                     int int_10 = (int_8 / 8 << 8) + int_9 / 8;
+         for (int z = 0; z < 4; z++) {
+            for (int x = 0; x < 13; x++) {
+               for (int y = 0; y < 13; y++) {
+                  visible = Client.localRegions[z][x][y];
+                  if (visible != -1) {
+                     int constructedRegionX = visible >> 14 & 0x3FF;
+                     int constructedRegionY = visible >> 3 & 0x7FF;
+                     int regionId = (constructedRegionX / 8 << 8) + constructedRegionY / 8;
 
-                     int int_11;
-                     for (int_11 = 0; int_11 < int_3; int_11++) {
-                        if (Script.mapRegions[int_11] == int_10) {
-                           int_10 = -1;
+                     int map;
+                     for (map = 0; map < mapCount; map++) {
+                        if (Script.mapRegions[map] == regionId) {
+                           regionId = -1;
                            break;
                         }
                      }
 
-                     if (int_10 != -1) {
-                        Script.mapRegions[int_3] = int_10;
-                        int_11 = int_10 >> 8 & 0xFF;
-                        int int_12 = int_10 & 0xFF;
-                        Varbit.landMapFileIds[int_3] = Class23.indexMaps.getFile("m" + int_11 + "_" + int_12);
-                        Varbit.landRegionFileIds[int_3] = Class23.indexMaps.getFile("l" + int_11 + "_" + int_12);
-                        ++int_3;
+                     if (regionId != -1) {
+                        Script.mapRegions[mapCount] = regionId;
+                        int mapX = regionId >> 8 & 0xFF;
+                        int mapY = regionId & 0xFF;
+                        Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + mapX + "_" + mapY);
+                        Varbit.landRegionFileIds[mapCount] = Class23.indexMaps.getFile("l" + mapX + "_" + mapY);
+                        ++mapCount;
                      }
                   }
                }
             }
          }
 
-         Class40.method259(int_2, int_1, !bool_1);
+         Class40.method259(regionX, regionY, !bool_1);
       }
 
    }

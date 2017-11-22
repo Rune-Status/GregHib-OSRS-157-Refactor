@@ -1,7 +1,7 @@
 public class ServerPacket {
 
-   public static final ServerPacket aServerPacket4;
-   public static final ServerPacket aServerPacket5;
+   public static final ServerPacket regionUpdatePacket;
+   public static final ServerPacket dynamicRegionPacket;
    public static final ServerPacket aServerPacket6;
    public static final ServerPacket aServerPacket7;
    public static final ServerPacket aServerPacket8;
@@ -87,8 +87,8 @@ public class ServerPacket {
    public final int packetLength;
 
    static {
-      aServerPacket4 = new ServerPacket(0, -2);
-      aServerPacket5 = new ServerPacket(1, -2);
+      regionUpdatePacket = new ServerPacket(0, -2);
+      dynamicRegionPacket = new ServerPacket(1, -2);
       aServerPacket6 = new ServerPacket(2, -1);
       aServerPacket7 = new ServerPacket(3, 0);
       aServerPacket8 = new ServerPacket(4, 2);
@@ -172,127 +172,127 @@ public class ServerPacket {
       playerUpdatePacket = new ServerPacket(82, -2);
    }
 
-   ServerPacket(int int_0, int int_1) {
-      this.packetId = int_0;
-      this.packetLength = int_1;
+   ServerPacket(int id, int length) {
+      this.packetId = id;
+      this.packetLength = length;
    }
 
-   static void method355(Actor actor_0) {
+   static void method355(Actor actor) {
       int int_0;
       int int_1;
       int int_2;
-      Sequence sequence_0;
-      if (actor_0.anInt534 > Client.gameCycle) {
-         int_0 = actor_0.anInt534 - Client.gameCycle;
-         int_1 = actor_0.anInt536 * 128 + actor_0.anInt513 * 64;
-         int_2 = actor_0.anInt537 * 128 + actor_0.anInt513 * 64;
-         actor_0.x += (int_1 - actor_0.x) / int_0;
-         actor_0.y += (int_2 - actor_0.y) / int_0;
-         actor_0.anInt512 = 0;
-         actor_0.orientation = actor_0.anInt540;
-      } else if (actor_0.anInt535 >= Client.gameCycle) {
-         Class2.method78(actor_0);
+      Sequence sequence;
+      if (actor.anInt534 > Client.gameCycle) {
+         int_0 = actor.anInt534 - Client.gameCycle;
+         int_1 = actor.anInt536 * 128 + actor.anInt513 * 64;
+         int_2 = actor.anInt537 * 128 + actor.anInt513 * 64;
+         actor.x += (int_1 - actor.x) / int_0;
+         actor.y += (int_2 - actor.y) / int_0;
+         actor.anInt512 = 0;
+         actor.orientation = actor.anInt540;
+      } else if (actor.anInt535 >= Client.gameCycle) {
+         Class2.method78(actor);
       } else {
-         actor_0.poseAnimation = actor_0.idlePoseAnimation;
-         if (actor_0.queueSize == 0) {
-            actor_0.anInt512 = 0;
+         actor.poseAnimation = actor.idlePoseAnimation;
+         if (actor.queueSize == 0) {
+            actor.anInt512 = 0;
          } else {
             label573: {
-               if (actor_0.animation != -1 && actor_0.actionAnimationDisable == 0) {
-                  sequence_0 = ItemLayer.getAnimation(actor_0.animation);
-                  if (actor_0.anInt511 > 0 && sequence_0.precedenceAnimating == 0) {
-                     ++actor_0.anInt512;
+               if (actor.animation != -1 && actor.actionAnimationDisable == 0) {
+                  sequence = ItemLayer.getAnimation(actor.animation);
+                  if (actor.anInt511 > 0 && sequence.precedenceAnimating == 0) {
+                     ++actor.anInt512;
                      break label573;
                   }
 
-                  if (actor_0.anInt511 <= 0 && sequence_0.priority == 0) {
-                     ++actor_0.anInt512;
+                  if (actor.anInt511 <= 0 && sequence.priority == 0) {
+                     ++actor.anInt512;
                      break label573;
                   }
                }
 
-               int_0 = actor_0.x;
-               int_1 = actor_0.y;
-               int_2 = actor_0.pathX[actor_0.queueSize - 1] * 128 + actor_0.anInt513 * 64;
-               int int_3 = actor_0.pathY[actor_0.queueSize - 1] * 128 + actor_0.anInt513 * 64;
+               int_0 = actor.x;
+               int_1 = actor.y;
+               int_2 = actor.pathX[actor.queueSize - 1] * 128 + actor.anInt513 * 64;
+               int int_3 = actor.pathY[actor.queueSize - 1] * 128 + actor.anInt513 * 64;
                if (int_0 < int_2) {
                   if (int_1 < int_3) {
-                     actor_0.orientation = 1280;
+                     actor.orientation = 1280;
                   } else if (int_1 > int_3) {
-                     actor_0.orientation = 1792;
+                     actor.orientation = 1792;
                   } else {
-                     actor_0.orientation = 1536;
+                     actor.orientation = 1536;
                   }
                } else if (int_0 > int_2) {
                   if (int_1 < int_3) {
-                     actor_0.orientation = 768;
+                     actor.orientation = 768;
                   } else if (int_1 > int_3) {
-                     actor_0.orientation = 256;
+                     actor.orientation = 256;
                   } else {
-                     actor_0.orientation = 512;
+                     actor.orientation = 512;
                   }
                } else if (int_1 < int_3) {
-                  actor_0.orientation = 1024;
+                  actor.orientation = 1024;
                } else if (int_1 > int_3) {
-                  actor_0.orientation = 0;
+                  actor.orientation = 0;
                }
 
-               byte byte_0 = actor_0.aByteArray20[actor_0.queueSize - 1];
+               byte byte_0 = actor.aByteArray20[actor.queueSize - 1];
                if (int_2 - int_0 <= 256 && int_2 - int_0 >= -256 && int_3 - int_1 <= 256 && int_3 - int_1 >= -256) {
-                  int int_4 = actor_0.orientation - actor_0.angle & 0x7FF;
+                  int int_4 = actor.orientation - actor.angle & 0x7FF;
                   if (int_4 > 1024) {
                      int_4 -= 2048;
                   }
 
-                  int int_5 = actor_0.halfTurnAnimation;
+                  int int_5 = actor.halfTurnAnimation;
                   if (int_4 >= -256 && int_4 <= 256) {
-                     int_5 = actor_0.walkingAnimation;
+                     int_5 = actor.walkingAnimation;
                   } else if (int_4 >= 256 && int_4 < 768) {
-                     int_5 = actor_0.quarterAnticlockwiseTurnAnimation;
+                     int_5 = actor.quarterAnticlockwiseTurnAnimation;
                   } else if (int_4 >= -768 && int_4 <= -256) {
-                     int_5 = actor_0.quarterClockwiseTurnAnimation;
+                     int_5 = actor.quarterClockwiseTurnAnimation;
                   }
 
                   if (int_5 == -1) {
-                     int_5 = actor_0.walkingAnimation;
+                     int_5 = actor.walkingAnimation;
                   }
 
-                  actor_0.poseAnimation = int_5;
+                  actor.poseAnimation = int_5;
                   int int_6 = 4;
-                  boolean bool_0 = true;
-                  if (actor_0 instanceof NPC) {
-                     bool_0 = ((NPC) actor_0).composition.isClickable;
+                  boolean click = true;
+                  if (actor instanceof NPC) {
+                     click = ((NPC) actor).composition.isClickable;
                   }
 
-                  if (bool_0) {
-                     if (actor_0.angle != actor_0.orientation && actor_0.interacting == -1 && actor_0.anInt533 != 0) {
+                  if (click) {
+                     if (actor.angle != actor.orientation && actor.interacting == -1 && actor.anInt533 != 0) {
                         int_6 = 2;
                      }
 
-                     if (actor_0.queueSize > 2) {
+                     if (actor.queueSize > 2) {
                         int_6 = 6;
                      }
 
-                     if (actor_0.queueSize > 3) {
+                     if (actor.queueSize > 3) {
                         int_6 = 8;
                      }
 
-                     if (actor_0.anInt512 > 0 && actor_0.queueSize > 1) {
+                     if (actor.anInt512 > 0 && actor.queueSize > 1) {
                         int_6 = 8;
-                        --actor_0.anInt512;
+                        --actor.anInt512;
                      }
                   } else {
-                     if (actor_0.queueSize > 1) {
+                     if (actor.queueSize > 1) {
                         int_6 = 6;
                      }
 
-                     if (actor_0.queueSize > 2) {
+                     if (actor.queueSize > 2) {
                         int_6 = 8;
                      }
 
-                     if (actor_0.anInt512 > 0 && actor_0.queueSize > 1) {
+                     if (actor.anInt512 > 0 && actor.queueSize > 1) {
                         int_6 = 8;
-                        --actor_0.anInt512;
+                        --actor.anInt512;
                      }
                   }
 
@@ -300,235 +300,234 @@ public class ServerPacket {
                      int_6 <<= 1;
                   }
 
-                  if (int_6 >= 8 && actor_0.poseAnimation == actor_0.walkingAnimation && actor_0.runAnimation != -1) {
-                     actor_0.poseAnimation = actor_0.runAnimation;
+                  if (int_6 >= 8 && actor.poseAnimation == actor.walkingAnimation && actor.runAnimation != -1) {
+                     actor.poseAnimation = actor.runAnimation;
                   }
 
                   if (int_0 != int_2 || int_1 != int_3) {
                      if (int_0 < int_2) {
-                        actor_0.x += int_6;
-                        if (actor_0.x > int_2) {
-                           actor_0.x = int_2;
+                        actor.x += int_6;
+                        if (actor.x > int_2) {
+                           actor.x = int_2;
                         }
                      } else if (int_0 > int_2) {
-                        actor_0.x -= int_6;
-                        if (actor_0.x < int_2) {
-                           actor_0.x = int_2;
+                        actor.x -= int_6;
+                        if (actor.x < int_2) {
+                           actor.x = int_2;
                         }
                      }
 
                      if (int_1 < int_3) {
-                        actor_0.y += int_6;
-                        if (actor_0.y > int_3) {
-                           actor_0.y = int_3;
+                        actor.y += int_6;
+                        if (actor.y > int_3) {
+                           actor.y = int_3;
                         }
                      } else if (int_1 > int_3) {
-                        actor_0.y -= int_6;
-                        if (actor_0.y < int_3) {
-                           actor_0.y = int_3;
+                        actor.y -= int_6;
+                        if (actor.y < int_3) {
+                           actor.y = int_3;
                         }
                      }
                   }
 
-                  if (int_2 == actor_0.x && int_3 == actor_0.y) {
-                     --actor_0.queueSize;
-                     if (actor_0.anInt511 > 0) {
-                        --actor_0.anInt511;
+                  if (int_2 == actor.x && int_3 == actor.y) {
+                     --actor.queueSize;
+                     if (actor.anInt511 > 0) {
+                        --actor.anInt511;
                      }
                   }
                } else {
-                  actor_0.x = int_2;
-                  actor_0.y = int_3;
-                  --actor_0.queueSize;
-                  if (actor_0.anInt511 > 0) {
-                     --actor_0.anInt511;
+                  actor.x = int_2;
+                  actor.y = int_3;
+                  --actor.queueSize;
+                  if (actor.anInt511 > 0) {
+                     --actor.anInt511;
                   }
                }
             }
          }
       }
 
-      if (actor_0.x < 128 || actor_0.y < 128 || actor_0.x >= 13184 || actor_0.y >= 13184) {
-         actor_0.animation = -1;
-         actor_0.graphic = -1;
-         actor_0.anInt534 = 0;
-         actor_0.anInt535 = 0;
-         actor_0.x = actor_0.pathX[0] * 128 + actor_0.anInt513 * 64;
-         actor_0.y = actor_0.pathY[0] * 128 + actor_0.anInt513 * 64;
-         actor_0.method950();
+      if (actor.x < 128 || actor.y < 128 || actor.x >= 13184 || actor.y >= 13184) {
+         actor.animation = -1;
+         actor.graphic = -1;
+         actor.anInt534 = 0;
+         actor.anInt535 = 0;
+         actor.x = actor.pathX[0] * 128 + actor.anInt513 * 64;
+         actor.y = actor.pathY[0] * 128 + actor.anInt513 * 64;
+         actor.method950();
       }
 
-      if (Class4.localPlayer == actor_0 && (actor_0.x < 1536 || actor_0.y < 1536 || actor_0.x >= 11776 || actor_0.y >= 11776)) {
-         actor_0.animation = -1;
-         actor_0.graphic = -1;
-         actor_0.anInt534 = 0;
-         actor_0.anInt535 = 0;
-         actor_0.x = actor_0.pathX[0] * 128 + actor_0.anInt513 * 64;
-         actor_0.y = actor_0.pathY[0] * 128 + actor_0.anInt513 * 64;
-         actor_0.method950();
+      if (Class4.localPlayer == actor && (actor.x < 1536 || actor.y < 1536 || actor.x >= 11776 || actor.y >= 11776)) {
+         actor.animation = -1;
+         actor.graphic = -1;
+         actor.anInt534 = 0;
+         actor.anInt535 = 0;
+         actor.x = actor.pathX[0] * 128 + actor.anInt513 * 64;
+         actor.y = actor.pathY[0] * 128 + actor.anInt513 * 64;
+         actor.method950();
       }
 
-      if (actor_0.anInt533 != 0) {
-         if (actor_0.interacting != -1) {
+      if (actor.anInt533 != 0) {
+         if (actor.interacting != -1) {
             Object object_0 = null;
-            if (actor_0.interacting < 32768) {
-               object_0 = Client.cachedNPCs[actor_0.interacting];
-            } else if (actor_0.interacting >= 32768) {
-               object_0 = Client.cachedPlayers[actor_0.interacting - 32768];
+            if (actor.interacting < 32768) {
+               object_0 = Client.cachedNPCs[actor.interacting];
+            } else if (actor.interacting >= 32768) {
+               object_0 = Client.cachedPlayers[actor.interacting - 32768];
             }
 
             if (object_0 != null) {
-               int_1 = actor_0.x - ((Actor) object_0).x;
-               int_2 = actor_0.y - ((Actor) object_0).y;
+               int_1 = actor.x - ((Actor) object_0).x;
+               int_2 = actor.y - ((Actor) object_0).y;
                if (int_1 != 0 || int_2 != 0) {
-                  actor_0.orientation = (int)(Math.atan2((double)int_1, (double)int_2) * 325.949D) & 0x7FF;
+                  actor.orientation = (int)(Math.atan2((double)int_1, (double)int_2) * 325.949D) & 0x7FF;
                }
-            } else if (actor_0.aBool70) {
-               actor_0.interacting = -1;
-               actor_0.aBool70 = false;
+            } else if (actor.aBool70) {
+               actor.interacting = -1;
+               actor.aBool70 = false;
             }
          }
 
-         if (actor_0.anInt510 != -1 && (actor_0.queueSize == 0 || actor_0.anInt512 > 0)) {
-            actor_0.orientation = actor_0.anInt510;
-            actor_0.anInt510 = -1;
+         if (actor.anInt510 != -1 && (actor.queueSize == 0 || actor.anInt512 > 0)) {
+            actor.orientation = actor.anInt510;
+            actor.anInt510 = -1;
          }
 
-         int_0 = actor_0.orientation - actor_0.angle & 0x7FF;
-         if (int_0 == 0 && actor_0.aBool70) {
-            actor_0.interacting = -1;
-            actor_0.aBool70 = false;
+         int_0 = actor.orientation - actor.angle & 0x7FF;
+         if (int_0 == 0 && actor.aBool70) {
+            actor.interacting = -1;
+            actor.aBool70 = false;
          }
 
          if (int_0 != 0) {
-            ++actor_0.anInt532;
+            ++actor.anInt532;
             boolean bool_1;
             if (int_0 > 1024) {
-               actor_0.angle -= actor_0.anInt533;
+               actor.angle -= actor.anInt533;
                bool_1 = true;
-               if (int_0 < actor_0.anInt533 || int_0 > 2048 - actor_0.anInt533) {
-                  actor_0.angle = actor_0.orientation;
+               if (int_0 < actor.anInt533 || int_0 > 2048 - actor.anInt533) {
+                  actor.angle = actor.orientation;
                   bool_1 = false;
                }
 
-               if (actor_0.poseAnimation == actor_0.idlePoseAnimation && (actor_0.anInt532 > 25 || bool_1)) {
-                  if (actor_0.turnAnimation != -1) {
-                     actor_0.poseAnimation = actor_0.turnAnimation;
+               if (actor.poseAnimation == actor.idlePoseAnimation && (actor.anInt532 > 25 || bool_1)) {
+                  if (actor.turnAnimation != -1) {
+                     actor.poseAnimation = actor.turnAnimation;
                   } else {
-                     actor_0.poseAnimation = actor_0.walkingAnimation;
+                     actor.poseAnimation = actor.walkingAnimation;
                   }
                }
             } else {
-               actor_0.angle += actor_0.anInt533;
+               actor.angle += actor.anInt533;
                bool_1 = true;
-               if (int_0 < actor_0.anInt533 || int_0 > 2048 - actor_0.anInt533) {
-                  actor_0.angle = actor_0.orientation;
+               if (int_0 < actor.anInt533 || int_0 > 2048 - actor.anInt533) {
+                  actor.angle = actor.orientation;
                   bool_1 = false;
                }
 
-               if (actor_0.idlePoseAnimation == actor_0.poseAnimation && (actor_0.anInt532 > 25 || bool_1)) {
-                  if (actor_0.anInt515 != -1) {
-                     actor_0.poseAnimation = actor_0.anInt515;
+               if (actor.idlePoseAnimation == actor.poseAnimation && (actor.anInt532 > 25 || bool_1)) {
+                  if (actor.anInt515 != -1) {
+                     actor.poseAnimation = actor.anInt515;
                   } else {
-                     actor_0.poseAnimation = actor_0.walkingAnimation;
+                     actor.poseAnimation = actor.walkingAnimation;
                   }
                }
             }
 
-            actor_0.angle &= 0x7FF;
+            actor.angle &= 0x7FF;
          } else {
-            actor_0.anInt532 = 0;
+            actor.anInt532 = 0;
          }
       }
 
-      actor_0.aBool69 = false;
-      if (actor_0.poseAnimation != -1) {
-         sequence_0 = ItemLayer.getAnimation(actor_0.poseAnimation);
-         if (sequence_0 != null && sequence_0.frameIDs != null) {
-            ++actor_0.anInt527;
-            if (actor_0.poseFrame < sequence_0.frameIDs.length && actor_0.anInt527 > sequence_0.frameLenghts[actor_0.poseFrame]) {
-               actor_0.anInt527 = 1;
-               ++actor_0.poseFrame;
-               Class16.method199(sequence_0, actor_0.poseFrame, actor_0.x, actor_0.y);
+      actor.aBool69 = false;
+      if (actor.poseAnimation != -1) {
+         sequence = ItemLayer.getAnimation(actor.poseAnimation);
+         if (sequence != null && sequence.frameIDs != null) {
+            ++actor.anInt527;
+            if (actor.poseFrame < sequence.frameIDs.length && actor.anInt527 > sequence.frameLenghts[actor.poseFrame]) {
+               actor.anInt527 = 1;
+               ++actor.poseFrame;
+               Class16.method199(sequence, actor.poseFrame, actor.x, actor.y);
             }
 
-            if (actor_0.poseFrame >= sequence_0.frameIDs.length) {
-               actor_0.anInt527 = 0;
-               actor_0.poseFrame = 0;
-               Class16.method199(sequence_0, actor_0.poseFrame, actor_0.x, actor_0.y);
+            if (actor.poseFrame >= sequence.frameIDs.length) {
+               actor.anInt527 = 0;
+               actor.poseFrame = 0;
+               Class16.method199(sequence, actor.poseFrame, actor.x, actor.y);
             }
          } else {
-            actor_0.poseAnimation = -1;
+            actor.poseAnimation = -1;
          }
       }
 
-      if (actor_0.graphic != -1 && Client.gameCycle >= actor_0.graphicDelay) {
-         if (actor_0.currentAnimation < 0) {
-            actor_0.currentAnimation = 0;
+      if (actor.graphic != -1 && Client.gameCycle >= actor.graphicDelay) {
+         if (actor.currentAnimation < 0) {
+            actor.currentAnimation = 0;
          }
 
-         int_0 = Class106.getSpotAnimType(actor_0.graphic).anInt420;
+         int_0 = Class106.getSpotAnimType(actor.graphic).anInt420;
          if (int_0 != -1) {
             Sequence sequence_1 = ItemLayer.getAnimation(int_0);
             if (sequence_1 != null && sequence_1.frameIDs != null) {
-               ++actor_0.anInt530;
-               if (actor_0.currentAnimation < sequence_1.frameIDs.length && actor_0.anInt530 > sequence_1.frameLenghts[actor_0.currentAnimation]) {
-                  actor_0.anInt530 = 1;
-                  ++actor_0.currentAnimation;
-                  Class16.method199(sequence_1, actor_0.currentAnimation, actor_0.x, actor_0.y);
+               ++actor.anInt530;
+               if (actor.currentAnimation < sequence_1.frameIDs.length && actor.anInt530 > sequence_1.frameLenghts[actor.currentAnimation]) {
+                  actor.anInt530 = 1;
+                  ++actor.currentAnimation;
+                  Class16.method199(sequence_1, actor.currentAnimation, actor.x, actor.y);
                }
 
-               if (actor_0.currentAnimation >= sequence_1.frameIDs.length && (actor_0.currentAnimation < 0 || actor_0.currentAnimation >= sequence_1.frameIDs.length)) {
-                  actor_0.graphic = -1;
+               if (actor.currentAnimation >= sequence_1.frameIDs.length && (actor.currentAnimation < 0 || actor.currentAnimation >= sequence_1.frameIDs.length)) {
+                  actor.graphic = -1;
                }
             } else {
-               actor_0.graphic = -1;
+               actor.graphic = -1;
             }
          } else {
-            actor_0.graphic = -1;
+            actor.graphic = -1;
          }
       }
 
-      if (actor_0.animation != -1 && actor_0.actionAnimationDisable <= 1) {
-         sequence_0 = ItemLayer.getAnimation(actor_0.animation);
-         if (sequence_0.precedenceAnimating == 1 && actor_0.anInt511 > 0 && actor_0.anInt534 <= Client.gameCycle && actor_0.anInt535 < Client.gameCycle) {
-            actor_0.actionAnimationDisable = 1;
+      if (actor.animation != -1 && actor.actionAnimationDisable <= 1) {
+         sequence = ItemLayer.getAnimation(actor.animation);
+         if (sequence.precedenceAnimating == 1 && actor.anInt511 > 0 && actor.anInt534 <= Client.gameCycle && actor.anInt535 < Client.gameCycle) {
+            actor.actionAnimationDisable = 1;
             return;
          }
       }
 
-      if (actor_0.animation != -1 && actor_0.actionAnimationDisable == 0) {
-         sequence_0 = ItemLayer.getAnimation(actor_0.animation);
-         if (sequence_0 != null && sequence_0.frameIDs != null) {
-            ++actor_0.anInt528;
-            if (actor_0.actionFrame < sequence_0.frameIDs.length && actor_0.anInt528 > sequence_0.frameLenghts[actor_0.actionFrame]) {
-               actor_0.anInt528 = 1;
-               ++actor_0.actionFrame;
-               Class16.method199(sequence_0, actor_0.actionFrame, actor_0.x, actor_0.y);
+      if (actor.animation != -1 && actor.actionAnimationDisable == 0) {
+         sequence = ItemLayer.getAnimation(actor.animation);
+         if (sequence != null && sequence.frameIDs != null) {
+            ++actor.anInt528;
+            if (actor.actionFrame < sequence.frameIDs.length && actor.anInt528 > sequence.frameLenghts[actor.actionFrame]) {
+               actor.anInt528 = 1;
+               ++actor.actionFrame;
+               Class16.method199(sequence, actor.actionFrame, actor.x, actor.y);
             }
 
-            if (actor_0.actionFrame >= sequence_0.frameIDs.length) {
-               actor_0.actionFrame -= sequence_0.frameStep;
-               ++actor_0.anInt529;
-               if (actor_0.anInt529 >= sequence_0.maxLoops) {
-                  actor_0.animation = -1;
-               } else if (actor_0.actionFrame >= 0 && actor_0.actionFrame < sequence_0.frameIDs.length) {
-                  Class16.method199(sequence_0, actor_0.actionFrame, actor_0.x, actor_0.y);
+            if (actor.actionFrame >= sequence.frameIDs.length) {
+               actor.actionFrame -= sequence.frameStep;
+               ++actor.anInt529;
+               if (actor.anInt529 >= sequence.maxLoops) {
+                  actor.animation = -1;
+               } else if (actor.actionFrame >= 0 && actor.actionFrame < sequence.frameIDs.length) {
+                  Class16.method199(sequence, actor.actionFrame, actor.x, actor.y);
                } else {
-                  actor_0.animation = -1;
+                  actor.animation = -1;
                }
             }
 
-            actor_0.aBool69 = sequence_0.stretches;
+            actor.aBool69 = sequence.stretches;
          } else {
-            actor_0.animation = -1;
+            actor.animation = -1;
          }
       }
 
-      if (actor_0.actionAnimationDisable > 0) {
-         --actor_0.actionAnimationDisable;
+      if (actor.actionAnimationDisable > 0) {
+         --actor.actionAnimationDisable;
       }
-
    }
 
 }

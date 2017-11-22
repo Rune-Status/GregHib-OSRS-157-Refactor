@@ -186,7 +186,7 @@ public class Frames extends CacheableNode {
                            Class25.loginIndex = 0;
                            Class25.username = "";
                            Class25.password = "";
-                           Class34.anInt95 = 0;
+                           Class34.playerPin = 0;
                            Class97.aString11 = "";
                            Class25.aBool12 = true;
                         }
@@ -231,7 +231,7 @@ public class Frames extends CacheableNode {
                                  Class25.loginIndex = 0;
                                  Class25.username = "";
                                  Class25.password = "";
-                                 Class34.anInt95 = 0;
+                                 Class34.playerPin = 0;
                                  Class97.aString11 = "";
                                  Class25.aBool12 = true;
                               } else if (Class25.anInt83 == 0) {
@@ -308,7 +308,7 @@ public class Frames extends CacheableNode {
                                  return;
                               }
 
-                              Class34.anInt95 = Integer.parseInt(Class97.aString11);
+                              Class34.playerPin = Integer.parseInt(Class97.aString11);
                               Class97.aString11 = "";
                               Permission.method599(true);
                               AClass3_Sub1.method750("", "Connecting to server...", "");
@@ -329,7 +329,7 @@ public class Frames extends CacheableNode {
                               Class25.loginIndex = 0;
                               Class25.username = "";
                               Class25.password = "";
-                              Class34.anInt95 = 0;
+                              Class34.playerPin = 0;
                               Class97.aString11 = "";
                            }
 
@@ -347,7 +347,7 @@ public class Frames extends CacheableNode {
                                  Class25.loginIndex = 0;
                                  Class25.username = "";
                                  Class25.password = "";
-                                 Class34.anInt95 = 0;
+                                 Class34.playerPin = 0;
                                  Class97.aString11 = "";
                               } else {
                                  if (CombatInfoListHolder.anInt329 == 85 && Class97.aString11.length() > 0) {
@@ -361,7 +361,7 @@ public class Frames extends CacheableNode {
                                        return;
                                     }
 
-                                    Class34.anInt95 = Integer.parseInt(Class97.aString11);
+                                    Class34.playerPin = Integer.parseInt(Class97.aString11);
                                     Class97.aString11 = "";
                                     Permission.method599(true);
                                     AClass3_Sub1.method750("", "Connecting to server...", "");

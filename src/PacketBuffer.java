@@ -1,7 +1,7 @@
 public final class PacketBuffer extends Buffer {
 
    static final int[] anIntArray106;
-   ISAACCipher cipher;
+   IsaacCipher cipher;
    int bitPosition;
 
    static {
@@ -18,7 +18,7 @@ public final class PacketBuffer extends Buffer {
       return int_0 >= 128;
    }
 
-   public void method905(ISAACCipher isaaccipher_0) {
+   public void method905(IsaacCipher isaaccipher_0) {
       this.cipher = isaaccipher_0;
    }
 
@@ -71,7 +71,7 @@ public final class PacketBuffer extends Buffer {
    }
 
    public void seed(int[] ints_0) {
-      this.cipher = new ISAACCipher(ints_0);
+      this.cipher = new IsaacCipher(ints_0);
    }
 
    public static CacheableNode_Sub5 method907(int int_0) {

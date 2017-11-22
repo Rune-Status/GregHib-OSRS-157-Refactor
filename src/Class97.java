@@ -89,7 +89,7 @@ public class Class97 {
          }
       }
 
-      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket92, Client.aClass46_1.anISAACCipher1);
+      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket92, Client.aClass46_1.cipher);
       packetnode_0.packetBuffer.putByte(string_0.length() + 1);
       packetnode_0.packetBuffer.putString(string_0);
       Client.aClass46_1.method282(packetnode_0);

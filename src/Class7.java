@@ -81,7 +81,7 @@ public class Class7 {
 
                 player_0.orientation = Class27.anIntArray19[index];
                 player_0.interacting = Class27.anIntArray20[index];
-                int_5 = Class27.anIntArray18[index];
+                int_5 = Class27.locationHashes[index];
                 int_6 = int_5 >> 28;
                 int_7 = int_5 >> 14 & 0xFF;
                 int_8 = int_5 & 0xFF;
@@ -93,8 +93,8 @@ public class Class7 {
             }
         } else if (int_1 == 1) {
             int_2 = buffer.getBits(2);
-            int_3 = Class27.anIntArray18[index];
-            Class27.anIntArray18[index] = (((int_3 >> 28) + int_2 & 0x3) << 28) + (int_3 & 0xFFFFFFF);
+            int_3 = Class27.locationHashes[index];
+            Class27.locationHashes[index] = (((int_3 >> 28) + int_2 & 0x3) << 28) + (int_3 & 0xFFFFFFF);
             return false;
         } else {
             int int_4;
@@ -103,7 +103,7 @@ public class Class7 {
                 int_2 = buffer.getBits(5);
                 int_3 = int_2 >> 3;
                 int_4 = int_2 & 0x7;
-                int_9 = Class27.anIntArray18[index];
+                int_9 = Class27.locationHashes[index];
                 int_5 = (int_9 >> 28) + int_3 & 0x3;
                 int_6 = int_9 >> 14 & 0xFF;
                 int_7 = int_9 & 0xFF;
@@ -143,18 +143,18 @@ public class Class7 {
                     ++int_7;
                 }
 
-                Class27.anIntArray18[index] = (int_6 << 14) + int_7 + (int_5 << 28);
+                Class27.locationHashes[index] = (int_6 << 14) + int_7 + (int_5 << 28);
                 return false;
             } else {
                 int_2 = buffer.getBits(18);
                 int_3 = int_2 >> 16;
                 int_4 = int_2 >> 8 & 0xFF;
                 int_9 = int_2 & 0xFF;
-                int_5 = Class27.anIntArray18[index];
+                int_5 = Class27.locationHashes[index];
                 int_6 = (int_5 >> 28) + int_3 & 0x3;
                 int_7 = int_4 + (int_5 >> 14) & 0xFF;
                 int_8 = int_5 + int_9 & 0xFF;
-                Class27.anIntArray18[index] = (int_7 << 14) + int_8 + (int_6 << 28);
+                Class27.locationHashes[index] = (int_7 << 14) + int_8 + (int_6 << 28);
                 return false;
             }
         }

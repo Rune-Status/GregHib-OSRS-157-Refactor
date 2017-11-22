@@ -277,7 +277,7 @@ public abstract class Actor extends Renderable {
       }
    }
 
-   public static PacketNode method953(ClientPacket clientpacket_0, ISAACCipher isaaccipher_0) {
+   public static PacketNode method953(ClientPacket clientpacket_0, IsaacCipher isaaccipher_0) {
       PacketNode packetnode_0 = Class26.method222();
       packetnode_0.clientPacket = clientpacket_0;
       packetnode_0.anInt350 = clientpacket_0.packetLength;

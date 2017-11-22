@@ -251,7 +251,7 @@ public class Class12 {
    }
 
    static void method167(int int_0, int int_1) {
-      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket37, Client.aClass46_1.anISAACCipher1);
+      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket37, Client.aClass46_1.cipher);
       packetnode_0.packetBuffer.method725(int_0);
       packetnode_0.packetBuffer.method719(int_1);
       Client.aClass46_1.method282(packetnode_0);

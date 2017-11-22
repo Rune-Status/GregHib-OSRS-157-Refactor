@@ -1,4 +1,4 @@
-public final class ISAACCipher {
+public final class IsaacCipher {
 
    int valuesRemaining;
    int anInt176;
@@ -7,7 +7,7 @@ public final class ISAACCipher {
    int[] randResult;
    int anInt178;
 
-   public ISAACCipher(int[] ints_0) {
+   public IsaacCipher(int[] ints_0) {
       this.mm = new int[256];
       this.randResult = new int[256];
 

@@ -91,7 +91,7 @@ public class RenderOverview {
                int int_4 = this.aCoordinates1.worldX;
                int int_5 = this.aCoordinates1.worldY;
                int int_6 = this.aCoordinates1.plane;
-               PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket18, Client.aClass46_1.anISAACCipher1);
+               PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket18, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putShort(int_5);
                packetnode_0.packetBuffer.method720(int_4);
                packetnode_0.packetBuffer.putByte(int_6);

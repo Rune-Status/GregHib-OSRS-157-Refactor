@@ -24,7 +24,7 @@ final class Class42 implements Comparator {
 
    static void method265(String string_0) {
       if (!string_0.equals("")) {
-         PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket86, Client.aClass46_1.anISAACCipher1);
+         PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket86, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putByte(Projectile.getLength(string_0));
          packetnode_0.packetBuffer.putString(string_0);
          Client.aClass46_1.method282(packetnode_0);

@@ -15,7 +15,7 @@ public class Class46 {
    ServerPacket aServerPacket2;
    int anInt104;
    ServerPacket aServerPacket3;
-   public ISAACCipher anISAACCipher1;
+   public IsaacCipher cipher;
 
    Class46() {
       this.aCombatInfoList2 = new CombatInfoList();
@@ -29,7 +29,7 @@ public class Class46 {
       this.anInt104 = 0;
    }
 
-   RSSocket method277() {
+   RSSocket createSocket() {
       return this.rssocket;
    }
 
@@ -54,11 +54,11 @@ public class Class46 {
       this.rssocket = rssocket_0;
    }
 
-   public void method282(PacketNode packetnode_0) {
-      this.aCombatInfoList2.method455(packetnode_0);
-      packetnode_0.anInt349 = packetnode_0.packetBuffer.offset;
-      packetnode_0.packetBuffer.offset = 0;
-      this.anInt102 += packetnode_0.anInt349;
+   public void method282(PacketNode packet) {
+      this.aCombatInfoList2.method455(packet);
+      packet.anInt349 = packet.packetBuffer.offset;
+      packet.packetBuffer.offset = 0;
+      this.anInt102 += packet.anInt349;
    }
 
    void method283() throws IOException {
