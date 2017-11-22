@@ -708,7 +708,7 @@ public class Buffer extends Node {
       int int_0 = indexdatabase_0.getFile(string_0);
       int int_1 = indexdatabase_0.getChild(int_0, string_1);
       SpritePixels[] spritepixelss_0;
-      if (!AClass2_Sub1.method628(indexdatabase_0, int_0, int_1)) {
+      if (!TileStrategy.method628(indexdatabase_0, int_0, int_1)) {
          spritepixelss_0 = null;
       } else {
          spritepixelss_0 = ObjectComposition.method829();

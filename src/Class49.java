@@ -239,155 +239,149 @@ final class Class49 implements Comparator {
       }
    }
 
-   public static int method316(int int_0, int int_1, int int_2, AClass2 aclass2_0, CollisionData collisiondata_0, boolean bool_0, int[] ints_0, int[] ints_1) {
-      int int_4;
-      for (int int_3 = 0; int_3 < 128; int_3++) {
-         for (int_4 = 0; int_4 < 128; int_4++) {
-            Class58.anIntArrayArray10[int_3][int_4] = 0;
-            Class58.anIntArrayArray11[int_3][int_4] = 99999999;
+   public static int findPath(int sourceX, int sourceY, int size, RouteStrategy strategy, CollisionData collision, int[] tileQueueX, int[] tileQueueY) {
+      for (int x = 0; x < 128; x++) {
+         for (int y = 0; y < 128; y++) {
+            Class58.directions[x][y] = 0;
+            Class58.distances[x][y] = 99999999;
          }
       }
 
-      int int_5;
-      int int_6;
-      byte byte_0;
-      byte byte_1;
-      int int_7;
-      int int_8;
-      byte byte_2;
-      int int_9;
-      int[][] ints_2;
-      int int_10;
-      int int_11;
-      int int_13;
-      int int_14;
-      boolean bool_1;
-      boolean bool_2;
-      int int_19;
-      int int_20;
-      int int_21;
-      if (int_2 == 1) {
-         int_5 = int_0;
-         int_6 = int_1;
-         byte_0 = 64;
-         byte_1 = 64;
-         int_7 = int_0 - byte_0;
-         int_8 = int_1 - byte_1;
-         Class58.anIntArrayArray10[byte_0][byte_1] = 99;
-         Class58.anIntArrayArray11[byte_0][byte_1] = 0;
-         byte_2 = 0;
-         int_9 = 0;
-         Class58.anIntArray37[byte_2] = int_0;
-         int_21 = byte_2 + 1;
-         Class58.anIntArray38[byte_2] = int_1;
-         ints_2 = collisiondata_0.flags;
+      boolean alternate;
+      if (size == 1) {
+         int currentX = sourceX;
+         int currentY = sourceY;
+         int graphSizeX = 64;
+         int graphSizeY = 64;
+         int graphBaseX = sourceX - graphSizeX;
+         int graphBaseY = sourceY - graphSizeY;
+         Class58.directions[graphSizeX][graphSizeY] = 99;
+         Class58.distances[graphSizeX][graphSizeY] = 0;
+         byte byte_2 = 0;
+         int read = 0;
+         Class58.tileQueueX[byte_2] = sourceX;
+         int write = byte_2 + 1;
+         Class58.tileQueueY[byte_2] = sourceY;
+         int[][] mask = collision.flags;
+         int maskX;
+         int maskY;
+         boolean found;
+         int currentGraphX;
+         int currentGraphY;
 
          while (true) {
-            if (int_9 == int_21) {
-               Class58.anInt155 = int_5;
-               Class58.anInt156 = int_6;
-               bool_2 = false;
+            if (read == write) {
+               Class58.exitX = currentX;
+               Class58.exitY = currentY;
+               found = false;
                break;
             }
 
-            int_5 = Class58.anIntArray37[int_9];
-            int_6 = Class58.anIntArray38[int_9];
-            int_9 = int_9 + 1 & 0xFFF;
-            int_19 = int_5 - int_7;
-            int_20 = int_6 - int_8;
-            int_10 = int_5 - collisiondata_0.x;
-            int_11 = int_6 - collisiondata_0.y;
-            if (aclass2_0.method393(1, int_5, int_6, collisiondata_0)) {
-               Class58.anInt155 = int_5;
-               Class58.anInt156 = int_6;
-               bool_2 = true;
+            currentX = Class58.tileQueueX[read];
+            currentY = Class58.tileQueueY[read];
+            read = read + 1 & 0xFFF;
+            currentGraphX = currentX - graphBaseX;
+            currentGraphY = currentY - graphBaseY;
+            maskX = currentX - collision.x;
+            maskY = currentY - collision.y;
+            if (strategy.canExit(1, currentX, currentY, collision)) {
+               Class58.exitX = currentX;
+               Class58.exitY = currentY;
+               found = true;
                break;
             }
 
-            int_13 = Class58.anIntArrayArray11[int_19][int_20] + 1;
-            if (int_19 > 0 && Class58.anIntArrayArray10[int_19 - 1][int_20] == 0 && (ints_2[int_10 - 1][int_11] & 0x1240108) == 0) {
-               Class58.anIntArray37[int_21] = int_5 - 1;
-               Class58.anIntArray38[int_21] = int_6;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 - 1][int_20] = 2;
-               Class58.anIntArrayArray11[int_19 - 1][int_20] = int_13;
+            int nextDistance = Class58.distances[currentGraphX][currentGraphY] + 1;
+            if (currentGraphX > 0 && Class58.directions[currentGraphX - 1][currentGraphY] == 0 && (mask[maskX - 1][maskY] & 0x1240108) == 0) {
+               Class58.tileQueueX[write] = currentX - 1;
+               Class58.tileQueueY[write] = currentY;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX - 1][currentGraphY] = 2;
+               Class58.distances[currentGraphX - 1][currentGraphY] = nextDistance;
             }
 
-            if (int_19 < 127 && Class58.anIntArrayArray10[int_19 + 1][int_20] == 0 && (ints_2[int_10 + 1][int_11] & 0x1240180) == 0) {
-               Class58.anIntArray37[int_21] = int_5 + 1;
-               Class58.anIntArray38[int_21] = int_6;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 + 1][int_20] = 8;
-               Class58.anIntArrayArray11[int_19 + 1][int_20] = int_13;
+            if (currentGraphX < 127 && Class58.directions[currentGraphX + 1][currentGraphY] == 0 && (mask[maskX + 1][maskY] & 0x1240180) == 0) {
+               Class58.tileQueueX[write] = currentX + 1;
+               Class58.tileQueueY[write] = currentY;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX + 1][currentGraphY] = 8;
+               Class58.distances[currentGraphX + 1][currentGraphY] = nextDistance;
             }
 
-            if (int_20 > 0 && Class58.anIntArrayArray10[int_19][int_20 - 1] == 0 && (ints_2[int_10][int_11 - 1] & 0x1240102) == 0) {
-               Class58.anIntArray37[int_21] = int_5;
-               Class58.anIntArray38[int_21] = int_6 - 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19][int_20 - 1] = 1;
-               Class58.anIntArrayArray11[int_19][int_20 - 1] = int_13;
+            if (currentGraphY > 0 && Class58.directions[currentGraphX][currentGraphY - 1] == 0 && (mask[maskX][maskY - 1] & 0x1240102) == 0) {
+               Class58.tileQueueX[write] = currentX;
+               Class58.tileQueueY[write] = currentY - 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX][currentGraphY - 1] = 1;
+               Class58.distances[currentGraphX][currentGraphY - 1] = nextDistance;
             }
 
-            if (int_20 < 127 && Class58.anIntArrayArray10[int_19][int_20 + 1] == 0 && (ints_2[int_10][int_11 + 1] & 0x1240120) == 0) {
-               Class58.anIntArray37[int_21] = int_5;
-               Class58.anIntArray38[int_21] = int_6 + 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19][int_20 + 1] = 4;
-               Class58.anIntArrayArray11[int_19][int_20 + 1] = int_13;
+            if (currentGraphY < 127 && Class58.directions[currentGraphX][currentGraphY + 1] == 0 && (mask[maskX][maskY + 1] & 0x1240120) == 0) {
+               Class58.tileQueueX[write] = currentX;
+               Class58.tileQueueY[write] = currentY + 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX][currentGraphY + 1] = 4;
+               Class58.distances[currentGraphX][currentGraphY + 1] = nextDistance;
             }
 
-            if (int_19 > 0 && int_20 > 0 && Class58.anIntArrayArray10[int_19 - 1][int_20 - 1] == 0 && (ints_2[int_10 - 1][int_11 - 1] & 0x124010E) == 0 && (ints_2[int_10 - 1][int_11] & 0x1240108) == 0 && (ints_2[int_10][int_11 - 1] & 0x1240102) == 0) {
-               Class58.anIntArray37[int_21] = int_5 - 1;
-               Class58.anIntArray38[int_21] = int_6 - 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 - 1][int_20 - 1] = 3;
-               Class58.anIntArrayArray11[int_19 - 1][int_20 - 1] = int_13;
+            if (currentGraphX > 0 && currentGraphY > 0 && Class58.directions[currentGraphX - 1][currentGraphY - 1] == 0 && (mask[maskX - 1][maskY - 1] & 0x124010E) == 0 && (mask[maskX - 1][maskY] & 0x1240108) == 0 && (mask[maskX][maskY - 1] & 0x1240102) == 0) {
+               Class58.tileQueueX[write] = currentX - 1;
+               Class58.tileQueueY[write] = currentY - 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX - 1][currentGraphY - 1] = 3;
+               Class58.distances[currentGraphX - 1][currentGraphY - 1] = nextDistance;
             }
 
-            if (int_19 < 127 && int_20 > 0 && Class58.anIntArrayArray10[int_19 + 1][int_20 - 1] == 0 && (ints_2[int_10 + 1][int_11 - 1] & 0x1240183) == 0 && (ints_2[int_10 + 1][int_11] & 0x1240180) == 0 && (ints_2[int_10][int_11 - 1] & 0x1240102) == 0) {
-               Class58.anIntArray37[int_21] = int_5 + 1;
-               Class58.anIntArray38[int_21] = int_6 - 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 + 1][int_20 - 1] = 9;
-               Class58.anIntArrayArray11[int_19 + 1][int_20 - 1] = int_13;
+            if (currentGraphX < 127 && currentGraphY > 0 && Class58.directions[currentGraphX + 1][currentGraphY - 1] == 0 && (mask[maskX + 1][maskY - 1] & 0x1240183) == 0 && (mask[maskX + 1][maskY] & 0x1240180) == 0 && (mask[maskX][maskY - 1] & 0x1240102) == 0) {
+               Class58.tileQueueX[write] = currentX + 1;
+               Class58.tileQueueY[write] = currentY - 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX + 1][currentGraphY - 1] = 9;
+               Class58.distances[currentGraphX + 1][currentGraphY - 1] = nextDistance;
             }
 
-            if (int_19 > 0 && int_20 < 127 && Class58.anIntArrayArray10[int_19 - 1][int_20 + 1] == 0 && (ints_2[int_10 - 1][int_11 + 1] & 0x1240138) == 0 && (ints_2[int_10 - 1][int_11] & 0x1240108) == 0 && (ints_2[int_10][int_11 + 1] & 0x1240120) == 0) {
-               Class58.anIntArray37[int_21] = int_5 - 1;
-               Class58.anIntArray38[int_21] = int_6 + 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 - 1][int_20 + 1] = 6;
-               Class58.anIntArrayArray11[int_19 - 1][int_20 + 1] = int_13;
+            if (currentGraphX > 0 && currentGraphY < 127 && Class58.directions[currentGraphX - 1][currentGraphY + 1] == 0 && (mask[maskX - 1][maskY + 1] & 0x1240138) == 0 && (mask[maskX - 1][maskY] & 0x1240108) == 0 && (mask[maskX][maskY + 1] & 0x1240120) == 0) {
+               Class58.tileQueueX[write] = currentX - 1;
+               Class58.tileQueueY[write] = currentY + 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX - 1][currentGraphY + 1] = 6;
+               Class58.distances[currentGraphX - 1][currentGraphY + 1] = nextDistance;
             }
 
-            if (int_19 < 127 && int_20 < 127 && Class58.anIntArrayArray10[int_19 + 1][int_20 + 1] == 0 && (ints_2[int_10 + 1][int_11 + 1] & 0x12401E0) == 0 && (ints_2[int_10 + 1][int_11] & 0x1240180) == 0 && (ints_2[int_10][int_11 + 1] & 0x1240120) == 0) {
-               Class58.anIntArray37[int_21] = int_5 + 1;
-               Class58.anIntArray38[int_21] = int_6 + 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 + 1][int_20 + 1] = 12;
-               Class58.anIntArrayArray11[int_19 + 1][int_20 + 1] = int_13;
+            if (currentGraphX < 127 && currentGraphY < 127 && Class58.directions[currentGraphX + 1][currentGraphY + 1] == 0 && (mask[maskX + 1][maskY + 1] & 0x12401E0) == 0 && (mask[maskX + 1][maskY] & 0x1240180) == 0 && (mask[maskX][maskY + 1] & 0x1240120) == 0) {
+               Class58.tileQueueX[write] = currentX + 1;
+               Class58.tileQueueY[write] = currentY + 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX + 1][currentGraphY + 1] = 12;
+               Class58.distances[currentGraphX + 1][currentGraphY + 1] = nextDistance;
             }
          }
 
-         bool_1 = bool_2;
-      } else if (int_2 == 2) {
-         bool_1 = Class44.method271(int_0, int_1, aclass2_0, collisiondata_0);
+         alternate = found;
+      } else if (size == 2) {
+         alternate = Class44.findAlternateRoute(sourceX, sourceY, strategy, collision);
       } else {
-         int_5 = int_0;
-         int_6 = int_1;
-         byte_0 = 64;
-         byte_1 = 64;
-         int_7 = int_0 - byte_0;
-         int_8 = int_1 - byte_1;
-         Class58.anIntArrayArray10[byte_0][byte_1] = 99;
-         Class58.anIntArrayArray11[byte_0][byte_1] = 0;
-         byte_2 = 0;
-         int_9 = 0;
-         Class58.anIntArray37[byte_2] = int_0;
-         int_21 = byte_2 + 1;
-         Class58.anIntArray38[byte_2] = int_1;
-         ints_2 = collisiondata_0.flags;
+         int currentX = sourceX;
+         int currentY = sourceY;
+         int graphSizeX = 64;
+         int graphSizeY = 64;
+         int graphBaseX = sourceX - graphSizeX;
+         int graphBaseY = sourceY - graphSizeY;
+         Class58.directions[graphSizeX][graphSizeY] = 99;
+         Class58.distances[graphSizeX][graphSizeY] = 0;
+         byte byte_2 = 0;
+         int read = 0;
+         Class58.tileQueueX[byte_2] = sourceX;
+         int write = byte_2 + 1;
+         Class58.tileQueueY[byte_2] = sourceY;
+         int[][] mask = collision.flags;
+         int nextDistance;
+         int maskX;
+         int maskY;
+         int index;
+         boolean found;
+         int currentGraphX;
+         int currentGraphY;
 
          label641:
          while (true) {
@@ -396,278 +390,283 @@ final class Class49 implements Comparator {
                do {
                   do {
                      do {
-                        label616:
+                        loopX:
                         do {
-                           if (int_21 == int_9) {
-                              Class58.anInt155 = int_5;
-                              Class58.anInt156 = int_6;
-                              bool_2 = false;
+                           if (write == read) {
+                              Class58.exitX = currentX;
+                              Class58.exitY = currentY;
+                              found = false;
                               break label641;
                            }
 
-                           int_5 = Class58.anIntArray37[int_9];
-                           int_6 = Class58.anIntArray38[int_9];
-                           int_9 = int_9 + 1 & 0xFFF;
-                           int_19 = int_5 - int_7;
-                           int_20 = int_6 - int_8;
-                           int_10 = int_5 - collisiondata_0.x;
-                           int_11 = int_6 - collisiondata_0.y;
-                           if (aclass2_0.method393(int_2, int_5, int_6, collisiondata_0)) {
-                              Class58.anInt155 = int_5;
-                              Class58.anInt156 = int_6;
-                              bool_2 = true;
+                           currentX = Class58.tileQueueX[read];
+                           currentY = Class58.tileQueueY[read];
+                           read = read + 1 & 0xFFF;
+                           currentGraphX = currentX - graphBaseX;
+                           currentGraphY = currentY - graphBaseY;
+                           maskX = currentX - collision.x;
+                           maskY = currentY - collision.y;
+                           if (strategy.canExit(size, currentX, currentY, collision)) {
+                              Class58.exitX = currentX;
+                              Class58.exitY = currentY;
+                              found = true;
                               break label641;
                            }
 
-                           int_13 = Class58.anIntArrayArray11[int_19][int_20] + 1;
-                           if (int_19 > 0 && Class58.anIntArrayArray10[int_19 - 1][int_20] == 0 && (ints_2[int_10 - 1][int_11] & 0x124010E) == 0 && (ints_2[int_10 - 1][int_11 + int_2 - 1] & 0x1240138) == 0) {
-                              int_14 = 1;
+                           nextDistance = Class58.distances[currentGraphX][currentGraphY] + 1;
+                           if (currentGraphX > 0 && Class58.directions[currentGraphX - 1][currentGraphY] == 0 && (mask[maskX - 1][maskY] & 0x124010E) == 0 && (mask[maskX - 1][maskY + size - 1] & 0x1240138) == 0) {
+                              int y = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2 - 1) {
-                                    Class58.anIntArray37[int_21] = int_5 - 1;
-                                    Class58.anIntArray38[int_21] = int_6;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19 - 1][int_20] = 2;
-                                    Class58.anIntArrayArray11[int_19 - 1][int_20] = int_13;
+                                 if (y >= size - 1) {
+                                    Class58.tileQueueX[write] = currentX - 1;
+                                    Class58.tileQueueY[write] = currentY;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX - 1][currentGraphY] = 2;
+                                    Class58.distances[currentGraphX - 1][currentGraphY] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_10 - 1][int_11 + int_14] & 0x124013E) != 0) {
+                                 if ((mask[maskX - 1][maskY + y] & 0x124013E) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++y;
                               }
                            }
 
-                           if (int_19 < 128 - int_2 && Class58.anIntArrayArray10[int_19 + 1][int_20] == 0 && (ints_2[int_10 + int_2][int_11] & 0x1240183) == 0 && (ints_2[int_10 + int_2][int_11 + int_2 - 1] & 0x12401E0) == 0) {
-                              int_14 = 1;
+                           if (currentGraphX < 128 - size && Class58.directions[currentGraphX + 1][currentGraphY] == 0 && (mask[maskX + size][maskY] & 0x1240183) == 0 && (mask[maskX + size][maskY + size - 1] & 0x12401E0) == 0) {
+                              int y = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2 - 1) {
-                                    Class58.anIntArray37[int_21] = int_5 + 1;
-                                    Class58.anIntArray38[int_21] = int_6;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19 + 1][int_20] = 8;
-                                    Class58.anIntArrayArray11[int_19 + 1][int_20] = int_13;
+                                 if (y >= size - 1) {
+                                    Class58.tileQueueX[write] = currentX + 1;
+                                    Class58.tileQueueY[write] = currentY;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX + 1][currentGraphY] = 8;
+                                    Class58.distances[currentGraphX + 1][currentGraphY] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_10 + int_2][int_11 + int_14] & 0x12401E3) != 0) {
+                                 if ((mask[maskX + size][maskY + y] & 0x12401E3) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++y;
                               }
                            }
 
-                           if (int_20 > 0 && Class58.anIntArrayArray10[int_19][int_20 - 1] == 0 && (ints_2[int_10][int_11 - 1] & 0x124010E) == 0 && (ints_2[int_10 + int_2 - 1][int_11 - 1] & 0x1240183) == 0) {
-                              int_14 = 1;
+                           if (currentGraphY > 0 && Class58.directions[currentGraphX][currentGraphY - 1] == 0 && (mask[maskX][maskY - 1] & 0x124010E) == 0 && (mask[maskX + size - 1][maskY - 1] & 0x1240183) == 0) {
+                              int x = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2 - 1) {
-                                    Class58.anIntArray37[int_21] = int_5;
-                                    Class58.anIntArray38[int_21] = int_6 - 1;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19][int_20 - 1] = 1;
-                                    Class58.anIntArrayArray11[int_19][int_20 - 1] = int_13;
+                                 if (x >= size - 1) {
+                                    Class58.tileQueueX[write] = currentX;
+                                    Class58.tileQueueY[write] = currentY - 1;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX][currentGraphY - 1] = 1;
+                                    Class58.distances[currentGraphX][currentGraphY - 1] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_14 + int_10][int_11 - 1] & 0x124018F) != 0) {
+                                 if ((mask[x + maskX][maskY - 1] & 0x124018F) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++x;
                               }
                            }
 
-                           if (int_20 < 128 - int_2 && Class58.anIntArrayArray10[int_19][int_20 + 1] == 0 && (ints_2[int_10][int_11 + int_2] & 0x1240138) == 0 && (ints_2[int_10 + int_2 - 1][int_11 + int_2] & 0x12401E0) == 0) {
-                              int_14 = 1;
+                           if (currentGraphY < 128 - size && Class58.directions[currentGraphX][currentGraphY + 1] == 0 && (mask[maskX][maskY + size] & 0x1240138) == 0 && (mask[maskX + size - 1][maskY + size] & 0x12401E0) == 0) {
+                              int x = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2 - 1) {
-                                    Class58.anIntArray37[int_21] = int_5;
-                                    Class58.anIntArray38[int_21] = int_6 + 1;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19][int_20 + 1] = 4;
-                                    Class58.anIntArrayArray11[int_19][int_20 + 1] = int_13;
+                                 if (x >= size - 1) {
+                                    Class58.tileQueueX[write] = currentX;
+                                    Class58.tileQueueY[write] = currentY + 1;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX][currentGraphY + 1] = 4;
+                                    Class58.distances[currentGraphX][currentGraphY + 1] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_14 + int_10][int_11 + int_2] & 0x12401F8) != 0) {
+                                 if ((mask[x + maskX][maskY + size] & 0x12401F8) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++x;
                               }
                            }
 
-                           if (int_19 > 0 && int_20 > 0 && Class58.anIntArrayArray10[int_19 - 1][int_20 - 1] == 0 && (ints_2[int_10 - 1][int_11 - 1] & 0x124010E) == 0) {
-                              int_14 = 1;
+                           if (currentGraphX > 0 && currentGraphY > 0 && Class58.directions[currentGraphX - 1][currentGraphY - 1] == 0 && (mask[maskX - 1][maskY - 1] & 0x124010E) == 0) {
+                              int y = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2) {
-                                    Class58.anIntArray37[int_21] = int_5 - 1;
-                                    Class58.anIntArray38[int_21] = int_6 - 1;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19 - 1][int_20 - 1] = 3;
-                                    Class58.anIntArrayArray11[int_19 - 1][int_20 - 1] = int_13;
+                                 if (y >= size) {
+                                    Class58.tileQueueX[write] = currentX - 1;
+                                    Class58.tileQueueY[write] = currentY - 1;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX - 1][currentGraphY - 1] = 3;
+                                    Class58.distances[currentGraphX - 1][currentGraphY - 1] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_10 - 1][int_14 + (int_11 - 1)] & 0x124013E) != 0 || (ints_2[int_14 + (int_10 - 1)][int_11 - 1] & 0x124018F) != 0) {
+                                 if ((mask[maskX - 1][y + (maskY - 1)] & 0x124013E) != 0 || (mask[y + (maskX - 1)][maskY - 1] & 0x124018F) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++y;
                               }
                            }
 
-                           if (int_19 < 128 - int_2 && int_20 > 0 && Class58.anIntArrayArray10[int_19 + 1][int_20 - 1] == 0 && (ints_2[int_10 + int_2][int_11 - 1] & 0x1240183) == 0) {
-                              int_14 = 1;
+                           if (currentGraphX < 128 - size && currentGraphY > 0 && Class58.directions[currentGraphX + 1][currentGraphY - 1] == 0 && (mask[maskX + size][maskY - 1] & 0x1240183) == 0) {
+                              int y = 1;
 
                               while (true) {
-                                 if (int_14 >= int_2) {
-                                    Class58.anIntArray37[int_21] = int_5 + 1;
-                                    Class58.anIntArray38[int_21] = int_6 - 1;
-                                    int_21 = int_21 + 1 & 0xFFF;
-                                    Class58.anIntArrayArray10[int_19 + 1][int_20 - 1] = 9;
-                                    Class58.anIntArrayArray11[int_19 + 1][int_20 - 1] = int_13;
+                                 if (y >= size) {
+                                    Class58.tileQueueX[write] = currentX + 1;
+                                    Class58.tileQueueY[write] = currentY - 1;
+                                    write = write + 1 & 0xFFF;
+                                    Class58.directions[currentGraphX + 1][currentGraphY - 1] = 9;
+                                    Class58.distances[currentGraphX + 1][currentGraphY - 1] = nextDistance;
                                     break;
                                  }
 
-                                 if ((ints_2[int_10 + int_2][int_14 + (int_11 - 1)] & 0x12401E3) != 0 || (ints_2[int_10 + int_14][int_11 - 1] & 0x124018F) != 0) {
+                                 if ((mask[maskX + size][y + (maskY - 1)] & 0x12401E3) != 0 || (mask[maskX + y][maskY - 1] & 0x124018F) != 0) {
                                     break;
                                  }
 
-                                 ++int_14;
+                                 ++y;
                               }
                            }
 
-                           if (int_19 > 0 && int_20 < 128 - int_2 && Class58.anIntArrayArray10[int_19 - 1][int_20 + 1] == 0 && (ints_2[int_10 - 1][int_11 + int_2] & 0x1240138) == 0) {
-                              for (int_14 = 1; int_14 < int_2; int_14++) {
-                                 if ((ints_2[int_10 - 1][int_11 + int_14] & 0x124013E) != 0 || (ints_2[int_14 + (int_10 - 1)][int_11 + int_2] & 0x12401F8) != 0) {
-                                    continue label616;
+                           if (currentGraphX > 0 && currentGraphY < 128 - size && Class58.directions[currentGraphX - 1][currentGraphY + 1] == 0 && (mask[maskX - 1][maskY + size] & 0x1240138) == 0) {
+                              for (index = 1; index < size; index++) {
+                                 if ((mask[maskX - 1][maskY + index] & 0x124013E) != 0 || (mask[index + (maskX - 1)][maskY + size] & 0x12401F8) != 0) {
+                                    continue loopX;
                                  }
                               }
 
-                              Class58.anIntArray37[int_21] = int_5 - 1;
-                              Class58.anIntArray38[int_21] = int_6 + 1;
-                              int_21 = int_21 + 1 & 0xFFF;
-                              Class58.anIntArrayArray10[int_19 - 1][int_20 + 1] = 6;
-                              Class58.anIntArrayArray11[int_19 - 1][int_20 + 1] = int_13;
+                              Class58.tileQueueX[write] = currentX - 1;
+                              Class58.tileQueueY[write] = currentY + 1;
+                              write = write + 1 & 0xFFF;
+                              Class58.directions[currentGraphX - 1][currentGraphY + 1] = 6;
+                              Class58.distances[currentGraphX - 1][currentGraphY + 1] = nextDistance;
                            }
-                        } while (int_19 >= 128 - int_2);
-                     } while (int_20 >= 128 - int_2);
-                  } while (Class58.anIntArrayArray10[int_19 + 1][int_20 + 1] != 0);
-               } while ((ints_2[int_10 + int_2][int_11 + int_2] & 0x12401E0) != 0);
+                        } while (currentGraphX >= 128 - size);
+                     } while (currentGraphY >= 128 - size);
+                  } while (Class58.directions[currentGraphX + 1][currentGraphY + 1] != 0);
+               } while ((mask[maskX + size][maskY + size] & 0x12401E0) != 0);
 
-               for (int_14 = 1; int_14 < int_2; int_14++) {
-                  if ((ints_2[int_10 + int_14][int_11 + int_2] & 0x12401F8) != 0 || (ints_2[int_10 + int_2][int_14 + int_11] & 0x12401E3) != 0) {
+               for (index = 1; index < size; index++) {
+                  if ((mask[maskX + index][maskY + size] & 0x12401F8) != 0 || (mask[maskX + size][index + maskY] & 0x12401E3) != 0) {
                      continue label639;
                   }
                }
 
-               Class58.anIntArray37[int_21] = int_5 + 1;
-               Class58.anIntArray38[int_21] = int_6 + 1;
-               int_21 = int_21 + 1 & 0xFFF;
-               Class58.anIntArrayArray10[int_19 + 1][int_20 + 1] = 12;
-               Class58.anIntArrayArray11[int_19 + 1][int_20 + 1] = int_13;
+               Class58.tileQueueX[write] = currentX + 1;
+               Class58.tileQueueY[write] = currentY + 1;
+               write = write + 1 & 0xFFF;
+               Class58.directions[currentGraphX + 1][currentGraphY + 1] = 12;
+               Class58.distances[currentGraphX + 1][currentGraphY + 1] = nextDistance;
             }
          }
 
-         bool_1 = bool_2;
+         alternate = found;
       }
 
-      int_4 = int_0 - 64;
-      int_5 = int_1 - 64;
-      int_6 = Class58.anInt155;
-      int_19 = Class58.anInt156;
-      if (!bool_1) {
-         int_20 = Integer.MAX_VALUE;
-         int_7 = Integer.MAX_VALUE;
-         byte byte_3 = 10;
-         int_21 = aclass2_0.anInt160;
-         int_9 = aclass2_0.anInt161;
-         int int_12 = aclass2_0.anInt162;
-         int_10 = aclass2_0.anInt163;
+      int targetX = sourceX - 64;
+      int targetY = sourceY - 64;
+      int exitX = Class58.exitX;
+      int exitY = Class58.exitY;
+      int currentGraphY;
+      if (!alternate) {
+         int lowestCost = Integer.MAX_VALUE;
+         int lowestDistance = Integer.MAX_VALUE;
+         byte routeRange = 10;
+         int approxDestX = strategy.approxDestinationX;
+         int approxDestY = strategy.approxDestinationY;
+         int approxDestSizeX = strategy.approxDestinationSizeX;
+         int approxDestSizeY = strategy.approxDestinationSizeY;
+         int checkX;
+         int graphX;
 
-         for (int_11 = int_21 - byte_3; int_11 <= byte_3 + int_21; int_11++) {
-            for (int_13 = int_9 - byte_3; int_13 <= byte_3 + int_9; int_13++) {
-               int_14 = int_11 - int_4;
-               int int_15 = int_13 - int_5;
-               if (int_14 >= 0 && int_15 >= 0 && int_14 < 128 && int_15 < 128 && Class58.anIntArrayArray11[int_14][int_15] < 100) {
-                  int int_16 = 0;
-                  if (int_11 < int_21) {
-                     int_16 = int_21 - int_11;
-                  } else if (int_11 > int_12 + int_21 - 1) {
-                     int_16 = int_11 - (int_12 + int_21 - 1);
+         for (checkX = approxDestX - routeRange; checkX <= routeRange + approxDestX; checkX++) {
+            for (int checkY = approxDestY - routeRange; checkY <= routeRange + approxDestY; checkY++) {
+               graphX = checkX - targetX;
+               int graphY = checkY - targetY;
+               if (graphX >= 0 && graphY >= 0 && graphX < 128 && graphY < 128 && Class58.distances[graphX][graphY] < 100) {
+                  int deltaY = 0;
+                  if (checkX < approxDestX) {
+                     deltaY = approxDestX - checkX;
+                  } else if (checkX > approxDestSizeX + approxDestX - 1) {
+                     deltaY = checkX - (approxDestSizeX + approxDestX - 1);
                   }
 
-                  int int_17 = 0;
-                  if (int_13 < int_9) {
-                     int_17 = int_9 - int_13;
-                  } else if (int_13 > int_9 + int_10 - 1) {
-                     int_17 = int_13 - (int_10 + int_9 - 1);
+                  int deltaX = 0;
+                  if (checkY < approxDestY) {
+                     deltaX = approxDestY - checkY;
+                  } else if (checkY > approxDestY + approxDestSizeY - 1) {
+                     deltaX = checkY - (approxDestSizeY + approxDestY - 1);
                   }
 
-                  int int_18 = int_17 * int_17 + int_16 * int_16;
-                  if (int_18 < int_20 || int_20 == int_18 && Class58.anIntArrayArray11[int_14][int_15] < int_7) {
-                     int_20 = int_18;
-                     int_7 = Class58.anIntArrayArray11[int_14][int_15];
-                     int_6 = int_11;
-                     int_19 = int_13;
+                  int cost = deltaX * deltaX + deltaY * deltaY;
+                  if (cost < lowestCost || lowestCost == cost && Class58.distances[graphX][graphY] < lowestDistance) {
+                     lowestCost = cost;
+                     lowestDistance = Class58.distances[graphX][graphY];
+                     exitX = checkX;
+                     exitY = checkY;
                   }
                }
             }
          }
 
-         if (int_20 == Integer.MAX_VALUE) {
+         if (lowestCost == Integer.MAX_VALUE) {
             return -1;
          }
       }
 
-      if (int_0 == int_6 && int_19 == int_1) {
+      if (sourceX == exitX && exitY == sourceY) {
          return 0;
       } else {
-         byte_1 = 0;
-         Class58.anIntArray37[byte_1] = int_6;
-         int_20 = byte_1 + 1;
-         Class58.anIntArray38[byte_1] = int_19;
+         int graphSizeY = 0;
+         Class58.tileQueueX[graphSizeY] = exitX;
+         currentGraphY = graphSizeY + 1;
+         Class58.tileQueueY[graphSizeY] = exitY;
+         int direction;
+         int lastWritten;
 
-         for (int_7 = int_8 = Class58.anIntArrayArray10[int_6 - int_4][int_19 - int_5]; int_0 != int_6 || int_19 != int_1; int_7 = Class58.anIntArrayArray10[int_6 - int_4][int_19 - int_5]) {
-            if (int_7 != int_8) {
-               int_8 = int_7;
-               Class58.anIntArray37[int_20] = int_6;
-               Class58.anIntArray38[int_20++] = int_19;
+         for (direction = lastWritten = Class58.directions[exitX - targetX][exitY - targetY]; sourceX != exitX || exitY != sourceY; direction = Class58.directions[exitX - targetX][exitY - targetY]) {
+            if (direction != lastWritten) {
+               lastWritten = direction;
+               Class58.tileQueueX[currentGraphY] = exitX;
+               Class58.tileQueueY[currentGraphY++] = exitY;
             }
 
-            if ((int_7 & 0x2) != 0) {
-               ++int_6;
-            } else if ((int_7 & 0x8) != 0) {
-               --int_6;
+            if ((direction & 0x2) != 0) {
+               ++exitX;
+            } else if ((direction & 0x8) != 0) {
+               --exitX;
             }
 
-            if ((int_7 & 0x1) != 0) {
-               ++int_19;
-            } else if ((int_7 & 0x4) != 0) {
-               --int_19;
+            if ((direction & 0x1) != 0) {
+               ++exitY;
+            } else if ((direction & 0x4) != 0) {
+               --exitY;
             }
          }
 
-         int_21 = 0;
+         int steps = 0;
 
-         while (int_20-- > 0) {
-            ints_0[int_21] = Class58.anIntArray37[int_20];
-            ints_1[int_21++] = Class58.anIntArray38[int_20];
-            if (int_21 >= ints_0.length) {
+         while (currentGraphY-- > 0) {
+            tileQueueX[steps] = Class58.tileQueueX[currentGraphY];
+            tileQueueY[steps++] = Class58.tileQueueY[currentGraphY];
+            if (steps >= tileQueueX.length) {
                break;
             }
          }
 
-         return int_21;
+         return steps;
       }
    }
 

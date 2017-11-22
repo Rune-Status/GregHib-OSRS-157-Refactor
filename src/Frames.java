@@ -68,7 +68,7 @@ public class Frames extends CacheableNode {
                      }
                   }
 
-                  if (AClass2_Sub1.listFetcher != null && AClass3_Sub1.loadWorlds()) {
+                  if (TileStrategy.listFetcher != null && AClass3_Sub1.loadWorlds()) {
                      Class25.worldSelectShown = true;
                   }
                }
@@ -110,7 +110,7 @@ public class Frames extends CacheableNode {
                         Class25.loginMessage2 = "Your normal account will not be affected.";
                         Class25.loginMessage3 = "";
                         Class25.loginIndex = 1;
-                        AClass2_Sub1.method631();
+                        TileStrategy.method631();
                      } else if ((Client.flags & 0x4) != 0) {
                         if ((Client.flags & 0x400) != 0) {
                            Class25.loginMessage1 = "This is a <col=ffff00>High Risk <col=ff0000>PvP<col=ffffff> world.";
@@ -124,14 +124,14 @@ public class Frames extends CacheableNode {
 
                         Class25.aString4 = "Warning!";
                         Class25.loginIndex = 1;
-                        AClass2_Sub1.method631();
+                        TileStrategy.method631();
                      } else if ((Client.flags & 0x400) != 0) {
                         Class25.loginMessage1 = "This is a <col=ffff00>High Risk<col=ffffff> world.";
                         Class25.loginMessage2 = "The Protect Item prayer will";
                         Class25.loginMessage3 = "not work on this world.";
                         Class25.aString4 = "Warning!";
                         Class25.loginIndex = 1;
-                        AClass2_Sub1.method631();
+                        TileStrategy.method631();
                      } else {
                         WorldMapType1.method580(false);
                      }
@@ -210,7 +210,7 @@ public class Frames extends CacheableNode {
                            if (!Buffer.preferences.aBool26) {
                               Class25.username = "";
                               Buffer.preferences.aString10 = null;
-                              AClass2_Sub1.method631();
+                              TileStrategy.method631();
                            }
 
                            Class59.method390();

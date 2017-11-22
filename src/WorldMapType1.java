@@ -170,7 +170,7 @@ public class WorldMapType1 implements WorldMapSectionBase {
       }
 
       Class43.method267();
-      AClass2_Sub1.method631();
+      TileStrategy.method631();
    }
 
 }

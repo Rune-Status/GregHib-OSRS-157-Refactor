@@ -8,7 +8,7 @@ public class Class38 {
    }
 
    public static SpritePixels method254(IndexDataBase indexdatabase_0, int int_0, int int_1) {
-      if (!AClass2_Sub1.method628(indexdatabase_0, int_0, int_1)) {
+      if (!TileStrategy.method628(indexdatabase_0, int_0, int_1)) {
          return null;
       } else {
          SpritePixels spritepixels_0 = new SpritePixels();

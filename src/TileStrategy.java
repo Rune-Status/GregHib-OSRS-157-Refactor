@@ -1,11 +1,11 @@
-public class AClass2_Sub1 extends AClass2 {
+public class TileStrategy extends RouteStrategy {
 
    static String aString18;
    static Class56 listFetcher;
    static SpritePixels[] headIconsPrayer;
 
-   protected boolean method393(int int_0, int int_1, int int_2, CollisionData collisiondata_0) {
-      return int_1 == this.anInt160 && int_2 == this.anInt161;
+   protected boolean canExit(int sizeXY, int currentX, int currentY, CollisionData data) {
+      return currentX == this.approxDestinationX && currentY == this.approxDestinationY;
    }
 
    static boolean method628(IndexDataBase indexdatabase_0, int int_0, int int_1) {
@@ -19,7 +19,7 @@ public class AClass2_Sub1 extends AClass2 {
    }
 
    static int method629(int int_0, int int_1) {
-      Overlay overlay_0 = Class39.method255(int_0);
+      Overlay overlay_0 = Class39.getOverlay(int_0);
       if (overlay_0 == null) {
          return int_1;
       } else if (overlay_0.otherRgbColor >= 0) {
@@ -98,7 +98,5 @@ public class AClass2_Sub1 extends AClass2 {
       } else {
          Class25.anInt83 = 0;
       }
-
    }
-
 }

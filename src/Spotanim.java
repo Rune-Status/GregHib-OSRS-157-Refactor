@@ -145,8 +145,8 @@ public class Spotanim extends CacheableNode {
       }
 
       Class67.method413(Class4.localPlayer, false);
-      if (Client.anInt667 >= 0 && Client.cachedPlayers[Client.anInt667] != null) {
-         Class67.method413(Client.cachedPlayers[Client.anInt667], false);
+      if (Client.anInt667 >= 0 && Client.players[Client.anInt667] != null) {
+         Class67.method413(Client.players[Client.anInt667], false);
       }
 
       WorldMapData_Sub1.method606(true);
@@ -373,7 +373,7 @@ public class Spotanim extends CacheableNode {
       for (int_16 = 0; int_16 < int_15 + Client.npcIndexesCount; int_16++) {
          Object object_0;
          if (int_16 < int_15) {
-            object_0 = Client.cachedPlayers[ints_0[int_16]];
+            object_0 = Client.players[ints_0[int_16]];
             if (ints_0[int_16] == Client.anInt667) {
                bool_1 = true;
                int_14 = int_16;
@@ -387,7 +387,7 @@ public class Spotanim extends CacheableNode {
       }
 
       if (bool_1) {
-         Class26.method224(Client.cachedPlayers[Client.anInt667], int_14, int_0, int_1, int_2, int_3);
+         Class26.method224(Client.players[Client.anInt667], int_14, int_0, int_1, int_2, int_3);
       }
 
       for (int_16 = 0; int_16 < Client.anInt691; int_16++) {

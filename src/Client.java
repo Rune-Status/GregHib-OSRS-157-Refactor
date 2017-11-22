@@ -89,7 +89,7 @@ public final class Client extends GameEngine {
     static int anInt630;
     static int hintArrowX;
     static int[] widgetPositionY;
-    static final AClass2_Sub1 anAClass2_Sub1_1;
+    static final TileStrategy routeStrategy;
     static int anInt631;
     static int hintArrowY;
     static int[] realSkillLevels;
@@ -115,7 +115,7 @@ public final class Client extends GameEngine {
     static int[] anIntArray143;
     static int weight;
     static int anInt639;
-    static Player[] cachedPlayers;
+    static Player[] players;
     static int[] anIntArray144;
     static int cycleCntr;
     static CollisionData[] collisionMaps;
@@ -124,9 +124,9 @@ public final class Client extends GameEngine {
     static int anInt641;
     static int[] anIntArray145;
     static boolean aBool92;
-    static int[] anIntArray146;
+    static int[] tileQueueX;
     static int anInt642;
-    static int[] anIntArray147;
+    static int[] tileQueueY;
     static int anInt643;
     static int cursorState;
     static int anInt644;
@@ -373,7 +373,7 @@ public final class Client extends GameEngine {
         aBool91 = false;
         anInt627 = 0;
         onTutorialIsland = 0;
-        cachedPlayers = new Player[2048];
+        players = new Player[2048];
         localInteractingIndex = -1;
         anInt678 = 0;
         anInt666 = 0;
@@ -529,9 +529,9 @@ public final class Client extends GameEngine {
         anInt657 = -1;
         grandExchangeOffers = new GrandExchangeOffer[8];
         aClass20_1 = new Class20();
-        anAClass2_Sub1_1 = new AClass2_Sub1();
-        anIntArray146 = new int[50];
-        anIntArray147 = new int[50];
+        routeStrategy = new TileStrategy();
+        tileQueueX = new int[50];
+        tileQueueY = new int[50];
     }
 
     void processJS5Connection() {
@@ -1360,7 +1360,7 @@ public final class Client extends GameEngine {
                     }
 
                     for (int_1 = 0; int_1 < 2048; int_1++) {
-                        cachedPlayers[int_1] = null;
+                        players[int_1] = null;
                     }
 
                     Class85.initializeGPI(packetbuffer_0);
@@ -2030,9 +2030,9 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.resetAnimationPacket == class46_0.serverPacket) {
-                    for (int_1 = 0; int_1 < cachedPlayers.length; int_1++) {
-                        if (cachedPlayers[int_1] != null) {
-                            cachedPlayers[int_1].animation = -1;
+                    for (int_1 = 0; int_1 < players.length; int_1++) {
+                        if (players[int_1] != null) {
+                            players[int_1].animation = -1;
                         }
                     }
 
@@ -3106,7 +3106,7 @@ public final class Client extends GameEngine {
                         int[] ints_0 = Class27.localPlayerIndices;
 
                         for (int_1 = 0; int_1 < Class27.localPlayerIndexCount; int_1++) {
-                            Player player_0 = cachedPlayers[ints_0[int_1]];
+                            Player player_0 = players[ints_0[int_1]];
                             if (player_0 != null && player_0.textCycle > 0) {
                                 --player_0.textCycle;
                                 if (player_0.textCycle == 0) {
@@ -3759,7 +3759,7 @@ public final class Client extends GameEngine {
                         }
 
                         for (int_0 = 0; int_0 < 2048; int_0++) {
-                            cachedPlayers[int_0] = null;
+                            players[int_0] = null;
                         }
 
                         for (int_0 = 0; int_0 < 32768; int_0++) {
@@ -3923,7 +3923,7 @@ public final class Client extends GameEngine {
                             destinationX = 0;
 
                             for (int_6 = 0; int_6 < 2048; int_6++) {
-                                cachedPlayers[int_6] = null;
+                                players[int_6] = null;
                             }
 
                             Class4.localPlayer = null;
@@ -4167,7 +4167,7 @@ public final class Client extends GameEngine {
                             }
 
                             if (int_4 != -1) {
-                                AClass2.method394(int_4);
+                                RouteStrategy.method394(int_4);
                             }
 
                             isMenuOpen = false;
@@ -4200,7 +4200,7 @@ public final class Client extends GameEngine {
                         }
 
                         if ((int_7 == 1 || !Item.aBool73 && int_7 == 4) && menuOptionCount > 0) {
-                            AClass2.method394(int_0);
+                            RouteStrategy.method394(int_0);
                         }
 
                         if (int_7 == 2 && menuOptionCount > 0) {
@@ -4377,7 +4377,7 @@ public final class Client extends GameEngine {
                             Class10.anInt48 = Integer.parseInt(string_0);
                             break;
                         case 4:
-                            AClass2_Sub1.aString18 = string_0;
+                            TileStrategy.aString18 = string_0;
                         case 5:
                         case 13:
                         case 14:
@@ -4417,7 +4417,7 @@ public final class Client extends GameEngine {
                 }
             }
 
-            AClass2_Sub1.method630();
+            TileStrategy.method630();
             MilliTimer.host = this.getCodeBase().getHost();
             String string_1 = GameEngine.aBuildType1.identifier;
             byte byte_0 = 0;

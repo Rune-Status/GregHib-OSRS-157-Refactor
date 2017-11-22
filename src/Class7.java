@@ -67,28 +67,28 @@ public class Class7 {
             int_3 = buffer.getBits(13);
             boolean bool_0 = buffer.getBits(1) == 1;
             if (bool_0) {
-                Class27.playerIndexes[++Class27.playerCount - 1] = index;
+                Class27.playersAwaitingUpdate[++Class27.playerCount - 1] = index;
             }
 
-            if (Client.cachedPlayers[index] != null) {
+            if (Client.players[index] != null) {
                 throw new RuntimeException();
             } else {
-                Player player_0 = Client.cachedPlayers[index] = new Player();
+                Player player_0 = Client.players[index] = new Player();
                 player_0.localPlayerIndex = index;
                 if (Class27.playerSynchronizationBuffers[index] != null) {
                     player_0.decodeAppearance(Class27.playerSynchronizationBuffers[index]);
                 }
 
-                player_0.orientation = Class27.anIntArray19[index];
-                player_0.interacting = Class27.anIntArray20[index];
+                player_0.orientation = Class27.orientations[index];
+                player_0.interacting = Class27.interactions[index];
                 int_5 = Class27.locationHashes[index];
                 int_6 = int_5 >> 28;
                 int_7 = int_5 >> 14 & 0xFF;
                 int_8 = int_5 & 0xFF;
-                player_0.aByteArray20[0] = Class27.aByteArray3[index];
+                player_0.pathRun[0] = Class27.aByteArray3[index];
                 player_0.currentPlane = (byte) int_6;
-                player_0.method1093((int_7 << 13) + int_2 - ItemLayer.baseX, (int_8 << 13) + int_3 - ItemLayer.baseY);
-                player_0.aBool83 = false;
+                player_0.setFirstStep((int_7 << 13) + int_2 - ItemLayer.baseX, (int_8 << 13) + int_3 - ItemLayer.baseY);
+                player_0.needsPositionUpdate = false;
                 return true;
             }
         } else if (int_1 == 1) {

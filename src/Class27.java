@@ -8,10 +8,10 @@ public class Class27 {
    static int externalPlayerCount;
    static int[] externalPlayerIndices;
    static int[] locationHashes;
-   static int[] anIntArray19;
-   static int[] anIntArray20;
+   static int[] orientations;
+   static int[] interactions;
    static int playerCount;
-   static int[] playerIndexes;
+   static int[] playersAwaitingUpdate;
    static Buffer chatBuffer;
 
    static {
@@ -23,10 +23,10 @@ public class Class27 {
       externalPlayerCount = 0;
       externalPlayerIndices = new int[2048];
       locationHashes = new int[2048];
-      anIntArray19 = new int[2048];
-      anIntArray20 = new int[2048];
+      orientations = new int[2048];
+      interactions = new int[2048];
       playerCount = 0;
-      playerIndexes = new int[2048];
+      playersAwaitingUpdate = new int[2048];
       chatBuffer = new Buffer(new byte[5000]);
    }
 

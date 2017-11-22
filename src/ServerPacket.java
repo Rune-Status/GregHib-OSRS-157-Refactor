@@ -237,7 +237,7 @@ public class ServerPacket {
                   actor.orientation = 0;
                }
 
-               byte byte_0 = actor.aByteArray20[actor.queueSize - 1];
+               byte byte_0 = actor.pathRun[actor.queueSize - 1];
                if (int_2 - int_0 <= 256 && int_2 - int_0 >= -256 && int_3 - int_1 <= 256 && int_3 - int_1 >= -256) {
                   int int_4 = actor.orientation - actor.angle & 0x7FF;
                   if (int_4 > 1024) {
@@ -374,7 +374,7 @@ public class ServerPacket {
             if (actor.interacting < 32768) {
                object_0 = Client.cachedNPCs[actor.interacting];
             } else if (actor.interacting >= 32768) {
-               object_0 = Client.cachedPlayers[actor.interacting - 32768];
+               object_0 = Client.players[actor.interacting - 32768];
             }
 
             if (object_0 != null) {

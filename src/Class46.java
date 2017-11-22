@@ -320,8 +320,8 @@ public class Class46 {
                ++int_0;
             }
 
-            if (AClass2_Sub1.headIconsPrayer == null) {
-               AClass2_Sub1.headIconsPrayer = Buffer.method735(Class34.indexSprites, "headicons_prayer", "");
+            if (TileStrategy.headIconsPrayer == null) {
+               TileStrategy.headIconsPrayer = Buffer.method735(Class34.indexSprites, "headicons_prayer", "");
             } else {
                ++int_0;
             }

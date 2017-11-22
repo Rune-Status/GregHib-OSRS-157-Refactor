@@ -701,7 +701,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                         if (int_9 == Client.localInteractingIndex) {
                            player_0 = Class4.localPlayer;
                         } else {
-                           player_0 = Client.cachedPlayers[int_9];
+                           player_0 = Client.players[int_9];
                         }
 
                         if (player_0 != null) {

@@ -21,7 +21,7 @@ public class Class85 {
     static void initializeGPI(PacketBuffer buffer) {
         buffer.bitAccess();
         int playerIndex = Client.localInteractingIndex;
-        Player player = Class4.localPlayer = Client.cachedPlayers[playerIndex] = new Player();
+        Player player = Class4.localPlayer = Client.players[playerIndex] = new Player();
         player.localPlayerIndex = playerIndex;
         int hash = buffer.getBits(30);
         byte plane = (byte) (hash >> 28);
@@ -48,8 +48,8 @@ public class Class85 {
                 int int_7 = info >> 8 & 0x255;
                 int int_8 = info & 0x255;
                 Class27.locationHashes[index] = (int_7 << 14) + int_8 + (int_6 << 28);
-                Class27.anIntArray19[index] = 0;
-                Class27.anIntArray20[index] = -1;
+                Class27.orientations[index] = 0;
+                Class27.interactions[index] = -1;
                 Class27.externalPlayerIndices[++Class27.externalPlayerCount - 1] = index;
                 Class27.updateFlags[index] = 0;
             }

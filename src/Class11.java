@@ -21,202 +21,198 @@ public class Class11 implements Interface2 {
       }
    }
 
-   static void decodeMovement(PacketBuffer packetbuffer_0, int int_0) {
-      boolean bool_0 = packetbuffer_0.getBits(1) == 1;
-      if (bool_0) {
-         Class27.playerIndexes[++Class27.playerCount - 1] = int_0;
-      }
+   static void decodeMovement(PacketBuffer buffer, int index) {
+      boolean update = buffer.getBits(1) == 1;
+      if (update)
+         Class27.playersAwaitingUpdate[++Class27.playerCount - 1] = index;
 
-      int int_1 = packetbuffer_0.getBits(2);
-      Player player_0 = Client.cachedPlayers[int_0];
-      if (int_1 == 0) {
-         if (bool_0) {
-            player_0.aBool83 = false;
-         } else if (Client.localInteractingIndex == int_0) {
+      int type = buffer.getBits(2);
+      Player player = Client.players[index];
+      if (type == 0) {
+         if (update) {
+            player.needsPositionUpdate = false;
+         } else if (Client.localInteractingIndex == index) {
             throw new RuntimeException();
          } else {
-            Class27.locationHashes[int_0] = (player_0.currentPlane << 28) + (ItemLayer.baseX + player_0.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player_0.pathY[0] >> 13);
-            if (player_0.nextStepOrientation != -1) {
-               Class27.anIntArray19[int_0] = player_0.nextStepOrientation;
+            Class27.locationHashes[index] = (player.currentPlane << 28) + (ItemLayer.baseX + player.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player.pathY[0] >> 13);
+            if (player.nextStepOrientation != -1) {
+               Class27.orientations[index] = player.nextStepOrientation;
             } else {
-               Class27.anIntArray19[int_0] = player_0.orientation;
+               Class27.orientations[index] = player.orientation;
             }
 
-            Class27.anIntArray20[int_0] = player_0.interacting;
-            Client.cachedPlayers[int_0] = null;
-            if (packetbuffer_0.getBits(1) != 0) {
-               Class7.decodeRegionHash(packetbuffer_0, int_0);
-            }
-
+            Class27.interactions[index] = player.interacting;
+            Client.players[index] = null;
+            if (buffer.getBits(1) != 0)
+               Class7.decodeRegionHash(buffer, index);
          }
       } else {
-         int int_2;
-         int int_3;
-         int int_4;
-         if (int_1 == 1) {
-            int_2 = packetbuffer_0.getBits(3);
-            int_3 = player_0.pathX[0];
-            int_4 = player_0.pathY[0];
-            if (int_2 == 0) {
-               --int_3;
-               --int_4;
-            } else if (int_2 == 1) {
-               --int_4;
-            } else if (int_2 == 2) {
-               ++int_3;
-               --int_4;
-            } else if (int_2 == 3) {
-               --int_3;
-            } else if (int_2 == 4) {
-               ++int_3;
-            } else if (int_2 == 5) {
-               --int_3;
-               ++int_4;
-            } else if (int_2 == 6) {
-               ++int_4;
-            } else if (int_2 == 7) {
-               ++int_3;
-               ++int_4;
+         int direction;
+         int x;
+         int y;
+         if (type == 1) {
+            direction = buffer.getBits(3);
+            x = player.pathX[0];
+            y = player.pathY[0];
+            if (direction == 0) {
+               --x;
+               --y;
+            } else if (direction == 1) {
+               --y;
+            } else if (direction == 2) {
+               ++x;
+               --y;
+            } else if (direction == 3) {
+               --x;
+            } else if (direction == 4) {
+               ++x;
+            } else if (direction == 5) {
+               --x;
+               ++y;
+            } else if (direction == 6) {
+               ++y;
+            } else if (direction == 7) {
+               ++x;
+               ++y;
             }
 
-            if (Client.localInteractingIndex == int_0 && (player_0.x < 1536 || player_0.y < 1536 || player_0.x >= 11776 || player_0.y >= 11776)) {
-               player_0.method1093(int_3, int_4);
-               player_0.aBool83 = false;
-            } else if (bool_0) {
-               player_0.aBool83 = true;
-               player_0.anInt602 = int_3;
-               player_0.anInt603 = int_4;
+            if (Client.localInteractingIndex == index && (player.x < 1536 || player.y < 1536 || player.x >= 11776 || player.y >= 11776)) {
+               player.setFirstStep(x, y);
+               player.needsPositionUpdate = false;
+            } else if (update) {
+               player.needsPositionUpdate = true;
+               player.targetX = x;
+               player.targetY = y;
             } else {
-               player_0.aBool83 = false;
-               player_0.method1095(int_3, int_4, Class27.aByteArray3[int_0]);
+               player.needsPositionUpdate = false;
+               player.move(x, y, Class27.aByteArray3[index]);
             }
 
-         } else if (int_1 == 2) {
-            int_2 = packetbuffer_0.getBits(4);
-            int_3 = player_0.pathX[0];
-            int_4 = player_0.pathY[0];
-            if (int_2 == 0) {
-               int_3 -= 2;
-               int_4 -= 2;
-            } else if (int_2 == 1) {
-               --int_3;
-               int_4 -= 2;
-            } else if (int_2 == 2) {
-               int_4 -= 2;
-            } else if (int_2 == 3) {
-               ++int_3;
-               int_4 -= 2;
-            } else if (int_2 == 4) {
-               int_3 += 2;
-               int_4 -= 2;
-            } else if (int_2 == 5) {
-               int_3 -= 2;
-               --int_4;
-            } else if (int_2 == 6) {
-               int_3 += 2;
-               --int_4;
-            } else if (int_2 == 7) {
-               int_3 -= 2;
-            } else if (int_2 == 8) {
-               int_3 += 2;
-            } else if (int_2 == 9) {
-               int_3 -= 2;
-               ++int_4;
-            } else if (int_2 == 10) {
-               int_3 += 2;
-               ++int_4;
-            } else if (int_2 == 11) {
-               int_3 -= 2;
-               int_4 += 2;
-            } else if (int_2 == 12) {
-               --int_3;
-               int_4 += 2;
-            } else if (int_2 == 13) {
-               int_4 += 2;
-            } else if (int_2 == 14) {
-               ++int_3;
-               int_4 += 2;
-            } else if (int_2 == 15) {
-               int_3 += 2;
-               int_4 += 2;
+         } else if (type == 2) {
+            direction = buffer.getBits(4);
+            x = player.pathX[0];
+            y = player.pathY[0];
+            if (direction == 0) {
+               x -= 2;
+               y -= 2;
+            } else if (direction == 1) {
+               --x;
+               y -= 2;
+            } else if (direction == 2) {
+               y -= 2;
+            } else if (direction == 3) {
+               ++x;
+               y -= 2;
+            } else if (direction == 4) {
+               x += 2;
+               y -= 2;
+            } else if (direction == 5) {
+               x -= 2;
+               --y;
+            } else if (direction == 6) {
+               x += 2;
+               --y;
+            } else if (direction == 7) {
+               x -= 2;
+            } else if (direction == 8) {
+               x += 2;
+            } else if (direction == 9) {
+               x -= 2;
+               ++y;
+            } else if (direction == 10) {
+               x += 2;
+               ++y;
+            } else if (direction == 11) {
+               x -= 2;
+               y += 2;
+            } else if (direction == 12) {
+               --x;
+               y += 2;
+            } else if (direction == 13) {
+               y += 2;
+            } else if (direction == 14) {
+               ++x;
+               y += 2;
+            } else if (direction == 15) {
+               x += 2;
+               y += 2;
             }
 
-            if (Client.localInteractingIndex == int_0 && (player_0.x < 1536 || player_0.y < 1536 || player_0.x >= 11776 || player_0.y >= 11776)) {
-               player_0.method1093(int_3, int_4);
-               player_0.aBool83 = false;
-            } else if (bool_0) {
-               player_0.aBool83 = true;
-               player_0.anInt602 = int_3;
-               player_0.anInt603 = int_4;
+            if (Client.localInteractingIndex == index && (player.x < 1536 || player.y < 1536 || player.x >= 11776 || player.y >= 11776)) {
+               player.setFirstStep(x, y);
+               player.needsPositionUpdate = false;
+            } else if (update) {
+               player.needsPositionUpdate = true;
+               player.targetX = x;
+               player.targetY = y;
             } else {
-               player_0.aBool83 = false;
-               player_0.method1095(int_3, int_4, Class27.aByteArray3[int_0]);
+               player.needsPositionUpdate = false;
+               player.move(x, y, Class27.aByteArray3[index]);
             }
 
          } else {
-            int_2 = packetbuffer_0.getBits(1);
-            int int_5;
-            int int_6;
-            int int_7;
-            int int_8;
-            if (int_2 == 0) {
-               int_3 = packetbuffer_0.getBits(12);
-               int_4 = int_3 >> 10;
-               int_5 = int_3 >> 5 & 0x1F;
-               if (int_5 > 15) {
-                  int_5 -= 32;
+            direction = buffer.getBits(1);
+            int baseX;
+            int baseY;
+            int stepX;
+            int stepY;
+            if (direction == 0) {
+               x = buffer.getBits(12);
+               y = x >> 10;
+               baseX = x >> 5 & 0x1F;
+               if (baseX > 15) {
+                  baseX -= 32;
                }
 
-               int_6 = int_3 & 0x1F;
-               if (int_6 > 15) {
-                  int_6 -= 32;
+               baseY = x & 0x1F;
+               if (baseY > 15) {
+                  baseY -= 32;
                }
 
-               int_7 = int_5 + player_0.pathX[0];
-               int_8 = int_6 + player_0.pathY[0];
-               if (Client.localInteractingIndex == int_0 && (player_0.x < 1536 || player_0.y < 1536 || player_0.x >= 11776 || player_0.y >= 11776)) {
-                  player_0.method1093(int_7, int_8);
-                  player_0.aBool83 = false;
-               } else if (bool_0) {
-                  player_0.aBool83 = true;
-                  player_0.anInt602 = int_7;
-                  player_0.anInt603 = int_8;
+               stepX = baseX + player.pathX[0];
+               stepY = baseY + player.pathY[0];
+               if (Client.localInteractingIndex == index && (player.x < 1536 || player.y < 1536 || player.x >= 11776 || player.y >= 11776)) {
+                  player.setFirstStep(stepX, stepY);
+                  player.needsPositionUpdate = false;
+               } else if (update) {
+                  player.needsPositionUpdate = true;
+                  player.targetX = stepX;
+                  player.targetY = stepY;
                } else {
-                  player_0.aBool83 = false;
-                  player_0.method1095(int_7, int_8, Class27.aByteArray3[int_0]);
+                  player.needsPositionUpdate = false;
+                  player.move(stepX, stepY, Class27.aByteArray3[index]);
                }
 
-               player_0.currentPlane = (byte)(int_4 + player_0.currentPlane & 0x3);
-               if (Client.localInteractingIndex == int_0) {
-                  Ignore.plane = player_0.currentPlane;
+               player.currentPlane = (byte)(y + player.currentPlane & 0x3);
+               if (Client.localInteractingIndex == index) {
+                  Ignore.plane = player.currentPlane;
                }
 
             } else {
-               int_3 = packetbuffer_0.getBits(30);
-               int_4 = int_3 >> 28;
-               int_5 = int_3 >> 14 & 0x3FFF;
-               int_6 = int_3 & 0x3FFF;
-               int_7 = (int_5 + ItemLayer.baseX + player_0.pathX[0] & 0x3FFF) - ItemLayer.baseX;
-               int_8 = (int_6 + ItemLayer.baseY + player_0.pathY[0] & 0x3FFF) - ItemLayer.baseY;
-               if (Client.localInteractingIndex != int_0 || player_0.x >= 1536 && player_0.y >= 1536 && player_0.x < 11776 && player_0.y < 11776) {
-                  if (bool_0) {
-                     player_0.aBool83 = true;
-                     player_0.anInt602 = int_7;
-                     player_0.anInt603 = int_8;
+               x = buffer.getBits(30);
+               y = x >> 28;
+               baseX = x >> 14 & 0x3FFF;
+               baseY = x & 0x3FFF;
+               stepX = (baseX + ItemLayer.baseX + player.pathX[0] & 0x3FFF) - ItemLayer.baseX;
+               stepY = (baseY + ItemLayer.baseY + player.pathY[0] & 0x3FFF) - ItemLayer.baseY;
+               if (Client.localInteractingIndex != index || player.x >= 1536 && player.y >= 1536 && player.x < 11776 && player.y < 11776) {
+                  if (update) {
+                     player.needsPositionUpdate = true;
+                     player.targetX = stepX;
+                     player.targetY = stepY;
                   } else {
-                     player_0.aBool83 = false;
-                     player_0.method1095(int_7, int_8, Class27.aByteArray3[int_0]);
+                     player.needsPositionUpdate = false;
+                     player.move(stepX, stepY, Class27.aByteArray3[index]);
                   }
                } else {
-                  player_0.method1093(int_7, int_8);
-                  player_0.aBool83 = false;
+                  player.setFirstStep(stepX, stepY);
+                  player.needsPositionUpdate = false;
                }
 
-               player_0.currentPlane = (byte)(int_4 + player_0.currentPlane & 0x3);
-               if (Client.localInteractingIndex == int_0) {
-                  Ignore.plane = player_0.currentPlane;
+               player.currentPlane = (byte)(y + player.currentPlane & 0x3);
+               if (Client.localInteractingIndex == index) {
+                  Ignore.plane = player.currentPlane;
                }
-
             }
          }
       }

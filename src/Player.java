@@ -13,7 +13,7 @@ public final class Player extends Actor {
    int anInt594;
    int anInt595;
    boolean hidden;
-   boolean aBool83;
+   boolean needsPositionUpdate;
    Model model;
    int anInt596;
    int anInt597;
@@ -22,8 +22,8 @@ public final class Player extends Actor {
    int currentPlane;
    String name;
    int localPlayerIndex;
-   int anInt602;
-   int anInt603;
+   int targetX;
+   int targetY;
    int anInt604;
    int anInt605;
    int anInt606;
@@ -45,7 +45,7 @@ public final class Player extends Actor {
       this.aBool82 = false;
       this.team = 0;
       this.hidden = false;
-      this.aBool83 = false;
+      this.needsPositionUpdate = false;
    }
 
    protected Model getModel() {
@@ -113,76 +113,75 @@ public final class Player extends Actor {
       }
    }
 
-   void method1093(int int_0, int int_1) {
+   void setFirstStep(int x, int y) {
       super.queueSize = 0;
       super.anInt511 = 0;
       super.anInt512 = 0;
-      super.pathX[0] = int_0;
-      super.pathY[0] = int_1;
-      int int_2 = this.getSize();
-      super.x = super.pathX[0] * 128 + int_2 * 64;
-      super.y = int_2 * 64 + super.pathY[0] * 128;
+      super.pathX[0] = x;
+      super.pathY[0] = y;
+      int size = this.getSize();
+      super.x = super.pathX[0] * 128 + size * 64;
+      super.y = size * 64 + super.pathY[0] * 128;
    }
 
    int getSize() {
       return this.composition != null && this.composition.transformedNpcId != -1 ? Class27.getNpcDefinition(this.composition.transformedNpcId).anInt489 : 1;
    }
 
-   void method1094(int int_0, int int_1, byte byte_0) {
+   void appendPath(int x, int y, byte type) {
       if (super.queueSize < 9) {
          ++super.queueSize;
       }
 
-      for (int int_2 = super.queueSize; int_2 > 0; --int_2) {
-         super.pathX[int_2] = super.pathX[int_2 - 1];
-         super.pathY[int_2] = super.pathY[int_2 - 1];
-         super.aByteArray20[int_2] = super.aByteArray20[int_2 - 1];
+      for (int i = super.queueSize; i > 0; --i) {
+         super.pathX[i] = super.pathX[i - 1];
+         super.pathY[i] = super.pathY[i - 1];
+         super.pathRun[i] = super.pathRun[i - 1];
       }
 
-      super.pathX[0] = int_0;
-      super.pathY[0] = int_1;
-      super.aByteArray20[0] = byte_0;
+      super.pathX[0] = x;
+      super.pathY[0] = y;
+      super.pathRun[0] = type;
    }
 
    boolean hasConfig() {
       return this.composition != null;
    }
 
-   void method1095(int int_0, int int_1, byte byte_0) {
+   void move(int x, int y, byte type) {
       if (super.animation != -1 && ItemLayer.getAnimation(super.animation).priority == 1) {
          super.animation = -1;
       }
 
       super.nextStepOrientation = -1;
-      if (int_0 >= 0 && int_0 < 104 && int_1 >= 0 && int_1 < 104) {
+      if (x >= 0 && x < 104 && y >= 0 && y < 104) {
          if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
-            if (byte_0 == 2) {
-               Player player_1 = this;
-               int int_2 = super.pathX[0];
-               int int_3 = super.pathY[0];
-               int int_4 = this.getSize();
-               if (int_2 >= int_4 && int_2 < 104 - int_4 && int_3 >= int_4 && int_3 < 104 - int_4 && int_0 >= int_4 && int_0 < 104 - int_4 && int_1 >= int_4 && int_1 < 104 - int_4) {
-                  int int_5 = this.getSize();
-                  Client.anAClass2_Sub1_1.anInt160 = int_0;
-                  Client.anAClass2_Sub1_1.anInt161 = int_1;
-                  Client.anAClass2_Sub1_1.anInt162 = 1;
-                  Client.anAClass2_Sub1_1.anInt163 = 1;
-                  AClass2_Sub1 aclass2_sub1_0 = Client.anAClass2_Sub1_1;
-                  int int_6 = Class49.method316(int_2, int_3, int_5, aclass2_sub1_0, Client.collisionMaps[this.currentPlane], true, Client.anIntArray146, Client.anIntArray147);
-                  if (int_6 >= 1) {
-                     for (int int_7 = 0; int_7 < int_6 - 1; int_7++) {
-                        player_1.method1094(Client.anIntArray146[int_7], Client.anIntArray147[int_7], (byte) 2);
+            if (type == 2) {
+               Player player = this;
+               int pathX = super.pathX[0];
+               int pathY = super.pathY[0];
+               int size = this.getSize();
+               if (pathX >= size && pathX < 104 - size && pathY >= size && pathY < 104 - size && x >= size && x < 104 - size && y >= size && y < 104 - size) {
+                  Client.routeStrategy.approxDestinationX = x;
+                  Client.routeStrategy.approxDestinationY = y;
+                  Client.routeStrategy.approxDestinationSizeX = 1;
+                  Client.routeStrategy.approxDestinationSizeY = 1;
+                  TileStrategy routeStrategy = Client.routeStrategy;
+                  int steps = Class49.findPath(pathX, pathY, size, routeStrategy, Client.collisionMaps[this.currentPlane], Client.tileQueueX, Client.tileQueueY);
+                  if (steps >= 1) {
+                     for (int index = 0; index < steps - 1; index++) {
+                        player.appendPath(Client.tileQueueX[index], Client.tileQueueY[index], (byte) 2);
                      }
                   }
                }
             }
 
-            this.method1094(int_0, int_1, byte_0);
+            this.appendPath(x, y, type);
          } else {
-            this.method1093(int_0, int_1);
+            this.setFirstStep(x, y);
          }
       } else {
-         this.method1093(int_0, int_1);
+         this.setFirstStep(x, y);
       }
 
    }

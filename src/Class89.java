@@ -1,7 +1,7 @@
 public class Class89 {
 
    public static Font method496(IndexDataBase indexdatabase_0, IndexDataBase indexdatabase_1, int int_0, int int_1) {
-      return !AClass2_Sub1.method628(indexdatabase_0, int_0, int_1) ? null : Class103.method533(indexdatabase_1.getConfigData(int_0, int_1));
+      return !TileStrategy.method628(indexdatabase_0, int_0, int_1) ? null : Class103.method533(indexdatabase_1.getConfigData(int_0, int_1));
    }
 
    static void method497(int int_0, int int_1, int int_2, boolean bool_0, int int_3, boolean bool_1) {

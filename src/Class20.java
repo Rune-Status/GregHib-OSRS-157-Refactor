@@ -318,7 +318,7 @@ public class Class20 implements Comparator {
                            boolean bool_6 = false;
 
                            for (int_4 = 0; int_4 < int_2; int_4++) {
-                              Player player_0 = Client.cachedPlayers[ints_0[int_4]];
+                              Player player_0 = Client.players[ints_0[int_4]];
                               if (player_0 != null && player_0 != Class4.localPlayer && player_0.name != null && player_0.name.equalsIgnoreCase(string_0)) {
                                  if (int_1 == 1) {
                                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.cipher);

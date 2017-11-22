@@ -182,7 +182,7 @@ public class ItemContainer extends Node {
                                  ints_0 = Class27.localPlayerIndices;
 
                                  for (int_26 = 0; int_26 < int_25; int_26++) {
-                                    player_0 = Client.cachedPlayers[ints_0[int_26]];
+                                    player_0 = Client.players[ints_0[int_26]];
                                     if (player_0 != null && player_0.x == npc_1.x && npc_1.y == player_0.y) {
                                        Class29.method235(player_0, ints_0[int_26], int_21, int_22);
                                     }
@@ -193,7 +193,7 @@ public class ItemContainer extends Node {
                            }
 
                            if (int_23 == 0) {
-                              Player player_2 = Client.cachedPlayers[int_24];
+                              Player player_2 = Client.players[int_24];
                               if (player_2 == null) {
                                  continue;
                               }
@@ -210,7 +210,7 @@ public class ItemContainer extends Node {
                                  ints_0 = Class27.localPlayerIndices;
 
                                  for (int_26 = 0; int_26 < int_25; int_26++) {
-                                    player_0 = Client.cachedPlayers[ints_0[int_26]];
+                                    player_0 = Client.players[ints_0[int_26]];
                                     if (player_0 != null && player_2 != player_0 && player_0.x == player_2.x && player_0.y == player_2.y) {
                                        Class29.method235(player_0, ints_0[int_26], int_21, int_22);
                                     }
@@ -281,7 +281,7 @@ public class ItemContainer extends Node {
                      if (int_17 != -1) {
                         int_19 = int_17 & 0x7F;
                         int_20 = int_17 >> 7 & 0x7F;
-                        Player player_1 = Client.cachedPlayers[Client.anInt667];
+                        Player player_1 = Client.players[Client.anInt667];
                         Class29.method235(player_1, Client.anInt667, int_19, int_20);
                      }
                   }

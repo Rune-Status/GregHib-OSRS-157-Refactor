@@ -21,7 +21,7 @@ public abstract class Actor extends Renderable {
    int turnAnimation;
    int anInt515;
    int walkingAnimation;
-   byte[] aByteArray20;
+   byte[] pathRun;
    int halfTurnAnimation;
    int x;
    int[] anIntArray110;
@@ -105,7 +105,7 @@ public abstract class Actor extends Renderable {
       this.queueSize = 0;
       this.pathX = new int[10];
       this.pathY = new int[10];
-      this.aByteArray20 = new byte[10];
+      this.pathRun = new byte[10];
       this.anInt512 = 0;
       this.anInt511 = 0;
    }

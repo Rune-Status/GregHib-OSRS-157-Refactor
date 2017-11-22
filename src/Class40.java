@@ -264,7 +264,7 @@ public class Class40 {
          }
 
          for (int_6 = 0; int_6 < 2048; int_6++) {
-            Player player_0 = Client.cachedPlayers[int_6];
+            Player player_0 = Client.players[int_6];
             if (player_0 != null) {
                for (int_7 = 0; int_7 < 10; int_7++) {
                   player_0.pathX[int_7] -= int_4;

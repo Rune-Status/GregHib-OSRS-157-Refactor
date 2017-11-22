@@ -68,7 +68,7 @@ public class Class26 {
             int[] ints_0 = Class27.localPlayerIndices;
 
             for (int_8 = 0; int_8 < int_6; int_8++) {
-               Player player_0 = Client.cachedPlayers[ints_0[int_8]];
+               Player player_0 = Client.players[ints_0[int_8]];
                if (player_0 != null && player_0.hasConfig() && !player_0.hidden && player_0 != Class4.localPlayer) {
                   int_10 = player_0.x / 32 - Class4.localPlayer.x / 32;
                   int int_11 = player_0.y / 32 - Class4.localPlayer.y / 32;
@@ -119,8 +119,8 @@ public class Class26 {
                   Script.method910(int_0, int_1, int_8, int_9, Ignore.mapMarkers[1], cacheablenode_sub1_0);
                }
 
-               if (Client.hintArrowTargetType == 10 && Client.hintArrowPlayerTargetIdx >= 0 && Client.hintArrowPlayerTargetIdx < Client.cachedPlayers.length) {
-                  Player player_1 = Client.cachedPlayers[Client.hintArrowPlayerTargetIdx];
+               if (Client.hintArrowTargetType == 10 && Client.hintArrowPlayerTargetIdx >= 0 && Client.hintArrowPlayerTargetIdx < Client.players.length) {
+                  Player player_1 = Client.players[Client.hintArrowPlayerTargetIdx];
                   if (player_1 != null) {
                      int_9 = player_1.x / 32 - Class4.localPlayer.x / 32;
                      int_10 = player_1.y / 32 - Class4.localPlayer.y / 32;
@@ -266,7 +266,7 @@ public class Class26 {
                   }
 
                   if (player_0.overheadIcon != -1) {
-                     AClass2_Sub1.headIconsPrayer[player_0.overheadIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
+                     TileStrategy.headIconsPrayer[player_0.overheadIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
                      int_6 += 25;
                   }
                }
@@ -284,10 +284,10 @@ public class Class26 {
                npccomposition_1 = npccomposition_1.transform();
             }
 
-            if (npccomposition_1.anInt501 >= 0 && npccomposition_1.anInt501 < AClass2_Sub1.headIconsPrayer.length) {
+            if (npccomposition_1.anInt501 >= 0 && npccomposition_1.anInt501 < TileStrategy.headIconsPrayer.length) {
                WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
                if (Client.screenY > -1) {
-                  AClass2_Sub1.headIconsPrayer[npccomposition_1.anInt501].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
+                  TileStrategy.headIconsPrayer[npccomposition_1.anInt501].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
                }
             }
 

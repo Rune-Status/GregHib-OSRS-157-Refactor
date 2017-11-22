@@ -297,7 +297,7 @@ public class CombatInfoListHolder extends Node {
                   if (int_0 == Client.localInteractingIndex) {
                      player_0 = Class4.localPlayer;
                   } else {
-                     player_0 = Client.cachedPlayers[int_0];
+                     player_0 = Client.players[int_0];
                   }
 
                   if (player_0 != null && player_0.x >= 0 && player_0.x < 13312 && player_0.y >= 0 && player_0.y < 13312) {

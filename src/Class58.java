@@ -1,17 +1,17 @@
 public class Class58 {
 
-   static int[][] anIntArrayArray10;
-   static int[][] anIntArrayArray11;
-   static int[] anIntArray37;
-   static int[] anIntArray38;
-   static int anInt155;
-   static int anInt156;
+   static int[][] directions;
+   static int[][] distances;
+   static int[] tileQueueX;
+   static int[] tileQueueY;
+   static int exitX;
+   static int exitY;
 
    static {
-      anIntArrayArray10 = new int[128][128];
-      anIntArrayArray11 = new int[128][128];
-      anIntArray37 = new int[4096];
-      anIntArray38 = new int[4096];
+      directions = new int[128][128];
+      distances = new int[128][128];
+      tileQueueX = new int[4096];
+      tileQueueY = new int[4096];
    }
 
    public static int method389(int int_0) {

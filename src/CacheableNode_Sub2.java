@@ -88,7 +88,7 @@ public class CacheableNode_Sub2 extends CacheableNode {
       int int_0 = indexdatabase_0.getFile(string_0);
       int int_1 = indexdatabase_0.getChild(int_0, string_1);
       IndexedSprite indexedsprite_0;
-      if (!AClass2_Sub1.method628(indexdatabase_0, int_0, int_1)) {
+      if (!TileStrategy.method628(indexdatabase_0, int_0, int_1)) {
          indexedsprite_0 = null;
       } else {
          indexedsprite_0 = Class9.method146();

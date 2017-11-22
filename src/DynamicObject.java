@@ -760,7 +760,7 @@ public class DynamicObject extends Renderable {
                                     bool_4 = false;
                                  }
 
-                                 if (int_20 > 0 && !Class39.method255(int_20 - 1).isHidden) {
+                                 if (int_20 > 0 && !Class39.getOverlay(int_20 - 1).isHidden) {
                                     bool_4 = false;
                                  }
 
@@ -779,7 +779,7 @@ public class DynamicObject extends Renderable {
                               } else {
                                  int_32 = Class19.aByteArrayArrayArray6[int_2][int_8][int_16] + 1;
                                  byte byte_0 = Class7.aByteArrayArrayArray2[int_2][int_8][int_16];
-                                 Overlay overlay_0 = Class39.method255(int_20 - 1);
+                                 Overlay overlay_0 = Class39.getOverlay(int_20 - 1);
                                  int int_34 = overlay_0.texture;
                                  int int_35;
                                  int int_36;

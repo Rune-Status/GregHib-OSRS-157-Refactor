@@ -461,7 +461,7 @@ public final class FileOnDisk {
                byte byte_1 = 35;
                ItemContainer.anIndexedSprite7.method975(int_6, short_4);
                font_0.method1039("World" + " " + Client.world, byte_2 / 2 + int_6, byte_1 / 2 + short_4 - 2, 16777215, 0);
-               if (AClass2_Sub1.listFetcher != null) {
+               if (TileStrategy.listFetcher != null) {
                   font_1.method1039("Loading...", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
                } else {
                   font_1.method1039("Click to switch", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);

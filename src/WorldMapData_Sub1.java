@@ -332,11 +332,11 @@ public class WorldMapData_Sub1 extends WorldMapData {
          player.anInt534 = buffer.readUnsignedShortOb1() + Client.gameCycle;
          player.anInt535 = buffer.method713() + Client.gameCycle;
          player.anInt540 = buffer.readUnsignedShortOb1();
-         if (player.aBool83) {
-            player.anInt536 += player.anInt602;
-            player.anInt537 += player.anInt603;
-            player.anInt538 += player.anInt602;
-            player.anInt539 += player.anInt603;
+         if (player.needsPositionUpdate) {
+            player.anInt536 += player.targetX;
+            player.anInt537 += player.targetY;
+            player.anInt538 += player.targetX;
+            player.anInt539 += player.targetY;
             player.queueSize = 0;
          } else {
             player.anInt536 += player.pathX[0];
@@ -357,9 +357,9 @@ public class WorldMapData_Sub1 extends WorldMapData {
          }
       }
 
-      if (player.aBool83) {
+      if (player.needsPositionUpdate) {
          if (byte_0 == 127) {
-            player.method1093(player.anInt602, player.anInt603);
+            player.setFirstStep(player.targetX, player.targetY);
          } else {
             byte byte_1;
             if (byte_0 != -1) {
@@ -368,7 +368,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
                byte_1 = Class27.aByteArray3[index];
             }
 
-            player.method1095(player.anInt602, player.anInt603, byte_1);
+            player.move(player.targetX, player.targetY, byte_1);
          }
       }
 

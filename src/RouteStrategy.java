@@ -1,11 +1,11 @@
-public abstract class AClass2 {
+public abstract class RouteStrategy {
 
-   public int anInt160;
-   public int anInt161;
-   public int anInt162;
-   public int anInt163;
+   public int approxDestinationX;
+   public int approxDestinationY;
+   public int approxDestinationSizeX;
+   public int approxDestinationSizeY;
 
-   protected abstract boolean method393(int var1, int var2, int var3, CollisionData var4);
+   protected abstract boolean canExit(int sizeXY, int currentX, int currentY, CollisionData data);
 
    static void method394(int int_0) {
       if (int_0 >= 0) {

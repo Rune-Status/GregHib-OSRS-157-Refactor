@@ -25,7 +25,7 @@ public class Overlay extends CacheableNode {
       this.otherRgbColor = -1;
    }
 
-   void method745(Buffer buffer_0, int int_0) {
+   void readValues(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
          this.color = buffer_0.read24BitInt();
       } else if (int_0 == 2) {
@@ -112,31 +112,32 @@ public class Overlay extends CacheableNode {
       this.setHSL(this.color);
    }
 
-   void decode(Buffer buffer_0, int int_0) {
+   void decode(Buffer buffer) {
       while (true) {
-         int int_1 = buffer_0.readUnsignedByte();
-         if (int_1 == 0) {
+         int opcode = buffer.readUnsignedByte();
+         if (opcode == 0) {
             return;
          }
 
-         this.method745(buffer_0, int_1);
+         this.readValues(buffer, opcode);
       }
    }
 
-   static int skipPlayers(PacketBuffer packetbuffer_0) {
-      int int_0 = packetbuffer_0.getBits(2);
-      int int_1;
-      if (int_0 == 0) {
-         int_1 = 0;
-      } else if (int_0 == 1) {
-         int_1 = packetbuffer_0.getBits(5);
-      } else if (int_0 == 2) {
-         int_1 = packetbuffer_0.getBits(8);
+   static int skipPlayers(PacketBuffer buffer) {
+      int type = buffer.getBits(2);
+
+      int value;
+      if (type == 0) {
+         value = 0;
+      } else if (type == 1) {
+         value = buffer.getBits(5);
+      } else if (type == 2) {
+         value = buffer.getBits(8);
       } else {
-         int_1 = packetbuffer_0.getBits(11);
+         value = buffer.getBits(11);
       }
 
-      return int_1;
+      return value;
    }
 
 }

@@ -223,7 +223,7 @@ public class Class9 {
 
       int int_4 = 16711935;
       if (int_3 != -1) {
-         int_4 = AClass2_Sub1.method629(int_3, this.anInt47);
+         int_4 = TileStrategy.method629(int_3, this.anInt47);
       }
 
       if (int_3 > -1 && aclass1_0.aByteArrayArrayArray3[0][int_0][int_1] == 0) {
@@ -425,7 +425,7 @@ public class Class9 {
       for (int int_2 = 1; int_2 < aclass1_0.anInt52; int_2++) {
          int int_3 = aclass1_0.aShortArrayArrayArray2[int_2][int_0][int_1] - 1;
          if (int_3 > -1) {
-            int int_4 = AClass2_Sub1.method629(int_3, this.anInt47);
+            int int_4 = TileStrategy.method629(int_3, this.anInt47);
             if (aclass1_0.aByteArrayArrayArray3[int_2][int_0][int_1] == 0) {
                Rasterizer2D.method919(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_4);
             } else {

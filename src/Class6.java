@@ -26,26 +26,24 @@ public class Class6 {
       return Class62.method395(int_0, false);
    }
 
-   static void method99(PacketBuffer buffer) {
+   static void synchronizePlayers(PacketBuffer buffer) {
       int skip = 0;
       buffer.bitAccess();
 
-      int int_1;
-      int int_2;
       int update;
-      for (int_1 = 0; int_1 < Class27.localPlayerIndexCount; int_1++) {
-         int_2 = Class27.localPlayerIndices[int_1];
-         if ((Class27.updateFlags[int_2] & 0x1) == 0) {
+      for (int index = 0; index < Class27.localPlayerIndexCount; index++) {
+         int playerIndex = Class27.localPlayerIndices[index];
+         if ((Class27.updateFlags[playerIndex] & 0x1) == 0) {
             if (skip > 0) {
                --skip;
-               Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+               Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
             } else {
                update = buffer.getBits(1);
                if (update == 0) {
                   skip = Overlay.skipPlayers(buffer);
-                  Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                  Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                } else {
-                  Class11.decodeMovement(buffer, int_2);
+                  Class11.decodeMovement(buffer, playerIndex);
                }
             }
          }
@@ -57,19 +55,19 @@ public class Class6 {
       } else {
          buffer.bitAccess();
 
-         for (int_1 = 0; int_1 < Class27.localPlayerIndexCount; int_1++) {
-            int_2 = Class27.localPlayerIndices[int_1];
-            if ((Class27.updateFlags[int_2] & 0x1) != 0) {
+         for (int index = 0; index < Class27.localPlayerIndexCount; index++) {
+            int playerIndex = Class27.localPlayerIndices[index];
+            if ((Class27.updateFlags[playerIndex] & 0x1) != 0) {
                if (skip > 0) {
                   --skip;
-                  Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                  Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                } else {
                   update = buffer.getBits(1);
                   if (update == 0) {
                      skip = Overlay.skipPlayers(buffer);
-                     Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                     Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                   } else {
-                     Class11.decodeMovement(buffer, int_2);
+                     Class11.decodeMovement(buffer, playerIndex);
                   }
                }
             }
@@ -81,19 +79,19 @@ public class Class6 {
          } else {
             buffer.bitAccess();
 
-            for (int_1 = 0; int_1 < Class27.externalPlayerCount; int_1++) {
-               int_2 = Class27.externalPlayerIndices[int_1];
-               if ((Class27.updateFlags[int_2] & 0x1) != 0) {
+            for (int index = 0; index < Class27.externalPlayerCount; index++) {
+               int playerIndex = Class27.externalPlayerIndices[index];
+               if ((Class27.updateFlags[playerIndex] & 0x1) != 0) {
                   if (skip > 0) {
                      --skip;
-                     Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                     Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                   } else {
                      update = buffer.getBits(1);
                      if (update == 0) {
                         skip = Overlay.skipPlayers(buffer);
-                        Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
-                     } else if (Class7.decodeRegionHash(buffer, int_2)) {
-                        Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                        Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
+                     } else if (Class7.decodeRegionHash(buffer, playerIndex)) {
+                        Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                      }
                   }
                }
@@ -105,19 +103,19 @@ public class Class6 {
             } else {
                buffer.bitAccess();
 
-               for (int_1 = 0; int_1 < Class27.externalPlayerCount; int_1++) {
-                  int_2 = Class27.externalPlayerIndices[int_1];
-                  if ((Class27.updateFlags[int_2] & 0x1) == 0) {
+               for (int index = 0; index < Class27.externalPlayerCount; index++) {
+                  int playerIndex = Class27.externalPlayerIndices[index];
+                  if ((Class27.updateFlags[playerIndex] & 0x1) == 0) {
                      if (skip > 0) {
                         --skip;
-                        Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                        Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                      } else {
                         update = buffer.getBits(1);
                         if (update == 0) {
                            skip = Overlay.skipPlayers(buffer);
-                           Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
-                        } else if (Class7.decodeRegionHash(buffer, int_2)) {
-                           Class27.updateFlags[int_2] = (byte)(Class27.updateFlags[int_2] | 0x2);
+                           Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
+                        } else if (Class7.decodeRegionHash(buffer, playerIndex)) {
+                           Class27.updateFlags[playerIndex] = (byte)(Class27.updateFlags[playerIndex] | 0x2);
                         }
                      }
                   }
@@ -130,13 +128,13 @@ public class Class6 {
                   Class27.localPlayerIndexCount = 0;
                   Class27.externalPlayerCount = 0;
 
-                  for (int_1 = 1; int_1 < 2048; int_1++) {
-                     Class27.updateFlags[int_1] = (byte)(Class27.updateFlags[int_1] >> 1);
-                     Player player = Client.cachedPlayers[int_1];
+                  for (int index = 1; index < 2048; index++) {
+                     Class27.updateFlags[index] = (byte)(Class27.updateFlags[index] >> 1);
+                     Player player = Client.players[index];
                      if (player != null) {
-                        Class27.localPlayerIndices[++Class27.localPlayerIndexCount - 1] = int_1;
+                        Class27.localPlayerIndices[++Class27.localPlayerIndexCount - 1] = index;
                      } else {
-                        Class27.externalPlayerIndices[++Class27.externalPlayerCount - 1] = int_1;
+                        Class27.externalPlayerIndices[++Class27.externalPlayerCount - 1] = index;
                      }
                   }
 

@@ -86,12 +86,12 @@ public final class NPC extends Actor {
       for (int int_3 = super.queueSize; int_3 > 0; --int_3) {
          super.pathX[int_3] = super.pathX[int_3 - 1];
          super.pathY[int_3] = super.pathY[int_3 - 1];
-         super.aByteArray20[int_3] = super.aByteArray20[int_3 - 1];
+         super.pathRun[int_3] = super.pathRun[int_3 - 1];
       }
 
       super.pathX[0] = int_1;
       super.pathY[0] = int_2;
-      super.aByteArray20[0] = byte_0;
+      super.pathRun[0] = byte_0;
    }
 
    void method1067(int int_0, int int_1, boolean bool_0) {
@@ -110,12 +110,12 @@ public final class NPC extends Actor {
             for (int int_4 = super.queueSize; int_4 > 0; --int_4) {
                super.pathX[int_4] = super.pathX[int_4 - 1];
                super.pathY[int_4] = super.pathY[int_4 - 1];
-               super.aByteArray20[int_4] = super.aByteArray20[int_4 - 1];
+               super.pathRun[int_4] = super.pathRun[int_4 - 1];
             }
 
             super.pathX[0] = int_0;
             super.pathY[0] = int_1;
-            super.aByteArray20[0] = 1;
+            super.pathRun[0] = 1;
             return;
          }
       }

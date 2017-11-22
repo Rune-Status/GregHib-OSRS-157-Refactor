@@ -7,7 +7,7 @@ public class Class86 {
         int[] playerIndices = Class27.localPlayerIndices;
 
         for (int index = 0; index < localPlayerCount; index++) {
-            Player player = Client.cachedPlayers[playerIndices[index]];
+            Player player = Client.players[playerIndices[index]];
             if (player != null)
                 ServerPacket.method355(player);
         }

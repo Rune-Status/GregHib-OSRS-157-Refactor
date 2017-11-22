@@ -31,10 +31,10 @@ public final class AClass3_Sub1 extends AClass3 {
 
    static boolean loadWorlds() {
       try {
-         if (AClass2_Sub1.listFetcher == null) {
-            AClass2_Sub1.listFetcher = BuildType.aClass55_1.method353(new URL(AClass2_Sub1.aString18));
-         } else if (AClass2_Sub1.listFetcher.method356()) {
-            byte[] bytes_0 = AClass2_Sub1.listFetcher.method357();
+         if (TileStrategy.listFetcher == null) {
+            TileStrategy.listFetcher = BuildType.aClass55_1.method353(new URL(TileStrategy.aString18));
+         } else if (TileStrategy.listFetcher.method356()) {
+            byte[] bytes_0 = TileStrategy.listFetcher.method357();
             Buffer buffer_0 = new Buffer(bytes_0);
             buffer_0.readInt();
             World.worldCount = buffer_0.readUnsignedShort();
@@ -52,12 +52,12 @@ public final class AClass3_Sub1 extends AClass3 {
             }
 
             Class68_Sub1.method623(Coordinates.worldList, 0, Coordinates.worldList.length - 1, World.anIntArray58, World.anIntArray57);
-            AClass2_Sub1.listFetcher = null;
+            TileStrategy.listFetcher = null;
             return true;
          }
       } catch (Exception exception_0) {
          exception_0.printStackTrace();
-         AClass2_Sub1.listFetcher = null;
+         TileStrategy.listFetcher = null;
       }
 
       return false;

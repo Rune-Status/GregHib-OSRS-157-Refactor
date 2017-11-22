@@ -203,7 +203,7 @@ public class Ignore {
          } else {
             Player player_0;
             if (int_2 == 14) {
-               player_0 = Client.cachedPlayers[int_3];
+               player_0 = Client.players[int_3];
                if (player_0 != null) {
                   Client.anInt641 = int_4;
                   Client.anInt642 = int_5;
@@ -220,7 +220,7 @@ public class Ignore {
                   Client.aClass46_1.method282(packetnode_1);
                }
             } else if (int_2 == 15) {
-               player_0 = Client.cachedPlayers[int_3];
+               player_0 = Client.players[int_3];
                if (player_0 != null) {
                   Client.anInt641 = int_4;
                   Client.anInt642 = int_5;
@@ -565,7 +565,7 @@ public class Ignore {
                            Class59.aWidget3 = PendingSpawn.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 44) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -579,7 +579,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 45) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -593,7 +593,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 46) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -607,7 +607,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 47) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -621,7 +621,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 48) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -635,7 +635,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 49) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -649,7 +649,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 50) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
@@ -663,7 +663,7 @@ public class Ignore {
                               Client.aClass46_1.method282(packetnode_1);
                            }
                         } else if (int_2 == 51) {
-                           player_0 = Client.cachedPlayers[int_3];
+                           player_0 = Client.players[int_3];
                            if (player_0 != null) {
                               Client.anInt641 = int_4;
                               Client.anInt642 = int_5;
