@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.applet.AppletContext;
 import java.applet.AppletStub;
+import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -8,11 +9,11 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RS07Applet implements AppletStub {
+public class Loader implements AppletStub {
 
-    public static final boolean RSPS = true;
+    public static final boolean Loader = true;
 
-    private final String host = RSPS ? "127.0.0.1" : "oldschool5.runescape.com";
+    private final String host = Loader ? "127.0.0.1" : "oldschool5.runescape.com";
 
     private final Map<String, String> parameters = new HashMap<>();
 
@@ -25,15 +26,16 @@ public class RS07Applet implements AppletStub {
      * @throws MalformedURLException
      */
     public static void main(final String[] args) throws Exception {
-        final RS07Applet applet = new RS07Applet();
+        final Loader applet = new Loader();
         applet.initialize();
         Client client = new Client();
 
-        final JFrame frame = new JFrame("RuneX #157");
+        final JFrame frame = new JFrame("#157 Refactored");
 
+        client.setPreferredSize(new Dimension(765, 503));
         frame.add(client);
+        frame.pack();
         frame.setVisible(true);
-        frame.setSize(775, 531);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         client.setStub(applet);
         client.init();
