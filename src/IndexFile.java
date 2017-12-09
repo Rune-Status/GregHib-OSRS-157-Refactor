@@ -235,7 +235,7 @@ public final class IndexFile {
          }
 
          byte[] bytes_0 = new byte[int_0];
-         buffer_0.offset += Class99.aHuffman1.decompress(buffer_0.payload, buffer_0.offset, bytes_0, 0, int_0);
+         buffer_0.position += Class99.aHuffman1.decompress(buffer_0.buffer, buffer_0.position, bytes_0, 0, int_0);
          String string_0 = Class13.getString(bytes_0, 0, int_0);
          string_1 = string_0;
       } catch (Exception exception_0) {

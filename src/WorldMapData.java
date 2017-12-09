@@ -34,10 +34,10 @@ public class WorldMapData {
       this.aString8 = buffer_0.readString();
       this.aCoordinates8 = new Coordinates(buffer_0.readInt());
       this.anInt105 = buffer_0.readInt();
-      buffer_0.readUnsignedByte();
-      this.aBool19 = buffer_0.readUnsignedByte() == 1;
-      this.anInt106 = buffer_0.readUnsignedByte();
-      int int_1 = buffer_0.readUnsignedByte();
+      buffer_0.getUnsignedByte();
+      this.aBool19 = buffer_0.getUnsignedByte() == 1;
+      this.anInt106 = buffer_0.getUnsignedByte();
+      int int_1 = buffer_0.getUnsignedByte();
       this.aLinkedList2 = new LinkedList();
 
       for (int int_2 = 0; int_2 < int_1; int_2++) {
@@ -160,7 +160,7 @@ public class WorldMapData {
    }
 
    WorldMapSectionBase method298(Buffer buffer_0) {
-      int int_0 = buffer_0.readUnsignedByte();
+      int int_0 = buffer_0.getUnsignedByte();
       Enum1[] enum1s_0 = new Enum1[] {Enum1.anEnum1_1, Enum1.anEnum1_4, Enum1.anEnum1_3, Enum1.anEnum1_2};
       Enum1 enum1_0 = (Enum1) Class1.forOrdinal(enum1s_0, int_0);
       Object object_0 = null;

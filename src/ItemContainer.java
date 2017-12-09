@@ -303,9 +303,9 @@ public class ItemContainer extends Node {
                            int_25 = Class4.localPlayer.y - int_24 >> 7;
                            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket85, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.putByte(18);
-                           packetnode_0.packetBuffer.method720(int_25 + ItemLayer.baseY);
-                           packetnode_0.packetBuffer.method720(int_30 + ItemLayer.baseX);
-                           packetnode_0.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
+                           packetnode_0.packetBuffer.putShortS(int_25 + ItemLayer.baseY);
+                           packetnode_0.packetBuffer.putShortS(int_30 + ItemLayer.baseX);
+                           packetnode_0.packetBuffer.putByteA(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
                            packetnode_0.packetBuffer.putByte(int_18);
                            packetnode_0.packetBuffer.putByte(int_19);
                            packetnode_0.packetBuffer.putShort(Client.mapAngle);

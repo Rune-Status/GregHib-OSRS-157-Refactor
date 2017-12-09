@@ -49,57 +49,57 @@ public class CacheableNode_Sub6 extends CacheableNode {
 
    void method888(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.anInt478 = buffer_0.method703();
+         this.anInt478 = buffer_0.getBigSmart();
       } else if (int_0 == 2) {
          this.anInt483 = buffer_0.read24BitInt();
       } else if (int_0 == 3) {
-         this.anInt476 = buffer_0.method703();
+         this.anInt476 = buffer_0.getBigSmart();
       } else if (int_0 == 4) {
-         this.anInt480 = buffer_0.method703();
+         this.anInt480 = buffer_0.getBigSmart();
       } else if (int_0 == 5) {
-         this.anInt479 = buffer_0.method703();
+         this.anInt479 = buffer_0.getBigSmart();
       } else if (int_0 == 6) {
-         this.anInt477 = buffer_0.method703();
+         this.anInt477 = buffer_0.getBigSmart();
       } else if (int_0 == 7) {
          this.anInt485 = buffer_0.readShort();
       } else if (int_0 == 8) {
          this.aString31 = buffer_0.getJagString();
       } else if (int_0 == 9) {
-         this.anInt484 = buffer_0.readUnsignedShort();
+         this.anInt484 = buffer_0.getUnsignedShort();
       } else if (int_0 == 10) {
          this.anInt487 = buffer_0.readShort();
       } else if (int_0 == 11) {
          this.anInt486 = 0;
       } else if (int_0 == 12) {
-         this.anInt482 = buffer_0.readUnsignedByte();
+         this.anInt482 = buffer_0.getUnsignedByte();
       } else if (int_0 == 13) {
          this.anInt488 = buffer_0.readShort();
       } else if (int_0 == 14) {
-         this.anInt486 = buffer_0.readUnsignedShort();
+         this.anInt486 = buffer_0.getUnsignedShort();
       } else if (int_0 == 17 || int_0 == 18) {
-         this.anInt475 = buffer_0.readUnsignedShort();
+         this.anInt475 = buffer_0.getUnsignedShort();
          if (this.anInt475 == 65535) {
             this.anInt475 = -1;
          }
 
-         this.anInt481 = buffer_0.readUnsignedShort();
+         this.anInt481 = buffer_0.getUnsignedShort();
          if (this.anInt481 == 65535) {
             this.anInt481 = -1;
          }
 
          int int_1 = -1;
          if (int_0 == 18) {
-            int_1 = buffer_0.readUnsignedShort();
+            int_1 = buffer_0.getUnsignedShort();
             if (int_1 == 65535) {
                int_1 = -1;
             }
          }
 
-         int int_2 = buffer_0.readUnsignedByte();
+         int int_2 = buffer_0.getUnsignedByte();
          this.anIntArray103 = new int[int_2 + 2];
 
          for (int int_3 = 0; int_3 <= int_2; int_3++) {
-            this.anIntArray103[int_3] = buffer_0.readUnsignedShort();
+            this.anIntArray103[int_3] = buffer_0.getUnsignedShort();
             if (this.anIntArray103[int_3] == 65535) {
                this.anIntArray103[int_3] = -1;
             }
@@ -112,7 +112,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
 
    void method889(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

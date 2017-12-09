@@ -322,23 +322,23 @@ public class Class20 implements Comparator {
                               if (player_0 != null && player_0 != Class4.localPlayer && player_0.name != null && player_0.name.equalsIgnoreCase(string_0)) {
                                  if (int_1 == 1) {
                                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket58, Client.aClass46_1.cipher);
-                                    packetnode_3.packetBuffer.method729(0);
-                                    packetnode_3.packetBuffer.putShortLE(ints_0[int_4]);
+                                    packetnode_3.packetBuffer.putByteS(0);
+                                    packetnode_3.packetBuffer.putShortLEA(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 4) {
                                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket70, Client.aClass46_1.cipher);
                                     packetnode_3.packetBuffer.method719(ints_0[int_4]);
-                                    packetnode_3.packetBuffer.method716(0);
+                                    packetnode_3.packetBuffer.putByteInverse(0);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 6) {
                                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket22, Client.aClass46_1.cipher);
-                                    packetnode_3.packetBuffer.method716(0);
+                                    packetnode_3.packetBuffer.putByteInverse(0);
                                     packetnode_3.packetBuffer.method719(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
                                  } else if (int_1 == 7) {
                                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket65, Client.aClass46_1.cipher);
-                                    packetnode_3.packetBuffer.method721(0);
-                                    packetnode_3.packetBuffer.putShortLE(ints_0[int_4]);
+                                    packetnode_3.packetBuffer.putByteA(0);
+                                    packetnode_3.packetBuffer.putShortLEA(ints_0[int_4]);
                                     Client.aClass46_1.method282(packetnode_3);
                                  }
 
@@ -786,7 +786,7 @@ public class Class20 implements Comparator {
                               int_9 = Class39.intStack[--Class23.intStackSize];
                               packetnode_1 = Actor.method953(ClientPacket.aClientPacket75, Client.aClass46_1.cipher);
                               packetnode_1.packetBuffer.putByte(Projectile.getLength(string_2) + 1);
-                              packetnode_1.packetBuffer.method721(int_9);
+                              packetnode_1.packetBuffer.putByteA(int_9);
                               packetnode_1.packetBuffer.putString(string_2);
                               Client.aClass46_1.method282(packetnode_1);
                               byte_0 = 1;

@@ -6,7 +6,7 @@ public class Class53 {
 
    static int method349(int int_0, int int_1) {
       long long_0 = (long)((int_0 << 16) + int_1);
-      return Class56.currentRequest != null && Class56.currentRequest.hash == long_0 ? DecorativeObject.aBuffer4.offset * 99 / (DecorativeObject.aBuffer4.payload.length - Class56.currentRequest.padding) + 1 : 0;
+      return Class56.currentRequest != null && Class56.currentRequest.hash == long_0 ? DecorativeObject.aBuffer4.position * 99 / (DecorativeObject.aBuffer4.buffer.length - Class56.currentRequest.padding) + 1 : 0;
    }
 
    public static void method350(String string_0, boolean bool_0, boolean bool_1) {

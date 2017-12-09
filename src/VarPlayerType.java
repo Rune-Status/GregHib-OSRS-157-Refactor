@@ -15,14 +15,14 @@ public class VarPlayerType extends CacheableNode {
 
    void decode(Buffer buffer_0, int int_0) {
       if (int_0 == 5) {
-         this.configType = buffer_0.readUnsignedShort();
+         this.configType = buffer_0.getUnsignedShort();
       }
 
    }
 
    void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

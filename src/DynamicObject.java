@@ -99,7 +99,7 @@ public class DynamicObject extends Renderable {
 
    static byte[] decodeContainer(byte[] bytes_0) {
       Buffer buffer_0 = new Buffer(bytes_0);
-      int int_0 = buffer_0.readUnsignedByte();
+      int int_0 = buffer_0.getUnsignedByte();
       int int_1 = buffer_0.readInt();
       if (int_1 < 0 || IndexDataBase.anInt170 != 0 && int_1 > IndexDataBase.anInt170) {
          throw new RuntimeException();
@@ -364,7 +364,7 @@ public class DynamicObject extends Renderable {
                         int_7 += int_8 - 1;
                         int_10 = int_7 & 0x3F;
                         int_11 = int_7 >> 6 & 0x3F;
-                        int_12 = buffer_0.readUnsignedByte() >> 2;
+                        int_12 = buffer_0.getUnsignedByte() >> 2;
                         int_13 = int_1 + int_11;
                         int_14 = int_2 + int_10;
                         if (int_13 > 0 && int_14 > 0 && int_13 < 103 && int_14 < 103) {
@@ -385,7 +385,7 @@ public class DynamicObject extends Renderable {
                         break;
                      }
 
-                     buffer_0.readUnsignedByte();
+                     buffer_0.getUnsignedByte();
                   }
                }
             }
@@ -563,7 +563,7 @@ public class DynamicObject extends Renderable {
                                        int_21 = int_19 & 0x3F;
                                        int_22 = int_19 >> 6 & 0x3F;
                                        int_23 = int_19 >> 12;
-                                       int_24 = buffer_1.readUnsignedByte();
+                                       int_24 = buffer_1.getUnsignedByte();
                                        int_25 = int_24 >> 2;
                                        int_26 = int_24 & 0x3;
                                        if (int_6 == int_23 && int_22 >= int_11 && int_22 < int_11 + 8 && int_21 >= int_12 && int_21 < int_12 + 8) {

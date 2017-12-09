@@ -13,16 +13,16 @@ public class Varbit extends CacheableNode {
 
    void method821(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.configId = buffer_0.readUnsignedShort();
-         this.leastSignificantBit = buffer_0.readUnsignedByte();
-         this.mostSignificantBit = buffer_0.readUnsignedByte();
+         this.configId = buffer_0.getUnsignedShort();
+         this.leastSignificantBit = buffer_0.getUnsignedByte();
+         this.mostSignificantBit = buffer_0.getUnsignedByte();
       }
 
    }
 
    public void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

@@ -66,27 +66,27 @@ public class AudioInstrument {
       this.pitch.decode(buffer_0);
       this.volume = new AudioEnvelope();
       this.volume.decode(buffer_0);
-      int int_0 = buffer_0.readUnsignedByte();
+      int int_0 = buffer_0.getUnsignedByte();
       if (int_0 != 0) {
-         --buffer_0.offset;
+         --buffer_0.position;
          this.pitchModifier = new AudioEnvelope();
          this.pitchModifier.decode(buffer_0);
          this.pitchModifierAmplitude = new AudioEnvelope();
          this.pitchModifierAmplitude.decode(buffer_0);
       }
 
-      int_0 = buffer_0.readUnsignedByte();
+      int_0 = buffer_0.getUnsignedByte();
       if (int_0 != 0) {
-         --buffer_0.offset;
+         --buffer_0.position;
          this.volumeMultiplier = new AudioEnvelope();
          this.volumeMultiplier.decode(buffer_0);
          this.volumeMultiplierAmplitude = new AudioEnvelope();
          this.volumeMultiplierAmplitude.decode(buffer_0);
       }
 
-      int_0 = buffer_0.readUnsignedByte();
+      int_0 = buffer_0.getUnsignedByte();
       if (int_0 != 0) {
-         --buffer_0.offset;
+         --buffer_0.position;
          this.release = new AudioEnvelope();
          this.release.decode(buffer_0);
          this.anAudioEnvelope1 = new AudioEnvelope();
@@ -106,8 +106,8 @@ public class AudioInstrument {
 
       this.delayTime = buffer_0.getUSmart();
       this.delayDecay = buffer_0.getUSmart();
-      this.duration = buffer_0.readUnsignedShort();
-      this.offset = buffer_0.readUnsignedShort();
+      this.duration = buffer_0.getUnsignedShort();
+      this.offset = buffer_0.getUnsignedShort();
       this.filter = new SoundEffect3();
       this.filterEnvelope = new AudioEnvelope();
       this.filter.decode(buffer_0, this.filterEnvelope);

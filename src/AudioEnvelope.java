@@ -23,7 +23,7 @@ public class AudioEnvelope {
    }
 
    void decode(Buffer buffer_0) {
-      this.form = buffer_0.readUnsignedByte();
+      this.form = buffer_0.getUnsignedByte();
       this.start = buffer_0.readInt();
       this.end = buffer_0.readInt();
       this.decodeSegments(buffer_0);
@@ -38,13 +38,13 @@ public class AudioEnvelope {
    }
 
    void decodeSegments(Buffer buffer_0) {
-      this.segments = buffer_0.readUnsignedByte();
+      this.segments = buffer_0.getUnsignedByte();
       this.durations = new int[this.segments];
       this.phases = new int[this.segments];
 
       for (int int_0 = 0; int_0 < this.segments; int_0++) {
-         this.durations[int_0] = buffer_0.readUnsignedShort();
-         this.phases[int_0] = buffer_0.readUnsignedShort();
+         this.durations[int_0] = buffer_0.getUnsignedShort();
+         this.phases[int_0] = buffer_0.getUnsignedShort();
       }
 
    }

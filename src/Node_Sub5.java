@@ -22,7 +22,7 @@ public class Node_Sub5 extends Node {
       Buffer buffer_0 = new Buffer(bytes_0);
 
       int int_0;
-      for (int_0 = 0; buffer_0.payload[int_0 + buffer_0.offset] != 0; int_0++) {
+      for (int_0 = 0; buffer_0.buffer[int_0 + buffer_0.position] != 0; int_0++) {
          ;
       }
 
@@ -33,13 +33,13 @@ public class Node_Sub5 extends Node {
          bytes_1[int_1] = buffer_0.readByte();
       }
 
-      ++buffer_0.offset;
+      ++buffer_0.position;
       ++int_0;
-      int_1 = buffer_0.offset;
-      buffer_0.offset += int_0;
+      int_1 = buffer_0.position;
+      buffer_0.position += int_0;
 
       int int_2;
-      for (int_2 = 0; buffer_0.payload[int_2 + buffer_0.offset] != 0; int_2++) {
+      for (int_2 = 0; buffer_0.buffer[int_2 + buffer_0.position] != 0; int_2++) {
          ;
       }
 
@@ -50,13 +50,13 @@ public class Node_Sub5 extends Node {
          bytes_2[int_3] = buffer_0.readByte();
       }
 
-      ++buffer_0.offset;
+      ++buffer_0.position;
       ++int_2;
-      int_3 = buffer_0.offset;
-      buffer_0.offset += int_2;
+      int_3 = buffer_0.position;
+      buffer_0.position += int_2;
 
       int int_4;
-      for (int_4 = 0; buffer_0.payload[int_4 + buffer_0.offset] != 0; int_4++) {
+      for (int_4 = 0; buffer_0.buffer[int_4 + buffer_0.position] != 0; int_4++) {
          ;
       }
 
@@ -66,7 +66,7 @@ public class Node_Sub5 extends Node {
          bytes_3[int_5] = buffer_0.readByte();
       }
 
-      ++buffer_0.offset;
+      ++buffer_0.position;
       ++int_4;
       byte[] bytes_4 = new byte[int_4];
       int int_7;
@@ -77,7 +77,7 @@ public class Node_Sub5 extends Node {
          int_7 = 2;
 
          for (int_8 = 2; int_8 < int_4; int_8++) {
-            int int_9 = buffer_0.readUnsignedByte();
+            int int_9 = buffer_0.getUnsignedByte();
             if (int_9 == 0) {
                int_6 = int_7++;
             } else {
@@ -99,25 +99,25 @@ public class Node_Sub5 extends Node {
       Class84 class84_0;
       for (int_8 = 0; int_8 < class84s_0.length; int_8++) {
          class84_0 = class84s_0[int_8] = new Class84();
-         int int_10 = buffer_0.readUnsignedByte();
+         int int_10 = buffer_0.getUnsignedByte();
          if (int_10 > 0) {
             class84_0.aByteArray9 = new byte[int_10 * 2];
          }
 
-         int_10 = buffer_0.readUnsignedByte();
+         int_10 = buffer_0.getUnsignedByte();
          if (int_10 > 0) {
             class84_0.aByteArray10 = new byte[int_10 * 2 + 2];
             class84_0.aByteArray10[1] = 64;
          }
       }
 
-      int_8 = buffer_0.readUnsignedByte();
+      int_8 = buffer_0.getUnsignedByte();
       byte[] bytes_7 = int_8 > 0 ? new byte[int_8 * 2] : null;
-      int_8 = buffer_0.readUnsignedByte();
+      int_8 = buffer_0.getUnsignedByte();
       byte[] bytes_5 = int_8 > 0 ? new byte[int_8 * 2] : null;
 
       int int_11;
-      for (int_11 = 0; buffer_0.payload[int_11 + buffer_0.offset] != 0; int_11++) {
+      for (int_11 = 0; buffer_0.buffer[int_11 + buffer_0.position] != 0; int_11++) {
          ;
       }
 
@@ -128,20 +128,20 @@ public class Node_Sub5 extends Node {
          bytes_6[int_12] = buffer_0.readByte();
       }
 
-      ++buffer_0.offset;
+      ++buffer_0.position;
       ++int_11;
       int_12 = 0;
 
       int int_13;
       for (int_13 = 0; int_13 < 128; int_13++) {
-         int_12 += buffer_0.readUnsignedByte();
+         int_12 += buffer_0.getUnsignedByte();
          this.aShortArray5[int_13] = (short)int_12;
       }
 
       int_12 = 0;
 
       for (int_13 = 0; int_13 < 128; int_13++) {
-         int_12 += buffer_0.readUnsignedByte();
+         int_12 += buffer_0.getUnsignedByte();
          this.aShortArray5[int_13] = (short)(this.aShortArray5[int_13] + (int_12 << 8));
       }
 
@@ -180,7 +180,7 @@ public class Node_Sub5 extends Node {
                   int_13 = -1;
                }
 
-               int_16 = buffer_0.payload[int_1++] - 1;
+               int_16 = buffer_0.buffer[int_1++] - 1;
             }
 
             this.aByteArray16[int_17] = (byte)int_16;
@@ -201,7 +201,7 @@ public class Node_Sub5 extends Node {
                   int_13 = -1;
                }
 
-               int_17 = buffer_0.payload[int_3++] + 16 << 2;
+               int_17 = buffer_0.buffer[int_3++] + 16 << 2;
             }
 
             this.aByteArray15[int_18] = (byte)int_17;
@@ -244,7 +244,7 @@ public class Node_Sub5 extends Node {
             }
 
             if (this.anIntArray79[int_20] > 0) {
-               int_19 = buffer_0.readUnsignedByte() + 1;
+               int_19 = buffer_0.getUnsignedByte() + 1;
             }
          }
 
@@ -252,7 +252,7 @@ public class Node_Sub5 extends Node {
          --int_13;
       }
 
-      this.anInt372 = buffer_0.readUnsignedByte() + 1;
+      this.anInt372 = buffer_0.getUnsignedByte() + 1;
 
       Class84 class84_2;
       int int_21;
@@ -289,7 +289,7 @@ public class Node_Sub5 extends Node {
             int_12 = 0;
 
             for (int_21 = 2; int_21 < class84_2.aByteArray10.length; int_21 += 2) {
-               int_12 = int_12 + 1 + buffer_0.readUnsignedByte();
+               int_12 = int_12 + 1 + buffer_0.getUnsignedByte();
                class84_2.aByteArray10[int_21] = (byte)int_12;
             }
          }
@@ -301,7 +301,7 @@ public class Node_Sub5 extends Node {
             int_12 = 0;
 
             for (int_21 = 2; int_21 < class84_2.aByteArray9.length; int_21 += 2) {
-               int_12 = int_12 + 1 + buffer_0.readUnsignedByte();
+               int_12 = int_12 + 1 + buffer_0.getUnsignedByte();
                class84_2.aByteArray9[int_21] = (byte)int_12;
             }
          }
@@ -316,11 +316,11 @@ public class Node_Sub5 extends Node {
       int int_29;
       byte byte_3;
       if (bytes_7 != null) {
-         int_12 = buffer_0.readUnsignedByte();
+         int_12 = buffer_0.getUnsignedByte();
          bytes_7[0] = (byte)int_12;
 
          for (int_20 = 2; int_20 < bytes_7.length; int_20 += 2) {
-            int_12 = 1 + int_12 + buffer_0.readUnsignedByte();
+            int_12 = 1 + int_12 + buffer_0.getUnsignedByte();
             bytes_7[int_20] = (byte)int_12;
          }
 
@@ -356,11 +356,11 @@ public class Node_Sub5 extends Node {
       }
 
       if (bytes_5 != null) {
-         int_12 = buffer_0.readUnsignedByte();
+         int_12 = buffer_0.getUnsignedByte();
          bytes_5[0] = (byte)int_12;
 
          for (int_20 = 2; int_20 < bytes_5.length; int_20 += 2) {
-            int_12 = 1 + int_12 + buffer_0.readUnsignedByte();
+            int_12 = 1 + int_12 + buffer_0.getUnsignedByte();
             bytes_5[int_20] = (byte)int_12;
          }
 
@@ -424,39 +424,39 @@ public class Node_Sub5 extends Node {
       }
 
       for (int_20 = 0; int_20 < int_7; int_20++) {
-         class84s_0[int_20].anInt183 = buffer_0.readUnsignedByte();
+         class84s_0[int_20].anInt183 = buffer_0.getUnsignedByte();
       }
 
       for (int_20 = 0; int_20 < int_7; int_20++) {
          class84_2 = class84s_0[int_20];
          if (class84_2.aByteArray9 != null) {
-            class84_2.anInt187 = buffer_0.readUnsignedByte();
+            class84_2.anInt187 = buffer_0.getUnsignedByte();
          }
 
          if (class84_2.aByteArray10 != null) {
-            class84_2.anInt188 = buffer_0.readUnsignedByte();
+            class84_2.anInt188 = buffer_0.getUnsignedByte();
          }
 
          if (class84_2.anInt183 > 0) {
-            class84_2.anInt186 = buffer_0.readUnsignedByte();
+            class84_2.anInt186 = buffer_0.getUnsignedByte();
          }
       }
 
       for (int_20 = 0; int_20 < int_7; int_20++) {
-         class84s_0[int_20].anInt182 = buffer_0.readUnsignedByte();
+         class84s_0[int_20].anInt182 = buffer_0.getUnsignedByte();
       }
 
       for (int_20 = 0; int_20 < int_7; int_20++) {
          class84_2 = class84s_0[int_20];
          if (class84_2.anInt182 > 0) {
-            class84_2.anInt184 = buffer_0.readUnsignedByte();
+            class84_2.anInt184 = buffer_0.getUnsignedByte();
          }
       }
 
       for (int_20 = 0; int_20 < int_7; int_20++) {
          class84_2 = class84s_0[int_20];
          if (class84_2.anInt184 > 0) {
-            class84_2.anInt185 = buffer_0.readUnsignedByte();
+            class84_2.anInt185 = buffer_0.getUnsignedByte();
          }
       }
 

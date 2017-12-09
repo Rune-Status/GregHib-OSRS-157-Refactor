@@ -16,12 +16,12 @@ public class WorldMapData_Sub1 extends WorldMapData {
 
    void method600(Buffer buffer_0, boolean bool_0) {
       this.aList4 = new LinkedList();
-      int int_0 = buffer_0.readUnsignedShort();
+      int int_0 = buffer_0.getUnsignedShort();
 
       for (int int_1 = 0; int_1 < int_0; int_1++) {
-         int int_2 = buffer_0.method703();
+         int int_2 = buffer_0.getBigSmart();
          Coordinates coordinates_0 = new Coordinates(buffer_0.readInt());
-         boolean bool_1 = buffer_0.readUnsignedByte() == 1;
+         boolean bool_1 = buffer_0.getUnsignedByte() == 1;
          if (bool_0 || !bool_1) {
             this.aList4.add(new Class41(int_2, coordinates_0));
          }
@@ -31,7 +31,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
 
    void method601(Buffer buffer_0, Buffer buffer_1, Buffer buffer_2, int int_0, boolean bool_0) {
       this.loadMapData(buffer_0, int_0);
-      int int_1 = buffer_2.readUnsignedShort();
+      int int_1 = buffer_2.getUnsignedShort();
       this.aHashSet7 = new HashSet(int_1);
 
       int int_2;
@@ -47,7 +47,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
          this.aHashSet7.add(aclass1_sub2_0);
       }
 
-      int_2 = buffer_2.readUnsignedShort();
+      int_2 = buffer_2.getUnsignedShort();
       this.aHashSet8 = new HashSet(int_2);
 
       for (int int_3 = 0; int_3 < int_2; int_3++) {
@@ -166,7 +166,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
       byte byte_0 = -1;
       int info;
       if ((mask & 0x200) != 0) {
-         player.graphic = buffer.method713();
+         player.graphic = buffer.getUnsignedShortInverse();
          info = buffer.method706();
          player.graphicHeight = info >> 16;
          player.graphicDelay = (info & 0xFFFF) + Client.gameCycle;
@@ -182,7 +182,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x800) != 0) {
-         Class27.aByteArray3[index] = buffer.method728();
+         Class27.aByteArray3[index] = buffer.getByteS();
       }
 
       if ((mask & 0x8) != 0) {
@@ -230,15 +230,15 @@ public class WorldMapData_Sub1 extends WorldMapData {
             }
          }
 
-         int length = buffer.method710();
+         int length = buffer.getUnsignedByteC();
          if (length > 0) {
             for (int_7 = 0; int_7 < length; int_7++) {
                int_4 = buffer.getUSmart();
                int_5 = buffer.getUSmart();
                if (int_5 != 32767) {
                   int_6 = buffer.getUSmart();
-                  int_8 = buffer.method709();
-                  type = int_5 > 0 ? buffer.method709() : int_8;
+                  int_8 = buffer.getUnsignedByteS();
+                  type = int_5 > 0 ? buffer.getUnsignedByteS() : int_8;
                   player.method952(int_4, Client.gameCycle, int_5, int_6, int_8, type);
                } else {
                   player.method951(int_4);
@@ -252,11 +252,11 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x4) != 0) {
-         int textInfo = buffer.readUnsignedShort();
+         int textInfo = buffer.getUnsignedShort();
          Permission permission = (Permission) Class1.forOrdinal(Class44.method272(), buffer.readNegUByte());
-         boolean bool_1 = buffer.method709() == 1;//Resizable?
-         int length = buffer.readUnsignedByte();
-         int offset = buffer.offset;
+         boolean bool_1 = buffer.getUnsignedByteS() == 1;//Resizable?
+         int length = buffer.getUnsignedByte();
+         int offset = buffer.position;
          if (player.name != null && player.composition != null) {
             boolean ignored = false;
             if (permission.aBool46 && Tile.isIgnored(player.name)) {
@@ -264,9 +264,9 @@ public class WorldMapData_Sub1 extends WorldMapData {
             }
 
             if (!ignored && Client.onTutorialIsland == 0 && !player.hidden) {
-               Class27.chatBuffer.offset = 0;
-               buffer.readReverseData(Class27.chatBuffer.payload, 0, length);
-               Class27.chatBuffer.offset = 0;
+               Class27.chatBuffer.position = 0;
+               buffer.readReverseData(Class27.chatBuffer.buffer, 0, length);
+               Class27.chatBuffer.position = 0;
                String text = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(Class27.chatBuffer)));
                player.overhead = text.trim();
                player.textColour = textInfo >> 8;
@@ -290,11 +290,11 @@ public class WorldMapData_Sub1 extends WorldMapData {
             }
          }
 
-         buffer.offset = offset + length;
+         buffer.position = offset + length;
       }
 
       if ((mask & 0x80) != 0) {
-         player.interacting = buffer.method713();
+         player.interacting = buffer.getUnsignedShortInverse();
          if (player.interacting == 65535) {
             player.interacting = -1;
          }
@@ -325,12 +325,12 @@ public class WorldMapData_Sub1 extends WorldMapData {
       }
 
       if ((mask & 0x400) != 0) {
-         player.anInt536 = buffer.method728();
-         player.anInt537 = buffer.method728();
-         player.anInt538 = buffer.method728();
-         player.anInt539 = buffer.method728();
+         player.anInt536 = buffer.getByteS();
+         player.anInt537 = buffer.getByteS();
+         player.anInt538 = buffer.getByteS();
+         player.anInt539 = buffer.getByteS();
          player.anInt534 = buffer.readUnsignedShortOb1() + Client.gameCycle;
-         player.anInt535 = buffer.method713() + Client.gameCycle;
+         player.anInt535 = buffer.getUnsignedShortInverse() + Client.gameCycle;
          player.anInt540 = buffer.readUnsignedShortOb1();
          if (player.needsPositionUpdate) {
             player.anInt536 += player.targetX;

@@ -21,7 +21,7 @@ public final class Class2 {
             Buffer buffer_0 = new Buffer(4);
             buffer_0.putByte(bool_0 ? 2 : 3);
             buffer_0.put24bitInt(0);
-            Class95.aRSSocket1.queueForWrite(buffer_0.payload, 0, 4);
+            Class95.aRSSocket1.queueForWrite(buffer_0.buffer, 0, 4);
          } catch (IOException ioexception_0) {
             try {
                Class95.aRSSocket1.close();

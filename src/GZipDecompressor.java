@@ -12,13 +12,13 @@ public class GZipDecompressor {
    }
 
    public void decompress(Buffer buffer_0, byte[] bytes_0) {
-      if (buffer_0.payload[buffer_0.offset] == 31 && buffer_0.payload[buffer_0.offset + 1] == -117) {
+      if (buffer_0.buffer[buffer_0.position] == 31 && buffer_0.buffer[buffer_0.position + 1] == -117) {
          if (this.inflator == null) {
             this.inflator = new Inflater(true);
          }
 
          try {
-            this.inflator.setInput(buffer_0.payload, buffer_0.offset + 10, buffer_0.payload.length - (buffer_0.offset + 8 + 10));
+            this.inflator.setInput(buffer_0.buffer, buffer_0.position + 10, buffer_0.buffer.length - (buffer_0.position + 8 + 10));
             this.inflator.inflate(bytes_0);
          } catch (Exception exception_0) {
             this.inflator.reset();

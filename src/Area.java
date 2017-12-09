@@ -67,9 +67,9 @@ public class Area extends CacheableNode {
 
    void method811(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.spriteId = buffer_0.method703();
+         this.spriteId = buffer_0.getBigSmart();
       } else if (int_0 == 2) {
-         this.anInt444 = buffer_0.method703();
+         this.anInt444 = buffer_0.getBigSmart();
       } else if (int_0 == 3) {
          this.name = buffer_0.readString();
       } else if (int_0 == 4) {
@@ -77,11 +77,11 @@ public class Area extends CacheableNode {
       } else if (int_0 == 5) {
          buffer_0.read24BitInt();
       } else if (int_0 == 6) {
-         this.anInt447 = buffer_0.readUnsignedByte();
+         this.anInt447 = buffer_0.getUnsignedByte();
       } else {
          int int_1;
          if (int_0 == 7) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             if ((int_1 & 0x1) == 0) {
                ;
             }
@@ -90,11 +90,11 @@ public class Area extends CacheableNode {
                ;
             }
          } else if (int_0 == 8) {
-            buffer_0.readUnsignedByte();
+            buffer_0.getUnsignedByte();
          } else if (int_0 >= 10 && int_0 <= 14) {
             this.aStringArray4[int_0 - 10] = buffer_0.readString();
          } else if (int_0 == 15) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.anIntArray83 = new int[int_1 * 2];
 
             int int_2;
@@ -103,7 +103,7 @@ public class Area extends CacheableNode {
             }
 
             buffer_0.readInt();
-            int_2 = buffer_0.readUnsignedByte();
+            int_2 = buffer_0.getUnsignedByte();
             this.anIntArray84 = new int[int_2];
 
             int int_3;
@@ -120,29 +120,29 @@ public class Area extends CacheableNode {
             if (int_0 == 17) {
                this.aString29 = buffer_0.readString();
             } else if (int_0 == 18) {
-               buffer_0.method703();
+               buffer_0.getBigSmart();
             } else if (int_0 == 19) {
-               this.anInt449 = buffer_0.readUnsignedShort();
+               this.anInt449 = buffer_0.getUnsignedShort();
             } else if (int_0 == 21) {
                buffer_0.readInt();
             } else if (int_0 == 22) {
                buffer_0.readInt();
             } else if (int_0 == 23) {
-               buffer_0.readUnsignedByte();
-               buffer_0.readUnsignedByte();
-               buffer_0.readUnsignedByte();
+               buffer_0.getUnsignedByte();
+               buffer_0.getUnsignedByte();
+               buffer_0.getUnsignedByte();
             } else if (int_0 == 24) {
                buffer_0.readShort();
                buffer_0.readShort();
             } else if (int_0 == 25) {
-               buffer_0.method703();
+               buffer_0.getBigSmart();
             } else if (int_0 == 28) {
-               buffer_0.readUnsignedByte();
+               buffer_0.getUnsignedByte();
             } else if (int_0 == 29) {
                Enum8[] enum8s_0 = new Enum8[] {Enum8.anEnum8_1, Enum8.anEnum8_3, Enum8.anEnum8_2};
-               this.anEnum8_4 = (Enum8) Class1.forOrdinal(enum8s_0, buffer_0.readUnsignedByte());
+               this.anEnum8_4 = (Enum8) Class1.forOrdinal(enum8s_0, buffer_0.getUnsignedByte());
             } else if (int_0 == 30) {
-               this.anEnum5_4 = (Enum5) Class1.forOrdinal(DecorativeObject.method461(), buffer_0.readUnsignedByte());
+               this.anEnum5_4 = (Enum5) Class1.forOrdinal(DecorativeObject.method461(), buffer_0.getUnsignedByte());
             }
          }
       }
@@ -155,7 +155,7 @@ public class Area extends CacheableNode {
 
    public void method813(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

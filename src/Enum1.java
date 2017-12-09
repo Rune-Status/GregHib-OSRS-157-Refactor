@@ -21,7 +21,7 @@ public enum Enum1 implements RSEnum {
 
    static void method610(IndexData indexdata_0, int int_0) {
       if (Class23.aBuffer1 != null) {
-         Class23.aBuffer1.offset = int_0 * 8 + 5;
+         Class23.aBuffer1.position = int_0 * 8 + 5;
          int int_1 = Class23.aBuffer1.readInt();
          int int_2 = Class23.aBuffer1.readInt();
          indexdata_0.setInformation(int_1, int_2);

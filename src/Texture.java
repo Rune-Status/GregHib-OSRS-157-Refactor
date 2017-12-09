@@ -14,22 +14,22 @@ public class Texture extends Node {
 
    Texture(Buffer buffer_0) {
       this.loaded = false;
-      this.anInt313 = buffer_0.readUnsignedShort();
-      this.aBool49 = buffer_0.readUnsignedByte() == 1;
-      int int_0 = buffer_0.readUnsignedByte();
+      this.anInt313 = buffer_0.getUnsignedShort();
+      this.aBool49 = buffer_0.getUnsignedByte() == 1;
+      int int_0 = buffer_0.getUnsignedByte();
       if (int_0 >= 1 && int_0 <= 4) {
          this.fileIds = new int[int_0];
 
          int int_1;
          for (int_1 = 0; int_1 < int_0; int_1++) {
-            this.fileIds[int_1] = buffer_0.readUnsignedShort();
+            this.fileIds[int_1] = buffer_0.getUnsignedShort();
          }
 
          if (int_0 > 1) {
             this.anIntArray70 = new int[int_0 - 1];
 
             for (int_1 = 0; int_1 < int_0 - 1; int_1++) {
-               this.anIntArray70[int_1] = buffer_0.readUnsignedByte();
+               this.anIntArray70[int_1] = buffer_0.getUnsignedByte();
             }
          }
 
@@ -37,7 +37,7 @@ public class Texture extends Node {
             this.anIntArray71 = new int[int_0 - 1];
 
             for (int_1 = 0; int_1 < int_0 - 1; int_1++) {
-               this.anIntArray71[int_1] = buffer_0.readUnsignedByte();
+               this.anIntArray71[int_1] = buffer_0.getUnsignedByte();
             }
          }
 
@@ -47,8 +47,8 @@ public class Texture extends Node {
             this.anIntArray69[int_1] = buffer_0.readInt();
          }
 
-         this.anInt312 = buffer_0.readUnsignedByte();
-         this.anInt314 = buffer_0.readUnsignedByte();
+         this.anInt312 = buffer_0.getUnsignedByte();
+         this.anInt314 = buffer_0.getUnsignedByte();
          this.pixels = null;
       } else {
          throw new RuntimeException();

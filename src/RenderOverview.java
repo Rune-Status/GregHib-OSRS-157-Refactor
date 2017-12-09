@@ -93,7 +93,7 @@ public class RenderOverview {
                int int_6 = this.aCoordinates1.plane;
                PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket18, Client.aClass46_1.cipher);
                packetnode_0.packetBuffer.putShort(int_5);
-               packetnode_0.packetBuffer.method720(int_4);
+               packetnode_0.packetBuffer.putShortS(int_4);
                packetnode_0.packetBuffer.putByte(int_6);
                Client.aClass46_1.method282(packetnode_0);
             }

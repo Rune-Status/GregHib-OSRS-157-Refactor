@@ -12,7 +12,7 @@ public class Class36 {
    Class36(Buffer buffer_0, byte byte_0, int int_0) {
       this.aString7 = buffer_0.readString();
       this.aString6 = buffer_0.readString();
-      this.anInt96 = buffer_0.readUnsignedShort();
+      this.anInt96 = buffer_0.getUnsignedShort();
       this.aLong2 = buffer_0.readLong();
       int int_1 = buffer_0.readInt();
       int int_2 = buffer_0.readInt();
@@ -77,7 +77,7 @@ public class Class36 {
             buffer_0.putCESU8("");
          }
 
-         fileondisk_0.write(buffer_0.payload, 0, buffer_0.offset);
+         fileondisk_0.write(buffer_0.buffer, 0, buffer_0.position);
          fileondisk_0.close();
       } catch (IOException ioexception_0) {
          ioexception_0.printStackTrace();

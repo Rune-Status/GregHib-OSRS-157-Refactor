@@ -34,34 +34,34 @@ public class CombatInfo2 extends CacheableNode {
 
    void method816(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         buffer_0.readUnsignedShort();
+         buffer_0.getUnsignedShort();
       } else if (int_0 == 2) {
-         this.anInt454 = buffer_0.readUnsignedByte();
+         this.anInt454 = buffer_0.getUnsignedByte();
       } else if (int_0 == 3) {
-         this.anInt456 = buffer_0.readUnsignedByte();
+         this.anInt456 = buffer_0.getUnsignedByte();
       } else if (int_0 == 4) {
          this.anInt455 = 0;
       } else if (int_0 == 5) {
-         this.anInt457 = buffer_0.readUnsignedShort();
+         this.anInt457 = buffer_0.getUnsignedShort();
       } else if (int_0 == 6) {
-         buffer_0.readUnsignedByte();
+         buffer_0.getUnsignedByte();
       } else if (int_0 == 7) {
-         this.anInt452 = buffer_0.method703();
+         this.anInt452 = buffer_0.getBigSmart();
       } else if (int_0 == 8) {
-         this.anInt453 = buffer_0.method703();
+         this.anInt453 = buffer_0.getBigSmart();
       } else if (int_0 == 11) {
-         this.anInt455 = buffer_0.readUnsignedShort();
+         this.anInt455 = buffer_0.getUnsignedShort();
       } else if (int_0 == 14) {
-         this.healthScale = buffer_0.readUnsignedByte();
+         this.healthScale = buffer_0.getUnsignedByte();
       } else if (int_0 == 15) {
-         this.anInt460 = buffer_0.readUnsignedByte();
+         this.anInt460 = buffer_0.getUnsignedByte();
       }
 
    }
 
    public void method817(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

@@ -13,7 +13,7 @@ public class GrandExchangeOffer {
 
    public GrandExchangeOffer(Buffer buffer_0, boolean bool_0) {
       this.progress = buffer_0.readByte();
-      this.itemId = buffer_0.readUnsignedShort();
+      this.itemId = buffer_0.getUnsignedShort();
       this.price = buffer_0.readInt();
       this.totalQuantity = buffer_0.readInt();
       this.quantitySold = buffer_0.readInt();

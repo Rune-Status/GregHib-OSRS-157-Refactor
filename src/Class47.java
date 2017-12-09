@@ -24,8 +24,8 @@ public class Class47 {
    }
 
    public Class47(Buffer buffer_0, boolean bool_0) {
-      int int_0 = buffer_0.readUnsignedShort();
-      boolean bool_1 = buffer_0.readUnsignedByte() == 1;
+      int int_0 = buffer_0.getUnsignedShort();
+      boolean bool_1 = buffer_0.getUnsignedByte() == 1;
       byte byte_0;
       if (bool_1) {
          byte_0 = 1;
@@ -33,7 +33,7 @@ public class Class47 {
          byte_0 = 0;
       }
 
-      int int_1 = buffer_0.readUnsignedShort();
+      int int_1 = buffer_0.getUnsignedShort();
       this.aList3 = new ArrayList(int_1);
 
       for (int int_2 = 0; int_2 < int_1; int_2++) {

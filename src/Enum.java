@@ -22,9 +22,9 @@ public class Enum extends CacheableNode {
 
    void method831(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.keyType = (char)buffer_0.readUnsignedByte();
+         this.keyType = (char)buffer_0.getUnsignedByte();
       } else if (int_0 == 2) {
-         this.valType = (char)buffer_0.readUnsignedByte();
+         this.valType = (char)buffer_0.getUnsignedByte();
       } else if (int_0 == 3) {
          this.defaultString = buffer_0.readString();
       } else if (int_0 == 4) {
@@ -32,7 +32,7 @@ public class Enum extends CacheableNode {
       } else {
          int int_1;
          if (int_0 == 5) {
-            this.size = buffer_0.readUnsignedShort();
+            this.size = buffer_0.getUnsignedShort();
             this.keys = new int[this.size];
             this.stringVals = new String[this.size];
 
@@ -41,7 +41,7 @@ public class Enum extends CacheableNode {
                this.stringVals[int_1] = buffer_0.readString();
             }
          } else if (int_0 == 6) {
-            this.size = buffer_0.readUnsignedShort();
+            this.size = buffer_0.getUnsignedShort();
             this.keys = new int[this.size];
             this.intVals = new int[this.size];
 
@@ -56,7 +56,7 @@ public class Enum extends CacheableNode {
 
    public void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

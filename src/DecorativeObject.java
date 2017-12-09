@@ -20,36 +20,36 @@ public final class DecorativeObject {
 
    static void decodeSprite(byte[] bytes_0) {
       Buffer buffer_0 = new Buffer(bytes_0);
-      buffer_0.offset = bytes_0.length - 2;
-      Class111.anInt216 = buffer_0.readUnsignedShort();
+      buffer_0.position = bytes_0.length - 2;
+      Class111.anInt216 = buffer_0.getUnsignedShort();
       Class111.anIntArray54 = new int[Class111.anInt216];
       Class7.offsetsY = new int[Class111.anInt216];
       ItemContainer.anIntArray76 = new int[Class111.anInt216];
       Class6.anIntArray3 = new int[Class111.anInt216];
       Class111.spritePixels = new byte[Class111.anInt216][];
-      buffer_0.offset = bytes_0.length - 7 - Class111.anInt216 * 8;
-      Class111.anInt214 = buffer_0.readUnsignedShort();
-      Class111.anInt215 = buffer_0.readUnsignedShort();
-      int int_0 = (buffer_0.readUnsignedByte() & 0xFF) + 1;
+      buffer_0.position = bytes_0.length - 7 - Class111.anInt216 * 8;
+      Class111.anInt214 = buffer_0.getUnsignedShort();
+      Class111.anInt215 = buffer_0.getUnsignedShort();
+      int int_0 = (buffer_0.getUnsignedByte() & 0xFF) + 1;
 
       int int_1;
       for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class111.anIntArray54[int_1] = buffer_0.readUnsignedShort();
+         Class111.anIntArray54[int_1] = buffer_0.getUnsignedShort();
       }
 
       for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class7.offsetsY[int_1] = buffer_0.readUnsignedShort();
+         Class7.offsetsY[int_1] = buffer_0.getUnsignedShort();
       }
 
       for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         ItemContainer.anIntArray76[int_1] = buffer_0.readUnsignedShort();
+         ItemContainer.anIntArray76[int_1] = buffer_0.getUnsignedShort();
       }
 
       for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class6.anIntArray3[int_1] = buffer_0.readUnsignedShort();
+         Class6.anIntArray3[int_1] = buffer_0.getUnsignedShort();
       }
 
-      buffer_0.offset = bytes_0.length - 7 - Class111.anInt216 * 8 - (int_0 - 1) * 3;
+      buffer_0.position = bytes_0.length - 7 - Class111.anInt216 * 8 - (int_0 - 1) * 3;
       Class111.anIntArray55 = new int[int_0];
 
       for (int_1 = 1; int_1 < int_0; int_1++) {
@@ -59,7 +59,7 @@ public final class DecorativeObject {
          }
       }
 
-      buffer_0.offset = 0;
+      buffer_0.position = 0;
 
       for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
          int int_2 = ItemContainer.anIntArray76[int_1];
@@ -67,7 +67,7 @@ public final class DecorativeObject {
          int int_4 = int_2 * int_3;
          byte[] bytes_1 = new byte[int_4];
          Class111.spritePixels[int_1] = bytes_1;
-         int int_5 = buffer_0.readUnsignedByte();
+         int int_5 = buffer_0.getUnsignedByte();
          int int_6;
          if (int_5 == 0) {
             for (int_6 = 0; int_6 < int_4; int_6++) {

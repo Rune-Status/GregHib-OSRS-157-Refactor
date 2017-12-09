@@ -32,39 +32,39 @@ public class Spotanim extends CacheableNode {
 
    void method762(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.anInt421 = buffer_0.readUnsignedShort();
+         this.anInt421 = buffer_0.getUnsignedShort();
       } else if (int_0 == 2) {
-         this.anInt420 = buffer_0.readUnsignedShort();
+         this.anInt420 = buffer_0.getUnsignedShort();
       } else if (int_0 == 4) {
-         this.anInt422 = buffer_0.readUnsignedShort();
+         this.anInt422 = buffer_0.getUnsignedShort();
       } else if (int_0 == 5) {
-         this.anInt423 = buffer_0.readUnsignedShort();
+         this.anInt423 = buffer_0.getUnsignedShort();
       } else if (int_0 == 6) {
-         this.anInt424 = buffer_0.readUnsignedShort();
+         this.anInt424 = buffer_0.getUnsignedShort();
       } else if (int_0 == 7) {
-         this.anInt425 = buffer_0.readUnsignedByte();
+         this.anInt425 = buffer_0.getUnsignedByte();
       } else if (int_0 == 8) {
-         this.anInt426 = buffer_0.readUnsignedByte();
+         this.anInt426 = buffer_0.getUnsignedByte();
       } else {
          int int_1;
          int int_2;
          if (int_0 == 40) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.aShortArray6 = new short[int_1];
             this.aShortArray8 = new short[int_1];
 
             for (int_2 = 0; int_2 < int_1; int_2++) {
-               this.aShortArray6[int_2] = (short)buffer_0.readUnsignedShort();
-               this.aShortArray8[int_2] = (short)buffer_0.readUnsignedShort();
+               this.aShortArray6[int_2] = (short)buffer_0.getUnsignedShort();
+               this.aShortArray8[int_2] = (short)buffer_0.getUnsignedShort();
             }
          } else if (int_0 == 41) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.aShortArray7 = new short[int_1];
             this.aShortArray9 = new short[int_1];
 
             for (int_2 = 0; int_2 < int_1; int_2++) {
-               this.aShortArray7[int_2] = (short)buffer_0.readUnsignedShort();
-               this.aShortArray9[int_2] = (short)buffer_0.readUnsignedShort();
+               this.aShortArray7[int_2] = (short)buffer_0.getUnsignedShort();
+               this.aShortArray9[int_2] = (short)buffer_0.getUnsignedShort();
             }
          }
       }
@@ -129,7 +129,7 @@ public class Spotanim extends CacheableNode {
 
    void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

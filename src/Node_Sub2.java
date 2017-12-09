@@ -62,7 +62,7 @@ public class Node_Sub2 extends Node {
 
          int int_3;
          do {
-            int_3 = buffer_0.readUnsignedByte();
+            int_3 = buffer_0.getUnsignedByte();
             int_2 += int_3;
          } while (int_3 >= 255);
 

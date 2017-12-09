@@ -40,62 +40,62 @@ public class Sequence extends CacheableNode {
       int int_1;
       int int_2;
       if (int_0 == 1) {
-         int_1 = buffer_0.readUnsignedShort();
+         int_1 = buffer_0.getUnsignedShort();
          this.frameLenghts = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.frameLenghts[int_2] = buffer_0.readUnsignedShort();
+            this.frameLenghts[int_2] = buffer_0.getUnsignedShort();
          }
 
          this.frameIDs = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.frameIDs[int_2] = buffer_0.readUnsignedShort();
+            this.frameIDs[int_2] = buffer_0.getUnsignedShort();
          }
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.frameIDs[int_2] += buffer_0.readUnsignedShort() << 16;
+            this.frameIDs[int_2] += buffer_0.getUnsignedShort() << 16;
          }
       } else if (int_0 == 2) {
-         this.frameStep = buffer_0.readUnsignedShort();
+         this.frameStep = buffer_0.getUnsignedShort();
       } else if (int_0 == 3) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.interleaveLeave = new int[int_1 + 1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.interleaveLeave[int_2] = buffer_0.readUnsignedByte();
+            this.interleaveLeave[int_2] = buffer_0.getUnsignedByte();
          }
 
          this.interleaveLeave[int_1] = 9999999;
       } else if (int_0 == 4) {
          this.stretches = true;
       } else if (int_0 == 5) {
-         this.forcedPriority = buffer_0.readUnsignedByte();
+         this.forcedPriority = buffer_0.getUnsignedByte();
       } else if (int_0 == 6) {
-         this.leftHandItem = buffer_0.readUnsignedShort();
+         this.leftHandItem = buffer_0.getUnsignedShort();
       } else if (int_0 == 7) {
-         this.rightHandItem = buffer_0.readUnsignedShort();
+         this.rightHandItem = buffer_0.getUnsignedShort();
       } else if (int_0 == 8) {
-         this.maxLoops = buffer_0.readUnsignedByte();
+         this.maxLoops = buffer_0.getUnsignedByte();
       } else if (int_0 == 9) {
-         this.precedenceAnimating = buffer_0.readUnsignedByte();
+         this.precedenceAnimating = buffer_0.getUnsignedByte();
       } else if (int_0 == 10) {
-         this.priority = buffer_0.readUnsignedByte();
+         this.priority = buffer_0.getUnsignedByte();
       } else if (int_0 == 11) {
-         this.replyMode = buffer_0.readUnsignedByte();
+         this.replyMode = buffer_0.getUnsignedByte();
       } else if (int_0 == 12) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.anIntArray107 = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.anIntArray107[int_2] = buffer_0.readUnsignedShort();
+            this.anIntArray107[int_2] = buffer_0.getUnsignedShort();
          }
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.anIntArray107[int_2] += buffer_0.readUnsignedShort() << 16;
+            this.anIntArray107[int_2] += buffer_0.getUnsignedShort() << 16;
          }
       } else if (int_0 == 13) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.anIntArray108 = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
@@ -234,7 +234,7 @@ public class Sequence extends CacheableNode {
 
    void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

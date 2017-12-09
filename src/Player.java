@@ -187,8 +187,8 @@ public final class Player extends Actor {
    }
 
    void decodeAppearance(Buffer buffer) {
-      buffer.offset = 0;
-      int gender = buffer.readUnsignedByte();
+      buffer.position = 0;
+      int gender = buffer.getUnsignedByte();
       this.skullIcon = buffer.readByte();
       this.overheadIcon = buffer.readByte();
       int npcId = -1;
@@ -196,14 +196,14 @@ public final class Player extends Actor {
       int[] appearanceModels = new int[12];
 
       for (int bodyPart = 0; bodyPart < 12; bodyPart++) {
-         int reset = buffer.readUnsignedByte();
+         int reset = buffer.getUnsignedByte();
          if (reset == 0) {
             appearanceModels[bodyPart] = 0;
          } else {
-            int id = buffer.readUnsignedByte();
+            int id = buffer.getUnsignedByte();
             appearanceModels[bodyPart] = id + (reset << 8);
             if (bodyPart == 0 && appearanceModels[0] == 65535) {
-               npcId = buffer.readUnsignedShort();
+               npcId = buffer.getUnsignedShort();
                break;
             }
 
@@ -219,7 +219,7 @@ public final class Player extends Actor {
       int[] appearanceColours = new int[5];
 
       for (int index = 0; index < 5; index++) {
-         int colour = buffer.readUnsignedByte();
+         int colour = buffer.getUnsignedByte();
          if (colour < 0 || colour >= PlayerComposition.colorsToReplace[index].length) {
             colour = 0;
          }
@@ -227,38 +227,38 @@ public final class Player extends Actor {
          appearanceColours[index] = colour;
       }
 
-      super.idlePoseAnimation = buffer.readUnsignedShort();
+      super.idlePoseAnimation = buffer.getUnsignedShort();
       if (super.idlePoseAnimation == 65535) {
          super.idlePoseAnimation = -1;
       }
 
-      super.turnAnimation = buffer.readUnsignedShort();
+      super.turnAnimation = buffer.getUnsignedShort();
       if (super.turnAnimation == 65535) {
          super.turnAnimation = -1;
       }
 
       super.anInt515 = super.turnAnimation;
-      super.walkingAnimation = buffer.readUnsignedShort();
+      super.walkingAnimation = buffer.getUnsignedShort();
       if (super.walkingAnimation == 65535) {
          super.walkingAnimation = -1;
       }
 
-      super.halfTurnAnimation = buffer.readUnsignedShort();
+      super.halfTurnAnimation = buffer.getUnsignedShort();
       if (super.halfTurnAnimation == 65535) {
          super.halfTurnAnimation = -1;
       }
 
-      super.quarterClockwiseTurnAnimation = buffer.readUnsignedShort();
+      super.quarterClockwiseTurnAnimation = buffer.getUnsignedShort();
       if (super.quarterClockwiseTurnAnimation == 65535) {
          super.quarterClockwiseTurnAnimation = -1;
       }
 
-      super.quarterAnticlockwiseTurnAnimation = buffer.readUnsignedShort();
+      super.quarterAnticlockwiseTurnAnimation = buffer.getUnsignedShort();
       if (super.quarterAnticlockwiseTurnAnimation == 65535) {
          super.quarterAnticlockwiseTurnAnimation = -1;
       }
 
-      super.runAnimation = buffer.readUnsignedShort();
+      super.runAnimation = buffer.getUnsignedShort();
       if (super.runAnimation == 65535) {
          super.runAnimation = -1;
       }
@@ -268,9 +268,9 @@ public final class Player extends Actor {
          RuntimeException_Sub1.localPlayerName = this.name;
       }
 
-      this.combatLevel = buffer.readUnsignedByte();
-      this.totalLevel = buffer.readUnsignedShort();
-      this.hidden = buffer.readUnsignedByte() == 1;
+      this.combatLevel = buffer.getUnsignedByte();
+      this.totalLevel = buffer.getUnsignedShort();
+      this.hidden = buffer.getUnsignedByte() == 1;
       if (Client.socketType == 0 && Client.rights >= 2) {
          this.hidden = false;
       }

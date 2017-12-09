@@ -11,22 +11,22 @@ public class FrameMap extends Node {
    FrameMap(int int_0, byte[] bytes_0) {
       this.id = int_0;
       Buffer buffer_0 = new Buffer(bytes_0);
-      this.count = buffer_0.readUnsignedByte();
+      this.count = buffer_0.getUnsignedByte();
       this.types = new int[this.count];
       this.list = new int[this.count][];
 
       int int_1;
       for (int_1 = 0; int_1 < this.count; int_1++) {
-         this.types[int_1] = buffer_0.readUnsignedByte();
+         this.types[int_1] = buffer_0.getUnsignedByte();
       }
 
       for (int_1 = 0; int_1 < this.count; int_1++) {
-         this.list[int_1] = new int[buffer_0.readUnsignedByte()];
+         this.list[int_1] = new int[buffer_0.getUnsignedByte()];
       }
 
       for (int_1 = 0; int_1 < this.count; int_1++) {
          for (int int_2 = 0; int_2 < this.list[int_1].length; int_2++) {
-            this.list[int_1][int_2] = buffer_0.readUnsignedByte();
+            this.list[int_1][int_2] = buffer_0.getUnsignedByte();
          }
       }
 

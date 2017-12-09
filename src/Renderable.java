@@ -15,12 +15,11 @@ public abstract class Renderable extends CacheableNode {
    }
 
    void draw(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
-      Model model_0 = this.getModel();
-      if (model_0 != null) {
-         this.modelHeight = model_0.modelHeight;
-         model_0.draw(int_0, int_1, int_2, int_3, int_4, int_5, int_6, int_7, int_8);
+      Model model = this.getModel();
+      if (model != null) {
+         this.modelHeight = model.modelHeight;
+         model.draw(int_0, int_1, int_2, int_3, int_4, int_5, int_6, int_7, int_8);
       }
-
    }
 
    protected static int method744() {

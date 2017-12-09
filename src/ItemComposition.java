@@ -104,22 +104,22 @@ public class ItemComposition extends CacheableNode {
 
    void populateFromBuffer(Buffer buffer_0, int int_0) {
       if (int_0 == 1) {
-         this.inventoryModel = buffer_0.readUnsignedShort();
+         this.inventoryModel = buffer_0.getUnsignedShort();
       } else if (int_0 == 2) {
          this.name = buffer_0.readString();
       } else if (int_0 == 4) {
-         this.zoom2d = buffer_0.readUnsignedShort();
+         this.zoom2d = buffer_0.getUnsignedShort();
       } else if (int_0 == 5) {
-         this.xan2d = buffer_0.readUnsignedShort();
+         this.xan2d = buffer_0.getUnsignedShort();
       } else if (int_0 == 6) {
-         this.yan2d = buffer_0.readUnsignedShort();
+         this.yan2d = buffer_0.getUnsignedShort();
       } else if (int_0 == 7) {
-         this.offsetX2d = buffer_0.readUnsignedShort();
+         this.offsetX2d = buffer_0.getUnsignedShort();
          if (this.offsetX2d > 32767) {
             this.offsetX2d -= 65536;
          }
       } else if (int_0 == 8) {
-         this.offsetY2d = buffer_0.readUnsignedShort();
+         this.offsetY2d = buffer_0.getUnsignedShort();
          if (this.offsetY2d > 32767) {
             this.offsetY2d -= 65536;
          }
@@ -130,15 +130,15 @@ public class ItemComposition extends CacheableNode {
       } else if (int_0 == 16) {
          this.isMembers = true;
       } else if (int_0 == 23) {
-         this.maleModel = buffer_0.readUnsignedShort();
-         this.maleOffset = buffer_0.readUnsignedByte();
+         this.maleModel = buffer_0.getUnsignedShort();
+         this.maleOffset = buffer_0.getUnsignedByte();
       } else if (int_0 == 24) {
-         this.maleModel1 = buffer_0.readUnsignedShort();
+         this.maleModel1 = buffer_0.getUnsignedShort();
       } else if (int_0 == 25) {
-         this.femaleModel = buffer_0.readUnsignedShort();
-         this.femaleOffset = buffer_0.readUnsignedByte();
+         this.femaleModel = buffer_0.getUnsignedShort();
+         this.femaleOffset = buffer_0.getUnsignedByte();
       } else if (int_0 == 26) {
-         this.femaleModel1 = buffer_0.readUnsignedShort();
+         this.femaleModel1 = buffer_0.getUnsignedShort();
       } else if (int_0 >= 30 && int_0 < 35) {
          this.groundActions[int_0 - 30] = buffer_0.readString();
          if (this.groundActions[int_0 - 30].equalsIgnoreCase("Hidden")) {
@@ -150,73 +150,73 @@ public class ItemComposition extends CacheableNode {
          int int_1;
          int int_2;
          if (int_0 == 40) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.colourToReplace = new short[int_1];
             this.colourToReplaceWith = new short[int_1];
 
             for (int_2 = 0; int_2 < int_1; int_2++) {
-               this.colourToReplace[int_2] = (short)buffer_0.readUnsignedShort();
-               this.colourToReplaceWith[int_2] = (short)buffer_0.readUnsignedShort();
+               this.colourToReplace[int_2] = (short)buffer_0.getUnsignedShort();
+               this.colourToReplaceWith[int_2] = (short)buffer_0.getUnsignedShort();
             }
          } else if (int_0 == 41) {
-            int_1 = buffer_0.readUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.textureToReplace = new short[int_1];
             this.textToReplaceWith = new short[int_1];
 
             for (int_2 = 0; int_2 < int_1; int_2++) {
-               this.textureToReplace[int_2] = (short)buffer_0.readUnsignedShort();
-               this.textToReplaceWith[int_2] = (short)buffer_0.readUnsignedShort();
+               this.textureToReplace[int_2] = (short)buffer_0.getUnsignedShort();
+               this.textToReplaceWith[int_2] = (short)buffer_0.getUnsignedShort();
             }
          } else if (int_0 == 42) {
             this.team = buffer_0.readByte();
          } else if (int_0 == 65) {
             this.aBool68 = true;
          } else if (int_0 == 78) {
-            this.maleModel2 = buffer_0.readUnsignedShort();
+            this.maleModel2 = buffer_0.getUnsignedShort();
          } else if (int_0 == 79) {
-            this.femaleModel2 = buffer_0.readUnsignedShort();
+            this.femaleModel2 = buffer_0.getUnsignedShort();
          } else if (int_0 == 90) {
-            this.maleHeadModel = buffer_0.readUnsignedShort();
+            this.maleHeadModel = buffer_0.getUnsignedShort();
          } else if (int_0 == 91) {
-            this.femaleHeadModel = buffer_0.readUnsignedShort();
+            this.femaleHeadModel = buffer_0.getUnsignedShort();
          } else if (int_0 == 92) {
-            this.maleHeadModel2 = buffer_0.readUnsignedShort();
+            this.maleHeadModel2 = buffer_0.getUnsignedShort();
          } else if (int_0 == 93) {
-            this.femaleHeadModel2 = buffer_0.readUnsignedShort();
+            this.femaleHeadModel2 = buffer_0.getUnsignedShort();
          } else if (int_0 == 95) {
-            this.zan2d = buffer_0.readUnsignedShort();
+            this.zan2d = buffer_0.getUnsignedShort();
          } else if (int_0 == 97) {
-            this.note = buffer_0.readUnsignedShort();
+            this.note = buffer_0.getUnsignedShort();
          } else if (int_0 == 98) {
-            this.notedTemplate = buffer_0.readUnsignedShort();
+            this.notedTemplate = buffer_0.getUnsignedShort();
          } else if (int_0 >= 100 && int_0 < 110) {
             if (this.countObj == null) {
                this.countObj = new int[10];
                this.countCo = new int[10];
             }
 
-            this.countObj[int_0 - 100] = buffer_0.readUnsignedShort();
-            this.countCo[int_0 - 100] = buffer_0.readUnsignedShort();
+            this.countObj[int_0 - 100] = buffer_0.getUnsignedShort();
+            this.countCo[int_0 - 100] = buffer_0.getUnsignedShort();
          } else if (int_0 == 110) {
-            this.resizeX = buffer_0.readUnsignedShort();
+            this.resizeX = buffer_0.getUnsignedShort();
          } else if (int_0 == 111) {
-            this.resizeY = buffer_0.readUnsignedShort();
+            this.resizeY = buffer_0.getUnsignedShort();
          } else if (int_0 == 112) {
-            this.resizeZ = buffer_0.readUnsignedShort();
+            this.resizeZ = buffer_0.getUnsignedShort();
          } else if (int_0 == 113) {
             this.ambient = buffer_0.readByte();
          } else if (int_0 == 114) {
             this.contrast = buffer_0.readByte() * 5;
          } else if (int_0 == 115) {
-            this.anInt504 = buffer_0.readUnsignedByte();
+            this.anInt504 = buffer_0.getUnsignedByte();
          } else if (int_0 == 139) {
-            this.unnotedId = buffer_0.readUnsignedShort();
+            this.unnotedId = buffer_0.getUnsignedShort();
          } else if (int_0 == 140) {
-            this.notedId = buffer_0.readUnsignedShort();
+            this.notedId = buffer_0.getUnsignedShort();
          } else if (int_0 == 148) {
-            this.anInt506 = buffer_0.readUnsignedShort();
+            this.anInt506 = buffer_0.getUnsignedShort();
          } else if (int_0 == 149) {
-            this.anInt505 = buffer_0.readUnsignedShort();
+            this.anInt505 = buffer_0.getUnsignedShort();
          } else if (int_0 == 249) {
             this.anIterableHashTable5 = Tile.method682(buffer_0, this.anIterableHashTable5);
          }
@@ -376,7 +376,7 @@ public class ItemComposition extends CacheableNode {
 
    void loadBuffer(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

@@ -26,39 +26,39 @@ public class KitDefinition extends CacheableNode {
 
     void readValues(Buffer buffer, int opcode) {
         if (opcode == 1) {
-            this.bodyPartId = buffer.readUnsignedByte();
+            this.bodyPartId = buffer.getUnsignedByte();
         } else {
             int int_1;
             int int_2;
             if (opcode == 2) {
-                int_1 = buffer.readUnsignedByte();
+                int_1 = buffer.getUnsignedByte();
                 this.modelIds = new int[int_1];
 
                 for (int_2 = 0; int_2 < int_1; int_2++) {
-                    this.modelIds[int_2] = buffer.readUnsignedShort();
+                    this.modelIds[int_2] = buffer.getUnsignedShort();
                 }
             } else if (opcode == 3) {
                 this.nonSelectable = true;
             } else if (opcode == 40) {
-                int_1 = buffer.readUnsignedByte();
+                int_1 = buffer.getUnsignedByte();
                 this.recolorToFind = new short[int_1];
                 this.recolorToReplace = new short[int_1];
 
                 for (int_2 = 0; int_2 < int_1; int_2++) {
-                    this.recolorToFind[int_2] = (short) buffer.readUnsignedShort();
-                    this.recolorToReplace[int_2] = (short) buffer.readUnsignedShort();
+                    this.recolorToFind[int_2] = (short) buffer.getUnsignedShort();
+                    this.recolorToReplace[int_2] = (short) buffer.getUnsignedShort();
                 }
             } else if (opcode == 41) {
-                int_1 = buffer.readUnsignedByte();
+                int_1 = buffer.getUnsignedByte();
                 this.retextureToFind = new short[int_1];
                 this.retextureToReplace = new short[int_1];
 
                 for (int_2 = 0; int_2 < int_1; int_2++) {
-                    this.retextureToFind[int_2] = (short) buffer.readUnsignedShort();
-                    this.retextureToReplace[int_2] = (short) buffer.readUnsignedShort();
+                    this.retextureToFind[int_2] = (short) buffer.getUnsignedShort();
+                    this.retextureToReplace[int_2] = (short) buffer.getUnsignedShort();
                 }
             } else if (opcode >= 60 && opcode < 70) {
-                this.models[opcode - 60] = buffer.readUnsignedShort();
+                this.models[opcode - 60] = buffer.getUnsignedShort();
             }
         }
 
@@ -121,7 +121,7 @@ public class KitDefinition extends CacheableNode {
 
     void decode(Buffer buffer) {
         while (true) {
-            int opcode = buffer.readUnsignedByte();
+            int opcode = buffer.getUnsignedByte();
 
             if (opcode == 0) {
                 return;

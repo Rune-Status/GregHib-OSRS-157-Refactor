@@ -56,24 +56,24 @@ public class Class46 {
 
    public void method282(PacketNode packet) {
       this.aCombatInfoList2.method455(packet);
-      packet.anInt349 = packet.packetBuffer.offset;
-      packet.packetBuffer.offset = 0;
+      packet.anInt349 = packet.packetBuffer.position;
+      packet.packetBuffer.position = 0;
       this.anInt102 += packet.anInt349;
    }
 
    void method283() throws IOException {
       if (this.rssocket != null && this.anInt102 > 0) {
-         this.aBuffer3.offset = 0;
+         this.aBuffer3.position = 0;
 
          while (true) {
             PacketNode packetnode_0 = (PacketNode) this.aCombatInfoList2.method454();
-            if (packetnode_0 == null || packetnode_0.anInt349 > this.aBuffer3.payload.length - this.aBuffer3.offset) {
-               this.rssocket.queueForWrite(this.aBuffer3.payload, 0, this.aBuffer3.offset);
+            if (packetnode_0 == null || packetnode_0.anInt349 > this.aBuffer3.buffer.length - this.aBuffer3.position) {
+               this.rssocket.queueForWrite(this.aBuffer3.buffer, 0, this.aBuffer3.position);
                this.anInt104 = 0;
                break;
             }
 
-            this.aBuffer3.putBytes(packetnode_0.packetBuffer.payload, 0, packetnode_0.anInt349);
+            this.aBuffer3.putBytes(packetnode_0.packetBuffer.buffer, 0, packetnode_0.anInt349);
             this.anInt102 -= packetnode_0.anInt349;
             packetnode_0.unlink();
             packetnode_0.packetBuffer.method733();

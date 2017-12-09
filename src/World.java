@@ -102,7 +102,7 @@ public class World {
    public static void encodeClassVerifier(PacketBuffer packetbuffer_0) {
       ClassInfo classinfo_0 = (ClassInfo) Class108.aCombatInfoList4.method454();
       if (classinfo_0 != null) {
-         int int_0 = packetbuffer_0.offset;
+         int int_0 = packetbuffer_0.position;
          packetbuffer_0.putInt(classinfo_0.anInt371);
 
          for (int int_1 = 0; int_1 < classinfo_0.count; int_1++) {

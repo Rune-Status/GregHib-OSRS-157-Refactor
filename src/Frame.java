@@ -26,15 +26,15 @@ public class Frame {
       this.skin = framemap_0;
       Buffer buffer_0 = new Buffer(bytes_0);
       Buffer buffer_1 = new Buffer(bytes_0);
-      buffer_0.offset = 2;
-      int int_0 = buffer_0.readUnsignedByte();
+      buffer_0.position = 2;
+      int int_0 = buffer_0.getUnsignedByte();
       int int_1 = -1;
       int int_2 = 0;
-      buffer_1.offset = int_0 + buffer_0.offset;
+      buffer_1.position = int_0 + buffer_0.position;
 
       int int_3;
       for (int_3 = 0; int_3 < int_0; int_3++) {
-         int int_4 = buffer_0.readUnsignedByte();
+         int int_4 = buffer_0.getUnsignedByte();
          if (int_4 > 0) {
             if (this.skin.types[int_3] != 0) {
                for (int int_5 = int_3 - 1; int_5 > int_1; --int_5) {
@@ -81,7 +81,7 @@ public class Frame {
          }
       }
 
-      if (bytes_0.length != buffer_1.offset) {
+      if (bytes_0.length != buffer_1.position) {
          throw new RuntimeException();
       } else {
          this.anInt202 = int_2;

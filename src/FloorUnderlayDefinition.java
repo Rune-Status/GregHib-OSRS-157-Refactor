@@ -101,7 +101,7 @@ public class FloorUnderlayDefinition extends CacheableNode {
 
    void decode(Buffer buffer_0, int int_0) {
       while (true) {
-         int int_1 = buffer_0.readUnsignedByte();
+         int int_1 = buffer_0.getUnsignedByte();
          if (int_1 == 0) {
             return;
          }

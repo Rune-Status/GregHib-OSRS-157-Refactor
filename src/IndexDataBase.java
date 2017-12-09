@@ -109,17 +109,17 @@ public abstract class IndexDataBase {
       int_1 = ~int_1;
       this.crc = int_1;
       Buffer buffer_0 = new Buffer(DynamicObject.decodeContainer(bytes_0));
-      int_1 = buffer_0.readUnsignedByte();
+      int_1 = buffer_0.getUnsignedByte();
       if (int_1 >= 5 && int_1 <= 7) {
          if (int_1 >= 6) {
             buffer_0.readInt();
          }
 
-         int_2 = buffer_0.readUnsignedByte();
+         int_2 = buffer_0.getUnsignedByte();
          if (int_1 >= 7) {
             this.validArchivesCount = buffer_0.getLargeSmart();
          } else {
-            this.validArchivesCount = buffer_0.readUnsignedShort();
+            this.validArchivesCount = buffer_0.getUnsignedShort();
          }
 
          int int_3 = 0;
@@ -135,7 +135,7 @@ public abstract class IndexDataBase {
             }
          } else {
             for (int_5 = 0; int_5 < this.validArchivesCount; int_5++) {
-               this.archiveIds[int_5] = int_3 += buffer_0.readUnsignedShort();
+               this.archiveIds[int_5] = int_3 += buffer_0.getUnsignedShort();
                if (this.archiveIds[int_5] > int_4) {
                   int_4 = this.archiveIds[int_5];
                }
@@ -167,7 +167,7 @@ public abstract class IndexDataBase {
          }
 
          for (int_5 = 0; int_5 < this.validArchivesCount; int_5++) {
-            this.archiveNumberOfFiles[this.archiveIds[int_5]] = buffer_0.readUnsignedShort();
+            this.archiveNumberOfFiles[this.archiveIds[int_5]] = buffer_0.getUnsignedShort();
          }
 
          int int_6;
@@ -201,7 +201,7 @@ public abstract class IndexDataBase {
                this.archiveFileIds[int_6] = new int[int_7];
 
                for (int_9 = 0; int_9 < int_7; int_9++) {
-                  int_10 = this.archiveFileIds[int_6][int_9] = int_3 += buffer_0.readUnsignedShort();
+                  int_10 = this.archiveFileIds[int_6][int_9] = int_3 += buffer_0.getUnsignedShort();
                   if (int_10 > int_8) {
                      int_8 = int_10;
                   }
@@ -339,7 +339,7 @@ public abstract class IndexDataBase {
             } else {
                bytes_0 = Class56.toByteArray(this.anObjectArray1[int_0], true);
                Buffer buffer_0 = new Buffer(bytes_0);
-               buffer_0.decryptXtea(ints_0, 5, buffer_0.payload.length);
+               buffer_0.decryptXtea(ints_0, 5, buffer_0.buffer.length);
             }
 
             byte[] bytes_2 = DynamicObject.decodeContainer(bytes_0);
@@ -354,7 +354,7 @@ public abstract class IndexDataBase {
                int_3 -= int_4 * int_1 * 4;
                Buffer buffer_1 = new Buffer(bytes_2);
                int[] ints_2 = new int[int_1];
-               buffer_1.offset = int_3;
+               buffer_1.position = int_3;
 
                int int_6;
                int int_7;
@@ -374,7 +374,7 @@ public abstract class IndexDataBase {
                   ints_2[int_6] = 0;
                }
 
-               buffer_1.offset = int_3;
+               buffer_1.position = int_3;
                int_6 = 0;
 
                for (int_7 = 0; int_7 < int_4; int_7++) {

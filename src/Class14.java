@@ -1091,14 +1091,14 @@ public final class Class14 {
       for (int_0 = 0; int_0 < Client.pendingNpcFlagsCount; int_0++) {
          int_10 = Client.pendingNpcFlagsIndices[int_0];
          npc = Client.cachedNPCs[int_10];
-         int_1 = packetbuffer_0.readUnsignedByte();
+         int_1 = packetbuffer_0.getUnsignedByte();
          if ((int_1 & 0x8) != 0) {
             npc.overhead = packetbuffer_0.readString();
             npc.textCycle = 100;
          }
 
          if ((int_1 & 0x2) != 0) {
-            npc.graphic = packetbuffer_0.method712();
+            npc.graphic = packetbuffer_0.getUnsignedShortAInverse();
             int_2 = packetbuffer_0.method714();
             npc.graphicHeight = int_2 >> 16;
             npc.graphicDelay = (int_2 & 0xFFFF) + Client.gameCycle;
@@ -1140,15 +1140,15 @@ public final class Class14 {
                }
             }
 
-            int_3 = packetbuffer_0.method709();
+            int_3 = packetbuffer_0.getUnsignedByteS();
             if (int_3 > 0) {
                for (int_7 = 0; int_7 < int_3; int_7++) {
                   int_4 = packetbuffer_0.getUSmart();
                   int_5 = packetbuffer_0.getUSmart();
                   if (int_5 != 32767) {
                      int_6 = packetbuffer_0.getUSmart();
-                     int_8 = packetbuffer_0.method710();
-                     int int_9 = int_5 > 0 ? packetbuffer_0.method710() : int_8;
+                     int_8 = packetbuffer_0.getUnsignedByteC();
+                     int int_9 = int_5 > 0 ? packetbuffer_0.getUnsignedByteC() : int_8;
                      npc.method952(int_4, Client.gameCycle, int_5, int_6, int_8, int_9);
                   } else {
                      npc.method951(int_4);
@@ -1163,7 +1163,7 @@ public final class Class14 {
                int_2 = -1;
             }
 
-            int_3 = packetbuffer_0.method710();
+            int_3 = packetbuffer_0.getUnsignedByteC();
             if (int_2 == npc.animation && int_2 != -1) {
                int_7 = ItemLayer.getAnimation(int_2).replyMode;
                if (int_7 == 1) {
@@ -1187,7 +1187,7 @@ public final class Class14 {
          }
 
          if ((int_1 & 0x40) != 0) {
-            int_2 = packetbuffer_0.readUnsignedShort();
+            int_2 = packetbuffer_0.getUnsignedShort();
             int_3 = packetbuffer_0.readUnsignedShortOb1();
             int_7 = npc.x - (int_2 - ItemLayer.baseX - ItemLayer.baseX) * 64;
             int_4 = npc.y - (int_3 - ItemLayer.baseY - ItemLayer.baseY) * 64;
@@ -1197,7 +1197,7 @@ public final class Class14 {
          }
 
          if ((int_1 & 0x1) != 0) {
-            npc.composition = Class27.getNpcDefinition(packetbuffer_0.method712());
+            npc.composition = Class27.getNpcDefinition(packetbuffer_0.getUnsignedShortAInverse());
             npc.anInt513 = npc.composition.anInt489;
             npc.anInt533 = npc.composition.anInt502;
             npc.walkingAnimation = npc.composition.anInt491;
@@ -1210,7 +1210,7 @@ public final class Class14 {
          }
 
          if ((int_1 & 0x20) != 0) {
-            npc.interacting = packetbuffer_0.readUnsignedShort();
+            npc.interacting = packetbuffer_0.getUnsignedShort();
             if (npc.interacting == 65535) {
                npc.interacting = -1;
             }
@@ -1225,8 +1225,8 @@ public final class Class14 {
          }
       }
 
-      if (packetbuffer_0.offset != Client.aClass46_1.packetLength) {
-         throw new RuntimeException(packetbuffer_0.offset + "," + Client.aClass46_1.packetLength);
+      if (packetbuffer_0.position != Client.aClass46_1.packetLength) {
+         throw new RuntimeException(packetbuffer_0.position + "," + Client.aClass46_1.packetLength);
       } else {
          for (int_0 = 0; int_0 < Client.npcIndexesCount; int_0++) {
             if (Client.cachedNPCs[Client.npcIndices[int_0]] == null) {

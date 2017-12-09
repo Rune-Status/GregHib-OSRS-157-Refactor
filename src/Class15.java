@@ -274,7 +274,7 @@ public class Class15 {
             int int_6 = int_4 & 0x3F;
             int int_7 = int_4 >> 6 & 0x3F;
             int int_8 = int_4 >> 12;
-            int int_9 = buffer_0.readUnsignedByte();
+            int int_9 = buffer_0.getUnsignedByte();
             int int_10 = int_9 >> 2;
             int int_11 = int_9 & 0x3;
             int int_12 = int_7 + int_0;

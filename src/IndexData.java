@@ -95,7 +95,7 @@ public class IndexData extends IndexDataBase {
          crc32.update(bytes_0, 0, bytes_0.length);
          int_1 = (int)crc32.getValue();
          Buffer buffer_0 = new Buffer(DynamicObject.decodeContainer(bytes_0));
-         int int_3 = buffer_0.readUnsignedByte();
+         int int_3 = buffer_0.getUnsignedByte();
          if (int_3 != 5 && int_3 != 6) {
             throw new RuntimeException(int_3 + "," + this.index + "," + int_0);
          }

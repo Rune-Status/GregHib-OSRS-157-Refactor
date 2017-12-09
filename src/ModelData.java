@@ -521,19 +521,19 @@ public class ModelData extends Renderable {
       Buffer buffer_2 = new Buffer(bytes_0);
       Buffer buffer_3 = new Buffer(bytes_0);
       Buffer buffer_4 = new Buffer(bytes_0);
-      buffer_0.offset = bytes_0.length - 18;
-      int int_0 = buffer_0.readUnsignedShort();
-      int int_1 = buffer_0.readUnsignedShort();
-      int int_2 = buffer_0.readUnsignedByte();
-      int int_3 = buffer_0.readUnsignedByte();
-      int int_4 = buffer_0.readUnsignedByte();
-      int int_5 = buffer_0.readUnsignedByte();
-      int int_6 = buffer_0.readUnsignedByte();
-      int int_7 = buffer_0.readUnsignedByte();
-      int int_9 = buffer_0.readUnsignedShort();
-      int int_10 = buffer_0.readUnsignedShort();
-      int int_11 = buffer_0.readUnsignedShort();
-      int int_12 = buffer_0.readUnsignedShort();
+      buffer_0.position = bytes_0.length - 18;
+      int int_0 = buffer_0.getUnsignedShort();
+      int int_1 = buffer_0.getUnsignedShort();
+      int int_2 = buffer_0.getUnsignedByte();
+      int int_3 = buffer_0.getUnsignedByte();
+      int int_4 = buffer_0.getUnsignedByte();
+      int int_5 = buffer_0.getUnsignedByte();
+      int int_6 = buffer_0.getUnsignedByte();
+      int int_7 = buffer_0.getUnsignedByte();
+      int int_9 = buffer_0.getUnsignedShort();
+      int int_10 = buffer_0.getUnsignedShort();
+      int int_11 = buffer_0.getUnsignedShort();
+      int int_12 = buffer_0.getUnsignedShort();
       byte byte_0 = 0;
       int int_34 = byte_0 + int_0;
       int int_13 = int_34;
@@ -615,11 +615,11 @@ public class ModelData extends Renderable {
       }
 
       this.faceColor = new short[int_1];
-      buffer_0.offset = byte_0;
-      buffer_1.offset = int_22;
-      buffer_2.offset = int_23;
-      buffer_3.offset = int_34;
-      buffer_4.offset = int_17;
+      buffer_0.position = byte_0;
+      buffer_1.position = int_22;
+      buffer_2.position = int_23;
+      buffer_3.position = int_34;
+      buffer_4.position = int_17;
       int int_24 = 0;
       int int_25 = 0;
       int int_26 = 0;
@@ -630,7 +630,7 @@ public class ModelData extends Renderable {
       int int_30;
       int int_31;
       for (int_27 = 0; int_27 < int_0; int_27++) {
-         int_28 = buffer_0.readUnsignedByte();
+         int_28 = buffer_0.getUnsignedByte();
          int_29 = 0;
          if ((int_28 & 0x1) != 0) {
             int_29 = buffer_1.readShortSmart();
@@ -653,20 +653,20 @@ public class ModelData extends Renderable {
          int_25 = this.vertexY[int_27];
          int_26 = this.vertexZ[int_27];
          if (int_7 == 1) {
-            this.vertexSkins[int_27] = buffer_4.readUnsignedByte();
+            this.vertexSkins[int_27] = buffer_4.getUnsignedByte();
          }
       }
 
-      buffer_0.offset = int_20;
-      buffer_1.offset = int_16;
-      buffer_2.offset = int_14;
-      buffer_3.offset = int_18;
-      buffer_4.offset = int_15;
+      buffer_0.position = int_20;
+      buffer_1.position = int_16;
+      buffer_2.position = int_14;
+      buffer_3.position = int_18;
+      buffer_4.position = int_15;
 
       for (int_27 = 0; int_27 < int_1; int_27++) {
-         this.faceColor[int_27] = (short)buffer_0.readUnsignedShort();
+         this.faceColor[int_27] = (short)buffer_0.getUnsignedShort();
          if (int_3 == 1) {
-            int_28 = buffer_1.readUnsignedByte();
+            int_28 = buffer_1.getUnsignedByte();
             if ((int_28 & 0x1) == 1) {
                this.faceRenderType[int_27] = 1;
                bool_0 = true;
@@ -696,12 +696,12 @@ public class ModelData extends Renderable {
          }
 
          if (int_6 == 1) {
-            this.triangleSkinValues[int_27] = buffer_4.readUnsignedByte();
+            this.triangleSkinValues[int_27] = buffer_4.getUnsignedByte();
          }
       }
 
-      buffer_0.offset = int_19;
-      buffer_1.offset = int_13;
+      buffer_0.position = int_19;
+      buffer_1.position = int_13;
       int_27 = 0;
       int_28 = 0;
       int_29 = 0;
@@ -710,7 +710,7 @@ public class ModelData extends Renderable {
       int int_32;
       int int_33;
       for (int_31 = 0; int_31 < int_1; int_31++) {
-         int_32 = buffer_1.readUnsignedByte();
+         int_32 = buffer_1.getUnsignedByte();
          if (int_32 == 1) {
             int_27 = buffer_0.readShortSmart() + int_30;
             int_28 = buffer_0.readShortSmart() + int_27;
@@ -751,13 +751,13 @@ public class ModelData extends Renderable {
          }
       }
 
-      buffer_0.offset = int_21;
+      buffer_0.position = int_21;
 
       for (int_31 = 0; int_31 < int_2; int_31++) {
          this.textureRenderTypes[int_31] = 0;
-         this.texTriangleX[int_31] = (short)buffer_0.readUnsignedShort();
-         this.texTriangleY[int_31] = (short)buffer_0.readUnsignedShort();
-         this.texTriangleZ[int_31] = (short)buffer_0.readUnsignedShort();
+         this.texTriangleX[int_31] = (short)buffer_0.getUnsignedShort();
+         this.texTriangleY[int_31] = (short)buffer_0.getUnsignedShort();
+         this.texTriangleZ[int_31] = (short)buffer_0.getUnsignedShort();
       }
 
       if (this.textureCoords != null) {
@@ -990,28 +990,28 @@ public class ModelData extends Renderable {
       Buffer buffer_4 = new Buffer(bytes_0);
       Buffer buffer_5 = new Buffer(bytes_0);
       Buffer buffer_6 = new Buffer(bytes_0);
-      buffer_0.offset = bytes_0.length - 23;
-      int int_0 = buffer_0.readUnsignedShort();
-      int int_1 = buffer_0.readUnsignedShort();
-      int int_2 = buffer_0.readUnsignedByte();
-      int int_3 = buffer_0.readUnsignedByte();
-      int int_4 = buffer_0.readUnsignedByte();
-      int int_5 = buffer_0.readUnsignedByte();
-      int int_6 = buffer_0.readUnsignedByte();
-      int int_7 = buffer_0.readUnsignedByte();
-      int int_8 = buffer_0.readUnsignedByte();
-      int int_9 = buffer_0.readUnsignedShort();
-      int int_10 = buffer_0.readUnsignedShort();
-      int int_11 = buffer_0.readUnsignedShort();
-      int int_12 = buffer_0.readUnsignedShort();
-      int int_13 = buffer_0.readUnsignedShort();
+      buffer_0.position = bytes_0.length - 23;
+      int int_0 = buffer_0.getUnsignedShort();
+      int int_1 = buffer_0.getUnsignedShort();
+      int int_2 = buffer_0.getUnsignedByte();
+      int int_3 = buffer_0.getUnsignedByte();
+      int int_4 = buffer_0.getUnsignedByte();
+      int int_5 = buffer_0.getUnsignedByte();
+      int int_6 = buffer_0.getUnsignedByte();
+      int int_7 = buffer_0.getUnsignedByte();
+      int int_8 = buffer_0.getUnsignedByte();
+      int int_9 = buffer_0.getUnsignedShort();
+      int int_10 = buffer_0.getUnsignedShort();
+      int int_11 = buffer_0.getUnsignedShort();
+      int int_12 = buffer_0.getUnsignedShort();
+      int int_13 = buffer_0.getUnsignedShort();
       int int_14 = 0;
       int int_15 = 0;
       int int_16 = 0;
       int int_17;
       if (int_2 > 0) {
          this.textureRenderTypes = new byte[int_2];
-         buffer_0.offset = 0;
+         buffer_0.position = 0;
 
          for (int_17 = 0; int_17 < int_2; int_17++) {
             byte byte_0 = this.textureRenderTypes[int_17] = buffer_0.readByte();
@@ -1144,11 +1144,11 @@ public class ModelData extends Renderable {
          }
       }
 
-      buffer_0.offset = int_2;
-      buffer_1.offset = int_28;
-      buffer_2.offset = int_29;
-      buffer_3.offset = int_30;
-      buffer_4.offset = int_22;
+      buffer_0.position = int_2;
+      buffer_1.position = int_28;
+      buffer_2.position = int_29;
+      buffer_3.position = int_30;
+      buffer_4.position = int_22;
       int int_37 = 0;
       int int_38 = 0;
       int int_39 = 0;
@@ -1159,7 +1159,7 @@ public class ModelData extends Renderable {
       int int_43;
       int int_44;
       for (int_40 = 0; int_40 < int_0; int_40++) {
-         int_41 = buffer_0.readUnsignedByte();
+         int_41 = buffer_0.getUnsignedByte();
          int_42 = 0;
          if ((int_41 & 0x1) != 0) {
             int_42 = buffer_1.readShortSmart();
@@ -1182,20 +1182,20 @@ public class ModelData extends Renderable {
          int_38 = this.vertexY[int_40];
          int_39 = this.vertexZ[int_40];
          if (int_8 == 1) {
-            this.vertexSkins[int_40] = buffer_4.readUnsignedByte();
+            this.vertexSkins[int_40] = buffer_4.getUnsignedByte();
          }
       }
 
-      buffer_0.offset = int_27;
-      buffer_1.offset = int_18;
-      buffer_2.offset = int_20;
-      buffer_3.offset = int_23;
-      buffer_4.offset = int_21;
-      buffer_5.offset = int_25;
-      buffer_6.offset = int_26;
+      buffer_0.position = int_27;
+      buffer_1.position = int_18;
+      buffer_2.position = int_20;
+      buffer_3.position = int_23;
+      buffer_4.position = int_21;
+      buffer_5.position = int_25;
+      buffer_6.position = int_26;
 
       for (int_40 = 0; int_40 < int_1; int_40++) {
-         this.faceColor[int_40] = (short)buffer_0.readUnsignedShort();
+         this.faceColor[int_40] = (short)buffer_0.getUnsignedShort();
          if (int_3 == 1) {
             this.faceRenderType[int_40] = buffer_1.readByte();
          }
@@ -1209,20 +1209,20 @@ public class ModelData extends Renderable {
          }
 
          if (int_6 == 1) {
-            this.triangleSkinValues[int_40] = buffer_4.readUnsignedByte();
+            this.triangleSkinValues[int_40] = buffer_4.getUnsignedByte();
          }
 
          if (int_7 == 1) {
-            this.faceTextures[int_40] = (short)(buffer_5.readUnsignedShort() - 1);
+            this.faceTextures[int_40] = (short)(buffer_5.getUnsignedShort() - 1);
          }
 
          if (this.textureCoords != null && this.faceTextures[int_40] != -1) {
-            this.textureCoords[int_40] = (byte)(buffer_6.readUnsignedByte() - 1);
+            this.textureCoords[int_40] = (byte)(buffer_6.getUnsignedByte() - 1);
          }
       }
 
-      buffer_0.offset = int_24;
-      buffer_1.offset = int_19;
+      buffer_0.position = int_24;
+      buffer_1.position = int_19;
       int_40 = 0;
       int_41 = 0;
       int_42 = 0;
@@ -1230,7 +1230,7 @@ public class ModelData extends Renderable {
 
       int int_45;
       for (int_44 = 0; int_44 < int_1; int_44++) {
-         int_45 = buffer_1.readUnsignedByte();
+         int_45 = buffer_1.getUnsignedByte();
          if (int_45 == 1) {
             int_40 = buffer_0.readShortSmart() + int_43;
             int_41 = buffer_0.readShortSmart() + int_40;
@@ -1271,66 +1271,66 @@ public class ModelData extends Renderable {
          }
       }
 
-      buffer_0.offset = int_31;
-      buffer_1.offset = int_32;
-      buffer_2.offset = int_33;
-      buffer_3.offset = int_34;
-      buffer_4.offset = int_35;
-      buffer_5.offset = int_36;
+      buffer_0.position = int_31;
+      buffer_1.position = int_32;
+      buffer_2.position = int_33;
+      buffer_3.position = int_34;
+      buffer_4.position = int_35;
+      buffer_5.position = int_36;
 
       for (int_44 = 0; int_44 < int_2; int_44++) {
          int_45 = this.textureRenderTypes[int_44] & 0xFF;
          if (int_45 == 0) {
-            this.texTriangleX[int_44] = (short)buffer_0.readUnsignedShort();
-            this.texTriangleY[int_44] = (short)buffer_0.readUnsignedShort();
-            this.texTriangleZ[int_44] = (short)buffer_0.readUnsignedShort();
+            this.texTriangleX[int_44] = (short)buffer_0.getUnsignedShort();
+            this.texTriangleY[int_44] = (short)buffer_0.getUnsignedShort();
+            this.texTriangleZ[int_44] = (short)buffer_0.getUnsignedShort();
          }
 
          if (int_45 == 1) {
-            this.texTriangleX[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleY[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleZ[int_44] = (short)buffer_1.readUnsignedShort();
-            this.aShortArray13[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray14[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray15[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray16[int_44] = (short)buffer_3.readUnsignedShort();
+            this.texTriangleX[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleY[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleZ[int_44] = (short)buffer_1.getUnsignedShort();
+            this.aShortArray13[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray14[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray15[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray16[int_44] = (short)buffer_3.getUnsignedShort();
             this.aByteArray27[int_44] = buffer_4.readByte();
-            this.aShortArray17[int_44] = (short)buffer_5.readUnsignedShort();
+            this.aShortArray17[int_44] = (short)buffer_5.getUnsignedShort();
          }
 
          if (int_45 == 2) {
-            this.texTriangleX[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleY[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleZ[int_44] = (short)buffer_1.readUnsignedShort();
-            this.aShortArray13[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray14[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray15[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray16[int_44] = (short)buffer_3.readUnsignedShort();
+            this.texTriangleX[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleY[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleZ[int_44] = (short)buffer_1.getUnsignedShort();
+            this.aShortArray13[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray14[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray15[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray16[int_44] = (short)buffer_3.getUnsignedShort();
             this.aByteArray27[int_44] = buffer_4.readByte();
-            this.aShortArray17[int_44] = (short)buffer_5.readUnsignedShort();
-            this.texturePrimaryColor[int_44] = (short)buffer_5.readUnsignedShort();
+            this.aShortArray17[int_44] = (short)buffer_5.getUnsignedShort();
+            this.texturePrimaryColor[int_44] = (short)buffer_5.getUnsignedShort();
          }
 
          if (int_45 == 3) {
-            this.texTriangleX[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleY[int_44] = (short)buffer_1.readUnsignedShort();
-            this.texTriangleZ[int_44] = (short)buffer_1.readUnsignedShort();
-            this.aShortArray13[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray14[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray15[int_44] = (short)buffer_2.readUnsignedShort();
-            this.aShortArray16[int_44] = (short)buffer_3.readUnsignedShort();
+            this.texTriangleX[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleY[int_44] = (short)buffer_1.getUnsignedShort();
+            this.texTriangleZ[int_44] = (short)buffer_1.getUnsignedShort();
+            this.aShortArray13[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray14[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray15[int_44] = (short)buffer_2.getUnsignedShort();
+            this.aShortArray16[int_44] = (short)buffer_3.getUnsignedShort();
             this.aByteArray27[int_44] = buffer_4.readByte();
-            this.aShortArray17[int_44] = (short)buffer_5.readUnsignedShort();
+            this.aShortArray17[int_44] = (short)buffer_5.getUnsignedShort();
          }
       }
 
-      buffer_0.offset = int_17;
-      int_44 = buffer_0.readUnsignedByte();
+      buffer_0.position = int_17;
+      int_44 = buffer_0.getUnsignedByte();
       if (int_44 != 0) {
          new Class53();
-         buffer_0.readUnsignedShort();
-         buffer_0.readUnsignedShort();
-         buffer_0.readUnsignedShort();
+         buffer_0.getUnsignedShort();
+         buffer_0.getUnsignedShort();
+         buffer_0.getUnsignedShort();
          buffer_0.readInt();
       }
 

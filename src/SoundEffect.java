@@ -8,16 +8,16 @@ public class SoundEffect {
       this.instruments = new AudioInstrument[10];
 
       for (int int_0 = 0; int_0 < 10; int_0++) {
-         int int_1 = buffer_0.readUnsignedByte();
+         int int_1 = buffer_0.getUnsignedByte();
          if (int_1 != 0) {
-            --buffer_0.offset;
+            --buffer_0.position;
             this.instruments[int_0] = new AudioInstrument();
             this.instruments[int_0].decode(buffer_0);
          }
       }
 
-      this.start = buffer_0.readUnsignedShort();
-      this.end = buffer_0.readUnsignedShort();
+      this.start = buffer_0.getUnsignedShort();
+      this.end = buffer_0.getUnsignedShort();
    }
 
    byte[] mix() {

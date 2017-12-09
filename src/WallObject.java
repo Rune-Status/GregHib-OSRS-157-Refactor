@@ -32,9 +32,9 @@ public final class WallObject {
    static void xteaChanged(boolean dynamic, PacketBuffer buffer) {
       Client.isDynamicRegion = dynamic;
       if (!Client.isDynamicRegion) {
-         int regionY = buffer.method713();
+         int regionY = buffer.getUnsignedShortInverse();
          int regionX = buffer.readUnsignedShortOb1();
-         int mapCount = buffer.readUnsignedShort();
+         int mapCount = buffer.getUnsignedShort();
          Class38.xteaKeys = new int[mapCount][4];
 
          for (int map = 0; map < mapCount; map++) {
@@ -74,9 +74,9 @@ public final class WallObject {
          Class40.method259(regionX, regionY, true);
       } else {
          boolean bool_1 = buffer.readNegUByte() == 1;
-         int regionY = buffer.method713();
-         int regionX = buffer.method712();
-         int mapCount = buffer.readUnsignedShort();
+         int regionY = buffer.getUnsignedShortInverse();
+         int regionX = buffer.getUnsignedShortAInverse();
+         int mapCount = buffer.getUnsignedShort();
          buffer.bitAccess();
 
          int visible;

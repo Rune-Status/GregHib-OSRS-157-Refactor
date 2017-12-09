@@ -25,15 +25,15 @@ public class FaceNormal {
          Buffer buffer_0 = new Buffer(new byte[1000]);
 
          do {
-            int int_0 = inputstream_0.read(buffer_0.payload, buffer_0.offset, 1000 - buffer_0.offset);
+            int int_0 = inputstream_0.read(buffer_0.buffer, buffer_0.position, 1000 - buffer_0.position);
             if (int_0 == -1) {
-               buffer_0.offset = 0;
+               buffer_0.position = 0;
                long long_0 = buffer_0.readLong();
                return long_0;
             }
 
-            buffer_0.offset += int_0;
-         } while (buffer_0.offset < 1000);
+            buffer_0.position += int_0;
+         } while (buffer_0.position < 1000);
 
          return 0L;
       } catch (Exception exception_0) {

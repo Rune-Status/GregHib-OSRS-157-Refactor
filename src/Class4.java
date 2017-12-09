@@ -63,16 +63,16 @@ public class Class4 implements WorldMapSectionBase {
    }
 
    public void method10(Buffer buffer_0) {
-      this.anInt26 = buffer_0.readUnsignedByte();
-      this.anInt29 = buffer_0.readUnsignedByte();
-      this.anInt31 = buffer_0.readUnsignedShort();
-      this.anInt30 = buffer_0.readUnsignedByte();
-      this.anInt34 = buffer_0.readUnsignedShort();
-      this.anInt35 = buffer_0.readUnsignedByte();
-      this.anInt28 = buffer_0.readUnsignedShort();
-      this.anInt27 = buffer_0.readUnsignedByte();
-      this.anInt33 = buffer_0.readUnsignedShort();
-      this.anInt32 = buffer_0.readUnsignedByte();
+      this.anInt26 = buffer_0.getUnsignedByte();
+      this.anInt29 = buffer_0.getUnsignedByte();
+      this.anInt31 = buffer_0.getUnsignedShort();
+      this.anInt30 = buffer_0.getUnsignedByte();
+      this.anInt34 = buffer_0.getUnsignedShort();
+      this.anInt35 = buffer_0.getUnsignedByte();
+      this.anInt28 = buffer_0.getUnsignedShort();
+      this.anInt27 = buffer_0.getUnsignedByte();
+      this.anInt33 = buffer_0.getUnsignedShort();
+      this.anInt32 = buffer_0.getUnsignedByte();
       this.method81();
    }
 

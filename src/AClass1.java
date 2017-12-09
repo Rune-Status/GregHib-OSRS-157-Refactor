@@ -26,28 +26,28 @@ public abstract class AClass1 {
    void method158(int int_0, int int_1, Buffer buffer_0, int int_2) {
       boolean bool_0 = (int_2 & 0x2) != 0;
       if (bool_0) {
-         this.aShortArrayArrayArray2[0][int_0][int_1] = (short)buffer_0.readUnsignedByte();
+         this.aShortArrayArrayArray2[0][int_0][int_1] = (short)buffer_0.getUnsignedByte();
       }
 
-      this.aShortArrayArrayArray1[0][int_0][int_1] = (short)buffer_0.readUnsignedByte();
+      this.aShortArrayArrayArray1[0][int_0][int_1] = (short)buffer_0.getUnsignedByte();
    }
 
    void method159(int int_0, int int_1, Buffer buffer_0, int int_2) {
       int int_3 = ((int_2 & 0x18) >> 3) + 1;
       boolean bool_0 = (int_2 & 0x2) != 0;
       boolean bool_1 = (int_2 & 0x4) != 0;
-      this.aShortArrayArrayArray1[0][int_0][int_1] = (short)buffer_0.readUnsignedByte();
+      this.aShortArrayArrayArray1[0][int_0][int_1] = (short)buffer_0.getUnsignedByte();
       int int_4;
       int int_5;
       int int_7;
       if (bool_0) {
-         int_4 = buffer_0.readUnsignedByte();
+         int_4 = buffer_0.getUnsignedByte();
 
          for (int_5 = 0; int_5 < int_4; int_5++) {
-            int int_6 = buffer_0.readUnsignedByte();
+            int int_6 = buffer_0.getUnsignedByte();
             if (int_6 != 0) {
                this.aShortArrayArrayArray2[int_5][int_0][int_1] = (short)int_6;
-               int_7 = buffer_0.readUnsignedByte();
+               int_7 = buffer_0.getUnsignedByte();
                this.aByteArrayArrayArray3[int_5][int_0][int_1] = (byte)(int_7 >> 2);
                this.aByteArrayArrayArray4[int_5][int_0][int_1] = (byte)(int_7 & 0x3);
             }
@@ -56,13 +56,13 @@ public abstract class AClass1 {
 
       if (bool_1) {
          for (int_4 = 0; int_4 < int_3; int_4++) {
-            int_5 = buffer_0.readUnsignedByte();
+            int_5 = buffer_0.getUnsignedByte();
             if (int_5 != 0) {
                Class6[] class6s_0 = this.aClass6ArrayArrayArrayArray1[int_4][int_0][int_1] = new Class6[int_5];
 
                for (int_7 = 0; int_7 < int_5; int_7++) {
-                  int int_8 = buffer_0.method703();
-                  int int_9 = buffer_0.readUnsignedByte();
+                  int int_8 = buffer_0.getBigSmart();
+                  int int_9 = buffer_0.getUnsignedByte();
                   class6s_0[int_7] = new Class6(int_8, int_9 >> 2, int_9 & 0x3);
                }
             }
@@ -80,7 +80,7 @@ public abstract class AClass1 {
    }
 
    void method162(int int_0, int int_1, Buffer buffer_0) {
-      int int_2 = buffer_0.readUnsignedByte();
+      int int_2 = buffer_0.getUnsignedByte();
       if (int_2 != 0) {
          if ((int_2 & 0x1) != 0) {
             this.method158(int_0, int_1, buffer_0, int_2);

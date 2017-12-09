@@ -460,10 +460,10 @@ public class ScriptVarType implements RSEnum, Interface6 {
       int int_5;
       int int_6;
       if (Class59.aClass59_9 == class59_0) {
-         int_0 = packetbuffer_0.method709();
+         int_0 = packetbuffer_0.getUnsignedByteS();
          int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
          int_2 = (int_0 & 0x7) + GameObject.anInt222;
-         int_3 = packetbuffer_0.method709();
+         int_3 = packetbuffer_0.getUnsignedByteS();
          int_4 = int_3 >> 2;
          int_5 = int_3 & 0x3;
          int_6 = Client.anIntArray148[int_4];
@@ -475,10 +475,10 @@ public class ScriptVarType implements RSEnum, Interface6 {
          int int_7;
          int int_8;
          if (Class59.aClass59_8 == class59_0) {
-            int_0 = packetbuffer_0.method710();
+            int_0 = packetbuffer_0.getUnsignedByteC();
             int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
             int_2 = (int_0 & 0x7) + GameObject.anInt222;
-            int_3 = packetbuffer_0.readUnsignedByte();
+            int_3 = packetbuffer_0.getUnsignedByte();
             int_4 = int_3 >> 2;
             int_5 = int_3 & 0x3;
             int_6 = Client.anIntArray148[int_4];
@@ -537,8 +537,8 @@ public class ScriptVarType implements RSEnum, Interface6 {
 
          } else if (Class59.aClass59_4 == class59_0) {
             int_0 = packetbuffer_0.readUnsignedShortOb1();
-            int_1 = packetbuffer_0.method712();
-            int_2 = packetbuffer_0.readUnsignedByte();
+            int_1 = packetbuffer_0.getUnsignedShortAInverse();
+            int_2 = packetbuffer_0.getUnsignedByte();
             int_3 = (int_2 >> 4 & 0x7) + Class23.anInt75;
             int_4 = (int_2 & 0x7) + GameObject.anInt222;
             int_5 = packetbuffer_0.readNegUByte();
@@ -556,17 +556,17 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int int_12;
             if (Class59.aClass59_5 == class59_0) {
                int_0 = packetbuffer_0.readNegUByte() * 4;
-               int_1 = packetbuffer_0.method713();
-               int_2 = packetbuffer_0.method710() * 4;
-               int_3 = packetbuffer_0.readUnsignedByte();
+               int_1 = packetbuffer_0.getUnsignedShortInverse();
+               int_2 = packetbuffer_0.getUnsignedByteC() * 4;
+               int_3 = packetbuffer_0.getUnsignedByte();
                int_4 = packetbuffer_0.readNegUByte();
-               byte byte_4 = packetbuffer_0.method715();
-               int_6 = packetbuffer_0.readUnsignedByte();
+               byte byte_4 = packetbuffer_0.getByteA();
+               int_6 = packetbuffer_0.getUnsignedByte();
                int_7 = (int_6 >> 4 & 0x7) + Class23.anInt75;
                int_9 = (int_6 & 0x7) + GameObject.anInt222;
-               int_8 = packetbuffer_0.readUnsignedShort();
+               int_8 = packetbuffer_0.getUnsignedShort();
                byte byte_6 = packetbuffer_0.method717();
-               int_11 = packetbuffer_0.method713();
+               int_11 = packetbuffer_0.getUnsignedShortInverse();
                int_12 = packetbuffer_0.method707();
                int_10 = byte_6 + int_7;
                int_5 = byte_4 + int_9;
@@ -581,12 +581,12 @@ public class ScriptVarType implements RSEnum, Interface6 {
                }
 
             } else if (Class59.aClass59_10 == class59_0) {
-               int_0 = packetbuffer_0.method713();
-               int_1 = packetbuffer_0.method709();
+               int_0 = packetbuffer_0.getUnsignedShortInverse();
+               int_1 = packetbuffer_0.getUnsignedByteS();
                int_2 = int_1 >> 2;
                int_3 = int_1 & 0x3;
                int_4 = Client.anIntArray148[int_2];
-               int_5 = packetbuffer_0.readUnsignedByte();
+               int_5 = packetbuffer_0.getUnsignedByte();
                int_6 = (int_5 >> 4 & 0x7) + Class23.anInt75;
                int_7 = (int_5 & 0x7) + GameObject.anInt222;
                if (int_6 >= 0 && int_7 >= 0 && int_6 < 104 && int_7 < 104) {
@@ -594,9 +594,9 @@ public class ScriptVarType implements RSEnum, Interface6 {
                }
 
             } else if (Class59.aClass59_2 == class59_0) {
-               int_0 = packetbuffer_0.readUnsignedShort();
-               int_1 = packetbuffer_0.readUnsignedShort();
-               int_2 = packetbuffer_0.readUnsignedShort();
+               int_0 = packetbuffer_0.getUnsignedShort();
+               int_1 = packetbuffer_0.getUnsignedShort();
+               int_2 = packetbuffer_0.getUnsignedShort();
                int_3 = packetbuffer_0.readNegUByte();
                int_4 = (int_3 >> 4 & 0x7) + Class23.anInt75;
                int_5 = (int_3 & 0x7) + GameObject.anInt222;
@@ -617,7 +617,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
             } else {
                Item item_1;
                if (Class59.aClass59_7 == class59_0) {
-                  int_0 = packetbuffer_0.readUnsignedShort();
+                  int_0 = packetbuffer_0.getUnsignedShort();
                   int_1 = packetbuffer_0.readNegUByte();
                   int_2 = (int_1 >> 4 & 0x7) + Class23.anInt75;
                   int_3 = (int_1 & 0x7) + GameObject.anInt222;
@@ -636,14 +636,14 @@ public class ScriptVarType implements RSEnum, Interface6 {
 
                } else {
                   if (Class59.aClass59_1 == class59_0) {
-                     int_0 = packetbuffer_0.readUnsignedByte();
+                     int_0 = packetbuffer_0.getUnsignedByte();
                      int_1 = packetbuffer_0.readNegUByte();
                      int_2 = (int_1 >> 4 & 0x7) + Class23.anInt75;
                      int_3 = (int_1 & 0x7) + GameObject.anInt222;
-                     int_4 = packetbuffer_0.method710();
+                     int_4 = packetbuffer_0.getUnsignedByteC();
                      int_5 = int_4 >> 4 & 0xF;
                      int_6 = int_4 & 0x7;
-                     int_7 = packetbuffer_0.method713();
+                     int_7 = packetbuffer_0.getUnsignedShortInverse();
                      if (int_2 >= 0 && int_3 >= 0 && int_2 < 104 && int_3 < 104) {
                         int_9 = int_5 + 1;
                         if (Class4.localPlayer.pathX[0] >= int_2 - int_9 && Class4.localPlayer.pathX[0] <= int_9 + int_2 && Class4.localPlayer.pathY[0] >= int_3 - int_9 && Class4.localPlayer.pathY[0] <= int_9 + int_3 && Client.anInt646 != 0 && int_6 > 0 && Client.anInt647 < 50) {
@@ -659,7 +659,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
 
                   if (Class59.aClass59_6 == class59_0) {
                      int_0 = packetbuffer_0.readUnsignedShortOb1();
-                     int_1 = packetbuffer_0.method710();
+                     int_1 = packetbuffer_0.getUnsignedByteC();
                      int_2 = (int_1 >> 4 & 0x7) + Class23.anInt75;
                      int_3 = (int_1 & 0x7) + GameObject.anInt222;
                      if (int_2 >= 0 && int_3 >= 0 && int_2 < 104 && int_3 < 104) {
@@ -682,21 +682,21 @@ public class ScriptVarType implements RSEnum, Interface6 {
 
                   } else {
                      if (Class59.aClass59_3 == class59_0) {
-                        byte byte_1 = packetbuffer_0.method728();
+                        byte byte_1 = packetbuffer_0.getByteS();
                         byte byte_2 = packetbuffer_0.method717();
-                        int_2 = packetbuffer_0.readUnsignedShort();
+                        int_2 = packetbuffer_0.getUnsignedShort();
                         byte byte_3 = packetbuffer_0.readByte();
-                        int_4 = packetbuffer_0.readUnsignedByte();
+                        int_4 = packetbuffer_0.getUnsignedByte();
                         int_5 = (int_4 >> 4 & 0x7) + Class23.anInt75;
                         int_6 = (int_4 & 0x7) + GameObject.anInt222;
-                        byte byte_5 = packetbuffer_0.method715();
+                        byte byte_5 = packetbuffer_0.getByteA();
                         int_9 = packetbuffer_0.readUnsignedShortOb1();
-                        int_8 = packetbuffer_0.method710();
+                        int_8 = packetbuffer_0.getUnsignedByteC();
                         int_10 = int_8 >> 2;
                         int_11 = int_8 & 0x3;
                         int_12 = Client.anIntArray148[int_10];
                         int int_13 = packetbuffer_0.readUnsignedShortOb1();
-                        int int_14 = packetbuffer_0.readUnsignedShort();
+                        int int_14 = packetbuffer_0.getUnsignedShort();
                         Player player_0;
                         if (int_9 == Client.localInteractingIndex) {
                            player_0 = Class4.localPlayer;

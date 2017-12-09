@@ -748,18 +748,18 @@ public final class Client extends GameEngine {
                             return false;
                         }
 
-                        rssocket_0.read(class46_0.aPacketBuffer1.payload, 0, 1);
+                        rssocket_0.read(class46_0.aPacketBuffer1.buffer, 0, 1);
                         class46_0.anInt103 = 0;
                         class46_0.aBool18 = false;
                     }
 
-                    packetbuffer_0.offset = 0;
+                    packetbuffer_0.position = 0;
                     if (packetbuffer_0.method904()) {
                         if (!rssocket_0.method568(1)) {
                             return false;
                         }
 
-                        rssocket_0.read(class46_0.aPacketBuffer1.payload, 1, 1);
+                        rssocket_0.read(class46_0.aPacketBuffer1.buffer, 1, 1);
                         class46_0.anInt103 = 0;
                     }
 
@@ -767,7 +767,7 @@ public final class Client extends GameEngine {
                     ServerPacket[] serverpackets_0 = DecorativeObject.method460();
                     int_0 = packetbuffer_0.method906();
                     if (int_0 < 0 || int_0 >= serverpackets_0.length) {
-                        throw new IOException(int_0 + " " + packetbuffer_0.offset);
+                        throw new IOException(int_0 + " " + packetbuffer_0.position);
                     }
 
                     class46_0.serverPacket = serverpackets_0[int_0];
@@ -779,8 +779,8 @@ public final class Client extends GameEngine {
                         return false;
                     }
 
-                    class46_0.createSocket().read(packetbuffer_0.payload, 0, 1);
-                    class46_0.packetLength = packetbuffer_0.payload[0] & 0xFF;
+                    class46_0.createSocket().read(packetbuffer_0.buffer, 0, 1);
+                    class46_0.packetLength = packetbuffer_0.buffer[0] & 0xFF;
                 }
 
                 if (class46_0.packetLength == -2) {
@@ -788,17 +788,17 @@ public final class Client extends GameEngine {
                         return false;
                     }
 
-                    class46_0.createSocket().read(packetbuffer_0.payload, 0, 2);
-                    packetbuffer_0.offset = 0;
-                    class46_0.packetLength = packetbuffer_0.readUnsignedShort();
+                    class46_0.createSocket().read(packetbuffer_0.buffer, 0, 2);
+                    packetbuffer_0.position = 0;
+                    class46_0.packetLength = packetbuffer_0.getUnsignedShort();
                 }
 
                 if (!rssocket_0.method568(class46_0.packetLength)) {
                     return false;
                 }
 
-                packetbuffer_0.offset = 0;
-                rssocket_0.read(packetbuffer_0.payload, 0, class46_0.packetLength);
+                packetbuffer_0.position = 0;
+                rssocket_0.read(packetbuffer_0.buffer, 0, class46_0.packetLength);
                 class46_0.anInt103 = 0;
                 aClass100_1.method527();
                 class46_0.aServerPacket2 = class46_0.aServerPacket1;
@@ -831,10 +831,10 @@ public final class Client extends GameEngine {
 
                 int int_11;
                 if (ServerPacket.aServerPacket17 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.readUnsignedByte();
-                    int_0 = packetbuffer_0.readUnsignedByte();
-                    int_2 = packetbuffer_0.readUnsignedByte();
-                    int_11 = packetbuffer_0.readUnsignedByte();
+                    int_1 = packetbuffer_0.getUnsignedByte();
+                    int_0 = packetbuffer_0.getUnsignedByte();
+                    int_2 = packetbuffer_0.getUnsignedByte();
+                    int_11 = packetbuffer_0.getUnsignedByte();
                     aBoolArray12[int_1] = true;
                     anIntArray142[int_1] = int_0;
                     anIntArray143[int_1] = int_2;
@@ -887,9 +887,9 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.soundEffectPacket == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.readUnsignedShort();
-                    int_0 = packetbuffer_0.readUnsignedByte();
-                    int_2 = packetbuffer_0.readUnsignedShort();
+                    int_1 = packetbuffer_0.getUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedByte();
+                    int_2 = packetbuffer_0.getUnsignedShort();
                     if (anInt644 != 0 && int_0 != 0 && anInt647 < 50) {
                         anIntArray149[anInt647] = int_1;
                         anIntArray150[anInt647] = int_0;
@@ -904,9 +904,9 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.itemOnInterfacePacket == class46_0.serverPacket) {
-                    hintArrowTargetType = packetbuffer_0.readUnsignedByte();
+                    hintArrowTargetType = packetbuffer_0.getUnsignedByte();
                     if (hintArrowTargetType == 1) {
-                        hintArrowNpcTargetIdx = packetbuffer_0.readUnsignedShort();
+                        hintArrowNpcTargetIdx = packetbuffer_0.getUnsignedShort();
                     }
 
                     if (hintArrowTargetType >= 2 && hintArrowTargetType <= 6) {
@@ -936,13 +936,13 @@ public final class Client extends GameEngine {
                         }
 
                         hintArrowTargetType = 2;
-                        hintArrowX = packetbuffer_0.readUnsignedShort();
-                        hintArrowY = packetbuffer_0.readUnsignedShort();
-                        hintArrowType = packetbuffer_0.readUnsignedByte();
+                        hintArrowX = packetbuffer_0.getUnsignedShort();
+                        hintArrowY = packetbuffer_0.getUnsignedShort();
+                        hintArrowType = packetbuffer_0.getUnsignedByte();
                     }
 
                     if (hintArrowTargetType == 10) {
-                        hintArrowPlayerTargetIdx = packetbuffer_0.readUnsignedShort();
+                        hintArrowPlayerTargetIdx = packetbuffer_0.getUnsignedShort();
                     }
 
                     class46_0.serverPacket = null;
@@ -952,7 +952,7 @@ public final class Client extends GameEngine {
                 WidgetNode widgetnode_1;
                 if (ServerPacket.aServerPacket33 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readNegUByte();
-                    int_0 = packetbuffer_0.method713();
+                    int_0 = packetbuffer_0.getUnsignedShortInverse();
                     int_2 = packetbuffer_0.method714();
                     widgetnode_1 = (WidgetNode) componentTable.get((long) int_2);
                     if (widgetnode_1 != null) {
@@ -986,14 +986,14 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket39 == class46_0.serverPacket) {
-                    anInt650 = packetbuffer_0.readUnsignedByte();
+                    anInt650 = packetbuffer_0.getUnsignedByte();
                     class46_0.serverPacket = null;
                     return true;
                 }
 
                 boolean bool_5;
                 if (ServerPacket.aServerPacket42 == class46_0.serverPacket) {
-                    bool_5 = packetbuffer_0.method709() == 1;
+                    bool_5 = packetbuffer_0.getUnsignedByteS() == 1;
                     int_0 = packetbuffer_0.method714();
                     widget_1 = PendingSpawn.method671(int_0);
                     if (bool_5 != widget_1.isHidden) {
@@ -1008,8 +1008,8 @@ public final class Client extends GameEngine {
                 if (ServerPacket.skillLvlPacket == class46_0.serverPacket) {
                     Class12.method165();
                     int_1 = packetbuffer_0.method706();
-                    int_0 = packetbuffer_0.method710();
-                    int_2 = packetbuffer_0.readUnsignedByte();
+                    int_0 = packetbuffer_0.getUnsignedByteC();
+                    int_2 = packetbuffer_0.getUnsignedByte();
                     skillExperiences[int_0] = int_1;
                     boostedSkillLevels[int_0] = int_2;
                     realSkillLevels[int_0] = 1;
@@ -1026,8 +1026,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.varpSmallPacket == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method713();
-                    byte byte_2 = packetbuffer_0.method715();
+                    int_1 = packetbuffer_0.getUnsignedShortInverse();
+                    byte byte_2 = packetbuffer_0.getByteA();
                     Class79.settings[int_1] = byte_2;
                     if (Class79.widgetSettings[int_1] != byte_2) {
                         Class79.widgetSettings[int_1] = byte_2;
@@ -1044,11 +1044,11 @@ public final class Client extends GameEngine {
                 int int_12;
                 if (ServerPacket.aServerPacket48 == class46_0.serverPacket) {
                     aBool94 = true;
-                    Class9.anInt42 = packetbuffer_0.readUnsignedByte();
-                    Class17.anInt69 = packetbuffer_0.readUnsignedByte();
-                    CombatInfo1.anInt351 = packetbuffer_0.readUnsignedShort();
-                    TextureProvider.anInt225 = packetbuffer_0.readUnsignedByte();
-                    AClass3_Sub1.anInt402 = packetbuffer_0.readUnsignedByte();
+                    Class9.anInt42 = packetbuffer_0.getUnsignedByte();
+                    Class17.anInt69 = packetbuffer_0.getUnsignedByte();
+                    CombatInfo1.anInt351 = packetbuffer_0.getUnsignedShort();
+                    TextureProvider.anInt225 = packetbuffer_0.getUnsignedByte();
+                    AClass3_Sub1.anInt402 = packetbuffer_0.getUnsignedByte();
                     if (AClass3_Sub1.anInt402 >= 100) {
                         int_1 = Class9.anInt42 * 128 + 64;
                         int_0 = Class17.anInt69 * 128 + 64;
@@ -1093,18 +1093,18 @@ public final class Client extends GameEngine {
                 int int_13;
                 boolean bool_8;
                 if (ServerPacket.aServerPacket52 == class46_0.serverPacket) {
-                    while (packetbuffer_0.offset < class46_0.packetLength) {
-                        bool_5 = packetbuffer_0.readUnsignedByte() == 1;
+                    while (packetbuffer_0.position < class46_0.packetLength) {
+                        bool_5 = packetbuffer_0.getUnsignedByte() == 1;
                         string_1 = packetbuffer_0.readString();
                         string_0 = packetbuffer_0.readString();
-                        int_11 = packetbuffer_0.readUnsignedShort();
-                        int_12 = packetbuffer_0.readUnsignedByte();
-                        int_3 = packetbuffer_0.readUnsignedByte();
+                        int_11 = packetbuffer_0.getUnsignedShort();
+                        int_12 = packetbuffer_0.getUnsignedByte();
+                        int_3 = packetbuffer_0.getUnsignedByte();
                         boolean bool_7 = (int_3 & 0x2) != 0;
                         bool_6 = (int_3 & 0x1) != 0;
                         if (int_11 > 0) {
                             packetbuffer_0.readString();
-                            packetbuffer_0.readUnsignedByte();
+                            packetbuffer_0.getUnsignedByte();
                             packetbuffer_0.readInt();
                         }
 
@@ -1233,8 +1233,8 @@ public final class Client extends GameEngine {
 
                 boolean bool_4;
                 if (ServerPacket.addIgnorePacket == class46_0.serverPacket) {
-                    while (packetbuffer_0.offset < class46_0.packetLength) {
-                        int_1 = packetbuffer_0.readUnsignedByte();
+                    while (packetbuffer_0.position < class46_0.packetLength) {
+                        int_1 = packetbuffer_0.getUnsignedByte();
                         bool_4 = (int_1 & 0x1) == 1;
                         string_0 = packetbuffer_0.readString();
                         String string_5 = packetbuffer_0.readString();
@@ -1279,7 +1279,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket63 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    int_0 = packetbuffer_0.readUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedShort();
                     if (int_1 < -70000) {
                         int_0 += 32768;
                     }
@@ -1290,12 +1290,12 @@ public final class Client extends GameEngine {
                         widget_1 = null;
                     }
 
-                    for (; packetbuffer_0.offset < class46_0.packetLength; AClass3_Sub2.setItemTableSlot(int_0, int_11, int_12 - 1, int_3)) {
+                    for (; packetbuffer_0.position < class46_0.packetLength; AClass3_Sub2.setItemTableSlot(int_0, int_11, int_12 - 1, int_3)) {
                         int_11 = packetbuffer_0.getUSmart();
-                        int_12 = packetbuffer_0.readUnsignedShort();
+                        int_12 = packetbuffer_0.getUnsignedShort();
                         int_3 = 0;
                         if (int_12 != 0) {
-                            int_3 = packetbuffer_0.readUnsignedByte();
+                            int_3 = packetbuffer_0.getUnsignedByte();
                             if (int_3 == 255) {
                                 int_3 = packetbuffer_0.readInt();
                             }
@@ -1340,7 +1340,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket66 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method712();
+                    int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     ItemContainer itemcontainer_0 = (ItemContainer) ItemContainer.itemContainers.get((long) int_1);
                     if (itemcontainer_0 != null) {
                         itemcontainer_0.unlink();
@@ -1371,9 +1371,9 @@ public final class Client extends GameEngine {
                 int int_5;
                 long long_0;
                 if (ServerPacket.aServerPacket34 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.offset + class46_0.packetLength;
-                    int_0 = packetbuffer_0.readUnsignedShort();
-                    int_2 = packetbuffer_0.readUnsignedShort();
+                    int_1 = packetbuffer_0.position + class46_0.packetLength;
+                    int_0 = packetbuffer_0.getUnsignedShort();
+                    int_2 = packetbuffer_0.getUnsignedShort();
                     if (int_0 != widgetRoot) {
                         widgetRoot = int_0;
                         this.method1098(false);
@@ -1388,8 +1388,8 @@ public final class Client extends GameEngine {
                     WidgetNode widgetnode_3;
                     for (; int_2-- > 0; widgetnode_3.aBool54 = true) {
                         int_11 = packetbuffer_0.readInt();
-                        int_12 = packetbuffer_0.readUnsignedShort();
-                        int_3 = packetbuffer_0.readUnsignedByte();
+                        int_12 = packetbuffer_0.getUnsignedShort();
+                        int_3 = packetbuffer_0.getUnsignedByte();
                         widgetnode_3 = (WidgetNode) componentTable.get((long) int_11);
                         if (widgetnode_3 != null && int_12 != widgetnode_3.id) {
                             Frames.method873(widgetnode_3, true);
@@ -1411,10 +1411,10 @@ public final class Client extends GameEngine {
 
                     widgetFlags = new HashTable(512);
 
-                    while (packetbuffer_0.offset < int_1) {
+                    while (packetbuffer_0.position < int_1) {
                         int_11 = packetbuffer_0.readInt();
-                        int_12 = packetbuffer_0.readUnsignedShort();
-                        int_3 = packetbuffer_0.readUnsignedShort();
+                        int_12 = packetbuffer_0.getUnsignedShort();
+                        int_3 = packetbuffer_0.getUnsignedShort();
                         int_4 = packetbuffer_0.readInt();
 
                         for (int_5 = int_12; int_5 <= int_3; int_5++) {
@@ -1435,7 +1435,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket50 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    int_0 = packetbuffer_0.method713();
+                    int_0 = packetbuffer_0.getUnsignedShortInverse();
                     if (int_0 == 65535) {
                         int_0 = -1;
                     }
@@ -1487,12 +1487,12 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket51 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.readUnsignedByte();
-                    if (packetbuffer_0.readUnsignedByte() == 0) {
+                    int_1 = packetbuffer_0.getUnsignedByte();
+                    if (packetbuffer_0.getUnsignedByte() == 0) {
                         grandExchangeOffers[int_1] = new GrandExchangeOffer();
-                        packetbuffer_0.offset += 18;
+                        packetbuffer_0.position += 18;
                     } else {
-                        --packetbuffer_0.offset;
+                        --packetbuffer_0.position;
                         grandExchangeOffers[int_1] = new GrandExchangeOffer(packetbuffer_0, false);
                     }
 
@@ -1519,7 +1519,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket73 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    int_0 = packetbuffer_0.readUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedShort();
                     if (int_1 < -70000) {
                         int_0 += 32768;
                     }
@@ -1538,11 +1538,11 @@ public final class Client extends GameEngine {
                     }
 
                     Class7.method103(int_0);
-                    int_11 = packetbuffer_0.readUnsignedShort();
+                    int_11 = packetbuffer_0.getUnsignedShort();
 
                     for (int_12 = 0; int_12 < int_11; int_12++) {
-                        int_3 = packetbuffer_0.method713();
-                        int_4 = packetbuffer_0.method709();
+                        int_3 = packetbuffer_0.getUnsignedShortInverse();
+                        int_4 = packetbuffer_0.getUnsignedByteS();
                         if (int_4 == 255) {
                             int_4 = packetbuffer_0.method714();
                         }
@@ -1566,14 +1566,14 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket31 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.readUnsignedByte();
-                    GameObject.anInt222 = packetbuffer_0.method709();
+                    Class23.anInt75 = packetbuffer_0.getUnsignedByte();
+                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
                     class46_0.serverPacket = null;
                     return true;
                 }
 
                 if (ServerPacket.aServerPacket77 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.readUnsignedShort();
+                    int_1 = packetbuffer_0.getUnsignedShort();
                     if (int_1 == 65535) {
                         int_1 = -1;
                     }
@@ -1585,7 +1585,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.playSongPacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.read24BitInt();
-                    int_0 = packetbuffer_0.readUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedShort();
                     if (int_0 == 65535) {
                         int_0 = -1;
                     }
@@ -1626,7 +1626,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket53 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method713();
+                    int_1 = packetbuffer_0.getUnsignedShortInverse();
                     int_0 = packetbuffer_0.method727();
                     int_2 = int_1 >> 10 & 0x1F;
                     int_11 = int_1 >> 5 & 0x1F;
@@ -1680,12 +1680,12 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket76 == class46_0.serverPacket) {
-                    destinationX = packetbuffer_0.readUnsignedByte();
+                    destinationX = packetbuffer_0.getUnsignedByte();
                     if (destinationX == 255) {
                         destinationX = 0;
                     }
 
-                    destinationY = packetbuffer_0.readUnsignedByte();
+                    destinationY = packetbuffer_0.getUnsignedByte();
                     if (destinationY == 255) {
                         destinationY = 0;
                     }
@@ -1695,8 +1695,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket81 == class46_0.serverPacket) {
-                    anInt683 = packetbuffer_0.method709();
-                    anInt686 = packetbuffer_0.method710();
+                    anInt683 = packetbuffer_0.getUnsignedByteS();
+                    anInt686 = packetbuffer_0.getUnsignedByteC();
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -1740,7 +1740,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.energyPacket == class46_0.serverPacket) {
                     Class12.method165();
-                    energy = packetbuffer_0.readUnsignedByte();
+                    energy = packetbuffer_0.getUnsignedByte();
                     anInt640 = cycleCntr;
                     class46_0.serverPacket = null;
                     return true;
@@ -1784,8 +1784,8 @@ public final class Client extends GameEngine {
                     int_0 = packetbuffer_0.readInt();
                     int_2 = Renderable.method744();
                     PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket12, aClass46_1.cipher);
-                    packetnode_0.packetBuffer.method716(GameEngine.FPS);
-                    packetnode_0.packetBuffer.method729(int_2);
+                    packetnode_0.packetBuffer.putByteInverse(GameEngine.FPS);
+                    packetnode_0.packetBuffer.putByteS(int_2);
                     packetnode_0.packetBuffer.method725(int_1);
                     packetnode_0.packetBuffer.method726(int_0);
                     aClass46_1.method282(packetnode_0);
@@ -1795,8 +1795,8 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket45 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method714();
-                    int_0 = packetbuffer_0.method712();
-                    int_2 = packetbuffer_0.method713();
+                    int_0 = packetbuffer_0.getUnsignedShortAInverse();
+                    int_2 = packetbuffer_0.getUnsignedShortInverse();
                     int_11 = packetbuffer_0.readUnsignedShortOb1();
                     widget_3 = PendingSpawn.method671(int_1);
                     if (int_2 != widget_3.rotationX || int_0 != widget_3.rotationZ || int_11 != widget_3.modelZoom) {
@@ -1819,9 +1819,9 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket70 == class46_0.serverPacket) {
                     string_4 = packetbuffer_0.readString();
                     long_1 = packetbuffer_0.readLong();
-                    long_2 = (long) packetbuffer_0.readUnsignedShort();
+                    long_2 = (long) packetbuffer_0.getUnsignedShort();
                     long_3 = (long) packetbuffer_0.read24BitInt();
-                    Permission permission_1 = (Permission) Class1.forOrdinal(Class44.method272(), packetbuffer_0.readUnsignedByte());
+                    Permission permission_1 = (Permission) Class1.forOrdinal(Class44.method272(), packetbuffer_0.getUnsignedByte());
                     long_0 = long_3 + (long_2 << 32);
                     bool_8 = false;
 
@@ -1854,8 +1854,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket29 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.method709();
-                    GameObject.anInt222 = packetbuffer_0.method709();
+                    Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
+                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
 
                     for (int_1 = Class23.anInt75; int_1 < Class23.anInt75 + 8; int_1++) {
                         for (int_0 = GameObject.anInt222; int_0 < GameObject.anInt222 + 8; int_0++) {
@@ -1891,7 +1891,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket6 == class46_0.serverPacket) {
                     World world_0 = new World();
                     world_0.address = packetbuffer_0.readString();
-                    world_0.id = packetbuffer_0.readUnsignedShort();
+                    world_0.id = packetbuffer_0.getUnsignedShort();
                     int_0 = packetbuffer_0.readInt();
                     world_0.mask = int_0;
                     Class110.setGameState(45);
@@ -1903,7 +1903,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket43 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method713();
+                    int_1 = packetbuffer_0.getUnsignedShortInverse();
                     int_0 = packetbuffer_0.readUnsignedShortOb1();
                     int_2 = packetbuffer_0.method727();
                     widget_0 = PendingSpawn.method671(int_2);
@@ -1914,11 +1914,11 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket67 == class46_0.serverPacket) {
                     aBool94 = true;
-                    Class73.anInt171 = packetbuffer_0.readUnsignedByte();
-                    Class42.anInt101 = packetbuffer_0.readUnsignedByte();
-                    Class26.anInt88 = packetbuffer_0.readUnsignedShort();
-                    Class41.anInt99 = packetbuffer_0.readUnsignedByte();
-                    Class50.anInt112 = packetbuffer_0.readUnsignedByte();
+                    Class73.anInt171 = packetbuffer_0.getUnsignedByte();
+                    Class42.anInt101 = packetbuffer_0.getUnsignedByte();
+                    Class26.anInt88 = packetbuffer_0.getUnsignedShort();
+                    Class41.anInt99 = packetbuffer_0.getUnsignedByte();
+                    Class50.anInt112 = packetbuffer_0.getUnsignedByte();
                     if (Class50.anInt112 >= 100) {
                         Class2.cameraX = Class73.anInt171 * 128 + 64;
                         Player.cameraY = Class42.anInt101 * 128 + 64;
@@ -1935,7 +1935,7 @@ public final class Client extends GameEngine {
                         int_1 = -1;
                     }
 
-                    int_0 = packetbuffer_0.readUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedShort();
                     if (int_0 == 65535) {
                         int_0 = -1;
                     }
@@ -1958,7 +1958,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket61 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method712();
+                    int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
                     widget_1 = PendingSpawn.method671(int_0);
                     if (widget_1.modelType != 1 || int_1 != widget_1.modelId) {
@@ -1995,11 +1995,11 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket27 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.method709();
-                    GameObject.anInt222 = packetbuffer_0.method709();
+                    Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
+                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
 
-                    while (packetbuffer_0.offset < class46_0.packetLength) {
-                        int_1 = packetbuffer_0.readUnsignedByte();
+                    while (packetbuffer_0.position < class46_0.packetLength) {
+                        int_1 = packetbuffer_0.getUnsignedByte();
                         Class59 class59_0 = Script.method911()[int_1];
                         ScriptVarType.method468(class59_0);
                     }
@@ -2016,7 +2016,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket55 == class46_0.serverPacket) {
-                    bool_5 = packetbuffer_0.readUnsignedByte() == 1;
+                    bool_5 = packetbuffer_0.getUnsignedByte() == 1;
                     if (bool_5) {
                         Class19.aLong1 = Class97.currentTimeMs() - packetbuffer_0.readLong();
                         Class65.aClass47_1 = new Class47(packetbuffer_0, true);
@@ -2049,7 +2049,7 @@ public final class Client extends GameEngine {
                 String string_7;
                 if (ServerPacket.serverMessagePacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUSmart();
-                    bool_4 = packetbuffer_0.readUnsignedByte() == 1;
+                    bool_4 = packetbuffer_0.getUnsignedByte() == 1;
                     string_0 = "";
                     bool_0 = false;
                     if (bool_4) {
@@ -2069,10 +2069,10 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.updateUidPacket == class46_0.serverPacket) {
-                    packetbuffer_0.offset += 28;
+                    packetbuffer_0.position += 28;
                     if (packetbuffer_0.checkCrc()) {
-                        int_1 = packetbuffer_0.offset - 28;
-                        byte[] bytes_0 = packetbuffer_0.payload;
+                        int_1 = packetbuffer_0.position - 28;
+                        byte[] bytes_0 = packetbuffer_0.buffer;
                         if (aByteArray28 == null) {
                             aByteArray28 = new byte[24];
                         }
@@ -2081,7 +2081,7 @@ public final class Client extends GameEngine {
                         if (Class64.aCacheFile1 != null) {
                             try {
                                 Class64.aCacheFile1.seek(0L);
-                                Class64.aCacheFile1.write(packetbuffer_0.payload, int_1, 24);
+                                Class64.aCacheFile1.write(packetbuffer_0.buffer, int_1, 24);
                             } catch (Exception exception_2) {
                                 ;
                             }
@@ -2096,7 +2096,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket11 == class46_0.serverPacket) {
                     int_1 = class46_0.packetLength;
                     ClassInfo classinfo_0 = new ClassInfo();
-                    classinfo_0.count = packetbuffer_0.readUnsignedByte();
+                    classinfo_0.count = packetbuffer_0.getUnsignedByte();
                     classinfo_0.anInt371 = packetbuffer_0.readInt();
                     classinfo_0.type = new int[classinfo_0.count];
                     classinfo_0.errorIdentifiers = new int[classinfo_0.count];
@@ -2107,13 +2107,13 @@ public final class Client extends GameEngine {
 
                     for (int_2 = 0; int_2 < classinfo_0.count; int_2++) {
                         try {
-                            int_11 = packetbuffer_0.readUnsignedByte();
+                            int_11 = packetbuffer_0.getUnsignedByte();
                             String string_8;
                             if (int_11 != 0 && int_11 != 1 && int_11 != 2) {
                                 if (int_11 == 3 || int_11 == 4) {
                                     string_7 = packetbuffer_0.readString();
                                     string_8 = packetbuffer_0.readString();
-                                    int_4 = packetbuffer_0.readUnsignedByte();
+                                    int_4 = packetbuffer_0.getUnsignedByte();
                                     String[] strings_0 = new String[int_4];
 
                                     for (int_13 = 0; int_13 < int_4; int_13++) {
@@ -2222,7 +2222,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket59 == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method712();
+                    int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
                     widget_1 = PendingSpawn.method671(int_0);
                     if (widget_1.modelType != 2 || int_1 != widget_1.modelId) {
@@ -2236,8 +2236,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.playerOptionsPacket == class46_0.serverPacket) {
-                    int_1 = packetbuffer_0.method710();
-                    int_0 = packetbuffer_0.method710();
+                    int_1 = packetbuffer_0.getUnsignedByteC();
+                    int_0 = packetbuffer_0.getUnsignedByteC();
                     string_0 = packetbuffer_0.readString();
                     if (int_0 >= 1 && int_0 <= 8) {
                         if (string_0.equalsIgnoreCase("null")) {
@@ -2294,7 +2294,7 @@ public final class Client extends GameEngine {
 
                     clanChatOwner = string_0;
                     Class18.aByte1 = packetbuffer_0.readByte();
-                    int_3 = packetbuffer_0.readUnsignedByte();
+                    int_3 = packetbuffer_0.getUnsignedByte();
                     if (int_3 == 255) {
                         class46_0.serverPacket = null;
                         return true;
@@ -2307,7 +2307,7 @@ public final class Client extends GameEngine {
                         clanmembers_0[int_5] = new ClanMember();
                         clanmembers_0[int_5].username = packetbuffer_0.readString();
                         clanmembers_0[int_5].aString20 = PacketBuffer.method908(clanmembers_0[int_5].username, Class24.aClass109_1);
-                        clanmembers_0[int_5].world = packetbuffer_0.readUnsignedShort();
+                        clanmembers_0[int_5].world = packetbuffer_0.getUnsignedShort();
                         clanmembers_0[int_5].rank = packetbuffer_0.readByte();
                         packetbuffer_0.readString();
                         if (clanmembers_0[int_5].username.equals(Class4.localPlayer.name)) {
@@ -2343,7 +2343,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.addClanMemberPacket == class46_0.serverPacket) {
                     string_4 = packetbuffer_0.readString();
-                    int_0 = packetbuffer_0.readUnsignedShort();
+                    int_0 = packetbuffer_0.getUnsignedShort();
                     byte byte_1 = packetbuffer_0.readByte();
                     bool_0 = false;
                     if (byte_1 == -128) {
@@ -2436,16 +2436,16 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket83 == class46_0.serverPacket) {
-                    Huffman.aClass106_4 = VarPlayerType.method945(packetbuffer_0.readUnsignedByte());
+                    Huffman.aClass106_4 = VarPlayerType.method945(packetbuffer_0.getUnsignedByte());
                     class46_0.serverPacket = null;
                     return true;
                 }
 
                 if (ServerPacket.aServerPacket82 == class46_0.serverPacket) {
                     string_4 = packetbuffer_0.readString();
-                    long_1 = (long) packetbuffer_0.readUnsignedShort();
+                    long_1 = (long) packetbuffer_0.getUnsignedShort();
                     long_2 = (long) packetbuffer_0.read24BitInt();
-                    Permission permission_0 = (Permission) Class1.forOrdinal(Class44.method272(), packetbuffer_0.readUnsignedByte());
+                    Permission permission_0 = (Permission) Class1.forOrdinal(Class44.method272(), packetbuffer_0.getUnsignedByte());
                     long_5 = (long_1 << 32) + long_2;
                     boolean bool_2 = false;
 
@@ -2505,7 +2505,7 @@ public final class Client extends GameEngine {
                 string_1 = "" + (class46_0.serverPacket != null ? class46_0.serverPacket.packetId : -1) + "," + (class46_0.aServerPacket1 != null ? class46_0.aServerPacket1.packetId : -1) + "," + (class46_0.aServerPacket2 != null ? class46_0.aServerPacket2.packetId : -1) + "," + class46_0.packetLength + "," + (Class4.localPlayer.pathX[0] + ItemLayer.baseX) + "," + (Class4.localPlayer.pathY[0] + ItemLayer.baseY) + ",";
 
                 for (int_2 = 0; int_2 < class46_0.packetLength && int_2 < 50; int_2++) {
-                    string_1 = string_1 + packetbuffer_0.payload[int_2] + ",";
+                    string_1 = string_1 + packetbuffer_0.buffer[int_2] + ",";
                 }
 
                 Class13.method168(string_1, exception_0);
@@ -2679,7 +2679,7 @@ public final class Client extends GameEngine {
                         Buffer buffer_0 = new Buffer(5);
                         buffer_0.putByte(15);
                         buffer_0.putInt(157);
-                        Class88.rssocket.queueForWrite(buffer_0.payload, 0, 5);
+                        Class88.rssocket.queueForWrite(buffer_0.buffer, 0, 5);
                         ++js5State;
                         Class44.aLong3 = Class97.currentTimeMs();
                     }
@@ -2716,7 +2716,7 @@ public final class Client extends GameEngine {
 
                         Class95.aRSSocket1 = rssocket_0;
                         Class2.sendConInfo(bool_0);
-                        Class95.aBuffer6.offset = 0;
+                        Class95.aBuffer6.position = 0;
                         Class56.currentRequest = null;
                         DecorativeObject.aBuffer4 = null;
                         Class95.anInt201 = 0;
@@ -2733,7 +2733,7 @@ public final class Client extends GameEngine {
                                                 buffer_1.putByte(4);
                                                 buffer_1.putByte(Class95.aByte2);
                                                 buffer_1.putShort(0);
-                                                Class95.aRSSocket1.queueForWrite(buffer_1.payload, 0, 4);
+                                                Class95.aRSSocket1.queueForWrite(buffer_1.buffer, 0, 4);
                                             } catch (IOException ioexception_1) {
                                                 try {
                                                     Class95.aRSSocket1.close();
@@ -2896,9 +2896,9 @@ public final class Client extends GameEngine {
                         if (aClass100_1.aBool30) {
                             packetnode_0 = Actor.method953(ClientPacket.aClientPacket10, aClass46_1.cipher);
                             packetnode_0.packetBuffer.putByte(0);
-                            int_1 = packetnode_0.packetBuffer.offset;
+                            int_1 = packetnode_0.packetBuffer.position;
                             aClass100_1.method529(packetnode_0.packetBuffer);
-                            packetnode_0.packetBuffer.method708(packetnode_0.packetBuffer.offset - int_1);
+                            packetnode_0.packetBuffer.method708(packetnode_0.packetBuffer.position - int_1);
                             aClass46_1.method282(packetnode_0);
                             aClass100_1.method530();
                         }
@@ -2915,10 +2915,10 @@ public final class Client extends GameEngine {
                             } else if (MouseInput.anInt259 != 0 || Class48.aClass18_1.anInt71 >= 40) {
                                 packetnode_3 = Actor.method953(ClientPacket.aClientPacket5, aClass46_1.cipher);
                                 packetnode_3.packetBuffer.putByte(0);
-                                int_2 = packetnode_3.packetBuffer.offset;
+                                int_2 = packetnode_3.packetBuffer.position;
                                 int_3 = 0;
 
-                                for (int_4 = 0; int_4 < Class48.aClass18_1.anInt71 && packetnode_3.packetBuffer.offset - int_2 < 240; int_4++) {
+                                for (int_4 = 0; int_4 < Class48.aClass18_1.anInt71 && packetnode_3.packetBuffer.position - int_2 < 240; int_4++) {
                                     ++int_3;
                                     int_5 = Class48.aClass18_1.anIntArray6[int_4];
                                     if (int_5 < 0) {
@@ -2965,7 +2965,7 @@ public final class Client extends GameEngine {
                                     }
                                 }
 
-                                packetnode_3.packetBuffer.method708(packetnode_3.packetBuffer.offset - int_2);
+                                packetnode_3.packetBuffer.method708(packetnode_3.packetBuffer.position - int_2);
                                 aClass46_1.method282(packetnode_3);
                                 if (int_3 >= Class48.aClass18_1.anInt71) {
                                     Class48.aClass18_1.anInt71 = 0;
@@ -3013,7 +3013,7 @@ public final class Client extends GameEngine {
                         if (KeyFocusListener.anInt126 > 0) {
                             packetnode_0 = Actor.method953(ClientPacket.aClientPacket2, aClass46_1.cipher);
                             packetnode_0.packetBuffer.putShort(0);
-                            int_1 = packetnode_0.packetBuffer.offset;
+                            int_1 = packetnode_0.packetBuffer.position;
                             long long_1 = Class97.currentTimeMs();
 
                             for (int_4 = 0; int_4 < KeyFocusListener.anInt126; int_4++) {
@@ -3024,10 +3024,10 @@ public final class Client extends GameEngine {
 
                                 aLong32 = long_1;
                                 packetnode_0.packetBuffer.method723((int) long_2);
-                                packetnode_0.packetBuffer.method716(KeyFocusListener.anIntArray31[int_4]);
+                                packetnode_0.packetBuffer.putByteInverse(KeyFocusListener.anIntArray31[int_4]);
                             }
 
-                            packetnode_0.packetBuffer.method722(packetnode_0.packetBuffer.offset - int_1);
+                            packetnode_0.packetBuffer.method722(packetnode_0.packetBuffer.position - int_1);
                             aClass46_1.method282(packetnode_0);
                         }
 
@@ -3044,7 +3044,7 @@ public final class Client extends GameEngine {
                             aBool92 = false;
                             packetnode_0 = Actor.method953(ClientPacket.aClientPacket7, aClass46_1.cipher);
                             packetnode_0.packetBuffer.method719(anInt661);
-                            packetnode_0.packetBuffer.method720(mapAngle);
+                            packetnode_0.packetBuffer.putShortS(mapAngle);
                             aClass46_1.method282(packetnode_0);
                         }
 
@@ -3181,7 +3181,7 @@ public final class Client extends GameEngine {
                                 int_4 = Class4.localPlayer.pathY[0] + ItemLayer.baseY;
                                 packetnode_1 = Actor.method953(ClientPacket.aClientPacket18, aClass46_1.cipher);
                                 packetnode_1.packetBuffer.putShort(int_4);
-                                packetnode_1.packetBuffer.method720(int_3);
+                                packetnode_1.packetBuffer.putShortS(int_3);
                                 packetnode_1.packetBuffer.putByte(int_2);
                                 aClass46_1.method282(packetnode_1);
                             }
@@ -3264,9 +3264,9 @@ public final class Client extends GameEngine {
 
                                                                             PacketNode packetnode_2 = Actor.method953(ClientPacket.aClientPacket84, aClass46_1.cipher);
                                                                             packetnode_2.packetBuffer.method725(ClanMember.aWidget7.id);
-                                                                            packetnode_2.packetBuffer.method729(byte_0);
+                                                                            packetnode_2.packetBuffer.putByteS(byte_0);
                                                                             packetnode_2.packetBuffer.method719(anInt693);
-                                                                            packetnode_2.packetBuffer.method720(anInt635);
+                                                                            packetnode_2.packetBuffer.putShortS(anInt635);
                                                                             aClass46_1.method282(packetnode_2);
                                                                         }
                                                                     } else if (this.method1099()) {
@@ -3292,9 +3292,9 @@ public final class Client extends GameEngine {
                                                                 int_3 = Region.selectedRegionTileY;
                                                                 PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket82, aClass46_1.cipher);
                                                                 packetnode_4.packetBuffer.putByte(5);
-                                                                packetnode_4.packetBuffer.method720(int_3 + ItemLayer.baseY);
-                                                                packetnode_4.packetBuffer.method720(int_2 + ItemLayer.baseX);
-                                                                packetnode_4.packetBuffer.method721(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
+                                                                packetnode_4.packetBuffer.putShortS(int_3 + ItemLayer.baseY);
+                                                                packetnode_4.packetBuffer.putShortS(int_2 + ItemLayer.baseX);
+                                                                packetnode_4.packetBuffer.putByteA(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
                                                                 aClass46_1.method282(packetnode_4);
                                                                 Region.method386();
                                                                 anInt641 = MouseInput.anInt264;
@@ -3425,9 +3425,9 @@ public final class Client extends GameEngine {
 
                     packetnode_3 = Actor.method953(ClientPacket.aClientPacket8, aClass46_1.cipher);
                     packetnode_3.packetBuffer.putByte(0);
-                    int_2 = packetnode_3.packetBuffer.offset;
+                    int_2 = packetnode_3.packetBuffer.position;
                     World.encodeClassVerifier(packetnode_3.packetBuffer);
-                    packetnode_3.packetBuffer.method708(packetnode_3.packetBuffer.offset - int_2);
+                    packetnode_3.packetBuffer.method708(packetnode_3.packetBuffer.position - int_2);
                     aClass46_1.method282(packetnode_3);
                 }
             }
@@ -3477,7 +3477,7 @@ public final class Client extends GameEngine {
                 packetnode_0.packetBuffer.putByte(Class60.aClass60_1.anInt157);
                 aClass46_1.method282(packetnode_0);
                 aClass46_1.method283();
-                buffer.offset = 0;
+                buffer.position = 0;
                 loginState = 3;
             }
 
@@ -3505,36 +3505,36 @@ public final class Client extends GameEngine {
                     return;
                 }
 
-                buffer.offset = 0;
+                buffer.position = 0;
                 loginState = 4;
             }
 
             if (loginState == 4) {
-                if (buffer.offset < 8) {
+                if (buffer.position < 8) {
                     int_0 = socket.available();
-                    if (int_0 > 8 - buffer.offset) {
-                        int_0 = 8 - buffer.offset;
+                    if (int_0 > 8 - buffer.position) {
+                        int_0 = 8 - buffer.position;
                     }
 
                     if (int_0 > 0) {
-                        socket.read(buffer.payload, buffer.offset, int_0);
-                        buffer.offset += int_0;
+                        socket.read(buffer.buffer, buffer.position, int_0);
+                        buffer.position += int_0;
                     }
                 }
 
-                if (buffer.offset == 8) {
-                    buffer.offset = 0;
+                if (buffer.position == 8) {
+                    buffer.position = 0;
                     ScriptState.aLong21 = buffer.readLong();
                     loginState = 5;
                 }
             }
 
             if (loginState == 5) {
-                aClass46_1.aPacketBuffer1.offset = 0;
+                aClass46_1.aPacketBuffer1.position = 0;
                 aClass46_1.method280();
                 PacketBuffer outgoing = new PacketBuffer(500);
                 int[] seed = new int[]{(int) (Math.random() * 9.9999999E7D), (int) (Math.random() * 9.9999999E7D), (int) (ScriptState.aLong21 >> 32), (int) (ScriptState.aLong21 & 0xFFFFFFFFFFFFFFFFL)};
-                outgoing.offset = 0;
+                outgoing.position = 0;
                 outgoing.putByte(1);
                 outgoing.putByte(anEnum3_5.rsOrdinal());//Id?
                 outgoing.putInt(seed[0]);
@@ -3545,14 +3545,14 @@ public final class Client extends GameEngine {
                     case 0:
                     case 3:
                         outgoing.put24bitInt(Class34.playerPin);
-                        outgoing.offset += 5;
+                        outgoing.position += 5;
                         break;
                     case 1:
                         outgoing.putInt(((Integer) Buffer.preferences.preferences.get(Integer.valueOf(AClass6_Sub4.method867(Class25.username)))).intValue());
-                        outgoing.offset += 4;
+                        outgoing.position += 4;
                         break;
                     case 2:
-                        outgoing.offset += 8;
+                        outgoing.position += 8;
                 }
 
                 outgoing.putString(Class25.password);
@@ -3561,7 +3561,7 @@ public final class Client extends GameEngine {
                 login.clientPacket = null;
                 login.anInt350 = 0;
                 login.packetBuffer = new PacketBuffer(5000);
-                login.packetBuffer.offset = 0;
+                login.packetBuffer.position = 0;
                 if (gameState == 40) {//Reconnecting?
                     login.packetBuffer.putByte(Class60.aClass60_4.anInt157);
                 } else {
@@ -3569,10 +3569,10 @@ public final class Client extends GameEngine {
                 }
 
                 login.packetBuffer.putShort(0);
-                int int_1 = login.packetBuffer.offset;
+                int int_1 = login.packetBuffer.position;
                 login.packetBuffer.putInt(157);
-                login.packetBuffer.putBytes(outgoing.payload, 0, outgoing.offset);
-                int int_2 = login.packetBuffer.offset;
+                login.packetBuffer.putBytes(outgoing.buffer, 0, outgoing.position);
+                int int_2 = login.packetBuffer.position;
                 login.packetBuffer.putString(Class25.username);
                 login.packetBuffer.putByte((isResized ? 1 : 0) << 1 | (lowMemory ? 1 : 0));
                 login.packetBuffer.putShort(Tile.canvasWidth);
@@ -3582,7 +3582,7 @@ public final class Client extends GameEngine {
                 login.packetBuffer.putInt(Class10.anInt48);
                 Buffer buffer_0 = new Buffer(CombatInfo1.aMachineInfo1.method697());
                 CombatInfo1.aMachineInfo1.method698(buffer_0);
-                login.packetBuffer.putBytes(buffer_0.payload, 0, buffer_0.payload.length);
+                login.packetBuffer.putBytes(buffer_0.buffer, 0, buffer_0.buffer.length);
                 login.packetBuffer.putByte(Class65.anInt168);
                 login.packetBuffer.putInt(0);
                 login.packetBuffer.putInt(Varcs.indexInterfaces.crc);
@@ -3602,8 +3602,8 @@ public final class Client extends GameEngine {
                 login.packetBuffer.putInt(WorldMapType2.vorbisIndex.crc);
                 login.packetBuffer.putInt(Class61.anIndexData3.crc);
                 login.packetBuffer.putInt(RSCanvas.indexWorldMap.crc);
-                login.packetBuffer.encryptXtea(seed, int_2, login.packetBuffer.offset);
-                login.packetBuffer.method722(login.packetBuffer.offset - int_1);
+                login.packetBuffer.encryptXtea(seed, int_2, login.packetBuffer.position);
+                login.packetBuffer.method722(login.packetBuffer.position - int_1);
                 aClass46_1.method282(login);
                 aClass46_1.method283();
                 aClass46_1.cipher = new IsaacCipher(seed);
@@ -3657,8 +3657,8 @@ public final class Client extends GameEngine {
                 int int_6;
                 if (loginState == 9 && socket.available() >= 13) {
                     boolean bool_1 = socket.readByte() == 1;
-                    socket.read(buffer.payload, 0, 4);
-                    buffer.offset = 0;
+                    socket.read(buffer.buffer, 0, 4);
+                    buffer.position = 0;
                     bool_0 = false;
                     if (bool_1) {
                         int_6 = buffer.readOpcode() << 24;
@@ -3688,19 +3688,19 @@ public final class Client extends GameEngine {
                     localInteractingIndex <<= 8;
                     localInteractingIndex += socket.readByte();
                     anInt678 = socket.readByte();
-                    socket.read(buffer.payload, 0, 1);
-                    buffer.offset = 0;
+                    socket.read(buffer.buffer, 0, 1);
+                    buffer.position = 0;
                     ServerPacket[] packets = DecorativeObject.method460();
                     int int_5 = buffer.method906();
                     if (int_5 < 0 || int_5 >= packets.length) {
-                        throw new IOException(int_5 + " " + buffer.offset);
+                        throw new IOException(int_5 + " " + buffer.position);
                     }
 
                     aClass46_1.serverPacket = packets[int_5];
                     aClass46_1.packetLength = aClass46_1.serverPacket.packetLength;
-                    socket.read(buffer.payload, 0, 2);
-                    buffer.offset = 0;
-                    aClass46_1.packetLength = buffer.readUnsignedShort();
+                    socket.read(buffer.buffer, 0, 2);
+                    buffer.position = 0;
+                    aClass46_1.packetLength = buffer.getUnsignedShort();
 
                     try {
                         Class22.method214(AClass3.clientInstance, "zap");
@@ -3713,8 +3713,8 @@ public final class Client extends GameEngine {
 
                 if (loginState == 10) {
                     if (socket.available() >= aClass46_1.packetLength) {
-                        buffer.offset = 0;
-                        socket.read(buffer.payload, 0, aClass46_1.packetLength);
+                        buffer.position = 0;
+                        socket.read(buffer.buffer, 0, aClass46_1.packetLength);
                         aClass100_1.method525();
                         aLong31 = -1L;
                         anInt624 = -1;
@@ -3724,7 +3724,7 @@ public final class Client extends GameEngine {
                         aLong32 = -1L;
                         Class93.method502();
                         aClass46_1.method280();
-                        aClass46_1.aPacketBuffer1.offset = 0;
+                        aClass46_1.aPacketBuffer1.position = 0;
                         aClass46_1.serverPacket = null;
                         aClass46_1.aServerPacket3 = null;
                         aClass46_1.aServerPacket1 = null;
@@ -3859,17 +3859,17 @@ public final class Client extends GameEngine {
 
                 } else {
                     if (loginState == 11 && socket.available() >= 2) {
-                        buffer.offset = 0;
-                        socket.read(buffer.payload, 0, 2);
-                        buffer.offset = 0;
-                        Class4.anInt25 = buffer.readUnsignedShort();
+                        buffer.position = 0;
+                        socket.read(buffer.buffer, 0, 2);
+                        buffer.position = 0;
+                        Class4.anInt25 = buffer.getUnsignedShort();
                         loginState = 12;
                     }
 
                     if (loginState == 12 && socket.available() >= Class4.anInt25) {
-                        buffer.offset = 0;
-                        socket.read(buffer.payload, 0, Class4.anInt25);
-                        buffer.offset = 0;
+                        buffer.position = 0;
+                        socket.read(buffer.buffer, 0, Class4.anInt25);
+                        buffer.position = 0;
                         String string_1 = buffer.readString();
                         String string_0 = buffer.readString();
                         String string_2 = buffer.readString();
@@ -3899,18 +3899,18 @@ public final class Client extends GameEngine {
                                 return;
                             }
 
-                            socket.read(buffer.payload, 0, 2);
-                            buffer.offset = 0;
-                            aClass46_1.packetLength = buffer.readUnsignedShort();
+                            socket.read(buffer.buffer, 0, 2);
+                            buffer.position = 0;
+                            aClass46_1.packetLength = buffer.getUnsignedShort();
                         }
 
                         if (socket.available() >= aClass46_1.packetLength) {
-                            socket.read(buffer.payload, 0, aClass46_1.packetLength);
-                            buffer.offset = 0;
+                            socket.read(buffer.buffer, 0, aClass46_1.packetLength);
+                            buffer.position = 0;
                             int_0 = aClass46_1.packetLength;
                             aClass100_1.method531();
                             aClass46_1.method280();
-                            aClass46_1.aPacketBuffer1.offset = 0;
+                            aClass46_1.aPacketBuffer1.position = 0;
                             aClass46_1.serverPacket = null;
                             aClass46_1.aServerPacket3 = null;
                             aClass46_1.aServerPacket1 = null;
@@ -3945,7 +3945,7 @@ public final class Client extends GameEngine {
 
                             ScriptVarType.method469();
                             Class85.initializeGPI(buffer);
-                            if (int_0 != buffer.offset) {
+                            if (int_0 != buffer.position) {
                                 throw new RuntimeException();
                             }
                         }
@@ -4324,10 +4324,10 @@ public final class Client extends GameEngine {
                             PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket13, aClass46_1.cipher);
                             packetnode_0.packetBuffer.method719(aWidget13.itemId);
                             packetnode_0.packetBuffer.method726(aWidget13.id);
-                            packetnode_0.packetBuffer.putShortLE(aWidget9.itemId);
+                            packetnode_0.packetBuffer.putShortLEA(aWidget9.itemId);
                             packetnode_0.packetBuffer.method719(aWidget13.index);
                             packetnode_0.packetBuffer.putInt(aWidget9.id);
-                            packetnode_0.packetBuffer.putShortLE(aWidget9.index);
+                            packetnode_0.packetBuffer.putShortLEA(aWidget9.index);
                             aClass46_1.method282(packetnode_0);
                         }
                     }

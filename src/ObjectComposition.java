@@ -119,47 +119,47 @@ public class ObjectComposition extends CacheableNode {
       int int_1;
       int int_2;
       if (int_0 == 1) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          if (int_1 > 0) {
             if (this.objectModels != null && !aBool59) {
-               buffer_0.offset += 3 * int_1;
+               buffer_0.position += 3 * int_1;
             } else {
                this.objectTypes = new int[int_1];
                this.objectModels = new int[int_1];
 
                for (int_2 = 0; int_2 < int_1; int_2++) {
-                  this.objectModels[int_2] = buffer_0.readUnsignedShort();
-                  this.objectTypes[int_2] = buffer_0.readUnsignedByte();
+                  this.objectModels[int_2] = buffer_0.getUnsignedShort();
+                  this.objectTypes[int_2] = buffer_0.getUnsignedByte();
                }
             }
          }
       } else if (int_0 == 2) {
          this.name = buffer_0.readString();
       } else if (int_0 == 5) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          if (int_1 > 0) {
             if (this.objectModels != null && !aBool59) {
-               buffer_0.offset += 2 * int_1;
+               buffer_0.position += 2 * int_1;
             } else {
                this.objectTypes = null;
                this.objectModels = new int[int_1];
 
                for (int_2 = 0; int_2 < int_1; int_2++) {
-                  this.objectModels[int_2] = buffer_0.readUnsignedShort();
+                  this.objectModels[int_2] = buffer_0.getUnsignedShort();
                }
             }
          }
       } else if (int_0 == 14) {
-         this.sizeX = buffer_0.readUnsignedByte();
+         this.sizeX = buffer_0.getUnsignedByte();
       } else if (int_0 == 15) {
-         this.sizeY = buffer_0.readUnsignedByte();
+         this.sizeY = buffer_0.getUnsignedByte();
       } else if (int_0 == 17) {
          this.interactType = 0;
          this.aBool60 = false;
       } else if (int_0 == 18) {
          this.aBool60 = false;
       } else if (int_0 == 19) {
-         this.anInt461 = buffer_0.readUnsignedByte();
+         this.anInt461 = buffer_0.getUnsignedByte();
       } else if (int_0 == 21) {
          this.clipType = 0;
       } else if (int_0 == 22) {
@@ -167,14 +167,14 @@ public class ObjectComposition extends CacheableNode {
       } else if (int_0 == 23) {
          this.modelClipped = true;
       } else if (int_0 == 24) {
-         this.animationId = buffer_0.readUnsignedShort();
+         this.animationId = buffer_0.getUnsignedShort();
          if (this.animationId == 65535) {
             this.animationId = -1;
          }
       } else if (int_0 == 27) {
          this.interactType = 1;
       } else if (int_0 == 28) {
-         this.anInt466 = buffer_0.readUnsignedByte();
+         this.anInt466 = buffer_0.getUnsignedByte();
       } else if (int_0 == 29) {
          this.ambient = buffer_0.readByte();
       } else if (int_0 == 39) {
@@ -185,37 +185,37 @@ public class ObjectComposition extends CacheableNode {
             this.actions[int_0 - 30] = null;
          }
       } else if (int_0 == 40) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.recolorToFind = new short[int_1];
          this.recolorToReplace = new short[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.recolorToFind[int_2] = (short)buffer_0.readUnsignedShort();
-            this.recolorToReplace[int_2] = (short)buffer_0.readUnsignedShort();
+            this.recolorToFind[int_2] = (short)buffer_0.getUnsignedShort();
+            this.recolorToReplace[int_2] = (short)buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 41) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.textureToFind = new short[int_1];
          this.textureToReplace = new short[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.textureToFind[int_2] = (short)buffer_0.readUnsignedShort();
-            this.textureToReplace[int_2] = (short)buffer_0.readUnsignedShort();
+            this.textureToFind[int_2] = (short)buffer_0.getUnsignedShort();
+            this.textureToReplace[int_2] = (short)buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 62) {
          this.isRotated = true;
       } else if (int_0 == 64) {
          this.clipped = false;
       } else if (int_0 == 65) {
-         this.modelSizeX = buffer_0.readUnsignedShort();
+         this.modelSizeX = buffer_0.getUnsignedShort();
       } else if (int_0 == 66) {
-         this.modelSizeHeight = buffer_0.readUnsignedShort();
+         this.modelSizeHeight = buffer_0.getUnsignedShort();
       } else if (int_0 == 67) {
-         this.modelSizeY = buffer_0.readUnsignedShort();
+         this.modelSizeY = buffer_0.getUnsignedShort();
       } else if (int_0 == 68) {
-         this.mapSceneId = buffer_0.readUnsignedShort();
+         this.mapSceneId = buffer_0.getUnsignedShort();
       } else if (int_0 == 69) {
-         buffer_0.readUnsignedByte();
+         buffer_0.getUnsignedByte();
       } else if (int_0 == 70) {
          this.offsetX = buffer_0.readShort();
       } else if (int_0 == 71) {
@@ -227,52 +227,52 @@ public class ObjectComposition extends CacheableNode {
       } else if (int_0 == 74) {
          this.isSolid = true;
       } else if (int_0 == 75) {
-         this.anInt462 = buffer_0.readUnsignedByte();
+         this.anInt462 = buffer_0.getUnsignedByte();
       } else if (int_0 != 77 && int_0 != 92) {
          if (int_0 == 78) {
-            this.ambientSoundId = buffer_0.readUnsignedShort();
-            this.anInt463 = buffer_0.readUnsignedByte();
+            this.ambientSoundId = buffer_0.getUnsignedShort();
+            this.anInt463 = buffer_0.getUnsignedByte();
          } else if (int_0 == 79) {
-            this.anInt464 = buffer_0.readUnsignedShort();
-            this.anInt465 = buffer_0.readUnsignedShort();
-            this.anInt463 = buffer_0.readUnsignedByte();
-            int_1 = buffer_0.readUnsignedByte();
+            this.anInt464 = buffer_0.getUnsignedShort();
+            this.anInt465 = buffer_0.getUnsignedShort();
+            this.anInt463 = buffer_0.getUnsignedByte();
+            int_1 = buffer_0.getUnsignedByte();
             this.anIntArray85 = new int[int_1];
 
             for (int_2 = 0; int_2 < int_1; int_2++) {
-               this.anIntArray85[int_2] = buffer_0.readUnsignedShort();
+               this.anIntArray85[int_2] = buffer_0.getUnsignedShort();
             }
          } else if (int_0 == 81) {
-            this.clipType = buffer_0.readUnsignedByte() * 256;
+            this.clipType = buffer_0.getUnsignedByte() * 256;
          } else if (int_0 == 82) {
-            this.mapIconId = buffer_0.readUnsignedShort();
+            this.mapIconId = buffer_0.getUnsignedShort();
          } else if (int_0 == 249) {
             this.anIterableHashTable2 = Tile.method682(buffer_0, this.anIterableHashTable2);
          }
       } else {
-         this.varpId = buffer_0.readUnsignedShort();
+         this.varpId = buffer_0.getUnsignedShort();
          if (this.varpId == 65535) {
             this.varpId = -1;
          }
 
-         this.configId = buffer_0.readUnsignedShort();
+         this.configId = buffer_0.getUnsignedShort();
          if (this.configId == 65535) {
             this.configId = -1;
          }
 
          int_1 = -1;
          if (int_0 == 92) {
-            int_1 = buffer_0.readUnsignedShort();
+            int_1 = buffer_0.getUnsignedShort();
             if (int_1 == 65535) {
                int_1 = -1;
             }
          }
 
-         int_2 = buffer_0.readUnsignedByte();
+         int_2 = buffer_0.getUnsignedByte();
          this.impostorIds = new int[int_2 + 2];
 
          for (int int_3 = 0; int_3 <= int_2; int_3++) {
-            this.impostorIds[int_3] = buffer_0.readUnsignedShort();
+            this.impostorIds[int_3] = buffer_0.getUnsignedShort();
             if (this.impostorIds[int_3] == 65535) {
                this.impostorIds[int_3] = -1;
             }
@@ -440,7 +440,7 @@ public class ObjectComposition extends CacheableNode {
 
    void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

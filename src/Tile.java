@@ -40,7 +40,7 @@ public final class Tile extends Node {
    }
 
    static IterableHashTable method682(Buffer buffer_0, IterableHashTable iterablehashtable_0) {
-      int int_0 = buffer_0.readUnsignedByte();
+      int int_0 = buffer_0.getUnsignedByte();
       int int_1;
       if (iterablehashtable_0 == null) {
          int_1 = Class58.method389(int_0);
@@ -48,7 +48,7 @@ public final class Tile extends Node {
       }
 
       for (int_1 = 0; int_1 < int_0; int_1++) {
-         boolean bool_0 = buffer_0.readUnsignedByte() == 1;
+         boolean bool_0 = buffer_0.getUnsignedByte() == 1;
          int int_2 = buffer_0.read24BitInt();
          Object object_0;
          if (bool_0) {

@@ -51,22 +51,22 @@ public class Class39 {
     }
 
     static void synchronizePlayers(PacketBuffer buffer, int length) {
-        int offset = buffer.offset;
+        int offset = buffer.position;
         Class27.playerCount = 0;
         Class6.synchronizePlayers(buffer);
 
         for (int i = 0; i < Class27.playerCount; i++) {
             int playerIndex = Class27.playersAwaitingUpdate[i];
             Player player_0 = Client.players[playerIndex];
-            int mask = buffer.readUnsignedByte();
+            int mask = buffer.getUnsignedByte();
             if ((mask & 0x1) != 0) {
-                mask += buffer.readUnsignedByte() << 8;
+                mask += buffer.getUnsignedByte() << 8;
             }
             WorldMapData_Sub1.parsePlayerSynchronizationMask(buffer, playerIndex, player_0, mask);
         }
 
-        if (buffer.offset - offset != length) {
-            throw new RuntimeException(buffer.offset - offset + " " + length);
+        if (buffer.position - offset != length) {
+            throw new RuntimeException(buffer.position - offset + " " + length);
         }
     }
 

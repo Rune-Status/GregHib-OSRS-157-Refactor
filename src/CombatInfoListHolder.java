@@ -162,17 +162,17 @@ public class CombatInfoListHolder extends Node {
 
             Buffer buffer_2 = new Buffer(int_0);
             buffer_2.putString(string_0);
-            buffer_2.offset = int_0;
+            buffer_2.position = int_0;
             buffer_2.encryptXtea2(ints_0);
-            Buffer buffer_3 = new Buffer(buffer_1.offset + buffer_0.offset + buffer_2.offset + 5);
+            Buffer buffer_3 = new Buffer(buffer_1.position + buffer_0.position + buffer_2.position + 5);
             buffer_3.putByte(2);
-            buffer_3.putByte(buffer_0.offset);
-            buffer_3.putBytes(buffer_0.payload, 0, buffer_0.offset);
-            buffer_3.putByte(buffer_1.offset);
-            buffer_3.putBytes(buffer_1.payload, 0, buffer_1.offset);
-            buffer_3.putShort(buffer_2.offset);
-            buffer_3.putBytes(buffer_2.payload, 0, buffer_2.offset);
-            byte[] bytes_0 = buffer_3.payload;
+            buffer_3.putByte(buffer_0.position);
+            buffer_3.putBytes(buffer_0.buffer, 0, buffer_0.position);
+            buffer_3.putByte(buffer_1.position);
+            buffer_3.putBytes(buffer_1.buffer, 0, buffer_1.position);
+            buffer_3.putShort(buffer_2.position);
+            buffer_3.putBytes(buffer_2.buffer, 0, buffer_2.position);
+            byte[] bytes_0 = buffer_3.buffer;
             int int_1 = bytes_0.length;
             StringBuilder stringbuilder_0 = new StringBuilder();
 
@@ -211,11 +211,11 @@ public class CombatInfoListHolder extends Node {
                buffer_3 = new Buffer(new byte[1000]);
 
                while (true) {
-                  int_4 = inputstream_0.read(buffer_3.payload, buffer_3.offset, 1000 - buffer_3.offset);
+                  int_4 = inputstream_0.read(buffer_3.buffer, buffer_3.position, 1000 - buffer_3.position);
                   if (int_4 == -1) {
                      outputstreamwriter_0.close();
                      inputstream_0.close();
-                     String string_2 = new String(buffer_3.payload);
+                     String string_2 = new String(buffer_3.buffer);
                      if (string_2.startsWith("OFFLINE")) {
                         byte_1 = 4;
                      } else if (string_2.startsWith("WRONG")) {
@@ -227,11 +227,11 @@ public class CombatInfoListHolder extends Node {
                      } else {
                         buffer_3.decryptXtea(ints_0);
 
-                        while (buffer_3.offset > 0 && buffer_3.payload[buffer_3.offset - 1] == 0) {
-                           --buffer_3.offset;
+                        while (buffer_3.position > 0 && buffer_3.buffer[buffer_3.position - 1] == 0) {
+                           --buffer_3.position;
                         }
 
-                        string_2 = new String(buffer_3.payload, 0, buffer_3.offset);
+                        string_2 = new String(buffer_3.buffer, 0, buffer_3.position);
                         if (Class6.method100(string_2)) {
                            Class53.method350(string_2, true, false);
                            byte_1 = 2;
@@ -242,8 +242,8 @@ public class CombatInfoListHolder extends Node {
                      break;
                   }
 
-                  buffer_3.offset += int_4;
-                  if (buffer_3.offset >= 1000) {
+                  buffer_3.position += int_4;
+                  if (buffer_3.position >= 1000) {
                      byte_1 = 5;
                      break;
                   }
@@ -321,7 +321,7 @@ public class CombatInfoListHolder extends Node {
          Class19.tileSettings[int_0][int_1][int_2] = 0;
 
          while (true) {
-            int_6 = buffer_0.readUnsignedByte();
+            int_6 = buffer_0.getUnsignedByte();
             if (int_6 == 0) {
                if (int_0 == 0) {
                   int[] ints_0 = Class19.tileHeights[0][int_1];
@@ -343,7 +343,7 @@ public class CombatInfoListHolder extends Node {
             }
 
             if (int_6 == 1) {
-               int int_10 = buffer_0.readUnsignedByte();
+               int int_10 = buffer_0.getUnsignedByte();
                if (int_10 == 1) {
                   int_10 = 0;
                }
@@ -368,18 +368,18 @@ public class CombatInfoListHolder extends Node {
          }
       } else {
          while (true) {
-            int_6 = buffer_0.readUnsignedByte();
+            int_6 = buffer_0.getUnsignedByte();
             if (int_6 == 0) {
                break;
             }
 
             if (int_6 == 1) {
-               buffer_0.readUnsignedByte();
+               buffer_0.getUnsignedByte();
                break;
             }
 
             if (int_6 <= 49) {
-               buffer_0.readUnsignedByte();
+               buffer_0.getUnsignedByte();
             }
          }
       }

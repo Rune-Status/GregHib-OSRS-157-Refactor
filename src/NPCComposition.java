@@ -92,67 +92,67 @@ public class NPCComposition extends CacheableNode {
       int int_1;
       int int_2;
       if (int_0 == 1) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.models = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.models[int_2] = buffer_0.readUnsignedShort();
+            this.models[int_2] = buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 2) {
          this.name = buffer_0.readString();
       } else if (int_0 == 12) {
-         this.anInt489 = buffer_0.readUnsignedByte();
+         this.anInt489 = buffer_0.getUnsignedByte();
       } else if (int_0 == 13) {
-         this.anInt490 = buffer_0.readUnsignedShort();
+         this.anInt490 = buffer_0.getUnsignedShort();
       } else if (int_0 == 14) {
-         this.anInt491 = buffer_0.readUnsignedShort();
+         this.anInt491 = buffer_0.getUnsignedShort();
       } else if (int_0 == 15) {
-         this.anInt492 = buffer_0.readUnsignedShort();
+         this.anInt492 = buffer_0.getUnsignedShort();
       } else if (int_0 == 16) {
-         this.anInt493 = buffer_0.readUnsignedShort();
+         this.anInt493 = buffer_0.getUnsignedShort();
       } else if (int_0 == 17) {
-         this.anInt491 = buffer_0.readUnsignedShort();
-         this.anInt496 = buffer_0.readUnsignedShort();
-         this.anInt497 = buffer_0.readUnsignedShort();
-         this.anInt498 = buffer_0.readUnsignedShort();
+         this.anInt491 = buffer_0.getUnsignedShort();
+         this.anInt496 = buffer_0.getUnsignedShort();
+         this.anInt497 = buffer_0.getUnsignedShort();
+         this.anInt498 = buffer_0.getUnsignedShort();
       } else if (int_0 >= 30 && int_0 < 35) {
          this.actions[int_0 - 30] = buffer_0.readString();
          if (this.actions[int_0 - 30].equalsIgnoreCase("Hidden")) {
             this.actions[int_0 - 30] = null;
          }
       } else if (int_0 == 40) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.colors = new short[int_1];
          this.modifiedColors = new short[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.colors[int_2] = (short)buffer_0.readUnsignedShort();
-            this.modifiedColors[int_2] = (short)buffer_0.readUnsignedShort();
+            this.colors[int_2] = (short)buffer_0.getUnsignedShort();
+            this.modifiedColors[int_2] = (short)buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 41) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.aShortArray10 = new short[int_1];
          this.aShortArray11 = new short[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.aShortArray10[int_2] = (short)buffer_0.readUnsignedShort();
-            this.aShortArray11[int_2] = (short)buffer_0.readUnsignedShort();
+            this.aShortArray10[int_2] = (short)buffer_0.getUnsignedShort();
+            this.aShortArray11[int_2] = (short)buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 60) {
-         int_1 = buffer_0.readUnsignedByte();
+         int_1 = buffer_0.getUnsignedByte();
          this.anIntArray104 = new int[int_1];
 
          for (int_2 = 0; int_2 < int_1; int_2++) {
-            this.anIntArray104[int_2] = buffer_0.readUnsignedShort();
+            this.anIntArray104[int_2] = buffer_0.getUnsignedShort();
          }
       } else if (int_0 == 93) {
          this.isMinimapVisible = false;
       } else if (int_0 == 95) {
-         this.combatLevel = buffer_0.readUnsignedShort();
+         this.combatLevel = buffer_0.getUnsignedShort();
       } else if (int_0 == 97) {
-         this.anInt494 = buffer_0.readUnsignedShort();
+         this.anInt494 = buffer_0.getUnsignedShort();
       } else if (int_0 == 98) {
-         this.anInt495 = buffer_0.readUnsignedShort();
+         this.anInt495 = buffer_0.getUnsignedShort();
       } else if (int_0 == 99) {
          this.isVisible = true;
       } else if (int_0 == 100) {
@@ -160,9 +160,9 @@ public class NPCComposition extends CacheableNode {
       } else if (int_0 == 101) {
          this.anInt500 = buffer_0.readByte() * 5;
       } else if (int_0 == 102) {
-         this.anInt501 = buffer_0.readUnsignedShort();
+         this.anInt501 = buffer_0.getUnsignedShort();
       } else if (int_0 == 103) {
-         this.anInt502 = buffer_0.readUnsignedShort();
+         this.anInt502 = buffer_0.getUnsignedShort();
       } else if (int_0 != 106 && int_0 != 118) {
          if (int_0 == 107) {
             this.aBool66 = false;
@@ -174,29 +174,29 @@ public class NPCComposition extends CacheableNode {
             this.anIterableHashTable4 = Tile.method682(buffer_0, this.anIterableHashTable4);
          }
       } else {
-         this.varpIndex = buffer_0.readUnsignedShort();
+         this.varpIndex = buffer_0.getUnsignedShort();
          if (this.varpIndex == 65535) {
             this.varpIndex = -1;
          }
 
-         this.varp32Index = buffer_0.readUnsignedShort();
+         this.varp32Index = buffer_0.getUnsignedShort();
          if (this.varp32Index == 65535) {
             this.varp32Index = -1;
          }
 
          int_1 = -1;
          if (int_0 == 118) {
-            int_1 = buffer_0.readUnsignedShort();
+            int_1 = buffer_0.getUnsignedShort();
             if (int_1 == 65535) {
                int_1 = -1;
             }
          }
 
-         int_2 = buffer_0.readUnsignedByte();
+         int_2 = buffer_0.getUnsignedByte();
          this.configs = new int[int_2 + 2];
 
          for (int int_3 = 0; int_3 <= int_2; int_3++) {
-            this.configs[int_3] = buffer_0.readUnsignedShort();
+            this.configs[int_3] = buffer_0.getUnsignedShort();
             if (this.configs[int_3] == 65535) {
                this.configs[int_3] = -1;
             }
@@ -329,7 +329,7 @@ public class NPCComposition extends CacheableNode {
 
    void decode(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

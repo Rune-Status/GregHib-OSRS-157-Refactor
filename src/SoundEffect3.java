@@ -80,28 +80,28 @@ public class SoundEffect3 {
    }
 
    void decode(Buffer buffer_0, AudioEnvelope audioenvelope_0) {
-      int int_0 = buffer_0.readUnsignedByte();
+      int int_0 = buffer_0.getUnsignedByte();
       this.pairs[0] = int_0 >> 4;
       this.pairs[1] = int_0 & 0xF;
       if (int_0 != 0) {
-         this.unity[0] = buffer_0.readUnsignedShort();
-         this.unity[1] = buffer_0.readUnsignedShort();
-         int int_1 = buffer_0.readUnsignedByte();
+         this.unity[0] = buffer_0.getUnsignedShort();
+         this.unity[1] = buffer_0.getUnsignedShort();
+         int int_1 = buffer_0.getUnsignedByte();
 
          int int_2;
          int int_3;
          for (int_2 = 0; int_2 < 2; int_2++) {
             for (int_3 = 0; int_3 < this.pairs[int_2]; int_3++) {
-               this.phases[int_2][0][int_3] = buffer_0.readUnsignedShort();
-               this.magnitudes[int_2][0][int_3] = buffer_0.readUnsignedShort();
+               this.phases[int_2][0][int_3] = buffer_0.getUnsignedShort();
+               this.magnitudes[int_2][0][int_3] = buffer_0.getUnsignedShort();
             }
          }
 
          for (int_2 = 0; int_2 < 2; int_2++) {
             for (int_3 = 0; int_3 < this.pairs[int_2]; int_3++) {
                if ((int_1 & 1 << int_2 * 4 << int_3) != 0) {
-                  this.phases[int_2][1][int_3] = buffer_0.readUnsignedShort();
-                  this.magnitudes[int_2][1][int_3] = buffer_0.readUnsignedShort();
+                  this.phases[int_2][1][int_3] = buffer_0.getUnsignedShort();
+                  this.magnitudes[int_2][1][int_3] = buffer_0.getUnsignedShort();
                } else {
                   this.phases[int_2][1][int_3] = this.phases[int_2][0][int_3];
                   this.magnitudes[int_2][1][int_3] = this.magnitudes[int_2][0][int_3];

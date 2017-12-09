@@ -37,17 +37,17 @@ public final class AClass3_Sub1 extends AClass3 {
             byte[] bytes_0 = TileStrategy.listFetcher.method357();
             Buffer buffer_0 = new Buffer(bytes_0);
             buffer_0.readInt();
-            World.worldCount = buffer_0.readUnsignedShort();
+            World.worldCount = buffer_0.getUnsignedShort();
             Coordinates.worldList = new World[World.worldCount];
 
             World world_0;
             for (int int_0 = 0; int_0 < World.worldCount; world_0.index = int_0++) {
                world_0 = Coordinates.worldList[int_0] = new World();
-               world_0.id = buffer_0.readUnsignedShort();
+               world_0.id = buffer_0.getUnsignedShort();
                world_0.mask = buffer_0.readInt();
                world_0.address = buffer_0.readString();
                world_0.activity = buffer_0.readString();
-               world_0.location = buffer_0.readUnsignedByte();
+               world_0.location = buffer_0.getUnsignedByte();
                world_0.playerCount = buffer_0.readShort();
             }
 
@@ -266,12 +266,12 @@ public final class AClass3_Sub1 extends AClass3 {
 
                PacketNode packetnode_1 = Actor.method953(ClientPacket.aClientPacket91, Client.aClass46_1.cipher);
                packetnode_1.packetBuffer.putByte(0);
-               int int_5 = packetnode_1.packetBuffer.offset;
+               int int_5 = packetnode_1.packetBuffer.position;
                packetnode_1.packetBuffer.putByte(int_1);
                packetnode_1.packetBuffer.putByte(byte_1);
                packetnode_1.packetBuffer.putByte(byte_0);
                PacketBuffer packetbuffer_0 = packetnode_1.packetBuffer;
-               int int_6 = packetbuffer_0.offset;
+               int int_6 = packetbuffer_0.position;
                int int_11 = string_0.length();
                byte[] bytes_0 = new byte[int_11];
 
@@ -341,8 +341,8 @@ public final class AClass3_Sub1 extends AClass3 {
                }
 
                packetbuffer_0.putShortSmart(bytes_0.length);
-               packetbuffer_0.offset += Class99.aHuffman1.compress(bytes_0, 0, bytes_0.length, packetbuffer_0.payload, packetbuffer_0.offset);
-               packetnode_1.packetBuffer.method708(packetnode_1.packetBuffer.offset - int_5);
+               packetbuffer_0.position += Class99.aHuffman1.compress(bytes_0, 0, bytes_0.length, packetbuffer_0.buffer, packetbuffer_0.position);
+               packetnode_1.packetBuffer.method708(packetnode_1.packetBuffer.position - int_5);
                Client.aClass46_1.method282(packetnode_1);
                return 1;
             } else {
@@ -353,10 +353,10 @@ public final class AClass3_Sub1 extends AClass3 {
                   String string_2 = Class39.scriptStringStack[Class28.scriptStringStackSize + 1];
                   PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket88, Client.aClass46_1.cipher);
                   packetnode_0.packetBuffer.putShort(0);
-                  int_4 = packetnode_0.packetBuffer.offset;
+                  int_4 = packetnode_0.packetBuffer.position;
                   packetnode_0.packetBuffer.putString(string_0);
                   PacketBuffer packetbuffer_1 = packetnode_0.packetBuffer;
-                  int int_8 = packetbuffer_1.offset;
+                  int int_8 = packetbuffer_1.position;
                   int int_9 = string_2.length();
                   byte[] bytes_1 = new byte[int_9];
 
@@ -426,8 +426,8 @@ public final class AClass3_Sub1 extends AClass3 {
                   }
 
                   packetbuffer_1.putShortSmart(bytes_1.length);
-                  packetbuffer_1.offset += Class99.aHuffman1.compress(bytes_1, 0, bytes_1.length, packetbuffer_1.payload, packetbuffer_1.offset);
-                  packetnode_0.packetBuffer.method722(packetnode_0.packetBuffer.offset - int_4);
+                  packetbuffer_1.position += Class99.aHuffman1.compress(bytes_1, 0, bytes_1.length, packetbuffer_1.buffer, packetbuffer_1.position);
+                  packetnode_0.packetBuffer.method722(packetnode_0.packetBuffer.position - int_4);
                   Client.aClass46_1.method282(packetnode_0);
                   return 1;
                } else if (int_0 != 5015) {

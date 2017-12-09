@@ -21,7 +21,7 @@ public class CacheableNode_Sub4 extends CacheableNode {
 
    void method882(Buffer buffer_0) {
       while (true) {
-         int int_0 = buffer_0.readUnsignedByte();
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 == 0) {
             return;
          }

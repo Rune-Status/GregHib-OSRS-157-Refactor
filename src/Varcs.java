@@ -91,7 +91,7 @@ public class Varcs {
             }
          }
 
-         fileondisk_0.write(buffer_0.payload, 0, buffer_0.offset);
+         fileondisk_0.write(buffer_0.buffer, 0, buffer_0.position);
       } catch (Exception exception_0) {
          ;
       } finally {
@@ -123,26 +123,26 @@ public class Varcs {
             }
 
             Buffer buffer_0 = new Buffer(bytes_0);
-            if (buffer_0.payload.length - buffer_0.offset >= 1) {
-               int int_2 = buffer_0.readUnsignedByte();
+            if (buffer_0.buffer.length - buffer_0.position >= 1) {
+               int int_2 = buffer_0.getUnsignedByte();
                if (int_2 < 0 || int_2 > 1) {
                   return;
                }
 
-               int int_3 = buffer_0.readUnsignedShort();
+               int int_3 = buffer_0.getUnsignedShort();
 
                int int_4;
                int int_5;
                int int_6;
                for (int_4 = 0; int_4 < int_3; int_4++) {
-                  int_5 = buffer_0.readUnsignedShort();
+                  int_5 = buffer_0.getUnsignedShort();
                   int_6 = buffer_0.readInt();
                   if (this.varcSerials[int_5]) {
                      this.varcs[int_5] = int_6;
                   }
                }
 
-               int_4 = buffer_0.readUnsignedShort();
+               int_4 = buffer_0.getUnsignedShort();
                int_5 = 0;
 
                while (true) {
@@ -150,7 +150,7 @@ public class Varcs {
                      break label186;
                   }
 
-                  int_6 = buffer_0.readUnsignedShort();
+                  int_6 = buffer_0.getUnsignedShort();
                   String string_0 = buffer_0.readString();
                   if (this.varcstringSerials[int_6]) {
                      this.varcstrings[int_6] = string_0;

@@ -66,20 +66,20 @@ public class WorldMapType3 implements WorldMapSectionBase {
    }
 
    public void method10(Buffer buffer_0) {
-      this.anInt233 = buffer_0.readUnsignedByte();
-      this.anInt236 = buffer_0.readUnsignedByte();
-      this.anInt239 = buffer_0.readUnsignedShort();
-      this.anInt238 = buffer_0.readUnsignedByte();
-      this.anInt241 = buffer_0.readUnsignedByte();
-      this.anInt245 = buffer_0.readUnsignedShort();
-      this.anInt244 = buffer_0.readUnsignedByte();
-      this.anInt246 = buffer_0.readUnsignedByte();
-      this.anInt234 = buffer_0.readUnsignedShort();
-      this.anInt235 = buffer_0.readUnsignedByte();
-      this.anInt237 = buffer_0.readUnsignedByte();
-      this.anInt240 = buffer_0.readUnsignedShort();
-      this.anInt242 = buffer_0.readUnsignedByte();
-      this.anInt243 = buffer_0.readUnsignedByte();
+      this.anInt233 = buffer_0.getUnsignedByte();
+      this.anInt236 = buffer_0.getUnsignedByte();
+      this.anInt239 = buffer_0.getUnsignedShort();
+      this.anInt238 = buffer_0.getUnsignedByte();
+      this.anInt241 = buffer_0.getUnsignedByte();
+      this.anInt245 = buffer_0.getUnsignedShort();
+      this.anInt244 = buffer_0.getUnsignedByte();
+      this.anInt246 = buffer_0.getUnsignedByte();
+      this.anInt234 = buffer_0.getUnsignedShort();
+      this.anInt235 = buffer_0.getUnsignedByte();
+      this.anInt237 = buffer_0.getUnsignedByte();
+      this.anInt240 = buffer_0.getUnsignedShort();
+      this.anInt242 = buffer_0.getUnsignedByte();
+      this.anInt243 = buffer_0.getUnsignedByte();
       this.method573();
    }
 

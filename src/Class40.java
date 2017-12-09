@@ -51,7 +51,7 @@ public class Class40 {
                   buffer_0 = new Buffer(4);
                   buffer_0.putByte(1);
                   buffer_0.put24bitInt((int)filerequest_0.hash);
-                  Class95.aRSSocket1.queueForWrite(buffer_0.payload, 0, 4);
+                  Class95.aRSSocket1.queueForWrite(buffer_0.buffer, 0, 4);
                   Class95.aHashTable5.put(filerequest_0, filerequest_0.hash);
                   --Class95.anInt197;
                   ++Class95.anInt198;
@@ -62,7 +62,7 @@ public class Class40 {
                   buffer_0 = new Buffer(4);
                   buffer_0.putByte(0);
                   buffer_0.put24bitInt((int)filerequest_0.hash);
-                  Class95.aRSSocket1.queueForWrite(buffer_0.payload, 0, 4);
+                  Class95.aRSSocket1.queueForWrite(buffer_0.buffer, 0, 4);
                   filerequest_0.unlinkDual();
                   Class95.aHashTable6.put(filerequest_0, filerequest_0.hash);
                   --Class95.anInt199;
@@ -92,28 +92,28 @@ public class Class40 {
                   int int_5;
                   int int_7;
                   if (byte_0 > 0) {
-                     int_3 = byte_0 - Class95.aBuffer6.offset;
+                     int_3 = byte_0 - Class95.aBuffer6.position;
                      if (int_3 > int_2) {
                         int_3 = int_2;
                      }
 
-                     Class95.aRSSocket1.read(Class95.aBuffer6.payload, Class95.aBuffer6.offset, int_3);
+                     Class95.aRSSocket1.read(Class95.aBuffer6.buffer, Class95.aBuffer6.position, int_3);
                      if (Class95.aByte2 != 0) {
                         for (int_4 = 0; int_4 < int_3; int_4++) {
-                           Class95.aBuffer6.payload[Class95.aBuffer6.offset + int_4] ^= Class95.aByte2;
+                           Class95.aBuffer6.buffer[Class95.aBuffer6.position + int_4] ^= Class95.aByte2;
                         }
                      }
 
-                     Class95.aBuffer6.offset += int_3;
-                     if (Class95.aBuffer6.offset < byte_0) {
+                     Class95.aBuffer6.position += int_3;
+                     if (Class95.aBuffer6.position < byte_0) {
                         break;
                      }
 
                      if (Class56.currentRequest == null) {
-                        Class95.aBuffer6.offset = 0;
-                        int_4 = Class95.aBuffer6.readUnsignedByte();
-                        int_5 = Class95.aBuffer6.readUnsignedShort();
-                        int int_6 = Class95.aBuffer6.readUnsignedByte();
+                        Class95.aBuffer6.position = 0;
+                        int_4 = Class95.aBuffer6.getUnsignedByte();
+                        int_5 = Class95.aBuffer6.getUnsignedShort();
+                        int int_6 = Class95.aBuffer6.getUnsignedByte();
                         int_7 = Class95.aBuffer6.readInt();
                         long long_1 = (long)(int_5 + (int_4 << 16));
                         FileRequest filerequest_1 = (FileRequest) Class95.aHashTable5.get(long_1);
@@ -133,43 +133,43 @@ public class Class40 {
                         DecorativeObject.aBuffer4.putByte(int_6);
                         DecorativeObject.aBuffer4.putInt(int_7);
                         Class95.anInt201 = 8;
-                        Class95.aBuffer6.offset = 0;
+                        Class95.aBuffer6.position = 0;
                      } else if (Class95.anInt201 == 0) {
-                        if (Class95.aBuffer6.payload[0] == -1) {
+                        if (Class95.aBuffer6.buffer[0] == -1) {
                            Class95.anInt201 = 1;
-                           Class95.aBuffer6.offset = 0;
+                           Class95.aBuffer6.position = 0;
                         } else {
                            Class56.currentRequest = null;
                         }
                      }
                   } else {
-                     int_3 = DecorativeObject.aBuffer4.payload.length - Class56.currentRequest.padding;
+                     int_3 = DecorativeObject.aBuffer4.buffer.length - Class56.currentRequest.padding;
                      int_4 = 512 - Class95.anInt201;
-                     if (int_4 > int_3 - DecorativeObject.aBuffer4.offset) {
-                        int_4 = int_3 - DecorativeObject.aBuffer4.offset;
+                     if (int_4 > int_3 - DecorativeObject.aBuffer4.position) {
+                        int_4 = int_3 - DecorativeObject.aBuffer4.position;
                      }
 
                      if (int_4 > int_2) {
                         int_4 = int_2;
                      }
 
-                     Class95.aRSSocket1.read(DecorativeObject.aBuffer4.payload, DecorativeObject.aBuffer4.offset, int_4);
+                     Class95.aRSSocket1.read(DecorativeObject.aBuffer4.buffer, DecorativeObject.aBuffer4.position, int_4);
                      if (Class95.aByte2 != 0) {
                         for (int_5 = 0; int_5 < int_4; int_5++) {
-                           DecorativeObject.aBuffer4.payload[DecorativeObject.aBuffer4.offset + int_5] ^= Class95.aByte2;
+                           DecorativeObject.aBuffer4.buffer[DecorativeObject.aBuffer4.position + int_5] ^= Class95.aByte2;
                         }
                      }
 
-                     DecorativeObject.aBuffer4.offset += int_4;
+                     DecorativeObject.aBuffer4.position += int_4;
                      Class95.anInt201 += int_4;
-                     if (int_3 == DecorativeObject.aBuffer4.offset) {
+                     if (int_3 == DecorativeObject.aBuffer4.position) {
                         if (Class56.currentRequest.hash == 16711935L) {
                            Class23.aBuffer1 = DecorativeObject.aBuffer4;
 
                            for (int_5 = 0; int_5 < 256; int_5++) {
                               IndexData indexdata_0 = Class95.anIndexDataArray1[int_5];
                               if (indexdata_0 != null) {
-                                 Class23.aBuffer1.offset = int_5 * 8 + 5;
+                                 Class23.aBuffer1.position = int_5 * 8 + 5;
                                  int_7 = Class23.aBuffer1.readInt();
                                  int int_8 = Class23.aBuffer1.readInt();
                                  indexdata_0.setInformation(int_7, int_8);
@@ -177,7 +177,7 @@ public class Class40 {
                            }
                         } else {
                            Class95.aCRC32_1.reset();
-                           Class95.aCRC32_1.update(DecorativeObject.aBuffer4.payload, 0, int_3);
+                           Class95.aCRC32_1.update(DecorativeObject.aBuffer4.buffer, 0, int_3);
                            int_5 = (int)Class95.aCRC32_1.getValue();
                            if (int_5 != Class56.currentRequest.crc) {
                               try {
@@ -194,7 +194,7 @@ public class Class40 {
 
                            Class95.anInt194 = 0;
                            Class95.anInt196 = 0;
-                           Class56.currentRequest.index.method616((int)(Class56.currentRequest.hash & 0xFFFFL), DecorativeObject.aBuffer4.payload, (Class56.currentRequest.hash & 0xFF0000L) == 16711680L, Class13.aBool4);
+                           Class56.currentRequest.index.method616((int)(Class56.currentRequest.hash & 0xFFFFL), DecorativeObject.aBuffer4.buffer, (Class56.currentRequest.hash & 0xFF0000L) == 16711680L, Class13.aBool4);
                         }
 
                         Class56.currentRequest.unlink();

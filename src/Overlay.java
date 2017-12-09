@@ -29,7 +29,7 @@ public class Overlay extends CacheableNode {
       if (int_0 == 1) {
          this.color = buffer_0.read24BitInt();
       } else if (int_0 == 2) {
-         this.texture = buffer_0.readUnsignedByte();
+         this.texture = buffer_0.getUnsignedByte();
       } else if (int_0 == 5) {
          this.isHidden = false;
       } else if (int_0 == 7) {
@@ -114,7 +114,7 @@ public class Overlay extends CacheableNode {
 
    void decode(Buffer buffer) {
       while (true) {
-         int opcode = buffer.readUnsignedByte();
+         int opcode = buffer.getUnsignedByte();
          if (opcode == 0) {
             return;
          }

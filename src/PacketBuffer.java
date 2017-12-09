@@ -13,8 +13,8 @@ public final class PacketBuffer extends Buffer {
    }
 
    public boolean method904() {
-      //int int_0 = super.payload[super.offset] - this.cipher.method475() & 0xFF;
-      int int_0 = super.payload[super.offset] & 0xFF;
+      //int int_0 = super.buffer[super.position] - this.cipher.method475() & 0xFF;
+      int int_0 = super.buffer[super.position] & 0xFF;
       return int_0 >= 128;
    }
 
@@ -23,21 +23,21 @@ public final class PacketBuffer extends Buffer {
    }
 
    public void putOpcode(int int_0) {
-      //super.payload[super.offset++] = (byte)(int_0 + this.cipher.nextInt());
-      super.payload[super.offset++] = (byte)(int_0);
+      //super.buffer[super.position++] = (byte)(int_0 + this.cipher.nextInt());
+      super.buffer[super.position++] = (byte)(int_0);
    }
 
    public int readOpcode() {
-      //return super.payload[super.offset++] - this.cipher.nextInt() & 0xFF;
-      return super.payload[super.offset++] & 0xFF;
+      //return super.buffer[super.position++] - this.cipher.nextInt() & 0xFF;
+      return super.buffer[super.position++] & 0xFF;
    }
 
    public void bitAccess() {
-      this.bitPosition = super.offset * 8;
+      this.bitPosition = super.position * 8;
    }
 
    public void byteAccess() {
-      super.offset = (this.bitPosition + 7) / 8;
+      super.position = (this.bitPosition + 7) / 8;
    }
 
    public int getBits(int int_0) {
@@ -46,14 +46,14 @@ public final class PacketBuffer extends Buffer {
       int int_3 = 0;
 
       for (this.bitPosition += int_0; int_0 > int_2; int_2 = 8) {
-         int_3 += (super.payload[int_1++] & anIntArray106[int_2]) << int_0 - int_2;
+         int_3 += (super.buffer[int_1++] & anIntArray106[int_2]) << int_0 - int_2;
          int_0 -= int_2;
       }
 
       if (int_2 == int_0) {
-         int_3 += super.payload[int_1] & anIntArray106[int_2];
+         int_3 += super.buffer[int_1] & anIntArray106[int_2];
       } else {
-         int_3 += super.payload[int_1] >> int_2 - int_0 & anIntArray106[int_0];
+         int_3 += super.buffer[int_1] >> int_2 - int_0 & anIntArray106[int_0];
       }
 
       return int_3;
@@ -64,10 +64,10 @@ public final class PacketBuffer extends Buffer {
    }
 
    public int method906() {
-      //int int_0 = super.payload[super.offset++] - this.cipher.nextInt() & 0xFF;
-       int int_0 = super.payload[super.offset++] & 0xFF;
-       return int_0 < 128 ? int_0 : (int_0 - 128 << 8) + (super.payload[super.offset++] & 0xFF);
-      //return int_0 < 128 ? int_0 : (int_0 - 128 << 8) + (super.payload[super.offset++] - this.cipher.nextInt() & 0xFF);
+      //int int_0 = super.buffer[super.position++] - this.cipher.nextInt() & 0xFF;
+       int int_0 = super.buffer[super.position++] & 0xFF;
+       return int_0 < 128 ? int_0 : (int_0 - 128 << 8) + (super.buffer[super.position++] & 0xFF);
+      //return int_0 < 128 ? int_0 : (int_0 - 128 << 8) + (super.buffer[super.position++] - this.cipher.nextInt() & 0xFF);
    }
 
    public void seed(int[] ints_0) {

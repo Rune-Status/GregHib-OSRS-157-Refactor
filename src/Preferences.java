@@ -31,23 +31,23 @@ public class Preferences {
       this.aString10 = null;
       this.aBool26 = false;
       this.preferences = new LinkedHashMap();
-      if (buffer_0 != null && buffer_0.payload != null) {
-         int int_0 = buffer_0.readUnsignedByte();
+      if (buffer_0 != null && buffer_0.buffer != null) {
+         int int_0 = buffer_0.getUnsignedByte();
          if (int_0 >= 0 && int_0 <= anInt169) {
-            if (buffer_0.readUnsignedByte() == 1) {
+            if (buffer_0.getUnsignedByte() == 1) {
                this.hideRoofs = true;
             }
 
             if (int_0 > 1) {
-               this.muted = buffer_0.readUnsignedByte() == 1;
+               this.muted = buffer_0.getUnsignedByte() == 1;
             }
 
             if (int_0 > 3) {
-               this.screenType = buffer_0.readUnsignedByte();
+               this.screenType = buffer_0.getUnsignedByte();
             }
 
             if (int_0 > 2) {
-               int int_1 = buffer_0.readUnsignedByte();
+               int int_1 = buffer_0.getUnsignedByte();
 
                for (int int_2 = 0; int_2 < int_1; int_2++) {
                   int int_3 = buffer_0.readInt();

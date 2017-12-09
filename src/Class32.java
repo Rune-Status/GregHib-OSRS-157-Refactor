@@ -29,22 +29,22 @@ public class Class32 {
 
             Buffer buffer_0;
             int int_1;
-            for (buffer_0 = new Buffer((int)fileondisk_0.length()); buffer_0.offset < buffer_0.payload.length; buffer_0.offset += int_1) {
-               int_1 = fileondisk_0.read(buffer_0.payload, buffer_0.offset, buffer_0.payload.length - buffer_0.offset);
+            for (buffer_0 = new Buffer((int)fileondisk_0.length()); buffer_0.position < buffer_0.buffer.length; buffer_0.position += int_1) {
+               int_1 = fileondisk_0.read(buffer_0.buffer, buffer_0.position, buffer_0.buffer.length - buffer_0.position);
                if (int_1 == -1) {
                   throw new IOException();
                }
             }
 
-            buffer_0.offset = 0;
-            int_1 = buffer_0.readUnsignedByte();
+            buffer_0.position = 0;
+            int_1 = buffer_0.getUnsignedByte();
             if (int_1 < 1 || int_1 > 3) {
                throw new IOException("" + int_1);
             }
 
             int int_2 = 0;
             if (int_1 > 1) {
-               int_2 = buffer_0.readUnsignedByte();
+               int_2 = buffer_0.getUnsignedByte();
             }
 
             if (int_1 <= 2) {
