@@ -218,7 +218,7 @@ public class ItemComposition extends CacheableNode {
          } else if (int_0 == 149) {
             this.anInt505 = buffer_0.getUnsignedShort();
          } else if (int_0 == 249) {
-            this.anIterableHashTable5 = Tile.method682(buffer_0, this.anIterableHashTable5);
+            this.anIterableHashTable5 = Tile.decodeParameters(buffer_0, this.anIterableHashTable5);
          }
       }
 
@@ -243,12 +243,12 @@ public class ItemComposition extends CacheableNode {
       if (model_0 != null) {
          return model_0;
       } else {
-         ModelData modeldata_0 = ModelData.method1060(anIndexDataBase30, this.inventoryModel, 0);
+         ModelHeader modeldata_0 = ModelHeader.getModel(anIndexDataBase30, this.inventoryModel, 0);
          if (modeldata_0 == null) {
             return null;
          } else {
             if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
-               modeldata_0.method1050(this.resizeX, this.resizeY, this.resizeZ);
+               modeldata_0.scaleTriangle(this.resizeX, this.resizeY, this.resizeZ);
             }
 
             int int_3;
@@ -272,7 +272,7 @@ public class ItemComposition extends CacheableNode {
       }
    }
 
-   public ModelData method934(int int_0) {
+   public ModelHeader method934(int int_0) {
       int int_2;
       if (this.countObj != null && int_0 > 1) {
          int int_1 = -1;
@@ -288,12 +288,12 @@ public class ItemComposition extends CacheableNode {
          }
       }
 
-      ModelData modeldata_0 = ModelData.method1060(anIndexDataBase30, this.inventoryModel, 0);
+      ModelHeader modeldata_0 = ModelHeader.getModel(anIndexDataBase30, this.inventoryModel, 0);
       if (modeldata_0 == null) {
          return null;
       } else {
          if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
-            modeldata_0.method1050(this.resizeX, this.resizeY, this.resizeZ);
+            modeldata_0.scaleTriangle(this.resizeX, this.resizeY, this.resizeZ);
          }
 
          if (this.colourToReplace != null) {
@@ -339,7 +339,7 @@ public class ItemComposition extends CacheableNode {
       }
    }
 
-   public ModelData method936(boolean bool_0) {
+   public ModelHeader method936(boolean bool_0) {
       int int_0 = this.maleHeadModel;
       int int_1 = this.maleHeadModel2;
       if (bool_0) {
@@ -350,11 +350,11 @@ public class ItemComposition extends CacheableNode {
       if (int_0 == -1) {
          return null;
       } else {
-         ModelData modeldata_0 = ModelData.method1060(anIndexDataBase30, int_0, 0);
+         ModelHeader modeldata_0 = ModelHeader.getModel(anIndexDataBase30, int_0, 0);
          if (int_1 != -1) {
-            ModelData modeldata_1 = ModelData.method1060(anIndexDataBase30, int_1, 0);
-            ModelData[] modeldatas_0 = new ModelData[] {modeldata_0, modeldata_1};
-            modeldata_0 = new ModelData(modeldatas_0, 2);
+            ModelHeader modeldata_1 = ModelHeader.getModel(anIndexDataBase30, int_1, 0);
+            ModelHeader[] modeldatas_0 = new ModelHeader[] {modeldata_0, modeldata_1};
+            modeldata_0 = new ModelHeader(modeldatas_0, 2);
          }
 
          int int_2;
@@ -415,7 +415,7 @@ public class ItemComposition extends CacheableNode {
       }
    }
 
-   public ModelData getWornModelData(boolean bool_0) {
+   public ModelHeader getWornModelData(boolean bool_0) {
       int int_0 = this.maleModel;
       int int_1 = this.maleModel1;
       int int_2 = this.maleModel2;
@@ -428,25 +428,25 @@ public class ItemComposition extends CacheableNode {
       if (int_0 == -1) {
          return null;
       } else {
-         ModelData modeldata_0 = ModelData.method1060(anIndexDataBase30, int_0, 0);
+         ModelHeader modeldata_0 = ModelHeader.getModel(anIndexDataBase30, int_0, 0);
          if (int_1 != -1) {
-            ModelData modeldata_1 = ModelData.method1060(anIndexDataBase30, int_1, 0);
+            ModelHeader modeldata_1 = ModelHeader.getModel(anIndexDataBase30, int_1, 0);
             if (int_2 != -1) {
-               ModelData modeldata_2 = ModelData.method1060(anIndexDataBase30, int_2, 0);
-               ModelData[] modeldatas_0 = new ModelData[] {modeldata_0, modeldata_1, modeldata_2};
-               modeldata_0 = new ModelData(modeldatas_0, 3);
+               ModelHeader modeldata_2 = ModelHeader.getModel(anIndexDataBase30, int_2, 0);
+               ModelHeader[] modeldatas_0 = new ModelHeader[] {modeldata_0, modeldata_1, modeldata_2};
+               modeldata_0 = new ModelHeader(modeldatas_0, 3);
             } else {
-               ModelData[] modeldatas_1 = new ModelData[] {modeldata_0, modeldata_1};
-               modeldata_0 = new ModelData(modeldatas_1, 2);
+               ModelHeader[] modeldatas_1 = new ModelHeader[] {modeldata_0, modeldata_1};
+               modeldata_0 = new ModelHeader(modeldatas_1, 2);
             }
          }
 
          if (!bool_0 && this.maleOffset != 0) {
-            modeldata_0.method1052(0, this.maleOffset, 0);
+            modeldata_0.translate(0, this.maleOffset, 0);
          }
 
          if (bool_0 && this.femaleOffset != 0) {
-            modeldata_0.method1052(0, this.femaleOffset, 0);
+            modeldata_0.translate(0, this.femaleOffset, 0);
          }
 
          int int_3;

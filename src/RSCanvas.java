@@ -79,7 +79,7 @@ public final class RSCanvas extends Canvas {
                int int_6 = Class23.region.method367(Ignore.plane, int_4, int_5);
                if (int_6 != 0) {
                   int_6 = int_6 >> 14 & 0x7FFF;
-                  int int_7 = Class28.getObjectDefinition(int_6).mapIconId;
+                  int int_7 = ObjectDefinition.getDefinition(int_6).mapIconId;
                   if (int_7 >= 0) {
                      Client.mapIcons[Client.anInt660] = Area.anAreaArray1[int_7].method809(false);
                      Client.anIntArray155[Client.anInt660] = int_4;

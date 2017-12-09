@@ -779,9 +779,9 @@ public class Widget extends Node {
       } else {
          Model model_0 = (Model) aNodeCache4.get((long)(int_2 + (int_1 << 16)));
          if (model_0 == null) {
-            ModelData modeldata_0;
+            ModelHeader modeldata_0;
             if (int_1 == 1) {
-               modeldata_0 = ModelData.method1060(anIndexDataBase12, int_2, 0);
+               modeldata_0 = ModelHeader.getModel(anIndexDataBase12, int_2, 0);
                if (modeldata_0 == null) {
                   aBool34 = true;
                   return null;

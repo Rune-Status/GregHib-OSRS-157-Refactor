@@ -868,9 +868,9 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket24 == class46_0.serverPacket) {
-                    for (int_1 = 0; int_1 < Class79.widgetSettings.length; int_1++) {
-                        if (Class79.widgetSettings[int_1] != Class79.settings[int_1]) {
-                            Class79.widgetSettings[int_1] = Class79.settings[int_1];
+                    for (int_1 = 0; int_1 < Settings.widgetSettings.length; int_1++) {
+                        if (Settings.widgetSettings[int_1] != Settings.settings[int_1]) {
+                            Settings.widgetSettings[int_1] = Settings.settings[int_1];
                             DynamicObject.method1064(int_1);
                             anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                         }
@@ -974,8 +974,8 @@ public final class Client extends GameEngine {
                     for (int_1 = 0; int_1 < VarPlayerType.anInt508; int_1++) {
                         VarPlayerType varplayertype_0 = ClanMember.method677(int_1);
                         if (varplayertype_0 != null) {
-                            Class79.settings[int_1] = 0;
-                            Class79.widgetSettings[int_1] = 0;
+                            Settings.settings[int_1] = 0;
+                            Settings.widgetSettings[int_1] = 0;
                         }
                     }
 
@@ -1028,9 +1028,9 @@ public final class Client extends GameEngine {
                 if (ServerPacket.varpSmallPacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUnsignedShortInverse();
                     byte byte_2 = packetbuffer_0.getByteA();
-                    Class79.settings[int_1] = byte_2;
-                    if (Class79.widgetSettings[int_1] != byte_2) {
-                        Class79.widgetSettings[int_1] = byte_2;
+                    Settings.settings[int_1] = byte_2;
+                    if (Settings.widgetSettings[int_1] != byte_2) {
+                        Settings.widgetSettings[int_1] = byte_2;
                     }
 
                     DynamicObject.method1064(int_1);
@@ -1225,7 +1225,7 @@ public final class Client extends GameEngine {
                 String string_4;
                 if (ServerPacket.aServerPacket56 == class46_0.serverPacket) {
                     string_4 = packetbuffer_0.readString();
-                    string_1 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(packetbuffer_0)));
+                    string_1 = FontTypeFace.appendTags(ObjectDefinition.method830(IndexFile.method73(packetbuffer_0)));
                     Class34.sendGameMessage(6, string_4, string_1);
                     class46_0.serverPacket = null;
                     return true;
@@ -1749,9 +1749,9 @@ public final class Client extends GameEngine {
                 if (ServerPacket.varpLargePacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readUnsignedShortOb1();
                     int_0 = packetbuffer_0.method714();
-                    Class79.settings[int_1] = int_0;
-                    if (Class79.widgetSettings[int_1] != int_0) {
-                        Class79.widgetSettings[int_1] = int_0;
+                    Settings.settings[int_1] = int_0;
+                    if (Settings.widgetSettings[int_1] != int_0) {
+                        Settings.widgetSettings[int_1] = int_0;
                     }
 
                     DynamicObject.method1064(int_1);
@@ -1839,7 +1839,7 @@ public final class Client extends GameEngine {
                     if (!bool_8 && onTutorialIsland == 0) {
                         aLongArray4[anInt696] = long_0;
                         anInt696 = (anInt696 + 1) % 100;
-                        String string_6 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(packetbuffer_0)));
+                        String string_6 = FontTypeFace.appendTags(ObjectDefinition.method830(IndexFile.method73(packetbuffer_0)));
                         if (permission_1.iconSpriteId != -1) {
                             int_7 = permission_1.iconSpriteId;
                             string_3 = "<img=" + int_7 + ">";
@@ -2463,7 +2463,7 @@ public final class Client extends GameEngine {
                     if (!bool_2 && onTutorialIsland == 0) {
                         aLongArray4[anInt696] = long_5;
                         anInt696 = (anInt696 + 1) % 100;
-                        String string_2 = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(packetbuffer_0)));
+                        String string_2 = FontTypeFace.appendTags(ObjectDefinition.method830(IndexFile.method73(packetbuffer_0)));
                         byte byte_0;
                         if (permission_0.aBool45) {
                             byte_0 = 7;
@@ -3786,8 +3786,8 @@ public final class Client extends GameEngine {
                         for (int_0 = 0; int_0 < VarPlayerType.anInt508; int_0++) {
                             VarPlayerType varplayertype_0 = ClanMember.method677(int_0);
                             if (varplayertype_0 != null) {
-                                Class79.settings[int_0] = 0;
-                                Class79.widgetSettings[int_0] = 0;
+                                Settings.settings[int_0] = 0;
+                                Settings.widgetSettings[int_0] = 0;
                             }
                         }
 
@@ -4526,7 +4526,7 @@ public final class Client extends GameEngine {
     }
 
     static boolean method1110(int int_0, int int_1) {
-        ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_0);
+        ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_0);
         if (int_1 == 11) {
             int_1 = 10;
         }

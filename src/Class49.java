@@ -128,7 +128,7 @@ final class Class49 implements Comparator {
                }
 
                if (int_3 == 5) {
-                  int_4 = Class79.widgetSettings[ints_0[int_2++]];
+                  int_4 = Settings.widgetSettings[ints_0[int_2++]];
                }
 
                if (int_3 == 6) {
@@ -136,7 +136,7 @@ final class Class49 implements Comparator {
                }
 
                if (int_3 == 7) {
-                  int_4 = Class79.widgetSettings[ints_0[int_2++]] * 100 / 46875;
+                  int_4 = Settings.widgetSettings[ints_0[int_2++]] * 100 / 46875;
                }
 
                if (int_3 == 8) {
@@ -175,7 +175,7 @@ final class Class49 implements Comparator {
                }
 
                if (int_3 == 13) {
-                  int_5 = Class79.widgetSettings[ints_0[int_2++]];
+                  int_5 = Settings.widgetSettings[ints_0[int_2++]];
                   int int_8 = ints_0[int_2++];
                   int_4 = (int_5 & 1 << int_8) != 0 ? 1 : 0;
                }

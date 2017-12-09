@@ -101,13 +101,13 @@ public class TextureProvider implements ITextureLoader {
       int int_2 = varbit_0.configId;
       int int_3 = varbit_0.leastSignificantBit;
       int int_4 = varbit_0.mostSignificantBit;
-      int int_5 = Class79.anIntArray40[int_4 - int_3];
+      int int_5 = Settings.BIT_MASKS[int_4 - int_3];
       if (int_1 < 0 || int_1 > int_5) {
          int_1 = 0;
       }
 
       int_5 <<= int_3;
-      Class79.widgetSettings[int_2] = Class79.widgetSettings[int_2] & ~int_5 | int_1 << int_3 & int_5;
+      Settings.widgetSettings[int_2] = Settings.widgetSettings[int_2] & ~int_5 | int_1 << int_3 & int_5;
    }
 
    static boolean method571(char char_0) {

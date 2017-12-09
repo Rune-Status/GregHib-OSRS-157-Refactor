@@ -289,7 +289,7 @@ public class Region {
       return false;
    }
 
-   void method358(ModelData modeldata_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
+   void method358(ModelHeader modeldata_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
       boolean bool_0 = true;
       int int_5 = int_1;
       int int_6 = int_1 + int_3;
@@ -307,25 +307,25 @@ public class Region {
                            int int_12 = (this.tileHeights[int_9][int_10 + 1][int_11] + this.tileHeights[int_9][int_10 + 1][int_11 + 1] + this.tileHeights[int_9][int_10][int_11] + this.tileHeights[int_9][int_10][int_11 + 1]) / 4 - (this.tileHeights[int_0][int_1 + 1][int_2] + this.tileHeights[int_0][int_1][int_2] + this.tileHeights[int_0][int_1 + 1][int_2 + 1] + this.tileHeights[int_0][int_1][int_2 + 1]) / 4;
                            WallObject wallobject_0 = tile_0.wallObject;
                            if (wallobject_0 != null) {
-                              ModelData modeldata_1;
-                              if (wallobject_0.renderable1 instanceof ModelData) {
-                                 modeldata_1 = (ModelData) wallobject_0.renderable1;
-                                 ModelData.method1061(modeldata_0, modeldata_1, (1 - int_3) * 64 + (int_10 - int_1) * 128, int_12, (int_11 - int_2) * 128 + (1 - int_4) * 64, bool_0);
+                              ModelHeader modeldata_1;
+                              if (wallobject_0.renderable1 instanceof ModelHeader) {
+                                 modeldata_1 = (ModelHeader) wallobject_0.renderable1;
+                                 ModelHeader.method1061(modeldata_0, modeldata_1, (1 - int_3) * 64 + (int_10 - int_1) * 128, int_12, (int_11 - int_2) * 128 + (1 - int_4) * 64, bool_0);
                               }
 
-                              if (wallobject_0.renderable2 instanceof ModelData) {
-                                 modeldata_1 = (ModelData) wallobject_0.renderable2;
-                                 ModelData.method1061(modeldata_0, modeldata_1, (1 - int_3) * 64 + (int_10 - int_1) * 128, int_12, (int_11 - int_2) * 128 + (1 - int_4) * 64, bool_0);
+                              if (wallobject_0.renderable2 instanceof ModelHeader) {
+                                 modeldata_1 = (ModelHeader) wallobject_0.renderable2;
+                                 ModelHeader.method1061(modeldata_0, modeldata_1, (1 - int_3) * 64 + (int_10 - int_1) * 128, int_12, (int_11 - int_2) * 128 + (1 - int_4) * 64, bool_0);
                               }
                            }
 
                            for (int int_13 = 0; int_13 < tile_0.entityCount; int_13++) {
                               GameObject gameobject_0 = tile_0.objects[int_13];
-                              if (gameobject_0 != null && gameobject_0.renderable instanceof ModelData) {
-                                 ModelData modeldata_2 = (ModelData) gameobject_0.renderable;
+                              if (gameobject_0 != null && gameobject_0.renderable instanceof ModelHeader) {
+                                 ModelHeader modeldata_2 = (ModelHeader) gameobject_0.renderable;
                                  int int_14 = gameobject_0.offsetX - gameobject_0.relativeX + 1;
                                  int int_15 = gameobject_0.offsetY - gameobject_0.relativeY + 1;
-                                 ModelData.method1061(modeldata_0, modeldata_2, (int_14 - int_3) * 64 + (gameobject_0.relativeX - int_1) * 128, int_12, (gameobject_0.relativeY - int_2) * 128 + (int_15 - int_4) * 64, bool_0);
+                                 ModelHeader.method1061(modeldata_0, modeldata_2, (int_14 - int_3) * 64 + (gameobject_0.relativeX - int_1) * 128, int_12, (gameobject_0.relativeY - int_2) * 128 + (int_15 - int_4) * 64, bool_0);
                               }
                            }
                         }
@@ -694,38 +694,38 @@ public class Region {
       }
    }
 
-   void method360(ModelData modeldata_0, int int_0, int int_1, int int_2) {
+   void method360(ModelHeader modeldata_0, int int_0, int int_1, int int_2) {
       Tile tile_0;
-      ModelData modeldata_1;
+      ModelHeader modeldata_1;
       if (int_1 < this.maxX) {
          tile_0 = this.tiles[int_0][int_1 + 1][int_2];
-         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelData) {
-            modeldata_1 = (ModelData) tile_0.groundObject.renderable;
-            ModelData.method1061(modeldata_0, modeldata_1, 128, 0, 0, true);
+         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelHeader) {
+            modeldata_1 = (ModelHeader) tile_0.groundObject.renderable;
+            ModelHeader.method1061(modeldata_0, modeldata_1, 128, 0, 0, true);
          }
       }
 
       if (int_2 < this.maxX) {
          tile_0 = this.tiles[int_0][int_1][int_2 + 1];
-         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelData) {
-            modeldata_1 = (ModelData) tile_0.groundObject.renderable;
-            ModelData.method1061(modeldata_0, modeldata_1, 0, 0, 128, true);
+         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelHeader) {
+            modeldata_1 = (ModelHeader) tile_0.groundObject.renderable;
+            ModelHeader.method1061(modeldata_0, modeldata_1, 0, 0, 128, true);
          }
       }
 
       if (int_1 < this.maxX && int_2 < this.maxZ) {
          tile_0 = this.tiles[int_0][int_1 + 1][int_2 + 1];
-         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelData) {
-            modeldata_1 = (ModelData) tile_0.groundObject.renderable;
-            ModelData.method1061(modeldata_0, modeldata_1, 128, 0, 128, true);
+         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelHeader) {
+            modeldata_1 = (ModelHeader) tile_0.groundObject.renderable;
+            ModelHeader.method1061(modeldata_0, modeldata_1, 128, 0, 128, true);
          }
       }
 
       if (int_1 < this.maxX && int_2 > 0) {
          tile_0 = this.tiles[int_0][int_1 + 1][int_2 - 1];
-         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelData) {
-            modeldata_1 = (ModelData) tile_0.groundObject.renderable;
-            ModelData.method1061(modeldata_0, modeldata_1, 128, 0, -128, true);
+         if (tile_0 != null && tile_0.groundObject != null && tile_0.groundObject.renderable instanceof ModelHeader) {
+            modeldata_1 = (ModelHeader) tile_0.groundObject.renderable;
+            ModelHeader.method1061(modeldata_0, modeldata_1, 128, 0, -128, true);
          }
       }
 
@@ -2040,14 +2040,14 @@ public class Region {
                Tile tile_0 = this.tiles[int_3][int_4][int_5];
                if (tile_0 != null) {
                   WallObject wallobject_0 = tile_0.wallObject;
-                  ModelData modeldata_1;
-                  if (wallobject_0 != null && wallobject_0.renderable1 instanceof ModelData) {
-                     ModelData modeldata_0 = (ModelData) wallobject_0.renderable1;
+                  ModelHeader modeldata_1;
+                  if (wallobject_0 != null && wallobject_0.renderable1 instanceof ModelHeader) {
+                     ModelHeader modeldata_0 = (ModelHeader) wallobject_0.renderable1;
                      this.method358(modeldata_0, int_3, int_4, int_5, 1, 1);
-                     if (wallobject_0.renderable2 instanceof ModelData) {
-                        modeldata_1 = (ModelData) wallobject_0.renderable2;
+                     if (wallobject_0.renderable2 instanceof ModelHeader) {
+                        modeldata_1 = (ModelHeader) wallobject_0.renderable2;
                         this.method358(modeldata_1, int_3, int_4, int_5, 1, 1);
-                        ModelData.method1061(modeldata_0, modeldata_1, 0, 0, 0, false);
+                        ModelHeader.method1061(modeldata_0, modeldata_1, 0, 0, 0, false);
                         wallobject_0.renderable2 = modeldata_1.applyLighting(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
                      }
 
@@ -2056,16 +2056,16 @@ public class Region {
 
                   for (int int_6 = 0; int_6 < tile_0.entityCount; int_6++) {
                      GameObject gameobject_0 = tile_0.objects[int_6];
-                     if (gameobject_0 != null && gameobject_0.renderable instanceof ModelData) {
-                        ModelData modeldata_2 = (ModelData) gameobject_0.renderable;
+                     if (gameobject_0 != null && gameobject_0.renderable instanceof ModelHeader) {
+                        ModelHeader modeldata_2 = (ModelHeader) gameobject_0.renderable;
                         this.method358(modeldata_2, int_3, int_4, int_5, gameobject_0.offsetX - gameobject_0.relativeX + 1, gameobject_0.offsetY - gameobject_0.relativeY + 1);
                         gameobject_0.renderable = modeldata_2.applyLighting(modeldata_2.aShort2, modeldata_2.contrast, int_0, int_1, int_2);
                      }
                   }
 
                   GroundObject groundobject_0 = tile_0.groundObject;
-                  if (groundobject_0 != null && groundobject_0.renderable instanceof ModelData) {
-                     modeldata_1 = (ModelData) groundobject_0.renderable;
+                  if (groundobject_0 != null && groundobject_0.renderable instanceof ModelHeader) {
+                     modeldata_1 = (ModelHeader) groundobject_0.renderable;
                      this.method360(modeldata_1, int_3, int_4, int_5);
                      groundobject_0.renderable = modeldata_1.applyLighting(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
                   }

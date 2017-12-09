@@ -75,7 +75,7 @@ public class NPCComposition extends CacheableNode {
       if (this.varpIndex != -1) {
          int_0 = Item.method973(this.varpIndex);
       } else if (this.varp32Index != -1) {
-         int_0 = Class79.widgetSettings[this.varp32Index];
+         int_0 = Settings.widgetSettings[this.varp32Index];
       }
 
       int int_1;
@@ -171,7 +171,7 @@ public class NPCComposition extends CacheableNode {
          } else if (int_0 == 111) {
             this.aBool67 = true;
          } else if (int_0 == 249) {
-            this.anIterableHashTable4 = Tile.method682(buffer_0, this.anIterableHashTable4);
+            this.anIterableHashTable4 = Tile.decodeParameters(buffer_0, this.anIterableHashTable4);
          }
       } else {
          this.varpIndex = buffer_0.getUnsignedShort();
@@ -226,18 +226,18 @@ public class NPCComposition extends CacheableNode {
                return null;
             }
 
-            ModelData[] childModels = new ModelData[this.models.length];
+            ModelHeader[] childModels = new ModelHeader[this.models.length];
 
             int model;
             for (model = 0; model < this.models.length; model++) {
-               childModels[model] = ModelData.method1060(anIndexDataBase28, this.models[model], 0);
+               childModels[model] = ModelHeader.getModel(anIndexDataBase28, this.models[model], 0);
             }
 
-            ModelData modeldata_0;
+            ModelHeader modeldata_0;
             if (childModels.length == 1) {
                modeldata_0 = childModels[0];
             } else {
-               modeldata_0 = new ModelData(childModels, childModels.length);
+               modeldata_0 = new ModelHeader(childModels, childModels.length);
             }
 
             if (this.colors != null) {
@@ -275,7 +275,7 @@ public class NPCComposition extends CacheableNode {
       }
    }
 
-   public ModelData method899() {
+   public ModelHeader method899() {
       if (this.configs != null) {
          NPCComposition npccomposition_1 = this.transform();
          return npccomposition_1 == null ? null : npccomposition_1.method899();
@@ -293,17 +293,17 @@ public class NPCComposition extends CacheableNode {
          if (bool_0) {
             return null;
          } else {
-            ModelData[] modeldatas_0 = new ModelData[this.anIntArray104.length];
+            ModelHeader[] modeldatas_0 = new ModelHeader[this.anIntArray104.length];
 
             for (int int_1 = 0; int_1 < this.anIntArray104.length; int_1++) {
-               modeldatas_0[int_1] = ModelData.method1060(anIndexDataBase28, this.anIntArray104[int_1], 0);
+               modeldatas_0[int_1] = ModelHeader.getModel(anIndexDataBase28, this.anIntArray104[int_1], 0);
             }
 
-            ModelData modeldata_0;
+            ModelHeader modeldata_0;
             if (modeldatas_0.length == 1) {
                modeldata_0 = modeldatas_0[0];
             } else {
-               modeldata_0 = new ModelData(modeldatas_0, modeldatas_0.length);
+               modeldata_0 = new ModelHeader(modeldatas_0, modeldatas_0.length);
             }
 
             int int_2;
@@ -346,7 +346,7 @@ public class NPCComposition extends CacheableNode {
          if (this.varpIndex != -1) {
             int_0 = Item.method973(this.varpIndex);
          } else if (this.varp32Index != -1) {
-            int_0 = Class79.widgetSettings[this.varp32Index];
+            int_0 = Settings.widgetSettings[this.varp32Index];
          }
 
          return int_0 >= 0 && int_0 < this.configs.length ? this.configs[int_0] != -1 : this.configs[this.configs.length - 1] != -1;

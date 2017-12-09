@@ -74,7 +74,7 @@ public class Spotanim extends CacheableNode {
    public Model method763(int int_0) {
       Model model_0 = (Model) aNodeCache6.get((long)this.id);
       if (model_0 == null) {
-         ModelData modeldata_0 = ModelData.method1060(anIndexDataBase14, this.anInt421, 0);
+         ModelHeader modeldata_0 = ModelHeader.getModel(anIndexDataBase14, this.anInt421, 0);
          if (modeldata_0 == null) {
             return null;
          }

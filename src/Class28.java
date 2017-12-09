@@ -27,29 +27,6 @@ public class Class28 {
       return float_0 >= (float)this.anInt91;
    }
 
-   public static ObjectComposition getObjectDefinition(int int_0) {
-      ObjectComposition objectcomposition_0 = (ObjectComposition) ObjectComposition.objects.get((long)int_0);
-      if (objectcomposition_0 != null) {
-         return objectcomposition_0;
-      } else {
-         byte[] bytes_0 = ObjectComposition.objects_ref.getConfigData(6, int_0);
-         objectcomposition_0 = new ObjectComposition();
-         objectcomposition_0.id = int_0;
-         if (bytes_0 != null) {
-            objectcomposition_0.decode(new Buffer(bytes_0));
-         }
-
-         objectcomposition_0.post();
-         if (objectcomposition_0.isSolid) {
-            objectcomposition_0.interactType = 0;
-            objectcomposition_0.aBool60 = false;
-         }
-
-         ObjectComposition.objects.put(objectcomposition_0, (long)int_0);
-         return objectcomposition_0;
-      }
-   }
-
    static Class28 method229(int int_0) {
       Class28[] class28s_0 = new Class28[] {aClass28_2, aClass28_3, aClass28_4};
       Class28[] class28s_1 = class28s_0;

@@ -413,7 +413,7 @@ public class Ignore {
                         widget_1 = PendingSpawn.method671(int_1);
                         if (widget_1.dynamicValues != null && widget_1.dynamicValues[0][0] == 5) {
                            int_6 = widget_1.dynamicValues[0][1];
-                           Class79.widgetSettings[int_6] = 1 - Class79.widgetSettings[int_6];
+                           Settings.widgetSettings[int_6] = 1 - Settings.widgetSettings[int_6];
                            DynamicObject.method1064(int_6);
                         }
                      } else if (int_2 == 29) {
@@ -423,8 +423,8 @@ public class Ignore {
                         widget_1 = PendingSpawn.method671(int_1);
                         if (widget_1.dynamicValues != null && widget_1.dynamicValues[0][0] == 5) {
                            int_6 = widget_1.dynamicValues[0][1];
-                           if (Class79.widgetSettings[int_6] != widget_1.anIntArray65[0]) {
-                              Class79.widgetSettings[int_6] = widget_1.anIntArray65[0];
+                           if (Settings.widgetSettings[int_6] != widget_1.anIntArray65[0]) {
+                              Settings.widgetSettings[int_6] = widget_1.anIntArray65[0];
                               DynamicObject.method1064(int_6);
                            }
                         }

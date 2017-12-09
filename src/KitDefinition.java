@@ -76,17 +76,17 @@ public class KitDefinition extends CacheableNode {
         return bool_0;
     }
 
-    public ModelData method807() {
-        ModelData[] modeldatas_0 = new ModelData[5];
+    public ModelHeader method807() {
+        ModelHeader[] modeldatas_0 = new ModelHeader[5];
         int int_0 = 0;
 
         for (int int_1 = 0; int_1 < 5; int_1++) {
             if (this.models[int_1] != -1) {
-                modeldatas_0[int_0++] = ModelData.method1060(anIndexDataBase15, this.models[int_1], 0);
+                modeldatas_0[int_0++] = ModelHeader.getModel(anIndexDataBase15, this.models[int_1], 0);
             }
         }
 
-        ModelData modeldata_0 = new ModelData(modeldatas_0, int_0);
+        ModelHeader modeldata_0 = new ModelHeader(modeldatas_0, int_0);
         int int_2;
         if (this.recolorToFind != null) {
             for (int_2 = 0; int_2 < this.recolorToFind.length; int_2++) {
@@ -131,21 +131,21 @@ public class KitDefinition extends CacheableNode {
         }
     }
 
-    public ModelData getModelData() {
+    public ModelHeader getModelData() {
         if (this.modelIds == null) {
             return null;
         } else {
-            ModelData[] modeldatas_0 = new ModelData[this.modelIds.length];
+            ModelHeader[] modeldatas_0 = new ModelHeader[this.modelIds.length];
 
             for (int int_0 = 0; int_0 < this.modelIds.length; int_0++) {
-                modeldatas_0[int_0] = ModelData.method1060(anIndexDataBase15, this.modelIds[int_0], 0);
+                modeldatas_0[int_0] = ModelHeader.getModel(anIndexDataBase15, this.modelIds[int_0], 0);
             }
 
-            ModelData modeldata_0;
+            ModelHeader modeldata_0;
             if (modeldatas_0.length == 1) {
                 modeldata_0 = modeldatas_0[0];
             } else {
-                modeldata_0 = new ModelData(modeldatas_0, modeldatas_0.length);
+                modeldata_0 = new ModelHeader(modeldatas_0, modeldatas_0.length);
             }
 
             int int_1;

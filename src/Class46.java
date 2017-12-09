@@ -224,9 +224,9 @@ public class Class46 {
                IndexData indexdata_2 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_3 = Class4.indexModels;
                boolean bool_0 = Client.lowMemory;
-               ObjectComposition.objects_ref = indexdata_2;
-               ObjectComposition.anIndexDataBase20 = indexdata_3;
-               ObjectComposition.aBool59 = bool_0;
+               ObjectDefinition.objects_ref = indexdata_2;
+               ObjectDefinition.anIndexDataBase20 = indexdata_3;
+               ObjectDefinition.lowMemory = bool_0;
                IndexData indexdata_4 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_5 = Class4.indexModels;
                NPCComposition.anIndexDataBase29 = indexdata_4;

@@ -39,28 +39,28 @@ public final class Tile extends Node {
       return new Enum7[] {Enum7.anEnum7_5, Enum7.anEnum7_3, Enum7.anEnum7_2, Enum7.anEnum7_4, Enum7.anEnum7_1, Enum7.anEnum7_8, Enum7.anEnum7_6, Enum7.anEnum7_7};
    }
 
-   static IterableHashTable method682(Buffer buffer_0, IterableHashTable iterablehashtable_0) {
-      int int_0 = buffer_0.getUnsignedByte();
-      int int_1;
-      if (iterablehashtable_0 == null) {
-         int_1 = Class58.method389(int_0);
-         iterablehashtable_0 = new IterableHashTable(int_1);
+   static IterableHashTable decodeParameters(Buffer buffer, IterableHashTable parameters) {
+      int length = buffer.getUnsignedByte();
+      int index;
+      if (parameters == null) {
+         index = Class58.method389(length);
+         parameters = new IterableHashTable(index);
       }
 
-      for (int_1 = 0; int_1 < int_0; int_1++) {
-         boolean bool_0 = buffer_0.getUnsignedByte() == 1;
-         int int_2 = buffer_0.read24BitInt();
-         Object object_0;
-         if (bool_0) {
-            object_0 = new ObjectNode(buffer_0.readString());
+      for (index = 0; index < length; index++) {
+         boolean bool = buffer.getUnsignedByte() == 1;
+         int id = buffer.read24BitInt();
+         Object object;
+         if (bool) {
+            object = new ObjectNode(buffer.readString());
          } else {
-            object_0 = new IntegerNode(buffer_0.readInt());
+            object = new IntegerNode(buffer.readInt());
          }
 
-         iterablehashtable_0.put((Node) object_0, (long)int_2);
+         parameters.put((Node) object, (long)id);
       }
 
-      return iterablehashtable_0;
+      return parameters;
    }
 
    static void method683(Widget widget_0, int int_0, int int_1) {

@@ -128,13 +128,13 @@ public class PlayerComposition {
             }
 
             if (model_0 == null) {
-               ModelData[] modeldatas_0 = new ModelData[12];
+               ModelHeader[] modeldatas_0 = new ModelHeader[12];
                int_4 = 0;
 
                int int_6;
                for (int int_5 = 0; int_5 < 12; int_5++) {
                   int_6 = ints_0[int_5];
-                  ModelData modeldata_0;
+                  ModelHeader modeldata_0;
                   if (int_6 >= 256 && int_6 < 512) {
                      modeldata_0 = Class70.getKitDefinition(int_6 - 256).getModelData();
                      if (modeldata_0 != null) {
@@ -150,7 +150,7 @@ public class PlayerComposition {
                   }
                }
 
-               ModelData modeldata_1 = new ModelData(modeldatas_0, int_4);
+               ModelHeader modeldata_1 = new ModelHeader(modeldatas_0, int_4);
 
                for (int_6 = 0; int_6 < 5; int_6++) {
                   if (this.bodyPartColours[int_6] < colorsToReplace[int_6].length) {
@@ -185,7 +185,7 @@ public class PlayerComposition {
       }
    }
 
-   ModelData method506() {
+   ModelHeader method506() {
       if (this.transformedNpcId != -1) {
          return Class27.getNpcDefinition(this.transformedNpcId).method899();
       } else {
@@ -206,13 +206,13 @@ public class PlayerComposition {
          if (bool_0) {
             return null;
          } else {
-            ModelData[] modeldatas_0 = new ModelData[12];
+            ModelHeader[] modeldatas_0 = new ModelHeader[12];
             int_1 = 0;
 
             int int_3;
             for (int int_2 = 0; int_2 < 12; int_2++) {
                int_3 = this.equipmentIds[int_2];
-               ModelData modeldata_0;
+               ModelHeader modeldata_0;
                if (int_3 >= 256 && int_3 < 512) {
                   modeldata_0 = Class70.getKitDefinition(int_3 - 256).method807();
                   if (modeldata_0 != null) {
@@ -228,7 +228,7 @@ public class PlayerComposition {
                }
             }
 
-            ModelData modeldata_1 = new ModelData(modeldatas_0, int_1);
+            ModelHeader modeldata_1 = new ModelHeader(modeldatas_0, int_1);
 
             for (int_3 = 0; int_3 < 5; int_3++) {
                if (this.bodyPartColours[int_3] < colorsToReplace[int_3].length) {

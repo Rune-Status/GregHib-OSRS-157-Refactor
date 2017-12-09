@@ -56,8 +56,8 @@ public class Class9 {
             for (int int_3 = 0; int_3 < class6s_1.length; int_3++) {
                Class6 class6_0 = class6s_1[int_3];
                if (SoundTask.method320(class6_0.anInt38)) {
-                  ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(class6_0.anInt37);
-                  int int_4 = objectcomposition_0.anInt461 != 0 ? -3407872 : -3355444;
+                  ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(class6_0.anInt37);
+                  int int_4 = objectcomposition_0.hasOptions != 0 ? -3407872 : -3355444;
                   if (class6_0.anInt38 == Enum4.anEnum4_1.anInt382) {
                      this.method138(int_0, int_1, class6_0.anInt39, int_4);
                   }
@@ -139,7 +139,7 @@ public class Class9 {
                int int_4 = class6_0.anInt38;
                boolean bool_0 = int_4 >= Enum4.anEnum4_21.anInt382 && int_4 <= Enum4.anEnum4_22.anInt382;
                if (bool_0 || Class55.method354(class6_0.anInt38)) {
-                  ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(class6_0.anInt37);
+                  ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(class6_0.anInt37);
                   if (objectcomposition_0.mapSceneId != -1) {
                      if (objectcomposition_0.mapSceneId != 46 && objectcomposition_0.mapSceneId != 52) {
                         indexedsprites_0[objectcomposition_0.mapSceneId].method976(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45 * 2, this.anInt45 * 2);
@@ -586,9 +586,9 @@ public class Class9 {
    }
 
    Area method131(int int_0) {
-      ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_0);
-      if (objectcomposition_0.impostorIds != null) {
-         objectcomposition_0 = objectcomposition_0.getImpostor();
+      ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_0);
+      if (objectcomposition_0.transformationIds != null) {
+         objectcomposition_0 = objectcomposition_0.morph();
          if (objectcomposition_0 == null) {
             return null;
          }

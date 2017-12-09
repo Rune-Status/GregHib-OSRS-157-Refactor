@@ -1,4 +1,4 @@
-public class ModelData extends Renderable {
+public class ModelHeader extends Renderable {
 
    static int[] anIntArray138;
    static int[] anIntArray139;
@@ -56,14 +56,14 @@ public class ModelData extends Renderable {
       anIntArray140 = Graphics3D.COSINE;
    }
 
-   ModelData() {
+   ModelHeader() {
       this.vertexCount = 0;
       this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
    }
 
-   public ModelData(ModelData[] modeldatas_0, int int_0) {
+   public ModelHeader(ModelHeader[] modeldatas_0, int int_0) {
       this.vertexCount = 0;
       this.triangleCount = 0;
       this.priority = 0;
@@ -80,7 +80,7 @@ public class ModelData extends Renderable {
       this.priority = -1;
 
       int int_1;
-      ModelData modeldata_1;
+      ModelHeader modeldata_1;
       for (int_1 = 0; int_1 < int_0; int_1++) {
          modeldata_1 = modeldatas_0[int_1];
          if (modeldata_1 != null) {
@@ -236,20 +236,20 @@ public class ModelData extends Renderable {
 
    }
 
-   ModelData(byte[] bytes_0) {
+   ModelHeader(byte[] data) {
       this.vertexCount = 0;
       this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
-      if (bytes_0[bytes_0.length - 1] == -1 && bytes_0[bytes_0.length - 2] == -1) {
-         this.decodeNewFormat(bytes_0);
+      if (data[data.length - 1] == -1 && data[data.length - 2] == -1) {
+         this.decodeNewFormat(data);
       } else {
-         this.decodeOldFormat(bytes_0);
+         this.decodeOldFormat(data);
       }
 
    }
 
-   public ModelData(ModelData modeldata_1, boolean bool_0, boolean bool_1, boolean bool_2, boolean bool_3) {
+   public ModelHeader(ModelHeader modeldata_1, boolean bool_0, boolean bool_1, boolean bool_2, boolean bool_3) {
       this.vertexCount = 0;
       this.triangleCount = 0;
       this.priority = 0;
@@ -440,15 +440,15 @@ public class ModelData extends Renderable {
       }
    }
 
-   void method1048() {
+   void clean() {
       this.normals = null;
       this.aVertexNormalArray1 = null;
       this.faceNormals = null;
       this.aBool76 = false;
    }
 
-   public ModelData method1049() {
-      ModelData modeldata_1 = new ModelData();
+   public ModelHeader method1049() {
+      ModelHeader modeldata_1 = new ModelHeader();
       if (this.faceRenderType != null) {
          modeldata_1.faceRenderType = new byte[this.triangleCount];
 
@@ -501,14 +501,14 @@ public class ModelData extends Renderable {
 
    }
 
-   public void method1050(int int_0, int int_1, int int_2) {
-      for (int int_3 = 0; int_3 < this.vertexCount; int_3++) {
-         this.vertexX[int_3] = this.vertexX[int_3] * int_0 / 128;
-         this.vertexY[int_3] = int_1 * this.vertexY[int_3] / 128;
-         this.vertexZ[int_3] = int_2 * this.vertexZ[int_3] / 128;
+   public void scaleTriangle(int x, int y, int z) {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         this.vertexX[vertex] = this.vertexX[vertex] * x / 128;
+         this.vertexY[vertex] = y * this.vertexY[vertex] / 128;
+         this.vertexZ[vertex] = z * this.vertexZ[vertex] / 128;
       }
 
-      this.method1048();
+      this.clean();
    }
 
    void decodeOldFormat(byte[] bytes_0) {
@@ -1334,17 +1334,17 @@ public class ModelData extends Renderable {
 
    }
 
-   public void method1052(int int_0, int int_1, int int_2) {
-      for (int int_3 = 0; int_3 < this.vertexCount; int_3++) {
-         this.vertexX[int_3] += int_0;
-         this.vertexY[int_3] += int_1;
-         this.vertexZ[int_3] += int_2;
+   public void translate(int x, int y, int z) {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         this.vertexX[vertex] += x;
+         this.vertexY[vertex] += y;
+         this.vertexZ[vertex] += z;
       }
 
-      this.method1048();
+      this.clean();
    }
 
-   public ModelData method1053(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int int_3) {
+   public ModelHeader method1053(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int int_3) {
       this.method1047();
       int int_4 = int_0 + this.anInt571;
       int int_5 = int_0 + this.anInt572;
@@ -1358,7 +1358,7 @@ public class ModelData extends Renderable {
          if (int_1 == ints_0[int_4][int_6] && int_1 == ints_0[int_5][int_6] && int_1 == ints_0[int_4][int_7] && int_1 == ints_0[int_5][int_7]) {
             return this;
          } else {
-            ModelData modeldata_1 = new ModelData();
+            ModelHeader modeldata_1 = new ModelHeader();
             modeldata_1.vertexCount = this.vertexCount;
             modeldata_1.triangleCount = this.triangleCount;
             modeldata_1.anInt576 = this.anInt576;
@@ -1433,7 +1433,7 @@ public class ModelData extends Renderable {
                }
             }
 
-            modeldata_1.method1048();
+            modeldata_1.clean();
             return modeldata_1;
          }
       } else {
@@ -1500,42 +1500,42 @@ public class ModelData extends Renderable {
 
    }
 
-   public void method1054() {
-      int int_0;
-      for (int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         this.vertexZ[int_0] = -this.vertexZ[int_0];
+   public void mirror() {
+      int vertex;
+      for (vertex = 0; vertex < this.vertexCount; vertex++) {
+         this.vertexZ[vertex] = -this.vertexZ[vertex];
       }
 
-      for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
-         int int_1 = this.trianglePointsX[int_0];
-         this.trianglePointsX[int_0] = this.trianglePointsZ[int_0];
-         this.trianglePointsZ[int_0] = int_1;
+      for (vertex = 0; vertex < this.triangleCount; vertex++) {
+         int int_1 = this.trianglePointsX[vertex];
+         this.trianglePointsX[vertex] = this.trianglePointsZ[vertex];
+         this.trianglePointsZ[vertex] = int_1;
       }
 
-      this.method1048();
+      this.clean();
    }
 
    public void method1055(int int_0) {
       int int_1 = anIntArray138[int_0];
       int int_2 = anIntArray140[int_0];
 
-      for (int int_3 = 0; int_3 < this.vertexCount; int_3++) {
-         int int_4 = int_1 * this.vertexZ[int_3] + int_2 * this.vertexX[int_3] >> 16;
-         this.vertexZ[int_3] = int_2 * this.vertexZ[int_3] - int_1 * this.vertexX[int_3] >> 16;
-         this.vertexX[int_3] = int_4;
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         int int_4 = int_1 * this.vertexZ[vertex] + int_2 * this.vertexX[vertex] >> 16;
+         this.vertexZ[vertex] = int_2 * this.vertexZ[vertex] - int_1 * this.vertexX[vertex] >> 16;
+         this.vertexX[vertex] = int_4;
       }
 
-      this.method1048();
+      this.clean();
    }
 
-   public void method1056() {
-      for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         int int_1 = this.vertexX[int_0];
-         this.vertexX[int_0] = this.vertexZ[int_0];
-         this.vertexZ[int_0] = -int_1;
+   public void rotate90Degrees() {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         int x = this.vertexX[vertex];
+         this.vertexX[vertex] = this.vertexZ[vertex];
+         this.vertexZ[vertex] = -x;
       }
 
-      this.method1048();
+      this.clean();
    }
 
    public void method1057() {
@@ -1544,7 +1544,7 @@ public class ModelData extends Renderable {
          this.vertexZ[int_0] = -this.vertexZ[int_0];
       }
 
-      this.method1048();
+      this.clean();
    }
 
    public void method1058() {
@@ -1554,10 +1554,10 @@ public class ModelData extends Renderable {
          this.vertexX[int_0] = -int_1;
       }
 
-      this.method1048();
+      this.clean();
    }
 
-   int method1059(ModelData modeldata_1, int int_0) {
+   int method1059(ModelHeader modeldata_1, int int_0) {
       int int_1 = -1;
       int int_2 = modeldata_1.vertexX[int_0];
       int int_3 = modeldata_1.vertexY[int_0];
@@ -1584,12 +1584,12 @@ public class ModelData extends Renderable {
       return int_1;
    }
 
-   public static ModelData method1060(IndexDataBase indexdatabase_0, int int_0, int int_1) {
-      byte[] bytes_0 = indexdatabase_0.getConfigData(int_0, int_1);
-      return bytes_0 == null ? null : new ModelData(bytes_0);
+   public static ModelHeader getModel(IndexDataBase index, int int_0, int int_1) {
+      byte[] bytes_0 = index.getConfigData(int_0, int_1);
+      return bytes_0 == null ? null : new ModelHeader(bytes_0);
    }
 
-   static void method1061(ModelData modeldata_0, ModelData modeldata_1, int int_0, int int_1, int int_2, boolean bool_0) {
+   static void method1061(ModelHeader modeldata_0, ModelHeader modeldata_1, int int_0, int int_1, int int_2, boolean bool_0) {
       modeldata_0.method1047();
       modeldata_0.computeNormals();
       modeldata_1.method1047();

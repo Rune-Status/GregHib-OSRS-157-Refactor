@@ -705,7 +705,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                         }
 
                         if (player_0 != null) {
-                           ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_13);
+                           ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_13);
                            int int_15;
                            int int_16;
                            if (int_11 != 1 && int_11 != 3) {

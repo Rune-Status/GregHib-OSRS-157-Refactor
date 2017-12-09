@@ -30,7 +30,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
             Class19.anInt72 = int_0;
          }
 
-         ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_3);
+         ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_3);
          int int_6;
          int int_7;
          if (int_4 != 1 && int_4 != 3) {
@@ -66,12 +66,12 @@ public class RuntimeException_Sub1 extends RuntimeException {
          int int_13 = (int_1 << 7) + (int_6 << 6);
          int int_14 = (int_2 << 7) + (int_7 << 6);
          int int_15 = (int_3 << 14) + (int_2 << 7) + int_1 + 1073741824;
-         if (objectcomposition_0.anInt461 == 0) {
+         if (objectcomposition_0.hasOptions == 0) {
             int_15 -= Integer.MIN_VALUE;
          }
 
          int int_16 = int_5 + (int_4 << 6);
-         if (objectcomposition_0.anInt462 == 1) {
+         if (objectcomposition_0.isSolid == 1) {
             int_16 += 256;
          }
 
@@ -81,8 +81,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
 
          Object object_0;
          if (int_5 == 22) {
-            if (!Client.lowMemory || objectcomposition_0.anInt461 != 0 || objectcomposition_0.interactType == 1 || objectcomposition_0.aBool61) {
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+            if (!Client.lowMemory || objectcomposition_0.hasOptions != 0 || objectcomposition_0.interactType == 1 || objectcomposition_0.needsRedraw) {
+               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                   object_0 = objectcomposition_0.getModel(22, int_4, ints_0, int_13, int_12, int_14);
                } else {
                   object_0 = new DynamicObject(int_3, 22, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -98,7 +98,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
             int int_17;
             if (int_5 != 10 && int_5 != 11) {
                if (int_5 >= 12) {
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(int_5, int_4, ints_0, int_13, int_12, int_14);
                   } else {
                      object_0 = new DynamicObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -110,11 +110,11 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   }
 
                   if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                     collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.aBool60);
+                     collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.projectileClipped);
                   }
 
                } else if (int_5 == 0) {
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(0, int_4, ints_0, int_13, int_12, int_14);
                   } else {
                      object_0 = new DynamicObject(int_3, 0, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -160,15 +160,15 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   }
 
                   if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                     collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.aBool60);
+                     collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.projectileClipped);
                   }
 
-                  if (objectcomposition_0.anInt466 != 16) {
-                     region_0.method380(int_0, int_1, int_2, objectcomposition_0.anInt466);
+                  if (objectcomposition_0.offsetMultiplier != 16) {
+                     region_0.method380(int_0, int_1, int_2, objectcomposition_0.offsetMultiplier);
                   }
 
                } else if (int_5 == 1) {
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(1, int_4, ints_0, int_13, int_12, int_14);
                   } else {
                      object_0 = new DynamicObject(int_3, 1, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -188,7 +188,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   }
 
                   if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                     collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.aBool60);
+                     collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.projectileClipped);
                   }
 
                } else {
@@ -197,7 +197,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   if (int_5 == 2) {
                      int_20 = int_4 + 1 & 0x3;
                      Object object_1;
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_1 = objectcomposition_0.getModel(2, int_4 + 4, ints_0, int_13, int_12, int_14);
                         object_2 = objectcomposition_0.getModel(2, int_20, ints_0, int_13, int_12, int_14);
                      } else {
@@ -223,15 +223,15 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      }
 
                      if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                        collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.aBool60);
+                        collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.projectileClipped);
                      }
 
-                     if (objectcomposition_0.anInt466 != 16) {
-                        region_0.method380(int_0, int_1, int_2, objectcomposition_0.anInt466);
+                     if (objectcomposition_0.offsetMultiplier != 16) {
+                        region_0.method380(int_0, int_1, int_2, objectcomposition_0.offsetMultiplier);
                      }
 
                   } else if (int_5 == 3) {
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(3, int_4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_0 = new DynamicObject(int_3, 3, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -251,11 +251,11 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      }
 
                      if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                        collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.aBool60);
+                        collisiondata_0.addWall(int_1, int_2, int_5, int_4, objectcomposition_0.projectileClipped);
                      }
 
                   } else if (int_5 == 9) {
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(int_5, int_4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_0 = new DynamicObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -263,15 +263,15 @@ public class RuntimeException_Sub1 extends RuntimeException {
 
                      region_0.method379(int_0, int_1, int_2, int_12, 1, 1, (Renderable) object_0, 0, int_15, int_16);
                      if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                        collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.aBool60);
+                        collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.projectileClipped);
                      }
 
-                     if (objectcomposition_0.anInt466 != 16) {
-                        region_0.method380(int_0, int_1, int_2, objectcomposition_0.anInt466);
+                     if (objectcomposition_0.offsetMultiplier != 16) {
+                        region_0.method380(int_0, int_1, int_2, objectcomposition_0.offsetMultiplier);
                      }
 
                   } else if (int_5 == 4) {
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(4, int_4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_0 = new DynamicObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -282,10 +282,10 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      int_20 = 16;
                      int_17 = region_0.method365(int_0, int_1, int_2);
                      if (int_17 != 0) {
-                        int_20 = Class28.getObjectDefinition(int_17 >> 14 & 0x7FFF).anInt466;
+                        int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier;
                      }
 
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_2 = objectcomposition_0.getModel(4, int_4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_2 = new DynamicObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -296,10 +296,10 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      int_20 = 8;
                      int_17 = region_0.method365(int_0, int_1, int_2);
                      if (int_17 != 0) {
-                        int_20 = Class28.getObjectDefinition(int_17 >> 14 & 0x7FFF).anInt466 / 2;
+                        int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier / 2;
                      }
 
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_2 = objectcomposition_0.getModel(4, int_4 + 4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_2 = new DynamicObject(int_3, 4, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -308,7 +308,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_2, (Renderable) null, 256, int_4, int_20 * Class19.anIntArray13[int_4], int_20 * Class19.anIntArray14[int_4], int_15, int_16);
                   } else if (int_5 == 7) {
                      int_17 = int_4 + 2 & 0x3;
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(4, int_17 + 4, ints_0, int_13, int_12, int_14);
                      } else {
                         object_0 = new DynamicObject(int_3, 4, int_17 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -319,12 +319,12 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      int_20 = 8;
                      int_17 = region_0.method365(int_0, int_1, int_2);
                      if (int_17 != 0) {
-                        int_20 = Class28.getObjectDefinition(int_17 >> 14 & 0x7FFF).anInt466 / 2;
+                        int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier / 2;
                      }
 
                      int int_21 = int_4 + 2 & 0x3;
                      Object object_3;
-                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+                     if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_2 = objectcomposition_0.getModel(4, int_4 + 4, ints_0, int_13, int_12, int_14);
                         object_3 = objectcomposition_0.getModel(4, int_21 + 4, ints_0, int_13, int_12, int_14);
                      } else {
@@ -336,7 +336,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   }
                }
             } else {
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.impostorIds == null) {
+               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                   object_0 = objectcomposition_0.getModel(10, int_4, ints_0, int_13, int_12, int_14);
                } else {
                   object_0 = new DynamicObject(int_3, 10, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
@@ -361,7 +361,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                }
 
                if (objectcomposition_0.interactType != 0 && collisiondata_0 != null) {
-                  collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.aBool60);
+                  collisiondata_0.addObject(int_1, int_2, int_6, int_7, objectcomposition_0.projectileClipped);
                }
 
             }

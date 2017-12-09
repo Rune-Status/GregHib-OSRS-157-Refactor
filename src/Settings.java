@@ -1,17 +1,17 @@
-public class Class79 {
+public class Settings {
 
-   static int[] anIntArray40;
+   static int[] BIT_MASKS;
    public static int[] settings;
    public static int[] widgetSettings;
-   static int[][] anIntArrayArray12;
+   static int[][] tileHeightArray;
 
    static {
-      anIntArray40 = new int[32];
-      int int_0 = 2;
+      BIT_MASKS = new int[32];
+      int value = 2;
 
-      for (int int_1 = 0; int_1 < 32; int_1++) {
-         anIntArray40[int_1] = int_0 - 1;
-         int_0 += int_0;
+      for (int index = 0; index < 32; index++) {
+         BIT_MASKS[index] = value - 1;
+         value += value;
       }
 
       settings = new int[2000];

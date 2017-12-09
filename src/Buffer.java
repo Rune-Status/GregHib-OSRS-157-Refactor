@@ -696,7 +696,7 @@ public class Buffer extends Node {
         Class7.aByteArrayArrayArray2 = new byte[4][104][104];
         ItemLayer.anIntArrayArrayArray1 = new int[4][105][105];
         Class19.aByteArrayArrayArray7 = new byte[4][105][105];
-        Class79.anIntArrayArray12 = new int[105][105];
+        Settings.tileHeightArray = new int[105][105];
         Class19.anIntArray8 = new int[104];
         RSCanvas.anIntArray82 = new int[104];
         Preferences.anIntArray39 = new int[104];
@@ -711,7 +711,7 @@ public class Buffer extends Node {
         if (!TileStrategy.method628(indexdatabase_0, value, int_1)) {
             spritepixelss_0 = null;
         } else {
-            spritepixelss_0 = ObjectComposition.method829();
+            spritepixelss_0 = ObjectDefinition.method829();
         }
 
         return spritepixelss_0;

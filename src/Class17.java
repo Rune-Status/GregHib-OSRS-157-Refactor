@@ -401,12 +401,12 @@ public class Class17 {
                                                                                                       }
                                                                                                    } else {
                                                                                                       int_5 = ints_1[int_1];
-                                                                                                      Class79.widgetSettings[int_5] = Class39.intStack[--Class23.intStackSize];
+                                                                                                      Settings.widgetSettings[int_5] = Class39.intStack[--Class23.intStackSize];
                                                                                                       DynamicObject.method1064(int_5);
                                                                                                    }
                                                                                                 } else {
                                                                                                    int_5 = ints_1[int_1];
-                                                                                                   Class39.intStack[++Class23.intStackSize - 1] = Class79.widgetSettings[int_5];
+                                                                                                   Class39.intStack[++Class23.intStackSize - 1] = Settings.widgetSettings[int_5];
                                                                                                 }
                                                                                              } else {
                                                                                                 Class39.intStack[++Class23.intStackSize - 1] = ints_1[int_1];

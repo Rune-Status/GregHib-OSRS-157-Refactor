@@ -67,9 +67,9 @@ public class DynamicObject extends Renderable {
          this.anInt578 = Client.gameCycle - int_0;
       }
 
-      ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(this.id);
-      if (objectcomposition_0.impostorIds != null) {
-         objectcomposition_0 = objectcomposition_0.getImpostor();
+      ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(this.id);
+      if (objectcomposition_0.transformationIds != null) {
+         objectcomposition_0 = objectcomposition_0.morph();
       }
 
       if (objectcomposition_0 == null) {
@@ -128,14 +128,14 @@ public class DynamicObject extends Renderable {
       Class12.method165();
 
       for (Node_Sub1 node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getFront(); node_sub1_0 != null; node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getNext()) {
-         if (node_sub1_0.anObjectComposition1 != null) {
+         if (node_sub1_0.anObjectDefinition1 != null) {
             node_sub1_0.method632();
          }
       }
 
       int int_1 = ClanMember.method677(int_0).configType;
       if (int_1 != 0) {
-         int int_2 = Class79.widgetSettings[int_0];
+         int int_2 = Settings.widgetSettings[int_0];
          if (int_1 == 1) {
             if (int_2 == 1) {
                Graphics3D.setBrightness(0.9D);
@@ -368,8 +368,8 @@ public class DynamicObject extends Renderable {
                         int_13 = int_1 + int_11;
                         int_14 = int_2 + int_10;
                         if (int_13 > 0 && int_14 > 0 && int_13 < 103 && int_14 < 103) {
-                           ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_4);
-                           if (int_12 != 22 || !Client.lowMemory || objectcomposition_0.anInt461 != 0 || objectcomposition_0.interactType == 1 || objectcomposition_0.aBool61) {
+                           ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_4);
+                           if (int_12 != 22 || !Client.lowMemory || objectcomposition_0.hasOptions != 0 || objectcomposition_0.interactType == 1 || objectcomposition_0.needsRedraw) {
                               if (!objectcomposition_0.method823()) {
                                  ++Client.anInt633;
                                  bool_1 = false;
@@ -567,7 +567,7 @@ public class DynamicObject extends Renderable {
                                        int_25 = int_24 >> 2;
                                        int_26 = int_24 & 0x3;
                                        if (int_6 == int_23 && int_22 >= int_11 && int_22 < int_11 + 8 && int_21 >= int_12 && int_21 < int_12 + 8) {
-                                          ObjectComposition objectcomposition_1 = Class28.getObjectDefinition(int_17);
+                                          ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_17);
                                           int_27 = int_8 + Class20.method209(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
                                           int_28 = int_10 + RSCanvas.method749(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
                                           if (int_27 > 0 && int_28 > 0 && int_27 < 103 && int_28 < 103) {
@@ -651,7 +651,7 @@ public class DynamicObject extends Renderable {
                      int_17 = (int_12 << 8) / int_13;
                      int_18 = (int_17 * -50 + int_14 * -50 + int_16 * -10) / int_41 + 96;
                      int_19 = (bytes_4[int_10][int_8 + 1] >> 3) + (bytes_4[int_10 - 1][int_8] >> 2) + (bytes_4[int_10][int_8 - 1] >> 2) + (bytes_4[int_10 + 1][int_8] >> 3) + (bytes_4[int_10][int_8] >> 1);
-                     Class79.anIntArrayArray12[int_10][int_8] = int_18 - int_19;
+                     Settings.tileHeightArray[int_10][int_8] = int_18 - int_19;
                   }
                }
 
@@ -730,10 +730,10 @@ public class DynamicObject extends Renderable {
                               int_22 = Class19.tileHeights[int_2][int_8 + 1][int_16];
                               int_23 = Class19.tileHeights[int_2][int_8 + 1][int_16 + 1];
                               int_24 = Class19.tileHeights[int_2][int_8][int_16 + 1];
-                              int_25 = Class79.anIntArrayArray12[int_8][int_16];
-                              int_26 = Class79.anIntArrayArray12[int_8 + 1][int_16];
-                              int int_30 = Class79.anIntArrayArray12[int_8 + 1][int_16 + 1];
-                              int_27 = Class79.anIntArrayArray12[int_8][int_16 + 1];
+                              int_25 = Settings.tileHeightArray[int_8][int_16];
+                              int_26 = Settings.tileHeightArray[int_8 + 1][int_16];
+                              int int_30 = Settings.tileHeightArray[int_8 + 1][int_16 + 1];
+                              int_27 = Settings.tileHeightArray[int_8][int_16 + 1];
                               int_28 = -1;
                               int_29 = -1;
                               int int_31;
@@ -1061,7 +1061,7 @@ public class DynamicObject extends Renderable {
                }
             }
 
-            ObjectComposition.aNodeCache9.reset();
+            ObjectDefinition.modelCache.reset();
             PacketNode packetnode_0;
             if (AClass3.clientInstance.method1091()) {
                packetnode_0 = Actor.method953(ClientPacket.aClientPacket9, Client.aClass46_1.cipher);

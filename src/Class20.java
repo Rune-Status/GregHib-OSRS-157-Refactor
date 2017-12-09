@@ -1748,9 +1748,9 @@ public class Class20 implements Comparator {
                                           int_9 = Class39.intStack[Class23.intStackSize + 1];
                                           cacheablenode_sub5_0 = PacketBuffer.method907(int_9);
                                           if (cacheablenode_sub5_0.method884()) {
-                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = Class28.getObjectDefinition(int_1).method826(int_9, cacheablenode_sub5_0.aString30);
+                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = ObjectDefinition.getDefinition(int_1).method826(int_9, cacheablenode_sub5_0.aString30);
                                           } else {
-                                             Class39.intStack[++Class23.intStackSize - 1] = Class28.getObjectDefinition(int_1).method827(int_9, cacheablenode_sub5_0.anInt474);
+                                             Class39.intStack[++Class23.intStackSize - 1] = ObjectDefinition.getDefinition(int_1).method827(int_9, cacheablenode_sub5_0.anInt474);
                                           }
 
                                           byte_0 = 1;

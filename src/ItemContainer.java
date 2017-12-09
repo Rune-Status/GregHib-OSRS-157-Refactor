@@ -107,9 +107,9 @@ public class ItemContainer extends Node {
                         if (int_18 != int_20) {
                            int_18 = int_20;
                            if (int_23 == 2 && Class23.region.method368(Ignore.plane, int_21, int_22, int_20) >= 0) {
-                              ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_24);
-                              if (objectcomposition_0.impostorIds != null) {
-                                 objectcomposition_0 = objectcomposition_0.getImpostor();
+                              ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_24);
+                              if (objectcomposition_0.transformationIds != null) {
+                                 objectcomposition_0 = objectcomposition_0.morph();
                               }
 
                               if (objectcomposition_0 == null) {
@@ -123,7 +123,7 @@ public class ItemContainer extends Node {
                                     Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(65535) + objectcomposition_0.name, 2, int_20, int_21, int_22);
                                  }
                               } else {
-                                 String[] strings_1 = objectcomposition_0.actions;
+                                 String[] strings_1 = objectcomposition_0.options;
                                  if (Client.aBool99) {
                                     strings_1 = Friend.method537(strings_1);
                                  }

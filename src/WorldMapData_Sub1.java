@@ -267,7 +267,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
                Class27.chatBuffer.position = 0;
                buffer.readReverseData(Class27.chatBuffer.buffer, 0, length);
                Class27.chatBuffer.position = 0;
-               String text = FontTypeFace.appendTags(ObjectComposition.method830(IndexFile.method73(Class27.chatBuffer)));
+               String text = FontTypeFace.appendTags(ObjectDefinition.method830(IndexFile.method73(Class27.chatBuffer)));
                player.overhead = text.trim();
                player.textColour = textInfo >> 8;
                player.textEffect = textInfo & 0xFF;
@@ -381,7 +381,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
       Class7.aByteArrayArrayArray2 = null;
       ItemLayer.anIntArrayArrayArray1 = null;
       Class19.aByteArrayArrayArray7 = null;
-      Class79.anIntArrayArray12 = null;
+      Settings.tileHeightArray = null;
       Class19.anIntArray8 = null;
       RSCanvas.anIntArray82 = null;
       Preferences.anIntArray39 = null;

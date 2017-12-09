@@ -11,23 +11,22 @@ public class Varbit extends CacheableNode {
       varbits = new NodeCache(64);
    }
 
-   void method821(Buffer buffer_0, int int_0) {
-      if (int_0 == 1) {
-         this.configId = buffer_0.getUnsignedShort();
-         this.leastSignificantBit = buffer_0.getUnsignedByte();
-         this.mostSignificantBit = buffer_0.getUnsignedByte();
+   void decode(Buffer buffer, int opcode) {
+      if (opcode == 1) {
+         this.configId = buffer.getUnsignedShort();
+         this.leastSignificantBit = buffer.getUnsignedByte();
+         this.mostSignificantBit = buffer.getUnsignedByte();
       }
-
    }
 
-   public void decode(Buffer buffer_0) {
+   public void decodeLoop(Buffer buffer) {
       while (true) {
-         int int_0 = buffer_0.getUnsignedByte();
-         if (int_0 == 0) {
+         int opcode = buffer.getUnsignedByte();
+         if (opcode == 0) {
             return;
          }
 
-         this.method821(buffer_0, int_0);
+         this.decode(buffer, opcode);
       }
    }
 

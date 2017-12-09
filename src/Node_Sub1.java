@@ -2,7 +2,7 @@ public final class Node_Sub1 extends Node {
 
    static Deque aDeque3;
    int anInt315;
-   ObjectComposition anObjectComposition1;
+   ObjectDefinition anObjectDefinition1;
    int anInt316;
    int anInt317;
    int anInt318;
@@ -22,7 +22,7 @@ public final class Node_Sub1 extends Node {
 
    void method632() {
       int int_0 = this.anInt315;
-      ObjectComposition objectcomposition_0 = this.anObjectComposition1.getImpostor();
+      ObjectDefinition objectcomposition_0 = this.anObjectDefinition1.morph();
       if (objectcomposition_0 != null) {
          this.anInt315 = objectcomposition_0.ambientSoundId;
          this.anInt316 = objectcomposition_0.anInt463 * 128;

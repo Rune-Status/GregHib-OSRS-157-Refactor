@@ -58,10 +58,10 @@ public class World {
       Overlay.overlays.reset();
       Class94.method518();
       Node_Sub5.method694();
-      ObjectComposition.objects.reset();
-      ObjectComposition.aNodeCache9.reset();
-      ObjectComposition.cachedModels.reset();
-      ObjectComposition.aNodeCache8.reset();
+      ObjectDefinition.objects.reset();
+      ObjectDefinition.modelCache.reset();
+      ObjectDefinition.cachedModels.reset();
+      ObjectDefinition.aNodeCache8.reset();
       NPCComposition.npcs.reset();
       NPCComposition.npcModelCache.reset();
       Client.method1109();

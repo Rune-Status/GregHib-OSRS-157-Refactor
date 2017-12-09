@@ -127,7 +127,7 @@ public class Class15 {
          int[] ints_0 = aSpritePixels3.pixels;
          int_10 = int_1 * 4 + (103 - int_2) * 2048 + 24624;
          int_11 = int_5 >> 14 & 0x7FFF;
-         ObjectComposition objectcomposition_0 = Class28.getObjectDefinition(int_11);
+         ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_11);
          if (objectcomposition_0.mapSceneId != -1) {
             IndexedSprite indexedsprite_0 = BuildType.mapscene[objectcomposition_0.mapSceneId];
             if (indexedsprite_0 != null) {
@@ -204,7 +204,7 @@ public class Class15 {
          int_7 = int_6 >> 6 & 0x3;
          int_8 = int_6 & 0x1F;
          int_9 = int_5 >> 14 & 0x7FFF;
-         ObjectComposition objectcomposition_2 = Class28.getObjectDefinition(int_9);
+         ObjectDefinition objectcomposition_2 = ObjectDefinition.getDefinition(int_9);
          int int_14;
          if (objectcomposition_2.mapSceneId != -1) {
             IndexedSprite indexedsprite_1 = BuildType.mapscene[objectcomposition_2.mapSceneId];
@@ -238,7 +238,7 @@ public class Class15 {
       int_5 = Class23.region.method367(int_0, int_1, int_2);
       if (int_5 != 0) {
          int_6 = int_5 >> 14 & 0x7FFF;
-         ObjectComposition objectcomposition_1 = Class28.getObjectDefinition(int_6);
+         ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_6);
          if (objectcomposition_1.mapSceneId != -1) {
             IndexedSprite indexedsprite_2 = BuildType.mapscene[objectcomposition_1.mapSceneId];
             if (indexedsprite_2 != null) {

@@ -10,7 +10,7 @@ public class CacheableNode_Sub3 extends CacheableNode {
 
    void method875(Buffer buffer_0, int int_0) {
       if (int_0 == 249) {
-         this.anIterableHashTable3 = Tile.method682(buffer_0, this.anIterableHashTable3);
+         this.anIterableHashTable3 = Tile.decodeParameters(buffer_0, this.anIterableHashTable3);
       }
 
    }
@@ -37,7 +37,7 @@ public class CacheableNode_Sub3 extends CacheableNode {
       }
    }
 
-   static void method880(int int_0, int int_1, int int_2, ObjectComposition objectcomposition_0, int int_3) {
+   static void method880(int int_0, int int_1, int int_2, ObjectDefinition objectcomposition_0, int int_3) {
       Node_Sub1 node_sub1_0 = new Node_Sub1();
       node_sub1_0.anInt323 = int_0;
       node_sub1_0.anInt320 = int_1 * 128;
@@ -56,8 +56,8 @@ public class CacheableNode_Sub3 extends CacheableNode {
       node_sub1_0.anInt317 = objectcomposition_0.anInt464;
       node_sub1_0.anInt318 = objectcomposition_0.anInt465;
       node_sub1_0.anIntArray72 = objectcomposition_0.anIntArray85;
-      if (objectcomposition_0.impostorIds != null) {
-         node_sub1_0.anObjectComposition1 = objectcomposition_0;
+      if (objectcomposition_0.transformationIds != null) {
+         node_sub1_0.anObjectDefinition1 = objectcomposition_0;
          node_sub1_0.method632();
       }
 

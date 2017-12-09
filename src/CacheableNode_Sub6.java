@@ -126,7 +126,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
       if (this.anInt475 != -1) {
          int_0 = Item.method973(this.anInt475);
       } else if (this.anInt481 != -1) {
-         int_0 = Class79.widgetSettings[this.anInt481];
+         int_0 = Settings.widgetSettings[this.anInt481];
       }
 
       int int_1;

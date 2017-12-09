@@ -72,12 +72,12 @@ public class Class10 {
             int int_9 = int_7 >> 14 & 0x7FFF;
             int int_10 = int_8 & 0x1F;
             int int_11 = int_8 >> 6 & 0x3;
-            ObjectComposition objectcomposition_0;
+            ObjectDefinition objectcomposition_0;
             if (int_1 == 0) {
                Class23.region.method373(int_0, int_2, int_3);
-               objectcomposition_0 = Class28.getObjectDefinition(int_9);
+               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
                if (objectcomposition_0.interactType != 0) {
-                  Client.collisionMaps[int_0].removeWall(int_2, int_3, int_10, int_11, objectcomposition_0.aBool60);
+                  Client.collisionMaps[int_0].removeWall(int_2, int_3, int_10, int_11, objectcomposition_0.projectileClipped);
                }
             }
 
@@ -87,19 +87,19 @@ public class Class10 {
 
             if (int_1 == 2) {
                Class23.region.method375(int_0, int_2, int_3);
-               objectcomposition_0 = Class28.getObjectDefinition(int_9);
+               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
                if (int_2 + objectcomposition_0.sizeX > 103 || int_3 + objectcomposition_0.sizeX > 103 || int_2 + objectcomposition_0.sizeY > 103 || int_3 + objectcomposition_0.sizeY > 103) {
                   return;
                }
 
                if (objectcomposition_0.interactType != 0) {
-                  Client.collisionMaps[int_0].removeObject(int_2, int_3, objectcomposition_0.sizeX, objectcomposition_0.sizeY, int_11, objectcomposition_0.aBool60);
+                  Client.collisionMaps[int_0].removeObject(int_2, int_3, objectcomposition_0.sizeX, objectcomposition_0.sizeY, int_11, objectcomposition_0.projectileClipped);
                }
             }
 
             if (int_1 == 3) {
                Class23.region.method376(int_0, int_2, int_3);
-               objectcomposition_0 = Class28.getObjectDefinition(int_9);
+               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
                if (objectcomposition_0.interactType == 1) {
                   Client.collisionMaps[int_0].unblock(int_2, int_3);
                }

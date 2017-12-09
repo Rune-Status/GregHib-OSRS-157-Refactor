@@ -451,7 +451,7 @@ public final class FileOnDisk {
             Class25.anInt81 = 0;
          }
 
-         Class79.method466();
+         Settings.method466();
          Class25.titlemuteSprite[Buffer.preferences.muted ? 1 : 0].method975(Class25.anInt76 + 765 - 40, 463);
          if (Client.gameState > 5 && Client.languageId == 0) {
             if (ItemContainer.anIndexedSprite7 != null) {
