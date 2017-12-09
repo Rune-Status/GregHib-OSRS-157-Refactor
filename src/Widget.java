@@ -787,7 +787,7 @@ public class Widget extends Node {
                   return null;
                }
 
-               model_0 = modeldata_0.light(64, 768, -50, -10, -50);
+               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
             }
 
             if (int_1 == 2) {
@@ -797,7 +797,7 @@ public class Widget extends Node {
                   return null;
                }
 
-               model_0 = modeldata_0.light(64, 768, -50, -10, -50);
+               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
             }
 
             if (int_1 == 3) {
@@ -811,7 +811,7 @@ public class Widget extends Node {
                   return null;
                }
 
-               model_0 = modeldata_0.light(64, 768, -50, -10, -50);
+               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
             }
 
             if (int_1 == 4) {
@@ -822,7 +822,7 @@ public class Widget extends Node {
                   return null;
                }
 
-               model_0 = modeldata_0.light(itemcomposition_0.ambient + 64, itemcomposition_0.contrast + 768, -50, -10, -50);
+               model_0 = modeldata_0.applyLighting(itemcomposition_0.ambient + 64, itemcomposition_0.contrast + 768, -50, -10, -50);
             }
 
             aNodeCache4.put(model_0, (long)(int_2 + (int_1 << 16)));

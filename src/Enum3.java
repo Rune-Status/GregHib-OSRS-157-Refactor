@@ -18,7 +18,7 @@ public enum Enum3 implements RSEnum {
    }
 
    public static void method669(Model model_0, int int_0) {
-      for (int int_1 = 0; int_1 < model_0.anInt559; int_1++) {
+      for (int int_1 = 0; int_1 < model_0.triangleCount; int_1++) {
          if (model_0.anIntArray132[int_1] != -2) {
             int int_2 = model_0.indices1[int_1];
             int int_3 = model_0.indices2[int_1];

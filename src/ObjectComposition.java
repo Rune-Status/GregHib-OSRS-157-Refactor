@@ -464,7 +464,7 @@ public class ObjectComposition extends CacheableNode {
             return null;
          }
 
-         model_0 = modeldata_0.light(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+         model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
          aNodeCache8.put(model_0, long_0);
       }
 
@@ -538,7 +538,7 @@ public class ObjectComposition extends CacheableNode {
             return null;
          }
 
-         model_0 = modeldata_0.light(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+         model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
          aNodeCache8.put(model_0, long_0);
       }
 
@@ -590,7 +590,7 @@ public class ObjectComposition extends CacheableNode {
          }
 
          if (!this.nonFlatShading) {
-            object_0 = modeldata_0.light(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+            object_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
          } else {
             modeldata_0.aShort2 = (short)(this.ambient + 64);
             modeldata_0.contrast = (short)(this.contrast + 768);

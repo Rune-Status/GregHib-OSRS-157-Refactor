@@ -264,7 +264,7 @@ public class ItemComposition extends CacheableNode {
                }
             }
 
-            model_0 = modeldata_0.light(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+            model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
             model_0.aBool75 = true;
             itemModelCache.put(model_0, (long)this.id);
             return model_0;

@@ -57,14 +57,14 @@ public class Class97 {
 
       if (Client.rights >= 2) {
          if (string_0.equalsIgnoreCase("aabb")) {
-            if (!Class37.aBool14) {
-               Class37.aBool14 = true;
+            if (!Class37.fitsOnSingleSquare) {
+               Class37.fitsOnSingleSquare = true;
                Class37.aClass26_3 = Class26.aClass26_2;
             } else if (Class37.aClass26_3 == Class26.aClass26_2) {
-               Class37.aBool14 = true;
+               Class37.fitsOnSingleSquare = true;
                Class37.aClass26_3 = Class26.aClass26_1;
             } else {
-               Class37.aBool14 = false;
+               Class37.fitsOnSingleSquare = false;
             }
          }
 

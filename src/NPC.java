@@ -12,7 +12,7 @@ public final class NPC extends Actor {
          if (model_0 == null) {
             return null;
          } else {
-            model_0.method1007();
+            model_0.calculateDiagonals();
             super.anInt521 = model_0.modelHeight;
             if (super.graphic != -1 && super.currentAnimation != -1) {
                Model model_1 = Class106.getSpotAnimType(super.graphic).method763(super.currentAnimation);

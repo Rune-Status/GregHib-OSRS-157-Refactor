@@ -18,10 +18,10 @@ public class NPCComposition extends CacheableNode {
    public int anInt492;
    public int anInt493;
    public String[] actions;
-   int anInt494;
+   int sizeXZ;
    short[] colors;
    public boolean isMinimapVisible;
-   int anInt495;
+   int sizeY;
    short[] aShortArray10;
    short[] modifiedColors;
    public int anInt496;
@@ -30,8 +30,8 @@ public class NPCComposition extends CacheableNode {
    public int combatLevel;
    public boolean isVisible;
    public int anInt498;
-   int anInt499;
-   int anInt500;
+   int brightness;
+   int contrast;
    public int anInt501;
    public int anInt502;
    public boolean aBool66;
@@ -56,11 +56,11 @@ public class NPCComposition extends CacheableNode {
       this.actions = new String[5];
       this.isMinimapVisible = true;
       this.combatLevel = -1;
-      this.anInt494 = 128;
-      this.anInt495 = 128;
+      this.sizeXZ = 128;
+      this.sizeY = 128;
       this.isVisible = false;
-      this.anInt499 = 0;
-      this.anInt500 = 0;
+      this.brightness = 0;
+      this.contrast = 0;
       this.anInt501 = -1;
       this.anInt502 = 32;
       this.varpIndex = -1;
@@ -150,15 +150,15 @@ public class NPCComposition extends CacheableNode {
       } else if (int_0 == 95) {
          this.combatLevel = buffer_0.getUnsignedShort();
       } else if (int_0 == 97) {
-         this.anInt494 = buffer_0.getUnsignedShort();
+         this.sizeXZ = buffer_0.getUnsignedShort();
       } else if (int_0 == 98) {
-         this.anInt495 = buffer_0.getUnsignedShort();
+         this.sizeY = buffer_0.getUnsignedShort();
       } else if (int_0 == 99) {
          this.isVisible = true;
       } else if (int_0 == 100) {
-         this.anInt499 = buffer_0.readByte();
+         this.brightness = buffer_0.readByte();
       } else if (int_0 == 101) {
-         this.anInt500 = buffer_0.readByte() * 5;
+         this.contrast = buffer_0.readByte() * 5;
       } else if (int_0 == 102) {
          this.anInt501 = buffer_0.getUnsignedShort();
       } else if (int_0 == 103) {
@@ -212,66 +212,66 @@ public class NPCComposition extends CacheableNode {
          NPCComposition npccomposition_1 = this.transform();
          return npccomposition_1 == null ? null : npccomposition_1.method898(sequence_0, int_0, sequence_1, int_1);
       } else {
-         Model model_0 = (Model) npcModelCache.get((long)this.id);
-         if (model_0 == null) {
-            boolean bool_0 = false;
+         Model childIdModel = (Model) npcModelCache.get((long)this.id);
+         if (childIdModel == null) {
+            boolean exists = false;
 
-            for (int int_2 = 0; int_2 < this.models.length; int_2++) {
-               if (!anIndexDataBase28.method431(this.models[int_2], 0)) {
-                  bool_0 = true;
+            for (int id = 0; id < this.models.length; id++) {
+               if (!anIndexDataBase28.method431(this.models[id], 0)) {
+                  exists = true;
                }
             }
 
-            if (bool_0) {
+            if (exists) {
                return null;
             }
 
-            ModelData[] modeldatas_0 = new ModelData[this.models.length];
+            ModelData[] childModels = new ModelData[this.models.length];
 
-            int int_3;
-            for (int_3 = 0; int_3 < this.models.length; int_3++) {
-               modeldatas_0[int_3] = ModelData.method1060(anIndexDataBase28, this.models[int_3], 0);
+            int model;
+            for (model = 0; model < this.models.length; model++) {
+               childModels[model] = ModelData.method1060(anIndexDataBase28, this.models[model], 0);
             }
 
             ModelData modeldata_0;
-            if (modeldatas_0.length == 1) {
-               modeldata_0 = modeldatas_0[0];
+            if (childModels.length == 1) {
+               modeldata_0 = childModels[0];
             } else {
-               modeldata_0 = new ModelData(modeldatas_0, modeldatas_0.length);
+               modeldata_0 = new ModelData(childModels, childModels.length);
             }
 
             if (this.colors != null) {
-               for (int_3 = 0; int_3 < this.colors.length; int_3++) {
-                  modeldata_0.recolor(this.colors[int_3], this.modifiedColors[int_3]);
+               for (model = 0; model < this.colors.length; model++) {
+                  modeldata_0.recolor(this.colors[model], this.modifiedColors[model]);
                }
             }
 
             if (this.aShortArray10 != null) {
-               for (int_3 = 0; int_3 < this.aShortArray10.length; int_3++) {
-                  modeldata_0.method1051(this.aShortArray10[int_3], this.aShortArray11[int_3]);
+               for (model = 0; model < this.aShortArray10.length; model++) {
+                  modeldata_0.method1051(this.aShortArray10[model], this.aShortArray11[model]);
                }
             }
 
-            model_0 = modeldata_0.light(this.anInt499 + 64, this.anInt500 + 850, -30, -50, -30);
-            npcModelCache.put(model_0, (long)this.id);
+            childIdModel = modeldata_0.applyLighting(this.brightness + 64, this.contrast + 850, -30, -50, -30);
+            npcModelCache.put(childIdModel, (long)this.id);
          }
 
-         Model model_1;
+         Model childModel;
          if (sequence_0 != null && sequence_1 != null) {
-            model_1 = sequence_0.method914(model_0, int_0, sequence_1, int_1);
+            childModel = sequence_0.method914(childIdModel, int_0, sequence_1, int_1);
          } else if (sequence_0 != null) {
-            model_1 = sequence_0.method913(model_0, int_0);
+            childModel = sequence_0.method913(childIdModel, int_0);
          } else if (sequence_1 != null) {
-            model_1 = sequence_1.method913(model_0, int_1);
+            childModel = sequence_1.method913(childIdModel, int_1);
          } else {
-            model_1 = model_0.method1013(true);
+            childModel = childIdModel.method1013(true);
          }
 
-         if (this.anInt494 != 128 || this.anInt495 != 128) {
-            model_1.method1019(this.anInt494, this.anInt495, this.anInt494);
+         if (this.sizeXZ != 128 || this.sizeY != 128) {
+            childModel.scaleTriangle(this.sizeXZ, this.sizeY, this.sizeXZ);
          }
 
-         return model_1;
+         return childModel;
       }
    }
 

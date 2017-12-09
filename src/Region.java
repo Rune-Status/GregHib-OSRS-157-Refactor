@@ -1650,7 +1650,7 @@ public class Region {
          for (int int_6 = 0; int_6 < tile_0.entityCount; int_6++) {
             if ((tile_0.objects[int_6].flags & 0x100) == 256 && tile_0.objects[int_6].renderable instanceof Model) {
                Model model_0 = (Model) tile_0.objects[int_6].renderable;
-               model_0.method1007();
+               model_0.calculateDiagonals();
                if (model_0.modelHeight > int_5) {
                   int_5 = model_0.modelHeight;
                }
@@ -2048,10 +2048,10 @@ public class Region {
                         modeldata_1 = (ModelData) wallobject_0.renderable2;
                         this.method358(modeldata_1, int_3, int_4, int_5, 1, 1);
                         ModelData.method1061(modeldata_0, modeldata_1, 0, 0, 0, false);
-                        wallobject_0.renderable2 = modeldata_1.light(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
+                        wallobject_0.renderable2 = modeldata_1.applyLighting(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
                      }
 
-                     wallobject_0.renderable1 = modeldata_0.light(modeldata_0.aShort2, modeldata_0.contrast, int_0, int_1, int_2);
+                     wallobject_0.renderable1 = modeldata_0.applyLighting(modeldata_0.aShort2, modeldata_0.contrast, int_0, int_1, int_2);
                   }
 
                   for (int int_6 = 0; int_6 < tile_0.entityCount; int_6++) {
@@ -2059,7 +2059,7 @@ public class Region {
                      if (gameobject_0 != null && gameobject_0.renderable instanceof ModelData) {
                         ModelData modeldata_2 = (ModelData) gameobject_0.renderable;
                         this.method358(modeldata_2, int_3, int_4, int_5, gameobject_0.offsetX - gameobject_0.relativeX + 1, gameobject_0.offsetY - gameobject_0.relativeY + 1);
-                        gameobject_0.renderable = modeldata_2.light(modeldata_2.aShort2, modeldata_2.contrast, int_0, int_1, int_2);
+                        gameobject_0.renderable = modeldata_2.applyLighting(modeldata_2.aShort2, modeldata_2.contrast, int_0, int_1, int_2);
                      }
                   }
 
@@ -2067,7 +2067,7 @@ public class Region {
                   if (groundobject_0 != null && groundobject_0.renderable instanceof ModelData) {
                      modeldata_1 = (ModelData) groundobject_0.renderable;
                      this.method360(modeldata_1, int_3, int_4, int_5);
-                     groundobject_0.renderable = modeldata_1.light(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
+                     groundobject_0.renderable = modeldata_1.applyLighting(modeldata_1.aShort2, modeldata_1.contrast, int_0, int_1, int_2);
                   }
                }
             }

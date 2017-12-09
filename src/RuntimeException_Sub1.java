@@ -345,7 +345,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                if (object_0 != null && region_0.method379(int_0, int_1, int_2, int_12, int_6, int_7, (Renderable) object_0, int_5 == 11 ? 256 : 0, int_15, int_16) && objectcomposition_0.clipped) {
                   int_17 = 15;
                   if (object_0 instanceof Model) {
-                     int_17 = ((Model) object_0).method1029() / 4;
+                     int_17 = ((Model) object_0).getShadowIntensity() / 4;
                      if (int_17 > 30) {
                         int_17 = 30;
                      }

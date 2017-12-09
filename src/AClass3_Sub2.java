@@ -161,7 +161,7 @@ public final class AClass3_Sub2 extends AClass3 {
 
          int int_10 = int_9 * Graphics3D.SINE[itemcomposition_0.xan2d] >> 16;
          int int_11 = int_9 * Graphics3D.COSINE[itemcomposition_0.xan2d] >> 16;
-         model_0.method1007();
+         model_0.calculateDiagonals();
          model_0.method1027(0, itemcomposition_0.yan2d, itemcomposition_0.zan2d, itemcomposition_0.xan2d, itemcomposition_0.offsetX2d, model_0.modelHeight / 2 + int_10 + itemcomposition_0.offsetY2d, int_11 + itemcomposition_0.offsetY2d);
          if (itemcomposition_0.notedId != -1) {
             spritepixels_1.drawAt(0, 0);

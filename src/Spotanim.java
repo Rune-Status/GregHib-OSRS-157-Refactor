@@ -92,7 +92,7 @@ public class Spotanim extends CacheableNode {
             }
          }
 
-         model_0 = modeldata_0.light(this.anInt425 + 64, this.anInt426 + 850, -30, -50, -30);
+         model_0 = modeldata_0.applyLighting(this.anInt425 + 64, this.anInt426 + 850, -30, -50, -30);
          aNodeCache6.put(model_0, (long)this.id);
       }
 
@@ -104,7 +104,7 @@ public class Spotanim extends CacheableNode {
       }
 
       if (this.anInt422 != 128 || this.anInt423 != 128) {
-         model_1.method1019(this.anInt422, this.anInt423, this.anInt422);
+         model_1.scaleTriangle(this.anInt422, this.anInt423, this.anInt422);
       }
 
       if (this.anInt424 != 0) {

@@ -827,7 +827,7 @@ public final class Class14 {
                                        itemcomposition_0 = itemcomposition_0.method940(widget_0.itemQuantity);
                                        model_0 = itemcomposition_0.getModel(1);
                                        if (model_0 != null) {
-                                          model_0.method1007();
+                                          model_0.calculateDiagonals();
                                           int_20 = model_0.modelHeight / 2;
                                        } else {
                                           WorldMapData.method305(widget_0);
@@ -859,7 +859,7 @@ public final class Class14 {
                                     if (!widget_0.hasScript) {
                                        model_0.method1027(0, widget_0.rotationZ, 0, widget_0.rotationX, 0, int_21, int_22);
                                     } else {
-                                       model_0.method1007();
+                                       model_0.calculateDiagonals();
                                        if (widget_0.aBool41) {
                                           model_0.method1028(0, widget_0.rotationZ, widget_0.rotationY, widget_0.rotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294, widget_0.modelZoom);
                                        } else {

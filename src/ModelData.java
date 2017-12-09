@@ -11,12 +11,12 @@ public class ModelData extends Renderable {
    int[] vertexX;
    int vertexCount;
    short[] faceTextures;
-   int triangleFaceCount;
+   int triangleCount;
    int anInt571;
    int[] triangleSkinValues;
    int[] vertexY;
    int[] vertexZ;
-   short[] faceColor;
+   short[] triangleColours;
    byte[] faceRenderType;
    VertexNormal[] aVertexNormalArray1;
    int anInt572;
@@ -58,14 +58,14 @@ public class ModelData extends Renderable {
 
    ModelData() {
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
    }
 
    public ModelData(ModelData[] modeldatas_0, int int_0) {
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
       boolean bool_0 = false;
@@ -75,7 +75,7 @@ public class ModelData extends Renderable {
       boolean bool_4 = false;
       boolean bool_5 = false;
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.anInt576 = 0;
       this.priority = -1;
 
@@ -85,7 +85,7 @@ public class ModelData extends Renderable {
          modeldata_1 = modeldatas_0[int_1];
          if (modeldata_1 != null) {
             this.vertexCount += modeldata_1.vertexCount;
-            this.triangleFaceCount += modeldata_1.triangleFaceCount;
+            this.triangleCount += modeldata_1.triangleCount;
             this.anInt576 += modeldata_1.anInt576;
             if (modeldata_1.faceRenderPriorities != null) {
                bool_1 = true;
@@ -111,34 +111,34 @@ public class ModelData extends Renderable {
       this.vertexY = new int[this.vertexCount];
       this.vertexZ = new int[this.vertexCount];
       this.vertexSkins = new int[this.vertexCount];
-      this.trianglePointsX = new int[this.triangleFaceCount];
-      this.trianglePointsY = new int[this.triangleFaceCount];
-      this.trianglePointsZ = new int[this.triangleFaceCount];
+      this.trianglePointsX = new int[this.triangleCount];
+      this.trianglePointsY = new int[this.triangleCount];
+      this.trianglePointsZ = new int[this.triangleCount];
       if (bool_0) {
-         this.faceRenderType = new byte[this.triangleFaceCount];
+         this.faceRenderType = new byte[this.triangleCount];
       }
 
       if (bool_1) {
-         this.faceRenderPriorities = new byte[this.triangleFaceCount];
+         this.faceRenderPriorities = new byte[this.triangleCount];
       }
 
       if (bool_2) {
-         this.faceAlphas = new byte[this.triangleFaceCount];
+         this.faceAlphas = new byte[this.triangleCount];
       }
 
       if (bool_3) {
-         this.triangleSkinValues = new int[this.triangleFaceCount];
+         this.triangleSkinValues = new int[this.triangleCount];
       }
 
       if (bool_4) {
-         this.faceTextures = new short[this.triangleFaceCount];
+         this.faceTextures = new short[this.triangleCount];
       }
 
       if (bool_5) {
-         this.textureCoords = new byte[this.triangleFaceCount];
+         this.textureCoords = new byte[this.triangleCount];
       }
 
-      this.faceColor = new short[this.triangleFaceCount];
+      this.triangleColours = new short[this.triangleCount];
       if (this.anInt576 > 0) {
          this.textureRenderTypes = new byte[this.anInt576];
          this.texTriangleX = new short[this.anInt576];
@@ -154,55 +154,55 @@ public class ModelData extends Renderable {
       }
 
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.anInt576 = 0;
 
       for (int_1 = 0; int_1 < int_0; int_1++) {
          modeldata_1 = modeldatas_0[int_1];
          if (modeldata_1 != null) {
             int int_2;
-            for (int_2 = 0; int_2 < modeldata_1.triangleFaceCount; int_2++) {
+            for (int_2 = 0; int_2 < modeldata_1.triangleCount; int_2++) {
                if (bool_0 && modeldata_1.faceRenderType != null) {
-                  this.faceRenderType[this.triangleFaceCount] = modeldata_1.faceRenderType[int_2];
+                  this.faceRenderType[this.triangleCount] = modeldata_1.faceRenderType[int_2];
                }
 
                if (bool_1) {
                   if (modeldata_1.faceRenderPriorities != null) {
-                     this.faceRenderPriorities[this.triangleFaceCount] = modeldata_1.faceRenderPriorities[int_2];
+                     this.faceRenderPriorities[this.triangleCount] = modeldata_1.faceRenderPriorities[int_2];
                   } else {
-                     this.faceRenderPriorities[this.triangleFaceCount] = modeldata_1.priority;
+                     this.faceRenderPriorities[this.triangleCount] = modeldata_1.priority;
                   }
                }
 
                if (bool_2 && modeldata_1.faceAlphas != null) {
-                  this.faceAlphas[this.triangleFaceCount] = modeldata_1.faceAlphas[int_2];
+                  this.faceAlphas[this.triangleCount] = modeldata_1.faceAlphas[int_2];
                }
 
                if (bool_3 && modeldata_1.triangleSkinValues != null) {
-                  this.triangleSkinValues[this.triangleFaceCount] = modeldata_1.triangleSkinValues[int_2];
+                  this.triangleSkinValues[this.triangleCount] = modeldata_1.triangleSkinValues[int_2];
                }
 
                if (bool_4) {
                   if (modeldata_1.faceTextures != null) {
-                     this.faceTextures[this.triangleFaceCount] = modeldata_1.faceTextures[int_2];
+                     this.faceTextures[this.triangleCount] = modeldata_1.faceTextures[int_2];
                   } else {
-                     this.faceTextures[this.triangleFaceCount] = -1;
+                     this.faceTextures[this.triangleCount] = -1;
                   }
                }
 
                if (bool_5) {
                   if (modeldata_1.textureCoords != null && modeldata_1.textureCoords[int_2] != -1) {
-                     this.textureCoords[this.triangleFaceCount] = (byte)(this.anInt576 + modeldata_1.textureCoords[int_2]);
+                     this.textureCoords[this.triangleCount] = (byte)(this.anInt576 + modeldata_1.textureCoords[int_2]);
                   } else {
-                     this.textureCoords[this.triangleFaceCount] = -1;
+                     this.textureCoords[this.triangleCount] = -1;
                   }
                }
 
-               this.faceColor[this.triangleFaceCount] = modeldata_1.faceColor[int_2];
-               this.trianglePointsX[this.triangleFaceCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsX[int_2]);
-               this.trianglePointsY[this.triangleFaceCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsY[int_2]);
-               this.trianglePointsZ[this.triangleFaceCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsZ[int_2]);
-               ++this.triangleFaceCount;
+               this.triangleColours[this.triangleCount] = modeldata_1.triangleColours[int_2];
+               this.trianglePointsX[this.triangleCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsX[int_2]);
+               this.trianglePointsY[this.triangleCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsY[int_2]);
+               this.trianglePointsZ[this.triangleCount] = this.method1059(modeldata_1, modeldata_1.trianglePointsZ[int_2]);
+               ++this.triangleCount;
             }
 
             for (int_2 = 0; int_2 < modeldata_1.anInt576; int_2++) {
@@ -238,7 +238,7 @@ public class ModelData extends Renderable {
 
    ModelData(byte[] bytes_0) {
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
       if (bytes_0[bytes_0.length - 1] == -1 && bytes_0[bytes_0.length - 2] == -1) {
@@ -251,11 +251,11 @@ public class ModelData extends Renderable {
 
    public ModelData(ModelData modeldata_1, boolean bool_0, boolean bool_1, boolean bool_2, boolean bool_3) {
       this.vertexCount = 0;
-      this.triangleFaceCount = 0;
+      this.triangleCount = 0;
       this.priority = 0;
       this.aBool76 = false;
       this.vertexCount = modeldata_1.vertexCount;
-      this.triangleFaceCount = modeldata_1.triangleFaceCount;
+      this.triangleCount = modeldata_1.triangleCount;
       this.anInt576 = modeldata_1.anInt576;
       int int_0;
       if (bool_0) {
@@ -275,19 +275,19 @@ public class ModelData extends Renderable {
       }
 
       if (bool_1) {
-         this.faceColor = modeldata_1.faceColor;
+         this.triangleColours = modeldata_1.triangleColours;
       } else {
-         this.faceColor = new short[this.triangleFaceCount];
+         this.triangleColours = new short[this.triangleCount];
 
-         for (int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
-            this.faceColor[int_0] = modeldata_1.faceColor[int_0];
+         for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
+            this.triangleColours[int_0] = modeldata_1.triangleColours[int_0];
          }
       }
 
       if (!bool_2 && modeldata_1.faceTextures != null) {
-         this.faceTextures = new short[this.triangleFaceCount];
+         this.faceTextures = new short[this.triangleCount];
 
-         for (int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
+         for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
             this.faceTextures[int_0] = modeldata_1.faceTextures[int_0];
          }
       } else {
@@ -375,7 +375,7 @@ public class ModelData extends Renderable {
             this.normals[int_0] = new VertexNormal();
          }
 
-         for (int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
+         for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
             int int_1 = this.trianglePointsX[int_0];
             int int_2 = this.trianglePointsY[int_0];
             int int_3 = this.trianglePointsZ[int_0];
@@ -427,7 +427,7 @@ public class ModelData extends Renderable {
                ++vertexnormal_0.magnitude;
             } else if (byte_0 == 1) {
                if (this.faceNormals == null) {
-                  this.faceNormals = new FaceNormal[this.triangleFaceCount];
+                  this.faceNormals = new FaceNormal[this.triangleCount];
                }
 
                FaceNormal facenormal_0 = this.faceNormals[int_0] = new FaceNormal();
@@ -450,15 +450,15 @@ public class ModelData extends Renderable {
    public ModelData method1049() {
       ModelData modeldata_1 = new ModelData();
       if (this.faceRenderType != null) {
-         modeldata_1.faceRenderType = new byte[this.triangleFaceCount];
+         modeldata_1.faceRenderType = new byte[this.triangleCount];
 
-         for (int int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
+         for (int int_0 = 0; int_0 < this.triangleCount; int_0++) {
             modeldata_1.faceRenderType[int_0] = this.faceRenderType[int_0];
          }
       }
 
       modeldata_1.vertexCount = this.vertexCount;
-      modeldata_1.triangleFaceCount = this.triangleFaceCount;
+      modeldata_1.triangleCount = this.triangleCount;
       modeldata_1.anInt576 = this.anInt576;
       modeldata_1.vertexX = this.vertexX;
       modeldata_1.vertexY = this.vertexY;
@@ -469,7 +469,7 @@ public class ModelData extends Renderable {
       modeldata_1.faceRenderPriorities = this.faceRenderPriorities;
       modeldata_1.faceAlphas = this.faceAlphas;
       modeldata_1.textureCoords = this.textureCoords;
-      modeldata_1.faceColor = this.faceColor;
+      modeldata_1.triangleColours = this.triangleColours;
       modeldata_1.faceTextures = this.faceTextures;
       modeldata_1.priority = this.priority;
       modeldata_1.textureRenderTypes = this.textureRenderTypes;
@@ -494,12 +494,10 @@ public class ModelData extends Renderable {
       return modeldata_1;
    }
 
-   public void recolor(short short_0, short short_1) {
-      for (int int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
-         if (this.faceColor[int_0] == short_0) {
-            this.faceColor[int_0] = short_1;
-         }
-      }
+   public void recolor(short src, short dest) {
+      for (int triangle = 0; triangle < this.triangleCount; triangle++)
+         if (this.triangleColours[triangle] == src)
+            this.triangleColours[triangle] = dest;
 
    }
 
@@ -575,7 +573,7 @@ public class ModelData extends Renderable {
       int_34 += int_10;
       int int_8 = int_34 + int_11;
       this.vertexCount = int_0;
-      this.triangleFaceCount = int_1;
+      this.triangleCount = int_1;
       this.anInt576 = int_2;
       this.vertexX = new int[int_0];
       this.vertexY = new int[int_0];
@@ -614,7 +612,7 @@ public class ModelData extends Renderable {
          this.triangleSkinValues = new int[int_1];
       }
 
-      this.faceColor = new short[int_1];
+      this.triangleColours = new short[int_1];
       buffer_0.position = byte_0;
       buffer_1.position = int_22;
       buffer_2.position = int_23;
@@ -664,7 +662,7 @@ public class ModelData extends Renderable {
       buffer_4.position = int_15;
 
       for (int_27 = 0; int_27 < int_1; int_27++) {
-         this.faceColor[int_27] = (short)buffer_0.getUnsignedShort();
+         this.triangleColours[int_27] = (short)buffer_0.getUnsignedShort();
          if (int_3 == 1) {
             int_28 = buffer_1.getUnsignedByte();
             if ((int_28 & 0x1) == 1) {
@@ -676,8 +674,8 @@ public class ModelData extends Renderable {
 
             if ((int_28 & 0x2) == 2) {
                this.textureCoords[int_27] = (byte)(int_28 >> 2);
-               this.faceTextures[int_27] = this.faceColor[int_27];
-               this.faceColor[int_27] = 127;
+               this.faceTextures[int_27] = this.triangleColours[int_27];
+               this.triangleColours[int_27] = 127;
                if (this.faceTextures[int_27] != -1) {
                   bool_1 = true;
                }
@@ -791,7 +789,7 @@ public class ModelData extends Renderable {
 
    public void method1051(short short_0, short short_1) {
       if (this.faceTextures != null) {
-         for (int int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
+         for (int int_0 = 0; int_0 < this.triangleCount; int_0++) {
             if (this.faceTextures[int_0] == short_0) {
                this.faceTextures[int_0] = short_1;
             }
@@ -800,80 +798,80 @@ public class ModelData extends Renderable {
       }
    }
 
-   public Model light(int int_0, int int_1, int int_2, int int_3, int int_4) {
+   public Model applyLighting(int lightAmbient, int multiplier, int l_x, int l_y, int l_z) {
       this.computeNormals();
-      int int_5 = (int)Math.sqrt((double)(int_4 * int_4 + int_2 * int_2 + int_3 * int_3));
-      int int_6 = int_5 * int_1 >> 8;
-      Model model_0 = new Model();
-      model_0.anIntArray131 = new int[this.triangleFaceCount];
-      model_0.anIntArray133 = new int[this.triangleFaceCount];
-      model_0.anIntArray132 = new int[this.triangleFaceCount];
+      int lightMagnitude = (int)Math.sqrt((double)(l_z * l_z + l_x * l_x + l_y * l_y));
+      int magnitude = lightMagnitude * multiplier >> 8;
+      Model model = new Model();
+      model.anIntArray131 = new int[this.triangleCount];
+      model.anIntArray133 = new int[this.triangleCount];
+      model.anIntArray132 = new int[this.triangleCount];
       if (this.anInt576 > 0 && this.textureCoords != null) {
          int[] ints_0 = new int[this.anInt576];
 
-         int int_7;
-         for (int_7 = 0; int_7 < this.triangleFaceCount; int_7++) {
-            if (this.textureCoords[int_7] != -1) {
-               ++ints_0[this.textureCoords[int_7] & 0xFF];
+         int triangle;
+         for (triangle = 0; triangle < this.triangleCount; triangle++) {
+            if (this.textureCoords[triangle] != -1) {
+               ++ints_0[this.textureCoords[triangle] & 0xFF];
             }
          }
 
-         model_0.anInt561 = 0;
+         model.texturedTriangleCount = 0;
 
-         for (int_7 = 0; int_7 < this.anInt576; int_7++) {
-            if (ints_0[int_7] > 0 && this.textureRenderTypes[int_7] == 0) {
-               ++model_0.anInt561;
+         for (triangle = 0; triangle < this.anInt576; triangle++) {
+            if (ints_0[triangle] > 0 && this.textureRenderTypes[triangle] == 0) {
+               ++model.texturedTriangleCount;
             }
          }
 
-         model_0.anIntArray134 = new int[model_0.anInt561];
-         model_0.anIntArray135 = new int[model_0.anInt561];
-         model_0.anIntArray136 = new int[model_0.anInt561];
-         int_7 = 0;
+         model.texturedTrianglePointsX = new int[model.texturedTriangleCount];
+         model.texturedTrianglePointsY = new int[model.texturedTriangleCount];
+         model.texturedTrianglePointsZ = new int[model.texturedTriangleCount];
+         triangle = 0;
 
          int int_9;
          for (int_9 = 0; int_9 < this.anInt576; int_9++) {
             if (ints_0[int_9] > 0 && this.textureRenderTypes[int_9] == 0) {
-               model_0.anIntArray134[int_7] = this.texTriangleX[int_9] & 0xFFFF;
-               model_0.anIntArray135[int_7] = this.texTriangleY[int_9] & 0xFFFF;
-               model_0.anIntArray136[int_7] = this.texTriangleZ[int_9] & 0xFFFF;
-               ints_0[int_9] = int_7++;
+               model.texturedTrianglePointsX[triangle] = this.texTriangleX[int_9] & 0xFFFF;
+               model.texturedTrianglePointsY[triangle] = this.texTriangleY[int_9] & 0xFFFF;
+               model.texturedTrianglePointsZ[triangle] = this.texTriangleZ[int_9] & 0xFFFF;
+               ints_0[int_9] = triangle++;
             } else {
                ints_0[int_9] = -1;
             }
          }
 
-         model_0.aByteArray25 = new byte[this.triangleFaceCount];
+         model.aByteArray25 = new byte[this.triangleCount];
 
-         for (int_9 = 0; int_9 < this.triangleFaceCount; int_9++) {
+         for (int_9 = 0; int_9 < this.triangleCount; int_9++) {
             if (this.textureCoords[int_9] != -1) {
-               model_0.aByteArray25[int_9] = (byte)ints_0[this.textureCoords[int_9] & 0xFF];
+               model.aByteArray25[int_9] = (byte)ints_0[this.textureCoords[int_9] & 0xFF];
             } else {
-               model_0.aByteArray25[int_9] = -1;
+               model.aByteArray25[int_9] = -1;
             }
          }
       }
 
-      for (int int_8 = 0; int_8 < this.triangleFaceCount; int_8++) {
+      for (int triangle = 0; triangle < this.triangleCount; triangle++) {
          byte byte_0;
          if (this.faceRenderType == null) {
             byte_0 = 0;
          } else {
-            byte_0 = this.faceRenderType[int_8];
+            byte_0 = this.faceRenderType[triangle];
          }
 
          byte byte_1;
          if (this.faceAlphas == null) {
             byte_1 = 0;
          } else {
-            byte_1 = this.faceAlphas[int_8];
+            byte_1 = this.faceAlphas[triangle];
          }
 
          short short_0;
          if (this.faceTextures == null) {
             short_0 = -1;
          } else {
-            short_0 = this.faceTextures[int_8];
+            short_0 = this.faceTextures[triangle];
          }
 
          if (byte_1 == -2) {
@@ -884,102 +882,102 @@ public class ModelData extends Renderable {
             byte_0 = 2;
          }
 
-         VertexNormal vertexnormal_0;
-         int int_11;
-         FaceNormal facenormal_0;
+         VertexNormal vertexNormal;
+         int lightness;
+         FaceNormal faceNormal;
          if (short_0 == -1) {
             if (byte_0 != 0) {
                if (byte_0 == 1) {
-                  facenormal_0 = this.faceNormals[int_8];
-                  int_11 = (int_3 * facenormal_0.y + int_4 * facenormal_0.z + int_2 * facenormal_0.x) / (int_6 / 2 + int_6) + int_0;
-                  model_0.anIntArray131[int_8] = method1063(this.faceColor[int_8] & 0xFFFF, int_11);
-                  model_0.anIntArray132[int_8] = -1;
+                  faceNormal = this.faceNormals[triangle];
+                  lightness = (l_y * faceNormal.y + l_z * faceNormal.z + l_x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
+                  model.anIntArray131[triangle] = mixLightness(this.triangleColours[triangle] & 0xFFFF, lightness);
+                  model.anIntArray132[triangle] = -1;
                } else if (byte_0 == 3) {
-                  model_0.anIntArray131[int_8] = 128;
-                  model_0.anIntArray132[int_8] = -1;
+                  model.anIntArray131[triangle] = 128;
+                  model.anIntArray132[triangle] = -1;
                } else {
-                  model_0.anIntArray132[int_8] = -2;
+                  model.anIntArray132[triangle] = -2;
                }
             } else {
-               int int_10 = this.faceColor[int_8] & 0xFFFF;
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[int_8]] != null) {
-                  vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsX[int_8]];
+               int int_10 = this.triangleColours[triangle] & 0xFFFF;
+               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[triangle]] != null) {
+                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsX[triangle]];
                } else {
-                  vertexnormal_0 = this.normals[this.trianglePointsX[int_8]];
+                  vertexNormal = this.normals[this.trianglePointsX[triangle]];
                }
 
-               int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-               model_0.anIntArray131[int_8] = method1063(int_10, int_11);
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[int_8]] != null) {
-                  vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsY[int_8]];
+               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray131[triangle] = mixLightness(int_10, lightness);
+               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[triangle]] != null) {
+                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsY[triangle]];
                } else {
-                  vertexnormal_0 = this.normals[this.trianglePointsY[int_8]];
+                  vertexNormal = this.normals[this.trianglePointsY[triangle]];
                }
 
-               int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-               model_0.anIntArray133[int_8] = method1063(int_10, int_11);
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[int_8]] != null) {
-                  vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsZ[int_8]];
+               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray133[triangle] = mixLightness(int_10, lightness);
+               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[triangle]] != null) {
+                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsZ[triangle]];
                } else {
-                  vertexnormal_0 = this.normals[this.trianglePointsZ[int_8]];
+                  vertexNormal = this.normals[this.trianglePointsZ[triangle]];
                }
 
-               int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-               model_0.anIntArray132[int_8] = method1063(int_10, int_11);
+               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray132[triangle] = mixLightness(int_10, lightness);
             }
          } else if (byte_0 != 0) {
             if (byte_0 == 1) {
-               facenormal_0 = this.faceNormals[int_8];
-               int_11 = (int_3 * facenormal_0.y + int_4 * facenormal_0.z + int_2 * facenormal_0.x) / (int_6 / 2 + int_6) + int_0;
-               model_0.anIntArray131[int_8] = method1062(int_11);
-               model_0.anIntArray132[int_8] = -1;
+               faceNormal = this.faceNormals[triangle];
+               lightness = (l_y * faceNormal.y + l_z * faceNormal.z + l_x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
+               model.anIntArray131[triangle] = method1062(lightness);
+               model.anIntArray132[triangle] = -1;
             } else {
-               model_0.anIntArray132[int_8] = -2;
+               model.anIntArray132[triangle] = -2;
             }
          } else {
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[int_8]] != null) {
-               vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsX[int_8]];
+            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[triangle]] != null) {
+               vertexNormal = this.aVertexNormalArray1[this.trianglePointsX[triangle]];
             } else {
-               vertexnormal_0 = this.normals[this.trianglePointsX[int_8]];
+               vertexNormal = this.normals[this.trianglePointsX[triangle]];
             }
 
-            int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-            model_0.anIntArray131[int_8] = method1062(int_11);
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[int_8]] != null) {
-               vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsY[int_8]];
+            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray131[triangle] = method1062(lightness);
+            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[triangle]] != null) {
+               vertexNormal = this.aVertexNormalArray1[this.trianglePointsY[triangle]];
             } else {
-               vertexnormal_0 = this.normals[this.trianglePointsY[int_8]];
+               vertexNormal = this.normals[this.trianglePointsY[triangle]];
             }
 
-            int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-            model_0.anIntArray133[int_8] = method1062(int_11);
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[int_8]] != null) {
-               vertexnormal_0 = this.aVertexNormalArray1[this.trianglePointsZ[int_8]];
+            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray133[triangle] = method1062(lightness);
+            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[triangle]] != null) {
+               vertexNormal = this.aVertexNormalArray1[this.trianglePointsZ[triangle]];
             } else {
-               vertexnormal_0 = this.normals[this.trianglePointsZ[int_8]];
+               vertexNormal = this.normals[this.trianglePointsZ[triangle]];
             }
 
-            int_11 = (int_3 * vertexnormal_0.y + int_4 * vertexnormal_0.z + int_2 * vertexnormal_0.x) / (int_6 * vertexnormal_0.magnitude) + int_0;
-            model_0.anIntArray132[int_8] = method1062(int_11);
+            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray132[triangle] = method1062(lightness);
          }
       }
 
       this.computeAnimationTables();
-      model_0.anInt557 = this.vertexCount;
-      model_0.verticesX = this.vertexX;
-      model_0.verticesY = this.vertexY;
-      model_0.verticesZ = this.vertexZ;
-      model_0.anInt559 = this.triangleFaceCount;
-      model_0.indices1 = this.trianglePointsX;
-      model_0.indices2 = this.trianglePointsY;
-      model_0.indices3 = this.trianglePointsZ;
-      model_0.aByteArray24 = this.faceRenderPriorities;
-      model_0.aByteArray23 = this.faceAlphas;
-      model_0.aByte5 = this.priority;
-      model_0.anIntArrayArray17 = this.anIntArrayArray19;
-      model_0.anIntArrayArray18 = this.anIntArrayArray20;
-      model_0.aShortArray12 = this.faceTextures;
-      return model_0;
+      model.vertexCount = this.vertexCount;
+      model.verticesX = this.vertexX;
+      model.verticesY = this.vertexY;
+      model.verticesZ = this.vertexZ;
+      model.triangleCount = this.triangleCount;
+      model.indices1 = this.trianglePointsX;
+      model.indices2 = this.trianglePointsY;
+      model.indices3 = this.trianglePointsZ;
+      model.trianglePriorities = this.faceRenderPriorities;
+      model.aByteArray23 = this.faceAlphas;
+      model.priorityOffset = this.priority;
+      model.anIntArrayArray17 = this.anIntArrayArray19;
+      model.anIntArrayArray18 = this.anIntArrayArray20;
+      model.aShortArray12 = this.faceTextures;
+      return model;
    }
 
    void decodeNewFormat(byte[] bytes_0) {
@@ -1087,7 +1085,7 @@ public class ModelData extends Renderable {
       int int_36 = int_17;
       int_17 += int_15 * 2 + int_16 * 2;
       this.vertexCount = int_0;
-      this.triangleFaceCount = int_1;
+      this.triangleCount = int_1;
       this.anInt576 = int_2;
       this.vertexX = new int[int_0];
       this.vertexY = new int[int_0];
@@ -1125,7 +1123,7 @@ public class ModelData extends Renderable {
          this.textureCoords = new byte[int_1];
       }
 
-      this.faceColor = new short[int_1];
+      this.triangleColours = new short[int_1];
       if (int_2 > 0) {
          this.texTriangleX = new short[int_2];
          this.texTriangleY = new short[int_2];
@@ -1195,7 +1193,7 @@ public class ModelData extends Renderable {
       buffer_6.position = int_26;
 
       for (int_40 = 0; int_40 < int_1; int_40++) {
-         this.faceColor[int_40] = (short)buffer_0.getUnsignedShort();
+         this.triangleColours[int_40] = (short)buffer_0.getUnsignedShort();
          if (int_3 == 1) {
             this.faceRenderType[int_40] = buffer_1.readByte();
          }
@@ -1362,7 +1360,7 @@ public class ModelData extends Renderable {
          } else {
             ModelData modeldata_1 = new ModelData();
             modeldata_1.vertexCount = this.vertexCount;
-            modeldata_1.triangleFaceCount = this.triangleFaceCount;
+            modeldata_1.triangleCount = this.triangleCount;
             modeldata_1.anInt576 = this.anInt576;
             modeldata_1.vertexX = this.vertexX;
             modeldata_1.vertexZ = this.vertexZ;
@@ -1373,7 +1371,7 @@ public class ModelData extends Renderable {
             modeldata_1.faceRenderPriorities = this.faceRenderPriorities;
             modeldata_1.faceAlphas = this.faceAlphas;
             modeldata_1.textureCoords = this.textureCoords;
-            modeldata_1.faceColor = this.faceColor;
+            modeldata_1.triangleColours = this.triangleColours;
             modeldata_1.faceTextures = this.faceTextures;
             modeldata_1.priority = this.priority;
             modeldata_1.textureRenderTypes = this.textureRenderTypes;
@@ -1478,7 +1476,7 @@ public class ModelData extends Renderable {
          ints_0 = new int[256];
          int_0 = 0;
 
-         for (int_1 = 0; int_1 < this.triangleFaceCount; int_1++) {
+         for (int_1 = 0; int_1 < this.triangleCount; int_1++) {
             int_2 = this.triangleSkinValues[int_1];
             ++ints_0[int_2];
             if (int_2 > int_0) {
@@ -1493,7 +1491,7 @@ public class ModelData extends Renderable {
             ints_0[int_1] = 0;
          }
 
-         for (int_1 = 0; int_1 < this.triangleFaceCount; this.anIntArrayArray20[int_2][ints_0[int_2]++] = int_1++) {
+         for (int_1 = 0; int_1 < this.triangleCount; this.anIntArrayArray20[int_2][ints_0[int_2]++] = int_1++) {
             int_2 = this.triangleSkinValues[int_1];
          }
 
@@ -1508,7 +1506,7 @@ public class ModelData extends Renderable {
          this.vertexZ[int_0] = -this.vertexZ[int_0];
       }
 
-      for (int_0 = 0; int_0 < this.triangleFaceCount; int_0++) {
+      for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
          int int_1 = this.trianglePointsX[int_0];
          this.trianglePointsX[int_0] = this.trianglePointsZ[int_0];
          this.trianglePointsZ[int_0] = int_1;
@@ -1652,20 +1650,20 @@ public class ModelData extends Renderable {
       }
 
       if (int_3 >= 3 && bool_0) {
-         for (int_5 = 0; int_5 < modeldata_0.triangleFaceCount; int_5++) {
+         for (int_5 = 0; int_5 < modeldata_0.triangleCount; int_5++) {
             if (anIntArray139[modeldata_0.trianglePointsX[int_5]] == anInt570 && anIntArray139[modeldata_0.trianglePointsY[int_5]] == anInt570 && anIntArray139[modeldata_0.trianglePointsZ[int_5]] == anInt570) {
                if (modeldata_0.faceRenderType == null) {
-                  modeldata_0.faceRenderType = new byte[modeldata_0.triangleFaceCount];
+                  modeldata_0.faceRenderType = new byte[modeldata_0.triangleCount];
                }
 
                modeldata_0.faceRenderType[int_5] = 2;
             }
          }
 
-         for (int_5 = 0; int_5 < modeldata_1.triangleFaceCount; int_5++) {
+         for (int_5 = 0; int_5 < modeldata_1.triangleCount; int_5++) {
             if (anInt570 == anIntArray141[modeldata_1.trianglePointsX[int_5]] && anInt570 == anIntArray141[modeldata_1.trianglePointsY[int_5]] && anInt570 == anIntArray141[modeldata_1.trianglePointsZ[int_5]]) {
                if (modeldata_1.faceRenderType == null) {
-                  modeldata_1.faceRenderType = new byte[modeldata_1.triangleFaceCount];
+                  modeldata_1.faceRenderType = new byte[modeldata_1.triangleCount];
                }
 
                modeldata_1.faceRenderType[int_5] = 2;
@@ -1675,25 +1673,25 @@ public class ModelData extends Renderable {
       }
    }
 
-   static int method1062(int int_0) {
-      if (int_0 < 2) {
-         int_0 = 2;
-      } else if (int_0 > 126) {
-         int_0 = 126;
+   static int method1062(int lightness) {
+      if (lightness < 2) {
+         lightness = 2;
+      } else if (lightness > 126) {
+         lightness = 126;
       }
 
-      return int_0;
+      return lightness;
    }
 
-   static int method1063(int int_0, int int_1) {
-      int_1 = (int_0 & 0x7F) * int_1 >> 7;
-      if (int_1 < 2) {
-         int_1 = 2;
-      } else if (int_1 > 126) {
-         int_1 = 126;
+   static int mixLightness(int hsl, int lightness) {
+      lightness = (hsl & 0x7F) * lightness >> 7;
+      if (lightness < 2) {
+         lightness = 2;
+      } else if (lightness > 126) {
+         lightness = 126;
       }
 
-      return (int_0 & 0xFF80) + int_1;
+      return (hsl & 0xFF80) + lightness;
    }
 
 }

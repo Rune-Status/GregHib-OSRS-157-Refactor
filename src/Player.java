@@ -54,20 +54,20 @@ public final class Player extends Actor {
       } else {
          Sequence sequence_0 = super.animation != -1 && super.actionAnimationDisable == 0 ? ItemLayer.getAnimation(super.animation) : null;
          Sequence sequence_1 = super.poseAnimation != -1 && !this.aBool82 && (super.idlePoseAnimation != super.poseAnimation || sequence_0 == null) ? ItemLayer.getAnimation(super.poseAnimation) : null;
-         Model model_0 = this.composition.method505(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
-         if (model_0 == null) {
+         Model animatedModel = this.composition.method505(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
+         if (animatedModel == null) {
             return null;
          } else {
-            model_0.method1007();
-            super.anInt521 = model_0.modelHeight;
+            animatedModel.calculateDiagonals();
+            super.anInt521 = animatedModel.modelHeight;
             Model model_1;
             Model[] models_0;
             if (!this.aBool82 && super.graphic != -1 && super.currentAnimation != -1) {
                model_1 = Class106.getSpotAnimType(super.graphic).method763(super.currentAnimation);
                if (model_1 != null) {
                   model_1.method1026(0, -super.graphicHeight, 0);
-                  models_0 = new Model[] {model_0, model_1};
-                  model_0 = new Model(models_0, 2);
+                  models_0 = new Model[] {animatedModel, model_1};
+                  animatedModel = new Model(models_0, 2);
                }
             }
 
@@ -90,8 +90,8 @@ public final class Player extends Actor {
                      model_1.method1021();
                   }
 
-                  models_0 = new Model[] {model_0, model_1};
-                  model_0 = new Model(models_0, 2);
+                  models_0 = new Model[] {animatedModel, model_1};
+                  animatedModel = new Model(models_0, 2);
                   if (super.orientation == 512) {
                      model_1.method1021();
                   } else if (super.orientation == 1024) {
@@ -107,8 +107,8 @@ public final class Player extends Actor {
                }
             }
 
-            model_0.aBool75 = true;
-            return model_0;
+            animatedModel.aBool75 = true;
+            return animatedModel;
          }
       }
    }

@@ -162,7 +162,7 @@ public class PlayerComposition {
                   }
                }
 
-               model_0 = modeldata_1.light(64, 850, -30, -50, -30);
+               model_0 = modeldata_1.applyLighting(64, 850, -30, -50, -30);
                aNodeCache1.put(model_0, long_0);
                this.aLong10 = long_0;
             }
