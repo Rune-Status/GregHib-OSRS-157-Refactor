@@ -229,8 +229,8 @@ public class Class46 {
                ObjectDefinition.lowMemory = bool_0;
                IndexData indexdata_4 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_5 = Class4.indexModels;
-               NPCComposition.anIndexDataBase29 = indexdata_4;
-               NPCComposition.anIndexDataBase28 = indexdata_5;
+               NPCDefinition.npcCacheIndex = indexdata_4;
+               NPCDefinition.anIndexDataBase28 = indexdata_5;
                AClass1_Sub2.method638(GrandExchangeOffer.configsIndex);
                IndexData indexdata_6 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_7 = Class4.indexModels;

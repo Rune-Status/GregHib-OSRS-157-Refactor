@@ -105,15 +105,15 @@ public class Sequence extends CacheableNode {
 
    }
 
-   public Model method913(Model model_0, int int_0) {
-      int_0 = this.frameIDs[int_0];
-      Frames frames_0 = ScriptVarType.getFrames(int_0 >> 16);
-      int_0 &= 0xFFFF;
-      if (frames_0 == null) {
-         return model_0.method1013(true);
+   public Model method913(Model model, int index) {
+      index = this.frameIDs[index];
+      Frames frame = ScriptVarType.getFrames(index >> 16);
+      index &= 0xFFFF;
+      if (frame == null) {
+         return model.method1013(true);
       } else {
-         Model model_1 = model_0.method1013(!frames_0.method871(int_0));
-         model_1.method1008(frames_0, int_0);
+         Model model_1 = model.method1013(!frame.method871(index));
+         model_1.method1008(frame, index);
          return model_1;
       }
    }

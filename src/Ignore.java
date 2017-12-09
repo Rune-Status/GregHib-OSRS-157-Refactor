@@ -728,8 +728,8 @@ public class Ignore {
                                     Client.anInt645 = 0;
                                     npc_0 = Client.cachedNPCs[int_3];
                                     if (npc_0 != null) {
-                                       NPCComposition npccomposition_0 = npc_0.composition;
-                                       if (npccomposition_0.configs != null) {
+                                       NPCDefinition npccomposition_0 = npc_0.composition;
+                                       if (npccomposition_0.transformIds != null) {
                                           npccomposition_0 = npccomposition_0.transform();
                                        }
 

@@ -170,10 +170,10 @@ public class ItemContainer extends Node {
                                  continue;
                               }
 
-                              if (npc_1.composition.anInt489 == 1 && (npc_1.x & 0x7F) == 64 && (npc_1.y & 0x7F) == 64) {
+                              if (npc_1.composition.boundaryDimension == 1 && (npc_1.x & 0x7F) == 64 && (npc_1.y & 0x7F) == 64) {
                                  for (int_25 = 0; int_25 < Client.npcIndexesCount; int_25++) {
                                     npc_0 = Client.cachedNPCs[Client.npcIndices[int_25]];
-                                    if (npc_0 != null && npc_1 != npc_0 && npc_0.composition.anInt489 == 1 && npc_0.x == npc_1.x && npc_1.y == npc_0.y) {
+                                    if (npc_0 != null && npc_1 != npc_0 && npc_0.composition.boundaryDimension == 1 && npc_0.x == npc_1.x && npc_1.y == npc_0.y) {
                                        Class14.method191(npc_0.composition, Client.npcIndices[int_25], int_21, int_22);
                                     }
                                  }
@@ -201,7 +201,7 @@ public class ItemContainer extends Node {
                               if ((player_2.x & 0x7F) == 64 && (player_2.y & 0x7F) == 64) {
                                  for (int_25 = 0; int_25 < Client.npcIndexesCount; int_25++) {
                                     npc_0 = Client.cachedNPCs[Client.npcIndices[int_25]];
-                                    if (npc_0 != null && npc_0.composition.anInt489 == 1 && player_2.x == npc_0.x && npc_0.y == player_2.y) {
+                                    if (npc_0 != null && npc_0.composition.boundaryDimension == 1 && player_2.x == npc_0.x && npc_0.y == player_2.y) {
                                        Class14.method191(npc_0.composition, Client.npcIndices[int_25], int_21, int_22);
                                     }
                                  }

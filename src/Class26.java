@@ -51,8 +51,8 @@ public class Class26 {
             for (int_6 = 0; int_6 < Client.npcIndexesCount; int_6++) {
                NPC npc_0 = Client.cachedNPCs[Client.npcIndices[int_6]];
                if (npc_0 != null && npc_0.hasConfig()) {
-                  NPCComposition npccomposition_0 = npc_0.composition;
-                  if (npccomposition_0 != null && npccomposition_0.configs != null) {
+                  NPCDefinition npccomposition_0 = npc_0.composition;
+                  if (npccomposition_0 != null && npccomposition_0.transformIds != null) {
                      npccomposition_0 = npccomposition_0.transform();
                   }
 
@@ -149,8 +149,8 @@ public class Class26 {
    static void method224(Actor actor_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
       if (actor_0 != null && actor_0.hasConfig()) {
          if (actor_0 instanceof NPC) {
-            NPCComposition npccomposition_0 = ((NPC) actor_0).composition;
-            if (npccomposition_0.configs != null) {
+            NPCDefinition npccomposition_0 = ((NPC) actor_0).composition;
+            if (npccomposition_0.transformIds != null) {
                npccomposition_0 = npccomposition_0.transform();
             }
 
@@ -279,15 +279,15 @@ public class Class26 {
                }
             }
          } else {
-            NPCComposition npccomposition_1 = ((NPC) actor_0).composition;
-            if (npccomposition_1.configs != null) {
+            NPCDefinition npccomposition_1 = ((NPC) actor_0).composition;
+            if (npccomposition_1.transformIds != null) {
                npccomposition_1 = npccomposition_1.transform();
             }
 
-            if (npccomposition_1.anInt501 >= 0 && npccomposition_1.anInt501 < TileStrategy.headIconsPrayer.length) {
+            if (npccomposition_1.headIcon >= 0 && npccomposition_1.headIcon < TileStrategy.headIconsPrayer.length) {
                WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
                if (Client.screenY > -1) {
-                  TileStrategy.headIconsPrayer[npccomposition_1.anInt501].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
+                  TileStrategy.headIconsPrayer[npccomposition_1.headIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
                }
             }
 

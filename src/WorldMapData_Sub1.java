@@ -139,7 +139,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
       for (int int_0 = 0; int_0 < Client.npcIndexesCount; int_0++) {
          NPC npc_0 = Client.cachedNPCs[Client.npcIndices[int_0]];
          int int_1 = (Client.npcIndices[int_0] << 14) + 536870912;
-         if (npc_0 != null && npc_0.hasConfig() && npc_0.composition.isVisible == bool_0 && npc_0.composition.method900()) {
+         if (npc_0 != null && npc_0.hasConfig() && npc_0.composition.visible == bool_0 && npc_0.composition.childExists()) {
             int int_2 = npc_0.x >> 7;
             int int_3 = npc_0.y >> 7;
             if (int_2 >= 0 && int_2 < 104 && int_3 >= 0 && int_3 < 104) {

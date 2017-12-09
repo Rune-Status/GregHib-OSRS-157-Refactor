@@ -30,24 +30,6 @@ public class Class27 {
       chatBuffer = new Buffer(new byte[5000]);
    }
 
-   public static NPCComposition getNpcDefinition(int int_0) {
-      NPCComposition npccomposition_0 = (NPCComposition) NPCComposition.npcs.get((long)int_0);
-      if (npccomposition_0 != null) {
-         return npccomposition_0;
-      } else {
-         byte[] bytes_0 = NPCComposition.anIndexDataBase29.getConfigData(9, int_0);
-         npccomposition_0 = new NPCComposition();
-         npccomposition_0.id = int_0;
-         if (bytes_0 != null) {
-            npccomposition_0.decode(new Buffer(bytes_0));
-         }
-
-         npccomposition_0.post();
-         NPCComposition.npcs.put(npccomposition_0, (long)int_0);
-         return npccomposition_0;
-      }
-   }
-
    public static int method225(CharSequence charsequence_0) {
       return Enum5.parseInt(charsequence_0, 10, true);
    }

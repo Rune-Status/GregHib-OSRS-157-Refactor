@@ -79,7 +79,7 @@ public class PlayerComposition {
 
    public Model method505(Sequence sequence_0, int int_0, Sequence sequence_1, int int_1) {
       if (this.transformedNpcId != -1) {
-         return Class27.getNpcDefinition(this.transformedNpcId).method898(sequence_0, int_0, sequence_1, int_1);
+         return NPCDefinition.getNpcDefinition(this.transformedNpcId).getChildModel(sequence_0, int_0, sequence_1, int_1);
       } else {
          long long_0 = this.hash;
          int[] ints_0 = this.equipmentIds;
@@ -187,7 +187,7 @@ public class PlayerComposition {
 
    ModelHeader method506() {
       if (this.transformedNpcId != -1) {
-         return Class27.getNpcDefinition(this.transformedNpcId).method899();
+         return NPCDefinition.getNpcDefinition(this.transformedNpcId).getChildHeader();
       } else {
          boolean bool_0 = false;
 
@@ -246,7 +246,7 @@ public class PlayerComposition {
    }
 
    public int method507() {
-      return this.transformedNpcId == -1 ? (this.equipmentIds[0] << 15) + this.equipmentIds[1] + (this.equipmentIds[11] << 5) + (this.equipmentIds[8] << 10) + (this.bodyPartColours[0] << 25) + (this.bodyPartColours[4] << 20) : 305419896 + Class27.getNpcDefinition(this.transformedNpcId).id;
+      return this.transformedNpcId == -1 ? (this.equipmentIds[0] << 15) + this.equipmentIds[1] + (this.equipmentIds[11] << 5) + (this.equipmentIds[8] << 10) + (this.bodyPartColours[0] << 25) + (this.bodyPartColours[4] << 20) : 305419896 + NPCDefinition.getNpcDefinition(this.transformedNpcId).id;
    }
 
    public void method508(int int_0, boolean bool_0) {

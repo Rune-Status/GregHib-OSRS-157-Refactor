@@ -1306,7 +1306,7 @@ public class Class20 implements Comparator {
                                  byte_0 = 1;
                               } else if (int_0 == 4107) {
                                  Class28.scriptStringStackSize -= 2;
-                                 Class39.intStack[++Class23.intStackSize - 1] = Friend.method536(NPCComposition.method903(Class39.scriptStringStack[Class28.scriptStringStackSize], Class39.scriptStringStack[Class28.scriptStringStackSize + 1], Client.languageId));
+                                 Class39.intStack[++Class23.intStackSize - 1] = Friend.method536(NPCDefinition.method903(Class39.scriptStringStack[Class28.scriptStringStackSize], Class39.scriptStringStack[Class28.scriptStringStackSize + 1], Client.languageId));
                                  byte_0 = 1;
                               } else {
                                  Font font_0;
@@ -1736,9 +1736,9 @@ public class Class20 implements Comparator {
                                           int_9 = Class39.intStack[Class23.intStackSize + 1];
                                           cacheablenode_sub5_0 = PacketBuffer.method907(int_9);
                                           if (cacheablenode_sub5_0.method884()) {
-                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = Class27.getNpcDefinition(int_1).method901(int_9, cacheablenode_sub5_0.aString30);
+                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = NPCDefinition.getNpcDefinition(int_1).method901(int_9, cacheablenode_sub5_0.aString30);
                                           } else {
-                                             Class39.intStack[++Class23.intStackSize - 1] = Class27.getNpcDefinition(int_1).method902(int_9, cacheablenode_sub5_0.anInt474);
+                                             Class39.intStack[++Class23.intStackSize - 1] = NPCDefinition.getNpcDefinition(int_1).method902(int_9, cacheablenode_sub5_0.anInt474);
                                           }
 
                                           byte_0 = 1;

@@ -791,7 +791,7 @@ public class Widget extends Node {
             }
 
             if (int_1 == 2) {
-               modeldata_0 = Class27.getNpcDefinition(int_2).method899();
+               modeldata_0 = NPCDefinition.getNpcDefinition(int_2).getChildHeader();
                if (modeldata_0 == null) {
                   aBool34 = true;
                   return null;

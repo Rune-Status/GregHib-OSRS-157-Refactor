@@ -833,7 +833,7 @@ public class AClass6_Sub3 extends AClass6 {
             int npcIndex = Client.npcIndices[index];
             NPC npc = Client.cachedNPCs[npcIndex];
             if (npc != null) {
-                int int_2 = npc.composition.anInt489;
+                int int_2 = npc.composition.boundaryDimension;
                 ServerPacket.method355(npc);
             }
         }

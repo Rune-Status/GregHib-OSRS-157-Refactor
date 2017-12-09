@@ -1,6 +1,6 @@
 public final class NPC extends Actor {
 
-   NPCComposition composition;
+   NPCDefinition composition;
 
    protected Model getModel() {
       if (this.composition == null) {
@@ -8,7 +8,7 @@ public final class NPC extends Actor {
       } else {
          Sequence sequence_0 = super.animation != -1 && super.actionAnimationDisable == 0 ? ItemLayer.getAnimation(super.animation) : null;
          Sequence sequence_1 = super.poseAnimation != -1 && (super.poseAnimation != super.idlePoseAnimation || sequence_0 == null) ? ItemLayer.getAnimation(super.poseAnimation) : null;
-         Model model_0 = this.composition.method898(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
+         Model model_0 = this.composition.getChildModel(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
          if (model_0 == null) {
             return null;
          } else {
@@ -23,7 +23,7 @@ public final class NPC extends Actor {
                }
             }
 
-            if (this.composition.anInt489 == 1) {
+            if (this.composition.boundaryDimension == 1) {
                model_0.fitsOnSingleSquare = true;
             }
 

@@ -125,7 +125,7 @@ public final class Player extends Actor {
    }
 
    int getSize() {
-      return this.composition != null && this.composition.transformedNpcId != -1 ? Class27.getNpcDefinition(this.composition.transformedNpcId).anInt489 : 1;
+      return this.composition != null && this.composition.transformedNpcId != -1 ? NPCDefinition.getNpcDefinition(this.composition.transformedNpcId).boundaryDimension : 1;
    }
 
    void appendPath(int x, int y, byte type) {

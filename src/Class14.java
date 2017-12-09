@@ -1055,7 +1055,7 @@ public final class Class14 {
             }
          }
 
-         npc.composition = Class27.getNpcDefinition(packetbuffer_0.getBits(14));
+         npc.composition = NPCDefinition.getNpcDefinition(packetbuffer_0.getBits(14));
          if (bool_0) {
             int_7 = packetbuffer_0.getBits(8);
             if (int_7 > 127) {
@@ -1069,17 +1069,17 @@ public final class Class14 {
          }
 
          int_4 = packetbuffer_0.getBits(1);
-         npc.anInt513 = npc.composition.anInt489;
-         npc.anInt533 = npc.composition.anInt502;
+         npc.anInt513 = npc.composition.boundaryDimension;
+         npc.anInt533 = npc.composition.degreesToTurn;
          if (npc.anInt533 == 0) {
             npc.angle = 0;
          }
 
-         npc.walkingAnimation = npc.composition.anInt491;
-         npc.halfTurnAnimation = npc.composition.anInt496;
-         npc.quarterClockwiseTurnAnimation = npc.composition.anInt497;
-         npc.quarterAnticlockwiseTurnAnimation = npc.composition.anInt498;
-         npc.idlePoseAnimation = npc.composition.anInt490;
+         npc.walkingAnimation = npc.composition.walkAnimationId;
+         npc.halfTurnAnimation = npc.composition.turnAroundAnimationId;
+         npc.quarterClockwiseTurnAnimation = npc.composition.turnRightAnimationId;
+         npc.quarterAnticlockwiseTurnAnimation = npc.composition.turnLeftAnimationId;
+         npc.idlePoseAnimation = npc.composition.standAnimationId;
          npc.turnAnimation = npc.composition.anInt492;
          npc.anInt515 = npc.composition.anInt493;
          npc.method1067(Class4.localPlayer.pathX[0] + int_3, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
@@ -1197,14 +1197,14 @@ public final class Class14 {
          }
 
          if ((int_1 & 0x1) != 0) {
-            npc.composition = Class27.getNpcDefinition(packetbuffer_0.getUnsignedShortAInverse());
-            npc.anInt513 = npc.composition.anInt489;
-            npc.anInt533 = npc.composition.anInt502;
-            npc.walkingAnimation = npc.composition.anInt491;
-            npc.halfTurnAnimation = npc.composition.anInt496;
-            npc.quarterClockwiseTurnAnimation = npc.composition.anInt497;
-            npc.quarterAnticlockwiseTurnAnimation = npc.composition.anInt498;
-            npc.idlePoseAnimation = npc.composition.anInt490;
+            npc.composition = NPCDefinition.getNpcDefinition(packetbuffer_0.getUnsignedShortAInverse());
+            npc.anInt513 = npc.composition.boundaryDimension;
+            npc.anInt533 = npc.composition.degreesToTurn;
+            npc.walkingAnimation = npc.composition.walkAnimationId;
+            npc.halfTurnAnimation = npc.composition.turnAroundAnimationId;
+            npc.quarterClockwiseTurnAnimation = npc.composition.turnRightAnimationId;
+            npc.quarterAnticlockwiseTurnAnimation = npc.composition.turnLeftAnimationId;
+            npc.idlePoseAnimation = npc.composition.standAnimationId;
             npc.turnAnimation = npc.composition.anInt492;
             npc.anInt515 = npc.composition.anInt493;
          }
@@ -1286,9 +1286,9 @@ public final class Class14 {
       }
    }
 
-   static void method191(NPCComposition npccomposition_0, int int_0, int int_1, int int_2) {
+   static void method191(NPCDefinition npccomposition_0, int int_0, int int_1, int int_2) {
       if (Client.menuOptionCount < 400) {
-         if (npccomposition_0.configs != null) {
+         if (npccomposition_0.transformIds != null) {
             npccomposition_0 = npccomposition_0.transform();
          }
 
@@ -1338,7 +1338,7 @@ public final class Class14 {
                      }
                   } else {
                      int int_6 = npccomposition_0.aBool67 && Client.aBool98 ? 2000 : 0;
-                     String[] strings_0 = npccomposition_0.actions;
+                     String[] strings_0 = npccomposition_0.options;
                      if (Client.aBool99) {
                         strings_0 = Friend.method537(strings_0);
                      }
