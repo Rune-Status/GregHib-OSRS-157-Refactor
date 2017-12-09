@@ -94,24 +94,24 @@ public final class AClass3_Sub2 extends AClass3 {
       long long_0 = (long)int_0 + ((long)int_1 << 16) + ((long)int_2 << 38) + ((long)int_4 << 40) + ((long)int_3 << 42);
       SpritePixels spritepixels_0;
       if (!bool_0) {
-         spritepixels_0 = (SpritePixels) ItemComposition.itemSpriteCache.get(long_0);
+         spritepixels_0 = (SpritePixels) ItemDefinition.itemSpriteCache.get(long_0);
          if (spritepixels_0 != null) {
             return spritepixels_0;
          }
       }
 
-      ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_0);
-      if (int_1 > 1 && itemcomposition_0.countObj != null) {
+      ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_0);
+      if (int_1 > 1 && itemcomposition_0.stackIds != null) {
          int int_5 = -1;
 
          for (int int_6 = 0; int_6 < 10; int_6++) {
-            if (int_1 >= itemcomposition_0.countCo[int_6] && itemcomposition_0.countCo[int_6] != 0) {
-               int_5 = itemcomposition_0.countObj[int_6];
+            if (int_1 >= itemcomposition_0.stackAmounts[int_6] && itemcomposition_0.stackAmounts[int_6] != 0) {
+               int_5 = itemcomposition_0.stackIds[int_6];
             }
          }
 
          if (int_5 != -1) {
-            itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_5);
+            itemcomposition_0 = ItemDefinition.getDefinition(int_5);
          }
       }
 
@@ -120,8 +120,8 @@ public final class AClass3_Sub2 extends AClass3 {
          return null;
       } else {
          SpritePixels spritepixels_1 = null;
-         if (itemcomposition_0.notedTemplate != -1) {
-            spritepixels_1 = createSprite(itemcomposition_0.note, 10, 1, 0, 0, true);
+         if (itemcomposition_0.noteTemplateIndex != -1) {
+            spritepixels_1 = createSprite(itemcomposition_0.noteIndex, 10, 1, 0, 0, true);
             if (spritepixels_1 == null) {
                return null;
             }
@@ -152,17 +152,17 @@ public final class AClass3_Sub2 extends AClass3 {
             spritepixels_1.drawAt(0, 0);
          }
 
-         int int_9 = itemcomposition_0.zoom2d;
+         int int_9 = itemcomposition_0.modelInventoryZoom;
          if (bool_0) {
             int_9 = (int)((double)int_9 * 1.5D);
          } else if (int_2 == 2) {
             int_9 = (int)(1.04D * (double)int_9);
          }
 
-         int int_10 = int_9 * Graphics3D.SINE[itemcomposition_0.xan2d] >> 16;
-         int int_11 = int_9 * Graphics3D.COSINE[itemcomposition_0.xan2d] >> 16;
+         int int_10 = int_9 * Graphics3D.SINE[itemcomposition_0.modelInventoryRotationY] >> 16;
+         int int_11 = int_9 * Graphics3D.COSINE[itemcomposition_0.modelInventoryRotationY] >> 16;
          model_0.calculateDiagonals();
-         model_0.method1027(0, itemcomposition_0.yan2d, itemcomposition_0.zan2d, itemcomposition_0.xan2d, itemcomposition_0.offsetX2d, model_0.modelHeight / 2 + int_10 + itemcomposition_0.offsetY2d, int_11 + itemcomposition_0.offsetY2d);
+         model_0.method1027(0, itemcomposition_0.modelInventoryRotationX, itemcomposition_0.diagonalRotation, itemcomposition_0.modelInventoryRotationY, itemcomposition_0.spriteTranslateX, model_0.modelHeight / 2 + int_10 + itemcomposition_0.spriteTranslateY, int_11 + itemcomposition_0.spriteTranslateY);
          if (itemcomposition_0.notedId != -1) {
             spritepixels_1.drawAt(0, 0);
          }
@@ -180,12 +180,12 @@ public final class AClass3_Sub2 extends AClass3 {
          }
 
          Rasterizer2D.setRasterBuffer(spritepixels_0.pixels, 36, 32);
-         if (itemcomposition_0.notedTemplate != -1) {
+         if (itemcomposition_0.noteTemplateIndex != -1) {
             spritepixels_1.drawAt(0, 0);
          }
 
          if (int_4 == 1 || int_4 == 2 && itemcomposition_0.isStackable == 1) {
-            Font font_0 = ItemComposition.aFont5;
+            Font font_0 = ItemDefinition.aFont5;
             String string_0;
             if (int_1 < 100000) {
                string_0 = "<col=ffff00>" + int_1 + "</col>";
@@ -199,7 +199,7 @@ public final class AClass3_Sub2 extends AClass3 {
          }
 
          if (!bool_0) {
-            ItemComposition.itemSpriteCache.put(spritepixels_0, long_0);
+            ItemDefinition.itemSpriteCache.put(spritepixels_0, long_0);
          }
 
          Rasterizer2D.setRasterBuffer(ints_0, int_7, int_8);

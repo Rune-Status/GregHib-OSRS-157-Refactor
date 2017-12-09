@@ -123,7 +123,7 @@ public class ObjectDefinition extends CacheableNode {
    public ObjectDefinition morph() {
       int morphIndex = -1;
       if (this.varpId != -1) {
-         morphIndex = Item.method973(this.varpId);
+         morphIndex = Varbit.getVarbit(this.varpId);
       } else if (this.configId != -1) {
          morphIndex = Settings.widgetSettings[this.configId];
       }
@@ -413,9 +413,9 @@ public class ObjectDefinition extends CacheableNode {
       if (face == 1) {
          animatedModel.rotate90Degrees();
       } else if (face == 2) {
-         animatedModel.method1057();
+         animatedModel.rotateXZ();
       } else if (face == 3) {
-         animatedModel.method1058();
+         animatedModel.rotateZ();
       }
 
       if (this.recolorToFind != null) {
@@ -426,7 +426,7 @@ public class ObjectDefinition extends CacheableNode {
 
       if (this.textureToFind != null) {
          for (modelId = 0; modelId < this.textureToFind.length; modelId++) {
-            animatedModel.method1051(this.textureToFind[modelId], this.textureToReplace[modelId]);
+            animatedModel.retexture(this.textureToFind[modelId], this.textureToReplace[modelId]);
          }
       }
 
@@ -461,14 +461,14 @@ public class ObjectDefinition extends CacheableNode {
 
    }
 
-   void decode(Buffer buffer_0) {
+   void decode(Buffer buffer) {
       while (true) {
-         int int_0 = buffer_0.getUnsignedByte();
-         if (int_0 == 0) {
+         int opcode = buffer.getUnsignedByte();
+         if (opcode == 0) {
             return;
          }
 
-         this.decode(buffer_0, int_0);
+         this.decode(buffer, opcode);
       }
    }
 
@@ -515,7 +515,7 @@ public class ObjectDefinition extends CacheableNode {
          boolean bool_0 = true;
 
          for (int int_0 = 0; int_0 < this.modelIds.length; int_0++) {
-            bool_0 &= anIndexDataBase20.method431(this.modelIds[int_0] & 0xFFFF, 0);
+            bool_0 &= anIndexDataBase20.modelExists(this.modelIds[int_0] & 0xFFFF, 0);
          }
 
          return bool_0;
@@ -526,7 +526,7 @@ public class ObjectDefinition extends CacheableNode {
       if (this.modelTypes != null) {
          for (int int_2 = 0; int_2 < this.modelTypes.length; int_2++) {
             if (this.modelTypes[int_2] == int_0) {
-               return anIndexDataBase20.method431(this.modelIds[int_2] & 0xFFFF, 0);
+               return anIndexDataBase20.modelExists(this.modelIds[int_2] & 0xFFFF, 0);
             }
          }
 
@@ -539,7 +539,7 @@ public class ObjectDefinition extends CacheableNode {
          boolean bool_0 = true;
 
          for (int int_1 = 0; int_1 < this.modelIds.length; int_1++) {
-            bool_0 &= anIndexDataBase20.method431(this.modelIds[int_1] & 0xFFFF, 0);
+            bool_0 &= anIndexDataBase20.modelExists(this.modelIds[int_1] & 0xFFFF, 0);
          }
 
          return bool_0;

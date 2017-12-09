@@ -88,7 +88,7 @@ public class Spotanim extends CacheableNode {
 
          if (this.aShortArray7 != null) {
             for (int_1 = 0; int_1 < this.aShortArray7.length; int_1++) {
-               modeldata_0.method1051(this.aShortArray7[int_1], this.aShortArray9[int_1]);
+               modeldata_0.retexture(this.aShortArray7[int_1], this.aShortArray9[int_1]);
             }
          }
 

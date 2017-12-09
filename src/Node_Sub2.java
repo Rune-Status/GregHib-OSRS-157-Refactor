@@ -425,7 +425,7 @@ public class Node_Sub2 extends Node {
 
    static Node_Sub2 method667(IndexDataBase indexdatabase_0, int int_0, int int_1) {
       if (!method666(indexdatabase_0)) {
-         indexdatabase_0.method431(int_0, int_1);
+         indexdatabase_0.modelExists(int_0, int_1);
          return null;
       } else {
          byte[] bytes_0 = indexdatabase_0.getConfigData(int_0, int_1);

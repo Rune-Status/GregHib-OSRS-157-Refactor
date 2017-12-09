@@ -24,7 +24,7 @@ public final class NPC extends Actor {
             }
 
             if (this.composition.anInt489 == 1) {
-               model_0.aBool75 = true;
+               model_0.fitsOnSingleSquare = true;
             }
 
             return model_0;

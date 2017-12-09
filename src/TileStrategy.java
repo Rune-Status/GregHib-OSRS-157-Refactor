@@ -8,12 +8,12 @@ public class TileStrategy extends RouteStrategy {
       return currentX == this.approxDestinationX && currentY == this.approxDestinationY;
    }
 
-   static boolean method628(IndexDataBase indexdatabase_0, int int_0, int int_1) {
-      byte[] bytes_0 = indexdatabase_0.getConfigData(int_0, int_1);
-      if (bytes_0 == null) {
+   static boolean decodeIfExists(IndexDataBase index, int archiveId, int fileId) {
+      byte[] data = index.getConfigData(archiveId, fileId);
+      if (data == null) {
          return false;
       } else {
-         DecorativeObject.decodeSprite(bytes_0);
+         DecorativeObject.decodeSprite(data);
          return true;
       }
    }

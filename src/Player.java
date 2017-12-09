@@ -107,7 +107,7 @@ public final class Player extends Actor {
                }
             }
 
-            animatedModel.aBool75 = true;
+            animatedModel.fitsOnSingleSquare = true;
             return animatedModel;
          }
       }
@@ -208,7 +208,7 @@ public final class Player extends Actor {
             }
 
             if (appearanceModels[bodyPart] >= 512) {
-               int team = CacheableNode_Sub2.getItemDefinition(appearanceModels[bodyPart] - 512).anInt504;
+               int team = ItemDefinition.getDefinition(appearanceModels[bodyPart] - 512).teamIndex;
                if (team != 0) {
                   this.team = team;
                }

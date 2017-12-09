@@ -28,22 +28,22 @@ public abstract class IndexDataBase {
       this.aBool28 = bool_1;
    }
 
-   public byte[] getConfigData(int int_0, int int_1, int[] ints_0) {
-      if (int_0 >= 0 && int_0 < this.childs.length && this.childs[int_0] != null && int_1 >= 0 && int_1 < this.childs[int_0].length) {
-         if (this.childs[int_0][int_1] == null) {
-            boolean bool_0 = this.method435(int_0, ints_0);
+   public byte[] getConfigData(int archive, int file, int[] keys) {
+      if (archive >= 0 && archive < this.childs.length && this.childs[archive] != null && file >= 0 && file < this.childs[archive].length) {
+         if (this.childs[archive][file] == null) {
+            boolean bool_0 = this.method435(archive, keys);
             if (!bool_0) {
-               this.method425(int_0);
-               bool_0 = this.method435(int_0, ints_0);
+               this.method425(archive);
+               bool_0 = this.method435(archive, keys);
                if (!bool_0) {
                   return null;
                }
             }
          }
 
-         byte[] bytes_0 = Class56.toByteArray(this.childs[int_0][int_1], false);
+         byte[] bytes_0 = Class56.toByteArray(this.childs[archive][file], false);
          if (this.aBool28) {
-            this.childs[int_0][int_1] = null;
+            this.childs[archive][file] = null;
          }
 
          return bytes_0;
@@ -76,8 +76,8 @@ public abstract class IndexDataBase {
       }
    }
 
-   public byte[] getConfigData(int int_0, int int_1) {
-      return this.getConfigData(int_0, int_1, (int[]) null);
+   public byte[] getConfigData(int archiveId, int fileId) {
+      return this.getConfigData(archiveId, fileId, (int[]) null);
    }
 
    void method425(int int_0) {
@@ -242,7 +242,7 @@ public abstract class IndexDataBase {
       string_1 = string_1.toLowerCase();
       int int_0 = this.identifiers.getFile(CacheableNode_Sub5.djb2Hash(string_0));
       int int_1 = this.childIdentifiers[int_0].getFile(CacheableNode_Sub5.djb2Hash(string_1));
-      return this.method431(int_0, int_1);
+      return this.modelExists(int_0, int_1);
    }
 
    void method430(int int_0) {
@@ -257,15 +257,15 @@ public abstract class IndexDataBase {
       }
    }
 
-   public boolean method431(int int_0, int int_1) {
-      if (int_0 >= 0 && int_0 < this.childs.length && this.childs[int_0] != null && int_1 >= 0 && int_1 < this.childs[int_0].length) {
-         if (this.childs[int_0][int_1] != null) {
+   public boolean modelExists(int archive, int file) {
+      if (archive >= 0 && archive < this.childs.length && this.childs[archive] != null && file >= 0 && file < this.childs[archive].length) {
+         if (this.childs[archive][file] != null) {
             return true;
-         } else if (this.anObjectArray1[int_0] != null) {
+         } else if (this.anObjectArray1[archive] != null) {
             return true;
          } else {
-            this.method425(int_0);
-            return this.anObjectArray1[int_0] != null;
+            this.method425(archive);
+            return this.anObjectArray1[archive] != null;
          }
       } else {
          return false;

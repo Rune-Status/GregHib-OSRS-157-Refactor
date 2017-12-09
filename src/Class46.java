@@ -236,11 +236,11 @@ public class Class46 {
                IndexData indexdata_7 = Class4.indexModels;
                boolean bool_1 = Client.isMembers;
                Font font_0 = Class1.aFont2;
-               ItemComposition.item_ref = indexdata_6;
-               ItemComposition.anIndexDataBase30 = indexdata_7;
+               ItemDefinition.item_ref = indexdata_6;
+               ItemDefinition.itemDefinitionIndex = indexdata_7;
                Enum5.isMembersWorld = bool_1;
-               ItemComposition.anInt503 = ItemComposition.item_ref.fileCount(10);
-               ItemComposition.aFont5 = font_0;
+               ItemDefinition.anInt503 = ItemDefinition.item_ref.fileCount(10);
+               ItemDefinition.aFont5 = font_0;
                IndexData indexdata_8 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_9 = Varcs.indexInterfaces;
                IndexData indexdata_10 = Class6.indexSoundEffects;

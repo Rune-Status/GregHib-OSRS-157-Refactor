@@ -789,18 +789,18 @@ public class Class9 {
       this.method119(list_0);
    }
 
-   static IndexedSprite method146() {
-      IndexedSprite indexedsprite_0 = new IndexedSprite();
-      indexedsprite_0.width = Class111.anInt214;
-      indexedsprite_0.originalHeight = Class111.anInt215;
-      indexedsprite_0.offsetX = Class111.anIntArray54[0];
-      indexedsprite_0.offsetY = Class7.offsetsY[0];
-      indexedsprite_0.originalWidth = ItemContainer.anIntArray76[0];
-      indexedsprite_0.height = Class6.anIntArray3[0];
-      indexedsprite_0.palette = Class111.anIntArray55;
-      indexedsprite_0.pixels = Class111.spritePixels[0];
+   static IndexedSprite loadSpriteData() {
+      IndexedSprite sprite = new IndexedSprite();
+      sprite.width = Class111.anInt214;
+      sprite.originalHeight = Class111.anInt215;
+      sprite.offsetX = Class111.anIntArray54[0];
+      sprite.offsetY = Class7.offsetsY[0];
+      sprite.originalWidth = ItemContainer.anIntArray76[0];
+      sprite.height = Class6.anIntArray3[0];
+      sprite.palette = Class111.anIntArray55;
+      sprite.pixels = Class111.spritePixels[0];
       Class98.method523();
-      return indexedsprite_0;
+      return sprite;
    }
 
    static void method147() {

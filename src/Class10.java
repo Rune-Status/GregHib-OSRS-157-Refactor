@@ -146,13 +146,13 @@ public class Class10 {
          int int_2 = Class39.intStack[Class23.intStackSize + 1];
          widget_0.itemId = int_1;
          widget_0.itemQuantity = int_2;
-         ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
-         widget_0.rotationX = itemcomposition_0.xan2d;
-         widget_0.rotationZ = itemcomposition_0.yan2d;
-         widget_0.rotationY = itemcomposition_0.zan2d;
-         widget_0.anInt293 = itemcomposition_0.offsetX2d;
-         widget_0.anInt294 = itemcomposition_0.offsetY2d;
-         widget_0.modelZoom = itemcomposition_0.zoom2d;
+         ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_1);
+         widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
+         widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+         widget_0.rotationY = itemcomposition_0.diagonalRotation;
+         widget_0.anInt293 = itemcomposition_0.spriteTranslateX;
+         widget_0.anInt294 = itemcomposition_0.spriteTranslateY;
+         widget_0.modelZoom = itemcomposition_0.modelInventoryZoom;
          if (int_0 == 1205) {
             widget_0.anInt296 = 0;
          } else if (int_0 == 1212 | itemcomposition_0.isStackable == 1) {
@@ -171,8 +171,8 @@ public class Class10 {
       }
    }
 
-   static void method156(Widget widget_0, ItemComposition itemcomposition_0, int int_0, int int_1, boolean bool_0) {
-      String[] strings_0 = itemcomposition_0.inventoryActions;
+   static void method156(Widget widget_0, ItemDefinition itemcomposition_0, int int_0, int int_1, boolean bool_0) {
+      String[] strings_0 = itemcomposition_0.inventoryOptions;
       byte byte_0 = -1;
       String string_0 = null;
       if (strings_0 != null && strings_0[int_1] != null) {

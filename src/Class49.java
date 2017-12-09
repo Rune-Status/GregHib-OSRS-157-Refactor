@@ -118,7 +118,7 @@ final class Class49 implements Comparator {
                   int_5 += ints_0[int_2++];
                   widget_1 = PendingSpawn.method671(int_5);
                   int_6 = ints_0[int_2++];
-                  if (int_6 != -1 && (!CacheableNode_Sub2.getItemDefinition(int_6).isMembers || Client.isMembers)) {
+                  if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {
                         if (int_6 + 1 == widget_1.itemIds[int_7]) {
                            int_4 += widget_1.itemQuantities[int_7];
@@ -156,7 +156,7 @@ final class Class49 implements Comparator {
                   int_5 += ints_0[int_2++];
                   widget_1 = PendingSpawn.method671(int_5);
                   int_6 = ints_0[int_2++];
-                  if (int_6 != -1 && (!CacheableNode_Sub2.getItemDefinition(int_6).isMembers || Client.isMembers)) {
+                  if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {
                         if (int_6 + 1 == widget_1.itemIds[int_7]) {
                            int_4 = 999999999;
@@ -182,7 +182,7 @@ final class Class49 implements Comparator {
 
                if (int_3 == 14) {
                   int_5 = ints_0[int_2++];
-                  int_4 = Item.method973(int_5);
+                  int_4 = Varbit.getVarbit(int_5);
                }
 
                if (int_3 == 15) {

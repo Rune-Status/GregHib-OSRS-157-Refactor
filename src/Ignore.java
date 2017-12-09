@@ -511,7 +511,7 @@ public class Ignore {
                            Class48.anInt111 = int_1;
                            KeyFocusListener.anInt128 = int_3;
                            WorldMapData.method305(widget_2);
-                           Client.aString35 = WallObject.getColTags(16748608) + CacheableNode_Sub2.getItemDefinition(int_3).name + WallObject.getColTags(16777215);
+                           Client.aString35 = WallObject.getColTags(16748608) + ItemDefinition.getDefinition(int_3).name + WallObject.getColTags(16777215);
                            if (Client.aString35 == null) {
                               Client.aString35 = "null";
                            }
@@ -756,7 +756,7 @@ public class Ignore {
                                  if (int_2 == 1005) {
                                     widget_2 = PendingSpawn.method671(int_1);
                                     if (widget_2 != null && widget_2.itemQuantities[int_0] >= 100000) {
-                                       Class34.sendGameMessage(27, "", widget_2.itemQuantities[int_0] + " x " + CacheableNode_Sub2.getItemDefinition(int_3).name);
+                                       Class34.sendGameMessage(27, "", widget_2.itemQuantities[int_0] + " x " + ItemDefinition.getDefinition(int_3).name);
                                     } else {
                                        packetnode_1 = Actor.method953(ClientPacket.aClientPacket39, Client.aClass46_1.cipher);
                                        packetnode_1.packetBuffer.method719(int_3);

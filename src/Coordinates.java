@@ -99,7 +99,7 @@ public class Coordinates {
          byte[] bytes_0 = Class49.varbit_ref.getConfigData(14, int_0);
          varbit_0 = new Varbit();
          if (bytes_0 != null) {
-            varbit_0.decodeLoop(new Buffer(bytes_0));
+            varbit_0.decode(new Buffer(bytes_0));
          }
 
          Varbit.varbits.put(varbit_0, (long)int_0);

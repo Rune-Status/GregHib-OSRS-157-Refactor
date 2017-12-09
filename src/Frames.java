@@ -509,7 +509,7 @@ public class Frames extends CacheableNode {
 
    static World method874() {
       World.anInt219 = 0;
-      return ItemComposition.method944();
+      return ItemDefinition.method944();
    }
 
 }

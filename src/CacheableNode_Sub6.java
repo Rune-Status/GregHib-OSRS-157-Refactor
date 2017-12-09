@@ -124,7 +124,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
    public CacheableNode_Sub6 method890() {
       int int_0 = -1;
       if (this.anInt475 != -1) {
-         int_0 = Item.method973(this.anInt475);
+         int_0 = Varbit.getVarbit(this.anInt475);
       } else if (this.anInt481 != -1) {
          int_0 = Settings.widgetSettings[this.anInt481];
       }

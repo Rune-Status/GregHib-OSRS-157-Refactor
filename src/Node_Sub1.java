@@ -57,7 +57,7 @@ public final class Node_Sub1 extends Node {
    }
 
    static IndexedSprite[] method634(IndexDataBase indexdatabase_0, int int_0, int int_1) {
-      if (!TileStrategy.method628(indexdatabase_0, int_0, int_1)) {
+      if (!TileStrategy.decodeIfExists(indexdatabase_0, int_0, int_1)) {
          return null;
       } else {
          IndexedSprite[] indexedsprites_0 = new IndexedSprite[Class111.anInt216];

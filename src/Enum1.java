@@ -146,7 +146,7 @@ public enum Enum1 implements RSEnum {
 
          Item item_1;
          for (item_1 = (Item) deque_0.getFront(); item_1 != null; item_1 = (Item) deque_0.getNext()) {
-            ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(item_1.id);
+            ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(item_1.id);
             long long_1 = (long)itemcomposition_0.price;
             if (itemcomposition_0.isStackable == 1) {
                long_1 *= (long)(item_1.quantity + 1);

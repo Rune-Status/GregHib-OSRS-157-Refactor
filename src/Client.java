@@ -1442,7 +1442,7 @@ public final class Client extends GameEngine {
 
                     int_2 = packetbuffer_0.method727();
                     widget_0 = PendingSpawn.method671(int_1);
-                    ItemComposition itemcomposition_0;
+                    ItemDefinition itemcomposition_0;
                     if (!widget_0.hasScript) {
                         if (int_0 == -1) {
                             widget_0.modelType = 0;
@@ -1450,23 +1450,23 @@ public final class Client extends GameEngine {
                             return true;
                         }
 
-                        itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_0);
+                        itemcomposition_0 = ItemDefinition.getDefinition(int_0);
                         widget_0.modelType = 4;
                         widget_0.modelId = int_0;
-                        widget_0.rotationX = itemcomposition_0.xan2d;
-                        widget_0.rotationZ = itemcomposition_0.yan2d;
-                        widget_0.modelZoom = itemcomposition_0.zoom2d * 100 / int_2;
+                        widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
+                        widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+                        widget_0.modelZoom = itemcomposition_0.modelInventoryZoom * 100 / int_2;
                         WorldMapData.method305(widget_0);
                     } else {
                         widget_0.itemId = int_0;
                         widget_0.itemQuantity = int_2;
-                        itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_0);
-                        widget_0.rotationX = itemcomposition_0.xan2d;
-                        widget_0.rotationZ = itemcomposition_0.yan2d;
-                        widget_0.rotationY = itemcomposition_0.zan2d;
-                        widget_0.anInt293 = itemcomposition_0.offsetX2d;
-                        widget_0.anInt294 = itemcomposition_0.offsetY2d;
-                        widget_0.modelZoom = itemcomposition_0.zoom2d;
+                        itemcomposition_0 = ItemDefinition.getDefinition(int_0);
+                        widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
+                        widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+                        widget_0.rotationY = itemcomposition_0.diagonalRotation;
+                        widget_0.anInt293 = itemcomposition_0.spriteTranslateX;
+                        widget_0.anInt294 = itemcomposition_0.spriteTranslateY;
+                        widget_0.modelZoom = itemcomposition_0.modelInventoryZoom;
                         if (itemcomposition_0.isStackable == 1) {
                             widget_0.anInt296 = 1;
                         } else {
@@ -4520,9 +4520,9 @@ public final class Client extends GameEngine {
     }
 
     public static void method1109() {
-        ItemComposition.items.reset();
-        ItemComposition.itemModelCache.reset();
-        ItemComposition.itemSpriteCache.reset();
+        ItemDefinition.items.reset();
+        ItemDefinition.itemModelCache.reset();
+        ItemDefinition.itemSpriteCache.reset();
     }
 
     static boolean method1110(int int_0, int int_1) {

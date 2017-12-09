@@ -787,14 +787,13 @@ public class ModelHeader extends Renderable {
 
    }
 
-   public void method1051(short short_0, short short_1) {
+   public void retexture(short src, short dest) {
       if (this.faceTextures != null) {
-         for (int int_0 = 0; int_0 < this.triangleCount; int_0++) {
-            if (this.faceTextures[int_0] == short_0) {
-               this.faceTextures[int_0] = short_1;
+         for (int triangle = 0; triangle < this.triangleCount; triangle++) {
+            if (this.faceTextures[triangle] == src) {
+               this.faceTextures[triangle] = dest;
             }
          }
-
       }
    }
 
@@ -1538,55 +1537,55 @@ public class ModelHeader extends Renderable {
       this.clean();
    }
 
-   public void method1057() {
-      for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         this.vertexX[int_0] = -this.vertexX[int_0];
-         this.vertexZ[int_0] = -this.vertexZ[int_0];
+   public void rotateXZ() {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         this.vertexX[vertex] = -this.vertexX[vertex];
+         this.vertexZ[vertex] = -this.vertexZ[vertex];
       }
 
       this.clean();
    }
 
-   public void method1058() {
-      for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         int int_1 = this.vertexZ[int_0];
-         this.vertexZ[int_0] = this.vertexX[int_0];
-         this.vertexX[int_0] = -int_1;
+   public void rotateZ() {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         int z = this.vertexZ[vertex];
+         this.vertexZ[vertex] = this.vertexX[vertex];
+         this.vertexX[vertex] = -z;
       }
 
       this.clean();
    }
 
-   int method1059(ModelHeader modeldata_1, int int_0) {
-      int int_1 = -1;
-      int int_2 = modeldata_1.vertexX[int_0];
-      int int_3 = modeldata_1.vertexY[int_0];
-      int int_4 = modeldata_1.vertexZ[int_0];
+   int method1059(ModelHeader header, int currentVertex) {
+      int otherVertex = -1;
+      int vertexX = header.vertexX[currentVertex];
+      int vertexY = header.vertexY[currentVertex];
+      int vertexZ = header.vertexZ[currentVertex];
 
-      for (int int_5 = 0; int_5 < this.vertexCount; int_5++) {
-         if (int_2 == this.vertexX[int_5] && int_3 == this.vertexY[int_5] && int_4 == this.vertexZ[int_5]) {
-            int_1 = int_5;
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         if (vertexX == this.vertexX[vertex] && vertexY == this.vertexY[vertex] && vertexZ == this.vertexZ[vertex]) {
+            otherVertex = vertex;
             break;
          }
       }
 
-      if (int_1 == -1) {
-         this.vertexX[this.vertexCount] = int_2;
-         this.vertexY[this.vertexCount] = int_3;
-         this.vertexZ[this.vertexCount] = int_4;
-         if (modeldata_1.vertexSkins != null) {
-            this.vertexSkins[this.vertexCount] = modeldata_1.vertexSkins[int_0];
+      if (otherVertex == -1) {
+         this.vertexX[this.vertexCount] = vertexX;
+         this.vertexY[this.vertexCount] = vertexY;
+         this.vertexZ[this.vertexCount] = vertexZ;
+         if (header.vertexSkins != null) {
+            this.vertexSkins[this.vertexCount] = header.vertexSkins[currentVertex];
          }
 
-         int_1 = this.vertexCount++;
+         otherVertex = this.vertexCount++;
       }
 
-      return int_1;
+      return otherVertex;
    }
 
-   public static ModelHeader getModel(IndexDataBase index, int int_0, int int_1) {
-      byte[] bytes_0 = index.getConfigData(int_0, int_1);
-      return bytes_0 == null ? null : new ModelHeader(bytes_0);
+   public static ModelHeader getModel(IndexDataBase index, int archiveId, int fileId) {
+      byte[] data = index.getConfigData(archiveId, fileId);
+      return data == null ? null : new ModelHeader(data);
    }
 
    static void method1061(ModelHeader modeldata_0, ModelHeader modeldata_1, int int_0, int int_1, int int_2, boolean bool_0) {

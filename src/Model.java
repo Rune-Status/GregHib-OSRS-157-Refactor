@@ -53,7 +53,7 @@ public class Model extends Renderable {
    int[] anIntArray131;
    public int[] anIntArray132;
    public int anInt563;
-   public boolean aBool75;
+   public boolean fitsOnSingleSquare;
    int[] anIntArray133;
    byte[] trianglePriorities;
    public int anInt564;
@@ -100,7 +100,7 @@ public class Model extends Renderable {
       this.triangleCount = 0;
       this.priorityOffset = 0;
       this.texturedTriangleCount = 0;
-      this.aBool75 = false;
+      this.fitsOnSingleSquare = false;
       this.anInt555 = -1;
       this.anInt563 = -1;
       this.anInt566 = -1;
@@ -111,7 +111,7 @@ public class Model extends Renderable {
       this.triangleCount = 0;
       this.priorityOffset = 0;
       this.texturedTriangleCount = 0;
-      this.aBool75 = false;
+      this.fitsOnSingleSquare = false;
       this.anInt555 = -1;
       this.anInt563 = -1;
       this.anInt566 = -1;
@@ -511,7 +511,7 @@ public class Model extends Renderable {
       model_1.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
       model_1.anIntArrayArray17 = this.anIntArrayArray17;
       model_1.anIntArrayArray18 = this.anIntArrayArray18;
-      model_1.aBool75 = this.aBool75;
+      model_1.fitsOnSingleSquare = this.fitsOnSingleSquare;
       model_1.method1009();
       return model_1;
    }
@@ -570,7 +570,7 @@ public class Model extends Renderable {
             this.anInt566 = 32;
          }
 
-         if (this.aBool75) {
+         if (this.fitsOnSingleSquare) {
             this.anInt555 += 8;
             this.anInt566 += 8;
          }
@@ -666,7 +666,7 @@ public class Model extends Renderable {
                model_1.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
                model_1.anIntArrayArray17 = this.anIntArrayArray17;
                model_1.anIntArrayArray18 = this.anIntArrayArray18;
-               model_1.aBool75 = this.aBool75;
+               model_1.fitsOnSingleSquare = this.fitsOnSingleSquare;
                model_1.verticesY = new int[model_1.vertexCount];
             } else {
                model_1 = this;
@@ -834,7 +834,7 @@ public class Model extends Renderable {
                         }
 
                         if (bool_5) {
-                           if (this.aBool75) {
+                           if (this.fitsOnSingleSquare) {
                               Class54.anIntArray34[++Class54.anInt140 - 1] = int_8;
                            } else {
                               bool_4 = true;
@@ -887,7 +887,7 @@ public class Model extends Renderable {
                      }
 
                      try {
-                        this.method1025(bool_0, bool_4, this.aBool75, int_8);
+                        this.method1025(bool_0, bool_4, this.fitsOnSingleSquare, int_8);
                      } catch (Exception exception_0) {
                         ;
                      }

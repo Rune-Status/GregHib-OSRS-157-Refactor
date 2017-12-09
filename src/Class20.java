@@ -1436,17 +1436,17 @@ public class Class20 implements Comparator {
                            } else if (int_0 < 4300) {
                               if (int_0 == 4200) {
                                  int_1 = Class39.intStack[--Class23.intStackSize];
-                                 Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).name;
+                                 Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = ItemDefinition.getDefinition(int_1).name;
                                  byte_0 = 1;
                               } else {
-                                 ItemComposition itemcomposition_1;
+                                 ItemDefinition itemcomposition_1;
                                  if (int_0 == 4201) {
                                     Class23.intStackSize -= 2;
                                     int_1 = Class39.intStack[Class23.intStackSize];
                                     int_9 = Class39.intStack[Class23.intStackSize + 1];
-                                    itemcomposition_1 = CacheableNode_Sub2.getItemDefinition(int_1);
-                                    if (int_9 >= 1 && int_9 <= 5 && itemcomposition_1.groundActions[int_9 - 1] != null) {
-                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = itemcomposition_1.groundActions[int_9 - 1];
+                                    itemcomposition_1 = ItemDefinition.getDefinition(int_1);
+                                    if (int_9 >= 1 && int_9 <= 5 && itemcomposition_1.groundOptions[int_9 - 1] != null) {
+                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = itemcomposition_1.groundOptions[int_9 - 1];
                                     } else {
                                        Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = "";
                                     }
@@ -1456,9 +1456,9 @@ public class Class20 implements Comparator {
                                     Class23.intStackSize -= 2;
                                     int_1 = Class39.intStack[Class23.intStackSize];
                                     int_9 = Class39.intStack[Class23.intStackSize + 1];
-                                    itemcomposition_1 = CacheableNode_Sub2.getItemDefinition(int_1);
-                                    if (int_9 >= 1 && int_9 <= 5 && itemcomposition_1.inventoryActions[int_9 - 1] != null) {
-                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = itemcomposition_1.inventoryActions[int_9 - 1];
+                                    itemcomposition_1 = ItemDefinition.getDefinition(int_1);
+                                    if (int_9 >= 1 && int_9 <= 5 && itemcomposition_1.inventoryOptions[int_9 - 1] != null) {
+                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = itemcomposition_1.inventoryOptions[int_9 - 1];
                                     } else {
                                        Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = "";
                                     }
@@ -1466,19 +1466,19 @@ public class Class20 implements Comparator {
                                     byte_0 = 1;
                                  } else if (int_0 == 4203) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
-                                    Class39.intStack[++Class23.intStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).price;
+                                    Class39.intStack[++Class23.intStackSize - 1] = ItemDefinition.getDefinition(int_1).price;
                                     byte_0 = 1;
                                  } else if (int_0 == 4204) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
-                                    Class39.intStack[++Class23.intStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).isStackable == 1 ? 1 : 0;
+                                    Class39.intStack[++Class23.intStackSize - 1] = ItemDefinition.getDefinition(int_1).isStackable == 1 ? 1 : 0;
                                     byte_0 = 1;
                                  } else {
-                                    ItemComposition itemcomposition_0;
+                                    ItemDefinition itemcomposition_0;
                                     if (int_0 == 4205) {
                                        int_1 = Class39.intStack[--Class23.intStackSize];
-                                       itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
-                                       if (itemcomposition_0.notedTemplate == -1 && itemcomposition_0.note >= 0) {
-                                          Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.note;
+                                       itemcomposition_0 = ItemDefinition.getDefinition(int_1);
+                                       if (itemcomposition_0.noteTemplateIndex == -1 && itemcomposition_0.noteIndex >= 0) {
+                                          Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.noteIndex;
                                        } else {
                                           Class39.intStack[++Class23.intStackSize - 1] = int_1;
                                        }
@@ -1486,9 +1486,9 @@ public class Class20 implements Comparator {
                                        byte_0 = 1;
                                     } else if (int_0 == 4206) {
                                        int_1 = Class39.intStack[--Class23.intStackSize];
-                                       itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
-                                       if (itemcomposition_0.notedTemplate >= 0 && itemcomposition_0.note >= 0) {
-                                          Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.note;
+                                       itemcomposition_0 = ItemDefinition.getDefinition(int_1);
+                                       if (itemcomposition_0.noteTemplateIndex >= 0 && itemcomposition_0.noteIndex >= 0) {
+                                          Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.noteIndex;
                                        } else {
                                           Class39.intStack[++Class23.intStackSize - 1] = int_1;
                                        }
@@ -1496,11 +1496,11 @@ public class Class20 implements Comparator {
                                        byte_0 = 1;
                                     } else if (int_0 == 4207) {
                                        int_1 = Class39.intStack[--Class23.intStackSize];
-                                       Class39.intStack[++Class23.intStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).isMembers ? 1 : 0;
+                                       Class39.intStack[++Class23.intStackSize - 1] = ItemDefinition.getDefinition(int_1).isMembers ? 1 : 0;
                                        byte_0 = 1;
                                     } else if (int_0 == 4208) {
                                        int_1 = Class39.intStack[--Class23.intStackSize];
-                                       itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
+                                       itemcomposition_0 = ItemDefinition.getDefinition(int_1);
                                        if (itemcomposition_0.anInt505 == -1 && itemcomposition_0.anInt506 >= 0) {
                                           Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.anInt506;
                                        } else {
@@ -1510,7 +1510,7 @@ public class Class20 implements Comparator {
                                        byte_0 = 1;
                                     } else if (int_0 == 4209) {
                                        int_1 = Class39.intStack[--Class23.intStackSize];
-                                       itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
+                                       itemcomposition_0 = ItemDefinition.getDefinition(int_1);
                                        if (itemcomposition_0.anInt505 >= 0 && itemcomposition_0.anInt506 >= 0) {
                                           Class39.intStack[++Class23.intStackSize - 1] = itemcomposition_0.anInt506;
                                        } else {
@@ -1646,7 +1646,7 @@ public class Class20 implements Comparator {
 
                                     byte_0 = 1;
                                  } else if (int_0 == 6502) {
-                                    world_1 = ItemComposition.method944();
+                                    world_1 = ItemDefinition.method944();
                                     if (world_1 != null) {
                                        Class39.intStack[++Class23.intStackSize - 1] = world_1.id;
                                        Class39.intStack[++Class23.intStackSize - 1] = world_1.mask;
@@ -1760,9 +1760,9 @@ public class Class20 implements Comparator {
                                           int_9 = Class39.intStack[Class23.intStackSize + 1];
                                           cacheablenode_sub5_0 = PacketBuffer.method907(int_9);
                                           if (cacheablenode_sub5_0.method884()) {
-                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).method942(int_9, cacheablenode_sub5_0.aString30);
+                                             Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = ItemDefinition.getDefinition(int_1).method942(int_9, cacheablenode_sub5_0.aString30);
                                           } else {
-                                             Class39.intStack[++Class23.intStackSize - 1] = CacheableNode_Sub2.getItemDefinition(int_1).method941(int_9, cacheablenode_sub5_0.anInt474);
+                                             Class39.intStack[++Class23.intStackSize - 1] = ItemDefinition.getDefinition(int_1).method941(int_9, cacheablenode_sub5_0.anInt474);
                                           }
 
                                           byte_0 = 1;

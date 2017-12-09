@@ -73,7 +73,7 @@ public class NPCComposition extends CacheableNode {
    public NPCComposition transform() {
       int int_0 = -1;
       if (this.varpIndex != -1) {
-         int_0 = Item.method973(this.varpIndex);
+         int_0 = Varbit.getVarbit(this.varpIndex);
       } else if (this.varp32Index != -1) {
          int_0 = Settings.widgetSettings[this.varp32Index];
       }
@@ -217,7 +217,7 @@ public class NPCComposition extends CacheableNode {
             boolean exists = false;
 
             for (int id = 0; id < this.models.length; id++) {
-               if (!anIndexDataBase28.method431(this.models[id], 0)) {
+               if (!anIndexDataBase28.modelExists(this.models[id], 0)) {
                   exists = true;
                }
             }
@@ -248,7 +248,7 @@ public class NPCComposition extends CacheableNode {
 
             if (this.aShortArray10 != null) {
                for (model = 0; model < this.aShortArray10.length; model++) {
-                  modeldata_0.method1051(this.aShortArray10[model], this.aShortArray11[model]);
+                  modeldata_0.retexture(this.aShortArray10[model], this.aShortArray11[model]);
                }
             }
 
@@ -285,7 +285,7 @@ public class NPCComposition extends CacheableNode {
          boolean bool_0 = false;
 
          for (int int_0 = 0; int_0 < this.anIntArray104.length; int_0++) {
-            if (!anIndexDataBase28.method431(this.anIntArray104[int_0], 0)) {
+            if (!anIndexDataBase28.modelExists(this.anIntArray104[int_0], 0)) {
                bool_0 = true;
             }
          }
@@ -315,7 +315,7 @@ public class NPCComposition extends CacheableNode {
 
             if (this.aShortArray10 != null) {
                for (int_2 = 0; int_2 < this.aShortArray10.length; int_2++) {
-                  modeldata_0.method1051(this.aShortArray10[int_2], this.aShortArray11[int_2]);
+                  modeldata_0.retexture(this.aShortArray10[int_2], this.aShortArray11[int_2]);
                }
             }
 
@@ -344,7 +344,7 @@ public class NPCComposition extends CacheableNode {
       } else {
          int int_0 = -1;
          if (this.varpIndex != -1) {
-            int_0 = Item.method973(this.varpIndex);
+            int_0 = Varbit.getVarbit(this.varpIndex);
          } else if (this.varp32Index != -1) {
             int_0 = Settings.widgetSettings[this.varp32Index];
          }

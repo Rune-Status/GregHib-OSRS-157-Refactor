@@ -228,7 +228,7 @@ public class ItemContainer extends Node {
                               Deque deque_0 = Client.groundItemDeque[Ignore.plane][int_21][int_22];
                               if (deque_0 != null) {
                                  for (Item item_0 = (Item) deque_0.getTail(); item_0 != null; item_0 = (Item) deque_0.getPrevious()) {
-                                    ItemComposition itemcomposition_1 = CacheableNode_Sub2.getItemDefinition(item_0.id);
+                                    ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(item_0.id);
                                     if (Client.itemSelectionState == 1) {
                                        Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_1.name, 16, item_0.id, int_21, int_22);
                                     } else if (Client.spellSelected) {
@@ -236,7 +236,7 @@ public class ItemContainer extends Node {
                                           Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_1.name, 17, item_0.id, int_21, int_22);
                                        }
                                     } else {
-                                       String[] strings_2 = itemcomposition_1.groundActions;
+                                       String[] strings_2 = itemcomposition_1.groundOptions;
                                        if (Client.aBool99) {
                                           strings_2 = Friend.method537(strings_2);
                                        }
@@ -385,7 +385,7 @@ public class ItemContainer extends Node {
                                     Class52.aWidget2 = widget_0;
                                     if (widget_0.itemIds[int_19] > 0) {
                                        label1900: {
-                                          ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(widget_0.itemIds[int_19] - 1);
+                                          ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemIds[int_19] - 1);
                                           boolean bool_0;
                                           if (Client.itemSelectionState == 1) {
                                              int_25 = Preferences.getWidgetConfig(widget_0);
@@ -409,7 +409,7 @@ public class ItemContainer extends Node {
                                              }
                                           }
 
-                                          String[] strings_0 = itemcomposition_0.inventoryActions;
+                                          String[] strings_0 = itemcomposition_0.inventoryOptions;
                                           if (Client.aBool99) {
                                              strings_0 = Friend.method537(strings_0);
                                           }

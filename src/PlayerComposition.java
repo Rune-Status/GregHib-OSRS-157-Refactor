@@ -112,7 +112,7 @@ public class PlayerComposition {
                   bool_0 = true;
                }
 
-               if (int_4 >= 512 && !CacheableNode_Sub2.getItemDefinition(int_4 - 512).readyWorn(this.isFemale)) {
+               if (int_4 >= 512 && !ItemDefinition.getDefinition(int_4 - 512).equipModelExists(this.isFemale)) {
                   bool_0 = true;
                }
             }
@@ -143,7 +143,7 @@ public class PlayerComposition {
                   }
 
                   if (int_6 >= 512) {
-                     modeldata_0 = CacheableNode_Sub2.getItemDefinition(int_6 - 512).getWornModelData(this.isFemale);
+                     modeldata_0 = ItemDefinition.getDefinition(int_6 - 512).getEquipModelHeader(this.isFemale);
                      if (modeldata_0 != null) {
                         modeldatas_0[int_4++] = modeldata_0;
                      }
@@ -198,7 +198,7 @@ public class PlayerComposition {
                bool_0 = true;
             }
 
-            if (int_1 >= 512 && !CacheableNode_Sub2.getItemDefinition(int_1 - 512).method935(this.isFemale)) {
+            if (int_1 >= 512 && !ItemDefinition.getDefinition(int_1 - 512).dialogueHeadExists(this.isFemale)) {
                bool_0 = true;
             }
          }
@@ -221,7 +221,7 @@ public class PlayerComposition {
                }
 
                if (int_3 >= 512) {
-                  modeldata_0 = CacheableNode_Sub2.getItemDefinition(int_3 - 512).method936(this.isFemale);
+                  modeldata_0 = ItemDefinition.getDefinition(int_3 - 512).getDialogueModelHeader(this.isFemale);
                   if (modeldata_0 != null) {
                      modeldatas_0[int_1++] = modeldata_0;
                   }

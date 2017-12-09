@@ -815,14 +815,14 @@ public class Widget extends Node {
             }
 
             if (int_1 == 4) {
-               ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_2);
-               modeldata_0 = itemcomposition_0.method934(10);
+               ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_2);
+               modeldata_0 = itemcomposition_0.getAmountModel(10);
                if (modeldata_0 == null) {
                   aBool34 = true;
                   return null;
                }
 
-               model_0 = modeldata_0.applyLighting(itemcomposition_0.ambient + 64, itemcomposition_0.contrast + 768, -50, -10, -50);
+               model_0 = modeldata_0.applyLighting(itemcomposition_0.lightModifier + 64, itemcomposition_0.shadowModifier + 768, -50, -10, -50);
             }
 
             aNodeCache4.put(model_0, (long)(int_2 + (int_1 << 16)));

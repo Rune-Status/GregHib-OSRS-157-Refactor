@@ -68,7 +68,7 @@ public class KitDefinition extends CacheableNode {
         boolean bool_0 = true;
 
         for (int int_0 = 0; int_0 < 5; int_0++) {
-            if (this.models[int_0] != -1 && !anIndexDataBase15.method431(this.models[int_0], 0)) {
+            if (this.models[int_0] != -1 && !anIndexDataBase15.modelExists(this.models[int_0], 0)) {
                 bool_0 = false;
             }
         }
@@ -96,7 +96,7 @@ public class KitDefinition extends CacheableNode {
 
         if (this.retextureToFind != null) {
             for (int_2 = 0; int_2 < this.retextureToFind.length; int_2++) {
-                modeldata_0.method1051(this.retextureToFind[int_2], this.retextureToReplace[int_2]);
+                modeldata_0.retexture(this.retextureToFind[int_2], this.retextureToReplace[int_2]);
             }
         }
 
@@ -110,7 +110,7 @@ public class KitDefinition extends CacheableNode {
             boolean bool_0 = true;
 
             for (int int_0 = 0; int_0 < this.modelIds.length; int_0++) {
-                if (!anIndexDataBase15.method431(this.modelIds[int_0], 0)) {
+                if (!anIndexDataBase15.modelExists(this.modelIds[int_0], 0)) {
                     bool_0 = false;
                 }
             }
@@ -157,7 +157,7 @@ public class KitDefinition extends CacheableNode {
 
             if (this.retextureToFind != null) {
                 for (int_1 = 0; int_1 < this.retextureToFind.length; int_1++) {
-                    modeldata_0.method1051(this.retextureToFind[int_1], this.retextureToReplace[int_1]);
+                    modeldata_0.retexture(this.retextureToFind[int_1], this.retextureToReplace[int_1]);
                 }
             }
 

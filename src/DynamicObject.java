@@ -157,7 +157,7 @@ public class DynamicObject extends Renderable {
                ((TextureProvider) Graphics3D.textureLoader).brightness(0.6D);
             }
 
-            ItemComposition.itemSpriteCache.reset();
+            ItemDefinition.itemSpriteCache.reset();
          }
 
          if (int_1 == 3) {

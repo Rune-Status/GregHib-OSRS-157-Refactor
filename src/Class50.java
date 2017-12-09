@@ -118,9 +118,9 @@ public class Class50 {
       short[] shorts_0 = new short[16];
       int int_0 = 0;
 
-      for (int int_1 = 0; int_1 < ItemComposition.anInt503; int_1++) {
-         ItemComposition itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(int_1);
-         if ((!bool_0 || itemcomposition_0.aBool68) && itemcomposition_0.notedTemplate == -1 && itemcomposition_0.name.toLowerCase().indexOf(string_0) != -1) {
+      for (int int_1 = 0; int_1 < ItemDefinition.anInt503; int_1++) {
+         ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_1);
+         if ((!bool_0 || itemcomposition_0.unnoted) && itemcomposition_0.noteTemplateIndex == -1 && itemcomposition_0.name.toLowerCase().indexOf(string_0) != -1) {
             if (int_0 >= 250) {
                Class3.anInt22 = -1;
                Class21.aShortArray1 = null;
@@ -147,7 +147,7 @@ public class Class50 {
       String[] strings_0 = new String[Class3.anInt22];
 
       for (int int_2 = 0; int_2 < Class3.anInt22; int_2++) {
-         strings_0[int_2] = CacheableNode_Sub2.getItemDefinition(shorts_0[int_2]).name;
+         strings_0[int_2] = ItemDefinition.getDefinition(shorts_0[int_2]).name;
       }
 
       Class28.method232(strings_0, Class21.aShortArray1);

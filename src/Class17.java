@@ -354,7 +354,7 @@ public class Class17 {
                                                                                                                               }
                                                                                                                            } else {
                                                                                                                               int_5 = ints_1[int_1];
-                                                                                                                              Class39.intStack[++Class23.intStackSize - 1] = Item.method973(int_5);
+                                                                                                                              Class39.intStack[++Class23.intStackSize - 1] = Varbit.getVarbit(int_5);
                                                                                                                            }
                                                                                                                         } else {
                                                                                                                            if (Class39.scriptStackCount == 0) {

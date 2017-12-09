@@ -92,7 +92,7 @@ public class Class62 {
          bool_0 = true;
       }
 
-      return !bool_0 ? null : Class9.method146();
+      return !bool_0 ? null : Class9.loadSpriteData();
    }
 
    public static void method398() {

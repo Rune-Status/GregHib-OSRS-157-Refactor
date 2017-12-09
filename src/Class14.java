@@ -731,7 +731,7 @@ public final class Class14 {
                                  }
 
                                  if (widget_0.hasScript && widget_0.itemId != -1) {
-                                    ItemComposition itemcomposition_1 = CacheableNode_Sub2.getItemDefinition(widget_0.itemId);
+                                    ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(widget_0.itemId);
                                     string_3 = itemcomposition_1.name;
                                     if (string_3 == null) {
                                        string_3 = "null";
@@ -810,7 +810,7 @@ public final class Class14 {
                                  }
                               }
                            } else {
-                              ItemComposition itemcomposition_0;
+                              ItemDefinition itemcomposition_0;
                               if (widget_0.type == 6) {
                                  boolean bool_0 = Class60.method391(widget_0);
                                  if (bool_0) {
@@ -822,9 +822,9 @@ public final class Class14 {
                                  Model model_0 = null;
                                  int_20 = 0;
                                  if (widget_0.itemId != -1) {
-                                    itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(widget_0.itemId);
+                                    itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemId);
                                     if (itemcomposition_0 != null) {
-                                       itemcomposition_0 = itemcomposition_0.method940(widget_0.itemQuantity);
+                                       itemcomposition_0 = itemcomposition_0.getItemDefinition(widget_0.itemQuantity);
                                        model_0 = itemcomposition_0.getModel(1);
                                        if (model_0 != null) {
                                           model_0.calculateDiagonals();
@@ -884,7 +884,7 @@ public final class Class14 {
                                     for (int_18 = 0; int_18 < widget_0.anInt274; int_18++) {
                                        for (int_20 = 0; int_20 < widget_0.originalWidth; int_20++) {
                                           if (widget_0.itemIds[int_17] > 0) {
-                                             itemcomposition_0 = CacheableNode_Sub2.getItemDefinition(widget_0.itemIds[int_17] - 1);
+                                             itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemIds[int_17] - 1);
                                              String string_0;
                                              if (itemcomposition_0.isStackable != 1 && widget_0.itemQuantities[int_17] == 1) {
                                                 string_0 = WallObject.getColTags(16748608) + itemcomposition_0.name + "</col>";
