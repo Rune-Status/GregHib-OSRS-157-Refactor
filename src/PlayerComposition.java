@@ -21,9 +21,9 @@ public class PlayerComposition {
          models = new int[12];
 
          for (int part = 0; part < 7; part++) {
-            for (int index = 0; index < KitDefinition.count; index++) {
-               KitDefinition kit = Class70.getKitDefinition(index);
-               if (kit != null && !kit.nonSelectable && kit.bodyPartId == part + (female ? 7 : 0)) {
+            for (int index = 0; index < IdentityKitDefinition.count; index++) {
+               IdentityKitDefinition kit = IdentityKitDefinition.getDefinition(index);
+               if (kit != null && !kit.interfaceDisplayed && kit.bodyPartId == part + (female ? 7 : 0)) {
                   models[anIntArray46[part]] = index + 256;
                   break;
                }
@@ -108,7 +108,7 @@ public class PlayerComposition {
             int int_4;
             for (int int_3 = 0; int_3 < 12; int_3++) {
                int_4 = ints_0[int_3];
-               if (int_4 >= 256 && int_4 < 512 && !Class70.getKitDefinition(int_4 - 256).ready()) {
+               if (int_4 >= 256 && int_4 < 512 && !IdentityKitDefinition.getDefinition(int_4 - 256).ready()) {
                   bool_0 = true;
                }
 
@@ -136,7 +136,7 @@ public class PlayerComposition {
                   int_6 = ints_0[int_5];
                   ModelHeader modeldata_0;
                   if (int_6 >= 256 && int_6 < 512) {
-                     modeldata_0 = Class70.getKitDefinition(int_6 - 256).getModelData();
+                     modeldata_0 = IdentityKitDefinition.getDefinition(int_6 - 256).getModel();
                      if (modeldata_0 != null) {
                         modeldatas_0[int_4++] = modeldata_0;
                      }
@@ -194,7 +194,7 @@ public class PlayerComposition {
          int int_1;
          for (int int_0 = 0; int_0 < 12; int_0++) {
             int_1 = this.equipmentIds[int_0];
-            if (int_1 >= 256 && int_1 < 512 && !Class70.getKitDefinition(int_1 - 256).method806()) {
+            if (int_1 >= 256 && int_1 < 512 && !IdentityKitDefinition.getDefinition(int_1 - 256).headModelExists()) {
                bool_0 = true;
             }
 
@@ -214,7 +214,7 @@ public class PlayerComposition {
                int_3 = this.equipmentIds[int_2];
                ModelHeader modeldata_0;
                if (int_3 >= 256 && int_3 < 512) {
-                  modeldata_0 = Class70.getKitDefinition(int_3 - 256).method807();
+                  modeldata_0 = IdentityKitDefinition.getDefinition(int_3 - 256).getHeadModel();
                   if (modeldata_0 != null) {
                      modeldatas_0[int_1++] = modeldata_0;
                   }
@@ -255,22 +255,22 @@ public class PlayerComposition {
          if (int_1 != 0) {
             int_1 -= 256;
 
-            KitDefinition kitdefinition_0;
+            IdentityKitDefinition kitdefinition_0;
             do {
                if (!bool_0) {
                   --int_1;
                   if (int_1 < 0) {
-                     int_1 = KitDefinition.count - 1;
+                     int_1 = IdentityKitDefinition.count - 1;
                   }
                } else {
                   ++int_1;
-                  if (int_1 >= KitDefinition.count) {
+                  if (int_1 >= IdentityKitDefinition.count) {
                      int_1 = 0;
                   }
                }
 
-               kitdefinition_0 = Class70.getKitDefinition(int_1);
-            } while (kitdefinition_0 == null || kitdefinition_0.nonSelectable || kitdefinition_0.bodyPartId != int_0 + (this.isFemale ? 7 : 0));
+               kitdefinition_0 = IdentityKitDefinition.getDefinition(int_1);
+            } while (kitdefinition_0 == null || kitdefinition_0.interfaceDisplayed || kitdefinition_0.bodyPartId != int_0 + (this.isFemale ? 7 : 0));
 
             this.equipmentIds[anIntArray46[int_0]] = int_1 + 256;
             this.setHash();

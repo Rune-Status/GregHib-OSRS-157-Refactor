@@ -500,7 +500,7 @@ public class Node_Sub5 extends Node {
    }
 
    public static void method694() {
-      KitDefinition.identKits.reset();
+      IdentityKitDefinition.identityKitCache.reset();
    }
 
    static void method695(Buffer buffer_0) {

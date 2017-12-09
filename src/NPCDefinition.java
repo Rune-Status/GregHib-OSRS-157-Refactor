@@ -19,13 +19,13 @@ public class NPCDefinition extends CacheableNode {
    public int anInt493;
    public String[] options;
    int sizeXZ;
-   short[] colourToReplace;
+   short[] colourToFind;
    public boolean isMinimapVisible;
    int sizeY;
-   short[] textureToReplace;
-   short[] colourToReplaceWith;
+   short[] textureToFind;
+   short[] colourToReplace;
    public int turnAroundAnimationId;
-   short[] textureToReplaceWith;
+   short[] textureToReplace;
    public int turnRightAnimationId;
    public int combatLevel;
    public boolean visible;
@@ -140,21 +140,21 @@ public class NPCDefinition extends CacheableNode {
          }
       } else if (opcode == 40) {
          size = buffer.getUnsignedByte();
+         this.colourToFind = new short[size];
          this.colourToReplace = new short[size];
-         this.colourToReplaceWith = new short[size];
 
          for (index = 0; index < size; index++) {
+            this.colourToFind[index] = (short)buffer.getUnsignedShort();
             this.colourToReplace[index] = (short)buffer.getUnsignedShort();
-            this.colourToReplaceWith[index] = (short)buffer.getUnsignedShort();
          }
       } else if (opcode == 41) {
          size = buffer.getUnsignedByte();
+         this.textureToFind = new short[size];
          this.textureToReplace = new short[size];
-         this.textureToReplaceWith = new short[size];
 
          for (index = 0; index < size; index++) {
+            this.textureToFind[index] = (short)buffer.getUnsignedShort();
             this.textureToReplace[index] = (short)buffer.getUnsignedShort();
-            this.textureToReplaceWith[index] = (short)buffer.getUnsignedShort();
          }
       } else if (opcode == 60) {
          size = buffer.getUnsignedByte();
@@ -258,15 +258,15 @@ public class NPCDefinition extends CacheableNode {
                header = new ModelHeader(childModels, childModels.length);
             }
 
-            if (this.colourToReplace != null) {
-               for (model = 0; model < this.colourToReplace.length; model++) {
-                  header.recolor(this.colourToReplace[model], this.colourToReplaceWith[model]);
+            if (this.colourToFind != null) {
+               for (model = 0; model < this.colourToFind.length; model++) {
+                  header.recolor(this.colourToFind[model], this.colourToReplace[model]);
                }
             }
 
-            if (this.textureToReplace != null) {
-               for (model = 0; model < this.textureToReplace.length; model++) {
-                  header.retexture(this.textureToReplace[model], this.textureToReplaceWith[model]);
+            if (this.textureToFind != null) {
+               for (model = 0; model < this.textureToFind.length; model++) {
+                  header.retexture(this.textureToFind[model], this.textureToReplace[model]);
                }
             }
 
@@ -325,15 +325,15 @@ public class NPCDefinition extends CacheableNode {
             }
 
             int colour;
-            if (this.colourToReplace != null) {
-               for (colour = 0; colour < this.colourToReplace.length; colour++) {
-                  header.recolor(this.colourToReplace[colour], this.colourToReplaceWith[colour]);
+            if (this.colourToFind != null) {
+               for (colour = 0; colour < this.colourToFind.length; colour++) {
+                  header.recolor(this.colourToFind[colour], this.colourToReplace[colour]);
                }
             }
 
-            if (this.textureToReplace != null) {
-               for (colour = 0; colour < this.textureToReplace.length; colour++) {
-                  header.retexture(this.textureToReplace[colour], this.textureToReplaceWith[colour]);
+            if (this.textureToFind != null) {
+               for (colour = 0; colour < this.textureToFind.length; colour++) {
+                  header.retexture(this.textureToFind[colour], this.textureToReplace[colour]);
                }
             }
 

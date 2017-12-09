@@ -41,7 +41,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    static long aLong28;
    static BuildType aBuildType1;
    static int selectedItemIndex;
-   Clipboard aClipboard1;
+    static java.awt.Font aFont4;
+    Clipboard aClipboard1;
    final EventQueue anEventQueue1;
    boolean aBool78;
    int anInt585;
@@ -297,7 +298,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
    protected void method1076() {
       anImage1 = null;
-      KitDefinition.aFont4 = null;
+      aFont4 = null;
       Class93.aFontMetrics1 = null;
    }
 
@@ -322,9 +323,9 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    protected void drawLoadingScreen(int int_0, String string_0, boolean bool_0) {
       try {
          Graphics graphics_0 = this.canvas.getGraphics();
-         if (KitDefinition.aFont4 == null) {
-            KitDefinition.aFont4 = new java.awt.Font("Helvetica", 1, 13);
-            Class93.aFontMetrics1 = this.canvas.getFontMetrics(KitDefinition.aFont4);
+         if (aFont4 == null) {
+            aFont4 = new java.awt.Font("Helvetica", 1, 13);
+            Class93.aFontMetrics1 = this.canvas.getFontMetrics(aFont4);
          }
 
          if (bool_0) {
@@ -346,7 +347,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             graphics_1.setColor(Color.black);
             graphics_1.drawRect(1, 1, 301, 31);
             graphics_1.fillRect(int_0 * 3 + 2, 2, 300 - int_0 * 3, 30);
-            graphics_1.setFont(KitDefinition.aFont4);
+            graphics_1.setFont(aFont4);
             graphics_1.setColor(Color.white);
             graphics_1.drawString(string_0, (304 - Class93.aFontMetrics1.stringWidth(string_0)) / 2, 22);
             graphics_0.drawImage(anImage1, Tile.canvasWidth / 2 - 152, Class29.canvasHeight / 2 - 18, (ImageObserver) null);
@@ -359,7 +360,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             graphics_0.setColor(Color.black);
             graphics_0.drawRect(int_1 + 1, int_2 + 1, 301, 31);
             graphics_0.fillRect(int_0 * 3 + int_1 + 2, int_2 + 2, 300 - int_0 * 3, 30);
-            graphics_0.setFont(KitDefinition.aFont4);
+            graphics_0.setFont(aFont4);
             graphics_0.setColor(Color.white);
             graphics_0.drawString(string_0, int_1 + (304 - Class93.aFontMetrics1.stringWidth(string_0)) / 2, int_2 + 22);
          }
