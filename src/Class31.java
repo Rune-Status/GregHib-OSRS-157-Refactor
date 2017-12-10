@@ -8,7 +8,7 @@ public class Class31 {
       if (int_0 >= 2000) {
          int_0 -= 1000;
          int_1 = Class39.intStack[--Class23.intStackSize];
-         widget_0 = PendingSpawn.method671(int_1);
+         widget_0 = Junk.method671(int_1);
       } else {
          widget_0 = bool_0 ? Class106.aWidget4 : Friend.aWidget5;
       }

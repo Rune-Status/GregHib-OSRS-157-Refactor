@@ -106,7 +106,7 @@ public class ItemContainer extends Node {
                         int_24 = int_20 >> 14 & 0x7FFF;
                         if (int_18 != int_20) {
                            int_18 = int_20;
-                           if (int_23 == 2 && Class23.region.method368(Ignore.plane, int_21, int_22, int_20) >= 0) {
+                           if (int_23 == 2 && Class23.region.getObjectConfig(Ignore.plane, int_21, int_22, int_20) >= 0) {
                               ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_24);
                               if (objectcomposition_0.transformationIds != null) {
                                  objectcomposition_0 = objectcomposition_0.morph();

@@ -10,12 +10,12 @@ public abstract class Renderable extends CacheableNode {
       this.modelHeight = 1000;
    }
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       return null;
    }
 
    void draw(int int_0, int int_1, int yCurveCosine, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
-      Model model = this.getModel();
+      Model model = this.getRotatedModel();
       if (model != null) {
          this.modelHeight = model.modelHeight;
          model.draw(int_0, int_1, yCurveCosine, int_3, int_4, int_5, int_6, int_7, int_8);

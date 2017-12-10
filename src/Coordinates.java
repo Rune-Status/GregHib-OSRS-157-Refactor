@@ -58,37 +58,37 @@ public class Coordinates {
       return this == object_0 ? true : (!(object_0 instanceof Coordinates) ? false : this.method515((Coordinates) object_0));
    }
 
-   static void method516(PendingSpawn pendingspawn_0) {
-      int int_0 = 0;
-      int int_1 = -1;
-      int int_2 = 0;
-      int int_3 = 0;
-      if (pendingspawn_0.type == 0) {
-         int_0 = Class23.region.method365(pendingspawn_0.level, pendingspawn_0.x, pendingspawn_0.y);
+   static void processUIDs(SceneSpawnNode node) {
+      int objectUID = 0;
+      int objId = -1;
+      int type = 0;
+      int face = 0;
+      if (node.spawnType == 0) {
+         objectUID = Class23.region.getWallObjectUID(node.plane, node.x, node.y);
       }
 
-      if (pendingspawn_0.type == 1) {
-         int_0 = Class23.region.method366(pendingspawn_0.level, pendingspawn_0.x, pendingspawn_0.y);
+      if (node.spawnType == 1) {
+         objectUID = Class23.region.getWallDecorationUID(node.plane, node.x, node.y);
       }
 
-      if (pendingspawn_0.type == 2) {
-         int_0 = Class23.region.method369(pendingspawn_0.level, pendingspawn_0.x, pendingspawn_0.y);
+      if (node.spawnType == 2) {
+         objectUID = Class23.region.getInteractableObjectUID(node.plane, node.x, node.y);
       }
 
-      if (pendingspawn_0.type == 3) {
-         int_0 = Class23.region.method367(pendingspawn_0.level, pendingspawn_0.x, pendingspawn_0.y);
+      if (node.spawnType == 3) {
+         objectUID = Class23.region.getGroundDecorationUID(node.plane, node.x, node.y);
       }
 
-      if (int_0 != 0) {
-         int int_4 = Class23.region.method368(pendingspawn_0.level, pendingspawn_0.x, pendingspawn_0.y, int_0);
-         int_1 = int_0 >> 14 & 0x7FFF;
-         int_2 = int_4 & 0x1F;
-         int_3 = int_4 >> 6 & 0x3;
+      if (objectUID != 0) {
+         int configId = Class23.region.getObjectConfig(node.plane, node.x, node.y, objectUID);
+         objId = objectUID >> 14 & 0x7FFF;
+         type = configId & 0x1F;
+         face = configId >> 6 & 0x3;
       }
 
-      pendingspawn_0.anInt345 = int_1;
-      pendingspawn_0.anInt346 = int_2;
-      pendingspawn_0.anInt347 = int_3;
+      node.objectId = objId;
+      node.objectType = type;
+      node.objectFace = face;
    }
 
    public static Varbit method517(int int_0) {

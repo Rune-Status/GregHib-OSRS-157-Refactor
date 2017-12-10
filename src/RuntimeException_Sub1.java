@@ -280,7 +280,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, Class19.anIntArray7[int_4], 0, 0, 0, int_15, int_16);
                   } else if (int_5 == 5) {
                      int_20 = 16;
-                     int_17 = region_0.method365(int_0, int_1, int_2);
+                     int_17 = region_0.getWallObjectUID(int_0, int_1, int_2);
                      if (int_17 != 0) {
                         int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier;
                      }
@@ -294,7 +294,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_2, (Renderable) null, Class19.anIntArray7[int_4], 0, int_20 * Class19.anIntArray10[int_4], int_20 * Class19.anIntArray12[int_4], int_15, int_16);
                   } else if (int_5 == 6) {
                      int_20 = 8;
-                     int_17 = region_0.method365(int_0, int_1, int_2);
+                     int_17 = region_0.getWallObjectUID(int_0, int_1, int_2);
                      if (int_17 != 0) {
                         int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier / 2;
                      }
@@ -317,7 +317,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, 256, int_17, 0, 0, int_15, int_16);
                   } else if (int_5 == 8) {
                      int_20 = 8;
-                     int_17 = region_0.method365(int_0, int_1, int_2);
+                     int_17 = region_0.getWallObjectUID(int_0, int_1, int_2);
                      if (int_17 != 0) {
                         int_20 = ObjectDefinition.getDefinition(int_17 >> 14 & 0x7FFF).offsetMultiplier / 2;
                      }

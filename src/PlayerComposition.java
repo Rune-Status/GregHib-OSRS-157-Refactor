@@ -251,28 +251,28 @@ public class PlayerComposition {
 
    public void method508(int int_0, boolean bool_0) {
       if (int_0 != 1 || !this.isFemale) {
-         int int_1 = this.equipmentIds[anIntArray46[int_0]];
-         if (int_1 != 0) {
-            int_1 -= 256;
+         int id = this.equipmentIds[anIntArray46[int_0]];
+         if (id != 0) {
+            id -= 256;
 
-            IdentityKitDefinition kitdefinition_0;
+            IdentityKitDefinition definition;
             do {
                if (!bool_0) {
-                  --int_1;
-                  if (int_1 < 0) {
-                     int_1 = IdentityKitDefinition.count - 1;
+                  --id;
+                  if (id < 0) {
+                     id = IdentityKitDefinition.count - 1;
                   }
                } else {
-                  ++int_1;
-                  if (int_1 >= IdentityKitDefinition.count) {
-                     int_1 = 0;
+                  ++id;
+                  if (id >= IdentityKitDefinition.count) {
+                     id = 0;
                   }
                }
 
-               kitdefinition_0 = IdentityKitDefinition.getDefinition(int_1);
-            } while (kitdefinition_0 == null || kitdefinition_0.interfaceDisplayed || kitdefinition_0.bodyPartId != int_0 + (this.isFemale ? 7 : 0));
+               definition = IdentityKitDefinition.getDefinition(id);
+            } while (definition == null || definition.interfaceDisplayed || definition.bodyPartId != int_0 + (this.isFemale ? 7 : 0));
 
-            this.equipmentIds[anIntArray46[int_0]] = int_1 + 256;
+            this.equipmentIds[anIntArray46[int_0]] = id + 256;
             this.setHash();
          }
       }

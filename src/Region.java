@@ -1042,22 +1042,22 @@ public class Region {
       }
    }
 
-   public int method365(int int_0, int int_1, int int_2) {
+   public int getWallObjectUID(int int_0, int int_1, int int_2) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       return tile_0 != null && tile_0.wallObject != null ? tile_0.wallObject.hash : 0;
    }
 
-   public int method366(int int_0, int int_1, int int_2) {
+   public int getWallDecorationUID(int int_0, int int_1, int int_2) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       return tile_0 != null && tile_0.decorativeObject != null ? tile_0.decorativeObject.hash : 0;
    }
 
-   public int method367(int int_0, int int_1, int int_2) {
+   public int getGroundDecorationUID(int int_0, int int_1, int int_2) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       return tile_0 != null && tile_0.groundObject != null ? tile_0.groundObject.hash : 0;
    }
 
-   public int method368(int int_0, int int_1, int int_2, int int_3) {
+   public int getObjectConfig(int int_0, int int_1, int int_2, int int_3) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       if (tile_0 == null) {
          return -1;
@@ -1078,7 +1078,7 @@ public class Region {
       }
    }
 
-   public int method369(int int_0, int int_1, int int_2) {
+   public int getInteractableObjectUID(int int_0, int int_1, int int_2) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       if (tile_0 == null) {
          return 0;

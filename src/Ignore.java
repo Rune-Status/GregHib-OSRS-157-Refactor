@@ -341,7 +341,7 @@ public class Ignore {
                PacketNode packetnode_2;
                Widget widget_2;
                if (int_2 == 24) {
-                  widget_2 = PendingSpawn.method671(int_1);
+                  widget_2 = Junk.method671(int_1);
                   boolean bool_0 = true;
                   if (widget_2.contentType > 0) {
                      bool_0 = method550(widget_2);
@@ -410,7 +410,7 @@ public class Ignore {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putInt(int_1);
                         Client.aClass46_1.method282(packetnode_0);
-                        widget_1 = PendingSpawn.method671(int_1);
+                        widget_1 = Junk.method671(int_1);
                         if (widget_1.dynamicValues != null && widget_1.dynamicValues[0][0] == 5) {
                            int_6 = widget_1.dynamicValues[0][1];
                            Settings.widgetSettings[int_6] = 1 - Settings.widgetSettings[int_6];
@@ -420,7 +420,7 @@ public class Ignore {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
                         packetnode_0.packetBuffer.putInt(int_1);
                         Client.aClass46_1.method282(packetnode_0);
-                        widget_1 = PendingSpawn.method671(int_1);
+                        widget_1 = Junk.method671(int_1);
                         if (widget_1.dynamicValues != null && widget_1.dynamicValues[0][0] == 5) {
                            int_6 = widget_1.dynamicValues[0][1];
                            if (Settings.widgetSettings[int_6] != widget_1.anIntArray65[0]) {
@@ -444,7 +444,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.method726(Class48.anInt111);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 32) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket17, Client.aClass46_1.cipher);
@@ -455,7 +455,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.putInt(int_1);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 33) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket79, Client.aClass46_1.cipher);
@@ -464,7 +464,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.putShortS(int_0);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 34) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket14, Client.aClass46_1.cipher);
@@ -473,7 +473,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.putShort(int_0);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 35) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket43, Client.aClass46_1.cipher);
@@ -482,7 +482,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.method718(int_1);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 36) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket53, Client.aClass46_1.cipher);
@@ -491,7 +491,7 @@ public class Ignore {
                         packetnode_0.packetBuffer.putShortS(int_0);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else if (int_2 == 37) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket36, Client.aClass46_1.cipher);
@@ -500,12 +500,12 @@ public class Ignore {
                         packetnode_0.packetBuffer.putShortS(int_0);
                         Client.aClass46_1.method282(packetnode_0);
                         Client.anInt651 = 0;
-                        Class59.aWidget3 = PendingSpawn.method671(int_1);
+                        Class59.aWidget3 = Junk.method671(int_1);
                         Client.anInt653 = int_0;
                      } else {
                         if (int_2 == 38) {
                            Player.method1096();
-                           widget_2 = PendingSpawn.method671(int_1);
+                           widget_2 = Junk.method671(int_1);
                            Client.itemSelectionState = 1;
                            GameEngine.selectedItemIndex = int_0;
                            Class48.anInt111 = int_1;
@@ -526,7 +526,7 @@ public class Ignore {
                            packetnode_0.packetBuffer.method726(int_1);
                            Client.aClass46_1.method282(packetnode_0);
                            Client.anInt651 = 0;
-                           Class59.aWidget3 = PendingSpawn.method671(int_1);
+                           Class59.aWidget3 = Junk.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 40) {
                            packetnode_0 = Actor.method953(ClientPacket.aClientPacket32, Client.aClass46_1.cipher);
@@ -535,7 +535,7 @@ public class Ignore {
                            packetnode_0.packetBuffer.putShortLEA(int_3);
                            Client.aClass46_1.method282(packetnode_0);
                            Client.anInt651 = 0;
-                           Class59.aWidget3 = PendingSpawn.method671(int_1);
+                           Class59.aWidget3 = Junk.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 41) {
                            packetnode_0 = Actor.method953(ClientPacket.aClientPacket47, Client.aClass46_1.cipher);
@@ -544,7 +544,7 @@ public class Ignore {
                            packetnode_0.packetBuffer.method718(int_1);
                            Client.aClass46_1.method282(packetnode_0);
                            Client.anInt651 = 0;
-                           Class59.aWidget3 = PendingSpawn.method671(int_1);
+                           Class59.aWidget3 = Junk.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 42) {
                            packetnode_0 = Actor.method953(ClientPacket.aClientPacket83, Client.aClass46_1.cipher);
@@ -553,7 +553,7 @@ public class Ignore {
                            packetnode_0.packetBuffer.method718(int_1);
                            Client.aClass46_1.method282(packetnode_0);
                            Client.anInt651 = 0;
-                           Class59.aWidget3 = PendingSpawn.method671(int_1);
+                           Class59.aWidget3 = Junk.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 43) {
                            packetnode_0 = Actor.method953(ClientPacket.aClientPacket44, Client.aClass46_1.cipher);
@@ -562,7 +562,7 @@ public class Ignore {
                            packetnode_0.packetBuffer.putShortLEA(int_0);
                            Client.aClass46_1.method282(packetnode_0);
                            Client.anInt651 = 0;
-                           Class59.aWidget3 = PendingSpawn.method671(int_1);
+                           Class59.aWidget3 = Junk.method671(int_1);
                            Client.anInt653 = int_0;
                         } else if (int_2 == 44) {
                            player_0 = Client.players[int_3];
@@ -754,7 +754,7 @@ public class Ignore {
                                  }
 
                                  if (int_2 == 1005) {
-                                    widget_2 = PendingSpawn.method671(int_1);
+                                    widget_2 = Junk.method671(int_1);
                                     if (widget_2 != null && widget_2.itemQuantities[int_0] >= 100000) {
                                        Class34.sendGameMessage(27, "", widget_2.itemQuantities[int_0] + " x " + ItemDefinition.getDefinition(int_3).name);
                                     } else {
@@ -764,7 +764,7 @@ public class Ignore {
                                     }
 
                                     Client.anInt651 = 0;
-                                    Class59.aWidget3 = PendingSpawn.method671(int_1);
+                                    Class59.aWidget3 = Junk.method671(int_1);
                                     Client.anInt653 = int_0;
                                     break label807;
                                  }
@@ -792,7 +792,7 @@ public class Ignore {
 
       if (Client.itemSelectionState != 0) {
          Client.itemSelectionState = 0;
-         WorldMapData.method305(PendingSpawn.method671(Class48.anInt111));
+         WorldMapData.method305(Junk.method671(Class48.anInt111));
       }
 
       if (Client.spellSelected) {

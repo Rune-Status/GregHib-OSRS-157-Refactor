@@ -76,7 +76,7 @@ public final class RSCanvas extends Canvas {
 
          for (int_4 = 0; int_4 < 104; int_4++) {
             for (int_5 = 0; int_5 < 104; int_5++) {
-               int int_6 = Class23.region.method367(Ignore.plane, int_4, int_5);
+               int int_6 = Class23.region.getGroundDecorationUID(Ignore.plane, int_4, int_5);
                if (int_6 != 0) {
                   int_6 = int_6 >> 14 & 0x7FFF;
                   int int_7 = ObjectDefinition.getDefinition(int_6).mapIconId;

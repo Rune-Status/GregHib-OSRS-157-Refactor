@@ -51,24 +51,24 @@ public class Class10 {
          boolean bool_1 = false;
          boolean bool_2 = false;
          if (int_1 == 0) {
-            int_7 = Class23.region.method365(int_0, int_2, int_3);
+            int_7 = Class23.region.getWallObjectUID(int_0, int_2, int_3);
          }
 
          if (int_1 == 1) {
-            int_7 = Class23.region.method366(int_0, int_2, int_3);
+            int_7 = Class23.region.getWallDecorationUID(int_0, int_2, int_3);
          }
 
          if (int_1 == 2) {
-            int_7 = Class23.region.method369(int_0, int_2, int_3);
+            int_7 = Class23.region.getInteractableObjectUID(int_0, int_2, int_3);
          }
 
          if (int_1 == 3) {
-            int_7 = Class23.region.method367(int_0, int_2, int_3);
+            int_7 = Class23.region.getGroundDecorationUID(int_0, int_2, int_3);
          }
 
          int int_8;
          if (int_7 != 0) {
-            int_8 = Class23.region.method368(int_0, int_2, int_3, int_7);
+            int_8 = Class23.region.getObjectConfig(int_0, int_2, int_3, int_7);
             int int_9 = int_7 >> 14 & 0x7FFF;
             int int_10 = int_8 & 0x1F;
             int int_11 = int_8 >> 6 & 0x3;
@@ -122,7 +122,7 @@ public class Class10 {
       Widget widget_0;
       if (int_0 >= 2000) {
          int_0 -= 1000;
-         widget_0 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+         widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
       } else {
          widget_0 = bool_0 ? Class106.aWidget4 : Friend.aWidget5;
       }

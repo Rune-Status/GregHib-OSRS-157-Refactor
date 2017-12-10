@@ -155,12 +155,12 @@ public class Sequence extends CacheableNode {
          } else if (int_1 == 2) {
             model_1.method1020();
          } else if (int_1 == 3) {
-            model_1.method1021();
+            model_1.rotate90Degrees();
          }
 
          model_1.method1008(frames_0, int_0);
          if (int_1 == 1) {
-            model_1.method1021();
+            model_1.rotate90Degrees();
          } else if (int_1 == 2) {
             model_1.method1020();
          } else if (int_1 == 3) {

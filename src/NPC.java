@@ -2,7 +2,7 @@ public final class NPC extends Actor {
 
    NPCDefinition composition;
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       if (this.composition == null) {
          return null;
       } else {
@@ -17,7 +17,7 @@ public final class NPC extends Actor {
             if (super.graphic != -1 && super.currentAnimation != -1) {
                Model model_1 = Class106.getSpotAnimType(super.graphic).method763(super.currentAnimation);
                if (model_1 != null) {
-                  model_1.method1026(0, -super.graphicHeight, 0);
+                  model_1.translate(0, -super.graphicHeight, 0);
                   Model[] models_0 = new Model[] {model_0, model_1};
                   model_0 = new Model(models_0, 2);
                }

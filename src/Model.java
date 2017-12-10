@@ -289,11 +289,11 @@ public class Model extends Renderable {
             this.method1024(framemap_0.types[int_2], framemap_0.list[int_2], frame_0.translator_x[int_1], frame_0.translator_y[int_1], frame_0.translator_z[int_1]);
          }
 
-         this.method1009();
+         this.reset();
       }
    }
 
-   void method1009() {
+   void reset() {
       this.anInt556 = 0;
       this.anInt555 = -1;
    }
@@ -512,7 +512,7 @@ public class Model extends Renderable {
       model_1.anIntArrayArray17 = this.anIntArrayArray17;
       model_1.anIntArrayArray18 = this.anIntArrayArray18;
       model_1.fitsOnSingleSquare = this.fitsOnSingleSquare;
-      model_1.method1009();
+      model_1.reset();
       return model_1;
    }
 
@@ -625,10 +625,10 @@ public class Model extends Renderable {
          this.verticesY[int_3] = int_4;
       }
 
-      this.method1009();
+      this.reset();
    }
 
-   public Model method1017(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int int_3) {
+   public Model method1017(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int clipType) {
       this.calculateDiagonals();
       int int_4 = int_0 - this.shadowIntensity;
       int int_5 = int_0 + this.shadowIntensity;
@@ -682,7 +682,7 @@ public class Model extends Renderable {
             int int_15;
             int int_16;
             int int_17;
-            if (int_3 == 0) {
+            if (clipType == 0) {
                for (int_8 = 0; int_8 < model_1.vertexCount; int_8++) {
                   int_9 = int_0 + this.verticesX[int_8];
                   int_10 = int_2 + this.verticesZ[int_8];
@@ -698,7 +698,7 @@ public class Model extends Renderable {
             } else {
                for (int_8 = 0; int_8 < model_1.vertexCount; int_8++) {
                   int_9 = (-this.verticesY[int_8] << 16) / super.modelHeight;
-                  if (int_9 < int_3) {
+                  if (int_9 < clipType) {
                      int_10 = int_0 + this.verticesX[int_8];
                      int_11 = int_2 + this.verticesZ[int_8];
                      int_12 = int_10 & 0x7F;
@@ -708,12 +708,12 @@ public class Model extends Renderable {
                      int_16 = ints_0[int_14][int_15] * (128 - int_12) + ints_0[int_14 + 1][int_15] * int_12 >> 7;
                      int_17 = ints_0[int_14][int_15 + 1] * (128 - int_12) + int_12 * ints_0[int_14 + 1][int_15 + 1] >> 7;
                      int int_18 = int_16 * (128 - int_13) + int_17 * int_13 >> 7;
-                     model_1.verticesY[int_8] = (int_3 - int_9) * (int_18 - int_1) / int_3 + this.verticesY[int_8];
+                     model_1.verticesY[int_8] = (clipType - int_9) * (int_18 - int_1) / clipType + this.verticesY[int_8];
                   }
                }
             }
 
-            model_1.method1009();
+            model_1.reset();
             return model_1;
          }
       } else {
@@ -906,7 +906,7 @@ public class Model extends Renderable {
          this.verticesX[int_0] = -int_1;
       }
 
-      this.method1009();
+      this.reset();
    }
 
    public void scaleTriangle(int x, int y, int z) {
@@ -916,7 +916,7 @@ public class Model extends Renderable {
          this.verticesZ[vertex] = z * this.verticesZ[vertex] / 128;
       }
 
-      this.method1009();
+      this.reset();
    }
 
    public void method1020() {
@@ -925,17 +925,17 @@ public class Model extends Renderable {
          this.verticesZ[int_0] = -this.verticesZ[int_0];
       }
 
-      this.method1009();
+      this.reset();
    }
 
-   public void method1021() {
-      for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         int int_1 = this.verticesX[int_0];
-         this.verticesX[int_0] = this.verticesZ[int_0];
-         this.verticesZ[int_0] = -int_1;
+   public void rotate90Degrees() {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         int x = this.verticesX[vertex];
+         this.verticesX[vertex] = this.verticesZ[vertex];
+         this.verticesZ[vertex] = -x;
       }
 
-      this.method1009();
+      this.reset();
    }
 
    public void method1022(Frames frames_0, int int_0, Frames frames_1, int int_1, int[] ints_0) {
@@ -980,7 +980,7 @@ public class Model extends Renderable {
                }
             }
 
-            this.method1009();
+            this.reset();
          } else {
             this.method1008(frames_0, int_0);
          }
@@ -1405,14 +1405,14 @@ public class Model extends Renderable {
       }
    }
 
-   public void method1026(int int_0, int int_1, int int_2) {
+   public void translate(int int_0, int int_1, int int_2) {
       for (int int_3 = 0; int_3 < this.vertexCount; int_3++) {
          this.verticesX[int_3] += int_0;
          this.verticesY[int_3] += int_1;
          this.verticesZ[int_3] += int_2;
       }
 
-      this.method1009();
+      this.reset();
    }
 
    public void method1027(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {

@@ -135,7 +135,7 @@ public final class Client extends GameEngine {
     static int destinationX;
     static int anInt646;
     static int anInt647;
-    static final int[] anIntArray148;
+    static final int[] OBJECT_GROUPS;
     static int destinationY;
     static int[] anIntArray149;
     static boolean aBool93;
@@ -328,7 +328,7 @@ public final class Client extends GameEngine {
         collisionMaps = new CollisionData[4];
         isDynamicRegion = false;
         localRegions = new int[4][13][13];
-        anIntArray148 = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
+        OBJECT_GROUPS = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
         anInt625 = 0;
         anInt671 = 2301979;
         anInt673 = 5063219;
@@ -809,7 +809,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket14 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readUnsignedShortOb1();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = PendingSpawn.method671(int_0);
+                    widget_1 = Junk.method671(int_0);
                     if (widget_1 != null && widget_1.type == 0) {
                         if (int_1 > widget_1.scrollHeight - widget_1.height) {
                             int_1 = widget_1.scrollHeight - widget_1.height;
@@ -847,7 +847,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket19 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method707();
                     int_0 = packetbuffer_0.readInt();
-                    widget_1 = PendingSpawn.method671(int_0);
+                    widget_1 = Junk.method671(int_0);
                     if (int_1 != widget_1.anInt277 || int_1 == -1) {
                         widget_1.anInt277 = int_1;
                         widget_1.anInt281 = 0;
@@ -995,7 +995,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket42 == class46_0.serverPacket) {
                     bool_5 = packetbuffer_0.getUnsignedByteS() == 1;
                     int_0 = packetbuffer_0.method714();
-                    widget_1 = PendingSpawn.method671(int_0);
+                    widget_1 = Junk.method671(int_0);
                     if (bool_5 != widget_1.isHidden) {
                         widget_1.isHidden = bool_5;
                         WorldMapData.method305(widget_1);
@@ -1075,7 +1075,7 @@ public final class Client extends GameEngine {
                 Widget widget_2;
                 if (ServerPacket.aServerPacket49 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    widget_2 = PendingSpawn.method671(int_1);
+                    widget_2 = Junk.method671(int_1);
 
                     for (int_2 = 0; int_2 < widget_2.itemIds.length; int_2++) {
                         widget_2.itemIds[int_2] = -1;
@@ -1285,7 +1285,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (int_1 >= 0) {
-                        widget_1 = PendingSpawn.method671(int_1);
+                        widget_1 = Junk.method671(int_1);
                     } else {
                         widget_1 = null;
                     }
@@ -1322,7 +1322,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.method724();
                     int_0 = packetbuffer_0.method707();
                     int_2 = packetbuffer_0.readInt();
-                    widget_0 = PendingSpawn.method671(int_2);
+                    widget_0 = Junk.method671(int_2);
                     if (int_0 != widget_0.originalX || int_1 != widget_0.originalY || widget_0.anInt270 != 0 || widget_0.anInt273 != 0) {
                         widget_0.originalX = int_0;
                         widget_0.originalY = int_1;
@@ -1441,7 +1441,7 @@ public final class Client extends GameEngine {
                     }
 
                     int_2 = packetbuffer_0.method727();
-                    widget_0 = PendingSpawn.method671(int_1);
+                    widget_0 = Junk.method671(int_1);
                     ItemDefinition itemcomposition_0;
                     if (!widget_0.hasScript) {
                         if (int_0 == -1) {
@@ -1503,7 +1503,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket57 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method727();
-                    widget_2 = PendingSpawn.method671(int_1);
+                    widget_2 = Junk.method671(int_1);
                     widget_2.modelType = 3;
                     widget_2.modelId = Class4.localPlayer.composition.method507();
                     WorldMapData.method305(widget_2);
@@ -1525,7 +1525,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (int_1 >= 0) {
-                        widget_1 = PendingSpawn.method671(int_1);
+                        widget_1 = Junk.method671(int_1);
                     } else {
                         widget_1 = null;
                     }
@@ -1632,7 +1632,7 @@ public final class Client extends GameEngine {
                     int_11 = int_1 >> 5 & 0x1F;
                     int_12 = int_1 & 0x1F;
                     int_3 = (int_11 << 11) + (int_2 << 19) + (int_12 << 3);
-                    Widget widget_4 = PendingSpawn.method671(int_0);
+                    Widget widget_4 = Junk.method671(int_0);
                     if (int_3 != widget_4.textColor) {
                         widget_4.textColor = int_3;
                         WorldMapData.method305(widget_4);
@@ -1657,12 +1657,12 @@ public final class Client extends GameEngine {
                         componentTable.put(widgetnode_0, (long) int_1);
                     }
 
-                    widget_3 = PendingSpawn.method671(int_0);
+                    widget_3 = Junk.method671(int_0);
                     if (widget_3 != null) {
                         WorldMapData.method305(widget_3);
                     }
 
-                    widget_3 = PendingSpawn.method671(int_1);
+                    widget_3 = Junk.method671(int_1);
                     if (widget_3 != null) {
                         WorldMapData.method305(widget_3);
                         AClass1_Sub2.method637(Class91.widgets[widget_3.id >>> 16], widget_3, true);
@@ -1798,7 +1798,7 @@ public final class Client extends GameEngine {
                     int_0 = packetbuffer_0.getUnsignedShortAInverse();
                     int_2 = packetbuffer_0.getUnsignedShortInverse();
                     int_11 = packetbuffer_0.readUnsignedShortOb1();
-                    widget_3 = PendingSpawn.method671(int_1);
+                    widget_3 = Junk.method671(int_1);
                     if (int_2 != widget_3.rotationX || int_0 != widget_3.rotationZ || int_11 != widget_3.modelZoom) {
                         widget_3.rotationX = int_2;
                         widget_3.rotationZ = int_0;
@@ -1866,9 +1866,9 @@ public final class Client extends GameEngine {
                         }
                     }
 
-                    for (PendingSpawn pendingspawn_0 = (PendingSpawn) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (PendingSpawn) pendingSpawns.getNext()) {
-                        if (pendingspawn_0.x >= Class23.anInt75 && pendingspawn_0.anInt347 < Class23.anInt75 + 8 && pendingspawn_0.y >= GameObject.anInt222 && pendingspawn_0.y < GameObject.anInt222 + 8 && pendingspawn_0.level == Ignore.plane) {
-                            pendingspawn_0.hitpoints = 0;
+                    for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
+                        if (pendingspawn_0.x >= Class23.anInt75 && pendingspawn_0.objectFace < Class23.anInt75 + 8 && pendingspawn_0.y >= GameObject.anInt222 && pendingspawn_0.y < GameObject.anInt222 + 8 && pendingspawn_0.plane == Ignore.plane) {
+                            pendingspawn_0.timeLeftTillSpawn = 0;
                         }
                     }
 
@@ -1906,7 +1906,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.getUnsignedShortInverse();
                     int_0 = packetbuffer_0.readUnsignedShortOb1();
                     int_2 = packetbuffer_0.method727();
-                    widget_0 = PendingSpawn.method671(int_2);
+                    widget_0 = Junk.method671(int_2);
                     widget_0.anInt279 = int_0 + (int_1 << 16);
                     class46_0.serverPacket = null;
                     return true;
@@ -1960,7 +1960,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket61 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = PendingSpawn.method671(int_0);
+                    widget_1 = Junk.method671(int_0);
                     if (widget_1.modelType != 1 || int_1 != widget_1.modelId) {
                         widget_1.modelType = 1;
                         widget_1.modelId = int_1;
@@ -2211,7 +2211,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.interfaceTextPacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method714();
                     string_1 = packetbuffer_0.readString();
-                    widget_1 = PendingSpawn.method671(int_1);
+                    widget_1 = Junk.method671(int_1);
                     if (!string_1.equals(widget_1.text)) {
                         widget_1.text = string_1;
                         WorldMapData.method305(widget_1);
@@ -2224,7 +2224,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket59 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = PendingSpawn.method671(int_0);
+                    widget_1 = Junk.method671(int_0);
                     if (widget_1.modelType != 2 || int_1 != widget_1.modelId) {
                         widget_1.modelType = 2;
                         widget_1.modelId = int_1;
@@ -3067,27 +3067,27 @@ public final class Client extends GameEngine {
                             return;
                         }
 
-                        for (PendingSpawn pendingspawn_0 = (PendingSpawn) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (PendingSpawn) pendingSpawns.getNext()) {
-                            if (pendingspawn_0.hitpoints > 0) {
-                                --pendingspawn_0.hitpoints;
+                        for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
+                            if (pendingspawn_0.timeLeftTillSpawn > 0) {
+                                --pendingspawn_0.timeLeftTillSpawn;
                             }
 
-                            if (pendingspawn_0.hitpoints == 0) {
-                                if (pendingspawn_0.anInt345 < 0 || method1110(pendingspawn_0.anInt345, pendingspawn_0.anInt346)) {
-                                    Class10.method154(pendingspawn_0.level, pendingspawn_0.type, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.anInt345, pendingspawn_0.anInt347, pendingspawn_0.anInt346);
+                            if (pendingspawn_0.timeLeftTillSpawn == 0) {
+                                if (pendingspawn_0.objectId < 0 || method1110(pendingspawn_0.objectId, pendingspawn_0.objectType)) {
+                                    Class10.method154(pendingspawn_0.plane, pendingspawn_0.spawnType, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.objectId, pendingspawn_0.objectFace, pendingspawn_0.objectType);
                                     pendingspawn_0.unlink();
                                 }
                             } else {
-                                if (pendingspawn_0.delay > 0) {
-                                    --pendingspawn_0.delay;
+                                if (pendingspawn_0.updateCycle > 0) {
+                                    --pendingspawn_0.updateCycle;
                                 }
 
-                                if (pendingspawn_0.delay == 0 && pendingspawn_0.x >= 1 && pendingspawn_0.y >= 1 && pendingspawn_0.x <= 102 && pendingspawn_0.y <= 102 && (pendingspawn_0.id < 0 || method1110(pendingspawn_0.id, pendingspawn_0.anInt344))) {
-                                    Class10.method154(pendingspawn_0.level, pendingspawn_0.type, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.id, pendingspawn_0.orientation, pendingspawn_0.anInt344);
-                                    pendingspawn_0.delay = -1;
-                                    if (pendingspawn_0.anInt345 == pendingspawn_0.id && pendingspawn_0.anInt345 == -1) {
+                                if (pendingspawn_0.updateCycle == 0 && pendingspawn_0.x >= 1 && pendingspawn_0.y >= 1 && pendingspawn_0.x <= 102 && pendingspawn_0.y <= 102 && (pendingspawn_0.id < 0 || method1110(pendingspawn_0.id, pendingspawn_0.objectType2))) {
+                                    Class10.method154(pendingspawn_0.plane, pendingspawn_0.spawnType, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.id, pendingspawn_0.orientation, pendingspawn_0.objectType2);
+                                    pendingspawn_0.updateCycle = -1;
+                                    if (pendingspawn_0.objectId == pendingspawn_0.id && pendingspawn_0.objectId == -1) {
                                         pendingspawn_0.unlink();
-                                    } else if (pendingspawn_0.anInt345 == pendingspawn_0.id && pendingspawn_0.anInt347 == pendingspawn_0.orientation && pendingspawn_0.anInt346 == pendingspawn_0.anInt344) {
+                                    } else if (pendingspawn_0.objectId == pendingspawn_0.id && pendingspawn_0.objectFace == pendingspawn_0.orientation && pendingspawn_0.objectType == pendingspawn_0.objectType2) {
                                         pendingspawn_0.unlink();
                                     }
                                 }
@@ -3389,7 +3389,7 @@ public final class Client extends GameEngine {
                                                             break;
                                                         }
 
-                                                        widget_4 = PendingSpawn.method671(widget_3.parentId);
+                                                        widget_4 = Junk.method671(widget_3.parentId);
                                                     }
                                                     while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -3402,7 +3402,7 @@ public final class Client extends GameEngine {
                                                 break;
                                             }
 
-                                            widget_4 = PendingSpawn.method671(widget_3.parentId);
+                                            widget_4 = Junk.method671(widget_3.parentId);
                                         }
                                         while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -3415,7 +3415,7 @@ public final class Client extends GameEngine {
                                     break;
                                 }
 
-                                widget_4 = PendingSpawn.method671(widget_3.parentId);
+                                widget_4 = Junk.method671(widget_3.parentId);
                             }
                             while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -4080,7 +4080,7 @@ public final class Client extends GameEngine {
     }
 
     void method1106(Widget widget_0) {
-        Widget widget_1 = widget_0.parentId == -1 ? null : PendingSpawn.method671(widget_0.parentId);
+        Widget widget_1 = widget_0.parentId == -1 ? null : Junk.method671(widget_0.parentId);
         int int_0;
         int int_1;
         if (widget_1 == null) {
@@ -4180,7 +4180,7 @@ public final class Client extends GameEngine {
                             if (int_3 == 39 || int_3 == 40 || int_3 == 41 || int_3 == 42 || int_3 == 43 || int_3 == 33 || int_3 == 34 || int_3 == 35 || int_3 == 36 || int_3 == 37 || int_3 == 38 || int_3 == 1005) {
                                 int_1 = menuActionParams0[int_0];
                                 int_8 = menuActionParams1[int_0];
-                                Widget widget_0 = PendingSpawn.method671(int_8);
+                                Widget widget_0 = Junk.method671(int_8);
                                 int_5 = Preferences.getWidgetConfig(widget_0);
                                 boolean bool_2 = (int_5 >> 28 & 0x1) != 0;
                                 if (bool_2) {
@@ -4225,7 +4225,7 @@ public final class Client extends GameEngine {
                     WorldMapData.method305(ClanMember.aWidget7);
                 }
 
-                ClanMember.aWidget7 = PendingSpawn.method671(int_8);
+                ClanMember.aWidget7 = Junk.method671(int_8);
                 anInt635 = int_1;
                 anInt628 = MouseInput.anInt264;
                 anInt629 = MouseInput.anInt265;
@@ -4310,7 +4310,7 @@ public final class Client extends GameEngine {
                                     break;
                                 }
 
-                                widget_0 = PendingSpawn.method671(widget_0.parentId);
+                                widget_0 = Junk.method671(widget_0.parentId);
                                 if (widget_0 == null) {
                                     widget_1 = null;
                                     break;

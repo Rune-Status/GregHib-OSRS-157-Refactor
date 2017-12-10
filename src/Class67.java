@@ -34,7 +34,7 @@ public class Class67 {
          int int_1 = player.x >> 7;
          int int_2 = player.y >> 7;
          if (int_1 >= 0 && int_1 < 104 && int_2 >= 0 && int_2 < 104) {
-            if (player.model != null && Client.gameCycle >= player.anInt594 && Client.gameCycle < player.anInt595) {
+            if (player.playerModel != null && Client.gameCycle >= player.anInt594 && Client.gameCycle < player.anInt595) {
                player.aBool82 = false;
                player.anInt598 = Class18.getTileHeight(player.x, player.y, Ignore.plane);
                Class23.region.method378(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.anInt604, player.anInt605, player.anInt606, player.anInt607);

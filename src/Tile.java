@@ -83,7 +83,7 @@ public final class Tile extends Node {
                      break;
                   }
 
-                  widget_1 = PendingSpawn.method671(widget_1.parentId);
+                  widget_1 = Junk.method671(widget_1.parentId);
                   if (widget_1 == null) {
                      widget_2 = null;
                      break;
@@ -115,7 +115,7 @@ public final class Tile extends Node {
                         break;
                      }
 
-                     widget_1 = PendingSpawn.method671(widget_1.parentId);
+                     widget_1 = Junk.method671(widget_1.parentId);
                      if (widget_1 == null) {
                         widget_2 = null;
                         break;

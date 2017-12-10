@@ -40,7 +40,7 @@ public class Class63 {
 
             if (int_0 == 1 && widget_0.anObjectArray7 != null) {
                if (widget_0.index >= 0) {
-                  Widget widget_1 = PendingSpawn.method671(widget_0.id);
+                  Widget widget_1 = Junk.method671(widget_0.id);
                   if (widget_1 == null || widget_1.children == null || widget_0.index >= widget_1.children.length || widget_0 != widget_1.children[widget_0.index]) {
                      continue;
                   }

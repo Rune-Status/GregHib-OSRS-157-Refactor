@@ -310,7 +310,7 @@ public class Class40 {
             }
          }
 
-         for (PendingSpawn pendingspawn_0 = (PendingSpawn) Client.pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (PendingSpawn) Client.pendingSpawns.getNext()) {
+         for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) Client.pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) Client.pendingSpawns.getNext()) {
             pendingspawn_0.x -= int_4;
             pendingspawn_0.y -= int_5;
             if (pendingspawn_0.x < 0 || pendingspawn_0.y < 0 || pendingspawn_0.x >= 104 || pendingspawn_0.y >= 104) {

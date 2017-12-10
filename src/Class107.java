@@ -117,7 +117,7 @@ public class Class107 {
       Object object_0;
       if (int_6 == 22) {
          if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-            object_0 = objectcomposition_0.method825(22, int_5, ints_0, int_14, int_13, int_15);
+            object_0 = objectcomposition_0.getModelAt(22, int_5, ints_0, int_14, int_13, int_15);
          } else {
             object_0 = new DynamicObject(int_4, 22, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
          }
@@ -130,7 +130,7 @@ public class Class107 {
       } else if (int_6 != 10 && int_6 != 11) {
          if (int_6 >= 12) {
             if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.method825(int_6, int_5, ints_0, int_14, int_13, int_15);
+               object_0 = objectcomposition_0.getModelAt(int_6, int_5, ints_0, int_14, int_13, int_15);
             } else {
                object_0 = new DynamicObject(int_4, int_6, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
             }
@@ -142,7 +142,7 @@ public class Class107 {
 
          } else if (int_6 == 0) {
             if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.method825(0, int_5, ints_0, int_14, int_13, int_15);
+               object_0 = objectcomposition_0.getModelAt(0, int_5, ints_0, int_14, int_13, int_15);
             } else {
                object_0 = new DynamicObject(int_4, 0, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
             }
@@ -154,7 +154,7 @@ public class Class107 {
 
          } else if (int_6 == 1) {
             if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.method825(1, int_5, ints_0, int_14, int_13, int_15);
+               object_0 = objectcomposition_0.getModelAt(1, int_5, ints_0, int_14, int_13, int_15);
             } else {
                object_0 = new DynamicObject(int_4, 1, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
             }
@@ -171,8 +171,8 @@ public class Class107 {
                int_18 = int_5 + 1 & 0x3;
                Object object_1;
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_1 = objectcomposition_0.method825(2, int_5 + 4, ints_0, int_14, int_13, int_15);
-                  object_2 = objectcomposition_0.method825(2, int_18, ints_0, int_14, int_13, int_15);
+                  object_1 = objectcomposition_0.getModelAt(2, int_5 + 4, ints_0, int_14, int_13, int_15);
+                  object_2 = objectcomposition_0.getModelAt(2, int_18, ints_0, int_14, int_13, int_15);
                } else {
                   object_1 = new DynamicObject(int_4, 2, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                   object_2 = new DynamicObject(int_4, 2, int_18, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
@@ -185,7 +185,7 @@ public class Class107 {
 
             } else if (int_6 == 3) {
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.method825(3, int_5, ints_0, int_14, int_13, int_15);
+                  object_0 = objectcomposition_0.getModelAt(3, int_5, ints_0, int_14, int_13, int_15);
                } else {
                   object_0 = new DynamicObject(int_4, 3, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                }
@@ -197,7 +197,7 @@ public class Class107 {
 
             } else if (int_6 == 9) {
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.method825(int_6, int_5, ints_0, int_14, int_13, int_15);
+                  object_0 = objectcomposition_0.getModelAt(int_6, int_5, ints_0, int_14, int_13, int_15);
                } else {
                   object_0 = new DynamicObject(int_4, int_6, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                }
@@ -209,7 +209,7 @@ public class Class107 {
 
             } else if (int_6 == 4) {
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.method825(4, int_5, ints_0, int_14, int_13, int_15);
+                  object_0 = objectcomposition_0.getModelAt(4, int_5, ints_0, int_14, int_13, int_15);
                } else {
                   object_0 = new DynamicObject(int_4, 4, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                }
@@ -219,13 +219,13 @@ public class Class107 {
                int int_19;
                if (int_6 == 5) {
                   int_18 = 16;
-                  int_19 = region_0.method365(int_0, int_2, int_3);
+                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier;
                   }
 
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.method825(4, int_5, ints_0, int_14, int_13, int_15);
+                     object_2 = objectcomposition_0.getModelAt(4, int_5, ints_0, int_14, int_13, int_15);
                   } else {
                      object_2 = new DynamicObject(int_4, 4, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                   }
@@ -233,13 +233,13 @@ public class Class107 {
                   region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_2, (Renderable) null, Class19.anIntArray7[int_5], 0, int_18 * Class19.anIntArray10[int_5], int_18 * Class19.anIntArray12[int_5], int_16, int_17);
                } else if (int_6 == 6) {
                   int_18 = 8;
-                  int_19 = region_0.method365(int_0, int_2, int_3);
+                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier / 2;
                   }
 
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.method825(4, int_5 + 4, ints_0, int_14, int_13, int_15);
+                     object_2 = objectcomposition_0.getModelAt(4, int_5 + 4, ints_0, int_14, int_13, int_15);
                   } else {
                      object_2 = new DynamicObject(int_4, 4, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                   }
@@ -248,7 +248,7 @@ public class Class107 {
                } else if (int_6 == 7) {
                   int_19 = int_5 + 2 & 0x3;
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_0 = objectcomposition_0.method825(4, int_19 + 4, ints_0, int_14, int_13, int_15);
+                     object_0 = objectcomposition_0.getModelAt(4, int_19 + 4, ints_0, int_14, int_13, int_15);
                   } else {
                      object_0 = new DynamicObject(int_4, 4, int_19 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                   }
@@ -256,7 +256,7 @@ public class Class107 {
                   region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, 256, int_19, 0, 0, int_16, int_17);
                } else if (int_6 == 8) {
                   int_18 = 8;
-                  int_19 = region_0.method365(int_0, int_2, int_3);
+                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier / 2;
                   }
@@ -264,8 +264,8 @@ public class Class107 {
                   int int_20 = int_5 + 2 & 0x3;
                   Object object_3;
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.method825(4, int_5 + 4, ints_0, int_14, int_13, int_15);
-                     object_3 = objectcomposition_0.method825(4, int_20 + 4, ints_0, int_14, int_13, int_15);
+                     object_2 = objectcomposition_0.getModelAt(4, int_5 + 4, ints_0, int_14, int_13, int_15);
+                     object_3 = objectcomposition_0.getModelAt(4, int_20 + 4, ints_0, int_14, int_13, int_15);
                   } else {
                      object_2 = new DynamicObject(int_4, 4, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
                      object_3 = new DynamicObject(int_4, 4, int_20 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
@@ -277,7 +277,7 @@ public class Class107 {
          }
       } else {
          if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-            object_0 = objectcomposition_0.method825(10, int_5, ints_0, int_14, int_13, int_15);
+            object_0 = objectcomposition_0.getModelAt(10, int_5, ints_0, int_14, int_13, int_15);
          } else {
             object_0 = new DynamicObject(int_4, 10, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
          }

@@ -23,7 +23,7 @@ final class Class33 implements Interface1 {
       widgetnode_0.owner = int_2;
       Client.componentTable.put(widgetnode_0, (long)int_0);
       PlayerComposition.method512(int_1);
-      Widget widget_0 = PendingSpawn.method671(int_0);
+      Widget widget_0 = Junk.method671(int_0);
       WorldMapData.method305(widget_0);
       if (Client.aWidget12 != null) {
          WorldMapData.method305(Client.aWidget12);

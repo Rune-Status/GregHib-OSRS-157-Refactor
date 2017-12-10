@@ -40,7 +40,33 @@ public class DynamicObject extends Renderable {
 
    }
 
-   protected Model getModel() {
+   static void method674(int int_0, int int_1, int int_2, int int_3) {
+      for (int int_4 = int_1; int_4 <= int_3 + int_1; int_4++) {
+         for (int int_5 = int_0; int_5 <= int_0 + int_2; int_5++) {
+            if (int_5 >= 0 && int_5 < 104 && int_4 >= 0 && int_4 < 104) {
+               Class19.aByteArrayArrayArray7[0][int_5][int_4] = 127;
+               if (int_0 == int_5 && int_5 > 0) {
+                  Class19.tileHeights[0][int_5][int_4] = Class19.tileHeights[0][int_5 - 1][int_4];
+               }
+
+               if (int_5 == int_0 + int_2 && int_5 < 103) {
+                  Class19.tileHeights[0][int_5][int_4] = Class19.tileHeights[0][int_5 + 1][int_4];
+               }
+
+               if (int_4 == int_1 && int_4 > 0) {
+                  Class19.tileHeights[0][int_5][int_4] = Class19.tileHeights[0][int_5][int_4 - 1];
+               }
+
+               if (int_3 + int_1 == int_4 && int_4 < 103) {
+                  Class19.tileHeights[0][int_5][int_4] = Class19.tileHeights[0][int_5][int_4 + 1];
+               }
+            }
+         }
+      }
+
+   }
+
+   protected Model getRotatedModel() {
       if (this.aSequence2 != null) {
          int int_0 = Client.gameCycle - this.anInt578;
          if (int_0 > 100 && this.aSequence2.frameStep > 0) {
@@ -442,7 +468,7 @@ public class DynamicObject extends Renderable {
                   bytes_1 = Class55.aByteArrayArray3[int_9];
                   if (bytes_1 == null && Class25.anInt86 < 800) {
                      Enum2.method642();
-                     PendingSpawn.method674(int_1, int_2, 64, 64);
+                     method674(int_1, int_2, 64, 64);
                   }
                }
 
@@ -511,7 +537,7 @@ public class DynamicObject extends Renderable {
                   for (int_1 = 0; int_1 < 13; int_1++) {
                      int_2 = Client.localRegions[0][int_9][int_1];
                      if (int_2 == -1) {
-                        PendingSpawn.method674(int_9 * 8, int_1 * 8, 8, 8);
+                        method674(int_9 * 8, int_1 * 8, 8, 8);
                      }
                   }
                }
@@ -1052,10 +1078,10 @@ public class DynamicObject extends Renderable {
 
             Enum2.method642();
 
-            for (PendingSpawn pendingspawn_0 = (PendingSpawn) Client.pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (PendingSpawn) Client.pendingSpawns.getNext()) {
-               if (pendingspawn_0.hitpoints == -1) {
-                  pendingspawn_0.delay = 0;
-                  Coordinates.method516(pendingspawn_0);
+            for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) Client.pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) Client.pendingSpawns.getNext()) {
+               if (pendingspawn_0.timeLeftTillSpawn == -1) {
+                  pendingspawn_0.updateCycle = 0;
+                  Coordinates.processUIDs(pendingspawn_0);
                } else {
                   pendingspawn_0.unlink();
                }

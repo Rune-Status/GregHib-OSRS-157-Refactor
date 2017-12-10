@@ -24,6 +24,17 @@ public class Class100 {
       this.anInt206 = 0;
    }
 
+   static void method672(Buffer buffer_0, long long_0) {
+      long_0 /= 10L;
+      if (long_0 < 0L) {
+         long_0 = 0L;
+      } else if (long_0 > 65535L) {
+         long_0 = 65535L;
+      }
+
+      buffer_0.putShort((int)long_0);
+   }
+
    public void method525() {
       if (this.aLong14 != -1L) {
          this.aLong15 = Class97.currentTimeMs() - this.aLong14;
@@ -70,7 +81,7 @@ public class Class100 {
       }
 
       buffer_0.putShort((int)long_1);
-      PendingSpawn.method672(buffer_0, this.aLong16);
+      method672(buffer_0, this.aLong16);
       buffer_0.putShort(this.anInt205);
       buffer_0.putShort(this.anInt203);
       buffer_0.putShort(this.anInt204);

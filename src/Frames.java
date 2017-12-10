@@ -492,7 +492,7 @@ public class Frames extends CacheableNode {
          }
       }
 
-      Widget widget_0 = PendingSpawn.method671(int_1);
+      Widget widget_0 = Junk.method671(int_1);
       if (widget_0 != null) {
          WorldMapData.method305(widget_0);
       }

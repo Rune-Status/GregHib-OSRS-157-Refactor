@@ -121,31 +121,31 @@ public class Preferences {
       return int_3;
    }
 
-   static void method418(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
-      PendingSpawn pendingspawn_0 = null;
+   static void spawnObject(int plane, int x, int y, int spawnType, int id, int type2, int orientation, int updateCycle, int delay) {
+      SceneSpawnNode spawn = null;
 
-      for (PendingSpawn pendingspawn_1 = (PendingSpawn) Client.pendingSpawns.getFront(); pendingspawn_1 != null; pendingspawn_1 = (PendingSpawn) Client.pendingSpawns.getNext()) {
-         if (int_0 == pendingspawn_1.level && pendingspawn_1.x == int_1 && int_2 == pendingspawn_1.y && int_3 == pendingspawn_1.type) {
-            pendingspawn_0 = pendingspawn_1;
+      for (SceneSpawnNode pending = (SceneSpawnNode) Client.pendingSpawns.getFront(); pending != null; pending = (SceneSpawnNode) Client.pendingSpawns.getNext()) {
+         if (plane == pending.plane && pending.x == x && y == pending.y && spawnType == pending.spawnType) {
+            spawn = pending;
             break;
          }
       }
 
-      if (pendingspawn_0 == null) {
-         pendingspawn_0 = new PendingSpawn();
-         pendingspawn_0.level = int_0;
-         pendingspawn_0.type = int_3;
-         pendingspawn_0.anInt347 = int_1;
-         pendingspawn_0.y = int_2;
-         Coordinates.method516(pendingspawn_0);
-         Client.pendingSpawns.addFront(pendingspawn_0);
+      if (spawn == null) {
+         spawn = new SceneSpawnNode();
+         spawn.plane = plane;
+         spawn.spawnType = spawnType;
+         spawn.objectFace = x;
+         spawn.y = y;
+         Coordinates.processUIDs(spawn);
+         Client.pendingSpawns.addFront(spawn);
       }
 
-      pendingspawn_0.id = int_4;
-      pendingspawn_0.anInt344 = int_5;
-      pendingspawn_0.orientation = int_6;
-      pendingspawn_0.delay = int_7;
-      pendingspawn_0.hitpoints = int_8;
+      spawn.id = id;
+      spawn.objectType2 = type2;
+      spawn.orientation = orientation;
+      spawn.updateCycle = updateCycle;
+      spawn.timeLeftTillSpawn = delay;
    }
 
    public static String method419(long long_0) {

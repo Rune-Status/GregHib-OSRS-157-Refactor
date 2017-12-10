@@ -4,7 +4,7 @@ public final class Item extends Renderable {
    int id;
    int quantity;
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       return ItemDefinition.getDefinition(this.id).getModel(this.quantity);
    }
 

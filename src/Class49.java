@@ -116,7 +116,7 @@ final class Class49 implements Comparator {
                if (int_3 == 4) {
                   int_5 = ints_0[int_2++] << 16;
                   int_5 += ints_0[int_2++];
-                  widget_1 = PendingSpawn.method671(int_5);
+                  widget_1 = Junk.method671(int_5);
                   int_6 = ints_0[int_2++];
                   if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {
@@ -154,7 +154,7 @@ final class Class49 implements Comparator {
                if (int_3 == 10) {
                   int_5 = ints_0[int_2++] << 16;
                   int_5 += ints_0[int_2++];
-                  widget_1 = PendingSpawn.method671(int_5);
+                  widget_1 = Junk.method671(int_5);
                   int_6 = ints_0[int_2++];
                   if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {

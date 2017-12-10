@@ -51,7 +51,7 @@ public final class Projectile extends Renderable {
 
    }
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       Spotanim spotanim_0 = Class106.getSpotAnimType(this.id);
       Model model_0 = spotanim_0.method763(this.anInt549);
       if (model_0 == null) {

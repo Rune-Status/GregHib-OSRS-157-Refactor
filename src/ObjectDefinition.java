@@ -4,7 +4,7 @@ public class ObjectDefinition extends CacheableNode {
    public static NodeCache objects;
    public static IndexDataBase anIndexDataBase20;
    public static IndexDataBase objects_ref;
-   public static NodeCache aNodeCache8;
+   public static NodeCache objectDefinitionCache;
    public static NodeCache cachedModels;
    public static NodeCache modelCache;
    static ModelHeader[] models;
@@ -57,7 +57,7 @@ public class ObjectDefinition extends CacheableNode {
       objects = new NodeCache(4096);
       modelCache = new NodeCache(500);
       cachedModels = new NodeCache(30);
-      aNodeCache8 = new NodeCache(30);
+      objectDefinitionCache = new NodeCache(30);
       models = new ModelHeader[4];
    }
 
@@ -480,7 +480,7 @@ public class ObjectDefinition extends CacheableNode {
          long_0 = (long)(int_1 + (int_0 << 3) + (this.id << 10));
       }
 
-      Model model_0 = (Model) aNodeCache8.get(long_0);
+      Model model_0 = (Model) objectDefinitionCache.get(long_0);
       if (model_0 == null) {
          ModelHeader modeldata_0 = this.getModel(int_0, int_1);
          if (modeldata_0 == null) {
@@ -488,7 +488,7 @@ public class ObjectDefinition extends CacheableNode {
          }
 
          model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-         aNodeCache8.put(model_0, long_0);
+         objectDefinitionCache.put(model_0, long_0);
       }
 
       if (sequence_0 == null && this.clipType == -1) {
@@ -546,30 +546,30 @@ public class ObjectDefinition extends CacheableNode {
       }
    }
 
-   public Model method825(int int_0, int int_1, int[][] ints_0, int int_2, int int_3, int int_4) {
-      long long_0;
+   public Model getModelAt(int type, int face, int[][] ints_0, int int_2, int int_3, int int_4) {
+      long key;
       if (this.modelTypes == null) {
-         long_0 = (long)(int_1 + (this.id << 10));
+         key = (long)(face + (this.id << 10));
       } else {
-         long_0 = (long)(int_1 + (int_0 << 3) + (this.id << 10));
+         key = (long)(face + (type << 3) + (this.id << 10));
       }
 
-      Model model_0 = (Model) aNodeCache8.get(long_0);
-      if (model_0 == null) {
-         ModelHeader modeldata_0 = this.getModel(int_0, int_1);
-         if (modeldata_0 == null) {
+      Model model = (Model) objectDefinitionCache.get(key);
+      if (model == null) {
+         ModelHeader header = this.getModel(type, face);
+         if (header == null) {
             return null;
          }
 
-         model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-         aNodeCache8.put(model_0, long_0);
+         model = header.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+         objectDefinitionCache.put(model, key);
       }
 
       if (this.clipType >= 0) {
-         model_0 = model_0.method1017(ints_0, int_2, int_3, int_4, true, this.clipType);
+         model = model.method1017(ints_0, int_2, int_3, int_4, true, this.clipType);
       }
 
-      return model_0;
+      return model;
    }
 
    public String method826(int int_0, String string_0) {

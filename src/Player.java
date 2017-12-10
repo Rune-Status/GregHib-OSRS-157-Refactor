@@ -14,11 +14,11 @@ public final class Player extends Actor {
    int anInt595;
    boolean hidden;
    boolean needsPositionUpdate;
-   Model model;
-   int anInt596;
-   int anInt597;
+   Model playerModel;
+   int boundsOffsetX;
+   int heightOffset;
    int anInt598;
-   int anInt599;
+   int boundsOffsetY;
    int currentPlane;
    String name;
    int localPlayerIndex;
@@ -48,67 +48,67 @@ public final class Player extends Actor {
       this.needsPositionUpdate = false;
    }
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       if (this.composition == null) {
          return null;
       } else {
          Sequence sequence_0 = super.animation != -1 && super.actionAnimationDisable == 0 ? ItemLayer.getAnimation(super.animation) : null;
          Sequence sequence_1 = super.poseAnimation != -1 && !this.aBool82 && (super.idlePoseAnimation != super.poseAnimation || sequence_0 == null) ? ItemLayer.getAnimation(super.poseAnimation) : null;
-         Model animatedModel = this.composition.method505(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
-         if (animatedModel == null) {
+         Model model = this.composition.method505(sequence_0, super.actionFrame, sequence_1, super.poseFrame);
+         if (model == null) {
             return null;
          } else {
-            animatedModel.calculateDiagonals();
-            super.anInt521 = animatedModel.modelHeight;
-            Model model_1;
-            Model[] models_0;
+            model.calculateDiagonals();
+            super.anInt521 = model.modelHeight;
+            Model playerModel;
+            Model[] models;
             if (!this.aBool82 && super.graphic != -1 && super.currentAnimation != -1) {
-               model_1 = Class106.getSpotAnimType(super.graphic).method763(super.currentAnimation);
-               if (model_1 != null) {
-                  model_1.method1026(0, -super.graphicHeight, 0);
-                  models_0 = new Model[] {animatedModel, model_1};
-                  animatedModel = new Model(models_0, 2);
+               playerModel = Class106.getSpotAnimType(super.graphic).method763(super.currentAnimation);
+               if (playerModel != null) {
+                  playerModel.translate(0, -super.graphicHeight, 0);
+                  models = new Model[] {model, playerModel};
+                  model = new Model(models, 2);
                }
             }
 
-            if (!this.aBool82 && this.model != null) {
+            if (!this.aBool82 && this.playerModel != null) {
                if (Client.gameCycle >= this.anInt595) {
-                  this.model = null;
+                  this.playerModel = null;
                }
 
                if (Client.gameCycle >= this.anInt594 && Client.gameCycle < this.anInt595) {
-                  model_1 = this.model;
-                  model_1.method1026(this.anInt596 - super.x, this.anInt597 - this.anInt598, this.anInt599 - super.y);
+                  playerModel = this.playerModel;
+                  playerModel.translate(this.boundsOffsetX - super.x, this.heightOffset - this.anInt598, this.boundsOffsetY - super.y);
                   if (super.orientation == 512) {
-                     model_1.method1021();
-                     model_1.method1021();
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
                   } else if (super.orientation == 1024) {
-                     model_1.method1021();
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
                   } else if (super.orientation == 1536) {
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
                   }
 
-                  models_0 = new Model[] {animatedModel, model_1};
-                  animatedModel = new Model(models_0, 2);
+                  models = new Model[] {model, playerModel};
+                  model = new Model(models, 2);
                   if (super.orientation == 512) {
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
                   } else if (super.orientation == 1024) {
-                     model_1.method1021();
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
                   } else if (super.orientation == 1536) {
-                     model_1.method1021();
-                     model_1.method1021();
-                     model_1.method1021();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
+                     playerModel.rotate90Degrees();
                   }
 
-                  model_1.method1026(super.x - this.anInt596, this.anInt598 - this.anInt597, super.y - this.anInt599);
+                  playerModel.translate(super.x - this.boundsOffsetX, this.anInt598 - this.heightOffset, super.y - this.boundsOffsetY);
                }
             }
 
-            animatedModel.fitsOnSingleSquare = true;
-            return animatedModel;
+            model.fitsOnSingleSquare = true;
+            return model;
          }
       }
    }

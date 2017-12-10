@@ -32,7 +32,7 @@ public class PacketNode extends Node {
       Widget widget_0;
       if (int_0 >= 2000) {
          int_0 -= 1000;
-         widget_0 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+         widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
       } else {
          widget_0 = bool_0 ? Class106.aWidget4 : Friend.aWidget5;
       }

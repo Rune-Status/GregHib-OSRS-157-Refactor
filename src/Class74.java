@@ -61,7 +61,7 @@ public class Class74 {
    }
 
    public static Widget method447(int int_0, int int_1) {
-      Widget widget_0 = PendingSpawn.method671(int_0);
+      Widget widget_0 = Junk.method671(int_0);
       return int_1 == -1 ? widget_0 : (widget_0 != null && widget_0.children != null && int_1 < widget_0.children.length ? widget_0.children[int_1] : null);
    }
 

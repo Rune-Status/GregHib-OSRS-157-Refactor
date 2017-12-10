@@ -194,7 +194,7 @@ public enum Enum1 implements RSEnum {
          if (int_2 == 0) {
             throw new RuntimeException();
          } else {
-            Widget widget_2 = PendingSpawn.method671(int_1);
+            Widget widget_2 = Junk.method671(int_1);
             if (widget_2.children == null) {
                widget_2.children = new Widget[int_3 + 1];
             }
@@ -232,18 +232,18 @@ public enum Enum1 implements RSEnum {
          Widget widget_0;
          if (int_0 == 101) {
             widget_0 = bool_0 ? Class106.aWidget4 : Friend.aWidget5;
-            Widget widget_1 = PendingSpawn.method671(widget_0.id);
+            Widget widget_1 = Junk.method671(widget_0.id);
             widget_1.children[widget_0.index] = null;
             WorldMapData.method305(widget_1);
             return 1;
          } else if (int_0 == 102) {
-            widget_0 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+            widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
             widget_0.children = null;
             WorldMapData.method305(widget_0);
             return 1;
          } else if (int_0 != 200) {
             if (int_0 == 201) {
-               widget_0 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+               widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
                if (widget_0 != null) {
                   Class39.intStack[++Class23.intStackSize - 1] = 1;
                   if (bool_0) {

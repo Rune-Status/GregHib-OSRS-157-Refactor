@@ -95,7 +95,7 @@ public class Class47 {
    }
 
    static int method311(int int_0, Script script_0, boolean bool_0) {
-      Widget widget_0 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+      Widget widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
       if (int_0 == 2500) {
          Class39.intStack[++Class23.intStackSize - 1] = widget_0.relativeX;
          return 1;

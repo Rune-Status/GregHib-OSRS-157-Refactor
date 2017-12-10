@@ -160,7 +160,7 @@ public class Class20 implements Comparator {
             } else if (int_0 < 2600) {
                return Class47.method311(int_0, script_0, bool_0);
             } else if (int_0 < 2700) {
-               widget_2 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+               widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
                if (int_0 == 2600) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollX;
                   byte_0 = 1;
@@ -213,11 +213,11 @@ public class Class20 implements Comparator {
                WidgetNode widgetnode_0;
                if (int_0 < 2800) {
                   if (int_0 == 2700) {
-                     widget_2 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+                     widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
                      Class39.intStack[++Class23.intStackSize - 1] = widget_2.itemId;
                      byte_0 = 1;
                   } else if (int_0 == 2701) {
-                     widget_2 = PendingSpawn.method671(Class39.intStack[--Class23.intStackSize]);
+                     widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
                      if (widget_2.itemId != -1) {
                         Class39.intStack[++Class23.intStackSize - 1] = widget_2.itemQuantity;
                      } else {
@@ -357,7 +357,7 @@ public class Class20 implements Comparator {
                            int_1 = Class39.intStack[Class23.intStackSize];
                            int_9 = Class39.intStack[Class23.intStackSize + 1];
                            int_2 = Class39.intStack[Class23.intStackSize + 2];
-                           widget_0 = PendingSpawn.method671(int_2);
+                           widget_0 = Junk.method671(int_2);
                            Tile.method683(widget_0, int_1, int_9);
                            byte_0 = 1;
                         } else if (int_0 == 3109) {

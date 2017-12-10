@@ -61,7 +61,7 @@ public class World {
       ObjectDefinition.objects.reset();
       ObjectDefinition.modelCache.reset();
       ObjectDefinition.cachedModels.reset();
-      ObjectDefinition.aNodeCache8.reset();
+      ObjectDefinition.objectDefinitionCache.reset();
       NPCDefinition.npcs.reset();
       NPCDefinition.npcModelCache.reset();
       Client.method1109();

@@ -109,18 +109,18 @@ public class Spotanim extends CacheableNode {
 
       if (this.anInt424 != 0) {
          if (this.anInt424 == 90) {
-            model_1.method1021();
+            model_1.rotate90Degrees();
          }
 
          if (this.anInt424 == 180) {
-            model_1.method1021();
-            model_1.method1021();
+            model_1.rotate90Degrees();
+            model_1.rotate90Degrees();
          }
 
          if (this.anInt424 == 270) {
-            model_1.method1021();
-            model_1.method1021();
-            model_1.method1021();
+            model_1.rotate90Degrees();
+            model_1.rotate90Degrees();
+            model_1.rotate90Degrees();
          }
       }
 

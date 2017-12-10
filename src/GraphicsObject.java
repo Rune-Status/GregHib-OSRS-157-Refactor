@@ -31,7 +31,7 @@ public final class GraphicsObject extends Renderable {
 
    }
 
-   protected Model getModel() {
+   protected Model getRotatedModel() {
       Spotanim spotanim_0 = Class106.getSpotAnimType(this.id);
       Model model_0;
       if (!this.finished) {

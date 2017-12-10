@@ -108,7 +108,7 @@ public class Class15 {
    }
 
    static void method195(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      int int_5 = Class23.region.method365(int_0, int_1, int_2);
+      int int_5 = Class23.region.getWallObjectUID(int_0, int_1, int_2);
       int int_6;
       int int_7;
       int int_8;
@@ -116,7 +116,7 @@ public class Class15 {
       int int_10;
       int int_11;
       if (int_5 != 0) {
-         int_6 = Class23.region.method368(int_0, int_1, int_2, int_5);
+         int_6 = Class23.region.getObjectConfig(int_0, int_1, int_2, int_5);
          int_7 = int_6 >> 6 & 0x3;
          int_8 = int_6 & 0x1F;
          int_9 = int_3;
@@ -198,9 +198,9 @@ public class Class15 {
          }
       }
 
-      int_5 = Class23.region.method369(int_0, int_1, int_2);
+      int_5 = Class23.region.getInteractableObjectUID(int_0, int_1, int_2);
       if (int_5 != 0) {
-         int_6 = Class23.region.method368(int_0, int_1, int_2, int_5);
+         int_6 = Class23.region.getObjectConfig(int_0, int_1, int_2, int_5);
          int_7 = int_6 >> 6 & 0x3;
          int_8 = int_6 & 0x1F;
          int_9 = int_5 >> 14 & 0x7FFF;
@@ -235,7 +235,7 @@ public class Class15 {
          }
       }
 
-      int_5 = Class23.region.method367(int_0, int_1, int_2);
+      int_5 = Class23.region.getGroundDecorationUID(int_0, int_1, int_2);
       if (int_5 != 0) {
          int_6 = int_5 >> 14 & 0x7FFF;
          ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_6);
