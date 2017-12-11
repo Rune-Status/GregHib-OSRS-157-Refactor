@@ -17,14 +17,14 @@ public class Class26 {
 
    static void method223(Widget widget_0, int int_0, int int_1, int int_2) {
       Enum2.method642();
-      CacheableNode_Sub1 cacheablenode_sub1_0 = widget_0.method591(false);
+      CachedSprite cacheablenode_sub1_0 = widget_0.method591(false);
       if (cacheablenode_sub1_0 != null) {
-         Rasterizer2D.setDrawRegion(int_0, int_1, cacheablenode_sub1_0.anInt467 + int_0, int_1 + cacheablenode_sub1_0.anInt468);
+         Rasterizer2D.setDrawRegion(int_0, int_1, cacheablenode_sub1_0.width + int_0, int_1 + cacheablenode_sub1_0.height);
          if (Client.anInt650 != 2 && Client.anInt650 != 5) {
             int int_3 = Client.mapAngle & 0x7FF;
             int int_4 = Class4.localPlayer.x / 32 + 48;
             int int_5 = 464 - Class4.localPlayer.y / 32;
-            Class15.aSpritePixels3.method991(int_0, int_1, cacheablenode_sub1_0.anInt467, cacheablenode_sub1_0.anInt468, int_4, int_5, int_3, 256, cacheablenode_sub1_0.anIntArray86, cacheablenode_sub1_0.anIntArray87);
+            Class15.aSpritePixels3.method991(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, int_4, int_5, int_3, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
 
             int int_6;
             int int_7;
@@ -136,10 +136,10 @@ public class Class26 {
             }
 
             if (!Class4.localPlayer.hidden) {
-               Rasterizer2D.method919(cacheablenode_sub1_0.anInt467 / 2 + int_0 - 1, cacheablenode_sub1_0.anInt468 / 2 + int_1 - 1, 3, 3, 16777215);
+               Rasterizer2D.method919(cacheablenode_sub1_0.width / 2 + int_0 - 1, cacheablenode_sub1_0.height / 2 + int_1 - 1, 3, 3, 16777215);
             }
          } else {
-            Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.anIntArray86, cacheablenode_sub1_0.anIntArray87);
+            Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
          }
 
          Client.aBoolArray11[int_2] = true;

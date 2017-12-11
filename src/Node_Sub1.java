@@ -70,11 +70,11 @@ public final class Node_Sub1 extends Node {
             indexedsprite_0.offsetY = Class7.offsetsY[int_2];
             indexedsprite_0.originalWidth = ItemContainer.anIntArray76[int_2];
             indexedsprite_0.height = Class6.anIntArray3[int_2];
-            indexedsprite_0.palette = Class111.anIntArray55;
+            indexedsprite_0.palette = Class111.loadedPixels;
             indexedsprite_0.pixels = Class111.spritePixels[int_2];
          }
 
-         Class98.method523();
+         Class98.cleanPixelLoader();
          return indexedsprites_0;
       }
    }

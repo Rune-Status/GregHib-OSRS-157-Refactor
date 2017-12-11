@@ -10,8 +10,8 @@ public class Class103 {
       if (bytes_0 == null) {
          return null;
       } else {
-         Font font_0 = new Font(bytes_0, Class111.anIntArray54, Class7.offsetsY, ItemContainer.anIntArray76, Class6.anIntArray3, Class111.anIntArray55, Class111.spritePixels);
-         Class98.method523();
+         Font font_0 = new Font(bytes_0, Class111.anIntArray54, Class7.offsetsY, ItemContainer.anIntArray76, Class6.anIntArray3, Class111.loadedPixels, Class111.spritePixels);
+         Class98.cleanPixelLoader();
          return font_0;
       }
    }

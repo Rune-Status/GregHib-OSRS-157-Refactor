@@ -130,12 +130,12 @@ public class Class10 {
       WorldMapData.method305(widget_0);
       if (int_0 != 1200 && int_0 != 1205 && int_0 != 1212) {
          if (int_0 == 1201) {
-            widget_0.modelType = 2;
-            widget_0.modelId = Class39.intStack[--Class23.intStackSize];
+            widget_0.disabledMediaType = 2;
+            widget_0.disabledMediaId = Class39.intStack[--Class23.intStackSize];
             return 1;
          } else if (int_0 == 1202) {
-            widget_0.modelType = 3;
-            widget_0.modelId = Class4.localPlayer.composition.method507();
+            widget_0.disabledMediaType = 3;
+            widget_0.disabledMediaId = Class4.localPlayer.composition.method507();
             return 1;
          } else {
             return 2;
@@ -147,8 +147,8 @@ public class Class10 {
          widget_0.itemId = int_1;
          widget_0.itemQuantity = int_2;
          ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_1);
-         widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
-         widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+         widget_0.modelRotationX = itemcomposition_0.modelInventoryRotationY;
+         widget_0.modelRotationZ = itemcomposition_0.modelInventoryRotationX;
          widget_0.rotationY = itemcomposition_0.diagonalRotation;
          widget_0.anInt293 = itemcomposition_0.spriteTranslateX;
          widget_0.anInt294 = itemcomposition_0.spriteTranslateY;

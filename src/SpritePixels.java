@@ -768,118 +768,118 @@ public final class SpritePixels extends Rasterizer2D {
    }
 
    public SpritePixels copy() {
-      SpritePixels spritepixels_1 = new SpritePixels(this.maxWidth, this.maxHeight);
+      SpritePixels pixels = new SpritePixels(this.maxWidth, this.maxHeight);
 
-      for (int int_0 = 0; int_0 < this.height; int_0++) {
-         for (int int_1 = 0; int_1 < this.width; int_1++) {
-            spritepixels_1.pixels[int_1 + (int_0 + this.offsetY) * this.maxWidth + this.offsetX] = this.pixels[int_1 + int_0 * this.width];
+      for (int y = 0; y < this.height; y++) {
+         for (int x = 0; x < this.width; x++) {
+            pixels.pixels[x + (y + this.offsetY) * this.maxWidth + this.offsetX] = this.pixels[x + y * this.width];
          }
       }
 
-      return spritepixels_1;
+      return pixels;
    }
 
-   public void method985() {
-      int[] ints_0 = new int[this.width * this.height];
-      int int_0 = 0;
+   public void flipVertical() {
+      int[] pixels = new int[this.width * this.height];
+      int index = 0;
 
-      for (int int_1 = this.height - 1; int_1 >= 0; --int_1) {
-         for (int int_2 = 0; int_2 < this.width; int_2++) {
-            ints_0[int_0++] = this.pixels[int_2 + int_1 * this.width];
+      for (int y = this.height - 1; y >= 0; --y) {
+         for (int x = 0; x < this.width; x++) {
+            pixels[index++] = this.pixels[x + y * this.width];
          }
       }
 
-      this.pixels = ints_0;
+      this.pixels = pixels;
       this.offsetY = this.maxHeight - this.height - this.offsetY;
    }
 
-   public void method986() {
-      int[] ints_0 = new int[this.width * this.height];
-      int int_0 = 0;
+   public void flipHorizontal() {
+      int[] pixels = new int[this.width * this.height];
+      int index = 0;
 
-      for (int int_1 = 0; int_1 < this.height; int_1++) {
-         for (int int_2 = this.width - 1; int_2 >= 0; --int_2) {
-            ints_0[int_0++] = this.pixels[int_2 + int_1 * this.width];
+      for (int y = 0; y < this.height; y++) {
+         for (int x = this.width - 1; x >= 0; --x) {
+            pixels[index++] = this.pixels[x + y * this.width];
          }
       }
 
-      this.pixels = ints_0;
+      this.pixels = pixels;
       this.offsetX = this.maxWidth - this.width - this.offsetX;
    }
 
-   public void method987(int int_0) {
+   public void setBorder(int thickness) {
       if (this.width != this.maxWidth || this.height != this.maxHeight) {
-         int int_1 = int_0;
-         if (int_0 > this.offsetX) {
-            int_1 = this.offsetX;
+         int rightOffsetX = thickness;
+         if (thickness > this.offsetX) {
+            rightOffsetX = this.offsetX;
          }
 
-         int int_2 = int_0;
-         if (int_0 + this.offsetX + this.width > this.maxWidth) {
-            int_2 = this.maxWidth - this.offsetX - this.width;
+         int leftOffsetX = thickness;
+         if (thickness + this.offsetX + this.width > this.maxWidth) {
+            leftOffsetX = this.maxWidth - this.offsetX - this.width;
          }
 
-         int int_3 = int_0;
-         if (int_0 > this.offsetY) {
-            int_3 = this.offsetY;
+         int topOffsetY = thickness;
+         if (thickness > this.offsetY) {
+            topOffsetY = this.offsetY;
          }
 
-         int int_4 = int_0;
-         if (int_0 + this.offsetY + this.height > this.maxHeight) {
-            int_4 = this.maxHeight - this.offsetY - this.height;
+         int bottomOffsetY = thickness;
+         if (thickness + this.offsetY + this.height > this.maxHeight) {
+            bottomOffsetY = this.maxHeight - this.offsetY - this.height;
          }
 
-         int int_5 = int_1 + int_2 + this.width;
-         int int_6 = int_3 + int_4 + this.height;
-         int[] ints_0 = new int[int_5 * int_6];
+         int totalWidth = rightOffsetX + leftOffsetX + this.width;
+         int totalHeight = topOffsetY + bottomOffsetY + this.height;
+         int[] pixels = new int[totalWidth * totalHeight];
 
-         for (int int_7 = 0; int_7 < this.height; int_7++) {
-            for (int int_8 = 0; int_8 < this.width; int_8++) {
-               ints_0[int_5 * (int_7 + int_3) + int_8 + int_1] = this.pixels[int_8 + int_7 * this.width];
+         for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+               pixels[totalWidth * (y + topOffsetY) + x + rightOffsetX] = this.pixels[x + y * this.width];
             }
          }
 
-         this.pixels = ints_0;
-         this.width = int_5;
-         this.height = int_6;
-         this.offsetX -= int_1;
-         this.offsetY -= int_3;
+         this.pixels = pixels;
+         this.width = totalWidth;
+         this.height = totalHeight;
+         this.offsetX -= rightOffsetX;
+         this.offsetY -= topOffsetY;
       }
    }
 
-   public void method988(int int_0) {
-      int[] ints_0 = new int[this.width * this.height];
-      int int_1 = 0;
+   public void setTransparentPixel(int colour) {
+      int[] pixels = new int[this.width * this.height];
+      int index = 0;
 
-      for (int int_2 = 0; int_2 < this.height; int_2++) {
-         for (int int_3 = 0; int_3 < this.width; int_3++) {
-            int int_4 = this.pixels[int_1];
-            if (int_4 == 0) {
-               if (int_3 > 0 && this.pixels[int_1 - 1] != 0) {
-                  int_4 = int_0;
-               } else if (int_2 > 0 && this.pixels[int_1 - this.width] != 0) {
-                  int_4 = int_0;
-               } else if (int_3 < this.width - 1 && this.pixels[int_1 + 1] != 0) {
-                  int_4 = int_0;
-               } else if (int_2 < this.height - 1 && this.pixels[int_1 + this.width] != 0) {
-                  int_4 = int_0;
+      for (int y = 0; y < this.height; y++) {
+         for (int x = 0; x < this.width; x++) {
+            int pixel = this.pixels[index];
+            if (pixel == 0) {
+               if (x > 0 && this.pixels[index - 1] != 0) {
+                  pixel = colour;
+               } else if (y > 0 && this.pixels[index - this.width] != 0) {
+                  pixel = colour;
+               } else if (x < this.width - 1 && this.pixels[index + 1] != 0) {
+                  pixel = colour;
+               } else if (y < this.height - 1 && this.pixels[index + this.width] != 0) {
+                  pixel = colour;
                }
             }
 
-            ints_0[int_1++] = int_4;
+            pixels[index++] = pixel;
          }
       }
 
-      this.pixels = ints_0;
+      this.pixels = pixels;
    }
 
-   public void method989(int int_0) {
+   public void setSecondarySprite(int spriteId) {
       for (int int_1 = this.height - 1; int_1 > 0; --int_1) {
          int int_2 = int_1 * this.width;
 
          for (int int_3 = this.width - 1; int_3 > 0; --int_3) {
             if (this.pixels[int_3 + int_2] == 0 && this.pixels[int_3 + int_2 - 1 - this.width] != 0) {
-               this.pixels[int_3 + int_2] = int_0;
+               this.pixels[int_3 + int_2] = spriteId;
             }
          }
       }

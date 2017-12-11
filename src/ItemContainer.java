@@ -19,7 +19,7 @@ public class ItemContainer extends Node {
    static void method675(Widget[] widgets_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
       for (int int_7 = 0; int_7 < widgets_0.length; int_7++) {
          Widget widget_0 = widgets_0[int_7];
-         if (widget_0 != null && (!widget_0.hasScript || widget_0.type == 0 || widget_0.aBool35 || Preferences.getWidgetConfig(widget_0) != 0 || widget_0 == Client.aWidget10 || widget_0.contentType == 1338) && widget_0.parentId == int_0 && (!widget_0.hasScript || !CacheableNode_Sub5.method887(widget_0))) {
+         if (widget_0 != null && (!widget_0.hasScript || widget_0.type == 0 || widget_0.parametersLoaded || Preferences.getWidgetConfig(widget_0) != 0 || widget_0 == Client.aWidget10 || widget_0.contentType == 1338) && widget_0.parentId == int_0 && (!widget_0.hasScript || !CacheableNode_Sub5.method887(widget_0))) {
             int int_8 = widget_0.relativeX + int_5;
             int int_9 = int_6 + widget_0.relativeY;
             int int_10;
@@ -287,13 +287,13 @@ public class ItemContainer extends Node {
                   }
                } else if (widget_0.contentType == 1338) {
                   if ((Client.anInt650 == 0 || Client.anInt650 == 3) && (MouseInput.anInt259 == 1 || !Item.aBool73 && MouseInput.anInt259 == 4)) {
-                     CacheableNode_Sub1 cacheablenode_sub1_0 = widget_0.method591(true);
+                     CachedSprite cacheablenode_sub1_0 = widget_0.method591(true);
                      if (cacheablenode_sub1_0 != null) {
                         int_18 = MouseInput.anInt264 - int_8;
                         int_19 = MouseInput.anInt265 - int_9;
-                        if (cacheablenode_sub1_0.method832(int_18, int_19)) {
-                           int_18 -= cacheablenode_sub1_0.anInt467 / 2;
-                           int_19 -= cacheablenode_sub1_0.anInt468 / 2;
+                        if (cacheablenode_sub1_0.indexIsInside(int_18, int_19)) {
+                           int_18 -= cacheablenode_sub1_0.width / 2;
+                           int_19 -= cacheablenode_sub1_0.height / 2;
                            int_20 = Client.mapAngle & 0x7FF;
                            int_21 = Graphics3D.SINE[int_20];
                            int_22 = Graphics3D.COSINE[int_20];
@@ -333,12 +333,12 @@ public class ItemContainer extends Node {
                      } else {
                         int_17 = int_14 - int_8;
                         int_18 = int_15 - int_9;
-                        if (widget_0.anInt272 == 1) {
+                        if (widget_0.actionType == 1) {
                            Class24.addMenuEntry(widget_0.tooltip, "", 24, 0, 0, widget_0.id);
                         }
 
                         String string_0;
-                        if (widget_0.anInt272 == 2 && !Client.spellSelected) {
+                        if (widget_0.actionType == 2 && !Client.spellSelected) {
                            if (GraphicsObject.method957(Preferences.getWidgetConfig(widget_0)) == 0) {
                               string_0 = null;
                            } else if (widget_0.selectedAction != null && widget_0.selectedAction.trim().length() != 0) {
@@ -348,23 +348,23 @@ public class ItemContainer extends Node {
                            }
 
                            if (string_0 != null) {
-                              Class24.addMenuEntry(string_0, WallObject.getColTags(65280) + widget_0.aString16, 25, 0, -1, widget_0.id);
+                              Class24.addMenuEntry(string_0, WallObject.getColTags(65280) + widget_0.spellName, 25, 0, -1, widget_0.id);
                            }
                         }
 
-                        if (widget_0.anInt272 == 3) {
+                        if (widget_0.actionType == 3) {
                            Class24.addMenuEntry("Close", "", 26, 0, 0, widget_0.id);
                         }
 
-                        if (widget_0.anInt272 == 4) {
+                        if (widget_0.actionType == 4) {
                            Class24.addMenuEntry(widget_0.tooltip, "", 28, 0, 0, widget_0.id);
                         }
 
-                        if (widget_0.anInt272 == 5) {
+                        if (widget_0.actionType == 5) {
                            Class24.addMenuEntry(widget_0.tooltip, "", 29, 0, 0, widget_0.id);
                         }
 
-                        if (widget_0.anInt272 == 6 && Client.aWidget12 == null) {
+                        if (widget_0.actionType == 6 && Client.aWidget12 == null) {
                            Class24.addMenuEntry(widget_0.tooltip, "", 30, 0, -1, widget_0.id);
                         }
 
@@ -376,8 +376,8 @@ public class ItemContainer extends Node {
                                  int_22 = int_21 * (widget_0.paddingX + 32);
                                  int_23 = int_20 * (widget_0.paddingY + 32);
                                  if (int_19 < 20) {
-                                    int_22 += widget_0.xSprites[int_19];
-                                    int_23 += widget_0.anIntArray66[int_19];
+                                    int_22 += widget_0.imageX[int_19];
+                                    int_23 += widget_0.imageY[int_19];
                                  }
 
                                  if (int_17 >= int_22 && int_18 >= int_23 && int_17 < int_22 + 32 && int_18 < int_23 + 32) {
@@ -650,7 +650,7 @@ public class ItemContainer extends Node {
                         Client.anInt626 = int_9;
                      }
 
-                     if (widget_0.aBool35) {
+                     if (widget_0.parametersLoaded) {
                         ScriptEvent scriptevent_3;
                         if (bool_2 && Client.anInt636 != 0 && widget_0.scrollListener != null) {
                            scriptevent_3 = new ScriptEvent();
@@ -892,7 +892,7 @@ public class ItemContainer extends Node {
                   }
 
                   if (!widget_0.hasScript && Client.aWidget9 == null && ClanMember.aWidget7 == null && !Client.isMenuOpen) {
-                     if ((widget_0.anInt282 >= 0 || widget_0.anInt285 != 0) && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                     if ((widget_0.anInt282 >= 0 || widget_0.disabledHoverColour != 0) && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
                         if (widget_0.anInt282 >= 0) {
                            aWidget6 = widgets_0[widget_0.anInt282];
                         } else {

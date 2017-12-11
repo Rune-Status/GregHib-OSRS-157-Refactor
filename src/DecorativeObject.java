@@ -50,12 +50,12 @@ public final class DecorativeObject {
       }
 
       buffer_0.position = bytes_0.length - 7 - Class111.anInt216 * 8 - (int_0 - 1) * 3;
-      Class111.anIntArray55 = new int[int_0];
+      Class111.loadedPixels = new int[int_0];
 
       for (int_1 = 1; int_1 < int_0; int_1++) {
-         Class111.anIntArray55[int_1] = buffer_0.read24BitInt();
-         if (Class111.anIntArray55[int_1] == 0) {
-            Class111.anIntArray55[int_1] = 1;
+         Class111.loadedPixels[int_1] = buffer_0.read24BitInt();
+         if (Class111.loadedPixels[int_1] == 0) {
+            Class111.loadedPixels[int_1] = 1;
          }
       }
 

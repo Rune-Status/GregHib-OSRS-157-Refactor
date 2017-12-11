@@ -5,7 +5,7 @@ public enum Enum1 implements RSEnum {
    anEnum1_3(2, (byte) 2),
    anEnum1_4(0, (byte) 3);
 
-   public static IndexDataBase anIndexDataBase13;
+   public static IndexDataBase spriteCacheIndex;
    static IndexData anIndexData4;
    final byte aByte3;
    final int anInt304;

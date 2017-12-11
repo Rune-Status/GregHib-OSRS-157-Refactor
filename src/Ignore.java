@@ -383,7 +383,7 @@ public class Ignore {
                         if (widget_2.hasScript) {
                            Client.aString36 = widget_2.name + WallObject.getColTags(16777215);
                         } else {
-                           Client.aString36 = WallObject.getColTags(65280) + widget_2.aString16 + WallObject.getColTags(16777215);
+                           Client.aString36 = WallObject.getColTags(65280) + widget_2.spellName + WallObject.getColTags(16777215);
                         }
                      }
 

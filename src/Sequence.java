@@ -184,31 +184,31 @@ public class Sequence extends CacheableNode {
       }
    }
 
-   public Model method917(Model model_0, int int_0) {
-      int int_1 = this.frameIDs[int_0];
-      Frames frames_0 = ScriptVarType.getFrames(int_1 >> 16);
-      int_1 &= 0xFFFF;
-      if (frames_0 == null) {
-         return model_0.method1013(true);
+   public Model applyFrame(Model model, int frameIndex) {
+      int frame = this.frameIDs[frameIndex];
+      Frames frames = ScriptVarType.getFrames(frame >> 16);
+      frame &= 0xFFFF;
+      if (frames == null) {
+         return model.method1013(true);
       } else {
-         Frames frames_1 = null;
+         Frames newFrames = null;
          int int_2 = 0;
-         if (this.anIntArray107 != null && int_0 < this.anIntArray107.length) {
-            int_2 = this.anIntArray107[int_0];
-            frames_1 = ScriptVarType.getFrames(int_2 >> 16);
+         if (this.anIntArray107 != null && frameIndex < this.anIntArray107.length) {
+            int_2 = this.anIntArray107[frameIndex];
+            newFrames = ScriptVarType.getFrames(int_2 >> 16);
             int_2 &= 0xFFFF;
          }
 
-         Model model_1;
-         if (frames_1 != null && int_2 != 65535) {
-            model_1 = model_0.method1013(!frames_0.method871(int_1) & !frames_1.method871(int_2));
-            model_1.method1008(frames_0, int_1);
-            model_1.method1008(frames_1, int_2);
-            return model_1;
+         Model newModel;
+         if (newFrames != null && int_2 != 65535) {
+            newModel = model.method1013(!frames.method871(frame) & !newFrames.method871(int_2));
+            newModel.method1008(frames, frame);
+            newModel.method1008(newFrames, int_2);
+            return newModel;
          } else {
-            model_1 = model_0.method1013(!frames_0.method871(int_1));
-            model_1.method1008(frames_0, int_1);
-            return model_1;
+            newModel = model.method1013(!frames.method871(frame));
+            newModel.method1008(frames, frame);
+            return newModel;
          }
       }
    }

@@ -115,11 +115,11 @@ public enum Enum5 implements RSEnum {
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1101) {
-         widget_0.textColor = Class39.intStack[--Class23.intStackSize];
+         widget_0.disabledColour = Class39.intStack[--Class23.intStackSize];
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1102) {
-         widget_0.aBool36 = Class39.intStack[--Class23.intStackSize] == 1;
+         widget_0.rectFilled = Class39.intStack[--Class23.intStackSize] == 1;
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1103) {
@@ -131,7 +131,7 @@ public enum Enum5 implements RSEnum {
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1105) {
-         widget_0.spriteId = Class39.intStack[--Class23.intStackSize];
+         widget_0.disabledImage = Class39.intStack[--Class23.intStackSize];
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1106) {
@@ -143,16 +143,16 @@ public enum Enum5 implements RSEnum {
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1108) {
-         widget_0.modelType = 1;
-         widget_0.modelId = Class39.intStack[--Class23.intStackSize];
+         widget_0.disabledMediaType = 1;
+         widget_0.disabledMediaId = Class39.intStack[--Class23.intStackSize];
          WorldMapData.method305(widget_0);
          return 1;
       } else if (int_0 == 1109) {
          Class23.intStackSize -= 6;
          widget_0.anInt293 = Class39.intStack[Class23.intStackSize];
          widget_0.anInt294 = Class39.intStack[Class23.intStackSize + 1];
-         widget_0.rotationX = Class39.intStack[Class23.intStackSize + 2];
-         widget_0.rotationZ = Class39.intStack[Class23.intStackSize + 3];
+         widget_0.modelRotationX = Class39.intStack[Class23.intStackSize + 2];
+         widget_0.modelRotationZ = Class39.intStack[Class23.intStackSize + 3];
          widget_0.rotationY = Class39.intStack[Class23.intStackSize + 4];
          widget_0.modelZoom = Class39.intStack[Class23.intStackSize + 5];
          WorldMapData.method305(widget_0);
@@ -161,8 +161,8 @@ public enum Enum5 implements RSEnum {
          int int_2;
          if (int_0 == 1110) {
             int_2 = Class39.intStack[--Class23.intStackSize];
-            if (int_2 != widget_0.anInt277) {
-               widget_0.anInt277 = int_2;
+            if (int_2 != widget_0.disabledAnimation) {
+               widget_0.disabledAnimation = int_2;
                widget_0.anInt281 = 0;
                widget_0.anInt280 = 0;
                WorldMapData.method305(widget_0);
@@ -175,8 +175,8 @@ public enum Enum5 implements RSEnum {
             return 1;
          } else if (int_0 == 1112) {
             String string_0 = Class39.scriptStringStack[--Class28.scriptStringStackSize];
-            if (!string_0.equals(widget_0.text)) {
-               widget_0.text = string_0;
+            if (!string_0.equals(widget_0.disabledText)) {
+               widget_0.disabledText = string_0;
                WorldMapData.method305(widget_0);
             }
 
@@ -187,7 +187,7 @@ public enum Enum5 implements RSEnum {
             return 1;
          } else if (int_0 == 1114) {
             Class23.intStackSize -= 3;
-            widget_0.anInt290 = Class39.intStack[Class23.intStackSize];
+            widget_0.textCentered = Class39.intStack[Class23.intStackSize];
             widget_0.anInt291 = Class39.intStack[Class23.intStackSize + 1];
             widget_0.anInt292 = Class39.intStack[Class23.intStackSize + 2];
             WorldMapData.method305(widget_0);
@@ -228,11 +228,11 @@ public enum Enum5 implements RSEnum {
             WorldMapData.method305(widget_0);
             return 1;
          } else if (int_0 == 1122) {
-            widget_0.anInt267 = Class39.intStack[--Class23.intStackSize];
+            widget_0.enabledImage = Class39.intStack[--Class23.intStackSize];
             WorldMapData.method305(widget_0);
             return 1;
          } else if (int_0 == 1123) {
-            widget_0.anInt283 = Class39.intStack[--Class23.intStackSize];
+            widget_0.enabledColour = Class39.intStack[--Class23.intStackSize];
             WorldMapData.method305(widget_0);
             return 1;
          } else if (int_0 == 1124) {

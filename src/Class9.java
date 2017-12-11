@@ -797,9 +797,9 @@ public class Class9 {
       sprite.offsetY = Class7.offsetsY[0];
       sprite.originalWidth = ItemContainer.anIntArray76[0];
       sprite.height = Class6.anIntArray3[0];
-      sprite.palette = Class111.anIntArray55;
+      sprite.palette = Class111.loadedPixels;
       sprite.pixels = Class111.spritePixels[0];
-      Class98.method523();
+      Class98.cleanPixelLoader();
       return sprite;
    }
 

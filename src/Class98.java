@@ -68,12 +68,12 @@ public class Class98 {
       return Enum5.parseInt(charsequence_0, int_0, true);
    }
 
-   static void method523() {
+   static void cleanPixelLoader() {
       Class111.anIntArray54 = null;
       Class7.offsetsY = null;
       ItemContainer.anIntArray76 = null;
       Class6.anIntArray3 = null;
-      Class111.anIntArray55 = null;
+      Class111.loadedPixels = null;
       Class111.spritePixels = null;
    }
 

@@ -147,7 +147,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.method254(anIndexDataBase26, this.anInt476, 0);
+            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt476, 0);
             if (spritepixels_0 != null) {
                aNodeCache17.put(spritepixels_0, (long)this.anInt476);
             }
@@ -165,7 +165,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.method254(anIndexDataBase26, this.anInt479, 0);
+            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt479, 0);
             if (spritepixels_0 != null) {
                aNodeCache17.put(spritepixels_0, (long)this.anInt479);
             }
@@ -183,7 +183,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.method254(anIndexDataBase26, this.anInt480, 0);
+            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt480, 0);
             if (spritepixels_0 != null) {
                aNodeCache17.put(spritepixels_0, (long)this.anInt480);
             }
@@ -201,7 +201,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.method254(anIndexDataBase26, this.anInt477, 0);
+            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt477, 0);
             if (spritepixels_0 != null) {
                aNodeCache17.put(spritepixels_0, (long)this.anInt477);
             }
@@ -219,7 +219,7 @@ public class CacheableNode_Sub6 extends CacheableNode {
          if (font_0 != null) {
             return font_0;
          } else {
-            font_0 = Class89.method496(anIndexDataBase26, anIndexDataBase27, this.anInt478, 0);
+            font_0 = Class89.decodeFont(anIndexDataBase26, anIndexDataBase27, this.anInt478, 0);
             if (font_0 != null) {
                aNodeCache15.put(font_0, (long)this.anInt478);
             }

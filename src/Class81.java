@@ -6,7 +6,7 @@ public class Class81 {
    public static SpritePixels method472(IndexDataBase indexdatabase_0, String string_0, String string_1) {
       int int_0 = indexdatabase_0.getFile(string_0);
       int int_1 = indexdatabase_0.getChild(int_0, string_1);
-      return Class38.method254(indexdatabase_0, int_0, int_1);
+      return Class38.decodeSpritePixels(indexdatabase_0, int_0, int_1);
    }
 
    public static File method473(String string_0) {

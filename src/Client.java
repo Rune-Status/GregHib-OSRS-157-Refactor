@@ -848,8 +848,8 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.method707();
                     int_0 = packetbuffer_0.readInt();
                     widget_1 = Junk.method671(int_0);
-                    if (int_1 != widget_1.anInt277 || int_1 == -1) {
-                        widget_1.anInt277 = int_1;
+                    if (int_1 != widget_1.disabledAnimation || int_1 == -1) {
+                        widget_1.disabledAnimation = int_1;
                         widget_1.anInt281 = 0;
                         widget_1.anInt280 = 0;
                         WorldMapData.method305(widget_1);
@@ -1445,24 +1445,24 @@ public final class Client extends GameEngine {
                     ItemDefinition itemcomposition_0;
                     if (!widget_0.hasScript) {
                         if (int_0 == -1) {
-                            widget_0.modelType = 0;
+                            widget_0.disabledMediaType = 0;
                             class46_0.serverPacket = null;
                             return true;
                         }
 
                         itemcomposition_0 = ItemDefinition.getDefinition(int_0);
-                        widget_0.modelType = 4;
-                        widget_0.modelId = int_0;
-                        widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
-                        widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+                        widget_0.disabledMediaType = 4;
+                        widget_0.disabledMediaId = int_0;
+                        widget_0.modelRotationX = itemcomposition_0.modelInventoryRotationY;
+                        widget_0.modelRotationZ = itemcomposition_0.modelInventoryRotationX;
                         widget_0.modelZoom = itemcomposition_0.modelInventoryZoom * 100 / int_2;
                         WorldMapData.method305(widget_0);
                     } else {
                         widget_0.itemId = int_0;
                         widget_0.itemQuantity = int_2;
                         itemcomposition_0 = ItemDefinition.getDefinition(int_0);
-                        widget_0.rotationX = itemcomposition_0.modelInventoryRotationY;
-                        widget_0.rotationZ = itemcomposition_0.modelInventoryRotationX;
+                        widget_0.modelRotationX = itemcomposition_0.modelInventoryRotationY;
+                        widget_0.modelRotationZ = itemcomposition_0.modelInventoryRotationX;
                         widget_0.rotationY = itemcomposition_0.diagonalRotation;
                         widget_0.anInt293 = itemcomposition_0.spriteTranslateX;
                         widget_0.anInt294 = itemcomposition_0.spriteTranslateY;
@@ -1504,8 +1504,8 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket57 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method727();
                     widget_2 = Junk.method671(int_1);
-                    widget_2.modelType = 3;
-                    widget_2.modelId = Class4.localPlayer.composition.method507();
+                    widget_2.disabledMediaType = 3;
+                    widget_2.disabledMediaId = Class4.localPlayer.composition.method507();
                     WorldMapData.method305(widget_2);
                     class46_0.serverPacket = null;
                     return true;
@@ -1633,8 +1633,8 @@ public final class Client extends GameEngine {
                     int_12 = int_1 & 0x1F;
                     int_3 = (int_11 << 11) + (int_2 << 19) + (int_12 << 3);
                     Widget widget_4 = Junk.method671(int_0);
-                    if (int_3 != widget_4.textColor) {
-                        widget_4.textColor = int_3;
+                    if (int_3 != widget_4.disabledColour) {
+                        widget_4.disabledColour = int_3;
                         WorldMapData.method305(widget_4);
                     }
 
@@ -1799,9 +1799,9 @@ public final class Client extends GameEngine {
                     int_2 = packetbuffer_0.getUnsignedShortInverse();
                     int_11 = packetbuffer_0.readUnsignedShortOb1();
                     widget_3 = Junk.method671(int_1);
-                    if (int_2 != widget_3.rotationX || int_0 != widget_3.rotationZ || int_11 != widget_3.modelZoom) {
-                        widget_3.rotationX = int_2;
-                        widget_3.rotationZ = int_0;
+                    if (int_2 != widget_3.modelRotationX || int_0 != widget_3.modelRotationZ || int_11 != widget_3.modelZoom) {
+                        widget_3.modelRotationX = int_2;
+                        widget_3.modelRotationZ = int_0;
                         widget_3.modelZoom = int_11;
                         WorldMapData.method305(widget_3);
                     }
@@ -1961,9 +1961,9 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
                     widget_1 = Junk.method671(int_0);
-                    if (widget_1.modelType != 1 || int_1 != widget_1.modelId) {
-                        widget_1.modelType = 1;
-                        widget_1.modelId = int_1;
+                    if (widget_1.disabledMediaType != 1 || int_1 != widget_1.disabledMediaId) {
+                        widget_1.disabledMediaType = 1;
+                        widget_1.disabledMediaId = int_1;
                         WorldMapData.method305(widget_1);
                     }
 
@@ -2212,8 +2212,8 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.method714();
                     string_1 = packetbuffer_0.readString();
                     widget_1 = Junk.method671(int_1);
-                    if (!string_1.equals(widget_1.text)) {
-                        widget_1.text = string_1;
+                    if (!string_1.equals(widget_1.disabledText)) {
+                        widget_1.disabledText = string_1;
                         WorldMapData.method305(widget_1);
                     }
 
@@ -2225,9 +2225,9 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
                     widget_1 = Junk.method671(int_0);
-                    if (widget_1.modelType != 2 || int_1 != widget_1.modelId) {
-                        widget_1.modelType = 2;
-                        widget_1.modelId = int_1;
+                    if (widget_1.disabledMediaType != 2 || int_1 != widget_1.disabledMediaId) {
+                        widget_1.disabledMediaType = 2;
+                        widget_1.disabledMediaId = int_1;
                         WorldMapData.method305(widget_1);
                     }
 
@@ -3251,15 +3251,15 @@ public final class Client extends GameEngine {
 
                                                                                 while (int_6 != int_7) {
                                                                                     if (int_6 > int_7) {
-                                                                                        widget_2.method596(int_6 - 1, int_6);
+                                                                                        widget_2.swapItems(int_6 - 1, int_6);
                                                                                         --int_6;
                                                                                     } else if (int_6 < int_7) {
-                                                                                        widget_2.method596(int_6 + 1, int_6);
+                                                                                        widget_2.swapItems(int_6 + 1, int_6);
                                                                                         ++int_6;
                                                                                     }
                                                                                 }
                                                                             } else {
-                                                                                widget_2.method596(anInt693, anInt635);
+                                                                                widget_2.swapItems(anInt693, anInt635);
                                                                             }
 
                                                                             PacketNode packetnode_2 = Actor.method953(ClientPacket.aClientPacket84, aClass46_1.cipher);

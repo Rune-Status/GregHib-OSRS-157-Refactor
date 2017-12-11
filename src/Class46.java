@@ -253,12 +253,12 @@ public class Class46 {
                Class11.varplayer_ref = indexdata_11;
                VarPlayerType.anInt508 = Class11.varplayer_ref.fileCount(16);
                IndexData indexdata_12 = Class56.anIndexData2;
-               IndexData indexdata_13 = Class4.indexModels;
-               IndexData indexdata_14 = Class34.indexSprites;
+               IndexData models = Class4.indexModels;
+               IndexData sprites = Class34.indexSprites;
                IndexData indexdata_15 = Enum1.anIndexData4;
                Class5.widgetIndex = indexdata_12;
-               Widget.anIndexDataBase12 = indexdata_13;
-               Enum1.anIndexDataBase13 = indexdata_14;
+               Widget.modelCacheIndex = models;
+               Enum1.spriteCacheIndex = sprites;
                Widget.anIndexDataBase11 = indexdata_15;
                Class91.widgets = new Widget[Class5.widgetIndex.size()][];
                AClass3_Sub1.validInterfaces = new boolean[Class5.widgetIndex.size()];

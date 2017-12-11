@@ -42,12 +42,12 @@ final class Class49 implements Comparator {
             }
 
             if (widget_0.type == 6) {
-               if (widget_0.anInt277 != -1 || widget_0.anInt278 != -1) {
+               if (widget_0.disabledAnimation != -1 || widget_0.enabledAnimation != -1) {
                   boolean bool_0 = Class60.method391(widget_0);
                   if (bool_0) {
-                     int_2 = widget_0.anInt278;
+                     int_2 = widget_0.enabledAnimation;
                   } else {
-                     int_2 = widget_0.anInt277;
+                     int_2 = widget_0.disabledAnimation;
                   }
 
                   if (int_2 != -1) {
@@ -71,8 +71,8 @@ final class Class49 implements Comparator {
                   int_2 = widget_0.anInt279 << 16 >> 16;
                   int_3 *= Client.anInt625;
                   int_2 *= Client.anInt625;
-                  widget_0.rotationX = int_3 + widget_0.rotationX & 0x7FF;
-                  widget_0.rotationZ = int_2 + widget_0.rotationZ & 0x7FF;
+                  widget_0.modelRotationX = int_3 + widget_0.modelRotationX & 0x7FF;
+                  widget_0.modelRotationZ = int_2 + widget_0.modelRotationZ & 0x7FF;
                   WorldMapData.method305(widget_0);
                }
             }

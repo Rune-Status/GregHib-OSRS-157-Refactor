@@ -1,27 +1,27 @@
 public class Widget extends Node {
 
-   public static boolean aBool34;
-   public static NodeCache aNodeCache2;
-   public static NodeCache aNodeCache3;
-   public static NodeCache aNodeCache4;
+   public static boolean missingData;
+   public static NodeCache spritePixelsCache;
+   public static NodeCache fontCache;
+   public static NodeCache widgetModelCache;
    public static IndexDataBase anIndexDataBase11;
-   public static IndexDataBase anIndexDataBase12;
-   public static NodeCache aNodeCache5;
-   public int anInt267;
+   public static IndexDataBase modelCacheIndex;
+   public static NodeCache spriteCache;
+   public int enabledImage;
    public String[] actions;
    public int parentId;
    public int[] itemIds;
    public boolean hasScript;
    public int loopCycle;
    public int fontId;
-   int anInt268;
-   public int[] anIntArray64;
-   public int spriteId;
-   public int modelType;
+   int enabledMediaType;
+   public int[] images;
+   public int disabledImage;
+   public int disabledMediaType;
    public int width;
-   int anInt269;
-   public int modelId;
-   public boolean aBool35;
+   int enabledMediaId;
+   public int disabledMediaId;
+   public boolean parametersLoaded;
    public int id;
    public int type;
    public int height;
@@ -33,7 +33,7 @@ public class Widget extends Node {
    public boolean flippedVertically;
    public int anInt271;
    public int[] itemQuantities;
-   public int anInt272;
+   public int actionType;
    public int originalX;
    public int originalWidth;
    public int borderThickness;
@@ -49,8 +49,8 @@ public class Widget extends Node {
    public boolean isHidden;
    public int anInt275;
    public int anInt276;
-   public int anInt277;
-   public int anInt278;
+   public int disabledAnimation;
+   public int enabledAnimation;
    public int[] tableActions;
    public int anInt279;
    public int[] anIntArray65;
@@ -60,20 +60,20 @@ public class Widget extends Node {
    public int config;
    public Widget[] children;
    public int opacity;
-   public int rotationX;
+   public int modelRotationX;
    public int anInt280;
-   public int rotationZ;
+   public int modelRotationZ;
    public int anInt281;
    public int anInt282;
    public int itemId;
    public Object[] anObjectArray2;
-   public int textColor;
-   public int anInt283;
+   public int disabledColour;
+   public int enabledColour;
    public int anInt284;
-   public int anInt285;
+   public int disabledHoverColour;
    public int anInt286;
-   public int anInt287;
-   public boolean aBool36;
+   public int enabledHoverColour;
+   public boolean rectFilled;
    public Enum9 anEnum9_1;
    public int anInt288;
    public int anInt289;
@@ -82,7 +82,7 @@ public class Widget extends Node {
    public int textureId;
    public Object[] anObjectArray3;
    public boolean aBool39;
-   public int anInt290;
+   public int textCentered;
    public int anInt291;
    public Object[] anObjectArray4;
    public int anInt292;
@@ -97,12 +97,12 @@ public class Widget extends Node {
    public boolean textShadowed;
    public int paddingY;
    public Object[] anObjectArray6;
-   public int[] xSprites;
+   public int[] imageX;
    public boolean aBool41;
-   public int[] anIntArray66;
+   public int[] imageY;
    public int anInt296;
-   public String text;
-   public String aString15;
+   public String disabledText;
+   public String enabledText;
    public String[] configActions;
    public Object[] anObjectArray7;
    public int itemQuantity;
@@ -110,7 +110,7 @@ public class Widget extends Node {
    public Widget dragParent;
    public Object[] anObjectArray8;
    public String selectedAction;
-   public String aString16;
+   public String spellName;
    public Object[] anObjectArray9;
    public String tooltip;
    public boolean aBool42;
@@ -145,18 +145,18 @@ public class Widget extends Node {
    public Object[] anObjectArray21;
 
    static {
-      aNodeCache2 = new NodeCache(200);
-      aNodeCache4 = new NodeCache(50);
-      aNodeCache3 = new NodeCache(20);
-      aNodeCache5 = new NodeCache(8);
-      aBool34 = false;
+      spritePixelsCache = new NodeCache(200);
+      widgetModelCache = new NodeCache(50);
+      fontCache = new NodeCache(20);
+      spriteCache = new NodeCache(8);
+      missingData = false;
    }
 
    public Widget() {
       this.hasScript = false;
       this.id = -1;
       this.index = -1;
-      this.anInt272 = 0;
+      this.actionType = 0;
       this.contentType = 0;
       this.anInt270 = 0;
       this.anInt273 = 0;
@@ -178,32 +178,32 @@ public class Widget extends Node {
       this.scrollY = 0;
       this.scrollWidth = 0;
       this.scrollHeight = 0;
-      this.textColor = 0;
-      this.anInt283 = 0;
-      this.anInt285 = 0;
-      this.anInt287 = 0;
-      this.aBool36 = false;
+      this.disabledColour = 0;
+      this.enabledColour = 0;
+      this.disabledHoverColour = 0;
+      this.enabledHoverColour = 0;
+      this.rectFilled = false;
       this.anEnum9_1 = Enum9.anEnum9_2;
       this.opacity = 0;
       this.anInt288 = 0;
       this.anInt289 = 1;
       this.aBool37 = false;
-      this.spriteId = -1;
-      this.anInt267 = -1;
+      this.disabledImage = -1;
+      this.enabledImage = -1;
       this.textureId = 0;
       this.aBool39 = false;
       this.borderThickness = 0;
       this.sprite2 = 0;
-      this.modelType = 1;
-      this.modelId = -1;
-      this.anInt268 = 1;
-      this.anInt269 = -1;
-      this.anInt277 = -1;
-      this.anInt278 = -1;
+      this.disabledMediaType = 1;
+      this.disabledMediaId = -1;
+      this.enabledMediaType = 1;
+      this.enabledMediaId = -1;
+      this.disabledAnimation = -1;
+      this.enabledAnimation = -1;
       this.anInt293 = 0;
       this.anInt294 = 0;
-      this.rotationX = 0;
-      this.rotationZ = 0;
+      this.modelRotationX = 0;
+      this.modelRotationZ = 0;
       this.rotationY = 0;
       this.modelZoom = 100;
       this.anInt295 = 0;
@@ -211,10 +211,10 @@ public class Widget extends Node {
       this.aBool41 = false;
       this.anInt296 = 2;
       this.fontId = -1;
-      this.text = "";
-      this.aString15 = "";
+      this.disabledText = "";
+      this.enabledText = "";
       this.anInt292 = 0;
-      this.anInt290 = 0;
+      this.textCentered = 0;
       this.anInt291 = 0;
       this.textShadowed = false;
       this.paddingX = 0;
@@ -226,9 +226,9 @@ public class Widget extends Node {
       this.anInt286 = 0;
       this.aBool40 = false;
       this.selectedAction = "";
-      this.aBool35 = false;
+      this.parametersLoaded = false;
       this.anInt282 = -1;
-      this.aString16 = "";
+      this.spellName = "";
       this.tooltip = "Ok";
       this.itemId = -1;
       this.itemQuantity = 0;
@@ -246,615 +246,615 @@ public class Widget extends Node {
       this.aBool44 = false;
    }
 
-   public SpritePixels method590(boolean bool_0) {
-      aBool34 = false;
-      int int_0;
-      if (bool_0) {
-         int_0 = this.anInt267;
+   public SpritePixels getRotatedPixels(boolean enabled) {
+      missingData = false;
+      int spriteId;
+      if (enabled) {
+         spriteId = this.enabledImage;
       } else {
-         int_0 = this.spriteId;
+         spriteId = this.disabledImage;
       }
 
-      if (int_0 == -1) {
+      if (spriteId == -1) {
          return null;
       } else {
-         long long_0 = ((long)this.sprite2 << 40) + ((this.flippedHorizontally ? 1L : 0L) << 39) + ((this.flippedVertically ? 1L : 0L) << 38) + (long)int_0 + ((long)this.borderThickness << 36);
-         SpritePixels spritepixels_0 = (SpritePixels) aNodeCache2.get(long_0);
-         if (spritepixels_0 != null) {
-            return spritepixels_0;
+         long key = ((long)this.sprite2 << 40) + ((this.flippedHorizontally ? 1L : 0L) << 39) + ((this.flippedVertically ? 1L : 0L) << 38) + (long)spriteId + ((long)this.borderThickness << 36);
+         SpritePixels pixels = (SpritePixels) spritePixelsCache.get(key);
+         if (pixels != null) {
+            return pixels;
          } else {
-            spritepixels_0 = Class38.method254(Enum1.anIndexDataBase13, int_0, 0);
-            if (spritepixels_0 == null) {
-               aBool34 = true;
+            pixels = Class38.decodeSpritePixels(Enum1.spriteCacheIndex, spriteId, 0);
+            if (pixels == null) {
+               missingData = true;
                return null;
             } else {
                if (this.flippedVertically) {
-                  spritepixels_0.method985();
+                  pixels.flipVertical();
                }
 
                if (this.flippedHorizontally) {
-                  spritepixels_0.method986();
+                  pixels.flipHorizontal();
                }
 
                if (this.borderThickness > 0) {
-                  spritepixels_0.method987(this.borderThickness);
+                  pixels.setBorder(this.borderThickness);
                }
 
                if (this.borderThickness >= 1) {
-                  spritepixels_0.method988(1);
+                  pixels.setTransparentPixel(1);
                }
 
                if (this.borderThickness >= 2) {
-                  spritepixels_0.method988(16777215);
+                  pixels.setTransparentPixel(16777215);
                }
 
                if (this.sprite2 != 0) {
-                  spritepixels_0.method989(this.sprite2);
+                  pixels.setSecondarySprite(this.sprite2);
                }
 
-               aNodeCache2.put(spritepixels_0, long_0);
-               return spritepixels_0;
+               spritePixelsCache.put(pixels, key);
+               return pixels;
             }
          }
       }
    }
 
-   void decode(Buffer buffer_0) {
+   void decode(Buffer buffer) {
       this.hasScript = false;
-      this.type = buffer_0.getUnsignedByte();
-      this.anInt272 = buffer_0.getUnsignedByte();
-      this.contentType = buffer_0.getUnsignedShort();
-      this.originalX = buffer_0.readShort();
-      this.originalY = buffer_0.readShort();
-      this.originalWidth = buffer_0.getUnsignedShort();
-      this.anInt274 = buffer_0.getUnsignedShort();
-      this.opacity = buffer_0.getUnsignedByte();
-      this.parentId = buffer_0.getUnsignedShort();
+      this.type = buffer.getUnsignedByte();
+      this.actionType = buffer.getUnsignedByte();
+      this.contentType = buffer.getUnsignedShort();
+      this.originalX = buffer.readShort();
+      this.originalY = buffer.readShort();
+      this.originalWidth = buffer.getUnsignedShort();
+      this.anInt274 = buffer.getUnsignedShort();
+      this.opacity = buffer.getUnsignedByte();
+      this.parentId = buffer.getUnsignedShort();
       if (this.parentId == 65535) {
          this.parentId = -1;
       } else {
          this.parentId += this.id & 0xFFFF0000;
       }
 
-      this.anInt282 = buffer_0.getUnsignedShort();
+      this.anInt282 = buffer.getUnsignedShort();
       if (this.anInt282 == 65535) {
          this.anInt282 = -1;
       }
 
-      int int_0 = buffer_0.getUnsignedByte();
-      int int_1;
-      if (int_0 > 0) {
-         this.tableActions = new int[int_0];
-         this.anIntArray65 = new int[int_0];
+      int conditionCount = buffer.getUnsignedByte();
+      int length;
+      if (conditionCount > 0) {
+         this.tableActions = new int[conditionCount];
+         this.anIntArray65 = new int[conditionCount];
 
-         for (int_1 = 0; int_1 < int_0; int_1++) {
-            this.tableActions[int_1] = buffer_0.getUnsignedByte();
-            this.anIntArray65[int_1] = buffer_0.getUnsignedShort();
+         for (length = 0; length < conditionCount; length++) {
+            this.tableActions[length] = buffer.getUnsignedByte();
+            this.anIntArray65[length] = buffer.getUnsignedShort();
          }
       }
 
-      int_1 = buffer_0.getUnsignedByte();
-      int int_2;
-      int int_3;
-      int int_4;
-      if (int_1 > 0) {
-         this.dynamicValues = new int[int_1][];
+      length = buffer.getUnsignedByte();
+      int config;
+      int size;
+      int index;
+      if (length > 0) {
+         this.dynamicValues = new int[length][];
 
-         for (int_2 = 0; int_2 < int_1; int_2++) {
-            int_3 = buffer_0.getUnsignedShort();
-            this.dynamicValues[int_2] = new int[int_3];
+         for (config = 0; config < length; config++) {
+            size = buffer.getUnsignedShort();
+            this.dynamicValues[config] = new int[size];
 
-            for (int_4 = 0; int_4 < int_3; int_4++) {
-               this.dynamicValues[int_2][int_4] = buffer_0.getUnsignedShort();
-               if (this.dynamicValues[int_2][int_4] == 65535) {
-                  this.dynamicValues[int_2][int_4] = -1;
+            for (index = 0; index < size; index++) {
+               this.dynamicValues[config][index] = buffer.getUnsignedShort();
+               if (this.dynamicValues[config][index] == 65535) {
+                  this.dynamicValues[config][index] = -1;
                }
             }
          }
       }
 
       if (this.type == 0) {
-         this.scrollHeight = buffer_0.getUnsignedShort();
-         this.isHidden = buffer_0.getUnsignedByte() == 1;
+         this.scrollHeight = buffer.getUnsignedShort();
+         this.isHidden = buffer.getUnsignedByte() == 1;
       }
 
       if (this.type == 1) {
-         buffer_0.getUnsignedShort();
-         buffer_0.getUnsignedByte();
+         buffer.getUnsignedShort();
+         buffer.getUnsignedByte();
       }
 
       if (this.type == 2) {
          this.itemIds = new int[this.originalWidth * this.anInt274];
          this.itemQuantities = new int[this.originalWidth * this.anInt274];
-         int_2 = buffer_0.getUnsignedByte();
-         if (int_2 == 1) {
+         config = buffer.getUnsignedByte();
+         if (config == 1) {
             this.config |= 0x10000000;
          }
 
-         int_3 = buffer_0.getUnsignedByte();
-         if (int_3 == 1) {
+         size = buffer.getUnsignedByte();
+         if (size == 1) {
             this.config |= 0x40000000;
          }
 
-         int_4 = buffer_0.getUnsignedByte();
-         if (int_4 == 1) {
+         index = buffer.getUnsignedByte();
+         if (index == 1) {
             this.config |= 0x80000000;
          }
 
-         int int_5 = buffer_0.getUnsignedByte();
-         if (int_5 == 1) {
+         int info = buffer.getUnsignedByte();
+         if (info == 1) {
             this.config |= 0x20000000;
          }
 
-         this.paddingX = buffer_0.getUnsignedByte();
-         this.paddingY = buffer_0.getUnsignedByte();
-         this.xSprites = new int[20];
-         this.anIntArray66 = new int[20];
-         this.anIntArray64 = new int[20];
+         this.paddingX = buffer.getUnsignedByte();
+         this.paddingY = buffer.getUnsignedByte();
+         this.imageX = new int[20];
+         this.imageY = new int[20];
+         this.images = new int[20];
 
-         int int_6;
-         for (int_6 = 0; int_6 < 20; int_6++) {
-            int int_7 = buffer_0.getUnsignedByte();
+         int spriteIndex;
+         for (spriteIndex = 0; spriteIndex < 20; spriteIndex++) {
+            int int_7 = buffer.getUnsignedByte();
             if (int_7 == 1) {
-               this.xSprites[int_6] = buffer_0.readShort();
-               this.anIntArray66[int_6] = buffer_0.readShort();
-               this.anIntArray64[int_6] = buffer_0.readInt();
+               this.imageX[spriteIndex] = buffer.readShort();
+               this.imageY[spriteIndex] = buffer.readShort();
+               this.images[spriteIndex] = buffer.readInt();
             } else {
-               this.anIntArray64[int_6] = -1;
+               this.images[spriteIndex] = -1;
             }
          }
 
          this.configActions = new String[5];
 
-         for (int_6 = 0; int_6 < 5; int_6++) {
-            String string_0 = buffer_0.readString();
+         for (spriteIndex = 0; spriteIndex < 5; spriteIndex++) {
+            String string_0 = buffer.readString();
             if (string_0.length() > 0) {
-               this.configActions[int_6] = string_0;
-               this.config |= 1 << int_6 + 23;
+               this.configActions[spriteIndex] = string_0;
+               this.config |= 1 << spriteIndex + 23;
             }
          }
       }
 
       if (this.type == 3) {
-         this.aBool36 = buffer_0.getUnsignedByte() == 1;
+         this.rectFilled = buffer.getUnsignedByte() == 1;
       }
 
       if (this.type == 4 || this.type == 1) {
-         this.anInt290 = buffer_0.getUnsignedByte();
-         this.anInt291 = buffer_0.getUnsignedByte();
-         this.anInt292 = buffer_0.getUnsignedByte();
-         this.fontId = buffer_0.getUnsignedShort();
+         this.textCentered = buffer.getUnsignedByte();
+         this.anInt291 = buffer.getUnsignedByte();
+         this.anInt292 = buffer.getUnsignedByte();
+         this.fontId = buffer.getUnsignedShort();
          if (this.fontId == 65535) {
             this.fontId = -1;
          }
 
-         this.textShadowed = buffer_0.getUnsignedByte() == 1;
+         this.textShadowed = buffer.getUnsignedByte() == 1;
       }
 
       if (this.type == 4) {
-         this.text = buffer_0.readString();
-         this.aString15 = buffer_0.readString();
+         this.disabledText = buffer.readString();
+         this.enabledText = buffer.readString();
       }
 
       if (this.type == 1 || this.type == 3 || this.type == 4) {
-         this.textColor = buffer_0.readInt();
+         this.disabledColour = buffer.readInt();
       }
 
       if (this.type == 3 || this.type == 4) {
-         this.anInt283 = buffer_0.readInt();
-         this.anInt285 = buffer_0.readInt();
-         this.anInt287 = buffer_0.readInt();
+         this.enabledColour = buffer.readInt();
+         this.disabledHoverColour = buffer.readInt();
+         this.enabledHoverColour = buffer.readInt();
       }
 
       if (this.type == 5) {
-         this.spriteId = buffer_0.readInt();
-         this.anInt267 = buffer_0.readInt();
+         this.disabledImage = buffer.readInt();
+         this.enabledImage = buffer.readInt();
       }
 
       if (this.type == 6) {
-         this.modelType = 1;
-         this.modelId = buffer_0.getUnsignedShort();
-         if (this.modelId == 65535) {
-            this.modelId = -1;
+         this.disabledMediaType = 1;
+         this.disabledMediaId = buffer.getUnsignedShort();
+         if (this.disabledMediaId == 65535) {
+            this.disabledMediaId = -1;
          }
 
-         this.anInt268 = 1;
-         this.anInt269 = buffer_0.getUnsignedShort();
-         if (this.anInt269 == 65535) {
-            this.anInt269 = -1;
+         this.enabledMediaType = 1;
+         this.enabledMediaId = buffer.getUnsignedShort();
+         if (this.enabledMediaId == 65535) {
+            this.enabledMediaId = -1;
          }
 
-         this.anInt277 = buffer_0.getUnsignedShort();
-         if (this.anInt277 == 65535) {
-            this.anInt277 = -1;
+         this.disabledAnimation = buffer.getUnsignedShort();
+         if (this.disabledAnimation == 65535) {
+            this.disabledAnimation = -1;
          }
 
-         this.anInt278 = buffer_0.getUnsignedShort();
-         if (this.anInt278 == 65535) {
-            this.anInt278 = -1;
+         this.enabledAnimation = buffer.getUnsignedShort();
+         if (this.enabledAnimation == 65535) {
+            this.enabledAnimation = -1;
          }
 
-         this.modelZoom = buffer_0.getUnsignedShort();
-         this.rotationX = buffer_0.getUnsignedShort();
-         this.rotationZ = buffer_0.getUnsignedShort();
+         this.modelZoom = buffer.getUnsignedShort();
+         this.modelRotationX = buffer.getUnsignedShort();
+         this.modelRotationZ = buffer.getUnsignedShort();
       }
 
       if (this.type == 7) {
          this.itemIds = new int[this.originalWidth * this.anInt274];
          this.itemQuantities = new int[this.originalWidth * this.anInt274];
-         this.anInt290 = buffer_0.getUnsignedByte();
-         this.fontId = buffer_0.getUnsignedShort();
+         this.textCentered = buffer.getUnsignedByte();
+         this.fontId = buffer.getUnsignedShort();
          if (this.fontId == 65535) {
             this.fontId = -1;
          }
 
-         this.textShadowed = buffer_0.getUnsignedByte() == 1;
-         this.textColor = buffer_0.readInt();
-         this.paddingX = buffer_0.readShort();
-         this.paddingY = buffer_0.readShort();
-         int_2 = buffer_0.getUnsignedByte();
-         if (int_2 == 1) {
+         this.textShadowed = buffer.getUnsignedByte() == 1;
+         this.disabledColour = buffer.readInt();
+         this.paddingX = buffer.readShort();
+         this.paddingY = buffer.readShort();
+         config = buffer.getUnsignedByte();
+         if (config == 1) {
             this.config |= 0x40000000;
          }
 
          this.configActions = new String[5];
 
-         for (int_3 = 0; int_3 < 5; int_3++) {
-            String string_1 = buffer_0.readString();
+         for (size = 0; size < 5; size++) {
+            String string_1 = buffer.readString();
             if (string_1.length() > 0) {
-               this.configActions[int_3] = string_1;
-               this.config |= 1 << int_3 + 23;
+               this.configActions[size] = string_1;
+               this.config |= 1 << size + 23;
             }
          }
       }
 
       if (this.type == 8) {
-         this.text = buffer_0.readString();
+         this.disabledText = buffer.readString();
       }
 
-      if (this.anInt272 == 2 || this.type == 2) {
-         this.selectedAction = buffer_0.readString();
-         this.aString16 = buffer_0.readString();
-         int_2 = buffer_0.getUnsignedShort() & 0x3F;
-         this.config |= int_2 << 11;
+      if (this.actionType == 2 || this.type == 2) {
+         this.selectedAction = buffer.readString();
+         this.spellName = buffer.readString();
+         config = buffer.getUnsignedShort() & 0x3F;
+         this.config |= config << 11;
       }
 
-      if (this.anInt272 == 1 || this.anInt272 == 4 || this.anInt272 == 5 || this.anInt272 == 6) {
-         this.tooltip = buffer_0.readString();
+      if (this.actionType == 1 || this.actionType == 4 || this.actionType == 5 || this.actionType == 6) {
+         this.tooltip = buffer.readString();
          if (this.tooltip.length() == 0) {
-            if (this.anInt272 == 1) {
+            if (this.actionType == 1) {
                this.tooltip = "Ok";
             }
 
-            if (this.anInt272 == 4) {
+            if (this.actionType == 4) {
                this.tooltip = "Select";
             }
 
-            if (this.anInt272 == 5) {
+            if (this.actionType == 5) {
                this.tooltip = "Select";
             }
 
-            if (this.anInt272 == 6) {
+            if (this.actionType == 6) {
                this.tooltip = "Continue";
             }
          }
       }
 
-      if (this.anInt272 == 1 || this.anInt272 == 4 || this.anInt272 == 5) {
+      if (this.actionType == 1 || this.actionType == 4 || this.actionType == 5) {
          this.config |= 0x400000;
       }
 
-      if (this.anInt272 == 6) {
+      if (this.actionType == 6) {
          this.config |= 0x1;
       }
 
    }
 
-   void decodeActive(Buffer buffer_0) {
-      buffer_0.getUnsignedByte();
+   void decodeActive(Buffer buffer) {
+      buffer.getUnsignedByte();
       this.hasScript = true;
-      this.type = buffer_0.getUnsignedByte();
-      this.contentType = buffer_0.getUnsignedShort();
-      this.originalX = buffer_0.readShort();
-      this.originalY = buffer_0.readShort();
-      this.originalWidth = buffer_0.getUnsignedShort();
+      this.type = buffer.getUnsignedByte();
+      this.contentType = buffer.getUnsignedShort();
+      this.originalX = buffer.readShort();
+      this.originalY = buffer.readShort();
+      this.originalWidth = buffer.getUnsignedShort();
       if (this.type == 9) {
-         this.anInt274 = buffer_0.readShort();
+         this.anInt274 = buffer.readShort();
       } else {
-         this.anInt274 = buffer_0.getUnsignedShort();
+         this.anInt274 = buffer.getUnsignedShort();
       }
 
-      this.anInt271 = buffer_0.readByte();
-      this.buttonType = buffer_0.readByte();
-      this.anInt270 = buffer_0.readByte();
-      this.anInt273 = buffer_0.readByte();
-      this.parentId = buffer_0.getUnsignedShort();
+      this.anInt271 = buffer.readByte();
+      this.buttonType = buffer.readByte();
+      this.anInt270 = buffer.readByte();
+      this.anInt273 = buffer.readByte();
+      this.parentId = buffer.getUnsignedShort();
       if (this.parentId == 65535) {
          this.parentId = -1;
       } else {
          this.parentId += this.id & 0xFFFF0000;
       }
 
-      this.isHidden = buffer_0.getUnsignedByte() == 1;
+      this.isHidden = buffer.getUnsignedByte() == 1;
       if (this.type == 0) {
-         this.scrollWidth = buffer_0.getUnsignedShort();
-         this.scrollHeight = buffer_0.getUnsignedShort();
-         this.aBool38 = buffer_0.getUnsignedByte() == 1;
+         this.scrollWidth = buffer.getUnsignedShort();
+         this.scrollHeight = buffer.getUnsignedShort();
+         this.aBool38 = buffer.getUnsignedByte() == 1;
       }
 
       if (this.type == 5) {
-         this.spriteId = buffer_0.readInt();
-         this.textureId = buffer_0.getUnsignedShort();
-         this.aBool39 = buffer_0.getUnsignedByte() == 1;
-         this.opacity = buffer_0.getUnsignedByte();
-         this.borderThickness = buffer_0.getUnsignedByte();
-         this.sprite2 = buffer_0.readInt();
-         this.flippedVertically = buffer_0.getUnsignedByte() == 1;
-         this.flippedHorizontally = buffer_0.getUnsignedByte() == 1;
+         this.disabledImage = buffer.readInt();
+         this.textureId = buffer.getUnsignedShort();
+         this.aBool39 = buffer.getUnsignedByte() == 1;
+         this.opacity = buffer.getUnsignedByte();
+         this.borderThickness = buffer.getUnsignedByte();
+         this.sprite2 = buffer.readInt();
+         this.flippedVertically = buffer.getUnsignedByte() == 1;
+         this.flippedHorizontally = buffer.getUnsignedByte() == 1;
       }
 
       if (this.type == 6) {
-         this.modelType = 1;
-         this.modelId = buffer_0.getUnsignedShort();
-         if (this.modelId == 65535) {
-            this.modelId = -1;
+         this.disabledMediaType = 1;
+         this.disabledMediaId = buffer.getUnsignedShort();
+         if (this.disabledMediaId == 65535) {
+            this.disabledMediaId = -1;
          }
 
-         this.anInt293 = buffer_0.readShort();
-         this.anInt294 = buffer_0.readShort();
-         this.rotationX = buffer_0.getUnsignedShort();
-         this.rotationZ = buffer_0.getUnsignedShort();
-         this.rotationY = buffer_0.getUnsignedShort();
-         this.modelZoom = buffer_0.getUnsignedShort();
-         this.anInt277 = buffer_0.getUnsignedShort();
-         if (this.anInt277 == 65535) {
-            this.anInt277 = -1;
+         this.anInt293 = buffer.readShort();
+         this.anInt294 = buffer.readShort();
+         this.modelRotationX = buffer.getUnsignedShort();
+         this.modelRotationZ = buffer.getUnsignedShort();
+         this.rotationY = buffer.getUnsignedShort();
+         this.modelZoom = buffer.getUnsignedShort();
+         this.disabledAnimation = buffer.getUnsignedShort();
+         if (this.disabledAnimation == 65535) {
+            this.disabledAnimation = -1;
          }
 
-         this.aBool41 = buffer_0.getUnsignedByte() == 1;
-         buffer_0.getUnsignedShort();
+         this.aBool41 = buffer.getUnsignedByte() == 1;
+         buffer.getUnsignedShort();
          if (this.anInt271 != 0) {
-            this.anInt295 = buffer_0.getUnsignedShort();
+            this.anInt295 = buffer.getUnsignedShort();
          }
 
          if (this.buttonType != 0) {
-            buffer_0.getUnsignedShort();
+            buffer.getUnsignedShort();
          }
       }
 
       if (this.type == 4) {
-         this.fontId = buffer_0.getUnsignedShort();
+         this.fontId = buffer.getUnsignedShort();
          if (this.fontId == 65535) {
             this.fontId = -1;
          }
 
-         this.text = buffer_0.readString();
-         this.anInt292 = buffer_0.getUnsignedByte();
-         this.anInt290 = buffer_0.getUnsignedByte();
-         this.anInt291 = buffer_0.getUnsignedByte();
-         this.textShadowed = buffer_0.getUnsignedByte() == 1;
-         this.textColor = buffer_0.readInt();
+         this.disabledText = buffer.readString();
+         this.anInt292 = buffer.getUnsignedByte();
+         this.textCentered = buffer.getUnsignedByte();
+         this.anInt291 = buffer.getUnsignedByte();
+         this.textShadowed = buffer.getUnsignedByte() == 1;
+         this.disabledColour = buffer.readInt();
       }
 
       if (this.type == 3) {
-         this.textColor = buffer_0.readInt();
-         this.aBool36 = buffer_0.getUnsignedByte() == 1;
-         this.opacity = buffer_0.getUnsignedByte();
+         this.disabledColour = buffer.readInt();
+         this.rectFilled = buffer.getUnsignedByte() == 1;
+         this.opacity = buffer.getUnsignedByte();
       }
 
       if (this.type == 9) {
-         this.anInt289 = buffer_0.getUnsignedByte();
-         this.textColor = buffer_0.readInt();
-         this.aBool37 = buffer_0.getUnsignedByte() == 1;
+         this.anInt289 = buffer.getUnsignedByte();
+         this.disabledColour = buffer.readInt();
+         this.aBool37 = buffer.getUnsignedByte() == 1;
       }
 
-      this.config = buffer_0.read24BitInt();
-      this.name = buffer_0.readString();
-      int int_0 = buffer_0.getUnsignedByte();
+      this.config = buffer.read24BitInt();
+      this.name = buffer.readString();
+      int int_0 = buffer.getUnsignedByte();
       if (int_0 > 0) {
          this.actions = new String[int_0];
 
          for (int int_1 = 0; int_1 < int_0; int_1++) {
-            this.actions[int_1] = buffer_0.readString();
+            this.actions[int_1] = buffer.readString();
          }
       }
 
-      this.anInt284 = buffer_0.getUnsignedByte();
-      this.anInt286 = buffer_0.getUnsignedByte();
-      this.aBool40 = buffer_0.getUnsignedByte() == 1;
-      this.selectedAction = buffer_0.readString();
-      this.anObjectArray6 = this.method595(buffer_0);
-      this.mouseEnterListener = this.method595(buffer_0);
-      this.mouseExitListener = this.method595(buffer_0);
-      this.anObjectArray8 = this.method595(buffer_0);
-      this.anObjectArray9 = this.method595(buffer_0);
-      this.configListenerArgs = this.method595(buffer_0);
-      this.tableListenerArgs = this.method595(buffer_0);
-      this.skillListenerArgs = this.method595(buffer_0);
-      this.renderListener = this.method595(buffer_0);
-      this.anObjectArray10 = this.method595(buffer_0);
-      this.mouseHoverListener = this.method595(buffer_0);
-      this.anObjectArray11 = this.method595(buffer_0);
-      this.anObjectArray14 = this.method595(buffer_0);
-      this.anObjectArray13 = this.method595(buffer_0);
-      this.anObjectArray12 = this.method595(buffer_0);
-      this.anObjectArray3 = this.method595(buffer_0);
-      this.anObjectArray4 = this.method595(buffer_0);
-      this.scrollListener = this.method595(buffer_0);
-      this.configTriggers = this.method598(buffer_0);
-      this.tableModTriggers = this.method598(buffer_0);
-      this.skillTriggers = this.method598(buffer_0);
+      this.anInt284 = buffer.getUnsignedByte();
+      this.anInt286 = buffer.getUnsignedByte();
+      this.aBool40 = buffer.getUnsignedByte() == 1;
+      this.selectedAction = buffer.readString();
+      this.anObjectArray6 = this.decodeWidgetParameters(buffer);
+      this.mouseEnterListener = this.decodeWidgetParameters(buffer);
+      this.mouseExitListener = this.decodeWidgetParameters(buffer);
+      this.anObjectArray8 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray9 = this.decodeWidgetParameters(buffer);
+      this.configListenerArgs = this.decodeWidgetParameters(buffer);
+      this.tableListenerArgs = this.decodeWidgetParameters(buffer);
+      this.skillListenerArgs = this.decodeWidgetParameters(buffer);
+      this.renderListener = this.decodeWidgetParameters(buffer);
+      this.anObjectArray10 = this.decodeWidgetParameters(buffer);
+      this.mouseHoverListener = this.decodeWidgetParameters(buffer);
+      this.anObjectArray11 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray14 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray13 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray12 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray3 = this.decodeWidgetParameters(buffer);
+      this.anObjectArray4 = this.decodeWidgetParameters(buffer);
+      this.scrollListener = this.decodeWidgetParameters(buffer);
+      this.configTriggers = this.decodeArray(buffer);
+      this.tableModTriggers = this.decodeArray(buffer);
+      this.skillTriggers = this.decodeArray(buffer);
    }
 
-   public CacheableNode_Sub1 method591(boolean bool_0) {
-      if (this.anInt267 == -1) {
-         bool_0 = false;
+   public CachedSprite method591(boolean enabled) {
+      if (this.enabledImage == -1) {
+         enabled = false;
       }
 
-      int int_0 = bool_0 ? this.anInt267 : this.spriteId;
-      if (int_0 == -1) {
+      int spriteId = enabled ? this.enabledImage : this.disabledImage;
+      if (spriteId == -1) {
          return null;
       } else {
-         long long_0 = ((this.flippedHorizontally ? 1L : 0L) << 39) + ((this.flippedVertically ? 1L : 0L) << 38) + ((long)this.borderThickness << 36) + (long)int_0 + ((long)this.sprite2 << 40);
-         CacheableNode_Sub1 cacheablenode_sub1_0 = (CacheableNode_Sub1) aNodeCache5.get(long_0);
-         if (cacheablenode_sub1_0 != null) {
-            return cacheablenode_sub1_0;
+         long key = ((this.flippedHorizontally ? 1L : 0L) << 39) + ((this.flippedVertically ? 1L : 0L) << 38) + ((long)this.borderThickness << 36) + (long)spriteId + ((long)this.sprite2 << 40);
+         CachedSprite cachedSprite = (CachedSprite) spriteCache.get(key);
+         if (cachedSprite != null) {
+            return cachedSprite;
          } else {
-            SpritePixels spritepixels_0 = this.method590(bool_0);
-            if (spritepixels_0 == null) {
+            SpritePixels sprite = this.getRotatedPixels(enabled);
+            if (sprite == null) {
                return null;
             } else {
-               SpritePixels spritepixels_1 = spritepixels_0.copy();
-               int[] ints_0 = new int[spritepixels_1.height];
-               int[] ints_1 = new int[spritepixels_1.height];
+               SpritePixels pixels = sprite.copy();
+               int[] xPixels = new int[pixels.height];
+               int[] yPixels = new int[pixels.height];
 
-               for (int int_1 = 0; int_1 < spritepixels_1.height; int_1++) {
-                  int int_2 = 0;
-                  int int_3 = spritepixels_1.width;
+               for (int pixel = 0; pixel < pixels.height; pixel++) {
+                  int height = 0;
+                  int width = pixels.width;
 
-                  int int_4;
-                  for (int_4 = 0; int_4 < spritepixels_1.width; int_4++) {
-                     if (spritepixels_1.pixels[int_4 + int_1 * spritepixels_1.width] == 0) {
-                        int_2 = int_4;
+                  int index;
+                  for (index = 0; index < pixels.width; index++) {
+                     if (pixels.pixels[index + pixel * pixels.width] == 0) {
+                        height = index;
                         break;
                      }
                   }
 
-                  for (int_4 = spritepixels_1.width - 1; int_4 >= int_2; --int_4) {
-                     if (spritepixels_1.pixels[int_4 + int_1 * spritepixels_1.width] == 0) {
-                        int_3 = int_4 + 1;
+                  for (index = pixels.width - 1; index >= height; --index) {
+                     if (pixels.pixels[index + pixel * pixels.width] == 0) {
+                        width = index + 1;
                         break;
                      }
                   }
 
-                  ints_0[int_1] = int_2;
-                  ints_1[int_1] = int_3 - int_2;
+                  xPixels[pixel] = height;
+                  yPixels[pixel] = width - height;
                }
 
-               cacheablenode_sub1_0 = new CacheableNode_Sub1(spritepixels_1.width, spritepixels_1.height, ints_1, ints_0, int_0);
-               aNodeCache5.put(cacheablenode_sub1_0, long_0);
-               return cacheablenode_sub1_0;
+               cachedSprite = new CachedSprite(pixels.width, pixels.height, yPixels, xPixels, spriteId);
+               spriteCache.put(cachedSprite, key);
+               return cachedSprite;
             }
          }
       }
    }
 
-   public Font method592() {
-      aBool34 = false;
+   public Font getFont() {
+      missingData = false;
       if (this.fontId == -1) {
          return null;
       } else {
-         Font font_0 = (Font) aNodeCache3.get((long)this.fontId);
-         if (font_0 != null) {
-            return font_0;
+         Font font = (Font) fontCache.get((long)this.fontId);
+         if (font != null) {
+            return font;
          } else {
-            font_0 = Class89.method496(Enum1.anIndexDataBase13, anIndexDataBase11, this.fontId, 0);
-            if (font_0 != null) {
-               aNodeCache3.put(font_0, (long)this.fontId);
+            font = Class89.decodeFont(Enum1.spriteCacheIndex, anIndexDataBase11, this.fontId, 0);
+            if (font != null) {
+               fontCache.put(font, (long)this.fontId);
             } else {
-               aBool34 = true;
+               missingData = true;
             }
 
-            return font_0;
+            return font;
          }
       }
    }
 
-   public Model method593(Sequence sequence_0, int int_0, boolean bool_0, PlayerComposition playercomposition_0) {
-      aBool34 = false;
-      int int_1;
-      int int_2;
-      if (bool_0) {
-         int_1 = this.anInt268;
-         int_2 = this.anInt269;
+   public Model method593(Sequence sequence, int frameIndex, boolean enabled, PlayerComposition player) {
+      missingData = false;
+      int type;
+      int mediaId;
+      if (enabled) {
+         type = this.enabledMediaType;
+         mediaId = this.enabledMediaId;
       } else {
-         int_1 = this.modelType;
-         int_2 = this.modelId;
+         type = this.disabledMediaType;
+         mediaId = this.disabledMediaId;
       }
 
-      if (int_1 == 0) {
+      if (type == 0) {
          return null;
-      } else if (int_1 == 1 && int_2 == -1) {
+      } else if (type == 1 && mediaId == -1) {
          return null;
       } else {
-         Model model_0 = (Model) aNodeCache4.get((long)(int_2 + (int_1 << 16)));
-         if (model_0 == null) {
-            ModelHeader modeldata_0;
-            if (int_1 == 1) {
-               modeldata_0 = ModelHeader.getModel(anIndexDataBase12, int_2, 0);
-               if (modeldata_0 == null) {
-                  aBool34 = true;
+         Model model = (Model) widgetModelCache.get((long)(mediaId + (type << 16)));
+         if (model == null) {
+            ModelHeader header;
+            if (type == 1) {
+               header = ModelHeader.getModel(modelCacheIndex, mediaId, 0);
+               if (header == null) {
+                  missingData = true;
                   return null;
                }
 
-               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
+               model = header.applyLighting(64, 768, -50, -10, -50);
             }
 
-            if (int_1 == 2) {
-               modeldata_0 = NPCDefinition.getNpcDefinition(int_2).getChildHeader();
-               if (modeldata_0 == null) {
-                  aBool34 = true;
+            if (type == 2) {
+               header = NPCDefinition.getNpcDefinition(mediaId).getChildHeader();
+               if (header == null) {
+                  missingData = true;
                   return null;
                }
 
-               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
+               model = header.applyLighting(64, 768, -50, -10, -50);
             }
 
-            if (int_1 == 3) {
-               if (playercomposition_0 == null) {
+            if (type == 3) {
+               if (player == null) {
                   return null;
                }
 
-               modeldata_0 = playercomposition_0.method506();
-               if (modeldata_0 == null) {
-                  aBool34 = true;
+               header = player.method506();
+               if (header == null) {
+                  missingData = true;
                   return null;
                }
 
-               model_0 = modeldata_0.applyLighting(64, 768, -50, -10, -50);
+               model = header.applyLighting(64, 768, -50, -10, -50);
             }
 
-            if (int_1 == 4) {
-               ItemDefinition itemcomposition_0 = ItemDefinition.getDefinition(int_2);
-               modeldata_0 = itemcomposition_0.getAmountModel(10);
-               if (modeldata_0 == null) {
-                  aBool34 = true;
+            if (type == 4) {
+               ItemDefinition definition = ItemDefinition.getDefinition(mediaId);
+               header = definition.getAmountModel(10);
+               if (header == null) {
+                  missingData = true;
                   return null;
                }
 
-               model_0 = modeldata_0.applyLighting(itemcomposition_0.lightModifier + 64, itemcomposition_0.shadowModifier + 768, -50, -10, -50);
+               model = header.applyLighting(definition.lightModifier + 64, definition.shadowModifier + 768, -50, -10, -50);
             }
 
-            aNodeCache4.put(model_0, (long)(int_2 + (int_1 << 16)));
+            widgetModelCache.put(model, (long)(mediaId + (type << 16)));
          }
 
-         if (sequence_0 != null) {
-            model_0 = sequence_0.method917(model_0, int_0);
+         if (sequence != null) {
+            model = sequence.applyFrame(model, frameIndex);
          }
 
-         return model_0;
+         return model;
       }
    }
 
-   public SpritePixels method594(int int_0) {
-      aBool34 = false;
-      if (int_0 >= 0 && int_0 < this.anIntArray64.length) {
-         int int_1 = this.anIntArray64[int_0];
-         if (int_1 == -1) {
+   public SpritePixels getImagePixels(int imageIndex) {
+      missingData = false;
+      if (imageIndex >= 0 && imageIndex < this.images.length) {
+         int key = this.images[imageIndex];
+         if (key == -1) {
             return null;
          } else {
-            SpritePixels spritepixels_0 = (SpritePixels) aNodeCache2.get((long)int_1);
-            if (spritepixels_0 != null) {
-               return spritepixels_0;
+            SpritePixels pixels = (SpritePixels) spritePixelsCache.get((long)key);
+            if (pixels != null) {
+               return pixels;
             } else {
-               spritepixels_0 = Class38.method254(Enum1.anIndexDataBase13, int_1, 0);
-               if (spritepixels_0 != null) {
-                  aNodeCache2.put(spritepixels_0, (long)int_1);
+               pixels = Class38.decodeSpritePixels(Enum1.spriteCacheIndex, key, 0);
+               if (pixels != null) {
+                  spritePixelsCache.put(pixels, (long)key);
                } else {
-                  aBool34 = true;
+                  missingData = true;
                }
 
-               return spritepixels_0;
+               return pixels;
             }
          }
       } else {
@@ -862,63 +862,63 @@ public class Widget extends Node {
       }
    }
 
-   Object[] method595(Buffer buffer_0) {
-      int int_0 = buffer_0.getUnsignedByte();
-      if (int_0 == 0) {
+   Object[] decodeWidgetParameters(Buffer buffer) {
+      int size = buffer.getUnsignedByte();
+      if (size == 0) {
          return null;
       } else {
-         Object[] objects_0 = new Object[int_0];
+         Object[] objects = new Object[size];
 
-         for (int int_1 = 0; int_1 < int_0; int_1++) {
-            int int_2 = buffer_0.getUnsignedByte();
-            if (int_2 == 0) {
-               objects_0[int_1] = new Integer(buffer_0.readInt());
-            } else if (int_2 == 1) {
-               objects_0[int_1] = buffer_0.readString();
+         for (int index = 0; index < size; index++) {
+            int type = buffer.getUnsignedByte();
+            if (type == 0) {
+               objects[index] = new Integer(buffer.readInt());
+            } else if (type == 1) {
+               objects[index] = buffer.readString();
             }
          }
 
-         this.aBool35 = true;
-         return objects_0;
+         this.parametersLoaded = true;
+         return objects;
       }
    }
 
-   public void method596(int int_0, int int_1) {
-      int int_2 = this.itemIds[int_1];
-      this.itemIds[int_1] = this.itemIds[int_0];
-      this.itemIds[int_0] = int_2;
-      int_2 = this.itemQuantities[int_1];
-      this.itemQuantities[int_1] = this.itemQuantities[int_0];
-      this.itemQuantities[int_0] = int_2;
+   public void swapItems(int newSlot, int originalSlot) {
+      int temp = this.itemIds[originalSlot];
+      this.itemIds[originalSlot] = this.itemIds[newSlot];
+      this.itemIds[newSlot] = temp;
+      temp = this.itemQuantities[originalSlot];
+      this.itemQuantities[originalSlot] = this.itemQuantities[newSlot];
+      this.itemQuantities[newSlot] = temp;
    }
 
-   public void method597(int int_0, String string_0) {
-      if (this.actions == null || this.actions.length <= int_0) {
-         String[] strings_0 = new String[int_0 + 1];
+   public void insertAction(int index, String newAction) {
+      if (this.actions == null || this.actions.length <= index) {
+         String[] blankActions = new String[index + 1];
          if (this.actions != null) {
-            for (int int_1 = 0; int_1 < this.actions.length; int_1++) {
-               strings_0[int_1] = this.actions[int_1];
+            for (int action = 0; action < this.actions.length; action++) {
+               blankActions[action] = this.actions[action];
             }
          }
 
-         this.actions = strings_0;
+         this.actions = blankActions;
       }
 
-      this.actions[int_0] = string_0;
+      this.actions[index] = newAction;
    }
 
-   int[] method598(Buffer buffer_0) {
-      int int_0 = buffer_0.getUnsignedByte();
-      if (int_0 == 0) {
+   int[] decodeArray(Buffer buffer) {
+      int size = buffer.getUnsignedByte();
+      if (size == 0) {
          return null;
       } else {
-         int[] ints_0 = new int[int_0];
+         int[] array = new int[size];
 
-         for (int int_1 = 0; int_1 < int_0; int_1++) {
-            ints_0[int_1] = buffer_0.readInt();
+         for (int index = 0; index < size; index++) {
+            array[index] = buffer.readInt();
          }
 
-         return ints_0;
+         return array;
       }
    }
 

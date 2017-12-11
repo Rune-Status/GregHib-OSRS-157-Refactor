@@ -7,27 +7,27 @@ public class Class38 {
       return int_0 < 0 ? "" : (Client.menuTargets[int_0].length() > 0 ? Client.menuOptions[int_0] + " " + Client.menuTargets[int_0] : Client.menuOptions[int_0]);
    }
 
-   public static SpritePixels method254(IndexDataBase indexdatabase_0, int int_0, int int_1) {
-      if (!TileStrategy.decodeIfExists(indexdatabase_0, int_0, int_1)) {
+   public static SpritePixels decodeSpritePixels(IndexDataBase indexDataBase, int archive, int file) {
+      if (!TileStrategy.decodeIfExists(indexDataBase, archive, file)) {
          return null;
       } else {
-         SpritePixels spritepixels_0 = new SpritePixels();
-         spritepixels_0.maxWidth = Class111.anInt214;
-         spritepixels_0.maxHeight = Class111.anInt215;
-         spritepixels_0.offsetX = Class111.anIntArray54[0];
-         spritepixels_0.offsetY = Class7.offsetsY[0];
-         spritepixels_0.width = ItemContainer.anIntArray76[0];
-         spritepixels_0.height = Class6.anIntArray3[0];
-         int int_2 = spritepixels_0.height * spritepixels_0.width;
-         byte[] bytes_0 = Class111.spritePixels[0];
-         spritepixels_0.pixels = new int[int_2];
+         SpritePixels pixels = new SpritePixels();
+         pixels.maxWidth = Class111.anInt214;
+         pixels.maxHeight = Class111.anInt215;
+         pixels.offsetX = Class111.anIntArray54[0];
+         pixels.offsetY = Class7.offsetsY[0];
+         pixels.width = ItemContainer.anIntArray76[0];
+         pixels.height = Class6.anIntArray3[0];
+         int area = pixels.height * pixels.width;
+         byte[] pixelIndexes = Class111.spritePixels[0];
+         pixels.pixels = new int[area];
 
-         for (int int_3 = 0; int_3 < int_2; int_3++) {
-            spritepixels_0.pixels[int_3] = Class111.anIntArray55[bytes_0[int_3] & 0xFF];
+         for (int index = 0; index < area; index++) {
+            pixels.pixels[index] = Class111.loadedPixels[pixelIndexes[index] & 0xFF];
          }
 
-         Class98.method523();
-         return spritepixels_0;
+         Class98.cleanPixelLoader();
+         return pixels;
       }
    }
 

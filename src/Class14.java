@@ -419,36 +419,36 @@ public final class Class14 {
                   int_10 = widget_0.contentType;
                   if (int_10 == 324) {
                      if (Client.anInt654 == -1) {
-                        Client.anInt654 = widget_0.spriteId;
-                        Client.anInt657 = widget_0.anInt267;
+                        Client.anInt654 = widget_0.disabledImage;
+                        Client.anInt657 = widget_0.enabledImage;
                      }
 
                      if (Client.aPlayerComposition1.isFemale) {
-                        widget_0.spriteId = Client.anInt654;
+                        widget_0.disabledImage = Client.anInt654;
                      } else {
-                        widget_0.spriteId = Client.anInt657;
+                        widget_0.disabledImage = Client.anInt657;
                      }
                   } else if (int_10 == 325) {
                      if (Client.anInt654 == -1) {
-                        Client.anInt654 = widget_0.spriteId;
-                        Client.anInt657 = widget_0.anInt267;
+                        Client.anInt654 = widget_0.disabledImage;
+                        Client.anInt657 = widget_0.enabledImage;
                      }
 
                      if (Client.aPlayerComposition1.isFemale) {
-                        widget_0.spriteId = Client.anInt657;
+                        widget_0.disabledImage = Client.anInt657;
                      } else {
-                        widget_0.spriteId = Client.anInt654;
+                        widget_0.disabledImage = Client.anInt654;
                      }
                   } else if (int_10 == 327) {
-                     widget_0.rotationX = 150;
-                     widget_0.rotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
-                     widget_0.modelType = 5;
-                     widget_0.modelId = 0;
+                     widget_0.modelRotationX = 150;
+                     widget_0.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
+                     widget_0.disabledMediaType = 5;
+                     widget_0.disabledMediaId = 0;
                   } else if (int_10 == 328) {
-                     widget_0.rotationX = 150;
-                     widget_0.rotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
-                     widget_0.modelType = 5;
-                     widget_0.modelId = 1;
+                     widget_0.modelRotationX = 150;
+                     widget_0.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
+                     widget_0.disabledMediaType = 5;
+                     widget_0.disabledMediaId = 1;
                   }
                }
 
@@ -637,16 +637,16 @@ public final class Class14 {
                                  int_20 = int_10 + int_18 * (widget_0.paddingX + 32);
                                  int_21 = int_11 + int_17 * (widget_0.paddingY + 32);
                                  if (int_19 < 20) {
-                                    int_20 += widget_0.xSprites[int_19];
-                                    int_21 += widget_0.anIntArray66[int_19];
+                                    int_20 += widget_0.imageX[int_19];
+                                    int_21 += widget_0.imageY[int_19];
                                  }
 
                                  if (widget_0.itemIds[int_19] <= 0) {
-                                    if (widget_0.anIntArray64 != null && int_19 < 20) {
-                                       SpritePixels spritepixels_2 = widget_0.method594(int_19);
+                                    if (widget_0.images != null && int_19 < 20) {
+                                       SpritePixels spritepixels_2 = widget_0.getImagePixels(int_19);
                                        if (spritepixels_2 != null) {
                                           spritepixels_2.drawAt(int_20, int_21);
-                                       } else if (Widget.aBool34) {
+                                       } else if (Widget.missingData) {
                                           WorldMapData.method305(widget_0);
                                        }
                                     }
@@ -729,30 +729,30 @@ public final class Class14 {
                            }
                         } else if (widget_0.type == 3) {
                            if (Class60.method391(widget_0)) {
-                              int_19 = widget_0.anInt283;
-                              if (widget_0 == ItemContainer.aWidget6 && widget_0.anInt287 != 0) {
-                                 int_19 = widget_0.anInt287;
+                              int_19 = widget_0.enabledColour;
+                              if (widget_0 == ItemContainer.aWidget6 && widget_0.enabledHoverColour != 0) {
+                                 int_19 = widget_0.enabledHoverColour;
                               }
                            } else {
-                              int_19 = widget_0.textColor;
-                              if (widget_0 == ItemContainer.aWidget6 && widget_0.anInt285 != 0) {
-                                 int_19 = widget_0.anInt285;
+                              int_19 = widget_0.disabledColour;
+                              if (widget_0 == ItemContainer.aWidget6 && widget_0.disabledHoverColour != 0) {
+                                 int_19 = widget_0.disabledHoverColour;
                               }
                            }
 
-                           if (widget_0.aBool36) {
+                           if (widget_0.rectFilled) {
                               switch(widget_0.anEnum9_1.anInt392) {
                               case 1:
-                                 Rasterizer2D.method932(int_10, int_11, widget_0.width, widget_0.height, widget_0.textColor, widget_0.anInt283, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method932(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
                                  break;
                               case 2:
-                                 Rasterizer2D.method929(int_10, int_11, widget_0.width, widget_0.height, widget_0.textColor, widget_0.anInt283, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method929(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
                                  break;
                               case 3:
-                                 Rasterizer2D.method930(int_10, int_11, widget_0.width, widget_0.height, widget_0.textColor, widget_0.anInt283, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method930(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
                                  break;
                               case 4:
-                                 Rasterizer2D.method931(int_10, int_11, widget_0.width, widget_0.height, widget_0.textColor, widget_0.anInt283, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method931(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
                                  break;
                               default:
                                  if (int_12 == 0) {
@@ -769,26 +769,26 @@ public final class Class14 {
                         } else {
                            Font font_1;
                            if (widget_0.type == 4) {
-                              font_1 = widget_0.method592();
+                              font_1 = widget_0.getFont();
                               if (font_1 == null) {
-                                 if (Widget.aBool34) {
+                                 if (Widget.missingData) {
                                     WorldMapData.method305(widget_0);
                                  }
                               } else {
-                                 String string_3 = widget_0.text;
+                                 String string_3 = widget_0.disabledText;
                                  if (Class60.method391(widget_0)) {
-                                    int_17 = widget_0.anInt283;
-                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.anInt287 != 0) {
-                                       int_17 = widget_0.anInt287;
+                                    int_17 = widget_0.enabledColour;
+                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.enabledHoverColour != 0) {
+                                       int_17 = widget_0.enabledHoverColour;
                                     }
 
-                                    if (widget_0.aString15.length() > 0) {
-                                       string_3 = widget_0.aString15;
+                                    if (widget_0.enabledText.length() > 0) {
+                                       string_3 = widget_0.enabledText;
                                     }
                                  } else {
-                                    int_17 = widget_0.textColor;
-                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.anInt285 != 0) {
-                                       int_17 = widget_0.anInt285;
+                                    int_17 = widget_0.disabledColour;
+                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.disabledHoverColour != 0) {
+                                       int_17 = widget_0.disabledHoverColour;
                                     }
                                  }
 
@@ -807,33 +807,33 @@ public final class Class14 {
                                  if (widget_0 == Client.aWidget12) {
                                     Object object_0 = null;
                                     string_3 = "Please wait...";
-                                    int_17 = widget_0.textColor;
+                                    int_17 = widget_0.disabledColour;
                                  }
 
                                  if (!widget_0.hasScript) {
                                     string_3 = Class52.method337(string_3, widget_0);
                                  }
 
-                                 font_1.method1036(string_3, int_10, int_11, widget_0.width, widget_0.height, int_17, widget_0.textShadowed ? 0 : -1, widget_0.anInt290, widget_0.anInt291, widget_0.anInt292);
+                                 font_1.method1036(string_3, int_10, int_11, widget_0.width, widget_0.height, int_17, widget_0.textShadowed ? 0 : -1, widget_0.textCentered, widget_0.anInt291, widget_0.anInt292);
                               }
                            } else if (widget_0.type == 5) {
                               SpritePixels spritepixels_1;
                               if (!widget_0.hasScript) {
-                                 spritepixels_1 = widget_0.method590(Class60.method391(widget_0));
+                                 spritepixels_1 = widget_0.getRotatedPixels(Class60.method391(widget_0));
                                  if (spritepixels_1 != null) {
                                     spritepixels_1.drawAt(int_10, int_11);
-                                 } else if (Widget.aBool34) {
+                                 } else if (Widget.missingData) {
                                     WorldMapData.method305(widget_0);
                                  }
                               } else {
                                  if (widget_0.itemId != -1) {
                                     spritepixels_1 = AClass3_Sub2.createSprite(widget_0.itemId, widget_0.itemQuantity, widget_0.borderThickness, widget_0.sprite2, widget_0.anInt296, false);
                                  } else {
-                                    spritepixels_1 = widget_0.method590(false);
+                                    spritepixels_1 = widget_0.getRotatedPixels(false);
                                  }
 
                                  if (spritepixels_1 == null) {
-                                    if (Widget.aBool34) {
+                                    if (Widget.missingData) {
                                        WorldMapData.method305(widget_0);
                                     }
                                  } else {
@@ -876,9 +876,9 @@ public final class Class14 {
                               if (widget_0.type == 6) {
                                  boolean bool_0 = Class60.method391(widget_0);
                                  if (bool_0) {
-                                    int_17 = widget_0.anInt278;
+                                    int_17 = widget_0.enabledAnimation;
                                  } else {
-                                    int_17 = widget_0.anInt277;
+                                    int_17 = widget_0.disabledAnimation;
                                  }
 
                                  Model model_0 = null;
@@ -895,37 +895,37 @@ public final class Class14 {
                                           WorldMapData.method305(widget_0);
                                        }
                                     }
-                                 } else if (widget_0.modelType == 5) {
-                                    if (widget_0.modelId == 0) {
+                                 } else if (widget_0.disabledMediaType == 5) {
+                                    if (widget_0.disabledMediaId == 0) {
                                        model_0 = Client.aPlayerComposition1.method505((Sequence) null, -1, (Sequence) null, -1);
                                     } else {
                                        model_0 = Class4.localPlayer.getRotatedModel();
                                     }
                                  } else if (int_17 == -1) {
                                     model_0 = widget_0.method593((Sequence) null, -1, bool_0, Class4.localPlayer.composition);
-                                    if (model_0 == null && Widget.aBool34) {
+                                    if (model_0 == null && Widget.missingData) {
                                        WorldMapData.method305(widget_0);
                                     }
                                  } else {
                                     Sequence sequence_0 = ItemLayer.getAnimation(int_17);
                                     model_0 = widget_0.method593(sequence_0, widget_0.anInt281, bool_0, Class4.localPlayer.composition);
-                                    if (model_0 == null && Widget.aBool34) {
+                                    if (model_0 == null && Widget.missingData) {
                                        WorldMapData.method305(widget_0);
                                     }
                                  }
 
                                  Graphics3D.method970(widget_0.width / 2 + int_10, widget_0.height / 2 + int_11);
-                                 int_21 = Graphics3D.SINE[widget_0.rotationX] * widget_0.modelZoom >> 16;
-                                 int_22 = Graphics3D.COSINE[widget_0.rotationX] * widget_0.modelZoom >> 16;
+                                 int_21 = Graphics3D.SINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
+                                 int_22 = Graphics3D.COSINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
                                  if (model_0 != null) {
                                     if (!widget_0.hasScript) {
-                                       model_0.method1027(0, widget_0.rotationZ, 0, widget_0.rotationX, 0, int_21, int_22);
+                                       model_0.method1027(0, widget_0.modelRotationZ, 0, widget_0.modelRotationX, 0, int_21, int_22);
                                     } else {
                                        model_0.calculateDiagonals();
                                        if (widget_0.aBool41) {
-                                          model_0.method1028(0, widget_0.rotationZ, widget_0.rotationY, widget_0.rotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294, widget_0.modelZoom);
+                                          model_0.method1028(0, widget_0.modelRotationZ, widget_0.rotationY, widget_0.modelRotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294, widget_0.modelZoom);
                                        } else {
-                                          model_0.method1027(0, widget_0.rotationZ, widget_0.rotationY, widget_0.rotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294);
+                                          model_0.method1027(0, widget_0.modelRotationZ, widget_0.rotationY, widget_0.modelRotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294);
                                        }
                                     }
                                  }
@@ -933,9 +933,9 @@ public final class Class14 {
                                  Graphics3D.method961();
                               } else {
                                  if (widget_0.type == 7) {
-                                    font_1 = widget_0.method592();
+                                    font_1 = widget_0.getFont();
                                     if (font_1 == null) {
-                                       if (Widget.aBool34) {
+                                       if (Widget.missingData) {
                                           WorldMapData.method305(widget_0);
                                        }
                                        continue;
@@ -956,12 +956,12 @@ public final class Class14 {
 
                                              int_23 = int_20 * (widget_0.paddingX + 115) + int_10;
                                              int_24 = int_11 + (widget_0.paddingY + 12) * int_18;
-                                             if (widget_0.anInt290 == 0) {
-                                                font_1.method1040(string_0, int_23, int_24, widget_0.textColor, widget_0.textShadowed ? 0 : -1);
-                                             } else if (widget_0.anInt290 == 1) {
-                                                font_1.method1039(string_0, widget_0.width / 2 + int_23, int_24, widget_0.textColor, widget_0.textShadowed ? 0 : -1);
+                                             if (widget_0.textCentered == 0) {
+                                                font_1.method1040(string_0, int_23, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
+                                             } else if (widget_0.textCentered == 1) {
+                                                font_1.method1039(string_0, widget_0.width / 2 + int_23, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
                                              } else {
-                                                font_1.method1041(string_0, int_23 + widget_0.width - 1, int_24, widget_0.textColor, widget_0.textShadowed ? 0 : -1);
+                                                font_1.method1041(string_0, int_23 + widget_0.width - 1, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
                                              }
                                           }
 
@@ -974,7 +974,7 @@ public final class Class14 {
                                     int_19 = 0;
                                     int_17 = 0;
                                     Font font_0 = Class4.font_p12full;
-                                    String string_1 = widget_0.text;
+                                    String string_1 = widget_0.disabledText;
 
                                     String string_2;
                                     for (string_1 = Class52.method337(string_1, widget_0); string_1.length() > 0; int_17 = int_17 + font_0.verticalSpace + 1) {
@@ -1011,7 +1011,7 @@ public final class Class14 {
 
                                     Rasterizer2D.method919(int_22, int_23, int_19, int_17, 16777120);
                                     Rasterizer2D.drawRectangle(int_22, int_23, int_19, int_17, 0);
-                                    string_1 = widget_0.text;
+                                    string_1 = widget_0.disabledText;
                                     int_24 = int_23 + font_0.verticalSpace + 2;
 
                                     for (string_1 = Class52.method337(string_1, widget_0); string_1.length() > 0; int_24 = int_24 + font_0.verticalSpace + 1) {
@@ -1042,9 +1042,9 @@ public final class Class14 {
                                     }
 
                                     if (widget_0.anInt289 == 1) {
-                                       Rasterizer2D.drawLine(int_19, int_17, int_18, int_20, widget_0.textColor);
+                                       Rasterizer2D.drawLine(int_19, int_17, int_18, int_20, widget_0.disabledColour);
                                     } else {
-                                       Class50.method318(int_19, int_17, int_18, int_20, widget_0.textColor, widget_0.anInt289);
+                                       Class50.method318(int_19, int_17, int_18, int_20, widget_0.disabledColour, widget_0.anInt289);
                                     }
                                  }
                               }

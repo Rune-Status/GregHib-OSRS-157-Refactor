@@ -124,12 +124,12 @@ public class WorldMapData_Sub1 extends WorldMapData {
    }
 
    static void method605(Widget widget_0, int int_0, int int_1) {
-      CacheableNode_Sub1 cacheablenode_sub1_0 = widget_0.method591(false);
+      CachedSprite cacheablenode_sub1_0 = widget_0.method591(false);
       if (cacheablenode_sub1_0 != null) {
          if (Client.anInt650 < 3) {
-            Class35.compass.method991(int_0, int_1, cacheablenode_sub1_0.anInt467, cacheablenode_sub1_0.anInt468, 25, 25, Client.mapAngle, 256, cacheablenode_sub1_0.anIntArray86, cacheablenode_sub1_0.anIntArray87);
+            Class35.compass.method991(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, 25, 25, Client.mapAngle, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
          } else {
-            Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.anIntArray86, cacheablenode_sub1_0.anIntArray87);
+            Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
          }
 
       }

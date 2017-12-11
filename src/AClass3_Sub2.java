@@ -168,15 +168,15 @@ public final class AClass3_Sub2 extends AClass3 {
          }
 
          if (int_2 >= 1) {
-            spritepixels_0.method988(1);
+            spritepixels_0.setTransparentPixel(1);
          }
 
          if (int_2 >= 2) {
-            spritepixels_0.method988(16777215);
+            spritepixels_0.setTransparentPixel(16777215);
          }
 
          if (int_3 != 0) {
-            spritepixels_0.method989(int_3);
+            spritepixels_0.setSecondarySprite(int_3);
          }
 
          Rasterizer2D.setRasterBuffer(spritepixels_0.pixels, 36, 32);

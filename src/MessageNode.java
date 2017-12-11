@@ -255,7 +255,7 @@ public class MessageNode extends CacheableNode {
          widget_0.anObjectArray2 = objects_0;
       }
 
-      widget_0.aBool35 = true;
+      widget_0.parametersLoaded = true;
       return 1;
    }
 

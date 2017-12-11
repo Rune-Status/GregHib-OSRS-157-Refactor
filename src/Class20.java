@@ -101,7 +101,7 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollY;
                   byte_0 = 1;
                } else if (int_0 == 1602) {
-                  Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = widget_2.text;
+                  Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = widget_2.disabledText;
                   byte_0 = 1;
                } else if (int_0 == 1603) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollWidth;
@@ -113,13 +113,13 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelZoom;
                   byte_0 = 1;
                } else if (int_0 == 1606) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationX;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelRotationX;
                   byte_0 = 1;
                } else if (int_0 == 1607) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationY;
                   byte_0 = 1;
                } else if (int_0 == 1608) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationZ;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelRotationZ;
                   byte_0 = 1;
                } else if (int_0 == 1609) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.opacity;
@@ -128,10 +128,10 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.anInt288;
                   byte_0 = 1;
                } else if (int_0 == 1611) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.textColor;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.disabledColour;
                   byte_0 = 1;
                } else if (int_0 == 1612) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.anInt283;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.enabledColour;
                   byte_0 = 1;
                } else if (int_0 == 1613) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.anEnum9_1.rsOrdinal();
@@ -168,7 +168,7 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollY;
                   byte_0 = 1;
                } else if (int_0 == 2602) {
-                  Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = widget_2.text;
+                  Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = widget_2.disabledText;
                   byte_0 = 1;
                } else if (int_0 == 2603) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollWidth;
@@ -180,13 +180,13 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelZoom;
                   byte_0 = 1;
                } else if (int_0 == 2606) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationX;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelRotationX;
                   byte_0 = 1;
                } else if (int_0 == 2607) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationY;
                   byte_0 = 1;
                } else if (int_0 == 2608) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.rotationZ;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.modelRotationZ;
                   byte_0 = 1;
                } else if (int_0 == 2609) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.opacity;
@@ -195,10 +195,10 @@ public class Class20 implements Comparator {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.anInt288;
                   byte_0 = 1;
                } else if (int_0 == 2611) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.textColor;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.disabledColour;
                   byte_0 = 1;
                } else if (int_0 == 2612) {
-                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.anInt283;
+                  Class39.intStack[++Class23.intStackSize - 1] = widget_2.enabledColour;
                   byte_0 = 1;
                } else if (int_0 == 2613) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.anEnum9_1.rsOrdinal();

@@ -41,7 +41,7 @@ public class PacketNode extends Node {
       if (int_0 == 1300) {
          int_1 = Class39.intStack[--Class23.intStackSize] - 1;
          if (int_1 >= 0 && int_1 <= 9) {
-            widget_0.method597(int_1, Class39.scriptStringStack[--Class28.scriptStringStackSize]);
+            widget_0.insertAction(int_1, Class39.scriptStringStack[--Class28.scriptStringStackSize]);
             return 1;
          } else {
             --Class28.scriptStringStackSize;

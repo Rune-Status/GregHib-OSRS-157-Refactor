@@ -655,11 +655,11 @@ public class ObjectDefinition extends CacheableNode {
          spritepixels_0.pixels = new int[int_1];
 
          for (int int_2 = 0; int_2 < int_1; int_2++) {
-            spritepixels_0.pixels[int_2] = Class111.anIntArray55[bytes_0[int_2] & 0xFF];
+            spritepixels_0.pixels[int_2] = Class111.loadedPixels[bytes_0[int_2] & 0xFF];
          }
       }
 
-      Class98.method523();
+      Class98.cleanPixelLoader();
       return spritepixelss_0;
    }
 

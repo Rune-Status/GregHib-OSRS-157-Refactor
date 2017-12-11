@@ -79,10 +79,10 @@ public class World {
       CacheableNode_Sub5.aNodeCache14.reset();
       Area.skeletonsIndex.reset();
       PlayerComposition.aNodeCache1.reset();
-      Widget.aNodeCache2.reset();
-      Widget.aNodeCache4.reset();
-      Widget.aNodeCache3.reset();
-      Widget.aNodeCache5.reset();
+      Widget.spritePixelsCache.reset();
+      Widget.widgetModelCache.reset();
+      Widget.fontCache.reset();
+      Widget.spriteCache.reset();
       ((TextureProvider) Graphics3D.textureLoader).reset();
       Script.aNodeCache18.reset();
       Varcs.indexInterfaces.reset();
