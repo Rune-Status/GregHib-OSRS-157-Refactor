@@ -679,7 +679,7 @@ public final class Class14 {
                                                 int_23 = 0;
                                              }
 
-                                             spritepixels_0.method995(int_22 + int_20, int_23 + int_21, 128);
+                                             spritepixels_0.drawImage(int_22 + int_20, int_23 + int_21, 128);
                                              if (int_0 != -1) {
                                                 Widget widget_1 = widgets_0[int_0 & 0xFFFF];
                                                 int int_25;
@@ -714,7 +714,7 @@ public final class Class14 {
                                                 }
                                              }
                                           } else if (widget_0 == Class59.aWidget3 && int_19 == Client.anInt653) {
-                                             spritepixels_0.method995(int_20, int_21, 128);
+                                             spritepixels_0.drawImage(int_20, int_21, 128);
                                           } else {
                                              spritepixels_0.drawAt(int_20, int_21);
                                           }
@@ -860,7 +860,7 @@ public final class Class14 {
                                              if (widget_0.textureId != 0) {
                                                 spritepixels_1.method993(int_17 / 2 + int_10 + int_22 * int_17, int_18 / 2 + int_11 + int_18 * int_23, widget_0.textureId, 4096);
                                              } else if (int_12 != 0) {
-                                                spritepixels_1.method995(int_10 + int_17 * int_22, int_11 + int_23 * int_18, 256 - (int_12 & 0xFF));
+                                                spritepixels_1.drawImage(int_10 + int_17 * int_22, int_11 + int_23 * int_18, 256 - (int_12 & 0xFF));
                                              } else {
                                                 spritepixels_1.drawAt(int_10 + int_22 * int_17, int_11 + int_23 * int_18);
                                              }

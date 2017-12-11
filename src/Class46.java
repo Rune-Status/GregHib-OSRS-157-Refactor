@@ -367,7 +367,7 @@ public class Class46 {
                Class25.loadingBarPercentage = 70;
             } else {
                FontTypeFace.modIcons = Buffer.anIndexedSpriteArray8;
-               Class10.mapedge.method990();
+               Class10.mapedge.refreshDimensions();
                int_1 = (int)(Math.random() * 21.0D) - 10;
                int_2 = (int)(Math.random() * 21.0D) - 10;
                int_3 = (int)(Math.random() * 21.0D) - 10;

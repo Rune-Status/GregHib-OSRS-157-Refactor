@@ -217,10 +217,10 @@ public class Class12 {
 
             if (MouseInput.anInt260 >= int_9 && MouseInput.anInt262 >= int_8 && MouseInput.anInt260 < byte_1 + int_9 && MouseInput.anInt262 < int_8 + byte_2 && bool_1) {
                Class25.anInt84 = int_11;
-               Class2.aSpritePixelsArray1[byte_0].method998(int_9, int_8, 128, 16777215);
+               Class2.aSpritePixelsArray1[byte_0].drawImage(int_9, int_8, 128, 16777215);
                bool_0 = true;
             } else {
-               Class2.aSpritePixelsArray1[byte_0].method983(int_9, int_8);
+               Class2.aSpritePixelsArray1[byte_0].drawImage(int_9, int_8);
             }
 
             if (Class93.anIndexedSpriteArray7 != null) {

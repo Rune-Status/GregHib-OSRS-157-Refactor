@@ -759,7 +759,7 @@ public class Class9 {
    void method143(int int_0, int int_1, int int_2) {
       if (this.aSpritePixels1 != null) {
          if (int_2 == this.anInt45 * 64) {
-            this.aSpritePixels1.method983(int_0, int_1);
+            this.aSpritePixels1.drawImage(int_0, int_1);
          } else {
             this.aSpritePixels1.method982(int_0, int_1, int_2, int_2);
          }

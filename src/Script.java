@@ -32,7 +32,7 @@ public class Script extends CacheableNode {
          int int_11 = (int)(Math.sin(double_0) * (double)int_10);
          int int_12 = (int)(Math.cos(double_0) * (double)int_10);
          byte byte_0 = 20;
-         Class10.mapedge.method997(int_11 + (int_0 + cacheablenode_sub1_0.width / 2 - byte_0 / 2), cacheablenode_sub1_0.height / 2 + int_1 - byte_0 / 2 - int_12 - 10, byte_0, byte_0, 15, 15, double_0, 256);
+         Class10.mapedge.rotate(int_11 + (int_0 + cacheablenode_sub1_0.width / 2 - byte_0 / 2), cacheablenode_sub1_0.height / 2 + int_1 - byte_0 / 2 - int_12 - 10, byte_0, byte_0, 15, 15, double_0, 256);
       } else {
          Class23.drawDot(int_0, int_1, int_2, int_3, spritepixels_0, cacheablenode_sub1_0);
       }

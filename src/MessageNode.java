@@ -39,7 +39,7 @@ public class MessageNode extends CacheableNode {
          Rasterizer2D.reset();
          byte[] bytes_0 = indexdatabase_0.method436("title.jpg", "");
          Class25.aSpritePixels4 = Class80.method470(bytes_0);
-         Class25.aSpritePixels5 = Class25.aSpritePixels4.method994();
+         Class25.aSpritePixels5 = Class25.aSpritePixels4.getPixels();
          if ((Client.flags & 0x20000000) != 0) {
             Class25.logoSprite = CacheableNode_Sub2.getSprite(indexdatabase_1, "logo_deadman_mode", "");
          } else {
@@ -146,8 +146,8 @@ public class MessageNode extends CacheableNode {
          Class25.anInt76 = (Tile.canvasWidth - 765) / 2;
          Class25.loginWindowX = Class25.anInt76 + 202;
          Class83.anInt181 = Class25.loginWindowX + 180;
-         Class25.aSpritePixels4.method983(Class25.anInt76, 0);
-         Class25.aSpritePixels5.method983(Class25.anInt76 + 382, 0);
+         Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
+         Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
          Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
       }
    }

@@ -48,7 +48,7 @@ public class Settings {
       }
 
       Rasterizer2D.setDrawRegion(Class25.anInt76, 9, Class25.anInt76 + 128, short_0 + 7);
-      Class25.aSpritePixels4.method983(Class25.anInt76, 0);
+      Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
       Rasterizer2D.noClip();
       int_0 = 0;
       int int_1 = Class68_Sub1.aBufferProvider1.width * 9 + Class25.anInt76;
@@ -87,7 +87,7 @@ public class Settings {
       }
 
       Rasterizer2D.setDrawRegion(Class25.anInt76 + 765 - 128, 9, Class25.anInt76 + 765, short_0 + 7);
-      Class25.aSpritePixels5.method983(Class25.anInt76 + 382, 0);
+      Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
       Rasterizer2D.noClip();
       int_0 = 0;
       int_1 = Class68_Sub1.aBufferProvider1.width * 9 + Class25.anInt76 + 637 + 24;

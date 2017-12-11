@@ -99,8 +99,8 @@ public final class FileOnDisk {
          Class12.method166(font_0, font_1);
       } else {
          if (bool_0) {
-            Class25.aSpritePixels4.method983(Class25.anInt76, 0);
-            Class25.aSpritePixels5.method983(Class25.anInt76 + 382, 0);
+            Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
+            Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
             Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
          }
 

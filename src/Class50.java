@@ -54,8 +54,8 @@ public class Class50 {
 
          if (MouseInput.anInt264 >= Class25.anInt76 + 708 && MouseInput.anInt265 >= 4 && MouseInput.anInt264 <= Class25.anInt76 + 708 + 50 && MouseInput.anInt265 <= 20) {
             Class25.worldSelectShown = false;
-            Class25.aSpritePixels4.method983(Class25.anInt76, 0);
-            Class25.aSpritePixels5.method983(Class25.anInt76 + 382, 0);
+            Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
+            Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
             Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
             return;
          }
@@ -64,8 +64,8 @@ public class Class50 {
             World world_0 = Coordinates.worldList[Class25.anInt84];
             Class20.method207(world_0);
             Class25.worldSelectShown = false;
-            Class25.aSpritePixels4.method983(Class25.anInt76, 0);
-            Class25.aSpritePixels5.method983(Class25.anInt76 + 382, 0);
+            Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
+            Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
             Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
             return;
          }

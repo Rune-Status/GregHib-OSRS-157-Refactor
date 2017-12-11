@@ -24,7 +24,7 @@ public class Class26 {
             int int_3 = Client.mapAngle & 0x7FF;
             int int_4 = Class4.localPlayer.x / 32 + 48;
             int int_5 = 464 - Class4.localPlayer.y / 32;
-            Class15.aSpritePixels3.method991(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, int_4, int_5, int_3, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
+            Class15.aSpritePixels3.rotate(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, int_4, int_5, int_3, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
 
             int int_6;
             int int_7;
@@ -224,9 +224,9 @@ public class Class26 {
                      int_14 = spritepixels_0.height;
                      int_6 += int_14;
                      if (int_9 >= 0 && int_9 < 255) {
-                        spritepixels_0.method995(int_12, int_13, int_9);
+                        spritepixels_0.drawImage(int_12, int_13, int_9);
                         Rasterizer2D.setInnerDrawRegion(int_12, int_13, int_12 + int_62, int_14 + int_13);
-                        spritepixels_1.method995(int_12, int_13, int_9);
+                        spritepixels_1.drawImage(int_12, int_13, int_9);
                      } else {
                         spritepixels_0.drawAt(int_12, int_13);
                         Rasterizer2D.setInnerDrawRegion(int_12, int_13, int_62 + int_12, int_13 + int_14);
@@ -630,41 +630,41 @@ public class Class26 {
 
                      if (int_60 >= 0 && int_60 < 255) {
                         if (spritepixels_2 != null) {
-                           spritepixels_2.method995(int_52 + int_39 - int_21, int_53, int_60);
+                           spritepixels_2.drawImage(int_52 + int_39 - int_21, int_53, int_60);
                         }
 
                         if (spritepixels_4 != null) {
-                           spritepixels_4.method995(int_52 + int_40 - int_23, int_53, int_60);
+                           spritepixels_4.drawImage(int_52 + int_40 - int_23, int_53, int_60);
                         }
 
                         if (spritepixels_3 != null) {
                            for (int_61 = 0; int_61 < int_36; int_61++) {
-                              spritepixels_3.method995(int_14 * int_61 + (int_41 + int_52 - int_22), int_53, int_60);
+                              spritepixels_3.drawImage(int_14 * int_61 + (int_41 + int_52 - int_22), int_53, int_60);
                            }
                         }
 
                         if (spritepixels_5 != null) {
-                           spritepixels_5.method995(int_43 + int_52 - int_24, int_53, int_60);
+                           spritepixels_5.drawImage(int_43 + int_52 - int_24, int_53, int_60);
                         }
 
                         font_0.method1045(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.anInt483, 0, int_60);
                         if (cacheablenode_sub6_0 != null) {
                            if (spritepixels_6 != null) {
-                              spritepixels_6.method995(int_52 + int_44 - int_29, int_53, int_60);
+                              spritepixels_6.drawImage(int_52 + int_44 - int_29, int_53, int_60);
                            }
 
                            if (spritepixels_8 != null) {
-                              spritepixels_8.method995(int_45 + int_52 - int_31, int_53, int_60);
+                              spritepixels_8.drawImage(int_45 + int_52 - int_31, int_53, int_60);
                            }
 
                            if (spritepixels_7 != null) {
                               for (int_61 = 0; int_61 < int_37; int_61++) {
-                                 spritepixels_7.method995(int_26 * int_61 + (int_52 + int_46 - int_30), int_53, int_60);
+                                 spritepixels_7.drawImage(int_26 * int_61 + (int_52 + int_46 - int_30), int_53, int_60);
                               }
                            }
 
                            if (spritepixels_9 != null) {
-                              spritepixels_9.method995(int_52 + int_47 - int_32, int_53, int_60);
+                              spritepixels_9.drawImage(int_52 + int_47 - int_32, int_53, int_60);
                            }
 
                            font_1.method1045(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.anInt483, 0, int_60);
