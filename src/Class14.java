@@ -683,8 +683,8 @@ public final class Class14 {
                                              if (int_0 != -1) {
                                                 Widget widget_1 = widgets_0[int_0 & 0xFFFF];
                                                 int int_25;
-                                                if (int_21 + int_23 < Rasterizer2D.drawingAreaTop && widget_1.scrollY > 0) {
-                                                   int_25 = (Rasterizer2D.drawingAreaTop - int_21 - int_23) * Client.anInt625 / 3;
+                                                if (int_21 + int_23 < Rasterizer2D.topY && widget_1.scrollY > 0) {
+                                                   int_25 = (Rasterizer2D.topY - int_21 - int_23) * Client.anInt625 / 3;
                                                    if (int_25 > Client.anInt625 * 10) {
                                                       int_25 = Client.anInt625 * 10;
                                                    }
@@ -698,8 +698,8 @@ public final class Class14 {
                                                    WorldMapData.method305(widget_1);
                                                 }
 
-                                                if (int_21 + int_23 + 32 > Rasterizer2D.drawingAreaRight && widget_1.scrollY < widget_1.scrollHeight - widget_1.height) {
-                                                   int_25 = (int_21 + int_23 + 32 - Rasterizer2D.drawingAreaRight) * Client.anInt625 / 3;
+                                                if (int_21 + int_23 + 32 > Rasterizer2D.bottomY && widget_1.scrollY < widget_1.scrollHeight - widget_1.height) {
+                                                   int_25 = (int_21 + int_23 + 32 - Rasterizer2D.bottomY) * Client.anInt625 / 3;
                                                    if (int_25 > Client.anInt625 * 10) {
                                                       int_25 = Client.anInt625 * 10;
                                                    }
@@ -756,7 +756,7 @@ public final class Class14 {
                                  break;
                               default:
                                  if (int_12 == 0) {
-                                    Rasterizer2D.method919(int_10, int_11, widget_0.width, widget_0.height, int_19);
+                                    Rasterizer2D.fillRect(int_10, int_11, widget_0.width, widget_0.height, int_19);
                                  } else {
                                     Rasterizer2D.fillRectangle(int_10, int_11, widget_0.width, widget_0.height, int_19, 256 - (int_12 & 0xFF));
                                  }
@@ -764,7 +764,7 @@ public final class Class14 {
                            } else if (int_12 == 0) {
                               Rasterizer2D.drawRectangle(int_10, int_11, widget_0.width, widget_0.height, int_19);
                            } else {
-                              Rasterizer2D.method927(int_10, int_11, widget_0.width, widget_0.height, int_19, 256 - (int_12 & 0xFF));
+                              Rasterizer2D.drawRect(int_10, int_11, widget_0.width, widget_0.height, int_19, 256 - (int_12 & 0xFF));
                            }
                         } else {
                            Font font_1;
@@ -1009,7 +1009,7 @@ public final class Class14 {
                                        int_23 = int_4 - int_17;
                                     }
 
-                                    Rasterizer2D.method919(int_22, int_23, int_19, int_17, 16777120);
+                                    Rasterizer2D.fillRect(int_22, int_23, int_19, int_17, 16777120);
                                     Rasterizer2D.drawRectangle(int_22, int_23, int_19, int_17, 0);
                                     string_1 = widget_0.disabledText;
                                     int_24 = int_23 + font_0.verticalSpace + 2;
@@ -1300,22 +1300,22 @@ public final class Class14 {
    }
 
    static void method189(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      Class11.anIndexedSpriteArray2[0].method975(int_0, int_1);
-      Class11.anIndexedSpriteArray2[1].method975(int_0, int_3 + int_1 - 16);
-      Rasterizer2D.method919(int_0, int_1 + 16, 16, int_3 - 32, Client.anInt671);
+      Class11.anIndexedSpriteArray2[0].drawSprite(int_0, int_1);
+      Class11.anIndexedSpriteArray2[1].drawSprite(int_0, int_3 + int_1 - 16);
+      Rasterizer2D.fillRect(int_0, int_1 + 16, 16, int_3 - 32, Client.anInt671);
       int int_5 = int_3 * (int_3 - 32) / int_4;
       if (int_5 < 8) {
          int_5 = 8;
       }
 
       int int_6 = (int_3 - 32 - int_5) * int_2 / (int_4 - int_3);
-      Rasterizer2D.method919(int_0, int_6 + int_1 + 16, 16, int_5, Client.anInt673);
-      Rasterizer2D.method918(int_0, int_6 + int_1 + 16, int_5, Client.anInt675);
-      Rasterizer2D.method918(int_0 + 1, int_6 + int_1 + 16, int_5, Client.anInt675);
+      Rasterizer2D.fillRect(int_0, int_6 + int_1 + 16, 16, int_5, Client.anInt673);
+      Rasterizer2D.drawVerticalLine(int_0, int_6 + int_1 + 16, int_5, Client.anInt675);
+      Rasterizer2D.drawVerticalLine(int_0 + 1, int_6 + int_1 + 16, int_5, Client.anInt675);
       Rasterizer2D.method920(int_0, int_6 + int_1 + 16, 16, Client.anInt675);
       Rasterizer2D.method920(int_0, int_6 + int_1 + 17, 16, Client.anInt675);
-      Rasterizer2D.method918(int_0 + 15, int_6 + int_1 + 16, int_5, Client.anInt674);
-      Rasterizer2D.method918(int_0 + 14, int_6 + int_1 + 17, int_5 - 1, Client.anInt674);
+      Rasterizer2D.drawVerticalLine(int_0 + 15, int_6 + int_1 + 16, int_5, Client.anInt674);
+      Rasterizer2D.drawVerticalLine(int_0 + 14, int_6 + int_1 + 17, int_5 - 1, Client.anInt674);
       Rasterizer2D.method920(int_0, int_5 + int_6 + int_1 + 15, 16, Client.anInt674);
       Rasterizer2D.method920(int_0 + 1, int_5 + int_6 + int_1 + 14, 15, Client.anInt674);
    }

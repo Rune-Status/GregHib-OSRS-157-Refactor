@@ -28,59 +28,59 @@ public final class IndexedSprite extends Rasterizer2D {
       }
    }
 
-   public void method975(int int_0, int int_1) {
-      int_0 += this.offsetX;
-      int_1 += this.offsetY;
-      int int_2 = int_0 + int_1 * Rasterizer2D.graphicsPixelsWidth;
-      int int_3 = 0;
-      int int_4 = this.height;
-      int int_5 = this.originalWidth;
-      int int_6 = Rasterizer2D.graphicsPixelsWidth - int_5;
-      int int_7 = 0;
-      int int_8;
-      if (int_1 < Rasterizer2D.drawingAreaTop) {
-         int_8 = Rasterizer2D.drawingAreaTop - int_1;
-         int_4 -= int_8;
-         int_1 = Rasterizer2D.drawingAreaTop;
-         int_3 += int_8 * int_5;
-         int_2 += int_8 * Rasterizer2D.graphicsPixelsWidth;
+   public void drawSprite(int x, int y) {
+      x += this.offsetX;
+      y += this.offsetY;
+      int graphicsOffset = x + y * Rasterizer2D.graphicsPixelsWidth;
+      int pixelOffset = 0;
+      int imgHeight = this.height;
+      int imgWidth = this.originalWidth;
+      int deviation = Rasterizer2D.graphicsPixelsWidth - imgWidth;
+      int originalDeviation = 0;
+      int offset;
+      if (y < Rasterizer2D.topY) {
+         offset = Rasterizer2D.topY - y;
+         imgHeight -= offset;
+         y = Rasterizer2D.topY;
+         pixelOffset += offset * imgWidth;
+         graphicsOffset += offset * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (int_4 + int_1 > Rasterizer2D.drawingAreaRight) {
-         int_4 -= int_4 + int_1 - Rasterizer2D.drawingAreaRight;
+      if (imgHeight + y > Rasterizer2D.bottomY) {
+         imgHeight -= imgHeight + y - Rasterizer2D.bottomY;
       }
 
-      if (int_0 < Rasterizer2D.draw_region_x) {
-         int_8 = Rasterizer2D.draw_region_x - int_0;
-         int_5 -= int_8;
-         int_0 = Rasterizer2D.draw_region_x;
-         int_3 += int_8;
-         int_2 += int_8;
-         int_7 += int_8;
-         int_6 += int_8;
+      if (x < Rasterizer2D.topX) {
+         offset = Rasterizer2D.topX - x;
+         imgWidth -= offset;
+         x = Rasterizer2D.topX;
+         pixelOffset += offset;
+         graphicsOffset += offset;
+         originalDeviation += offset;
+         deviation += offset;
       }
 
-      if (int_5 + int_0 > Rasterizer2D.drawingAreaBottom) {
-         int_8 = int_5 + int_0 - Rasterizer2D.drawingAreaBottom;
-         int_5 -= int_8;
-         int_7 += int_8;
-         int_6 += int_8;
+      if (imgWidth + x > Rasterizer2D.bottomX) {
+         offset = imgWidth + x - Rasterizer2D.bottomX;
+         imgWidth -= offset;
+         originalDeviation += offset;
+         deviation += offset;
       }
 
-      if (int_5 > 0 && int_4 > 0) {
-         method978(Rasterizer2D.graphicsPixels, this.pixels, this.palette, int_3, int_2, int_5, int_4, int_6, int_7);
+      if (imgWidth > 0 && imgHeight > 0) {
+         copyPixelsRGB(Rasterizer2D.graphicsPixels, this.pixels, this.palette, pixelOffset, graphicsOffset, imgWidth, imgHeight, deviation, originalDeviation);
       }
    }
 
    public void method976(int int_0, int int_1, int int_2, int int_3) {
-      int int_4 = this.originalWidth;
-      int int_5 = this.height;
+      int originalWidth = this.originalWidth;
+      int height = this.height;
       int int_6 = 0;
       int int_7 = 0;
-      int int_8 = this.width;
-      int int_9 = this.originalHeight;
-      int int_10 = (int_8 << 16) / int_2;
-      int int_11 = (int_9 << 16) / int_3;
+      int width = this.width;
+      int originalHeight = this.originalHeight;
+      int int_10 = (width << 16) / int_2;
+      int int_11 = (originalHeight << 16) / int_3;
       int int_12;
       if (this.offsetX > 0) {
          int_12 = (int_10 + (this.offsetX << 16) - 1) / int_10;
@@ -94,140 +94,140 @@ public final class IndexedSprite extends Rasterizer2D {
          int_7 += int_12 * int_11 - (this.offsetY << 16);
       }
 
-      if (int_4 < int_8) {
-         int_2 = (int_10 + ((int_4 << 16) - int_6) - 1) / int_10;
+      if (originalWidth < width) {
+         int_2 = (int_10 + ((originalWidth << 16) - int_6) - 1) / int_10;
       }
 
-      if (int_5 < int_9) {
-         int_3 = (int_11 + ((int_5 << 16) - int_7) - 1) / int_11;
+      if (height < originalHeight) {
+         int_3 = (int_11 + ((height << 16) - int_7) - 1) / int_11;
       }
 
       int_12 = int_0 + int_1 * Rasterizer2D.graphicsPixelsWidth;
       int int_13 = Rasterizer2D.graphicsPixelsWidth - int_2;
-      if (int_1 + int_3 > Rasterizer2D.drawingAreaRight) {
-         int_3 -= int_1 + int_3 - Rasterizer2D.drawingAreaRight;
+      if (int_1 + int_3 > Rasterizer2D.bottomY) {
+         int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
       }
 
       int int_14;
-      if (int_1 < Rasterizer2D.drawingAreaTop) {
-         int_14 = Rasterizer2D.drawingAreaTop - int_1;
+      if (int_1 < Rasterizer2D.topY) {
+         int_14 = Rasterizer2D.topY - int_1;
          int_3 -= int_14;
          int_12 += int_14 * Rasterizer2D.graphicsPixelsWidth;
          int_7 += int_11 * int_14;
       }
 
-      if (int_2 + int_0 > Rasterizer2D.drawingAreaBottom) {
-         int_14 = int_2 + int_0 - Rasterizer2D.drawingAreaBottom;
+      if (int_2 + int_0 > Rasterizer2D.bottomX) {
+         int_14 = int_2 + int_0 - Rasterizer2D.bottomX;
          int_2 -= int_14;
          int_13 += int_14;
       }
 
-      if (int_0 < Rasterizer2D.draw_region_x) {
-         int_14 = Rasterizer2D.draw_region_x - int_0;
+      if (int_0 < Rasterizer2D.topX) {
+         int_14 = Rasterizer2D.topX - int_0;
          int_2 -= int_14;
          int_12 += int_14;
          int_6 += int_10 * int_14;
          int_13 += int_14;
       }
 
-      method979(Rasterizer2D.graphicsPixels, this.pixels, this.palette, int_6, int_7, int_12, int_13, int_2, int_3, int_10, int_11, int_4);
+      method979(Rasterizer2D.graphicsPixels, this.pixels, this.palette, int_6, int_7, int_12, int_13, int_2, int_3, int_10, int_11, originalWidth);
    }
 
-   public void method977(int int_0, int int_1, int int_2) {
-      for (int int_3 = 0; int_3 < this.palette.length; int_3++) {
-         int int_4 = this.palette[int_3] >> 16 & 0xFF;
-         int_4 += int_0;
-         if (int_4 < 0) {
-            int_4 = 0;
-         } else if (int_4 > 255) {
-            int_4 = 255;
+   public void adjustRGB(int redOff, int greenOff, int blueOff) {
+      for (int pixel = 0; pixel < this.palette.length; pixel++) {
+         int red = this.palette[pixel] >> 16 & 0xFF;
+         red += redOff;
+         if (red < 0) {
+            red = 0;
+         } else if (red > 255) {
+            red = 255;
          }
 
-         int int_5 = this.palette[int_3] >> 8 & 0xFF;
-         int_5 += int_1;
-         if (int_5 < 0) {
-            int_5 = 0;
-         } else if (int_5 > 255) {
-            int_5 = 255;
+         int green = this.palette[pixel] >> 8 & 0xFF;
+         green += greenOff;
+         if (green < 0) {
+            green = 0;
+         } else if (green > 255) {
+            green = 255;
          }
 
-         int int_6 = this.palette[int_3] & 0xFF;
-         int_6 += int_2;
-         if (int_6 < 0) {
-            int_6 = 0;
-         } else if (int_6 > 255) {
-            int_6 = 255;
+         int blue = this.palette[pixel] & 0xFF;
+         blue += blueOff;
+         if (blue < 0) {
+            blue = 0;
+         } else if (blue > 255) {
+            blue = 255;
          }
 
-         this.palette[int_3] = int_6 + (int_5 << 8) + (int_4 << 16);
+         this.palette[pixel] = blue + (green << 8) + (red << 16);
       }
 
    }
 
-   static void method978(int[] ints_0, byte[] bytes_0, int[] ints_1, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      int int_6 = -(int_2 >> 2);
-      int_2 = -(int_2 & 0x3);
+   static void copyPixelsRGB(int[] pixels, byte[] graphicsPixels, int[] colours, int pixelOffset, int graphicsOffset, int imgWidth, int imgHeight, int deviation, int originalDeviation) {
+      int newWidth = -(imgWidth >> 2);
+      imgWidth = -(imgWidth & 0x3);
 
-      for (int int_7 = -int_3; int_7 < 0; int_7++) {
-         int int_8;
-         byte byte_0;
-         for (int_8 = int_6; int_8 < 0; int_8++) {
-            byte_0 = bytes_0[int_0++];
-            if (byte_0 != 0) {
-               ints_0[int_1++] = ints_1[byte_0 & 0xFF];
+      for (int heightCounter = -imgHeight; heightCounter < 0; heightCounter++) {
+         int widthCounter;
+         byte colour;
+         for (widthCounter = newWidth; widthCounter < 0; widthCounter++) {
+            colour = graphicsPixels[pixelOffset++];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
             } else {
-               ++int_1;
+               ++graphicsOffset;
             }
 
-            byte_0 = bytes_0[int_0++];
-            if (byte_0 != 0) {
-               ints_0[int_1++] = ints_1[byte_0 & 0xFF];
+            colour = graphicsPixels[pixelOffset++];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
             } else {
-               ++int_1;
+               ++graphicsOffset;
             }
 
-            byte_0 = bytes_0[int_0++];
-            if (byte_0 != 0) {
-               ints_0[int_1++] = ints_1[byte_0 & 0xFF];
+            colour = graphicsPixels[pixelOffset++];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
             } else {
-               ++int_1;
+               ++graphicsOffset;
             }
 
-            byte_0 = bytes_0[int_0++];
-            if (byte_0 != 0) {
-               ints_0[int_1++] = ints_1[byte_0 & 0xFF];
+            colour = graphicsPixels[pixelOffset++];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
             } else {
-               ++int_1;
-            }
-         }
-
-         for (int_8 = int_2; int_8 < 0; int_8++) {
-            byte_0 = bytes_0[int_0++];
-            if (byte_0 != 0) {
-               ints_0[int_1++] = ints_1[byte_0 & 0xFF];
-            } else {
-               ++int_1;
+               ++graphicsOffset;
             }
          }
 
-         int_1 += int_4;
-         int_0 += int_5;
+         for (widthCounter = imgWidth; widthCounter < 0; widthCounter++) {
+            colour = graphicsPixels[pixelOffset++];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
+            } else {
+               ++graphicsOffset;
+            }
+         }
+
+         graphicsOffset += deviation;
+         pixelOffset += originalDeviation;
       }
 
    }
 
-   static void method979(int[] ints_0, byte[] bytes_0, int[] ints_1, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
+   static void method979(int[] pixels, byte[] graphicsPixels, int[] colours, int int_0, int int_1, int graphicsOffset, int int_3, int imgWidth, int imgHeight, int int_6, int int_7, int int_8) {
       int int_9 = int_0;
 
-      for (int int_10 = -int_5; int_10 < 0; int_10++) {
+      for (int heightCounter = -imgHeight; heightCounter < 0; heightCounter++) {
          int int_11 = int_8 * (int_1 >> 16);
 
-         for (int int_12 = -int_4; int_12 < 0; int_12++) {
-            byte byte_0 = bytes_0[(int_0 >> 16) + int_11];
-            if (byte_0 != 0) {
-               ints_0[int_2++] = ints_1[byte_0 & 0xFF];
+         for (int widthCounter = -imgWidth; widthCounter < 0; widthCounter++) {
+            byte colour = graphicsPixels[(int_0 >> 16) + int_11];
+            if (colour != 0) {
+               pixels[graphicsOffset++] = colours[colour & 0xFF];
             } else {
-               ++int_2;
+               ++graphicsOffset;
             }
 
             int_0 += int_6;
@@ -235,7 +235,7 @@ public final class IndexedSprite extends Rasterizer2D {
 
          int_1 += int_7;
          int_0 = int_9;
-         int_2 += int_3;
+         graphicsOffset += int_3;
       }
 
    }

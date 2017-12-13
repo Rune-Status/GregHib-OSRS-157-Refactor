@@ -33,30 +33,30 @@ public final class SpritePixels extends Rasterizer2D {
       int deviation = Rasterizer2D.graphicsPixelsWidth - imageWidth;
       int originalDeviation = 0;
       int yOffset;
-      if (y < Rasterizer2D.drawingAreaTop) {
-         yOffset = Rasterizer2D.drawingAreaTop - y;
+      if (y < Rasterizer2D.topY) {
+         yOffset = Rasterizer2D.topY - y;
          imageHeight -= yOffset;
-         y = Rasterizer2D.drawingAreaTop;
+         y = Rasterizer2D.topY;
          pixelOffset += yOffset * imageWidth;
          graphicsPixel += yOffset * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (imageHeight + y > Rasterizer2D.drawingAreaRight) {
-         imageHeight -= imageHeight + y - Rasterizer2D.drawingAreaRight;
+      if (imageHeight + y > Rasterizer2D.bottomY) {
+         imageHeight -= imageHeight + y - Rasterizer2D.bottomY;
       }
 
-      if (x < Rasterizer2D.draw_region_x) {
-         yOffset = Rasterizer2D.draw_region_x - x;
+      if (x < Rasterizer2D.topX) {
+         yOffset = Rasterizer2D.topX - x;
          imageWidth -= yOffset;
-         x = Rasterizer2D.draw_region_x;
+         x = Rasterizer2D.topX;
          pixelOffset += yOffset;
          graphicsPixel += yOffset;
          originalDeviation += yOffset;
          deviation += yOffset;
       }
 
-      if (imageWidth + x > Rasterizer2D.drawingAreaBottom) {
-         yOffset = imageWidth + x - Rasterizer2D.drawingAreaBottom;
+      if (imageWidth + x > Rasterizer2D.bottomX) {
+         yOffset = imageWidth + x - Rasterizer2D.bottomX;
          imageWidth -= yOffset;
          originalDeviation += yOffset;
          deviation += yOffset;
@@ -146,20 +146,20 @@ public final class SpritePixels extends Rasterizer2D {
          int_17 = int_17 + 15 >> 4;
          int_18 >>= 4;
          int_19 = int_19 + 15 >> 4;
-         if (int_16 < Rasterizer2D.draw_region_x) {
-            int_16 = Rasterizer2D.draw_region_x;
+         if (int_16 < Rasterizer2D.topX) {
+            int_16 = Rasterizer2D.topX;
          }
 
-         if (int_17 > Rasterizer2D.drawingAreaBottom) {
-            int_17 = Rasterizer2D.drawingAreaBottom;
+         if (int_17 > Rasterizer2D.bottomX) {
+            int_17 = Rasterizer2D.bottomX;
          }
 
-         if (int_18 < Rasterizer2D.drawingAreaTop) {
-            int_18 = Rasterizer2D.drawingAreaTop;
+         if (int_18 < Rasterizer2D.topY) {
+            int_18 = Rasterizer2D.topY;
          }
 
-         if (int_19 > Rasterizer2D.drawingAreaRight) {
-            int_19 = Rasterizer2D.drawingAreaRight;
+         if (int_19 > Rasterizer2D.bottomY) {
+            int_19 = Rasterizer2D.bottomY;
          }
 
          int_17 = int_16 - int_17;
@@ -568,26 +568,26 @@ public final class SpritePixels extends Rasterizer2D {
 
          int_12 = int_0 + int_1 * Rasterizer2D.graphicsPixelsWidth;
          int int_13 = Rasterizer2D.graphicsPixelsWidth - int_2;
-         if (int_1 + int_3 > Rasterizer2D.drawingAreaRight) {
-            int_3 -= int_1 + int_3 - Rasterizer2D.drawingAreaRight;
+         if (int_1 + int_3 > Rasterizer2D.bottomY) {
+            int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
          }
 
          int int_14;
-         if (int_1 < Rasterizer2D.drawingAreaTop) {
-            int_14 = Rasterizer2D.drawingAreaTop - int_1;
+         if (int_1 < Rasterizer2D.topY) {
+            int_14 = Rasterizer2D.topY - int_1;
             int_3 -= int_14;
             int_12 += int_14 * Rasterizer2D.graphicsPixelsWidth;
             int_7 += int_11 * int_14;
          }
 
-         if (int_2 + int_0 > Rasterizer2D.drawingAreaBottom) {
-            int_14 = int_2 + int_0 - Rasterizer2D.drawingAreaBottom;
+         if (int_2 + int_0 > Rasterizer2D.bottomX) {
+            int_14 = int_2 + int_0 - Rasterizer2D.bottomX;
             int_2 -= int_14;
             int_13 += int_14;
          }
 
-         if (int_0 < Rasterizer2D.draw_region_x) {
-            int_14 = Rasterizer2D.draw_region_x - int_0;
+         if (int_0 < Rasterizer2D.topX) {
+            int_14 = Rasterizer2D.topX - int_0;
             int_2 -= int_14;
             int_12 += int_14;
             int_6 += int_10 * int_14;
@@ -604,20 +604,20 @@ public final class SpritePixels extends Rasterizer2D {
          int int_5 = (int_2 * (this.offsetX + this.width) + this.maxWidth - 1) / this.maxWidth + int_0;
          int int_6 = int_1 + int_3 * this.offsetY / this.maxHeight;
          int int_7 = int_1 + (this.maxHeight + (this.offsetY + this.height) * int_3 - 1) / this.maxHeight;
-         if (int_4 < Rasterizer2D.draw_region_x) {
-            int_4 = Rasterizer2D.draw_region_x;
+         if (int_4 < Rasterizer2D.topX) {
+            int_4 = Rasterizer2D.topX;
          }
 
-         if (int_5 > Rasterizer2D.drawingAreaBottom) {
-            int_5 = Rasterizer2D.drawingAreaBottom;
+         if (int_5 > Rasterizer2D.bottomX) {
+            int_5 = Rasterizer2D.bottomX;
          }
 
-         if (int_6 < Rasterizer2D.drawingAreaTop) {
-            int_6 = Rasterizer2D.drawingAreaTop;
+         if (int_6 < Rasterizer2D.topY) {
+            int_6 = Rasterizer2D.topY;
          }
 
-         if (int_7 > Rasterizer2D.drawingAreaRight) {
-            int_7 = Rasterizer2D.drawingAreaRight;
+         if (int_7 > Rasterizer2D.bottomY) {
+            int_7 = Rasterizer2D.bottomY;
          }
 
          if (int_4 < int_5 && int_6 < int_7) {
@@ -729,30 +729,30 @@ public final class SpritePixels extends Rasterizer2D {
       int deviation = Rasterizer2D.graphicsPixelsWidth - imgWidth;
       int originalDeviation = 0;
       int offset;
-      if (y < Rasterizer2D.drawingAreaTop) {
-         offset = Rasterizer2D.drawingAreaTop - y;
+      if (y < Rasterizer2D.topY) {
+         offset = Rasterizer2D.topY - y;
          imgHeight -= offset;
-         y = Rasterizer2D.drawingAreaTop;
+         y = Rasterizer2D.topY;
          pixelOffset += offset * imgWidth;
          graphicsOffset += offset * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (imgHeight + y > Rasterizer2D.drawingAreaRight) {
-         imgHeight -= imgHeight + y - Rasterizer2D.drawingAreaRight;
+      if (imgHeight + y > Rasterizer2D.bottomY) {
+         imgHeight -= imgHeight + y - Rasterizer2D.bottomY;
       }
 
-      if (x < Rasterizer2D.draw_region_x) {
-         offset = Rasterizer2D.draw_region_x - x;
+      if (x < Rasterizer2D.topX) {
+         offset = Rasterizer2D.topX - x;
          imgWidth -= offset;
-         x = Rasterizer2D.draw_region_x;
+         x = Rasterizer2D.topX;
          pixelOffset += offset;
          graphicsOffset += offset;
          originalDeviation += offset;
          deviation += offset;
       }
 
-      if (imgWidth + x > Rasterizer2D.drawingAreaBottom) {
-         offset = imgWidth + x - Rasterizer2D.drawingAreaBottom;
+      if (imgWidth + x > Rasterizer2D.bottomX) {
+         offset = imgWidth + x - Rasterizer2D.bottomX;
          imgWidth -= offset;
          originalDeviation += offset;
          deviation += offset;
@@ -971,26 +971,26 @@ public final class SpritePixels extends Rasterizer2D {
 
          int_13 = x + y * Rasterizer2D.graphicsPixelsWidth;
          int int_14 = Rasterizer2D.graphicsPixelsWidth - imgWidth;
-         if (y + imgHeight > Rasterizer2D.drawingAreaRight) {
-            imgHeight -= y + imgHeight - Rasterizer2D.drawingAreaRight;
+         if (y + imgHeight > Rasterizer2D.bottomY) {
+            imgHeight -= y + imgHeight - Rasterizer2D.bottomY;
          }
 
          int int_15;
-         if (y < Rasterizer2D.drawingAreaTop) {
-            int_15 = Rasterizer2D.drawingAreaTop - y;
+         if (y < Rasterizer2D.topY) {
+            int_15 = Rasterizer2D.topY - y;
             imgHeight -= int_15;
             int_13 += int_15 * Rasterizer2D.graphicsPixelsWidth;
             dY += int_12 * int_15;
          }
 
-         if (imgWidth + x > Rasterizer2D.drawingAreaBottom) {
-            int_15 = imgWidth + x - Rasterizer2D.drawingAreaBottom;
+         if (imgWidth + x > Rasterizer2D.bottomX) {
+            int_15 = imgWidth + x - Rasterizer2D.bottomX;
             imgWidth -= int_15;
             int_14 += int_15;
          }
 
-         if (x < Rasterizer2D.draw_region_x) {
-            int_15 = Rasterizer2D.draw_region_x - x;
+         if (x < Rasterizer2D.topX) {
+            int_15 = Rasterizer2D.topX - x;
             imgWidth -= int_15;
             int_13 += int_15;
             dX += int_11 * int_15;
@@ -1031,30 +1031,30 @@ public final class SpritePixels extends Rasterizer2D {
       int deviation = Rasterizer2D.graphicsPixelsWidth - imageWidth;
       int originalDeviation = 0;
       int offset;
-      if (y < Rasterizer2D.drawingAreaTop) {
-         offset = Rasterizer2D.drawingAreaTop - y;
+      if (y < Rasterizer2D.topY) {
+         offset = Rasterizer2D.topY - y;
          imageHeight -= offset;
-         y = Rasterizer2D.drawingAreaTop;
+         y = Rasterizer2D.topY;
          pixelOffset += offset * imageWidth;
          graphicsOffset += offset * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (imageHeight + y > Rasterizer2D.drawingAreaRight) {
-         imageHeight -= imageHeight + y - Rasterizer2D.drawingAreaRight;
+      if (imageHeight + y > Rasterizer2D.bottomY) {
+         imageHeight -= imageHeight + y - Rasterizer2D.bottomY;
       }
 
-      if (x < Rasterizer2D.draw_region_x) {
-         offset = Rasterizer2D.draw_region_x - x;
+      if (x < Rasterizer2D.topX) {
+         offset = Rasterizer2D.topX - x;
          imageWidth -= offset;
-         x = Rasterizer2D.draw_region_x;
+         x = Rasterizer2D.topX;
          pixelOffset += offset;
          graphicsOffset += offset;
          originalDeviation += offset;
          deviation += offset;
       }
 
-      if (imageWidth + x > Rasterizer2D.drawingAreaBottom) {
-         offset = imageWidth + x - Rasterizer2D.drawingAreaBottom;
+      if (imageWidth + x > Rasterizer2D.bottomX) {
+         offset = imageWidth + x - Rasterizer2D.bottomX;
          imageWidth -= offset;
          originalDeviation += offset;
          deviation += offset;
@@ -1163,30 +1163,30 @@ public final class SpritePixels extends Rasterizer2D {
          int deviation = Rasterizer2D.graphicsPixelsWidth - imageWidth;
          int originalDeviation = 0;
          int offset;
-         if (y < Rasterizer2D.drawingAreaTop) {
-            offset = Rasterizer2D.drawingAreaTop - y;
+         if (y < Rasterizer2D.topY) {
+            offset = Rasterizer2D.topY - y;
             imageHeight -= offset;
-            y = Rasterizer2D.drawingAreaTop;
+            y = Rasterizer2D.topY;
             pixelOffset += offset * imageWidth;
             graphicsPixel += offset * Rasterizer2D.graphicsPixelsWidth;
          }
 
-         if (imageHeight + y > Rasterizer2D.drawingAreaRight) {
-            imageHeight -= imageHeight + y - Rasterizer2D.drawingAreaRight;
+         if (imageHeight + y > Rasterizer2D.bottomY) {
+            imageHeight -= imageHeight + y - Rasterizer2D.bottomY;
          }
 
-         if (x < Rasterizer2D.draw_region_x) {
-            offset = Rasterizer2D.draw_region_x - x;
+         if (x < Rasterizer2D.topX) {
+            offset = Rasterizer2D.topX - x;
             imageWidth -= offset;
-            x = Rasterizer2D.draw_region_x;
+            x = Rasterizer2D.topX;
             pixelOffset += offset;
             graphicsPixel += offset;
             originalDeviation += offset;
             deviation += offset;
          }
 
-         if (imageWidth + x > Rasterizer2D.drawingAreaBottom) {
-            offset = imageWidth + x - Rasterizer2D.drawingAreaBottom;
+         if (imageWidth + x > Rasterizer2D.bottomX) {
+            offset = imageWidth + x - Rasterizer2D.bottomX;
             imageWidth -= offset;
             originalDeviation += offset;
             deviation += offset;

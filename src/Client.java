@@ -2802,7 +2802,7 @@ public final class Client extends GameEngine {
             Class47.method309(widgetRoot, 0, 0, Tile.canvasWidth, Class29.canvasHeight, 0, 0, -1);
         }
 
-        Rasterizer2D.noClip();
+        Rasterizer2D.resetRegion();
         if (!isMenuOpen) {
             if (anInt615 != -1) {
                 int_0 = anInt615;

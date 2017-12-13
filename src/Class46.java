@@ -372,7 +372,7 @@ public class Class46 {
                int_2 = (int)(Math.random() * 21.0D) - 10;
                int_3 = (int)(Math.random() * 21.0D) - 10;
                int_4 = (int)(Math.random() * 41.0D) - 20;
-               BuildType.mapscene[0].method977(int_4 + int_1, int_2 + int_4, int_4 + int_3);
+               BuildType.mapscene[0].adjustRGB(int_4 + int_1, int_2 + int_4, int_4 + int_3);
                Class25.loadingText = "Loaded sprites";
                Class25.loadingBarPercentage = 70;
                Client.loadingStage = 90;

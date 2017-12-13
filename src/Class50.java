@@ -56,7 +56,7 @@ public class Class50 {
             Class25.worldSelectShown = false;
             Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
             Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
-            Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
+            Class25.logoSprite.drawSprite(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
             return;
          }
 
@@ -66,7 +66,7 @@ public class Class50 {
             Class25.worldSelectShown = false;
             Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
             Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
-            Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
+            Class25.logoSprite.drawSprite(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
             return;
          }
       }
@@ -96,8 +96,8 @@ public class Class50 {
          int int_14 = int_5 * int_12 + 1 >> 17;
          int int_15 = int_5 * int_11 >> 17;
          int int_16 = int_5 * int_11 + 1 >> 17;
-         int_0 -= Rasterizer2D.draw_region_x;
-         int_1 -= Rasterizer2D.drawingAreaTop;
+         int_0 -= Rasterizer2D.topX;
+         int_1 -= Rasterizer2D.topY;
          int int_17 = int_0 + int_13;
          int int_18 = int_0 - int_14;
          int int_19 = int_0 + int_6 - int_14;

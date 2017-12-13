@@ -133,7 +133,7 @@ public class Class15 {
             if (indexedsprite_0 != null) {
                int int_12 = (objectcomposition_0.sizeX * 4 - indexedsprite_0.originalWidth) / 2;
                int int_13 = (objectcomposition_0.sizeY * 4 - indexedsprite_0.height) / 2;
-               indexedsprite_0.method975(int_12 + int_1 * 4 + 48, int_13 + (104 - int_2 - objectcomposition_0.sizeY) * 4 + 48);
+               indexedsprite_0.drawSprite(int_12 + int_1 * 4 + 48, int_13 + (104 - int_2 - objectcomposition_0.sizeY) * 4 + 48);
             }
          } else {
             if (int_8 == 0 || int_8 == 2) {
@@ -211,7 +211,7 @@ public class Class15 {
             if (indexedsprite_1 != null) {
                int_11 = (objectcomposition_2.sizeX * 4 - indexedsprite_1.originalWidth) / 2;
                int_14 = (objectcomposition_2.sizeY * 4 - indexedsprite_1.height) / 2;
-               indexedsprite_1.method975(int_11 + int_1 * 4 + 48, (104 - int_2 - objectcomposition_2.sizeY) * 4 + int_14 + 48);
+               indexedsprite_1.drawSprite(int_11 + int_1 * 4 + 48, (104 - int_2 - objectcomposition_2.sizeY) * 4 + int_14 + 48);
             }
          } else if (int_8 == 9) {
             int_10 = 15658734;
@@ -244,7 +244,7 @@ public class Class15 {
             if (indexedsprite_2 != null) {
                int_9 = (objectcomposition_1.sizeX * 4 - indexedsprite_2.originalWidth) / 2;
                int int_15 = (objectcomposition_1.sizeY * 4 - indexedsprite_2.height) / 2;
-               indexedsprite_2.method975(int_1 * 4 + int_9 + 48, (104 - int_2 - objectcomposition_1.sizeY) * 4 + int_15 + 48);
+               indexedsprite_2.drawSprite(int_1 * 4 + int_9 + 48, (104 - int_2 - objectcomposition_1.sizeY) * 4 + int_15 + 48);
             }
          }
       }

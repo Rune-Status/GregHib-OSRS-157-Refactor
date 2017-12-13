@@ -17,7 +17,7 @@ public class Class68_Sub1 extends Class68 {
       int int_1 = byte_0 + 6;
       int int_2 = Class4.font_p12full.method1038(string_0, 250);
       int int_3 = Class4.font_p12full.method1035(string_0, 250) * 13;
-      Rasterizer2D.method919(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + int_3 + byte_0, 0);
+      Rasterizer2D.fillRect(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + int_3 + byte_0, 0);
       Rasterizer2D.drawRectangle(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + byte_0 + int_3, 16777215);
       Class4.font_p12full.method1036(string_0, int_0, int_1, int_2, int_3, 16777215, -1, 1, 1, 0);
       AClass1_Sub2.method636(int_0 - byte_0, int_1 - byte_0, byte_0 + byte_0 + int_2, byte_0 + int_3 + byte_0);

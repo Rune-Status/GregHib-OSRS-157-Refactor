@@ -148,7 +148,7 @@ public class MessageNode extends CacheableNode {
          Class83.anInt181 = Class25.loginWindowX + 180;
          Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
          Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
-         Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
+         Class25.logoSprite.drawSprite(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
       }
    }
 

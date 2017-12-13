@@ -38,9 +38,9 @@ public class Class65 {
             int_7 = int_3 * int_5 * 512 / (short_0 * 334);
             int_8 = (int_2 - int_7) / 2;
             if (bool_0) {
-               Rasterizer2D.noClip();
-               Rasterizer2D.method919(int_0, int_1, int_8, int_3, -16777216);
-               Rasterizer2D.method919(int_0 + int_2 - int_8, int_1, int_8, int_3, -16777216);
+               Rasterizer2D.resetRegion();
+               Rasterizer2D.fillRect(int_0, int_1, int_8, int_3, -16777216);
+               Rasterizer2D.fillRect(int_0 + int_2 - int_8, int_1, int_8, int_3, -16777216);
             }
 
             int_0 += int_8;
@@ -54,9 +54,9 @@ public class Class65 {
             int_7 = short_0 * int_2 * 334 / (int_5 * 512);
             int_8 = (int_3 - int_7) / 2;
             if (bool_0) {
-               Rasterizer2D.noClip();
-               Rasterizer2D.method919(int_0, int_1, int_2, int_8, -16777216);
-               Rasterizer2D.method919(int_0, int_3 + int_1 - int_8, int_2, int_8, -16777216);
+               Rasterizer2D.resetRegion();
+               Rasterizer2D.fillRect(int_0, int_1, int_2, int_8, -16777216);
+               Rasterizer2D.fillRect(int_0, int_3 + int_1 - int_8, int_2, int_8, -16777216);
             }
 
             int_1 += int_8;

@@ -136,7 +136,7 @@ public class Class26 {
             }
 
             if (!Class4.localPlayer.hidden) {
-               Rasterizer2D.method919(cacheablenode_sub1_0.width / 2 + int_0 - 1, cacheablenode_sub1_0.height / 2 + int_1 - 1, 3, 3, 16777215);
+               Rasterizer2D.fillRect(cacheablenode_sub1_0.width / 2 + int_0 - 1, cacheablenode_sub1_0.height / 2 + int_1 - 1, 3, 3, 16777215);
             }
          } else {
             Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
@@ -237,8 +237,8 @@ public class Class26 {
                      int_6 += 2;
                   } else {
                      if (Client.screenY > -1) {
-                        Rasterizer2D.method919(int_12, int_13, int_62, 5, 65280);
-                        Rasterizer2D.method919(int_62 + int_12, int_13, int_8 - int_62, 5, 16711680);
+                        Rasterizer2D.fillRect(int_12, int_13, int_62, 5, 65280);
+                        Rasterizer2D.fillRect(int_62 + int_12, int_13, int_8 - int_62, 5, 16711680);
                      }
 
                      int_6 += 7;

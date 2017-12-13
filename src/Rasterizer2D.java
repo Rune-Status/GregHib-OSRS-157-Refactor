@@ -1,127 +1,122 @@
 public class Rasterizer2D extends CacheableNode {
 
-   public static int drawingAreaTop;
-   public static int draw_region_x;
+   public static int topY;
+   public static int topX;
    public static int[] graphicsPixels;
    public static int graphicsPixelsWidth;
    public static int graphicsPixelsHeight;
-   public static int drawingAreaRight;
-   protected static int drawingAreaBottom;
+   public static int bottomY;
+   protected static int bottomX;
 
    static {
-      drawingAreaTop = 0;
-      drawingAreaRight = 0;
-      draw_region_x = 0;
-      drawingAreaBottom = 0;
+      topY = 0;
+      bottomY = 0;
+      topX = 0;
+      bottomX = 0;
    }
 
-   public static void copyDrawRegion(int[] ints_0) {
-      ints_0[0] = draw_region_x;
-      ints_0[1] = drawingAreaTop;
-      ints_0[2] = drawingAreaBottom;
-      ints_0[3] = drawingAreaRight;
+   public static void copyDrawRegion(int[] values) {
+      values[0] = topX;
+      values[1] = topY;
+      values[2] = bottomX;
+      values[3] = bottomY;
    }
 
-   public static void setRasterBuffer(int[] ints_0, int int_0, int int_1) {
-      graphicsPixels = ints_0;
-      graphicsPixelsWidth = int_0;
-      graphicsPixelsHeight = int_1;
-      setDrawRegion(0, 0, int_0, int_1);
+   public static void setRasterBuffer(int[] pixels, int width, int height) {
+      graphicsPixels = pixels;
+      graphicsPixelsWidth = width;
+      graphicsPixelsHeight = height;
+      setDrawRegion(0, 0, width, height);
    }
 
-   public static void method918(int int_0, int int_1, int int_2, int int_3) {
-      if (int_0 >= draw_region_x && int_0 < drawingAreaBottom) {
-         if (int_1 < drawingAreaTop) {
-            int_2 -= drawingAreaTop - int_1;
-            int_1 = drawingAreaTop;
+   public static void drawVerticalLine(int x, int y, int length, int colour) {
+      if (x >= topX && x < bottomX) {
+         if (y < topY) {
+            length -= topY - y;
+            y = topY;
          }
 
-         if (int_2 + int_1 > drawingAreaRight) {
-            int_2 = drawingAreaRight - int_1;
+         if (length + y > bottomY) {
+            length = bottomY - y;
          }
 
-         int int_4 = int_0 + graphicsPixelsWidth * int_1;
+         int pixelOffset = x + graphicsPixelsWidth * y;
 
-         for (int int_5 = 0; int_5 < int_2; int_5++) {
-            graphicsPixels[int_4 + int_5 * graphicsPixelsWidth] = int_3;
+         for (int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
+            graphicsPixels[pixelOffset + lengthCounter * graphicsPixelsWidth] = colour;
          }
-
-      }
-   }
-
-   public static void method919(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
-      }
-
-      if (int_1 < drawingAreaTop) {
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
-      }
-
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
-      }
-
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
-      }
-
-      int int_5 = graphicsPixelsWidth - int_2;
-      int int_6 = int_0 + graphicsPixelsWidth * int_1;
-
-      for (int int_7 = -int_3; int_7 < 0; int_7++) {
-         for (int int_8 = -int_2; int_8 < 0; int_8++) {
-            graphicsPixels[int_6++] = int_4;
-         }
-
-         int_6 += int_5;
-      }
-
-   }
-
-   public static void method920(int int_0, int int_1, int int_2, int int_3) {
-      if (int_1 >= drawingAreaTop && int_1 < drawingAreaRight) {
-         if (int_0 < draw_region_x) {
-            int_2 -= draw_region_x - int_0;
-            int_0 = draw_region_x;
-         }
-
-         if (int_0 + int_2 > drawingAreaBottom) {
-            int_2 = drawingAreaBottom - int_0;
-         }
-
-         int int_4 = int_0 + graphicsPixelsWidth * int_1;
-
-         for (int int_5 = 0; int_5 < int_2; int_5++) {
-            graphicsPixels[int_4 + int_5] = int_3;
-         }
-
       }
    }
 
-   public static void setDrawRegion(int int_0, int int_1, int int_2, int int_3) {
-      if (int_0 < 0) {
-         int_0 = 0;
+   public static void fillRect(int x, int y, int width, int height, int colour) {
+      if (x < topX) {
+         width -= topX - x;
+         x = topX;
       }
 
-      if (int_1 < 0) {
-         int_1 = 0;
+      if (y < topY) {
+         height -= topY - y;
+         y = topY;
       }
 
-      if (int_2 > graphicsPixelsWidth) {
-         int_2 = graphicsPixelsWidth;
+      if (x + width > bottomX) {
+         width = bottomX - x;
       }
 
-      if (int_3 > graphicsPixelsHeight) {
-         int_3 = graphicsPixelsHeight;
+      if (height + y > bottomY) {
+         height = bottomY - y;
       }
 
-      draw_region_x = int_0;
-      drawingAreaTop = int_1;
-      drawingAreaBottom = int_2;
-      drawingAreaRight = int_3;
+      int pixelOffset = graphicsPixelsWidth - width;
+      int pixel = x + graphicsPixelsWidth * y;
+      for (int heightCounter = -height; heightCounter < 0; heightCounter++) {
+         for (int widthCounter = -width; widthCounter < 0; widthCounter++) {
+            graphicsPixels[pixel++] = colour;
+         }
+         pixel += pixelOffset;
+      }
+   }
+
+   public static void method920(int x, int y, int length, int colour) {
+      if (y >= topY && y < bottomY) {
+         if (x < topX) {
+            length -= topX - x;
+            x = topX;
+         }
+
+         if (x + length > bottomX) {
+            length = bottomX - x;
+         }
+
+         int pixelOffset = x + graphicsPixelsWidth * y;
+
+         for (int lengthOffset = 0; lengthOffset < length; lengthOffset++) {
+            graphicsPixels[pixelOffset + lengthOffset] = colour;
+         }
+      }
+   }
+
+   public static void setDrawRegion(int x, int y, int width, int height) {
+      if (x < 0) {
+         x = 0;
+      }
+
+      if (y < 0) {
+         y = 0;
+      }
+
+      if (width > graphicsPixelsWidth) {
+         width = graphicsPixelsWidth;
+      }
+
+      if (height > graphicsPixelsHeight) {
+         height = graphicsPixelsHeight;
+      }
+
+      topX = x;
+      topY = y;
+      bottomX = width;
+      bottomY = height;
    }
 
    public static void method921(int int_0, int int_1, int int_2, int int_3, int int_4) {
@@ -138,13 +133,13 @@ public class Rasterizer2D extends CacheableNode {
             int int_7 = (int_3 >> 8 & 0xFF) * int_4;
             int int_8 = int_4 * (int_3 & 0xFF);
             int int_9 = int_1 - int_2;
-            if (int_9 < drawingAreaTop) {
-               int_9 = drawingAreaTop;
+            if (int_9 < topY) {
+               int_9 = topY;
             }
 
             int int_10 = int_2 + int_1 + 1;
-            if (int_10 > drawingAreaRight) {
-               int_10 = drawingAreaRight;
+            if (int_10 > bottomY) {
+               int_10 = bottomY;
             }
 
             int int_11 = int_9;
@@ -172,13 +167,13 @@ public class Rasterizer2D extends CacheableNode {
                }
 
                int_17 = int_0 - int_13 + 1;
-               if (int_17 < draw_region_x) {
-                  int_17 = draw_region_x;
+               if (int_17 < topX) {
+                  int_17 = topX;
                }
 
                int_18 = int_0 + int_13;
-               if (int_18 > drawingAreaBottom) {
-                  int_18 = drawingAreaBottom;
+               if (int_18 > bottomX) {
+                  int_18 = bottomX;
                }
 
                int_19 = int_17 + int_11 * graphicsPixelsWidth;
@@ -208,13 +203,13 @@ public class Rasterizer2D extends CacheableNode {
                }
 
                int_17 = int_0 - int_13;
-               if (int_17 < draw_region_x) {
-                  int_17 = draw_region_x;
+               if (int_17 < topX) {
+                  int_17 = topX;
                }
 
                int_18 = int_0 + int_13;
-               if (int_18 > drawingAreaBottom - 1) {
-                  int_18 = drawingAreaBottom - 1;
+               if (int_18 > bottomX - 1) {
+                  int_18 = bottomX - 1;
                }
 
                int_19 = int_17 + int_11 * graphicsPixelsWidth;
@@ -238,8 +233,8 @@ public class Rasterizer2D extends CacheableNode {
    public static void drawRectangle(int int_0, int int_1, int int_2, int int_3, int int_4) {
       method920(int_0, int_1, int_2, int_4);
       method920(int_0, int_3 + int_1 - 1, int_2, int_4);
-      method918(int_0, int_1, int_3, int_4);
-      method918(int_0 + int_2 - 1, int_1, int_3, int_4);
+      drawVerticalLine(int_0, int_1, int_3, int_4);
+      drawVerticalLine(int_0 + int_2 - 1, int_1, int_3, int_4);
    }
 
    public static void method922(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, byte[] bytes_0, int int_6) {
@@ -326,13 +321,13 @@ public class Rasterizer2D extends CacheableNode {
          }
 
          int int_4 = int_1 - int_2;
-         if (int_4 < drawingAreaTop) {
-            int_4 = drawingAreaTop;
+         if (int_4 < topY) {
+            int_4 = topY;
          }
 
          int int_5 = int_2 + int_1 + 1;
-         if (int_5 > drawingAreaRight) {
-            int_5 = drawingAreaRight;
+         if (int_5 > bottomY) {
+            int_5 = bottomY;
          }
 
          int int_6 = int_4;
@@ -356,13 +351,13 @@ public class Rasterizer2D extends CacheableNode {
             }
 
             int_12 = int_0 - int_8 + 1;
-            if (int_12 < draw_region_x) {
-               int_12 = draw_region_x;
+            if (int_12 < topX) {
+               int_12 = topX;
             }
 
             int_13 = int_0 + int_8;
-            if (int_13 > drawingAreaBottom) {
-               int_13 = drawingAreaBottom;
+            if (int_13 > bottomX) {
+               int_13 = bottomX;
             }
 
             int_14 = int_12 + int_6 * graphicsPixelsWidth;
@@ -388,13 +383,13 @@ public class Rasterizer2D extends CacheableNode {
             }
 
             int_12 = int_0 - int_8;
-            if (int_12 < draw_region_x) {
-               int_12 = draw_region_x;
+            if (int_12 < topX) {
+               int_12 = topX;
             }
 
             int_13 = int_0 + int_8;
-            if (int_13 > drawingAreaBottom - 1) {
-               int_13 = drawingAreaBottom - 1;
+            if (int_13 > bottomX - 1) {
+               int_13 = bottomX - 1;
             }
 
             int_14 = int_12 + int_6 * graphicsPixelsWidth;
@@ -410,11 +405,11 @@ public class Rasterizer2D extends CacheableNode {
       }
    }
 
-   public static void noClip() {
-      draw_region_x = 0;
-      drawingAreaTop = 0;
-      drawingAreaBottom = graphicsPixelsWidth;
-      drawingAreaRight = graphicsPixelsHeight;
+   public static void resetRegion() {
+      topX = 0;
+      topY = 0;
+      bottomX = graphicsPixelsWidth;
+      bottomY = graphicsPixelsHeight;
    }
 
    public static void drawLine(int int_0, int int_1, int int_2, int int_3, int int_4) {
@@ -429,9 +424,9 @@ public class Rasterizer2D extends CacheableNode {
 
       } else if (int_2 == 0) {
          if (int_3 >= 0) {
-            method918(int_0, int_1, int_3 + 1, int_4);
+            drawVerticalLine(int_0, int_1, int_3 + 1, int_4);
          } else {
-            method918(int_0, int_3 + int_1, -int_3 + 1, int_4);
+            drawVerticalLine(int_0, int_3 + int_1, -int_3 + 1, int_4);
          }
 
       } else {
@@ -450,18 +445,18 @@ public class Rasterizer2D extends CacheableNode {
             int_3 <<= 16;
             int_5 = (int)Math.floor((double)int_3 / (double)int_2 + 0.5D);
             int_2 += int_0;
-            if (int_0 < draw_region_x) {
-               int_1 += int_5 * (draw_region_x - int_0);
-               int_0 = draw_region_x;
+            if (int_0 < topX) {
+               int_1 += int_5 * (topX - int_0);
+               int_0 = topX;
             }
 
-            if (int_2 >= drawingAreaBottom) {
-               int_2 = drawingAreaBottom - 1;
+            if (int_2 >= bottomX) {
+               int_2 = bottomX - 1;
             }
 
             while (int_0 <= int_2) {
                int_6 = int_1 >> 16;
-               if (int_6 >= drawingAreaTop && int_6 < drawingAreaRight) {
+               if (int_6 >= topY && int_6 < bottomY) {
                   graphicsPixels[int_0 + int_6 * graphicsPixelsWidth] = int_4;
                }
 
@@ -474,18 +469,18 @@ public class Rasterizer2D extends CacheableNode {
             int_2 <<= 16;
             int_5 = (int)Math.floor((double)int_2 / (double)int_3 + 0.5D);
             int_3 += int_1;
-            if (int_1 < drawingAreaTop) {
-               int_0 += (drawingAreaTop - int_1) * int_5;
-               int_1 = drawingAreaTop;
+            if (int_1 < topY) {
+               int_0 += (topY - int_1) * int_5;
+               int_1 = topY;
             }
 
-            if (int_3 >= drawingAreaRight) {
-               int_3 = drawingAreaRight - 1;
+            if (int_3 >= bottomY) {
+               int_3 = bottomY - 1;
             }
 
             while (int_1 <= int_3) {
                int_6 = int_0 >> 16;
-               if (int_6 >= draw_region_x && int_6 < drawingAreaBottom) {
+               if (int_6 >= topX && int_6 < bottomX) {
                   graphicsPixels[int_6 + graphicsPixelsWidth * int_1] = int_4;
                }
 
@@ -497,47 +492,47 @@ public class Rasterizer2D extends CacheableNode {
       }
    }
 
-   public static void setDrawRegion(int[] ints_0) {
-      draw_region_x = ints_0[0];
-      drawingAreaTop = ints_0[1];
-      drawingAreaBottom = ints_0[2];
-      drawingAreaRight = ints_0[3];
+   public static void setDrawRegion(int[] values) {
+      topX = values[0];
+      topY = values[1];
+      bottomX = values[2];
+      bottomY = values[3];
    }
 
-   static void method924(int int_0, int int_1, int int_2) {
-      if (int_0 >= draw_region_x && int_1 >= drawingAreaTop && int_0 < drawingAreaBottom && int_1 < drawingAreaRight) {
-         graphicsPixels[int_0 + graphicsPixelsWidth * int_1] = int_2;
+   static void method924(int x, int y, int colour) {
+      if (x >= topX && y >= topY && x < bottomX && y < bottomY) {
+         graphicsPixels[x + graphicsPixelsWidth * y] = colour;
       }
    }
 
-   public static void fillRectangle(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+   public static void fillRectangle(int int_0, int int_1, int int_2, int int_3, int int_4, int opacity) {
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
-      int_4 = (int_5 * (int_4 & 0xFF00FF) >> 8 & 0xFF00FF) + (int_5 * (int_4 & 0xFF00) >> 8 & 0xFF00);
-      int int_6 = 256 - int_5;
+      int_4 = (opacity * (int_4 & 0xFF00FF) >> 8 & 0xFF00FF) + (opacity * (int_4 & 0xFF00) >> 8 & 0xFF00);
+      int a = 256 - opacity;
       int int_7 = graphicsPixelsWidth - int_2;
       int int_8 = int_0 + graphicsPixelsWidth * int_1;
 
       for (int int_9 = 0; int_9 < int_3; int_9++) {
          for (int int_10 = -int_2; int_10 < 0; int_10++) {
             int int_11 = graphicsPixels[int_8];
-            int_11 = ((int_11 & 0xFF00FF) * int_6 >> 8 & 0xFF00FF) + (int_6 * (int_11 & 0xFF00) >> 8 & 0xFF00);
+            int_11 = ((int_11 & 0xFF00FF) * a >> 8 & 0xFF00FF) + (a * (int_11 & 0xFF00) >> 8 & 0xFF00);
             graphicsPixels[int_8++] = int_11 + int_4;
          }
 
@@ -549,23 +544,23 @@ public class Rasterizer2D extends CacheableNode {
    public static void method925(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
       int int_6 = 0;
       int int_7 = 65536 / int_3;
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_6 += (drawingAreaTop - int_1) * int_7;
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_6 += (topY - int_1) * int_7;
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
       int int_8 = graphicsPixelsWidth - int_2;
@@ -586,74 +581,72 @@ public class Rasterizer2D extends CacheableNode {
 
    }
 
-   public static void method926(int int_0, int int_1, int int_2, int[] ints_0, int[] ints_1) {
-      int int_3 = int_0 + graphicsPixelsWidth * int_1;
+   public static void method926(int int_0, int x, int int_2, int[] pixels, int[] ints_1) {
+      int pixelOffset = int_0 + graphicsPixelsWidth * x;
 
-      for (int_1 = 0; int_1 < ints_0.length; int_1++) {
-         int int_4 = int_3 + ints_0[int_1];
+      for (x = 0; x < pixels.length; x++) {
+         int int_4 = pixelOffset + pixels[x];
 
-         for (int_0 = -ints_1[int_1]; int_0 < 0; int_0++) {
+         for (int_0 = -ints_1[x]; int_0 < 0; int_0++) {
             graphicsPixels[int_4++] = int_2;
          }
 
-         int_3 += graphicsPixelsWidth;
+         pixelOffset += graphicsPixelsWidth;
       }
 
    }
 
-   public static void method927(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      method928(int_0, int_1, int_2, int_4, int_5);
-      method928(int_0, int_3 + int_1 - 1, int_2, int_4, int_5);
-      if (int_3 >= 3) {
-         method933(int_0, int_1 + 1, int_3 - 2, int_4, int_5);
-         method933(int_0 + int_2 - 1, int_1 + 1, int_3 - 2, int_4, int_5);
+   public static void drawRect(int x, int y, int int_2, int height, int colour, int opacity) {
+      drawHorizontalLine(x, y, int_2, colour, opacity);
+      drawHorizontalLine(x, height + y - 1, int_2, colour, opacity);
+      if (height >= 3) {
+         drawVerticalLine(x, y + 1, height - 2, colour, opacity);
+         drawVerticalLine(x + int_2 - 1, y + 1, height - 2, colour, opacity);
       }
-
    }
 
-   static void method928(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (int_1 >= drawingAreaTop && int_1 < drawingAreaRight) {
-         if (int_0 < draw_region_x) {
-            int_2 -= draw_region_x - int_0;
-            int_0 = draw_region_x;
+   static void drawHorizontalLine(int x, int y, int length, int colour, int opacity) {
+      if (y >= topY && y < bottomY) {
+         if (x < topX) {
+            length -= topX - x;
+            x = topX;
          }
 
-         if (int_0 + int_2 > drawingAreaBottom) {
-            int_2 = drawingAreaBottom - int_0;
+         if (x + length > bottomX) {
+            length = bottomX - x;
          }
 
-         int int_5 = 256 - int_4;
-         int int_6 = (int_3 >> 16 & 0xFF) * int_4;
-         int int_7 = (int_3 >> 8 & 0xFF) * int_4;
-         int int_8 = int_4 * (int_3 & 0xFF);
-         int int_9 = int_0 + graphicsPixelsWidth * int_1;
+         int a = 256 - opacity;
+         int r = (colour >> 16 & 0xFF) * opacity;
+         int g = (colour >> 8 & 0xFF) * opacity;
+         int b = opacity * (colour & 0xFF);
+         int pixel = x + graphicsPixelsWidth * y;
 
-         for (int int_10 = 0; int_10 < int_2; int_10++) {
-            int int_11 = int_5 * (graphicsPixels[int_9] >> 16 & 0xFF);
-            int int_12 = (graphicsPixels[int_9] >> 8 & 0xFF) * int_5;
-            int int_13 = int_5 * (graphicsPixels[int_9] & 0xFF);
-            int int_14 = (int_8 + int_13 >> 8) + (int_6 + int_11 >> 8 << 16) + (int_7 + int_12 >> 8 << 8);
-            graphicsPixels[int_9++] = int_14;
+         for (int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
+            int ra = a * (graphicsPixels[pixel] >> 16 & 0xFF);
+            int ga = (graphicsPixels[pixel] >> 8 & 0xFF) * a;
+            int ba = a * (graphicsPixels[pixel] & 0xFF);
+            int rgba = (b + ba >> 8) + (r + ra >> 8 << 16) + (g + ga >> 8 << 8);
+            graphicsPixels[pixel++] = rgba;
          }
-
       }
    }
 
    public static void setInnerDrawRegion(int int_0, int int_1, int int_2, int int_3) {
-      if (draw_region_x < int_0) {
-         draw_region_x = int_0;
+      if (topX < int_0) {
+         topX = int_0;
       }
 
-      if (drawingAreaTop < int_1) {
-         drawingAreaTop = int_1;
+      if (topY < int_1) {
+         topY = int_1;
       }
 
-      if (drawingAreaBottom > int_2) {
-         drawingAreaBottom = int_2;
+      if (bottomX > int_2) {
+         bottomX = int_2;
       }
 
-      if (drawingAreaRight > int_3) {
-         drawingAreaRight = int_3;
+      if (bottomY > int_3) {
+         bottomY = int_3;
       }
 
    }
@@ -663,23 +656,23 @@ public class Rasterizer2D extends CacheableNode {
       int int_9 = int_5 == int_4 && int_7 == int_6 ? -1 : 65536 / int_3;
       int int_10 = int_6;
       int int_11 = 256 - int_6;
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_8 += (drawingAreaTop - int_1) * int_9;
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_8 += (topY - int_1) * int_9;
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
       int int_12 = int_4 >> 16;
@@ -740,23 +733,23 @@ public class Rasterizer2D extends CacheableNode {
       int int_9 = 65536 / int_3;
       int int_10 = int_6;
       int int_11 = 256 - int_6;
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_8 += (drawingAreaTop - int_1) * int_9;
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_8 += (topY - int_1) * int_9;
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
       int int_12 = int_4 & 0xFF0000;
@@ -813,23 +806,23 @@ public class Rasterizer2D extends CacheableNode {
       int int_9 = 65536 / int_3;
       int int_10 = int_6;
       int int_11 = 256 - int_6;
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_8 += (drawingAreaTop - int_1) * int_9;
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_8 += (topY - int_1) * int_9;
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
       int int_12 = int_4 & 0xFF0000;
@@ -887,23 +880,23 @@ public class Rasterizer2D extends CacheableNode {
       int int_10 = int_6;
       int int_11 = 256 - int_6;
       int int_12 = int_4;
-      if (int_0 < draw_region_x) {
-         int_2 -= draw_region_x - int_0;
-         int_0 = draw_region_x;
+      if (int_0 < topX) {
+         int_2 -= topX - int_0;
+         int_0 = topX;
       }
 
-      if (int_1 < drawingAreaTop) {
-         int_8 += (drawingAreaTop - int_1) * int_9;
-         int_3 -= drawingAreaTop - int_1;
-         int_1 = drawingAreaTop;
+      if (int_1 < topY) {
+         int_8 += (topY - int_1) * int_9;
+         int_3 -= topY - int_1;
+         int_1 = topY;
       }
 
-      if (int_0 + int_2 > drawingAreaBottom) {
-         int_2 = drawingAreaBottom - int_0;
+      if (int_0 + int_2 > bottomX) {
+         int_2 = bottomX - int_0;
       }
 
-      if (int_3 + int_1 > drawingAreaRight) {
-         int_3 = drawingAreaRight - int_1;
+      if (int_3 + int_1 > bottomY) {
+         int_3 = bottomY - int_1;
       }
 
       int int_13 = graphicsPixelsWidth - int_2;
@@ -944,30 +937,30 @@ public class Rasterizer2D extends CacheableNode {
 
    }
 
-   static void method933(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (int_0 >= draw_region_x && int_0 < drawingAreaBottom) {
-         if (int_1 < drawingAreaTop) {
-            int_2 -= drawingAreaTop - int_1;
-            int_1 = drawingAreaTop;
+   static void drawVerticalLine(int x, int y, int length, int colour, int opacity) {
+      if (x >= topX && x < bottomX) {
+         if (y < topY) {
+            length -= topY - y;
+            y = topY;
          }
 
-         if (int_2 + int_1 > drawingAreaRight) {
-            int_2 = drawingAreaRight - int_1;
+         if (length + y > bottomY) {
+            length = bottomY - y;
          }
 
-         int int_5 = 256 - int_4;
-         int int_6 = (int_3 >> 16 & 0xFF) * int_4;
-         int int_7 = (int_3 >> 8 & 0xFF) * int_4;
-         int int_8 = int_4 * (int_3 & 0xFF);
-         int int_9 = int_0 + graphicsPixelsWidth * int_1;
+         int a = 256 - opacity;
+         int r = (colour >> 16 & 0xFF) * opacity;
+         int g = (colour >> 8 & 0xFF) * opacity;
+         int b = opacity * (colour & 0xFF);
+         int pixel = x + graphicsPixelsWidth * y;
 
-         for (int int_10 = 0; int_10 < int_2; int_10++) {
-            int int_11 = int_5 * (graphicsPixels[int_9] >> 16 & 0xFF);
-            int int_12 = (graphicsPixels[int_9] >> 8 & 0xFF) * int_5;
-            int int_13 = int_5 * (graphicsPixels[int_9] & 0xFF);
-            int int_14 = (int_8 + int_13 >> 8) + (int_6 + int_11 >> 8 << 16) + (int_7 + int_12 >> 8 << 8);
-            graphicsPixels[int_9] = int_14;
-            int_9 += graphicsPixelsWidth;
+         for (int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
+            int ra = a * (graphicsPixels[pixel] >> 16 & 0xFF);
+            int ga = (graphicsPixels[pixel] >> 8 & 0xFF) * a;
+            int ba = a * (graphicsPixels[pixel] & 0xFF);
+            int rgba = (b + ba >> 8) + (r + ra >> 8 << 16) + (g + ga >> 8 << 8);
+            graphicsPixels[pixel] = rgba;
+            pixel += graphicsPixelsWidth;
          }
 
       }

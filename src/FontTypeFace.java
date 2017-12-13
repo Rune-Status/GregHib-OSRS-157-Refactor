@@ -265,7 +265,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
                            try {
                               int_6 = Class27.method225(string_1.substring(4));
                               IndexedSprite indexedsprite_0 = modIcons[int_6];
-                              indexedsprite_0.method975(int_0, int_1 + this.verticalSpace - indexedsprite_0.originalHeight);
+                              indexedsprite_0.drawSprite(int_0, int_1 + this.verticalSpace - indexedsprite_0.originalHeight);
                               int_0 += indexedsprite_0.width;
                               int_3 = -1;
                            } catch (Exception exception_0) {
@@ -440,7 +440,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
                               ++int_4;
                               int_9 = Class27.method225(string_1.substring(4));
                               IndexedSprite indexedsprite_0 = modIcons[int_9];
-                              indexedsprite_0.method975(int_7 + int_0, int_8 + (int_1 + this.verticalSpace - indexedsprite_0.originalHeight));
+                              indexedsprite_0.drawSprite(int_7 + int_0, int_8 + (int_1 + this.verticalSpace - indexedsprite_0.originalHeight));
                               int_0 += indexedsprite_0.width;
                               int_3 = -1;
                            } catch (Exception exception_0) {
@@ -796,30 +796,30 @@ public abstract class FontTypeFace extends Rasterizer2D {
       int int_7 = 0;
       int int_8 = 0;
       int int_9;
-      if (int_1 < Rasterizer2D.drawingAreaTop) {
-         int_9 = Rasterizer2D.drawingAreaTop - int_1;
+      if (int_1 < Rasterizer2D.topY) {
+         int_9 = Rasterizer2D.topY - int_1;
          int_3 -= int_9;
-         int_1 = Rasterizer2D.drawingAreaTop;
+         int_1 = Rasterizer2D.topY;
          int_8 += int_2 * int_9;
          int_5 += int_9 * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (int_1 + int_3 > Rasterizer2D.drawingAreaRight) {
-         int_3 -= int_1 + int_3 - Rasterizer2D.drawingAreaRight;
+      if (int_1 + int_3 > Rasterizer2D.bottomY) {
+         int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
       }
 
-      if (int_0 < Rasterizer2D.draw_region_x) {
-         int_9 = Rasterizer2D.draw_region_x - int_0;
+      if (int_0 < Rasterizer2D.topX) {
+         int_9 = Rasterizer2D.topX - int_0;
          int_2 -= int_9;
-         int_0 = Rasterizer2D.draw_region_x;
+         int_0 = Rasterizer2D.topX;
          int_8 += int_9;
          int_5 += int_9;
          int_7 += int_9;
          int_6 += int_9;
       }
 
-      if (int_2 + int_0 > Rasterizer2D.drawingAreaBottom) {
-         int_9 = int_2 + int_0 - Rasterizer2D.drawingAreaBottom;
+      if (int_2 + int_0 > Rasterizer2D.bottomX) {
+         int_9 = int_2 + int_0 - Rasterizer2D.bottomX;
          int_2 -= int_9;
          int_7 += int_9;
          int_6 += int_9;
@@ -902,30 +902,30 @@ public abstract class FontTypeFace extends Rasterizer2D {
       int int_8 = 0;
       int int_9 = 0;
       int int_10;
-      if (int_1 < Rasterizer2D.drawingAreaTop) {
-         int_10 = Rasterizer2D.drawingAreaTop - int_1;
+      if (int_1 < Rasterizer2D.topY) {
+         int_10 = Rasterizer2D.topY - int_1;
          int_3 -= int_10;
-         int_1 = Rasterizer2D.drawingAreaTop;
+         int_1 = Rasterizer2D.topY;
          int_9 += int_2 * int_10;
          int_6 += int_10 * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (int_1 + int_3 > Rasterizer2D.drawingAreaRight) {
-         int_3 -= int_1 + int_3 - Rasterizer2D.drawingAreaRight;
+      if (int_1 + int_3 > Rasterizer2D.bottomY) {
+         int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
       }
 
-      if (int_0 < Rasterizer2D.draw_region_x) {
-         int_10 = Rasterizer2D.draw_region_x - int_0;
+      if (int_0 < Rasterizer2D.topX) {
+         int_10 = Rasterizer2D.topX - int_0;
          int_2 -= int_10;
-         int_0 = Rasterizer2D.draw_region_x;
+         int_0 = Rasterizer2D.topX;
          int_9 += int_10;
          int_6 += int_10;
          int_8 += int_10;
          int_7 += int_10;
       }
 
-      if (int_2 + int_0 > Rasterizer2D.drawingAreaBottom) {
-         int_10 = int_2 + int_0 - Rasterizer2D.drawingAreaBottom;
+      if (int_2 + int_0 > Rasterizer2D.bottomX) {
+         int_10 = int_2 + int_0 - Rasterizer2D.bottomX;
          int_2 -= int_10;
          int_8 += int_10;
          int_7 += int_10;

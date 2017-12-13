@@ -354,7 +354,7 @@ public class Spotanim extends CacheableNode {
       }
 
       Enum2.method642();
-      Rasterizer2D.method919(int_0, int_1, int_2, int_3, 0);
+      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
       Enum2.method642();
       int_12 = Graphics3D.anInt543;
       Graphics3D.anInt543 = Client.scale;
@@ -531,7 +531,7 @@ public class Spotanim extends CacheableNode {
       }
 
       if (Client.aBool88) {
-         Rasterizer2D.method919(int_0, int_1, int_2, int_3, 0);
+         Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
          Class68_Sub1.drawStatusBox("Loading - please wait.", false);
       }
 

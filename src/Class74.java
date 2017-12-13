@@ -40,8 +40,8 @@ public class Class74 {
       int int_2 = Class93.menuWidth;
       int int_3 = Class42.menuHeight;
       int int_4 = 6116423;
-      Rasterizer2D.method919(int_0, int_1, int_2, int_3, int_4);
-      Rasterizer2D.method919(int_0 + 1, int_1 + 1, int_2 - 2, 16, 0);
+      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, int_4);
+      Rasterizer2D.fillRect(int_0 + 1, int_1 + 1, int_2 - 2, 16, 0);
       Rasterizer2D.drawRectangle(int_0 + 1, int_1 + 18, int_2 - 2, int_3 - 19, 0);
       Class50.aFont3.method1040("Choose Option", int_0 + 3, int_1 + 14, int_4, -1);
       int int_5 = MouseInput.anInt260;

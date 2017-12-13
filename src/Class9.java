@@ -218,7 +218,7 @@ public class Class9 {
       int int_2 = aclass1_0.aShortArrayArrayArray1[0][int_0][int_1] - 1;
       int int_3 = aclass1_0.aShortArrayArrayArray2[0][int_0][int_1] - 1;
       if (int_2 == -1 && int_3 == -1) {
-         Rasterizer2D.method919(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, this.anInt47);
+         Rasterizer2D.fillRect(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, this.anInt47);
       }
 
       int int_4 = 16711935;
@@ -227,11 +227,11 @@ public class Class9 {
       }
 
       if (int_3 > -1 && aclass1_0.aByteArrayArrayArray3[0][int_0][int_1] == 0) {
-         Rasterizer2D.method919(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_4);
+         Rasterizer2D.fillRect(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_4);
       } else {
          int int_5 = this.method130(int_0, int_1, aclass1_0);
          if (int_3 == -1) {
-            Rasterizer2D.method919(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_5);
+            Rasterizer2D.fillRect(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_5);
          } else {
             class5_0.method95(this.anInt45 * int_0, this.anInt45 * (63 - int_1), int_5, int_4, this.anInt45, this.anInt45, aclass1_0.aByteArrayArrayArray3[0][int_0][int_1], aclass1_0.aByteArrayArrayArray4[0][int_0][int_1]);
          }
@@ -427,7 +427,7 @@ public class Class9 {
          if (int_3 > -1) {
             int int_4 = TileStrategy.method629(int_3, this.anInt47);
             if (aclass1_0.aByteArrayArrayArray3[int_2][int_0][int_1] == 0) {
-               Rasterizer2D.method919(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_4);
+               Rasterizer2D.fillRect(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, this.anInt45, int_4);
             } else {
                class5_0.method95(this.anInt45 * int_0, this.anInt45 * (63 - int_1), 0, int_4, this.anInt45, this.anInt45, aclass1_0.aByteArrayArrayArray3[int_2][int_0][int_1], aclass1_0.aByteArrayArrayArray4[int_2][int_0][int_1]);
             }
@@ -667,7 +667,7 @@ public class Class9 {
    void method138(int int_0, int int_1, int int_2, int int_3) {
       int_2 %= 4;
       if (int_2 == 0) {
-         Rasterizer2D.method918(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, int_3);
+         Rasterizer2D.drawVerticalLine(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, int_3);
       }
 
       if (int_2 == 1) {
@@ -675,7 +675,7 @@ public class Class9 {
       }
 
       if (int_2 == 2) {
-         Rasterizer2D.method918(this.anInt45 + this.anInt45 * int_0 - 1, this.anInt45 * (63 - int_1), this.anInt45, int_3);
+         Rasterizer2D.drawVerticalLine(this.anInt45 + this.anInt45 * int_0 - 1, this.anInt45 * (63 - int_1), this.anInt45, int_3);
       }
 
       if (int_2 == 3) {

@@ -20,7 +20,7 @@ public final class AClass3_Sub1 extends AClass3 {
    }
 
    void method643() {
-      Rasterizer2D.drawRectangle(this.anInt403 + Rasterizer2D.draw_region_x, this.anInt404 + Rasterizer2D.drawingAreaTop, this.anInt405 - this.anInt403, this.anInt406 - this.anInt404, this.anInt407);
+      Rasterizer2D.drawRectangle(this.anInt403 + Rasterizer2D.topX, this.anInt404 + Rasterizer2D.topY, this.anInt405 - this.anInt403, this.anInt406 - this.anInt404, this.anInt407);
    }
 
    static void method750(String string_0, String string_1, String string_2) {

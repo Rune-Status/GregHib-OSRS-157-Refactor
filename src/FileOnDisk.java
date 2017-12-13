@@ -101,7 +101,7 @@ public final class FileOnDisk {
          if (bool_0) {
             Class25.aSpritePixels4.drawImage(Class25.anInt76, 0);
             Class25.aSpritePixels5.drawImage(Class25.anInt76 + 382, 0);
-            Class25.logoSprite.method975(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
+            Class25.logoSprite.drawSprite(Class25.anInt76 + 382 - Class25.logoSprite.originalWidth / 2, 18);
          }
 
          int int_0;
@@ -111,8 +111,8 @@ public final class FileOnDisk {
             int_0 = 253 - byte_0;
             Rasterizer2D.drawRectangle(Class25.loginWindowX + 180 - 152, int_0, 304, 34, 9179409);
             Rasterizer2D.drawRectangle(Class25.loginWindowX + 180 - 151, int_0 + 1, 302, 32, 0);
-            Rasterizer2D.method919(Class25.loginWindowX + 180 - 150, int_0 + 2, Class25.loadingBarPercentage * 3, 30, 9179409);
-            Rasterizer2D.method919(Class25.loadingBarPercentage * 3 + (Class25.loginWindowX + 180 - 150), int_0 + 2, 300 - Class25.loadingBarPercentage * 3, 30, 0);
+            Rasterizer2D.fillRect(Class25.loginWindowX + 180 - 150, int_0 + 2, Class25.loadingBarPercentage * 3, 30, 9179409);
+            Rasterizer2D.fillRect(Class25.loadingBarPercentage * 3 + (Class25.loginWindowX + 180 - 150), int_0 + 2, 300 - Class25.loadingBarPercentage * 3, 30, 0);
             font_0.method1039(Class25.loadingText, Class25.loginWindowX + 180, 276 - byte_0, 16777215, -1);
          }
 
@@ -122,7 +122,7 @@ public final class FileOnDisk {
          int int_6;
          short short_4;
          if (Client.gameState == 20) {
-            Class25.anIndexedSprite1.method975(Class25.loginWindowX + 180 - Class25.anIndexedSprite1.originalWidth / 2, 271 - Class25.anIndexedSprite1.height / 2);
+            Class25.anIndexedSprite1.drawSprite(Class25.loginWindowX + 180 - Class25.anIndexedSprite1.originalWidth / 2, 271 - Class25.anIndexedSprite1.height / 2);
             short_3 = 201;
             font_0.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
             int_6 = short_3 + 15;
@@ -151,7 +151,7 @@ public final class FileOnDisk {
          int int_3;
          int int_7;
          if (Client.gameState == 10 || Client.gameState == 11) {
-            Class25.anIndexedSprite1.method975(Class25.loginWindowX, 171);
+            Class25.anIndexedSprite1.drawSprite(Class25.loginWindowX, 171);
             short short_0;
             if (Class25.loginIndex == 0) {
                short_3 = 251;
@@ -159,10 +159,10 @@ public final class FileOnDisk {
                int_6 = short_3 + 30;
                int_0 = Class25.loginWindowX + 180 - 80;
                short_0 = 291;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_0.method1036("New User", int_0 - 73, short_0 - 20, 144, 40, 16777215, 0, 1, 1, 0);
                int_0 = Class25.loginWindowX + 180 + 80;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_0.method1036("Existing User", int_0 - 73, short_0 - 20, 144, 40, 16777215, 0, 1, 1, 0);
             } else if (Class25.loginIndex == 1) {
                font_0.method1039(Class25.aString4, Class25.loginWindowX + 180, 201, 16776960, 0);
@@ -175,10 +175,10 @@ public final class FileOnDisk {
                int_6 += 15;
                int_0 = Class25.loginWindowX + 180 - 80;
                short_0 = 321;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_0.method1039("Continue", int_0, short_0 + 5, 16777215, 0);
                int_0 = Class25.loginWindowX + 180 + 80;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_0.method1039("Cancel", int_0, short_0 + 5, 16777215, 0);
             } else if (Class25.loginIndex == 2) {
                short_3 = 201;
@@ -204,21 +204,21 @@ public final class FileOnDisk {
                short_3 = 277;
                int_2 = Class83.anInt181 + -117;
                IndexedSprite indexedsprite_0 = Class45.method275(Class25.aBool9, Class25.aBool10);
-               indexedsprite_0.method975(int_2, short_3);
+               indexedsprite_0.drawSprite(int_2, short_3);
                int_2 = int_2 + indexedsprite_0.originalWidth + 5;
                font_1.method1040("Remember username", int_2, short_3 + 13, 16776960, 0);
                int_2 = Class83.anInt181 + 24;
                indexedsprite_0 = Class45.method275(Buffer.preferences.aBool26, Class25.aBool11);
-               indexedsprite_0.method975(int_2, short_3);
+               indexedsprite_0.drawSprite(int_2, short_3);
                int_2 = int_2 + indexedsprite_0.originalWidth + 5;
                font_1.method1040("Hide username", int_2, short_3 + 13, 16776960, 0);
                int_6 = short_3 + 15;
                int_3 = Class83.anInt181 - 80;
                short short_2 = 321;
-               Class25.anIndexedSprite2.method975(int_3 - 73, short_2 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_3 - 73, short_2 - 20);
                font_0.method1039("Login", int_3, short_2 + 5, 16777215, 0);
                int_3 = Class83.anInt181 + 80;
-               Class25.anIndexedSprite2.method975(int_3 - 73, short_2 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_3 - 73, short_2 - 20);
                font_0.method1039("Cancel", int_3, short_2 + 5, 16777215, 0);
                short_3 = 357;
                font_1.method1039("Forgotten your password? <col=ffffff>Click here.", Class83.anInt181, short_3, 16776960, 0);
@@ -232,11 +232,11 @@ public final class FileOnDisk {
                int_6 += 15;
                int_0 = Class25.loginWindowX + 180;
                short_0 = 276;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_2.method1039("Try again", int_0, short_0 + 5, 16777215, 0);
                int_0 = Class25.loginWindowX + 180;
                short_0 = 326;
-               Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+               Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_2.method1039("Forgotten password?", int_0, short_0 + 5, 16777215, 0);
             } else {
                short short_1;
@@ -263,14 +263,14 @@ public final class FileOnDisk {
                      indexedsprite_1 = WallObject.anIndexedSprite4;
                   }
 
-                  indexedsprite_1.method975(int_0, int_7);
+                  indexedsprite_1.drawSprite(int_0, int_7);
                   int_6 += 15;
                   int_2 = Class25.loginWindowX + 180 - 80;
                   short_1 = 321;
-                  Class25.anIndexedSprite2.method975(int_2 - 73, short_1 - 20);
+                  Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
                   font_0.method1039("Continue", int_2, short_1 + 5, 16777215, 0);
                   int_2 = Class25.loginWindowX + 180 + 80;
-                  Class25.anIndexedSprite2.method975(int_2 - 73, short_1 - 20);
+                  Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
                   font_0.method1039("Cancel", int_2, short_1 + 5, 16777215, 0);
                   font_1.method1039("<u=ff>Can\'t Log In?</u>", Class25.loginWindowX + 180, short_1 + 36, 255, 0);
                } else if (Class25.loginIndex == 5) {
@@ -295,10 +295,10 @@ public final class FileOnDisk {
                   int_6 += 15;
                   int_2 = Class25.loginWindowX + 180 - 80;
                   short_1 = 321;
-                  Class25.anIndexedSprite2.method975(int_2 - 73, short_1 - 20);
+                  Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
                   font_0.method1039("Recover", int_2, short_1 + 5, 16777215, 0);
                   int_2 = Class25.loginWindowX + 180 + 80;
-                  Class25.anIndexedSprite2.method975(int_2 - 73, short_1 - 20);
+                  Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
                   font_0.method1039("Back", int_2, short_1 + 5, 16777215, 0);
                } else if (Class25.loginIndex == 6) {
                   short_3 = 201;
@@ -310,7 +310,7 @@ public final class FileOnDisk {
                   int_6 += 15;
                   int_0 = Class25.loginWindowX + 180;
                   short_0 = 321;
-                  Class25.anIndexedSprite2.method975(int_0 - 73, short_0 - 20);
+                  Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                   font_0.method1039("Back", int_0, short_0 + 5, 16777215, 0);
                }
             }
@@ -452,14 +452,14 @@ public final class FileOnDisk {
          }
 
          Settings.method466();
-         Class25.titlemuteSprite[Buffer.preferences.muted ? 1 : 0].method975(Class25.anInt76 + 765 - 40, 463);
+         Class25.titlemuteSprite[Buffer.preferences.muted ? 1 : 0].drawSprite(Class25.anInt76 + 765 - 40, 463);
          if (Client.gameState > 5 && Client.languageId == 0) {
             if (ItemContainer.anIndexedSprite7 != null) {
                int_6 = Class25.anInt76 + 5;
                short_4 = 463;
                byte byte_2 = 100;
                byte byte_1 = 35;
-               ItemContainer.anIndexedSprite7.method975(int_6, short_4);
+               ItemContainer.anIndexedSprite7.drawSprite(int_6, short_4);
                font_0.method1039("World" + " " + Client.world, byte_2 / 2 + int_6, byte_1 / 2 + short_4 - 2, 16777215, 0);
                if (TileStrategy.listFetcher != null) {
                   font_1.method1039("Loading...", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);

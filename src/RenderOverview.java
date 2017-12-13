@@ -253,9 +253,9 @@ public class RenderOverview {
       byte byte_0 = 20;
       int int_5 = int_2 / 2 + int_0;
       int int_6 = int_3 / 2 + int_1 - 18 - byte_0;
-      Rasterizer2D.method919(int_0, int_1, int_2, int_3, -16777216);
+      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, -16777216);
       Rasterizer2D.drawRectangle(int_5 - 152, int_6, 304, 34, -65536);
-      Rasterizer2D.method919(int_5 - 150, int_6 + 2, int_4 * 3, 30, -65536);
+      Rasterizer2D.fillRect(int_5 - 150, int_6 + 2, int_4 * 3, 30, -65536);
       this.aFont1.method1039("Loading...", int_5, int_6 + byte_0, -1, -1);
    }
 
@@ -294,7 +294,7 @@ public class RenderOverview {
       int[] ints_0 = new int[4];
       Rasterizer2D.copyDrawRegion(ints_0);
       Rasterizer2D.setDrawRegion(int_0, int_1, int_2 + int_0, int_1 + int_3);
-      Rasterizer2D.method919(int_0, int_1, int_2, int_3, -16777216);
+      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, -16777216);
       int int_5 = this.aClass107_1.method541();
       if (int_5 < 100) {
          this.method32(int_0, int_1, int_2, int_3, int_5);
@@ -332,7 +332,7 @@ public class RenderOverview {
          }
 
          if (WorldMapData_Sub1.method602() && this.aCoordinates1 != null) {
-            this.aFont1.method1040("Coord: " + this.aCoordinates1, Rasterizer2D.draw_region_x + 10, Rasterizer2D.drawingAreaTop + 20, 16776960, -1);
+            this.aFont1.method1040("Coord: " + this.aCoordinates1, Rasterizer2D.topX + 10, Rasterizer2D.topY + 20, 16776960, -1);
          }
 
          this.anInt2 = int_6;

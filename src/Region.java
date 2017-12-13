@@ -2168,8 +2168,8 @@ public class Region {
       int_3 = pitchCos * int_1 - int_2 * pitchSin >> 16;
       int_2 = pitchSin * int_1 + int_2 * pitchCos >> 16;
       int_2 |= 0x1;
-      int int_4 = int_0 * Graphics3D.anInt543 / int_2 + Graphics3D.centerX + Rasterizer2D.draw_region_x;
-      int int_5 = Graphics3D.anInt543 * int_3 / int_2 + Graphics3D.centerY + Rasterizer2D.drawingAreaTop;
+      int int_4 = int_0 * Graphics3D.anInt543 / int_2 + Graphics3D.centerX + Rasterizer2D.topX;
+      int int_5 = Graphics3D.anInt543 * int_3 / int_2 + Graphics3D.centerY + Rasterizer2D.topY;
       return new int[] {int_4, int_5};
    }
 
