@@ -95,7 +95,7 @@ public class Class47 {
    }
 
    static int method311(int int_0, Script script_0, boolean bool_0) {
-      Widget widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+      Widget widget_0 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
       if (int_0 == 2500) {
          Class39.intStack[++Class23.intStackSize - 1] = widget_0.relativeX;
          return 1;
@@ -123,8 +123,8 @@ public class Class47 {
       Class16.sessionToken = string_0;
 
       try {
-         String string_1 = AClass3.clientInstance.getParameter(Parameters.aParameters8.key);
-         String string_2 = AClass3.clientInstance.getParameter(Parameters.aParameters12.key);
+         String string_1 = AClass3.clientInstance.getParameter(Parameter.A_PARAMETER_8.key);
+         String string_2 = AClass3.clientInstance.getParameter(Parameter.A_PARAMETER_12.key);
          String string_3 = string_1 + "settings=" + string_0 + "; version=1; path=/; domain=" + string_2;
          if (string_0.length() == 0) {
             string_3 = string_3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";

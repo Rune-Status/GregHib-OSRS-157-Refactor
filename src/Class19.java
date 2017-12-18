@@ -6,7 +6,7 @@ public final class Class19 {
    static byte[][][] tileSettings;
    static byte[][][] aByteArrayArrayArray6;
    static final int[] anIntArray7;
-   static byte[][][] aByteArrayArrayArray7;
+   static byte[][][] tileShadowIntensity;
    static int[] anIntArray8;
    static final int[] anIntArray9;
    static final int[] anIntArray10;

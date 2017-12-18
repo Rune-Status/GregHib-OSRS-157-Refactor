@@ -72,37 +72,37 @@ public class CombatInfoListHolder extends Node {
       return this.combatInfo1.method452();
    }
 
-   public static boolean loadWidget(int int_0) {
-      if (AClass3_Sub1.validInterfaces[int_0]) {
+   public static boolean loadWidget(int id) {
+      if (AClass3_Sub1.validInterfaces[id]) {
          return true;
-      } else if (!Class5.widgetIndex.containsFile(int_0)) {
+      } else if (!Class5.widgetIndex.containsFile(id)) {
          return false;
       } else {
-         int int_1 = Class5.widgetIndex.fileCount(int_0);
+         int int_1 = Class5.widgetIndex.fileCount(id);
          if (int_1 == 0) {
-            AClass3_Sub1.validInterfaces[int_0] = true;
+            AClass3_Sub1.validInterfaces[id] = true;
             return true;
          } else {
-            if (Class91.widgets[int_0] == null) {
-               Class91.widgets[int_0] = new Widget[int_1];
+            if (Class91.widgets[id] == null) {
+               Class91.widgets[id] = new Widget[int_1];
             }
 
             for (int int_2 = 0; int_2 < int_1; int_2++) {
-               if (Class91.widgets[int_0][int_2] == null) {
-                  byte[] bytes_0 = Class5.widgetIndex.getConfigData(int_0, int_2);
+               if (Class91.widgets[id][int_2] == null) {
+                  byte[] bytes_0 = Class5.widgetIndex.getConfigData(id, int_2);
                   if (bytes_0 != null) {
-                     Class91.widgets[int_0][int_2] = new Widget();
-                     Class91.widgets[int_0][int_2].id = int_2 + (int_0 << 16);
+                     Class91.widgets[id][int_2] = new Widget();
+                     Class91.widgets[id][int_2].id = int_2 + (id << 16);
                      if (bytes_0[0] == -1) {
-                        Class91.widgets[int_0][int_2].decodeActive(new Buffer(bytes_0));
+                        Class91.widgets[id][int_2].decodeActive(new Buffer(bytes_0));
                      } else {
-                        Class91.widgets[int_0][int_2].decode(new Buffer(bytes_0));
+                        Class91.widgets[id][int_2].decode(new Buffer(bytes_0));
                      }
                   }
                }
             }
 
-            AClass3_Sub1.validInterfaces[int_0] = true;
+            AClass3_Sub1.validInterfaces[id] = true;
             return true;
          }
       }

@@ -238,15 +238,15 @@ public class Class40 {
          Class87.anInt189 = regionX;
          Class25.anInt86 = regionY;
          Class110.setGameState(25);
-         Class68_Sub1.drawStatusBox("Loading - please wait.", true);
-         int int_2 = ItemLayer.baseX;
-         int int_3 = ItemLayer.baseY;
-         ItemLayer.baseX = (regionX - 6) * 8;
-         ItemLayer.baseY = (regionY - 6) * 8;
-         int int_4 = ItemLayer.baseX - int_2;
-         int int_5 = ItemLayer.baseY - int_3;
-         int_2 = ItemLayer.baseX;
-         int_3 = ItemLayer.baseY;
+         Client.drawStatusBox("Loading - please wait.", true);
+         int int_2 = Client.regionBaseX;
+         int int_3 = Client.regionBaseY;
+         Client.regionBaseX = (regionX - 6) * 8;
+         Client.regionBaseY = (regionY - 6) * 8;
+         int int_4 = Client.regionBaseX - int_2;
+         int int_5 = Client.regionBaseY - int_3;
+         int_2 = Client.regionBaseX;
+         int_3 = Client.regionBaseY;
 
          int int_6;
          int int_7;

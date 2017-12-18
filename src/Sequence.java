@@ -110,9 +110,9 @@ public class Sequence extends CacheableNode {
       Frames frame = ScriptVarType.getFrames(index >> 16);
       index &= 0xFFFF;
       if (frame == null) {
-         return model.method1013(true);
+         return model.replaceAlphaValues(true);
       } else {
-         Model model_1 = model.method1013(!frame.method871(index));
+         Model model_1 = model.replaceAlphaValues(!frame.method871(index));
          model_1.method1008(frame, index);
          return model_1;
       }
@@ -130,44 +130,44 @@ public class Sequence extends CacheableNode {
          int_1 &= 0xFFFF;
          Model model_1;
          if (frames_1 == null) {
-            model_1 = model_0.method1013(!frames_0.method871(int_0));
+            model_1 = model_0.replaceAlphaValues(!frames_0.method871(int_0));
             model_1.method1008(frames_0, int_0);
             return model_1;
          } else {
-            model_1 = model_0.method1013(!frames_0.method871(int_0) & !frames_1.method871(int_1));
+            model_1 = model_0.replaceAlphaValues(!frames_0.method871(int_0) & !frames_1.method871(int_1));
             model_1.method1022(frames_0, int_0, frames_1, int_1, this.interleaveLeave);
             return model_1;
          }
       }
    }
 
-   Model method915(Model model_0, int int_0, int int_1) {
-      int_0 = this.frameIDs[int_0];
-      Frames frames_0 = ScriptVarType.getFrames(int_0 >> 16);
-      int_0 &= 0xFFFF;
-      if (frames_0 == null) {
-         return model_0.method1013(true);
+   Model applyFrame(Model model, int frame, int orientation) {
+      frame = this.frameIDs[frame];
+      Frames frames = ScriptVarType.getFrames(frame >> 16);
+      frame &= 0xFFFF;
+      if (frames == null) {
+         return model.replaceAlphaValues(true);
       } else {
-         Model model_1 = model_0.method1013(!frames_0.method871(int_0));
-         int_1 &= 0x3;
-         if (int_1 == 1) {
-            model_1.method1018();
-         } else if (int_1 == 2) {
-            model_1.method1020();
-         } else if (int_1 == 3) {
-            model_1.rotate90Degrees();
+         Model alphaModel = model.replaceAlphaValues(!frames.method871(frame));
+         orientation &= 0x3;
+         if (orientation == 1) {
+            alphaModel.rotate90AntiClockWise();
+         } else if (orientation == 2) {
+            alphaModel.rotate180Degrees();
+         } else if (orientation == 3) {
+            alphaModel.rotate90Degrees();
          }
 
-         model_1.method1008(frames_0, int_0);
-         if (int_1 == 1) {
-            model_1.rotate90Degrees();
-         } else if (int_1 == 2) {
-            model_1.method1020();
-         } else if (int_1 == 3) {
-            model_1.method1018();
+         alphaModel.method1008(frames, frame);
+         if (orientation == 1) {
+            alphaModel.rotate90Degrees();
+         } else if (orientation == 2) {
+            alphaModel.rotate180Degrees();
+         } else if (orientation == 3) {
+            alphaModel.rotate90AntiClockWise();
          }
 
-         return model_1;
+         return alphaModel;
       }
    }
 
@@ -176,9 +176,9 @@ public class Sequence extends CacheableNode {
       Frames frames_0 = ScriptVarType.getFrames(int_0 >> 16);
       int_0 &= 0xFFFF;
       if (frames_0 == null) {
-         return model_0.method1015(true);
+         return model_0.replaceMoreAlphaValues(true);
       } else {
-         Model model_1 = model_0.method1015(!frames_0.method871(int_0));
+         Model model_1 = model_0.replaceMoreAlphaValues(!frames_0.method871(int_0));
          model_1.method1008(frames_0, int_0);
          return model_1;
       }
@@ -189,7 +189,7 @@ public class Sequence extends CacheableNode {
       Frames frames = ScriptVarType.getFrames(frame >> 16);
       frame &= 0xFFFF;
       if (frames == null) {
-         return model.method1013(true);
+         return model.replaceAlphaValues(true);
       } else {
          Frames newFrames = null;
          int int_2 = 0;
@@ -201,12 +201,12 @@ public class Sequence extends CacheableNode {
 
          Model newModel;
          if (newFrames != null && int_2 != 65535) {
-            newModel = model.method1013(!frames.method871(frame) & !newFrames.method871(int_2));
+            newModel = model.replaceAlphaValues(!frames.method871(frame) & !newFrames.method871(int_2));
             newModel.method1008(frames, frame);
             newModel.method1008(newFrames, int_2);
             return newModel;
          } else {
-            newModel = model.method1013(!frames.method871(frame));
+            newModel = model.replaceAlphaValues(!frames.method871(frame));
             newModel.method1008(frames, frame);
             return newModel;
          }

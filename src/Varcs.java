@@ -1,7 +1,10 @@
 import java.io.EOFException;
+import java.io.File;
+import java.io.IOException;
 
 public class Varcs {
 
+   public static int anInt507;
    static IndexData indexInterfaces;
    static int anInt209;
    boolean changed;
@@ -37,8 +40,45 @@ public class Varcs {
       this.deserialize();
    }
 
+   public static FileOnDisk getPreferencesFile(String string_0, String string_1, boolean bool_0) {
+      File file_0 = new File(Class50.aFile1, "preferences" + string_0 + ".dat");
+      if (file_0.exists()) {
+         try {
+            FileOnDisk fileondisk_1 = new FileOnDisk(file_0, "rw", 10000L);
+            return fileondisk_1;
+         } catch (IOException ioexception_1) {
+            ;
+         }
+      }
+
+      String string_2 = "";
+      if (anInt507 == 33) {
+         string_2 = "_rc";
+      } else if (anInt507 == 34) {
+         string_2 = "_wip";
+      }
+
+      File file_1 = new File(Class51.userHome, "jagex_" + string_1 + "_preferences" + string_0 + string_2 + ".dat");
+      FileOnDisk fileondisk_0;
+      if (!bool_0 && file_1.exists()) {
+         try {
+            fileondisk_0 = new FileOnDisk(file_1, "rw", 10000L);
+            return fileondisk_0;
+         } catch (IOException ioexception_2) {
+            ;
+         }
+      }
+
+      try {
+         fileondisk_0 = new FileOnDisk(file_0, "rw", 10000L);
+         return fileondisk_0;
+      } catch (IOException ioexception_0) {
+         throw new RuntimeException();
+      }
+   }
+
    FileOnDisk getVarPrefs(boolean bool_0) {
-      return CollisionData.getPreferencesFile("2", Class14.anEnum6_1.aString27, bool_0);
+      return getPreferencesFile("2", Class14.anEnum6_1.aString27, bool_0);
    }
 
    boolean changed() {

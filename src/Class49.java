@@ -32,7 +32,7 @@ final class Class49 implements Comparator {
                   method314(widget_0.children, widget_0.id);
                }
 
-               WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.get((long)widget_0.id);
+               WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
                if (widgetnode_0 != null) {
                   int_2 = widgetnode_0.id;
                   if (CombatInfoListHolder.loadWidget(int_2)) {
@@ -116,7 +116,7 @@ final class Class49 implements Comparator {
                if (int_3 == 4) {
                   int_5 = ints_0[int_2++] << 16;
                   int_5 += ints_0[int_2++];
-                  widget_1 = Junk.method671(int_5);
+                  widget_1 = Client.getWidget(int_5);
                   int_6 = ints_0[int_2++];
                   if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {
@@ -154,7 +154,7 @@ final class Class49 implements Comparator {
                if (int_3 == 10) {
                   int_5 = ints_0[int_2++] << 16;
                   int_5 += ints_0[int_2++];
-                  widget_1 = Junk.method671(int_5);
+                  widget_1 = Client.getWidget(int_5);
                   int_6 = ints_0[int_2++];
                   if (int_6 != -1 && (!ItemDefinition.getDefinition(int_6).isMembers || Client.isMembers)) {
                      for (int_7 = 0; int_7 < widget_1.itemIds.length; int_7++) {
@@ -198,11 +198,11 @@ final class Class49 implements Comparator {
                }
 
                if (int_3 == 18) {
-                  int_4 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
+                  int_4 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
                }
 
                if (int_3 == 19) {
-                  int_4 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
+                  int_4 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
                }
 
                if (int_3 == 20) {
@@ -262,7 +262,7 @@ final class Class49 implements Comparator {
          Class58.tileQueueX[byte_2] = sourceX;
          int write = byte_2 + 1;
          Class58.tileQueueY[byte_2] = sourceY;
-         int[][] mask = collision.flags;
+         int[][] mask = collision.adjacency;
          int maskX;
          int maskY;
          boolean found;
@@ -374,7 +374,7 @@ final class Class49 implements Comparator {
          Class58.tileQueueX[byte_2] = sourceX;
          int write = byte_2 + 1;
          Class58.tileQueueY[byte_2] = sourceY;
-         int[][] mask = collision.flags;
+         int[][] mask = collision.adjacency;
          int nextDistance;
          int maskX;
          int maskY;

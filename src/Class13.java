@@ -41,7 +41,7 @@ public class Class13 {
    }
 
    static int method169(int int_0, Script script_0, boolean bool_0) {
-      Widget widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+      Widget widget_0 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
       if (int_0 == 2800) {
          Class39.intStack[++Class23.intStackSize - 1] = GraphicsObject.method957(Preferences.getWidgetConfig(widget_0));
          return 1;

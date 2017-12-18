@@ -2,7 +2,7 @@ public final class Tile extends Node {
 
    public static int canvasWidth;
    static IndexData anIndexData5;
-   GameObject[] objects;
+   InteractiveObject[] objects;
    int[] entityFlags;
    SceneTilePaint paint;
    ItemLayer itemLayer;
@@ -27,7 +27,7 @@ public final class Tile extends Node {
    int wallCullOppositeDirection;
 
    Tile(int int_0, int int_1, int int_2) {
-      this.objects = new GameObject[5];
+      this.objects = new InteractiveObject[5];
       this.entityFlags = new int[5];
       this.flags = 0;
       this.renderLevel = this.plane = int_0;
@@ -83,7 +83,7 @@ public final class Tile extends Node {
                      break;
                   }
 
-                  widget_1 = Junk.method671(widget_1.parentId);
+                  widget_1 = Client.getWidget(widget_1.parentId);
                   if (widget_1 == null) {
                      widget_2 = null;
                      break;
@@ -115,7 +115,7 @@ public final class Tile extends Node {
                         break;
                      }
 
-                     widget_1 = Junk.method671(widget_1.parentId);
+                     widget_1 = Client.getWidget(widget_1.parentId);
                      if (widget_1 == null) {
                         widget_2 = null;
                         break;

@@ -15,26 +15,26 @@ public class Class12 {
       this.anInt57 = int_0;
    }
 
-   static void method165() {
-      for (WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) Client.componentTable.method68()) {
-         int int_0 = widgetnode_0.id;
-         if (CombatInfoListHolder.loadWidget(int_0)) {
-            boolean bool_0 = true;
-            Widget[] widgets_0 = Class91.widgets[int_0];
+   static void processWidgetQueue() {
+      for (WidgetNode node = (WidgetNode) Client.widgetNodeTable.method67(); node != null; node = (WidgetNode) Client.widgetNodeTable.method68()) {
+         int id = node.id;
+         if (CombatInfoListHolder.loadWidget(id)) {
+            boolean hasScript = true;
+            Widget[] widgets = Class91.widgets[id];
 
-            int int_1;
-            for (int_1 = 0; int_1 < widgets_0.length; int_1++) {
-               if (widgets_0[int_1] != null) {
-                  bool_0 = widgets_0[int_1].hasScript;
+            int index;
+            for (index = 0; index < widgets.length; index++) {
+               if (widgets[index] != null) {
+                  hasScript = widgets[index].hasScript;
                   break;
                }
             }
 
-            if (!bool_0) {
-               int_1 = (int)widgetnode_0.hash;
-               Widget widget_0 = Junk.method671(int_1);
-               if (widget_0 != null) {
-                  WorldMapData.method305(widget_0);
+            if (!hasScript) {
+               index = (int)node.hash;
+               Widget widget = Client.getWidget(index);
+               if (widget != null) {
+                  WorldMapData.method305(widget);
                }
             }
          }

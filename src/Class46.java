@@ -225,7 +225,7 @@ public class Class46 {
                IndexData indexdata_3 = Class4.indexModels;
                boolean bool_0 = Client.lowMemory;
                ObjectDefinition.objects_ref = indexdata_2;
-               ObjectDefinition.anIndexDataBase20 = indexdata_3;
+               ObjectDefinition.modelIndex = indexdata_3;
                ObjectDefinition.lowMemory = bool_0;
                IndexData indexdata_4 = GrandExchangeOffer.configsIndex;
                IndexData indexdata_5 = Class4.indexModels;
@@ -251,7 +251,7 @@ public class Class46 {
                Class28.method231(GrandExchangeOffer.configsIndex);
                IndexData indexdata_11 = GrandExchangeOffer.configsIndex;
                Class11.varplayer_ref = indexdata_11;
-               VarPlayerType.anInt508 = Class11.varplayer_ref.fileCount(16);
+               VarPlayerType.varPlayerCount = Class11.varplayer_ref.fileCount(16);
                IndexData indexdata_12 = Class56.anIndexData2;
                IndexData models = Class4.indexModels;
                IndexData sprites = Class34.indexSprites;

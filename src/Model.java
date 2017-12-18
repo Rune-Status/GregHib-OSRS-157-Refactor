@@ -4,10 +4,10 @@ public class Model extends Renderable {
    static int[] anIntArray115;
    static int[] SINE;
    static Model aModel1;
-   static byte[] aByteArray21;
+   static byte[] moreTempTriangleAlphas;
    static Model aModel2;
    static int anInt551;
-   static byte[] aByteArray22;
+   static byte[] tempTriangleAlphas;
    static int[] COSINE;
    static int anInt552;
    static int anInt553;
@@ -67,9 +67,9 @@ public class Model extends Renderable {
 
    static {
       aModel2 = new Model();
-      aByteArray22 = new byte[1];
+      tempTriangleAlphas = new byte[1];
       aModel1 = new Model();
-      aByteArray21 = new byte[1];
+      moreTempTriangleAlphas = new byte[1];
       aBoolArray7 = new boolean[4700];
       aBoolArray6 = new boolean[4700];
       anIntArray120 = new int[4700];
@@ -464,56 +464,56 @@ public class Model extends Renderable {
 
    }
 
-   Model method1011(boolean bool_0, Model model_1, byte[] bytes_0) {
-      model_1.vertexCount = this.vertexCount;
-      model_1.triangleCount = this.triangleCount;
-      model_1.texturedTriangleCount = this.texturedTriangleCount;
-      if (model_1.verticesX == null || model_1.verticesX.length < this.vertexCount) {
-         model_1.verticesX = new int[this.vertexCount + 100];
-         model_1.verticesY = new int[this.vertexCount + 100];
-         model_1.verticesZ = new int[this.vertexCount + 100];
+   Model replaceAlphas(boolean replace, Model model, byte[] alphas) {
+      model.vertexCount = this.vertexCount;
+      model.triangleCount = this.triangleCount;
+      model.texturedTriangleCount = this.texturedTriangleCount;
+      if (model.verticesX == null || model.verticesX.length < this.vertexCount) {
+         model.verticesX = new int[this.vertexCount + 100];
+         model.verticesY = new int[this.vertexCount + 100];
+         model.verticesZ = new int[this.vertexCount + 100];
       }
 
-      int int_0;
-      for (int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         model_1.verticesX[int_0] = this.verticesX[int_0];
-         model_1.verticesY[int_0] = this.verticesY[int_0];
-         model_1.verticesZ[int_0] = this.verticesZ[int_0];
+      int vertex;
+      for (vertex = 0; vertex < this.vertexCount; vertex++) {
+         model.verticesX[vertex] = this.verticesX[vertex];
+         model.verticesY[vertex] = this.verticesY[vertex];
+         model.verticesZ[vertex] = this.verticesZ[vertex];
       }
 
-      if (bool_0) {
-         model_1.aByteArray23 = this.aByteArray23;
+      if (replace) {
+         model.aByteArray23 = this.aByteArray23;
       } else {
-         model_1.aByteArray23 = bytes_0;
+         model.aByteArray23 = alphas;
          if (this.aByteArray23 == null) {
-            for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
-               model_1.aByteArray23[int_0] = 0;
+            for (vertex = 0; vertex < this.triangleCount; vertex++) {
+               model.aByteArray23[vertex] = 0;
             }
          } else {
-            for (int_0 = 0; int_0 < this.triangleCount; int_0++) {
-               model_1.aByteArray23[int_0] = this.aByteArray23[int_0];
+            for (vertex = 0; vertex < this.triangleCount; vertex++) {
+               model.aByteArray23[vertex] = this.aByteArray23[vertex];
             }
          }
       }
 
-      model_1.indices1 = this.indices1;
-      model_1.indices2 = this.indices2;
-      model_1.indices3 = this.indices3;
-      model_1.anIntArray131 = this.anIntArray131;
-      model_1.anIntArray133 = this.anIntArray133;
-      model_1.anIntArray132 = this.anIntArray132;
-      model_1.trianglePriorities = this.trianglePriorities;
-      model_1.aByteArray25 = this.aByteArray25;
-      model_1.aShortArray12 = this.aShortArray12;
-      model_1.priorityOffset = this.priorityOffset;
-      model_1.texturedTrianglePointsX = this.texturedTrianglePointsX;
-      model_1.texturedTrianglePointsY = this.texturedTrianglePointsY;
-      model_1.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
-      model_1.anIntArrayArray17 = this.anIntArrayArray17;
-      model_1.anIntArrayArray18 = this.anIntArrayArray18;
-      model_1.fitsOnSingleSquare = this.fitsOnSingleSquare;
-      model_1.reset();
-      return model_1;
+      model.indices1 = this.indices1;
+      model.indices2 = this.indices2;
+      model.indices3 = this.indices3;
+      model.anIntArray131 = this.anIntArray131;
+      model.anIntArray133 = this.anIntArray133;
+      model.anIntArray132 = this.anIntArray132;
+      model.trianglePriorities = this.trianglePriorities;
+      model.aByteArray25 = this.aByteArray25;
+      model.aShortArray12 = this.aShortArray12;
+      model.priorityOffset = this.priorityOffset;
+      model.texturedTrianglePointsX = this.texturedTrianglePointsX;
+      model.texturedTrianglePointsY = this.texturedTrianglePointsY;
+      model.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
+      model.anIntArrayArray17 = this.anIntArrayArray17;
+      model.anIntArrayArray18 = this.anIntArrayArray18;
+      model.fitsOnSingleSquare = this.fitsOnSingleSquare;
+      model.reset();
+      return model;
    }
 
    void method1012(int rotation) {
@@ -578,12 +578,12 @@ public class Model extends Renderable {
       }
    }
 
-   public Model method1013(boolean bool_0) {
-      if (!bool_0 && aByteArray22.length < this.triangleCount) {
-         aByteArray22 = new byte[this.triangleCount + 100];
+   public Model replaceAlphaValues(boolean replace) {
+      if (!replace && tempTriangleAlphas.length < this.triangleCount) {
+         tempTriangleAlphas = new byte[this.triangleCount + 100];
       }
 
-      return this.method1011(bool_0, aModel2, aByteArray22);
+      return this.replaceAlphas(replace, aModel2, tempTriangleAlphas);
    }
 
    void method1014() {
@@ -607,12 +607,12 @@ public class Model extends Renderable {
       }
    }
 
-   public Model method1015(boolean bool_0) {
-      if (!bool_0 && aByteArray21.length < this.triangleCount) {
-         aByteArray21 = new byte[this.triangleCount + 100];
+   public Model replaceMoreAlphaValues(boolean replace) {
+      if (!replace && moreTempTriangleAlphas.length < this.triangleCount) {
+         moreTempTriangleAlphas = new byte[this.triangleCount + 100];
       }
 
-      return this.method1011(bool_0, aModel1, aByteArray21);
+      return this.replaceAlphas(replace, aModel1, moreTempTriangleAlphas);
    }
 
    public void method1016(int int_0) {
@@ -628,51 +628,51 @@ public class Model extends Renderable {
       this.reset();
    }
 
-   public Model method1017(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int clipType) {
+   public Model adjustToTerrain(int[][] heights, int vertexX, int mean, int vertexY, boolean clone, int clipType) {
       this.calculateDiagonals();
-      int int_4 = int_0 - this.shadowIntensity;
-      int int_5 = int_0 + this.shadowIntensity;
-      int int_6 = int_2 - this.shadowIntensity;
-      int int_7 = int_2 + this.shadowIntensity;
-      if (int_4 >= 0 && int_5 + 128 >> 7 < ints_0.length && int_6 >= 0 && int_7 + 128 >> 7 < ints_0[0].length) {
-         int_4 >>= 7;
-         int_5 = int_5 + 127 >> 7;
-         int_6 >>= 7;
-         int_7 = int_7 + 127 >> 7;
-         if (int_1 == ints_0[int_4][int_6] && int_1 == ints_0[int_5][int_6] && int_1 == ints_0[int_4][int_7] && int_1 == ints_0[int_5][int_7]) {
+      int shadowMinX = vertexX - this.shadowIntensity;
+      int shadowMaxX = vertexX + this.shadowIntensity;
+      int shadowMinY = vertexY - this.shadowIntensity;
+      int shadowMaxY = vertexY + this.shadowIntensity;
+      if (shadowMinX >= 0 && shadowMaxX + 128 >> 7 < heights.length && shadowMinY >= 0 && shadowMaxY + 128 >> 7 < heights[0].length) {
+         shadowMinX >>= 7;
+         shadowMaxX = shadowMaxX + 127 >> 7;
+         shadowMinY >>= 7;
+         shadowMaxY = shadowMaxY + 127 >> 7;
+         if (mean == heights[shadowMinX][shadowMinY] && mean == heights[shadowMaxX][shadowMinY] && mean == heights[shadowMinX][shadowMaxY] && mean == heights[shadowMaxX][shadowMaxY]) {
             return this;
          } else {
-            Model model_1;
-            if (bool_0) {
-               model_1 = new Model();
-               model_1.vertexCount = this.vertexCount;
-               model_1.triangleCount = this.triangleCount;
-               model_1.texturedTriangleCount = this.texturedTriangleCount;
-               model_1.verticesX = this.verticesX;
-               model_1.verticesZ = this.verticesZ;
-               model_1.indices1 = this.indices1;
-               model_1.indices2 = this.indices2;
-               model_1.indices3 = this.indices3;
-               model_1.anIntArray131 = this.anIntArray131;
-               model_1.anIntArray133 = this.anIntArray133;
-               model_1.anIntArray132 = this.anIntArray132;
-               model_1.trianglePriorities = this.trianglePriorities;
-               model_1.aByteArray23 = this.aByteArray23;
-               model_1.aByteArray25 = this.aByteArray25;
-               model_1.aShortArray12 = this.aShortArray12;
-               model_1.priorityOffset = this.priorityOffset;
-               model_1.texturedTrianglePointsX = this.texturedTrianglePointsX;
-               model_1.texturedTrianglePointsY = this.texturedTrianglePointsY;
-               model_1.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
-               model_1.anIntArrayArray17 = this.anIntArrayArray17;
-               model_1.anIntArrayArray18 = this.anIntArrayArray18;
-               model_1.fitsOnSingleSquare = this.fitsOnSingleSquare;
-               model_1.verticesY = new int[model_1.vertexCount];
+            Model model;
+            if (clone) {
+               model = new Model();
+               model.vertexCount = this.vertexCount;
+               model.triangleCount = this.triangleCount;
+               model.texturedTriangleCount = this.texturedTriangleCount;
+               model.verticesX = this.verticesX;
+               model.verticesZ = this.verticesZ;
+               model.indices1 = this.indices1;
+               model.indices2 = this.indices2;
+               model.indices3 = this.indices3;
+               model.anIntArray131 = this.anIntArray131;
+               model.anIntArray133 = this.anIntArray133;
+               model.anIntArray132 = this.anIntArray132;
+               model.trianglePriorities = this.trianglePriorities;
+               model.aByteArray23 = this.aByteArray23;
+               model.aByteArray25 = this.aByteArray25;
+               model.aShortArray12 = this.aShortArray12;
+               model.priorityOffset = this.priorityOffset;
+               model.texturedTrianglePointsX = this.texturedTrianglePointsX;
+               model.texturedTrianglePointsY = this.texturedTrianglePointsY;
+               model.texturedTrianglePointsZ = this.texturedTrianglePointsZ;
+               model.anIntArrayArray17 = this.anIntArrayArray17;
+               model.anIntArrayArray18 = this.anIntArrayArray18;
+               model.fitsOnSingleSquare = this.fitsOnSingleSquare;
+               model.verticesY = new int[model.vertexCount];
             } else {
-               model_1 = this;
+               model = this;
             }
 
-            int int_8;
+            int vertex;
             int int_9;
             int int_10;
             int int_11;
@@ -683,38 +683,38 @@ public class Model extends Renderable {
             int int_16;
             int int_17;
             if (clipType == 0) {
-               for (int_8 = 0; int_8 < model_1.vertexCount; int_8++) {
-                  int_9 = int_0 + this.verticesX[int_8];
-                  int_10 = int_2 + this.verticesZ[int_8];
+               for (vertex = 0; vertex < model.vertexCount; vertex++) {
+                  int_9 = vertexX + this.verticesX[vertex];
+                  int_10 = vertexY + this.verticesZ[vertex];
                   int_11 = int_9 & 0x7F;
                   int_12 = int_10 & 0x7F;
                   int_13 = int_9 >> 7;
                   int_14 = int_10 >> 7;
-                  int_15 = ints_0[int_13][int_14] * (128 - int_11) + ints_0[int_13 + 1][int_14] * int_11 >> 7;
-                  int_16 = ints_0[int_13][int_14 + 1] * (128 - int_11) + int_11 * ints_0[int_13 + 1][int_14 + 1] >> 7;
+                  int_15 = heights[int_13][int_14] * (128 - int_11) + heights[int_13 + 1][int_14] * int_11 >> 7;
+                  int_16 = heights[int_13][int_14 + 1] * (128 - int_11) + int_11 * heights[int_13 + 1][int_14 + 1] >> 7;
                   int_17 = int_15 * (128 - int_12) + int_16 * int_12 >> 7;
-                  model_1.verticesY[int_8] = int_17 + this.verticesY[int_8] - int_1;
+                  model.verticesY[vertex] = int_17 + this.verticesY[vertex] - mean;
                }
             } else {
-               for (int_8 = 0; int_8 < model_1.vertexCount; int_8++) {
-                  int_9 = (-this.verticesY[int_8] << 16) / super.modelHeight;
+               for (vertex = 0; vertex < model.vertexCount; vertex++) {
+                  int_9 = (-this.verticesY[vertex] << 16) / super.modelHeight;
                   if (int_9 < clipType) {
-                     int_10 = int_0 + this.verticesX[int_8];
-                     int_11 = int_2 + this.verticesZ[int_8];
+                     int_10 = vertexX + this.verticesX[vertex];
+                     int_11 = vertexY + this.verticesZ[vertex];
                      int_12 = int_10 & 0x7F;
                      int_13 = int_11 & 0x7F;
                      int_14 = int_10 >> 7;
                      int_15 = int_11 >> 7;
-                     int_16 = ints_0[int_14][int_15] * (128 - int_12) + ints_0[int_14 + 1][int_15] * int_12 >> 7;
-                     int_17 = ints_0[int_14][int_15 + 1] * (128 - int_12) + int_12 * ints_0[int_14 + 1][int_15 + 1] >> 7;
+                     int_16 = heights[int_14][int_15] * (128 - int_12) + heights[int_14 + 1][int_15] * int_12 >> 7;
+                     int_17 = heights[int_14][int_15 + 1] * (128 - int_12) + int_12 * heights[int_14 + 1][int_15 + 1] >> 7;
                      int int_18 = int_16 * (128 - int_13) + int_17 * int_13 >> 7;
-                     model_1.verticesY[int_8] = (clipType - int_9) * (int_18 - int_1) / clipType + this.verticesY[int_8];
+                     model.verticesY[vertex] = (clipType - int_9) * (int_18 - mean) / clipType + this.verticesY[vertex];
                   }
                }
             }
 
-            model_1.reset();
-            return model_1;
+            model.reset();
+            return model;
          }
       } else {
          return this;
@@ -899,11 +899,11 @@ public class Model extends Renderable {
       }
    }
 
-   public void method1018() {
-      for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
-         int int_1 = this.verticesZ[int_0];
-         this.verticesZ[int_0] = this.verticesX[int_0];
-         this.verticesX[int_0] = -int_1;
+   public void rotate90AntiClockWise() {
+      for (int vertex = 0; vertex < this.vertexCount; vertex++) {
+         int z = this.verticesZ[vertex];
+         this.verticesZ[vertex] = this.verticesX[vertex];
+         this.verticesX[vertex] = -z;
       }
 
       this.reset();
@@ -919,7 +919,7 @@ public class Model extends Renderable {
       this.reset();
    }
 
-   public void method1020() {
+   public void rotate180Degrees() {
       for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
          this.verticesX[int_0] = -this.verticesX[int_0];
          this.verticesZ[int_0] = -this.verticesZ[int_0];

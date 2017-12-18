@@ -27,9 +27,9 @@ public class Class85 {
         byte plane = (byte) (hash >> 28);
         int x = hash >> 14 & 0x3FFF;
         int y = hash & 0x3FFF;
-        player.pathX[0] = x - ItemLayer.baseX;
+        player.pathX[0] = x - Client.regionBaseX;
         player.x = (player.pathX[0] << 7) + (player.getSize() << 6);
-        player.pathY[0] = y - ItemLayer.baseY;
+        player.pathY[0] = y - Client.regionBaseY;
         player.y = (player.pathY[0] << 7) + (player.getSize() << 6);
         Ignore.plane = player.currentPlane = plane;
         if (Class27.playerSynchronizationBuffers[playerIndex] != null) {

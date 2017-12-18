@@ -486,7 +486,7 @@ public final class AClass3_Sub1 extends AClass3 {
    }
 
    static void method752(String string_0) {
-      if (DynamicObject.clanMembers != null) {
+      if (Class20.clanMembers != null) {
          PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket87, Client.aClass46_1.cipher);
          packetnode_0.packetBuffer.putByte(Projectile.getLength(string_0));
          packetnode_0.packetBuffer.putString(string_0);

@@ -1,8 +1,6 @@
 public final class ItemLayer {
 
    static int[][][] anIntArrayArrayArray1;
-   static int baseX;
-   static int baseY;
    static int anInt210;
    Renderable bottom;
    int x;
@@ -36,14 +34,14 @@ public final class ItemLayer {
       Class70.anIndexDataBase3 = null;
    }
 
-   static void method546(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, CollisionData[] collisiondatas_0) {
+   static void method546(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, CollisionData[] collisionData) {
       int int_5;
       int int_6;
       for (int int_4 = 0; int_4 < 4; int_4++) {
          for (int_5 = 0; int_5 < 64; int_5++) {
             for (int_6 = 0; int_6 < 64; int_6++) {
                if (int_5 + int_0 > 0 && int_5 + int_0 < 103 && int_6 + int_1 > 0 && int_6 + int_1 < 103) {
-                  collisiondatas_0[int_4].flags[int_5 + int_0][int_6 + int_1] &= 0xFEFFFFFF;
+                  collisionData[int_4].adjacency[int_5 + int_0][int_6 + int_1] &= 0xFEFFFFFF;
                }
             }
          }

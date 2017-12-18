@@ -380,7 +380,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
       Class19.aByteArrayArrayArray6 = null;
       Class7.aByteArrayArrayArray2 = null;
       ItemLayer.anIntArrayArrayArray1 = null;
-      Class19.aByteArrayArrayArray7 = null;
+      Class19.tileShadowIntensity = null;
       Settings.tileHeightArray = null;
       Class19.anIntArray8 = null;
       RSCanvas.anIntArray82 = null;

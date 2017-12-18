@@ -34,7 +34,7 @@ public class Class11 implements Interface2 {
          } else if (Client.localInteractingIndex == index) {
             throw new RuntimeException();
          } else {
-            Class27.locationHashes[index] = (player.currentPlane << 28) + (ItemLayer.baseX + player.pathX[0] >> 13 << 14) + (ItemLayer.baseY + player.pathY[0] >> 13);
+            Class27.locationHashes[index] = (player.currentPlane << 28) + (Client.regionBaseX + player.pathX[0] >> 13 << 14) + (Client.regionBaseY + player.pathY[0] >> 13);
             if (player.nextStepOrientation != -1) {
                Class27.orientations[index] = player.nextStepOrientation;
             } else {
@@ -193,8 +193,8 @@ public class Class11 implements Interface2 {
                y = x >> 28;
                baseX = x >> 14 & 0x3FFF;
                baseY = x & 0x3FFF;
-               stepX = (baseX + ItemLayer.baseX + player.pathX[0] & 0x3FFF) - ItemLayer.baseX;
-               stepY = (baseY + ItemLayer.baseY + player.pathY[0] & 0x3FFF) - ItemLayer.baseY;
+               stepX = (baseX + Client.regionBaseX + player.pathX[0] & 0x3FFF) - Client.regionBaseX;
+               stepY = (baseY + Client.regionBaseY + player.pathY[0] & 0x3FFF) - Client.regionBaseY;
                if (Client.localInteractingIndex != index || player.x >= 1536 && player.y >= 1536 && player.x < 11776 && player.y < 11776) {
                   if (update) {
                      player.needsPositionUpdate = true;

@@ -1,11 +1,8 @@
-import java.io.File;
-import java.io.IOException;
-
 public class CollisionData {
 
    int width;
    int x;
-   public int[][] flags;
+   public int[][] adjacency;
    int height;
    int y;
 
@@ -14,182 +11,182 @@ public class CollisionData {
       this.y = 0;
       this.width = int_0;
       this.height = int_1;
-      this.flags = new int[this.width][this.height];
+      this.adjacency = new int[this.width][this.height];
       this.reset();
    }
 
-   void remove(int int_0, int int_1, int int_2) {
-      this.flags[int_0][int_1] &= ~int_2;
+   void remove(int x, int y, int flag) {
+      this.adjacency[x][y] &= ~flag;
    }
 
    void add(int int_0, int int_1, int int_2) {
-      this.flags[int_0][int_1] |= int_2;
+      this.adjacency[int_0][int_1] |= int_2;
    }
 
    public void reset() {
       for (int int_0 = 0; int_0 < this.width; int_0++) {
          for (int int_1 = 0; int_1 < this.height; int_1++) {
             if (int_0 != 0 && int_1 != 0 && int_0 < this.width - 5 && int_1 < this.height - 5) {
-               this.flags[int_0][int_1] = 16777216;
+               this.adjacency[int_0][int_1] = 16777216;
             } else {
-               this.flags[int_0][int_1] = 16777215;
+               this.adjacency[int_0][int_1] = 16777215;
             }
          }
       }
 
    }
 
-   public void removeWall(int int_0, int int_1, int int_2, int int_3, boolean bool_0) {
-      int_0 -= this.x;
-      int_1 -= this.y;
-      if (int_2 == 0) {
-         if (int_3 == 0) {
-            this.remove(int_0, int_1, 128);
-            this.remove(int_0 - 1, int_1, 8);
+   public void removeWall(int x, int y, int position, int orientation, boolean projectileClipped) {
+      x -= this.x;
+      y -= this.y;
+      if (position == 0) {
+         if (orientation == 0) {
+            this.remove(x, y, 128);
+            this.remove(x - 1, y, 8);
          }
 
-         if (int_3 == 1) {
-            this.remove(int_0, int_1, 2);
-            this.remove(int_0, int_1 + 1, 32);
+         if (orientation == 1) {
+            this.remove(x, y, 2);
+            this.remove(x, y + 1, 32);
          }
 
-         if (int_3 == 2) {
-            this.remove(int_0, int_1, 8);
-            this.remove(int_0 + 1, int_1, 128);
+         if (orientation == 2) {
+            this.remove(x, y, 8);
+            this.remove(x + 1, y, 128);
          }
 
-         if (int_3 == 3) {
-            this.remove(int_0, int_1, 32);
-            this.remove(int_0, int_1 - 1, 2);
-         }
-      }
-
-      if (int_2 == 1 || int_2 == 3) {
-         if (int_3 == 0) {
-            this.remove(int_0, int_1, 1);
-            this.remove(int_0 - 1, int_1 + 1, 16);
-         }
-
-         if (int_3 == 1) {
-            this.remove(int_0, int_1, 4);
-            this.remove(int_0 + 1, int_1 + 1, 64);
-         }
-
-         if (int_3 == 2) {
-            this.remove(int_0, int_1, 16);
-            this.remove(int_0 + 1, int_1 - 1, 1);
-         }
-
-         if (int_3 == 3) {
-            this.remove(int_0, int_1, 64);
-            this.remove(int_0 - 1, int_1 - 1, 4);
+         if (orientation == 3) {
+            this.remove(x, y, 32);
+            this.remove(x, y - 1, 2);
          }
       }
 
-      if (int_2 == 2) {
-         if (int_3 == 0) {
-            this.remove(int_0, int_1, 130);
-            this.remove(int_0 - 1, int_1, 8);
-            this.remove(int_0, int_1 + 1, 32);
+      if (position == 1 || position == 3) {
+         if (orientation == 0) {
+            this.remove(x, y, 1);
+            this.remove(x - 1, y + 1, 16);
          }
 
-         if (int_3 == 1) {
-            this.remove(int_0, int_1, 10);
-            this.remove(int_0, int_1 + 1, 32);
-            this.remove(int_0 + 1, int_1, 128);
+         if (orientation == 1) {
+            this.remove(x, y, 4);
+            this.remove(x + 1, y + 1, 64);
          }
 
-         if (int_3 == 2) {
-            this.remove(int_0, int_1, 40);
-            this.remove(int_0 + 1, int_1, 128);
-            this.remove(int_0, int_1 - 1, 2);
+         if (orientation == 2) {
+            this.remove(x, y, 16);
+            this.remove(x + 1, y - 1, 1);
          }
 
-         if (int_3 == 3) {
-            this.remove(int_0, int_1, 160);
-            this.remove(int_0, int_1 - 1, 2);
-            this.remove(int_0 - 1, int_1, 8);
+         if (orientation == 3) {
+            this.remove(x, y, 64);
+            this.remove(x - 1, y - 1, 4);
          }
       }
 
-      if (bool_0) {
-         if (int_2 == 0) {
-            if (int_3 == 0) {
-               this.remove(int_0, int_1, 65536);
-               this.remove(int_0 - 1, int_1, 4096);
+      if (position == 2) {
+         if (orientation == 0) {
+            this.remove(x, y, 130);
+            this.remove(x - 1, y, 8);
+            this.remove(x, y + 1, 32);
+         }
+
+         if (orientation == 1) {
+            this.remove(x, y, 10);
+            this.remove(x, y + 1, 32);
+            this.remove(x + 1, y, 128);
+         }
+
+         if (orientation == 2) {
+            this.remove(x, y, 40);
+            this.remove(x + 1, y, 128);
+            this.remove(x, y - 1, 2);
+         }
+
+         if (orientation == 3) {
+            this.remove(x, y, 160);
+            this.remove(x, y - 1, 2);
+            this.remove(x - 1, y, 8);
+         }
+      }
+
+      if (projectileClipped) {
+         if (position == 0) {
+            if (orientation == 0) {
+               this.remove(x, y, 65536);
+               this.remove(x - 1, y, 4096);
             }
 
-            if (int_3 == 1) {
-               this.remove(int_0, int_1, 1024);
-               this.remove(int_0, int_1 + 1, 16384);
+            if (orientation == 1) {
+               this.remove(x, y, 1024);
+               this.remove(x, y + 1, 16384);
             }
 
-            if (int_3 == 2) {
-               this.remove(int_0, int_1, 4096);
-               this.remove(int_0 + 1, int_1, 65536);
+            if (orientation == 2) {
+               this.remove(x, y, 4096);
+               this.remove(x + 1, y, 65536);
             }
 
-            if (int_3 == 3) {
-               this.remove(int_0, int_1, 16384);
-               this.remove(int_0, int_1 - 1, 1024);
+            if (orientation == 3) {
+               this.remove(x, y, 16384);
+               this.remove(x, y - 1, 1024);
             }
          }
 
-         if (int_2 == 1 || int_2 == 3) {
-            if (int_3 == 0) {
-               this.remove(int_0, int_1, 512);
-               this.remove(int_0 - 1, int_1 + 1, 8192);
+         if (position == 1 || position == 3) {
+            if (orientation == 0) {
+               this.remove(x, y, 512);
+               this.remove(x - 1, y + 1, 8192);
             }
 
-            if (int_3 == 1) {
-               this.remove(int_0, int_1, 2048);
-               this.remove(int_0 + 1, int_1 + 1, 32768);
+            if (orientation == 1) {
+               this.remove(x, y, 2048);
+               this.remove(x + 1, y + 1, 32768);
             }
 
-            if (int_3 == 2) {
-               this.remove(int_0, int_1, 8192);
-               this.remove(int_0 + 1, int_1 - 1, 512);
+            if (orientation == 2) {
+               this.remove(x, y, 8192);
+               this.remove(x + 1, y - 1, 512);
             }
 
-            if (int_3 == 3) {
-               this.remove(int_0, int_1, 32768);
-               this.remove(int_0 - 1, int_1 - 1, 2048);
+            if (orientation == 3) {
+               this.remove(x, y, 32768);
+               this.remove(x - 1, y - 1, 2048);
             }
          }
 
-         if (int_2 == 2) {
-            if (int_3 == 0) {
-               this.remove(int_0, int_1, 66560);
-               this.remove(int_0 - 1, int_1, 4096);
-               this.remove(int_0, int_1 + 1, 16384);
+         if (position == 2) {
+            if (orientation == 0) {
+               this.remove(x, y, 66560);
+               this.remove(x - 1, y, 4096);
+               this.remove(x, y + 1, 16384);
             }
 
-            if (int_3 == 1) {
-               this.remove(int_0, int_1, 5120);
-               this.remove(int_0, int_1 + 1, 16384);
-               this.remove(int_0 + 1, int_1, 65536);
+            if (orientation == 1) {
+               this.remove(x, y, 5120);
+               this.remove(x, y + 1, 16384);
+               this.remove(x + 1, y, 65536);
             }
 
-            if (int_3 == 2) {
-               this.remove(int_0, int_1, 20480);
-               this.remove(int_0 + 1, int_1, 65536);
-               this.remove(int_0, int_1 - 1, 1024);
+            if (orientation == 2) {
+               this.remove(x, y, 20480);
+               this.remove(x + 1, y, 65536);
+               this.remove(x, y - 1, 1024);
             }
 
-            if (int_3 == 3) {
-               this.remove(int_0, int_1, 81920);
-               this.remove(int_0, int_1 - 1, 1024);
-               this.remove(int_0 - 1, int_1, 4096);
+            if (orientation == 3) {
+               this.remove(x, y, 81920);
+               this.remove(x, y - 1, 1024);
+               this.remove(x - 1, y, 4096);
             }
          }
       }
 
    }
 
-   public void unblock(int int_0, int int_1) {
-      int_0 -= this.x;
-      int_1 -= this.y;
-      this.flags[int_0][int_1] &= 0xFFFBFFFF;
+   public void unblock(int x, int y) {
+      x -= this.x;
+      y -= this.y;
+      this.adjacency[x][y] &= 0xFFFBFFFF;
    }
 
    public void removeObject(int int_0, int int_1, int int_2, int int_3, int int_4, boolean bool_0) {
@@ -222,7 +219,7 @@ public class CollisionData {
    public void block(int int_0, int int_1) {
       int_0 -= this.x;
       int_1 -= this.y;
-      this.flags[int_0][int_1] |= 0x40000;
+      this.adjacency[int_0][int_1] |= 0x40000;
    }
 
    public void addObject(int int_0, int int_1, int int_2, int int_3, boolean bool_0) {
@@ -396,44 +393,7 @@ public class CollisionData {
    public void method581(int int_0, int int_1) {
       int_0 -= this.x;
       int_1 -= this.y;
-      this.flags[int_0][int_1] |= 0x200000;
-   }
-
-   public static FileOnDisk getPreferencesFile(String string_0, String string_1, boolean bool_0) {
-      File file_0 = new File(Class50.aFile1, "preferences" + string_0 + ".dat");
-      if (file_0.exists()) {
-         try {
-            FileOnDisk fileondisk_1 = new FileOnDisk(file_0, "rw", 10000L);
-            return fileondisk_1;
-         } catch (IOException ioexception_1) {
-            ;
-         }
-      }
-
-      String string_2 = "";
-      if (VarPlayerType.anInt507 == 33) {
-         string_2 = "_rc";
-      } else if (VarPlayerType.anInt507 == 34) {
-         string_2 = "_wip";
-      }
-
-      File file_1 = new File(Class51.userHome, "jagex_" + string_1 + "_preferences" + string_0 + string_2 + ".dat");
-      FileOnDisk fileondisk_0;
-      if (!bool_0 && file_1.exists()) {
-         try {
-            fileondisk_0 = new FileOnDisk(file_1, "rw", 10000L);
-            return fileondisk_0;
-         } catch (IOException ioexception_2) {
-            ;
-         }
-      }
-
-      try {
-         fileondisk_0 = new FileOnDisk(file_0, "rw", 10000L);
-         return fileondisk_0;
-      } catch (IOException ioexception_0) {
-         throw new RuntimeException();
-      }
+      this.adjacency[int_0][int_1] |= 0x200000;
    }
 
 }

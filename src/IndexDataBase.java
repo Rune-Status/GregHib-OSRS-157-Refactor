@@ -108,7 +108,7 @@ public abstract class IndexDataBase {
 
       int_1 = ~int_1;
       this.crc = int_1;
-      Buffer buffer_0 = new Buffer(DynamicObject.decodeContainer(bytes_0));
+      Buffer buffer_0 = new Buffer(IndexData.decodeContainer(bytes_0));
       int_1 = buffer_0.getUnsignedByte();
       if (int_1 >= 5 && int_1 <= 7) {
          if (int_1 >= 6) {
@@ -342,7 +342,7 @@ public abstract class IndexDataBase {
                buffer_0.decryptXtea(ints_0, 5, buffer_0.buffer.length);
             }
 
-            byte[] bytes_2 = DynamicObject.decodeContainer(bytes_0);
+            byte[] bytes_2 = IndexData.decodeContainer(bytes_0);
             if (this.aBool27) {
                this.anObjectArray1[int_0] = null;
             }

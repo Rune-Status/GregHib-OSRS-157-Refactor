@@ -70,7 +70,7 @@ public class World {
       Spotanim.spotanims.reset();
       Spotanim.aNodeCache6.reset();
       CombatInfoListHolder.method651();
-      VarPlayerType.varplayers.reset();
+      VarPlayerType.varPlayerCache.reset();
       CacheableNode_Sub6.aNodeCache16.reset();
       CacheableNode_Sub6.aNodeCache17.reset();
       CacheableNode_Sub6.aNodeCache15.reset();

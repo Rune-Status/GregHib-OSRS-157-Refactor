@@ -68,226 +68,226 @@ public class Class107 {
       return this.anInt208;
    }
 
-   static void method542(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, Region region_0, CollisionData collisiondata_0) {
-      ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_4);
-      int int_7;
-      int int_8;
-      if (int_5 != 1 && int_5 != 3) {
-         int_7 = objectcomposition_0.sizeX;
-         int_8 = objectcomposition_0.sizeY;
+   static void renderObject(int floorLevel, int plane, int regionX, int regionY, int objectId, int face, int type, Region region, CollisionData collisionData) {
+      ObjectDefinition definition = ObjectDefinition.getDefinition(objectId);
+      int sizeY;
+      int sizeX;
+      if (face != 1 && face != 3) {
+         sizeY = definition.sizeX;
+         sizeX = definition.sizeY;
       } else {
-         int_7 = objectcomposition_0.sizeY;
-         int_8 = objectcomposition_0.sizeX;
+         sizeY = definition.sizeY;
+         sizeX = definition.sizeX;
       }
 
-      int int_9;
-      int int_10;
-      if (int_7 + int_2 <= 104) {
-         int_9 = (int_7 >> 1) + int_2;
-         int_10 = int_2 + (int_7 + 1 >> 1);
+      int modX;
+      int modX1;
+      if (sizeY + regionX <= 104) {
+         modX = (sizeY >> 1) + regionX;
+         modX1 = regionX + (sizeY + 1 >> 1);
       } else {
-         int_9 = int_2;
-         int_10 = int_2 + 1;
+         modX = regionX;
+         modX1 = regionX + 1;
       }
 
-      int int_11;
-      int int_12;
-      if (int_3 + int_8 <= 104) {
-         int_11 = int_3 + (int_8 >> 1);
-         int_12 = int_3 + (int_8 + 1 >> 1);
+      int modY;
+      int modY1;
+      if (regionY + sizeX <= 104) {
+         modY = regionY + (sizeX >> 1);
+         modY1 = regionY + (sizeX + 1 >> 1);
       } else {
-         int_11 = int_3;
-         int_12 = int_3 + 1;
+         modY = regionY;
+         modY1 = regionY + 1;
       }
 
-      int[][] ints_0 = Class19.tileHeights[int_1];
-      int int_13 = ints_0[int_10][int_11] + ints_0[int_9][int_11] + ints_0[int_9][int_12] + ints_0[int_10][int_12] >> 2;
-      int int_14 = (int_2 << 7) + (int_7 << 6);
-      int int_15 = (int_3 << 7) + (int_8 << 6);
-      int int_16 = (int_3 << 7) + int_2 + (int_4 << 14) + 1073741824;
-      if (objectcomposition_0.hasOptions == 0) {
-         int_16 -= Integer.MIN_VALUE;
+      int[][] heights = Class19.tileHeights[plane];
+      int mean = heights[modX1][modY] + heights[modX][modY] + heights[modX][modY1] + heights[modX1][modY1] >> 2;
+      int vertexX = (regionX << 7) + (sizeY << 6);
+      int vertexY = (regionY << 7) + (sizeX << 6);
+      int hash = (regionY << 7) + regionX + (objectId << 14) + 1073741824;
+      if (definition.hasOptions == 0) {
+         hash -= Integer.MIN_VALUE;
       }
 
-      int int_17 = (int_5 << 6) + int_6;
-      if (objectcomposition_0.isSolid == 1) {
-         int_17 += 256;
+      int objectConfig = (face << 6) + type;
+      if (definition.isSolid == 1) {
+         objectConfig += 256;
       }
 
-      Object object_0;
-      if (int_6 == 22) {
-         if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-            object_0 = objectcomposition_0.getModelAt(22, int_5, ints_0, int_14, int_13, int_15);
+      Object renderable;
+      if (type == 22) {
+         if (definition.animationId == -1 && definition.transformationIds == null) {
+            renderable = definition.getModelAt(22, face, heights, vertexX, mean, vertexY);
          } else {
-            object_0 = new DynamicObject(int_4, 22, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+            renderable = new GameObject(objectId, 22, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
          }
 
-         region_0.groundObjectSpawned(int_0, int_2, int_3, int_13, (Renderable) object_0, int_16, int_17);
-         if (objectcomposition_0.interactType == 1) {
-            collisiondata_0.block(int_2, int_3);
+         region.groundObjectSpawned(floorLevel, regionX, regionY, mean, (Renderable) renderable, hash, objectConfig);
+         if (definition.interactType == 1) {
+            collisionData.block(regionX, regionY);
          }
 
-      } else if (int_6 != 10 && int_6 != 11) {
-         if (int_6 >= 12) {
-            if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.getModelAt(int_6, int_5, ints_0, int_14, int_13, int_15);
+      } else if (type != 10 && type != 11) {
+         if (type >= 12) {
+            if (definition.animationId == -1 && definition.transformationIds == null) {
+               renderable = definition.getModelAt(type, face, heights, vertexX, mean, vertexY);
             } else {
-               object_0 = new DynamicObject(int_4, int_6, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+               renderable = new GameObject(objectId, type, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
             }
 
-            region_0.method379(int_0, int_2, int_3, int_13, 1, 1, (Renderable) object_0, 0, int_16, int_17);
-            if (objectcomposition_0.interactType != 0) {
-               collisiondata_0.addObject(int_2, int_3, int_7, int_8, objectcomposition_0.projectileClipped);
+            region.method379(floorLevel, regionX, regionY, mean, 1, 1, (Renderable) renderable, 0, hash, objectConfig);
+            if (definition.interactType != 0) {
+               collisionData.addObject(regionX, regionY, sizeY, sizeX, definition.projectileClipped);
             }
 
-         } else if (int_6 == 0) {
-            if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.getModelAt(0, int_5, ints_0, int_14, int_13, int_15);
+         } else if (type == 0) {
+            if (definition.animationId == -1 && definition.transformationIds == null) {
+               renderable = definition.getModelAt(0, face, heights, vertexX, mean, vertexY);
             } else {
-               object_0 = new DynamicObject(int_4, 0, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+               renderable = new GameObject(objectId, 0, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
             }
 
-            region_0.addBoundary(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, Class19.anIntArray7[int_5], 0, int_16, int_17);
-            if (objectcomposition_0.interactType != 0) {
-               collisiondata_0.addWall(int_2, int_3, int_6, int_5, objectcomposition_0.projectileClipped);
+            region.addBoundary(floorLevel, regionX, regionY, mean, (Renderable) renderable, (Renderable) null, Class19.anIntArray7[face], 0, hash, objectConfig);
+            if (definition.interactType != 0) {
+               collisionData.addWall(regionX, regionY, type, face, definition.projectileClipped);
             }
 
-         } else if (int_6 == 1) {
-            if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-               object_0 = objectcomposition_0.getModelAt(1, int_5, ints_0, int_14, int_13, int_15);
+         } else if (type == 1) {
+            if (definition.animationId == -1 && definition.transformationIds == null) {
+               renderable = definition.getModelAt(1, face, heights, vertexX, mean, vertexY);
             } else {
-               object_0 = new DynamicObject(int_4, 1, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+               renderable = new GameObject(objectId, 1, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
             }
 
-            region_0.addBoundary(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, Class19.anIntArray9[int_5], 0, int_16, int_17);
-            if (objectcomposition_0.interactType != 0) {
-               collisiondata_0.addWall(int_2, int_3, int_6, int_5, objectcomposition_0.projectileClipped);
+            region.addBoundary(floorLevel, regionX, regionY, mean, (Renderable) renderable, (Renderable) null, Class19.anIntArray9[face], 0, hash, objectConfig);
+            if (definition.interactType != 0) {
+               collisionData.addWall(regionX, regionY, type, face, definition.projectileClipped);
             }
 
          } else {
             int int_18;
             Object object_2;
-            if (int_6 == 2) {
-               int_18 = int_5 + 1 & 0x3;
+            if (type == 2) {
+               int_18 = face + 1 & 0x3;
                Object object_1;
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_1 = objectcomposition_0.getModelAt(2, int_5 + 4, ints_0, int_14, int_13, int_15);
-                  object_2 = objectcomposition_0.getModelAt(2, int_18, ints_0, int_14, int_13, int_15);
+               if (definition.animationId == -1 && definition.transformationIds == null) {
+                  object_1 = definition.getModelAt(2, face + 4, heights, vertexX, mean, vertexY);
+                  object_2 = definition.getModelAt(2, int_18, heights, vertexX, mean, vertexY);
                } else {
-                  object_1 = new DynamicObject(int_4, 2, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
-                  object_2 = new DynamicObject(int_4, 2, int_18, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                  object_1 = new GameObject(objectId, 2, face + 4, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
+                  object_2 = new GameObject(objectId, 2, int_18, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                }
 
-               region_0.addBoundary(int_0, int_2, int_3, int_13, (Renderable) object_1, (Renderable) object_2, Class19.anIntArray7[int_5], Class19.anIntArray7[int_18], int_16, int_17);
-               if (objectcomposition_0.interactType != 0) {
-                  collisiondata_0.addWall(int_2, int_3, int_6, int_5, objectcomposition_0.projectileClipped);
+               region.addBoundary(floorLevel, regionX, regionY, mean, (Renderable) object_1, (Renderable) object_2, Class19.anIntArray7[face], Class19.anIntArray7[int_18], hash, objectConfig);
+               if (definition.interactType != 0) {
+                  collisionData.addWall(regionX, regionY, type, face, definition.projectileClipped);
                }
 
-            } else if (int_6 == 3) {
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.getModelAt(3, int_5, ints_0, int_14, int_13, int_15);
+            } else if (type == 3) {
+               if (definition.animationId == -1 && definition.transformationIds == null) {
+                  renderable = definition.getModelAt(3, face, heights, vertexX, mean, vertexY);
                } else {
-                  object_0 = new DynamicObject(int_4, 3, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                  renderable = new GameObject(objectId, 3, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                }
 
-               region_0.addBoundary(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, Class19.anIntArray9[int_5], 0, int_16, int_17);
-               if (objectcomposition_0.interactType != 0) {
-                  collisiondata_0.addWall(int_2, int_3, int_6, int_5, objectcomposition_0.projectileClipped);
+               region.addBoundary(floorLevel, regionX, regionY, mean, (Renderable) renderable, (Renderable) null, Class19.anIntArray9[face], 0, hash, objectConfig);
+               if (definition.interactType != 0) {
+                  collisionData.addWall(regionX, regionY, type, face, definition.projectileClipped);
                }
 
-            } else if (int_6 == 9) {
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.getModelAt(int_6, int_5, ints_0, int_14, int_13, int_15);
+            } else if (type == 9) {
+               if (definition.animationId == -1 && definition.transformationIds == null) {
+                  renderable = definition.getModelAt(type, face, heights, vertexX, mean, vertexY);
                } else {
-                  object_0 = new DynamicObject(int_4, int_6, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                  renderable = new GameObject(objectId, type, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                }
 
-               region_0.method379(int_0, int_2, int_3, int_13, 1, 1, (Renderable) object_0, 0, int_16, int_17);
-               if (objectcomposition_0.interactType != 0) {
-                  collisiondata_0.addObject(int_2, int_3, int_7, int_8, objectcomposition_0.projectileClipped);
+               region.method379(floorLevel, regionX, regionY, mean, 1, 1, (Renderable) renderable, 0, hash, objectConfig);
+               if (definition.interactType != 0) {
+                  collisionData.addObject(regionX, regionY, sizeY, sizeX, definition.projectileClipped);
                }
 
-            } else if (int_6 == 4) {
-               if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                  object_0 = objectcomposition_0.getModelAt(4, int_5, ints_0, int_14, int_13, int_15);
+            } else if (type == 4) {
+               if (definition.animationId == -1 && definition.transformationIds == null) {
+                  renderable = definition.getModelAt(4, face, heights, vertexX, mean, vertexY);
                } else {
-                  object_0 = new DynamicObject(int_4, 4, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                  renderable = new GameObject(objectId, 4, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                }
 
-               region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, Class19.anIntArray7[int_5], 0, 0, 0, int_16, int_17);
+               region.addBoundaryDecoration(floorLevel, regionX, regionY, mean, (Renderable) renderable, (Renderable) null, Class19.anIntArray7[face], 0, 0, 0, hash, objectConfig);
             } else {
                int int_19;
-               if (int_6 == 5) {
+               if (type == 5) {
                   int_18 = 16;
-                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
+                  int_19 = region.getWallObjectUID(floorLevel, regionX, regionY);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier;
                   }
 
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.getModelAt(4, int_5, ints_0, int_14, int_13, int_15);
+                  if (definition.animationId == -1 && definition.transformationIds == null) {
+                     object_2 = definition.getModelAt(4, face, heights, vertexX, mean, vertexY);
                   } else {
-                     object_2 = new DynamicObject(int_4, 4, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_2 = new GameObject(objectId, 4, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                   }
 
-                  region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_2, (Renderable) null, Class19.anIntArray7[int_5], 0, int_18 * Class19.anIntArray10[int_5], int_18 * Class19.anIntArray12[int_5], int_16, int_17);
-               } else if (int_6 == 6) {
+                  region.addBoundaryDecoration(floorLevel, regionX, regionY, mean, (Renderable) object_2, (Renderable) null, Class19.anIntArray7[face], 0, int_18 * Class19.anIntArray10[face], int_18 * Class19.anIntArray12[face], hash, objectConfig);
+               } else if (type == 6) {
                   int_18 = 8;
-                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
+                  int_19 = region.getWallObjectUID(floorLevel, regionX, regionY);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier / 2;
                   }
 
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.getModelAt(4, int_5 + 4, ints_0, int_14, int_13, int_15);
+                  if (definition.animationId == -1 && definition.transformationIds == null) {
+                     object_2 = definition.getModelAt(4, face + 4, heights, vertexX, mean, vertexY);
                   } else {
-                     object_2 = new DynamicObject(int_4, 4, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_2 = new GameObject(objectId, 4, face + 4, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                   }
 
-                  region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_2, (Renderable) null, 256, int_5, int_18 * Class19.anIntArray13[int_5], int_18 * Class19.anIntArray14[int_5], int_16, int_17);
-               } else if (int_6 == 7) {
-                  int_19 = int_5 + 2 & 0x3;
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_0 = objectcomposition_0.getModelAt(4, int_19 + 4, ints_0, int_14, int_13, int_15);
+                  region.addBoundaryDecoration(floorLevel, regionX, regionY, mean, (Renderable) object_2, (Renderable) null, 256, face, int_18 * Class19.anIntArray13[face], int_18 * Class19.anIntArray14[face], hash, objectConfig);
+               } else if (type == 7) {
+                  int_19 = face + 2 & 0x3;
+                  if (definition.animationId == -1 && definition.transformationIds == null) {
+                     renderable = definition.getModelAt(4, int_19 + 4, heights, vertexX, mean, vertexY);
                   } else {
-                     object_0 = new DynamicObject(int_4, 4, int_19 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                     renderable = new GameObject(objectId, 4, int_19 + 4, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                   }
 
-                  region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_0, (Renderable) null, 256, int_19, 0, 0, int_16, int_17);
-               } else if (int_6 == 8) {
+                  region.addBoundaryDecoration(floorLevel, regionX, regionY, mean, (Renderable) renderable, (Renderable) null, 256, int_19, 0, 0, hash, objectConfig);
+               } else if (type == 8) {
                   int_18 = 8;
-                  int_19 = region_0.getWallObjectUID(int_0, int_2, int_3);
+                  int_19 = region.getWallObjectUID(floorLevel, regionX, regionY);
                   if (int_19 != 0) {
                      int_18 = ObjectDefinition.getDefinition(int_19 >> 14 & 0x7FFF).offsetMultiplier / 2;
                   }
 
-                  int int_20 = int_5 + 2 & 0x3;
+                  int int_20 = face + 2 & 0x3;
                   Object object_3;
-                  if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-                     object_2 = objectcomposition_0.getModelAt(4, int_5 + 4, ints_0, int_14, int_13, int_15);
-                     object_3 = objectcomposition_0.getModelAt(4, int_20 + 4, ints_0, int_14, int_13, int_15);
+                  if (definition.animationId == -1 && definition.transformationIds == null) {
+                     object_2 = definition.getModelAt(4, face + 4, heights, vertexX, mean, vertexY);
+                     object_3 = definition.getModelAt(4, int_20 + 4, heights, vertexX, mean, vertexY);
                   } else {
-                     object_2 = new DynamicObject(int_4, 4, int_5 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
-                     object_3 = new DynamicObject(int_4, 4, int_20 + 4, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_2 = new GameObject(objectId, 4, face + 4, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
+                     object_3 = new GameObject(objectId, 4, int_20 + 4, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
                   }
 
-                  region_0.addBoundaryDecoration(int_0, int_2, int_3, int_13, (Renderable) object_2, (Renderable) object_3, 256, int_5, int_18 * Class19.anIntArray13[int_5], int_18 * Class19.anIntArray14[int_5], int_16, int_17);
+                  region.addBoundaryDecoration(floorLevel, regionX, regionY, mean, (Renderable) object_2, (Renderable) object_3, 256, face, int_18 * Class19.anIntArray13[face], int_18 * Class19.anIntArray14[face], hash, objectConfig);
                }
             }
          }
       } else {
-         if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
-            object_0 = objectcomposition_0.getModelAt(10, int_5, ints_0, int_14, int_13, int_15);
+         if (definition.animationId == -1 && definition.transformationIds == null) {
+            renderable = definition.getModelAt(10, face, heights, vertexX, mean, vertexY);
          } else {
-            object_0 = new DynamicObject(int_4, 10, int_5, int_1, int_2, int_3, objectcomposition_0.animationId, true, (Renderable) null);
+            renderable = new GameObject(objectId, 10, face, plane, regionX, regionY, definition.animationId, true, (Renderable) null);
          }
 
-         if (object_0 != null) {
-            region_0.method379(int_0, int_2, int_3, int_13, int_7, int_8, (Renderable) object_0, int_6 == 11 ? 256 : 0, int_16, int_17);
+         if (renderable != null) {
+            region.method379(floorLevel, regionX, regionY, mean, sizeY, sizeX, (Renderable) renderable, type == 11 ? 256 : 0, hash, objectConfig);
          }
 
-         if (objectcomposition_0.interactType != 0) {
-            collisiondata_0.addObject(int_2, int_3, int_7, int_8, objectcomposition_0.projectileClipped);
+         if (definition.interactType != 0) {
+            collisionData.addObject(regionX, regionY, sizeY, sizeX, definition.projectileClipped);
          }
 
       }

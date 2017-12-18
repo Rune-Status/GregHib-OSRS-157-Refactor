@@ -85,7 +85,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                   object_0 = objectcomposition_0.getModel(22, int_4, ints_0, int_13, int_12, int_14);
                } else {
-                  object_0 = new DynamicObject(int_3, 22, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                  object_0 = new GameObject(int_3, 22, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                }
 
                region_0.groundObjectSpawned(int_0, int_1, int_2, int_12, (Renderable) object_0, int_15, int_16);
@@ -101,7 +101,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(int_5, int_4, ints_0, int_13, int_12, int_14);
                   } else {
-                     object_0 = new DynamicObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_0 = new GameObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                   }
 
                   region_0.method379(int_0, int_1, int_2, int_12, 1, 1, (Renderable) object_0, 0, int_15, int_16);
@@ -117,14 +117,14 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(0, int_4, ints_0, int_13, int_12, int_14);
                   } else {
-                     object_0 = new DynamicObject(int_3, 0, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_0 = new GameObject(int_3, 0, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                   }
 
                   region_0.addBoundary(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, Class19.anIntArray7[int_4], 0, int_15, int_16);
                   if (int_4 == 0) {
                      if (objectcomposition_0.clipped) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2] = 50;
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2 + 1] = 50;
                      }
 
                      if (objectcomposition_0.modelClipped) {
@@ -132,8 +132,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      }
                   } else if (int_4 == 1) {
                      if (objectcomposition_0.clipped) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2 + 1] = 50;
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2 + 1] = 50;
                      }
 
                      if (objectcomposition_0.modelClipped) {
@@ -141,8 +141,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      }
                   } else if (int_4 == 2) {
                      if (objectcomposition_0.clipped) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2] = 50;
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2 + 1] = 50;
                      }
 
                      if (objectcomposition_0.modelClipped) {
@@ -150,8 +150,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      }
                   } else if (int_4 == 3) {
                      if (objectcomposition_0.clipped) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2] = 50;
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2] = 50;
                      }
 
                      if (objectcomposition_0.modelClipped) {
@@ -171,19 +171,19 @@ public class RuntimeException_Sub1 extends RuntimeException {
                   if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                      object_0 = objectcomposition_0.getModel(1, int_4, ints_0, int_13, int_12, int_14);
                   } else {
-                     object_0 = new DynamicObject(int_3, 1, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                     object_0 = new GameObject(int_3, 1, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                   }
 
                   region_0.addBoundary(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, Class19.anIntArray9[int_4], 0, int_15, int_16);
                   if (objectcomposition_0.clipped) {
                      if (int_4 == 0) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2 + 1] = 50;
                      } else if (int_4 == 1) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2 + 1] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2 + 1] = 50;
                      } else if (int_4 == 2) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1 + 1][int_2] = 50;
                      } else if (int_4 == 3) {
-                        Class19.aByteArrayArrayArray7[int_0][int_1][int_2] = 50;
+                        Class19.tileShadowIntensity[int_0][int_1][int_2] = 50;
                      }
                   }
 
@@ -201,8 +201,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
                         object_1 = objectcomposition_0.getModel(2, int_4 + 4, ints_0, int_13, int_12, int_14);
                         object_2 = objectcomposition_0.getModel(2, int_20, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_1 = new DynamicObject(int_3, 2, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
-                        object_2 = new DynamicObject(int_3, 2, int_20, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_1 = new GameObject(int_3, 2, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_2 = new GameObject(int_3, 2, int_20, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundary(int_0, int_1, int_2, int_12, (Renderable) object_1, (Renderable) object_2, Class19.anIntArray7[int_4], Class19.anIntArray7[int_20], int_15, int_16);
@@ -234,19 +234,19 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(3, int_4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_0 = new DynamicObject(int_3, 3, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_0 = new GameObject(int_3, 3, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundary(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, Class19.anIntArray9[int_4], 0, int_15, int_16);
                      if (objectcomposition_0.clipped) {
                         if (int_4 == 0) {
-                           Class19.aByteArrayArrayArray7[int_0][int_1][int_2 + 1] = 50;
+                           Class19.tileShadowIntensity[int_0][int_1][int_2 + 1] = 50;
                         } else if (int_4 == 1) {
-                           Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2 + 1] = 50;
+                           Class19.tileShadowIntensity[int_0][int_1 + 1][int_2 + 1] = 50;
                         } else if (int_4 == 2) {
-                           Class19.aByteArrayArrayArray7[int_0][int_1 + 1][int_2] = 50;
+                           Class19.tileShadowIntensity[int_0][int_1 + 1][int_2] = 50;
                         } else if (int_4 == 3) {
-                           Class19.aByteArrayArrayArray7[int_0][int_1][int_2] = 50;
+                           Class19.tileShadowIntensity[int_0][int_1][int_2] = 50;
                         }
                      }
 
@@ -258,7 +258,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(int_5, int_4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_0 = new DynamicObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_0 = new GameObject(int_3, int_5, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.method379(int_0, int_1, int_2, int_12, 1, 1, (Renderable) object_0, 0, int_15, int_16);
@@ -274,7 +274,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(4, int_4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_0 = new DynamicObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_0 = new GameObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, Class19.anIntArray7[int_4], 0, 0, 0, int_15, int_16);
@@ -288,7 +288,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_2 = objectcomposition_0.getModel(4, int_4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_2 = new DynamicObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_2 = new GameObject(int_3, 4, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_2, (Renderable) null, Class19.anIntArray7[int_4], 0, int_20 * Class19.anIntArray10[int_4], int_20 * Class19.anIntArray12[int_4], int_15, int_16);
@@ -302,7 +302,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_2 = objectcomposition_0.getModel(4, int_4 + 4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_2 = new DynamicObject(int_3, 4, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_2 = new GameObject(int_3, 4, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_2, (Renderable) null, 256, int_4, int_20 * Class19.anIntArray13[int_4], int_20 * Class19.anIntArray14[int_4], int_15, int_16);
@@ -311,7 +311,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                      if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                         object_0 = objectcomposition_0.getModel(4, int_17 + 4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_0 = new DynamicObject(int_3, 4, int_17 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_0 = new GameObject(int_3, 4, int_17 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_0, (Renderable) null, 256, int_17, 0, 0, int_15, int_16);
@@ -328,8 +328,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
                         object_2 = objectcomposition_0.getModel(4, int_4 + 4, ints_0, int_13, int_12, int_14);
                         object_3 = objectcomposition_0.getModel(4, int_21 + 4, ints_0, int_13, int_12, int_14);
                      } else {
-                        object_2 = new DynamicObject(int_3, 4, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
-                        object_3 = new DynamicObject(int_3, 4, int_21 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_2 = new GameObject(int_3, 4, int_4 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                        object_3 = new GameObject(int_3, 4, int_21 + 4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                      }
 
                      region_0.addBoundaryDecoration(int_0, int_1, int_2, int_12, (Renderable) object_2, (Renderable) object_3, 256, int_4, int_20 * Class19.anIntArray13[int_4], int_20 * Class19.anIntArray14[int_4], int_15, int_16);
@@ -339,7 +339,7 @@ public class RuntimeException_Sub1 extends RuntimeException {
                if (objectcomposition_0.animationId == -1 && objectcomposition_0.transformationIds == null) {
                   object_0 = objectcomposition_0.getModel(10, int_4, ints_0, int_13, int_12, int_14);
                } else {
-                  object_0 = new DynamicObject(int_3, 10, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
+                  object_0 = new GameObject(int_3, 10, int_4, int_0, int_1, int_2, objectcomposition_0.animationId, true, (Renderable) null);
                }
 
                if (object_0 != null && region_0.method379(int_0, int_1, int_2, int_12, int_6, int_7, (Renderable) object_0, int_5 == 11 ? 256 : 0, int_15, int_16) && objectcomposition_0.clipped) {
@@ -353,8 +353,8 @@ public class RuntimeException_Sub1 extends RuntimeException {
 
                   for (int int_18 = 0; int_18 <= int_6; int_18++) {
                      for (int int_19 = 0; int_19 <= int_7; int_19++) {
-                        if (int_17 > Class19.aByteArrayArrayArray7[int_0][int_18 + int_1][int_19 + int_2]) {
-                           Class19.aByteArrayArrayArray7[int_0][int_18 + int_1][int_19 + int_2] = (byte)int_17;
+                        if (int_17 > Class19.tileShadowIntensity[int_0][int_18 + int_1][int_19 + int_2]) {
+                           Class19.tileShadowIntensity[int_0][int_18 + int_1][int_19 + int_2] = (byte)int_17;
                         }
                      }
                   }

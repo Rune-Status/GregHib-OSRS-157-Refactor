@@ -45,7 +45,7 @@ public class Class110 {
             Client.anInt630 = 0;
             Client.anInt631 = 0;
             Client.anInt632 = 1;
-            Client.anInt633 = 0;
+            Client.objectsNeedingLoad = 0;
             Client.anInt634 = 1;
          }
 

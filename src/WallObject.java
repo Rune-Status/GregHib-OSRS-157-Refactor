@@ -43,11 +43,11 @@ public final class WallObject {
             }
          }
 
-         Script.mapRegions = new int[mapCount];
+         Script.localRegionIds = new int[mapCount];
          Varbit.landMapFileIds = new int[mapCount];
          Varbit.landRegionFileIds = new int[mapCount];
-         Class55.aByteArrayArray3 = new byte[mapCount][];
-         Class10.aByteArrayArray1 = new byte[mapCount][];
+         Class55.localRegionMapData = new byte[mapCount][];
+         Class10.localRegionLandscapeData = new byte[mapCount][];
          boolean inTutorialIsland = false;
          if ((regionX / 8 == 48 || regionX / 8 == 49) && regionY / 8 == 48) {
             inTutorialIsland = true;
@@ -63,7 +63,7 @@ public final class WallObject {
             for (int y = (regionY - 6) / 8; y <= (regionY + 6) / 8; y++) {
                int regionId = y + (x << 8);
                if (!inTutorialIsland || y != 49 && y != 149 && y != 147 && x != 50 && (x != 49 || y != 47)) {
-                  Script.mapRegions[mapCount] = regionId;
+                  Script.localRegionIds[mapCount] = regionId;
                   Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + x + "_" + y);
                   Varbit.landRegionFileIds[mapCount] = Class23.indexMaps.getFile("l" + x + "_" + y);
                   ++mapCount;
@@ -102,11 +102,11 @@ public final class WallObject {
             }
          }
 
-         Script.mapRegions = new int[mapCount];
+         Script.localRegionIds = new int[mapCount];
          Varbit.landMapFileIds = new int[mapCount];
          Varbit.landRegionFileIds = new int[mapCount];
-         Class55.aByteArrayArray3 = new byte[mapCount][];
-         Class10.aByteArrayArray1 = new byte[mapCount][];
+         Class55.localRegionMapData = new byte[mapCount][];
+         Class10.localRegionLandscapeData = new byte[mapCount][];
          mapCount = 0;
 
          for (int z = 0; z < 4; z++) {
@@ -120,14 +120,14 @@ public final class WallObject {
 
                      int map;
                      for (map = 0; map < mapCount; map++) {
-                        if (Script.mapRegions[map] == regionId) {
+                        if (Script.localRegionIds[map] == regionId) {
                            regionId = -1;
                            break;
                         }
                      }
 
                      if (regionId != -1) {
-                        Script.mapRegions[mapCount] = regionId;
+                        Script.localRegionIds[mapCount] = regionId;
                         int mapX = regionId >> 8 & 0xFF;
                         int mapY = regionId & 0xFF;
                         Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + mapX + "_" + mapY);

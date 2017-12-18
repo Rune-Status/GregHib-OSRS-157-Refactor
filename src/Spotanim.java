@@ -100,7 +100,7 @@ public class Spotanim extends CacheableNode {
       if (this.anInt420 != -1 && int_0 != -1) {
          model_1 = ItemLayer.getAnimation(this.anInt420).method916(model_0, int_0);
       } else {
-         model_1 = model_0.method1015(true);
+         model_1 = model_0.replaceMoreAlphaValues(true);
       }
 
       if (this.anInt422 != 128 || this.anInt423 != 128) {
@@ -505,7 +505,7 @@ public class Spotanim extends CacheableNode {
       }
 
       if (Client.hintArrowTargetType == 2) {
-         Class35.method245((Client.hintArrowX - ItemLayer.baseX << 7) + Client.hintArrowOffsetX, (Client.hintArrowY - ItemLayer.baseY << 7) + Client.hintArrowOffsetY, Client.hintArrowType * 2);
+         Class35.method245((Client.hintArrowX - Client.regionBaseX << 7) + Client.hintArrowOffsetX, (Client.hintArrowY - Client.regionBaseY << 7) + Client.hintArrowOffsetY, Client.hintArrowType * 2);
          if (Client.screenY > -1 && Client.gameCycle % 20 < 10) {
             Class85.headIconsHint[0].drawAt(int_0 + Client.screenY - 12, Client.screenX + int_1 - 28);
          }
@@ -532,7 +532,7 @@ public class Spotanim extends CacheableNode {
 
       if (Client.aBool88) {
          Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
-         Class68_Sub1.drawStatusBox("Loading - please wait.", false);
+         Client.drawStatusBox("Loading - please wait.", false);
       }
 
    }

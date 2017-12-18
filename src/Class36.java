@@ -39,7 +39,7 @@ public class Class36 {
       Preferences preferences_0 = new Preferences();
 
       try {
-         fileondisk_0 = CollisionData.getPreferencesFile("", Class14.anEnum6_1.aString27, false);
+         fileondisk_0 = Varcs.getPreferencesFile("", Class14.anEnum6_1.aString27, false);
          byte[] bytes_0 = new byte[(int)fileondisk_0.length()];
 
          int int_1;
@@ -66,19 +66,19 @@ public class Class36 {
       return preferences_0;
    }
 
-   static void method249(File file_0, File file_1) {
+   static void method249(File from, File file_1) {
       try {
-         FileOnDisk fileondisk_0 = new FileOnDisk(WidgetNode.aFile3, "rw", 10000L);
-         Buffer buffer_0 = new Buffer(500);
-         buffer_0.putByte(3);
-         buffer_0.putByte(file_1 != null ? 1 : 0);
-         buffer_0.putCESU8(file_0.getPath());
+         FileOnDisk disk = new FileOnDisk(WidgetNode.aFile3, "rw", 10000L);
+         Buffer buffer = new Buffer(500);
+         buffer.putByte(3);
+         buffer.putByte(file_1 != null ? 1 : 0);
+         buffer.putCESU8(from.getPath());
          if (file_1 != null) {
-            buffer_0.putCESU8("");
+            buffer.putCESU8("");
          }
 
-         fileondisk_0.write(buffer_0.buffer, 0, buffer_0.position);
-         fileondisk_0.close();
+         disk.write(buffer.buffer, 0, buffer.position);
+         disk.close();
       } catch (IOException ioexception_0) {
          ioexception_0.printStackTrace();
       }
@@ -89,8 +89,8 @@ public class Class36 {
       int int_1;
       if (int_0 == 6600) {
          int_1 = Ignore.plane;
-         int int_6 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
-         int int_2 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
+         int int_6 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
+         int int_2 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
          BaseVarType.method647().method36(int_1, int_6, int_2, true);
          return 1;
       } else {
@@ -257,8 +257,8 @@ public class Class36 {
                         coordinates_2 = new Coordinates(Class39.intStack[Class23.intStackSize + 1]);
                         worldmapdata_0 = BaseVarType.method647().method18(int_1);
                         int int_3 = Class4.localPlayer.currentPlane;
-                        int int_4 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
-                        int int_5 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
+                        int int_4 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
+                        int int_5 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
                         Coordinates coordinates_1 = new Coordinates(int_3, int_4, int_5);
                         BaseVarType.method647().method64(worldmapdata_0, coordinates_1, coordinates_2, true);
                         return 1;

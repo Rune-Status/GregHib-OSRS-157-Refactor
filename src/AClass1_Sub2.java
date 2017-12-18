@@ -67,7 +67,7 @@ public class AClass1_Sub2 extends AClass1 {
          Timer.method586(widget_0.children, widget_0.id, int_0, int_1, bool_0);
       }
 
-      WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.get((long)widget_0.id);
+      WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
       if (widgetnode_0 != null) {
          int int_2 = widgetnode_0.id;
          if (CombatInfoListHolder.loadWidget(int_2)) {

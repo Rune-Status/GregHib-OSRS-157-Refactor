@@ -9,7 +9,7 @@ public class Class17 {
       if (method201(scriptevent_0.aClass90_11)) {
          Class4.aClass1_1 = (Class1) objects_0[0];
          Area area_0 = Area.anAreaArray1[Class4.aClass1_1.anInt17];
-         script_0 = GameObject.method565(scriptevent_0.aClass90_11, area_0.anInt443, area_0.anInt449);
+         script_0 = InteractiveObject.method565(scriptevent_0.aClass90_11, area_0.anInt443, area_0.anInt449);
       } else {
          int_1 = ((Integer) objects_0[0]).intValue();
          Script script_2 = (Script) Script.aNodeCache18.get((long)int_1);
@@ -402,7 +402,7 @@ public class Class17 {
                                                                                                    } else {
                                                                                                       int_5 = ints_1[int_1];
                                                                                                       Settings.widgetSettings[int_5] = Class39.intStack[--Class23.intStackSize];
-                                                                                                      DynamicObject.method1064(int_5);
+                                                                                                      Client.method1064(int_5);
                                                                                                    }
                                                                                                 } else {
                                                                                                    int_5 = ints_1[int_1];

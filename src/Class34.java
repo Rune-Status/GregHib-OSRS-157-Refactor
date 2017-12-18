@@ -18,7 +18,7 @@ public class Class34 {
    }
 
    static void sendGameMessage(int type, String name, String text) {
-      DynamicObject.addChatMessage(type, name, text, null);
+      Client.addChatMessage(type, name, text, null);
    }
 
    static String method243(int int_0) {

@@ -87,7 +87,7 @@ public class Class7 {
                 int_8 = int_5 & 0xFF;
                 player_0.pathRun[0] = Class27.aByteArray3[index];
                 player_0.currentPlane = (byte) int_6;
-                player_0.setFirstStep((int_7 << 13) + int_2 - ItemLayer.baseX, (int_8 << 13) + int_3 - ItemLayer.baseY);
+                player_0.setFirstStep((int_7 << 13) + int_2 - Client.regionBaseX, (int_8 << 13) + int_3 - Client.regionBaseY);
                 player_0.needsPositionUpdate = false;
                 return true;
             }

@@ -32,7 +32,7 @@ public class Class59 {
       FileOnDisk fileondisk_0 = null;
 
       try {
-         fileondisk_0 = CollisionData.getPreferencesFile("", Class14.anEnum6_1.aString27, true);
+         fileondisk_0 = Varcs.getPreferencesFile("", Class14.anEnum6_1.aString27, true);
          Buffer buffer_0 = Buffer.preferences.serialize();
          fileondisk_0.write(buffer_0.buffer, 0, buffer_0.position);
       } catch (Exception exception_0) {

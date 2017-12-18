@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class Class55 implements Runnable {
 
-   static byte[][] aByteArrayArray3;
+   static byte[][] localRegionMapData;
    volatile boolean aBool23;
    Queue aQueue1;
    final Thread aThread1;

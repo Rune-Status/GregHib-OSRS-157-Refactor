@@ -462,7 +462,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
       if (Class59.aClass59_9 == class59_0) {
          int_0 = packetbuffer_0.getUnsignedByteS();
          int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
-         delay = (int_0 & 0x7) + GameObject.anInt222;
+         delay = (int_0 & 0x7) + InteractiveObject.anInt222;
          int_3 = packetbuffer_0.getUnsignedByteS();
          locationHash = int_3 >> 2;
          locX = int_3 & 0x3;
@@ -477,7 +477,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
          if (Class59.aClass59_8 == class59_0) {
             int_0 = packetbuffer_0.getUnsignedByteC();
             int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
-            delay = (int_0 & 0x7) + GameObject.anInt222;
+            delay = (int_0 & 0x7) + InteractiveObject.anInt222;
             int_3 = packetbuffer_0.getUnsignedByte();
             locationHash = int_3 >> 2;
             locX = int_3 & 0x3;
@@ -489,10 +489,10 @@ public class ScriptVarType implements RSEnum, Interface6 {
                   if (wallobject_0 != null) {
                      spawnTypeHash = wallobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash == 2) {
-                        wallobject_0.renderable1 = new DynamicObject(spawnTypeHash, 2, locX + 4, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
-                        wallobject_0.renderable2 = new DynamicObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable2);
+                        wallobject_0.renderable1 = new GameObject(spawnTypeHash, 2, locX + 4, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
+                        wallobject_0.renderable2 = new GameObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable2);
                      } else {
-                        wallobject_0.renderable1 = new DynamicObject(spawnTypeHash, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
+                        wallobject_0.renderable1 = new GameObject(spawnTypeHash, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
                      }
                   }
                }
@@ -503,34 +503,34 @@ public class ScriptVarType implements RSEnum, Interface6 {
                      spawnTypeHash = decorativeobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash != 4 && locationHash != 5) {
                         if (locationHash == 6) {
-                           decorativeobject_0.renderable1 = new DynamicObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
                         } else if (locationHash == 7) {
-                           decorativeobject_0.renderable1 = new DynamicObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
                         } else if (locationHash == 8) {
-                           decorativeobject_0.renderable1 = new DynamicObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
-                           decorativeobject_0.renderable2 = new DynamicObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable2);
+                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                           decorativeobject_0.renderable2 = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable2);
                         }
                      } else {
-                        decorativeobject_0.renderable1 = new DynamicObject(spawnTypeHash, 4, locX, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                        decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
                      }
                   }
                }
 
                if (locY == 2) {
-                  GameObject gameobject_0 = Class23.region.method370(Ignore.plane, int_1, delay);
+                  InteractiveObject gameobject_0 = Class23.region.method370(Ignore.plane, int_1, delay);
                   if (locationHash == 11) {
                      locationHash = 10;
                   }
 
                   if (gameobject_0 != null) {
-                     gameobject_0.renderable = new DynamicObject(gameobject_0.hash >> 14 & 0x7FFF, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, gameobject_0.renderable);
+                     gameobject_0.renderable = new GameObject(gameobject_0.hash >> 14 & 0x7FFF, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, gameobject_0.renderable);
                   }
                }
 
                if (locY == 3) {
                   GroundObject groundobject_0 = Class23.region.method372(Ignore.plane, int_1, delay);
                   if (groundobject_0 != null) {
-                     groundobject_0.renderable = new DynamicObject(groundobject_0.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, int_1, delay, int_7, false, groundobject_0.renderable);
+                     groundobject_0.renderable = new GameObject(groundobject_0.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, int_1, delay, int_7, false, groundobject_0.renderable);
                   }
                }
             }
@@ -540,7 +540,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int_1 = packetbuffer_0.getUnsignedShortAInverse();
             delay = packetbuffer_0.getUnsignedByte();
             int_3 = (delay >> 4 & 0x7) + Class23.anInt75;
-            locationHash = (delay & 0x7) + GameObject.anInt222;
+            locationHash = (delay & 0x7) + InteractiveObject.anInt222;
             locX = packetbuffer_0.readNegUByte();
             if (int_3 >= 0 && locationHash >= 0 && int_3 < 104 && locationHash < 104) {
                int_3 = int_3 * 128 + 64;
@@ -563,7 +563,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                byte byte_4 = packetbuffer_0.getByteA();
                locY = packetbuffer_0.getUnsignedByte();
                int_7 = (locY >> 4 & 0x7) + Class23.anInt75;
-               playerIndex = (locY & 0x7) + GameObject.anInt222;
+               playerIndex = (locY & 0x7) + InteractiveObject.anInt222;
                spawnTypeHash = packetbuffer_0.getUnsignedShort();
                byte byte_6 = packetbuffer_0.method717();
                face = packetbuffer_0.getUnsignedShortInverse();
@@ -588,7 +588,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                locationHash = Client.OBJECT_GROUPS[delay];
                locX = packetbuffer_0.getUnsignedByte();
                locY = (locX >> 4 & 0x7) + Class23.anInt75;
-               int_7 = (locX & 0x7) + GameObject.anInt222;
+               int_7 = (locX & 0x7) + InteractiveObject.anInt222;
                if (locY >= 0 && int_7 >= 0 && locY < 104 && int_7 < 104) {
                   Preferences.spawnObject(Ignore.plane, locY, int_7, locationHash, int_0, delay, int_3, 0, -1);
                }
@@ -599,7 +599,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                delay = packetbuffer_0.getUnsignedShort();
                int_3 = packetbuffer_0.readNegUByte();
                locationHash = (int_3 >> 4 & 0x7) + Class23.anInt75;
-               locX = (int_3 & 0x7) + GameObject.anInt222;
+               locX = (int_3 & 0x7) + InteractiveObject.anInt222;
                if (locationHash >= 0 && locX >= 0 && locationHash < 104 && locX < 104) {
                   Deque deque_0 = Client.groundItemDeque[Ignore.plane][locationHash][locX];
                   if (deque_0 != null) {
@@ -620,7 +620,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                   int_0 = packetbuffer_0.getUnsignedShort();
                   int_1 = packetbuffer_0.readNegUByte();
                   delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                  int_3 = (int_1 & 0x7) + GameObject.anInt222;
+                  int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
                   locationHash = packetbuffer_0.readUnsignedShortOb1();
                   if (delay >= 0 && int_3 >= 0 && delay < 104 && int_3 < 104) {
                      item_1 = new Item();
@@ -639,7 +639,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                      int_0 = packetbuffer_0.getUnsignedByte();
                      int_1 = packetbuffer_0.readNegUByte();
                      delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                     int_3 = (int_1 & 0x7) + GameObject.anInt222;
+                     int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
                      locationHash = packetbuffer_0.getUnsignedByteC();
                      locX = locationHash >> 4 & 0xF;
                      locY = locationHash & 0x7;
@@ -661,7 +661,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                      int_0 = packetbuffer_0.readUnsignedShortOb1();
                      int_1 = packetbuffer_0.getUnsignedByteC();
                      delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                     int_3 = (int_1 & 0x7) + GameObject.anInt222;
+                     int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
                      if (delay >= 0 && int_3 >= 0 && delay < 104 && int_3 < 104) {
                         Deque deque_1 = Client.groundItemDeque[Ignore.plane][delay][int_3];
                         if (deque_1 != null) {
@@ -688,7 +688,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                         byte byte_3 = packetbuffer_0.readByte();
                         locationHash = packetbuffer_0.getUnsignedByte();
                         locX = (locationHash >> 4 & 0x7) + Class23.anInt75;
-                        locY = (locationHash & 0x7) + GameObject.anInt222;
+                        locY = (locationHash & 0x7) + InteractiveObject.anInt222;
                         byte byte_5 = packetbuffer_0.getByteA();
                         playerIndex = packetbuffer_0.readUnsignedShortOb1();
                         spawnTypeHash = packetbuffer_0.getUnsignedByteC();

@@ -4,7 +4,7 @@ public class Class10 {
    static final Class10 aClass10_2;
    static int anInt48;
    static SpritePixels mapedge;
-   static byte[][] aByteArrayArray1;
+   static byte[][] localRegionLandscapeData;
    final int anInt49;
 
    static {
@@ -40,79 +40,79 @@ public class Class10 {
       }
    }
 
-   static void method154(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
-      if (int_2 >= 1 && int_3 >= 1 && int_2 <= 102 && int_3 <= 102) {
-         if (Client.lowMemory && int_0 != Ignore.plane) {
+   static void spawnObject(int floorLevel, int spawnType, int x, int y, int objId, int orientation, int objType) {
+      if (x >= 1 && y >= 1 && x <= 102 && y <= 102) {
+         if (Client.lowMemory && floorLevel != Ignore.plane) {
             return;
          }
 
-         int int_7 = 0;
+         int UID = 0;
          boolean bool_0 = true;
          boolean bool_1 = false;
          boolean bool_2 = false;
-         if (int_1 == 0) {
-            int_7 = Class23.region.getWallObjectUID(int_0, int_2, int_3);
+         if (spawnType == 0) {
+            UID = Class23.region.getWallObjectUID(floorLevel, x, y);
          }
 
-         if (int_1 == 1) {
-            int_7 = Class23.region.getWallDecorationUID(int_0, int_2, int_3);
+         if (spawnType == 1) {
+            UID = Class23.region.getWallDecorationUID(floorLevel, x, y);
          }
 
-         if (int_1 == 2) {
-            int_7 = Class23.region.getInteractableObjectUID(int_0, int_2, int_3);
+         if (spawnType == 2) {
+            UID = Class23.region.getInteractableObjectUID(floorLevel, x, y);
          }
 
-         if (int_1 == 3) {
-            int_7 = Class23.region.getGroundDecorationUID(int_0, int_2, int_3);
+         if (spawnType == 3) {
+            UID = Class23.region.getGroundDecorationUID(floorLevel, x, y);
          }
 
-         int int_8;
-         if (int_7 != 0) {
-            int_8 = Class23.region.getObjectConfig(int_0, int_2, int_3, int_7);
-            int int_9 = int_7 >> 14 & 0x7FFF;
-            int int_10 = int_8 & 0x1F;
-            int int_11 = int_8 >> 6 & 0x3;
-            ObjectDefinition objectcomposition_0;
-            if (int_1 == 0) {
-               Class23.region.method373(int_0, int_2, int_3);
-               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
-               if (objectcomposition_0.interactType != 0) {
-                  Client.collisionMaps[int_0].removeWall(int_2, int_3, int_10, int_11, objectcomposition_0.projectileClipped);
+         int config;
+         if (UID != 0) {
+            config = Class23.region.getObjectConfig(floorLevel, x, y, UID);
+            int objectType = UID >> 14 & 0x7FFF;
+            int position = config & 0x1F;
+            int face = config >> 6 & 0x3;
+            ObjectDefinition definition;
+            if (spawnType == 0) {
+               Class23.region.method373(floorLevel, x, y);
+               definition = ObjectDefinition.getDefinition(objectType);
+               if (definition.interactType != 0) {
+                  Client.collisionMaps[floorLevel].removeWall(x, y, position, face, definition.projectileClipped);
                }
             }
 
-            if (int_1 == 1) {
-               Class23.region.method374(int_0, int_2, int_3);
+            if (spawnType == 1) {
+               Class23.region.removeWallDecoration(floorLevel, x, y);
             }
 
-            if (int_1 == 2) {
-               Class23.region.method375(int_0, int_2, int_3);
-               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
-               if (int_2 + objectcomposition_0.sizeX > 103 || int_3 + objectcomposition_0.sizeX > 103 || int_2 + objectcomposition_0.sizeY > 103 || int_3 + objectcomposition_0.sizeY > 103) {
+            if (spawnType == 2) {
+               Class23.region.removeInteractiveObject(floorLevel, x, y);
+               definition = ObjectDefinition.getDefinition(objectType);
+               if (x + definition.sizeX > 103 || y + definition.sizeX > 103 || x + definition.sizeY > 103 || y + definition.sizeY > 103) {
                   return;
                }
 
-               if (objectcomposition_0.interactType != 0) {
-                  Client.collisionMaps[int_0].removeObject(int_2, int_3, objectcomposition_0.sizeX, objectcomposition_0.sizeY, int_11, objectcomposition_0.projectileClipped);
+               if (definition.interactType != 0) {
+                  Client.collisionMaps[floorLevel].removeObject(x, y, definition.sizeX, definition.sizeY, face, definition.projectileClipped);
                }
             }
 
-            if (int_1 == 3) {
-               Class23.region.method376(int_0, int_2, int_3);
-               objectcomposition_0 = ObjectDefinition.getDefinition(int_9);
-               if (objectcomposition_0.interactType == 1) {
-                  Client.collisionMaps[int_0].unblock(int_2, int_3);
+            if (spawnType == 3) {
+               Class23.region.removeGroundDecoration(floorLevel, x, y);
+               definition = ObjectDefinition.getDefinition(objectType);
+               if (definition.interactType == 1) {
+                  Client.collisionMaps[floorLevel].unblock(x, y);
                }
             }
          }
 
-         if (int_4 >= 0) {
-            int_8 = int_0;
-            if (int_0 < 3 && (Class19.tileSettings[1][int_2][int_3] & 0x2) == 2) {
-               int_8 = int_0 + 1;
+         if (objId >= 0) {
+            config = floorLevel;
+            if (floorLevel < 3 && (Class19.tileSettings[1][x][y] & 0x2) == 2) {
+               config = floorLevel + 1;
             }
 
-            Class107.method542(int_0, int_8, int_2, int_3, int_4, int_5, int_6, Class23.region, Client.collisionMaps[int_0]);
+            Class107.renderObject(floorLevel, config, x, y, objId, orientation, objType, Class23.region, Client.collisionMaps[floorLevel]);
          }
       }
 
@@ -122,7 +122,7 @@ public class Class10 {
       Widget widget_0;
       if (int_0 >= 2000) {
          int_0 -= 1000;
-         widget_0 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+         widget_0 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
       } else {
          widget_0 = bool_0 ? Class106.aWidget4 : Friend.aWidget5;
       }

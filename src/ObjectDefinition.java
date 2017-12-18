@@ -2,7 +2,7 @@ public class ObjectDefinition extends CacheableNode {
 
    public static boolean lowMemory;
    public static NodeCache objects;
-   public static IndexDataBase anIndexDataBase20;
+   public static IndexDataBase modelIndex;
    public static IndexDataBase objects_ref;
    public static NodeCache objectDefinitionCache;
    public static NodeCache cachedModels;
@@ -335,7 +335,7 @@ public class ObjectDefinition extends CacheableNode {
 
             subModel = (ModelHeader) modelCache.get((long)modelId);
             if (subModel == null) {
-               subModel = ModelHeader.getModel(anIndexDataBase20, modelId & 0xFFFF, 0);
+               subModel = ModelHeader.getModel(ObjectDefinition.modelIndex, modelId & 0xFFFF, 0);
                if (subModel == null) {
                   return null;
                }
@@ -377,7 +377,7 @@ public class ObjectDefinition extends CacheableNode {
 
          subModel = (ModelHeader) modelCache.get((long)length);
          if (subModel == null) {
-            subModel = ModelHeader.getModel(anIndexDataBase20, length & 0xFFFF, 0);
+            subModel = ModelHeader.getModel(modelIndex, length & 0xFFFF, 0);
             if (subModel == null) {
                return null;
             }
@@ -472,81 +472,81 @@ public class ObjectDefinition extends CacheableNode {
       }
    }
 
-   public Model method822(int int_0, int int_1, int[][] ints_0, int int_2, int int_3, int int_4, Sequence sequence_0, int int_5) {
-      long long_0;
+   public Model getModelAt(int type, int orientation, int[][] heights, int x, int mean, int y, Sequence sequence, int frame) {
+      long key;
       if (this.modelTypes == null) {
-         long_0 = (long)(int_1 + (this.id << 10));
+         key = (long)(orientation + (this.id << 10));
       } else {
-         long_0 = (long)(int_1 + (int_0 << 3) + (this.id << 10));
+         key = (long)(orientation + (type << 3) + (this.id << 10));
       }
 
-      Model model_0 = (Model) objectDefinitionCache.get(long_0);
-      if (model_0 == null) {
-         ModelHeader modeldata_0 = this.getModel(int_0, int_1);
-         if (modeldata_0 == null) {
+      Model model = (Model) objectDefinitionCache.get(key);
+      if (model == null) {
+         ModelHeader header = this.getModel(type, orientation);
+         if (header == null) {
             return null;
          }
 
-         model_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-         objectDefinitionCache.put(model_0, long_0);
+         model = header.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+         objectDefinitionCache.put(model, key);
       }
 
-      if (sequence_0 == null && this.clipType == -1) {
-         return model_0;
+      if (sequence == null && this.clipType == -1) {
+         return model;
       } else {
-         if (sequence_0 != null) {
-            model_0 = sequence_0.method915(model_0, int_5, int_1);
+         if (sequence != null) {
+            model = sequence.applyFrame(model, frame, orientation);
          } else {
-            model_0 = model_0.method1013(true);
+            model = model.replaceAlphaValues(true);
          }
 
          if (this.clipType >= 0) {
-            model_0 = model_0.method1017(ints_0, int_2, int_3, int_4, false, this.clipType);
+            model = model.adjustToTerrain(heights, x, mean, y, false, this.clipType);
          }
 
-         return model_0;
+         return model;
       }
    }
 
-   public boolean method823() {
+   public boolean ready() {
       if (this.modelIds == null) {
          return true;
       } else {
-         boolean bool_0 = true;
+         boolean ready = true;
 
-         for (int int_0 = 0; int_0 < this.modelIds.length; int_0++) {
-            bool_0 &= anIndexDataBase20.modelExists(this.modelIds[int_0] & 0xFFFF, 0);
+         for (int index = 0; index < this.modelIds.length; index++) {
+            ready &= modelIndex.modelExists(this.modelIds[index] & 0xFFFF, 0);
          }
 
-         return bool_0;
+         return ready;
       }
    }
 
-   public boolean method824(int int_0) {
+   public boolean hasModelType(int modelType) {
       if (this.modelTypes != null) {
-         for (int int_2 = 0; int_2 < this.modelTypes.length; int_2++) {
-            if (this.modelTypes[int_2] == int_0) {
-               return anIndexDataBase20.modelExists(this.modelIds[int_2] & 0xFFFF, 0);
+         for (int index = 0; index < this.modelTypes.length; index++) {
+            if (this.modelTypes[index] == modelType) {
+               return modelIndex.modelExists(this.modelIds[index] & 0xFFFF, 0);
             }
          }
 
          return true;
       } else if (this.modelIds == null) {
          return true;
-      } else if (int_0 != 10) {
+      } else if (modelType != 10) {
          return true;
       } else {
-         boolean bool_0 = true;
+         boolean exists = true;
 
-         for (int int_1 = 0; int_1 < this.modelIds.length; int_1++) {
-            bool_0 &= anIndexDataBase20.modelExists(this.modelIds[int_1] & 0xFFFF, 0);
+         for (int index = 0; index < this.modelIds.length; index++) {
+            exists &= modelIndex.modelExists(this.modelIds[index] & 0xFFFF, 0);
          }
 
-         return bool_0;
+         return exists;
       }
    }
 
-   public Model getModelAt(int type, int face, int[][] ints_0, int int_2, int int_3, int int_4) {
+   public Model getModelAt(int type, int face, int[][] heights, int vertexX, int mean, int vertexY) {
       long key;
       if (this.modelTypes == null) {
          key = (long)(face + (this.id << 10));
@@ -566,7 +566,7 @@ public class ObjectDefinition extends CacheableNode {
       }
 
       if (this.clipType >= 0) {
-         model = model.method1017(ints_0, int_2, int_3, int_4, true, this.clipType);
+         model = model.adjustToTerrain(heights, vertexX, mean, vertexY, true, this.clipType);
       }
 
       return model;
@@ -630,7 +630,7 @@ public class ObjectDefinition extends CacheableNode {
 
       if (this.clipType >= 0) {
          if (object_0 instanceof Model) {
-            object_0 = ((Model) object_0).method1017(ints_0, int_2, int_3, int_4, true, this.clipType);
+            object_0 = ((Model) object_0).adjustToTerrain(ints_0, int_2, int_3, int_4, true, this.clipType);
          } else if (object_0 instanceof ModelHeader) {
             object_0 = ((ModelHeader) object_0).method1053(ints_0, int_2, int_3, int_4, true, this.clipType);
          }

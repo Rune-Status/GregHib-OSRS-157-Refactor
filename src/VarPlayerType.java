@@ -1,42 +1,56 @@
 public class VarPlayerType extends CacheableNode {
 
-   public static NodeCache varplayers;
-   public static int anInt507;
-   public static int anInt508;
+   public static NodeCache varPlayerCache;
+   public static int varPlayerCount;
    public int configType;
 
    static {
-      varplayers = new NodeCache(64);
+      varPlayerCache = new NodeCache(64);
    }
 
    VarPlayerType() {
       this.configType = 0;
    }
 
-   void decode(Buffer buffer_0, int int_0) {
-      if (int_0 == 5) {
-         this.configType = buffer_0.getUnsignedShort();
-      }
+   public static VarPlayerType getVarPlayer(int id) {
+      VarPlayerType playerType = (VarPlayerType) varPlayerCache.get((long)id);
+      if (playerType != null) {
+         return playerType;
+      } else {
+         byte[] data = Class11.varplayer_ref.getConfigData(16, id);
+         playerType = new VarPlayerType();
+         if (data != null) {
+            playerType.decode(new Buffer(data));
+         }
 
+         varPlayerCache.put(playerType, (long)id);
+         return playerType;
+      }
    }
 
-   void decode(Buffer buffer_0) {
+   void decode(Buffer buffer, int opcode) {
+      if (opcode == 5) {
+         this.configType = buffer.getUnsignedShort();
+      }
+   }
+
+   void decode(Buffer buffer) {
       while (true) {
-         int int_0 = buffer_0.getUnsignedByte();
-         if (int_0 == 0) {
+         int opcode = buffer.getUnsignedByte();
+         if (opcode == 0) {
             return;
          }
 
-         this.decode(buffer_0, int_0);
+         this.decode(buffer, opcode);
       }
    }
 
-   public static Class106 method945(int int_0) {
+   public static Class106 method945(int size) {
       Class106[] class106s_0 = Class46.method284();
 
       for (int int_1 = 0; int_1 < class106s_0.length; int_1++) {
          Class106 class106_0 = class106s_0[int_1];
-         if (int_0 == class106_0.anInt207) {
+         if (size == class106_0.anInt207) {
             return class106_0;
          }
       }

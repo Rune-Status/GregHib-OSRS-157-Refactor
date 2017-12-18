@@ -303,8 +303,8 @@ public class ItemContainer extends Node {
                            int_25 = Class4.localPlayer.y - int_24 >> 7;
                            PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket85, Client.aClass46_1.cipher);
                            packetnode_0.packetBuffer.putByte(18);
-                           packetnode_0.packetBuffer.putShortS(int_25 + ItemLayer.baseY);
-                           packetnode_0.packetBuffer.putShortS(int_30 + ItemLayer.baseX);
+                           packetnode_0.packetBuffer.putShortS(int_25 + Client.regionBaseY);
+                           packetnode_0.packetBuffer.putShortS(int_30 + Client.regionBaseX);
                            packetnode_0.packetBuffer.putByteA(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
                            packetnode_0.packetBuffer.putByte(int_18);
                            packetnode_0.packetBuffer.putByte(int_19);
@@ -554,7 +554,7 @@ public class ItemContainer extends Node {
                         method675(widget_0.children, widget_0.id, int_10, int_11, int_12, int_13, int_8 - widget_0.scrollX, int_9 - widget_0.scrollY);
                      }
 
-                     WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.get((long)widget_0.id);
+                     WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
                      if (widgetnode_0 != null) {
                         if (widgetnode_0.owner == 0 && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13 && !Client.isMenuOpen && !Client.aBool89) {
                            for (ScriptEvent scriptevent_0 = (ScriptEvent) Client.aDeque7.getFront(); scriptevent_0 != null; scriptevent_0 = (ScriptEvent) Client.aDeque7.getNext()) {

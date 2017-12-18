@@ -695,7 +695,7 @@ public class Buffer extends Node {
         Class19.aByteArrayArrayArray6 = new byte[4][104][104];
         Class7.aByteArrayArrayArray2 = new byte[4][104][104];
         ItemLayer.anIntArrayArrayArray1 = new int[4][105][105];
-        Class19.aByteArrayArrayArray7 = new byte[4][105][105];
+        Class19.tileShadowIntensity = new byte[4][105][105];
         Settings.tileHeightArray = new int[105][105];
         Class19.anIntArray8 = new int[104];
         RSCanvas.anIntArray82 = new int[104];

@@ -80,7 +80,7 @@ public class Class26 {
                   boolean bool_1 = false;
 
                   for (int int_12 = 0; int_12 < Client.clanChatCount; int_12++) {
-                     if (player_0.name.equals(DynamicObject.clanMembers[int_12].username)) {
+                     if (player_0.name.equals(Class20.clanMembers[int_12].username)) {
                         bool_1 = true;
                         break;
                      }
@@ -114,8 +114,8 @@ public class Class26 {
                }
 
                if (Client.hintArrowTargetType == 2) {
-                  int_8 = Client.hintArrowX * 4 - ItemLayer.baseX * 4 + 2 - Class4.localPlayer.x / 32;
-                  int_9 = Client.hintArrowY * 4 - ItemLayer.baseY * 4 + 2 - Class4.localPlayer.y / 32;
+                  int_8 = Client.hintArrowX * 4 - Client.regionBaseX * 4 + 2 - Class4.localPlayer.x / 32;
+                  int_9 = Client.hintArrowY * 4 - Client.regionBaseY * 4 + 2 - Class4.localPlayer.y / 32;
                   Script.method910(int_0, int_1, int_8, int_9, Ignore.mapMarkers[1], cacheablenode_sub1_0);
                }
 

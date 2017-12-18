@@ -15,7 +15,7 @@ public class Region {
    static int cameraZ2;
    static Occluder[][] levelOccluders;
    static boolean checkClick;
-   static GameObject[] entityBuffer;
+   static InteractiveObject[] entityBuffer;
    static int anInt148;
    static int cameraY2;
    static int pitchSin;
@@ -52,7 +52,7 @@ public class Region {
    int maxX;
    int maxY;
    Tile[][][] tiles;
-   GameObject[] objects;
+   InteractiveObject[] objects;
    int maxZ;
    int[][][] tileHeights;
    int[][] TILE_MASK_2D;
@@ -62,7 +62,7 @@ public class Region {
       lowMemory = true;
       tileUpdateCount = 0;
       anInt147 = 0;
-      entityBuffer = new GameObject[100];
+      entityBuffer = new InteractiveObject[100];
       checkClick = false;
       anInt148 = 0;
       mouseX2 = 0;
@@ -89,7 +89,7 @@ public class Region {
    public Region(int int_0, int int_1, int int_2, int[][][] ints_0) {
       this.minLevel = 0;
       this.entityCount = 0;
-      this.objects = new GameObject[5000];
+      this.objects = new InteractiveObject[5000];
       this.TILE_MASK_2D = new int[][] {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1}, {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1}};
       this.TILE_ROTATION_2D = new int[][] {{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3}, {15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, {3, 7, 11, 15, 2, 6, 10, 14, 1, 5, 9, 13, 0, 4, 8, 12}};
       this.maxY = int_0;
@@ -135,7 +135,7 @@ public class Region {
          }
       }
 
-      GameObject gameobject_0 = new GameObject();
+      InteractiveObject gameobject_0 = new InteractiveObject();
       gameobject_0.hash = int_9;
       gameobject_0.flags = int_10;
       gameobject_0.plane = int_0;
@@ -189,30 +189,30 @@ public class Region {
       return true;
    }
 
-   void removeEntity(GameObject gameobject_0) {
-      for (int int_0 = gameobject_0.relativeX; int_0 <= gameobject_0.offsetX; int_0++) {
-         for (int int_1 = gameobject_0.relativeY; int_1 <= gameobject_0.offsetY; int_1++) {
-            Tile tile_0 = this.tiles[gameobject_0.plane][int_0][int_1];
-            if (tile_0 != null) {
-               int int_2;
-               for (int_2 = 0; int_2 < tile_0.entityCount; int_2++) {
-                  if (tile_0.objects[int_2] == gameobject_0) {
-                     --tile_0.entityCount;
+   void removeInteractiveObject(InteractiveObject object) {
+      for (int x = object.relativeX; x <= object.offsetX; x++) {
+         for (int y = object.relativeY; y <= object.offsetY; y++) {
+            Tile tile = this.tiles[object.plane][x][y];
+            if (tile != null) {
+               int count;
+               for (count = 0; count < tile.entityCount; count++) {
+                  if (tile.objects[count] == object) {
+                     --tile.entityCount;
 
-                     for (int int_3 = int_2; int_3 < tile_0.entityCount; int_3++) {
-                        tile_0.objects[int_3] = tile_0.objects[int_3 + 1];
-                        tile_0.entityFlags[int_3] = tile_0.entityFlags[int_3 + 1];
+                     for (int index = count; index < tile.entityCount; index++) {
+                        tile.objects[index] = tile.objects[index + 1];
+                        tile.entityFlags[index] = tile.entityFlags[index + 1];
                      }
 
-                     tile_0.objects[tile_0.entityCount] = null;
+                     tile.objects[tile.entityCount] = null;
                      break;
                   }
                }
 
-               tile_0.flags = 0;
+               tile.flags = 0;
 
-               for (int_2 = 0; int_2 < tile_0.entityCount; int_2++) {
-                  tile_0.flags |= tile_0.entityFlags[int_2];
+               for (count = 0; count < tile.entityCount; count++) {
+                  tile.flags |= tile.entityFlags[count];
                }
             }
          }
@@ -320,7 +320,7 @@ public class Region {
                            }
 
                            for (int int_13 = 0; int_13 < tile_0.entityCount; int_13++) {
-                              GameObject gameobject_0 = tile_0.objects[int_13];
+                              InteractiveObject gameobject_0 = tile_0.objects[int_13];
                               if (gameobject_0 != null && gameobject_0.renderable instanceof ModelHeader) {
                                  ModelHeader modeldata_2 = (ModelHeader) gameobject_0.renderable;
                                  int int_14 = gameobject_0.offsetX - gameobject_0.relativeX + 1;
@@ -1084,7 +1084,7 @@ public class Region {
          return 0;
       } else {
          for (int int_3 = 0; int_3 < tile_0.entityCount; int_3++) {
-            GameObject gameobject_0 = tile_0.objects[int_3];
+            InteractiveObject gameobject_0 = tile_0.objects[int_3];
             if ((gameobject_0.hash >> 29 & 0x3) == 2 && int_1 == gameobject_0.relativeX && int_2 == gameobject_0.relativeY) {
                return gameobject_0.hash;
             }
@@ -1094,13 +1094,13 @@ public class Region {
       }
    }
 
-   public GameObject method370(int int_0, int int_1, int int_2) {
+   public InteractiveObject method370(int int_0, int int_1, int int_2) {
       Tile tile_0 = this.tiles[int_0][int_1][int_2];
       if (tile_0 == null) {
          return null;
       } else {
          for (int int_3 = 0; int_3 < tile_0.entityCount; int_3++) {
-            GameObject gameobject_0 = tile_0.objects[int_3];
+            InteractiveObject gameobject_0 = tile_0.objects[int_3];
             if ((gameobject_0.hash >> 29 & 0x3) == 2 && int_1 == gameobject_0.relativeX && int_2 == gameobject_0.relativeY) {
                return gameobject_0;
             }
@@ -1135,7 +1135,7 @@ public class Region {
                         do {
                            while (true) {
                               WallObject wallobject_0;
-                              GameObject gameobject_0;
+                              InteractiveObject gameobject_0;
                               boolean bool_1;
                               int int_5;
                               int int_11;
@@ -1460,7 +1460,7 @@ public class Region {
                                     int_10 = -1;
 
                                     for (int_6 = 0; int_6 < int_5; int_6++) {
-                                       GameObject gameobject_1 = entityBuffer[int_6];
+                                       InteractiveObject gameobject_1 = entityBuffer[int_6];
                                        if (gameobject_1.cycle != cycle) {
                                           if (gameobject_1.drawPriority > int_4) {
                                              int_4 = gameobject_1.drawPriority;
@@ -1481,7 +1481,7 @@ public class Region {
                                        break;
                                     }
 
-                                    GameObject gameobject_2 = entityBuffer[int_10];
+                                    InteractiveObject gameobject_2 = entityBuffer[int_10];
                                     gameobject_2.cycle = cycle;
                                     if (!this.isAreaOccluded(int_3, gameobject_2.relativeX, gameobject_2.offsetX, gameobject_2.relativeY, gameobject_2.offsetY, gameobject_2.renderable.modelHeight)) {
                                        gameobject_2.renderable.draw(gameobject_2.orientation, pitchSin, pitchCos, yawSin, yawCos, gameobject_2.x - cameraX2, gameobject_2.height - cameraY2, gameobject_2.y - cameraZ2, gameobject_2.hash);
@@ -1682,20 +1682,20 @@ public class Region {
       }
    }
 
-   public void method374(int int_0, int int_1, int int_2) {
-      Tile tile_0 = this.tiles[int_0][int_1][int_2];
-      if (tile_0 != null) {
-         tile_0.decorativeObject = null;
+   public void removeWallDecoration(int plane, int x, int y) {
+      Tile tile = this.tiles[plane][x][y];
+      if (tile != null) {
+         tile.decorativeObject = null;
       }
    }
 
-   public void method375(int int_0, int int_1, int int_2) {
-      Tile tile_0 = this.tiles[int_0][int_1][int_2];
-      if (tile_0 != null) {
-         for (int int_3 = 0; int_3 < tile_0.entityCount; int_3++) {
-            GameObject gameobject_0 = tile_0.objects[int_3];
-            if ((gameobject_0.hash >> 29 & 0x3) == 2 && int_1 == gameobject_0.relativeX && int_2 == gameobject_0.relativeY) {
-               this.removeEntity(gameobject_0);
+   public void removeInteractiveObject(int plane, int x, int y) {
+      Tile tile = this.tiles[plane][x][y];
+      if (tile != null) {
+         for (int count = 0; count < tile.entityCount; count++) {
+            InteractiveObject object = tile.objects[count];
+            if ((object.hash >> 29 & 0x3) == 2 && x == object.relativeX && y == object.relativeY) {
+               this.removeInteractiveObject(object);
                return;
             }
          }
@@ -1703,10 +1703,10 @@ public class Region {
       }
    }
 
-   public void method376(int int_0, int int_1, int int_2) {
-      Tile tile_0 = this.tiles[int_0][int_1][int_2];
-      if (tile_0 != null) {
-         tile_0.groundObject = null;
+   public void removeGroundDecoration(int plane, int x, int y) {
+      Tile tile = this.tiles[plane][x][y];
+      if (tile != null) {
+         tile.groundObject = null;
       }
    }
 
@@ -2014,8 +2014,8 @@ public class Region {
 
    public void clearEntities() {
       for (int int_0 = 0; int_0 < this.entityCount; int_0++) {
-         GameObject gameobject_0 = this.objects[int_0];
-         this.removeEntity(gameobject_0);
+         InteractiveObject gameobject_0 = this.objects[int_0];
+         this.removeInteractiveObject(gameobject_0);
          this.objects[int_0] = null;
       }
 
@@ -2055,7 +2055,7 @@ public class Region {
                   }
 
                   for (int int_6 = 0; int_6 < tile_0.entityCount; int_6++) {
-                     GameObject gameobject_0 = tile_0.objects[int_6];
+                     InteractiveObject gameobject_0 = tile_0.objects[int_6];
                      if (gameobject_0 != null && gameobject_0.renderable instanceof ModelHeader) {
                         ModelHeader modeldata_2 = (ModelHeader) gameobject_0.renderable;
                         this.method358(modeldata_2, int_3, int_4, int_5, gameobject_0.offsetX - gameobject_0.relativeX + 1, gameobject_0.offsetY - gameobject_0.relativeY + 1);
@@ -2085,7 +2085,7 @@ public class Region {
             --tile_1.plane;
 
             for (int int_3 = 0; int_3 < tile_1.entityCount; int_3++) {
-               GameObject gameobject_0 = tile_1.objects[int_3];
+               InteractiveObject gameobject_0 = tile_1.objects[int_3];
                if ((gameobject_0.hash >> 29 & 0x3) == 2 && gameobject_0.relativeX == int_0 && int_1 == gameobject_0.relativeY) {
                   --gameobject_0.plane;
                }

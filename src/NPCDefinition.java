@@ -282,7 +282,7 @@ public class NPCDefinition extends CacheableNode {
          } else if (secondarySequence != null) {
             childModel = secondarySequence.method913(childIdModel, secondaryFrame);
          } else {
-            childModel = childIdModel.method1013(true);
+            childModel = childIdModel.replaceAlphaValues(true);
          }
 
          if (this.sizeXZ != 128 || this.sizeY != 128) {

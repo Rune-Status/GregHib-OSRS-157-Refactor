@@ -3,7 +3,8 @@ import java.util.Date;
 
 public class Class20 implements Comparator {
 
-   boolean aBool8;
+    static ClanMember[] clanMembers;
+    boolean aBool8;
 
    int method206(Class36 class36_0, Class36 class36_1) {
       if (class36_1.anInt96 == class36_0.anInt96) {
@@ -44,9 +45,9 @@ public class Class20 implements Comparator {
       MilliTimer.host = world_0.address;
       Client.world = world_0.id;
       Client.flags = world_0.mask;
-      DynamicObject.anInt577 = Client.socketType == 0 ? 43594 : world_0.id + 40000;
+      Client.port = Client.socketType == 0 ? 43594 : world_0.id + 40000;
       MessageNode.anInt509 = Client.socketType == 0 ? 443 : world_0.id + 50000;
-      AClass3.myWorldPort = DynamicObject.anInt577;
+      AClass3.myWorldPort = Client.port;
    }
 
    static int method208(int int_0, Script script_0, boolean bool_0) {
@@ -160,7 +161,7 @@ public class Class20 implements Comparator {
             } else if (int_0 < 2600) {
                return Class47.method311(int_0, script_0, bool_0);
             } else if (int_0 < 2700) {
-               widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+               widget_2 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
                if (int_0 == 2600) {
                   Class39.intStack[++Class23.intStackSize - 1] = widget_2.scrollX;
                   byte_0 = 1;
@@ -213,11 +214,11 @@ public class Class20 implements Comparator {
                WidgetNode widgetnode_0;
                if (int_0 < 2800) {
                   if (int_0 == 2700) {
-                     widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+                     widget_2 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
                      Class39.intStack[++Class23.intStackSize - 1] = widget_2.itemId;
                      byte_0 = 1;
                   } else if (int_0 == 2701) {
-                     widget_2 = Junk.method671(Class39.intStack[--Class23.intStackSize]);
+                     widget_2 = Client.getWidget(Class39.intStack[--Class23.intStackSize]);
                      if (widget_2.itemId != -1) {
                         Class39.intStack[++Class23.intStackSize - 1] = widget_2.itemQuantity;
                      } else {
@@ -227,7 +228,7 @@ public class Class20 implements Comparator {
                      byte_0 = 1;
                   } else if (int_0 == 2702) {
                      int_1 = Class39.intStack[--Class23.intStackSize];
-                     widgetnode_0 = (WidgetNode) Client.componentTable.get((long)int_1);
+                     widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)int_1);
                      if (widgetnode_0 != null) {
                         Class39.intStack[++Class23.intStackSize - 1] = 1;
                      } else {
@@ -271,7 +272,7 @@ public class Class20 implements Comparator {
                         PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket15, Client.aClass46_1.cipher);
                         Client.aClass46_1.method282(packetnode_4);
 
-                        for (widgetnode_0 = (WidgetNode) Client.componentTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) Client.componentTable.method68()) {
+                        for (widgetnode_0 = (WidgetNode) Client.widgetNodeTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) Client.widgetNodeTable.method68()) {
                            if (widgetnode_0.owner == 0 || widgetnode_0.owner == 3) {
                               Frames.method873(widgetnode_0, true);
                            }
@@ -357,7 +358,7 @@ public class Class20 implements Comparator {
                            int_1 = Class39.intStack[Class23.intStackSize];
                            int_9 = Class39.intStack[Class23.intStackSize + 1];
                            int_2 = Class39.intStack[Class23.intStackSize + 2];
-                           widget_0 = Junk.method671(int_2);
+                           widget_0 = Client.getWidget(int_2);
                            Tile.method683(widget_0, int_1, int_9);
                            byte_0 = 1;
                         } else if (int_0 == 3109) {
@@ -527,8 +528,8 @@ public class Class20 implements Comparator {
                               byte_0 = 1;
                            } else if (int_0 == 3308) {
                               int_1 = Ignore.plane;
-                              int_9 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
-                              int_2 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
+                              int_9 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
+                              int_2 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
                               Class39.intStack[++Class23.intStackSize - 1] = (int_9 << 14) + int_2 + (int_1 << 28);
                               byte_0 = 1;
                            } else if (int_0 == 3309) {
@@ -979,7 +980,7 @@ public class Class20 implements Comparator {
                                  } else if (int_0 == 3613) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
                                     if (Client.clanChatOwner != null && int_1 < Client.clanChatCount) {
-                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = DynamicObject.clanMembers[int_1].username;
+                                       Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = clanMembers[int_1].username;
                                     } else {
                                        Class39.scriptStringStack[++Class28.scriptStringStackSize - 1] = "";
                                     }
@@ -988,7 +989,7 @@ public class Class20 implements Comparator {
                                  } else if (int_0 == 3614) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
                                     if (Client.clanChatOwner != null && int_1 < Client.clanChatCount) {
-                                       Class39.intStack[++Class23.intStackSize - 1] = DynamicObject.clanMembers[int_1].world;
+                                       Class39.intStack[++Class23.intStackSize - 1] = clanMembers[int_1].world;
                                     } else {
                                        Class39.intStack[++Class23.intStackSize - 1] = 0;
                                     }
@@ -997,7 +998,7 @@ public class Class20 implements Comparator {
                                  } else if (int_0 == 3615) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
                                     if (Client.clanChatOwner != null && int_1 < Client.clanChatCount) {
-                                       Class39.intStack[++Class23.intStackSize - 1] = DynamicObject.clanMembers[int_1].rank;
+                                       Class39.intStack[++Class23.intStackSize - 1] = clanMembers[int_1].rank;
                                     } else {
                                        Class39.intStack[++Class23.intStackSize - 1] = 0;
                                     }
@@ -1057,7 +1058,7 @@ public class Class20 implements Comparator {
                                     byte_0 = 1;
                                  } else if (int_0 == 3624) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
-                                    if (DynamicObject.clanMembers != null && int_1 < Client.clanChatCount && DynamicObject.clanMembers[int_1].username.equalsIgnoreCase(Class4.localPlayer.name)) {
+                                    if (clanMembers != null && int_1 < Client.clanChatCount && clanMembers[int_1].username.equalsIgnoreCase(Class4.localPlayer.name)) {
                                        Class39.intStack[++Class23.intStackSize - 1] = 1;
                                     } else {
                                        Class39.intStack[++Class23.intStackSize - 1] = 0;

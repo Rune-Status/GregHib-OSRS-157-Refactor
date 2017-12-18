@@ -1,7 +1,7 @@
 public class Script extends CacheableNode {
 
    static NodeCache aNodeCache18;
-   static int[] mapRegions;
+   static int[] localRegionIds;
    int[] instructions;
    int[] intOperands;
    int localIntCount;

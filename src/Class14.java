@@ -610,7 +610,7 @@ public final class Class14 {
                         gameDraw(widget_0.children, widget_0.id, int_13, int_14, int_15, int_16, int_10 - widget_0.scrollX, int_11 - widget_0.scrollY, int_9);
                      }
 
-                     WidgetNode widgetnode_0 = (WidgetNode) Client.componentTable.get((long)widget_0.id);
+                     WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
                      if (widgetnode_0 != null) {
                         Class47.method309(widgetnode_0.id, int_13, int_14, int_15, int_16, int_10, int_11, int_9);
                      }
@@ -1251,8 +1251,8 @@ public final class Class14 {
          if ((int_1 & 0x40) != 0) {
             int_2 = packetbuffer_0.getUnsignedShort();
             int_3 = packetbuffer_0.readUnsignedShortOb1();
-            int_7 = npc.x - (int_2 - ItemLayer.baseX - ItemLayer.baseX) * 64;
-            int_4 = npc.y - (int_3 - ItemLayer.baseY - ItemLayer.baseY) * 64;
+            int_7 = npc.x - (int_2 - Client.regionBaseX - Client.regionBaseX) * 64;
+            int_4 = npc.y - (int_3 - Client.regionBaseY - Client.regionBaseY) * 64;
             if (int_7 != 0 || int_4 != 0) {
                npc.nextStepOrientation = (int)(Math.atan2((double)int_7, (double)int_4) * 325.949D) & 0x7FF;
             }

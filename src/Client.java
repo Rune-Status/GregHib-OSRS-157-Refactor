@@ -76,7 +76,7 @@ public final class Client extends GameEngine {
     static int anInt626;
     static int anInt627;
     static int itemSelectionState;
-    static HashTable componentTable;
+    static HashTable widgetNodeTable;
     static int hintArrowTargetType;
     static boolean spellSelected;
     static int hintArrowNpcTargetIdx;
@@ -96,7 +96,7 @@ public final class Client extends GameEngine {
     static int anInt632;
     static String aString34;
     static String aString35;
-    static int anInt633;
+    static int objectsNeedingLoad;
     static int hintArrowType;
     static int anInt634;
     static int anInt635;
@@ -271,6 +271,9 @@ public final class Client extends GameEngine {
     static String aString37;
     static int chatCycle;
     static int[] anIntArray168;
+    static int port;
+    static int regionBaseX;
+    static int regionBaseY;
 
     static {
         aBool84 = true;
@@ -322,7 +325,7 @@ public final class Client extends GameEngine {
         aHashMap9 = new HashMap();
         anInt631 = 0;
         anInt632 = 1;
-        anInt633 = 0;
+        objectsNeedingLoad = 0;
         anInt634 = 1;
         anInt630 = 0;
         collisionMaps = new CollisionData[4];
@@ -414,7 +417,7 @@ public final class Client extends GameEngine {
         aString34 = null;
         aString36 = null;
         widgetRoot = -1;
-        componentTable = new HashTable(8);
+        widgetNodeTable = new HashTable(8);
         anInt665 = 0;
         anInt672 = 0;
         aWidget12 = null;
@@ -534,6 +537,1057 @@ public final class Client extends GameEngine {
         tileQueueY = new int[50];
     }
 
+    public static Widget getWidget(int config) {
+       int id = config >> 16;
+       int child = config & 0xFFFF;
+       if (Class91.widgets[id] == null || Class91.widgets[id][child] == null) {
+          boolean loaded = CombatInfoListHolder.loadWidget(id);
+          if (!loaded) {
+             return null;
+          }
+       }
+
+       return Class91.widgets[id][child];
+    }
+
+    static void method1064(int id) {
+       Class12.processWidgetQueue();
+
+       for (Node_Sub1 node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getFront(); node_sub1_0 != null; node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getNext()) {
+          if (node_sub1_0.anObjectDefinition1 != null) {
+             node_sub1_0.method632();
+          }
+       }
+
+       int type = VarPlayerType.getVarPlayer(id).configType;
+       if (type != 0) {
+          int setting = Settings.widgetSettings[id];
+          if (type == 1) {
+             if (setting == 1) {
+                Graphics3D.setBrightness(0.9D);
+                ((TextureProvider) Graphics3D.textureLoader).brightness(0.9D);
+             }
+
+             if (setting == 2) {
+                Graphics3D.setBrightness(0.8D);
+                ((TextureProvider) Graphics3D.textureLoader).brightness(0.8D);
+             }
+
+             if (setting == 3) {
+                Graphics3D.setBrightness(0.7D);
+                ((TextureProvider) Graphics3D.textureLoader).brightness(0.7D);
+             }
+
+             if (setting == 4) {
+                Graphics3D.setBrightness(0.6D);
+                ((TextureProvider) Graphics3D.textureLoader).brightness(0.6D);
+             }
+
+             ItemDefinition.itemSpriteCache.reset();
+          }
+
+          if (type == 3) {
+             short short_0 = 0;
+             if (setting == 0) {
+                short_0 = 255;
+             }
+
+             if (setting == 1) {
+                short_0 = 192;
+             }
+
+             if (setting == 2) {
+                short_0 = 128;
+             }
+
+             if (setting == 3) {
+                short_0 = 64;
+             }
+
+             if (setting == 4) {
+                short_0 = 0;
+             }
+
+             if (short_0 != anInt662) {
+                if (anInt662 == 0 && anInt643 != -1) {
+                   Class71.method424(Class38.indexTrack1, anInt643, 0, short_0, false);
+                   aBool87 = false;
+                } else if (short_0 == 0) {
+                   ItemLayer.method545();
+                   aBool87 = false;
+                } else if (Class78.anInt172 != 0) {
+                   Class7.anInt40 = short_0;
+                } else {
+                   Class78.anAClass6_Sub3_1.method853(short_0);
+                }
+
+                anInt662 = short_0;
+             }
+          }
+
+          if (type == 4) {
+             if (setting == 0) {
+                anInt644 = 127;
+             }
+
+             if (setting == 1) {
+                anInt644 = 96;
+             }
+
+             if (setting == 2) {
+                anInt644 = 64;
+             }
+
+             if (setting == 3) {
+                anInt644 = 32;
+             }
+
+             if (setting == 4) {
+                anInt644 = 0;
+             }
+          }
+
+          if (type == 5) {
+             anInt613 = setting;
+          }
+
+          if (type == 6) {
+             anInt665 = setting;
+          }
+
+          if (type == 9) {
+             anInt672 = setting;
+          }
+
+          if (type == 10) {
+             if (setting == 0) {
+                anInt646 = 127;
+             }
+
+             if (setting == 1) {
+                anInt646 = 96;
+             }
+
+             if (setting == 2) {
+                anInt646 = 64;
+             }
+
+             if (setting == 3) {
+                anInt646 = 32;
+             }
+
+             if (setting == 4) {
+                anInt646 = 0;
+             }
+          }
+
+          if (type == 17) {
+             anInt682 = setting & 0xFFFF;
+          }
+
+          Enum2[] enum2s_0;
+          if (type == 18) {
+             enum2s_0 = new Enum2[] {Enum2.anEnum2_4, Enum2.anEnum2_3, Enum2.anEnum2_2, Enum2.anEnum2_1};
+             anEnum2_5 = (Enum2) Class1.forOrdinal(enum2s_0, setting);
+             if (anEnum2_5 == null) {
+                anEnum2_5 = Enum2.anEnum2_1;
+             }
+          }
+
+          if (type == 19) {
+             if (setting == -1) {
+                anInt667 = -1;
+             } else {
+                anInt667 = setting & 0x7FF;
+             }
+          }
+
+          if (type == 22) {
+             enum2s_0 = new Enum2[] {Enum2.anEnum2_4, Enum2.anEnum2_3, Enum2.anEnum2_2, Enum2.anEnum2_1};
+             anEnum2_6 = (Enum2) Class1.forOrdinal(enum2s_0, setting);
+             if (anEnum2_6 == null) {
+                anEnum2_6 = Enum2.anEnum2_1;
+             }
+          }
+
+       }
+    }
+
+    static void drawStatusBox(String text, boolean buffer) {
+       byte byte_0 = 4;
+       int int_0 = byte_0 + 6;
+       int int_1 = byte_0 + 6;
+       int int_2 = Class4.font_p12full.method1038(text, 250);
+       int int_3 = Class4.font_p12full.method1035(text, 250) * 13;
+       Rasterizer2D.fillRect(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + int_3 + byte_0, 0);
+       Rasterizer2D.drawRectangle(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + byte_0 + int_3, 16777215);
+       Class4.font_p12full.method1036(text, int_0, int_1, int_2, int_3, 16777215, -1, 1, 1, 0);
+       AClass1_Sub2.method636(int_0 - byte_0, int_1 - byte_0, byte_0 + byte_0 + int_2, byte_0 + int_3 + byte_0);
+       if (buffer) {
+          Class68_Sub1.aBufferProvider1.method499(0, 0);
+       } else {
+          Class71.method423(int_0, int_1, int_2, int_3);
+       }
+
+    }
+
+    static void processRegion() {
+       Class101.flush(false);
+       anInt631 = 0;
+       boolean needsLoading = true;
+
+       int index;
+       for (index = 0; index < Class55.localRegionMapData.length; index++) {
+          if (Varbit.landMapFileIds[index] != -1 && Class55.localRegionMapData[index] == null) {
+             Class55.localRegionMapData[index] = Class23.indexMaps.getConfigData(Varbit.landMapFileIds[index], 0);
+             if (Class55.localRegionMapData[index] == null) {
+                needsLoading = false;
+                ++anInt631;
+             }
+          }
+
+          if (Varbit.landRegionFileIds[index] != -1 && Class10.localRegionLandscapeData[index] == null) {
+             Class10.localRegionLandscapeData[index] = Class23.indexMaps.getConfigData(Varbit.landRegionFileIds[index], 0, Class38.xteaKeys[index]);
+             if (Class10.localRegionLandscapeData[index] == null) {
+                needsLoading = false;
+                ++anInt631;
+             }
+          }
+       }
+
+       if (!needsLoading) {
+          anInt630 = 1;
+       } else {
+          objectsNeedingLoad = 0;
+          needsLoading = true;
+
+          int localX;
+          int localY;
+          int id;
+          int offset;
+          int position;
+          int terminate;
+          int offsetY;
+          int offsetX;
+          int type;
+          int viewportX;
+          int viewportY;
+          for (index = 0; index < Class55.localRegionMapData.length; index++) {
+             byte[] data = Class10.localRegionLandscapeData[index];
+             if (data != null) {
+                localX = (Script.localRegionIds[index] >> 8) * 64 - regionBaseX;
+                localY = (Script.localRegionIds[index] & 0xFF) * 64 - regionBaseY;
+                if (isDynamicRegion) {
+                   localX = 10;
+                   localY = 10;
+                }
+
+                boolean ready = true;
+                Buffer buffer = new Buffer(data);
+                id = -1;
+
+                offsetLoop:
+                while (true) {
+                   offset = buffer.getUSmart();
+                   if (offset == 0) {
+                      needsLoading &= ready;
+                      break;
+                   }
+
+                   id += offset;
+                   position = 0;
+                   boolean skip = false;
+
+                   while (true) {
+                      while (!skip) {
+                         terminate = buffer.getUSmart();
+                         if (terminate == 0) {
+                            continue offsetLoop;
+                         }
+
+                         position += terminate - 1;
+                         offsetY = position & 0x3F;
+                         offsetX = position >> 6 & 0x3F;
+                         type = buffer.getUnsignedByte() >> 2;
+                         viewportX = localX + offsetX;
+                         viewportY = localY + offsetY;
+                         if (viewportX > 0 && viewportY > 0 && viewportX < 103 && viewportY < 103) {
+                            ObjectDefinition definition = ObjectDefinition.getDefinition(id);
+                            if (type != 22 || !lowMemory || definition.hasOptions != 0 || definition.interactType == 1 || definition.needsRedraw) {
+                               if (!definition.ready()) {
+                                  ++objectsNeedingLoad;
+                                  ready = false;
+                               }
+
+                               skip = true;
+                            }
+                         }
+                      }
+
+                      terminate = buffer.getUSmart();
+                      if (terminate == 0) {
+                         break;
+                      }
+
+                      buffer.getUnsignedByte();
+                   }
+                }
+             }
+          }
+
+          if (!needsLoading) {
+             anInt630 = 2;
+          } else {
+             if (anInt630 != 0) {
+                drawStatusBox("Loading - please wait." + "<br>" + " (" + 100 + "%" + ")", true);
+             }
+
+             Enum2.method642();
+             World.method557();
+             Enum2.method642();
+             Class23.region.reset();
+             Enum2.method642();
+             System.gc();
+
+             for (index = 0; index < 4; index++) {
+                collisionMaps[index].reset();
+             }
+
+             int int_9;
+             for (index = 0; index < 4; index++) {
+                for (int_9 = 0; int_9 < 104; int_9++) {
+                   for (localX = 0; localX < 104; localX++) {
+                      Class19.tileSettings[index][int_9][localX] = 0;
+                   }
+                }
+             }
+
+             Enum2.method642();
+             Buffer.method734();
+             index = Class55.localRegionMapData.length;
+             CombatInfo2.method820();
+             Class101.flush(true);
+             int int_3;
+             if (!isDynamicRegion) {
+                byte[] bytes_1;
+                for (int_9 = 0; int_9 < index; int_9++) {
+                   localX = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
+                   localY = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
+                   bytes_1 = Class55.localRegionMapData[int_9];
+                   if (bytes_1 != null) {
+                      Enum2.method642();
+                      ItemLayer.method546(bytes_1, localX, localY, Class87.anInt189 * 8 - 48, Class25.anInt86 * 8 - 48, collisionMaps);
+                   }
+                }
+
+                for (int_9 = 0; int_9 < index; int_9++) {
+                   localX = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
+                   localY = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
+                   bytes_1 = Class55.localRegionMapData[int_9];
+                   if (bytes_1 == null && Class25.anInt86 < 800) {
+                      Enum2.method642();
+                      initiateVertexHeights(localX, localY, 64, 64);
+                   }
+                }
+
+                Class101.flush(true);
+
+                for (int_9 = 0; int_9 < index; int_9++) {
+                   byte[] bytes_2 = Class10.localRegionLandscapeData[int_9];
+                   if (bytes_2 != null) {
+                      localY = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
+                      int_3 = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
+                      Enum2.method642();
+                      Class15.method196(bytes_2, localY, int_3, Class23.region, collisionMaps);
+                   }
+                }
+             }
+
+             int int_6;
+             int int_15;
+             int int_17;
+             int int_18;
+             int int_19;
+             int int_20;
+             int int_21;
+             int int_22;
+             int int_23;
+             int int_24;
+             int int_25;
+             int int_26;
+             int int_27;
+             int int_28;
+             int hsl;
+             int int_40;
+             int int_41;
+             if (isDynamicRegion) {
+                for (int_9 = 0; int_9 < 4; int_9++) {
+                   Enum2.method642();
+
+                   for (localX = 0; localX < 13; localX++) {
+                      for (localY = 0; localY < 13; localY++) {
+                         boolean bool_3 = false;
+                         int_6 = localRegions[int_9][localX][localY];
+                         if (int_6 != -1) {
+                            int_40 = int_6 >> 24 & 0x3;
+                            int_15 = int_6 >> 1 & 0x3;
+                            id = int_6 >> 14 & 0x3FF;
+                            offset = int_6 >> 3 & 0x7FF;
+                            position = (id / 8 << 8) + offset / 8;
+
+                            for (int_41 = 0; int_41 < Script.localRegionIds.length; int_41++) {
+                               if (Script.localRegionIds[int_41] == position && Class55.localRegionMapData[int_41] != null) {
+                                  method1111(Class55.localRegionMapData[int_41], int_9, localX * 8, localY * 8, int_40, (id & 0x7) * 8, (offset & 0x7) * 8, int_15, collisionMaps);
+                                  bool_3 = true;
+                                  break;
+                               }
+                            }
+                         }
+
+                         if (!bool_3) {
+                            Class27.method227(int_9, localX * 8, localY * 8);
+                         }
+                      }
+                   }
+                }
+
+                for (int_9 = 0; int_9 < 13; int_9++) {
+                   for (localX = 0; localX < 13; localX++) {
+                      localY = localRegions[0][int_9][localX];
+                      if (localY == -1) {
+                         initiateVertexHeights(int_9 * 8, localX * 8, 8, 8);
+                      }
+                   }
+                }
+
+                Class101.flush(true);
+
+                for (int_9 = 0; int_9 < 4; int_9++) {
+                   Enum2.method642();
+
+                   for (localX = 0; localX < 13; localX++) {
+                      label1150:
+                      for (localY = 0; localY < 13; localY++) {
+                         int_3 = localRegions[int_9][localX][localY];
+                         if (int_3 != -1) {
+                            int_6 = int_3 >> 24 & 0x3;
+                            int_40 = int_3 >> 1 & 0x3;
+                            int_15 = int_3 >> 14 & 0x3FF;
+                            id = int_3 >> 3 & 0x7FF;
+                            offset = (int_15 / 8 << 8) + id / 8;
+
+                            for (position = 0; position < Script.localRegionIds.length; position++) {
+                               if (Script.localRegionIds[position] == offset && Class10.localRegionLandscapeData[position] != null) {
+                                  byte[] bytes_3 = Class10.localRegionLandscapeData[position];
+                                  terminate = localX * 8;
+                                  offsetY = localY * 8;
+                                  offsetX = (int_15 & 0x7) * 8;
+                                  type = (id & 0x7) * 8;
+                                  Region region_0 = Class23.region;
+                                  CollisionData[] collisiondatas_0 = collisionMaps;
+                                  Buffer buffer_1 = new Buffer(bytes_3);
+                                  int_17 = -1;
+
+                                  while (true) {
+                                     int_18 = buffer_1.getUSmart();
+                                     if (int_18 == 0) {
+                                        continue label1150;
+                                     }
+
+                                     int_17 += int_18;
+                                     int_19 = 0;
+
+                                     while (true) {
+                                        int_20 = buffer_1.getUSmart();
+                                        if (int_20 == 0) {
+                                           break;
+                                        }
+
+                                        int_19 += int_20 - 1;
+                                        int_21 = int_19 & 0x3F;
+                                        int_22 = int_19 >> 6 & 0x3F;
+                                        int_23 = int_19 >> 12;
+                                        int_24 = buffer_1.getUnsignedByte();
+                                        int_25 = int_24 >> 2;
+                                        int_26 = int_24 & 0x3;
+                                        if (int_6 == int_23 && int_22 >= offsetX && int_22 < offsetX + 8 && int_21 >= type && int_21 < type + 8) {
+                                           ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_17);
+                                           int_27 = terminate + Class20.method209(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
+                                           int_28 = offsetY + RSCanvas.method749(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
+                                           if (int_27 > 0 && int_28 > 0 && int_27 < 103 && int_28 < 103) {
+                                              hsl = int_9;
+                                              if ((Class19.tileSettings[1][int_27][int_28] & 0x2) == 2) {
+                                                 hsl = int_9 - 1;
+                                              }
+
+                                              CollisionData collisiondata_0 = null;
+                                              if (hsl >= 0) {
+                                                 collisiondata_0 = collisiondatas_0[hsl];
+                                              }
+
+                                              RuntimeException_Sub1.addObject(int_9, int_27, int_28, int_17, int_26 + int_40 & 0x3, int_25, region_0, collisiondata_0);
+                                           }
+                                        }
+                                     }
+                                  }
+                               }
+                            }
+                         }
+                      }
+                   }
+                }
+             }
+
+             Class101.flush(true);
+             World.method557();
+             Enum2.method642();
+             Region region_1 = Class23.region;
+             CollisionData[] collisiondatas_1 = collisionMaps;
+
+             for (localY = 0; localY < 4; localY++) {
+                for (int_3 = 0; int_3 < 104; int_3++) {
+                   for (int_6 = 0; int_6 < 104; int_6++) {
+                      if ((Class19.tileSettings[localY][int_3][int_6] & 0x1) == 1) {
+                         int_40 = localY;
+                         if ((Class19.tileSettings[1][int_3][int_6] & 0x2) == 2) {
+                            int_40 = localY - 1;
+                         }
+
+                         if (int_40 >= 0) {
+                            collisiondatas_1[int_40].method581(int_3, int_6);
+                         }
+                      }
+                   }
+                }
+             }
+
+             Class19.anInt73 += (int)(Math.random() * 5.0D) - 2;
+             if (Class19.anInt73 < -8) {
+                Class19.anInt73 = -8;
+             }
+
+             if (Class19.anInt73 > 8) {
+                Class19.anInt73 = 8;
+             }
+
+             Class19.anInt74 += (int)(Math.random() * 5.0D) - 2;
+             if (Class19.anInt74 < -16) {
+                Class19.anInt74 = -16;
+             }
+
+             if (Class19.anInt74 > 16) {
+                Class19.anInt74 = 16;
+             }
+
+             int int_16;
+             for (localY = 0; localY < 4; localY++) {
+                byte[][] bytes_4 = Class19.tileShadowIntensity[localY];
+                position = (int)Math.sqrt(5100.0D);
+                int_41 = position * 768 >> 8;
+
+                for (terminate = 1; terminate < 103; terminate++) {
+                   for (offsetY = 1; offsetY < 103; offsetY++) {
+                      offsetX = Class19.tileHeights[localY][offsetY + 1][terminate] - Class19.tileHeights[localY][offsetY - 1][terminate];
+                      type = Class19.tileHeights[localY][offsetY][terminate + 1] - Class19.tileHeights[localY][offsetY][terminate - 1];
+                      viewportX = (int)Math.sqrt((double)(type * type + offsetX * offsetX + 65536));
+                      viewportY = (offsetX << 8) / viewportX;
+                      int_16 = 65536 / viewportX;
+                      int_17 = (type << 8) / viewportX;
+                      int_18 = (int_17 * -50 + viewportY * -50 + int_16 * -10) / int_41 + 96;
+                      int_19 = (bytes_4[offsetY][terminate + 1] >> 3) + (bytes_4[offsetY - 1][terminate] >> 2) + (bytes_4[offsetY][terminate - 1] >> 2) + (bytes_4[offsetY + 1][terminate] >> 3) + (bytes_4[offsetY][terminate] >> 1);
+                      Settings.tileHeightArray[offsetY][terminate] = int_18 - int_19;
+                   }
+                }
+
+                for (terminate = 0; terminate < 104; terminate++) {
+                   Class19.anIntArray8[terminate] = 0;
+                   RSCanvas.anIntArray82[terminate] = 0;
+                   Preferences.anIntArray39[terminate] = 0;
+                   FloorUnderlayDefinition.anIntArray105[terminate] = 0;
+                   Class19.anIntArray11[terminate] = 0;
+                }
+
+                for (terminate = -5; terminate < 109; terminate++) {
+                   for (offsetY = 0; offsetY < 104; offsetY++) {
+                      offsetX = terminate + 5;
+                      if (offsetX >= 0 && offsetX < 104) {
+                         type = Class19.aByteArrayArrayArray5[localY][offsetX][offsetY] & 0xFF;
+                         if (type > 0) {
+                            FloorUnderlayDefinition floorunderlaydefinition_0 = Class33.method240(type - 1);
+                            Class19.anIntArray8[offsetY] += floorunderlaydefinition_0.hue;
+                            RSCanvas.anIntArray82[offsetY] += floorunderlaydefinition_0.saturation;
+                            Preferences.anIntArray39[offsetY] += floorunderlaydefinition_0.lightness;
+                            FloorUnderlayDefinition.anIntArray105[offsetY] += floorunderlaydefinition_0.hueMultiplier;
+                            ++Class19.anIntArray11[offsetY];
+                         }
+                      }
+
+                      type = terminate - 5;
+                      if (type >= 0 && type < 104) {
+                         viewportX = Class19.aByteArrayArrayArray5[localY][type][offsetY] & 0xFF;
+                         if (viewportX > 0) {
+                            FloorUnderlayDefinition floorunderlaydefinition_1 = Class33.method240(viewportX - 1);
+                            Class19.anIntArray8[offsetY] -= floorunderlaydefinition_1.hue;
+                            RSCanvas.anIntArray82[offsetY] -= floorunderlaydefinition_1.saturation;
+                            Preferences.anIntArray39[offsetY] -= floorunderlaydefinition_1.lightness;
+                            FloorUnderlayDefinition.anIntArray105[offsetY] -= floorunderlaydefinition_1.hueMultiplier;
+                            --Class19.anIntArray11[offsetY];
+                         }
+                      }
+                   }
+
+                   if (terminate >= 1 && terminate < 103) {
+                      offsetY = 0;
+                      offsetX = 0;
+                      type = 0;
+                      viewportX = 0;
+                      viewportY = 0;
+
+                      for (int_16 = -5; int_16 < 109; int_16++) {
+                         int_17 = int_16 + 5;
+                         if (int_17 >= 0 && int_17 < 104) {
+                            offsetY += Class19.anIntArray8[int_17];
+                            offsetX += RSCanvas.anIntArray82[int_17];
+                            type += Preferences.anIntArray39[int_17];
+                            viewportX += FloorUnderlayDefinition.anIntArray105[int_17];
+                            viewportY += Class19.anIntArray11[int_17];
+                         }
+
+                         int_18 = int_16 - 5;
+                         if (int_18 >= 0 && int_18 < 104) {
+                            offsetY -= Class19.anIntArray8[int_18];
+                            offsetX -= RSCanvas.anIntArray82[int_18];
+                            type -= Preferences.anIntArray39[int_18];
+                            viewportX -= FloorUnderlayDefinition.anIntArray105[int_18];
+                            viewportY -= Class19.anIntArray11[int_18];
+                         }
+
+                         if (int_16 >= 1 && int_16 < 103 && (!lowMemory || (Class19.tileSettings[0][terminate][int_16] & 0x2) != 0 || (Class19.tileSettings[localY][terminate][int_16] & 0x10) == 0)) {
+                            if (localY < Class19.anInt72) {
+                               Class19.anInt72 = localY;
+                            }
+
+                            int_19 = Class19.aByteArrayArrayArray5[localY][terminate][int_16] & 0xFF;
+                            int_20 = Class106.aByteArrayArrayArray9[localY][terminate][int_16] & 0xFF;
+                            if (int_19 > 0 || int_20 > 0) {
+                               int_21 = Class19.tileHeights[localY][terminate][int_16];
+                               int_22 = Class19.tileHeights[localY][terminate + 1][int_16];
+                               int_23 = Class19.tileHeights[localY][terminate + 1][int_16 + 1];
+                               int_24 = Class19.tileHeights[localY][terminate][int_16 + 1];
+                               int_25 = Settings.tileHeightArray[terminate][int_16];
+                               int_26 = Settings.tileHeightArray[terminate + 1][int_16];
+                               int int_30 = Settings.tileHeightArray[terminate + 1][int_16 + 1];
+                               int_27 = Settings.tileHeightArray[terminate][int_16 + 1];
+                               int_28 = -1;
+                               hsl = -1;
+                               int int_31;
+                               int int_32;
+                               if (int_19 > 0) {
+                                  int_31 = offsetY * 256 / viewportX;
+                                  int_32 = offsetX / viewportY;
+                                  int int_33 = type / viewportY;
+                                  int_28 = WorldMapData_Sub1.method609(int_31, int_32, int_33);
+                                  int_31 = int_31 + Class19.anInt73 & 0xFF;
+                                  int_33 += Class19.anInt74;
+                                  if (int_33 < 0) {
+                                     int_33 = 0;
+                                  } else if (int_33 > 255) {
+                                     int_33 = 255;
+                                  }
+
+                                  hsl = WorldMapData_Sub1.method609(int_31, int_32, int_33);
+                               }
+
+                               if (localY > 0) {
+                                  boolean bool_4 = true;
+                                  if (int_19 == 0 && Class19.aByteArrayArrayArray6[localY][terminate][int_16] != 0) {
+                                     bool_4 = false;
+                                  }
+
+                                  if (int_20 > 0 && !Class39.getOverlay(int_20 - 1).isHidden) {
+                                     bool_4 = false;
+                                  }
+
+                                  if (bool_4 && int_22 == int_21 && int_23 == int_21 && int_21 == int_24) {
+                                     ItemLayer.anIntArrayArrayArray1[localY][terminate][int_16] |= 0x924;
+                                  }
+                               }
+
+                               int_31 = 0;
+                               if (hsl != -1) {
+                                  int_31 = Graphics3D.colorPalette[GameObject.getRgbTableId(hsl, 96)];
+                               }
+
+                               if (int_20 == 0) {
+                                  region_1.addTile(localY, terminate, int_16, 0, 0, -1, int_21, int_22, int_23, int_24, GameObject.getRgbTableId(int_28, int_25), GameObject.getRgbTableId(int_28, int_26), GameObject.getRgbTableId(int_28, int_30), GameObject.getRgbTableId(int_28, int_27), 0, 0, 0, 0, int_31, 0);
+                               } else {
+                                  int_32 = Class19.aByteArrayArrayArray6[localY][terminate][int_16] + 1;
+                                  byte byte_0 = Class7.aByteArrayArrayArray2[localY][terminate][int_16];
+                                  Overlay overlay_0 = Class39.getOverlay(int_20 - 1);
+                                  int int_34 = overlay_0.texture;
+                                  int int_35;
+                                  int int_36;
+                                  int int_37;
+                                  int int_38;
+                                  if (int_34 >= 0) {
+                                     int_35 = Graphics3D.textureLoader.getAverageTextureRGB(int_34);
+                                     int_36 = -1;
+                                  } else if (overlay_0.color == 16711935) {
+                                     int_36 = -2;
+                                     int_34 = -1;
+                                     int_35 = -2;
+                                  } else {
+                                     int_36 = WorldMapData_Sub1.method609(overlay_0.hue, overlay_0.saturation, overlay_0.lightness);
+                                     int_37 = overlay_0.hue + Class19.anInt73 & 0xFF;
+                                     int_38 = overlay_0.lightness + Class19.anInt74;
+                                     if (int_38 < 0) {
+                                        int_38 = 0;
+                                     } else if (int_38 > 255) {
+                                        int_38 = 255;
+                                     }
+
+                                     int_35 = WorldMapData_Sub1.method609(int_37, overlay_0.saturation, int_38);
+                                  }
+
+                                  int_37 = 0;
+                                  if (int_35 != -2) {
+                                     int_37 = Graphics3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                  }
+
+                                  if (overlay_0.otherRgbColor != -1) {
+                                     int_38 = overlay_0.otherHue + Class19.anInt73 & 0xFF;
+                                     int int_39 = overlay_0.otherLightness + Class19.anInt74;
+                                     if (int_39 < 0) {
+                                        int_39 = 0;
+                                     } else if (int_39 > 255) {
+                                        int_39 = 255;
+                                     }
+
+                                     int_35 = WorldMapData_Sub1.method609(int_38, overlay_0.otherSaturation, int_39);
+                                     int_37 = Graphics3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                  }
+
+                                  region_1.addTile(localY, terminate, int_16, int_32, byte_0, int_34, int_21, int_22, int_23, int_24, GameObject.getRgbTableId(int_28, int_25), GameObject.getRgbTableId(int_28, int_26), GameObject.getRgbTableId(int_28, int_30), GameObject.getRgbTableId(int_28, int_27), Class14.adjustHSLListness0(int_36, int_25), Class14.adjustHSLListness0(int_36, int_26), Class14.adjustHSLListness0(int_36, int_30), Class14.adjustHSLListness0(int_36, int_27), int_31, int_37);
+                               }
+                            }
+                         }
+                      }
+                   }
+                }
+
+                for (terminate = 1; terminate < 103; terminate++) {
+                   for (offsetY = 1; offsetY < 103; offsetY++) {
+                      if ((Class19.tileSettings[localY][offsetY][terminate] & 0x8) != 0) {
+                         int_16 = 0;
+                      } else if (localY > 0 && (Class19.tileSettings[1][offsetY][terminate] & 0x2) != 0) {
+                         int_16 = localY - 1;
+                      } else {
+                         int_16 = localY;
+                      }
+
+                      region_1.setPhysicalLevel(localY, offsetY, terminate, int_16);
+                   }
+                }
+
+                Class19.aByteArrayArrayArray5[localY] = null;
+                Class106.aByteArrayArrayArray9[localY] = null;
+                Class19.aByteArrayArrayArray6[localY] = null;
+                Class7.aByteArrayArrayArray2[localY] = null;
+                Class19.tileShadowIntensity[localY] = null;
+             }
+
+             region_1.applyLighting(-50, -10, -50);
+
+             for (localY = 0; localY < 104; localY++) {
+                for (int_3 = 0; int_3 < 104; int_3++) {
+                   if ((Class19.tileSettings[1][localY][int_3] & 0x2) == 2) {
+                      region_1.setBridge(localY, int_3);
+                   }
+                }
+             }
+
+             localY = 1;
+             int_3 = 2;
+             int_6 = 4;
+
+             for (int_40 = 0; int_40 < 4; int_40++) {
+                if (int_40 > 0) {
+                   localY <<= 3;
+                   int_3 <<= 3;
+                   int_6 <<= 3;
+                }
+
+                for (int_15 = 0; int_15 <= int_40; int_15++) {
+                   for (id = 0; id <= 104; id++) {
+                      for (offset = 0; offset <= 104; offset++) {
+                         short short_0;
+                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & localY) != 0) {
+                            position = id;
+                            int_41 = id;
+                            terminate = int_15;
+
+                            for (offsetY = int_15; position > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][position - 1] & localY) != 0; --position) {
+                               ;
+                            }
+
+                            while (int_41 < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][int_41 + 1] & localY) != 0) {
+                               ++int_41;
+                            }
+
+                            label878:
+                            while (terminate > 0) {
+                               for (offsetX = position; offsetX <= int_41; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[terminate - 1][offset][offsetX] & localY) == 0) {
+                                     break label878;
+                                  }
+                               }
+
+                               --terminate;
+                            }
+
+                            label867:
+                            while (offsetY < int_40) {
+                               for (offsetX = position; offsetX <= int_41; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[offsetY + 1][offset][offsetX] & localY) == 0) {
+                                     break label867;
+                                  }
+                               }
+
+                               ++offsetY;
+                            }
+
+                            offsetX = (int_41 - position + 1) * (offsetY + 1 - terminate);
+                            if (offsetX >= 8) {
+                               short_0 = 240;
+                               viewportX = Class19.tileHeights[offsetY][offset][position] - short_0;
+                               viewportY = Class19.tileHeights[terminate][offset][position];
+                               Region.addOcclude(int_40, 1, offset * 128, offset * 128, position * 128, int_41 * 128 + 128, viewportX, viewportY);
+
+                               for (int_16 = terminate; int_16 <= offsetY; int_16++) {
+                                  for (int_17 = position; int_17 <= int_41; int_17++) {
+                                     ItemLayer.anIntArrayArrayArray1[int_16][offset][int_17] &= ~localY;
+                                  }
+                               }
+                            }
+                         }
+
+                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & int_3) != 0) {
+                            position = offset;
+                            int_41 = offset;
+                            terminate = int_15;
+
+                            for (offsetY = int_15; position > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][position - 1][id] & int_3) != 0; --position) {
+                               ;
+                            }
+
+                            while (int_41 < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][int_41 + 1][id] & int_3) != 0) {
+                               ++int_41;
+                            }
+
+                            label931:
+                            while (terminate > 0) {
+                               for (offsetX = position; offsetX <= int_41; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[terminate - 1][offsetX][id] & int_3) == 0) {
+                                     break label931;
+                                  }
+                               }
+
+                               --terminate;
+                            }
+
+                            label920:
+                            while (offsetY < int_40) {
+                               for (offsetX = position; offsetX <= int_41; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[offsetY + 1][offsetX][id] & int_3) == 0) {
+                                     break label920;
+                                  }
+                               }
+
+                               ++offsetY;
+                            }
+
+                            offsetX = (offsetY + 1 - terminate) * (int_41 - position + 1);
+                            if (offsetX >= 8) {
+                               short_0 = 240;
+                               viewportX = Class19.tileHeights[offsetY][position][id] - short_0;
+                               viewportY = Class19.tileHeights[terminate][position][id];
+                               Region.addOcclude(int_40, 2, position * 128, int_41 * 128 + 128, id * 128, id * 128, viewportX, viewportY);
+
+                               for (int_16 = terminate; int_16 <= offsetY; int_16++) {
+                                  for (int_17 = position; int_17 <= int_41; int_17++) {
+                                     ItemLayer.anIntArrayArrayArray1[int_16][int_17][id] &= ~int_3;
+                                  }
+                               }
+                            }
+                         }
+
+                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & int_6) != 0) {
+                            position = offset;
+                            int_41 = offset;
+                            terminate = id;
+
+                            for (offsetY = id; terminate > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][terminate - 1] & int_6) != 0; --terminate) {
+                               ;
+                            }
+
+                            while (offsetY < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][offsetY + 1] & int_6) != 0) {
+                               ++offsetY;
+                            }
+
+                            label984:
+                            while (position > 0) {
+                               for (offsetX = terminate; offsetX <= offsetY; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[int_15][position - 1][offsetX] & int_6) == 0) {
+                                     break label984;
+                                  }
+                               }
+
+                               --position;
+                            }
+
+                            label973:
+                            while (int_41 < 104) {
+                               for (offsetX = terminate; offsetX <= offsetY; offsetX++) {
+                                  if ((ItemLayer.anIntArrayArrayArray1[int_15][int_41 + 1][offsetX] & int_6) == 0) {
+                                     break label973;
+                                  }
+                               }
+
+                               ++int_41;
+                            }
+
+                            if ((int_41 - position + 1) * (offsetY - terminate + 1) >= 4) {
+                               offsetX = Class19.tileHeights[int_15][position][terminate];
+                               Region.addOcclude(int_40, 4, position * 128, int_41 * 128 + 128, terminate * 128, offsetY * 128 + 128, offsetX, offsetX);
+
+                               for (type = position; type <= int_41; type++) {
+                                  for (viewportX = terminate; viewportX <= offsetY; viewportX++) {
+                                     ItemLayer.anIntArrayArrayArray1[int_15][type][viewportX] &= ~int_6;
+                                  }
+                               }
+                            }
+                         }
+                      }
+                   }
+                }
+             }
+
+             Class101.flush(true);
+             localY = Class19.anInt72;
+             if (localY > Ignore.plane) {
+                localY = Ignore.plane;
+             }
+
+             if (localY < Ignore.plane - 1) {
+                localY = Ignore.plane - 1;
+             }
+
+             if (lowMemory) {
+                Class23.region.setup(Class19.anInt72);
+             } else {
+                Class23.region.setup(0);
+             }
+
+             for (int_3 = 0; int_3 < 104; int_3++) {
+                for (int_6 = 0; int_6 < 104; int_6++) {
+                   Enum1.groundItemSpawned(int_3, int_6);
+                }
+             }
+
+             Enum2.method642();
+
+             for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
+                if (pendingspawn_0.timeLeftTillSpawn == -1) {
+                   pendingspawn_0.updateCycle = 0;
+                   Coordinates.processUIDs(pendingspawn_0);
+                } else {
+                   pendingspawn_0.unlink();
+                }
+             }
+
+             ObjectDefinition.modelCache.reset();
+             PacketNode packetnode_0;
+             if (AClass3.clientInstance.method1091()) {
+                packetnode_0 = Actor.method953(ClientPacket.aClientPacket9, aClass46_1.cipher);
+                packetnode_0.packetBuffer.putInt(1057001181);
+                aClass46_1.method282(packetnode_0);
+             }
+
+             if (!isDynamicRegion) {
+                int_3 = (Class87.anInt189 - 6) / 8;
+                int_6 = (Class87.anInt189 + 6) / 8;
+                int_40 = (Class25.anInt86 - 6) / 8;
+                int_15 = (Class25.anInt86 + 6) / 8;
+
+                for (id = int_3 - 1; id <= int_6 + 1; id++) {
+                   for (offset = int_40 - 1; offset <= int_15 + 1; offset++) {
+                      if (id < int_3 || id > int_6 || offset < int_40 || offset > int_15) {
+                         Class23.indexMaps.method440("m" + id + "_" + offset);
+                         Class23.indexMaps.method440("l" + id + "_" + offset);
+                      }
+                   }
+                }
+             }
+
+             Class110.setGameState(30);
+             Enum2.method642();
+             WorldMapData_Sub1.method608();
+             packetnode_0 = Actor.method953(ClientPacket.aClientPacket96, aClass46_1.cipher);
+             aClass46_1.method282(packetnode_0);
+             timer.method585();
+
+             for (int_6 = 0; int_6 < 32; int_6++) {
+                aLongArray3[int_6] = 0L;
+             }
+
+             for (int_6 = 0; int_6 < 32; int_6++) {
+                aLongArray2[int_6] = 0L;
+             }
+
+             AClass3.anInt326 = 0;
+          }
+       }
+    }
+
+    static void addChatMessage(int type, String name, String text, String sender) {
+       ChatLineBuffer lineBuffer = (ChatLineBuffer) Class34.chatLineMap.get(Integer.valueOf(type));
+       if (lineBuffer == null) {
+          lineBuffer = new ChatLineBuffer();
+          Class34.chatLineMap.put(Integer.valueOf(type), lineBuffer);
+       }
+
+       MessageNode message = lineBuffer.addMessage(type, name, text, sender);
+       Class34.anIterableHashTable1.put(message, (long)message.id);
+       Class34.aClass77_1.method464(message);
+       chatCycle = cycleCntr;
+    }
+
+    static void initiateVertexHeights(int xOffset, int yOffset, int xLength, int yLength) {
+       for (int y = yOffset; y <= yLength + yOffset; y++) {
+          for (int x = xOffset; x <= xOffset + xLength; x++) {
+             if (x >= 0 && x < 104 && y >= 0 && y < 104) {
+                Class19.tileShadowIntensity[0][x][y] = 127;
+                if (xOffset == x && x > 0) {
+                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x - 1][y];
+                }
+
+                if (x == xOffset + xLength && x < 103) {
+                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x + 1][y];
+                }
+
+                if (y == yOffset && y > 0) {
+                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x][y - 1];
+                }
+
+                if (yLength + yOffset == y && y < 103) {
+                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x][y + 1];
+                }
+             }
+          }
+       }
+
+    }
+
     void processJS5Connection() {
         if (gameState != 1000) {
             boolean bool_0 = Class40.method258();
@@ -631,10 +1685,10 @@ public final class Client extends GameEngine {
     }
 
     protected void method1073() {
-        GameObject.method564(new int[]{20, 260, 10000}, new int[]{1000, 100, 500});
-        DynamicObject.anInt577 = socketType == 0 ? 43594 : world + 40000;
+        InteractiveObject.method564(new int[]{20, 260, 10000}, new int[]{1000, 100, 500});
+        port = socketType == 0 ? 43594 : world + 40000;
         MessageNode.anInt509 = socketType == 0 ? 443 : world + 50000;
-        AClass3.myWorldPort = DynamicObject.anInt577;
+        AClass3.myWorldPort = port;
         PlayerComposition.colorsToFind = Class88.aShortArray3;
         PlayerComposition.colorsToReplace = Class88.aShortArrayArray1;
         Class26.aShortArray2 = Class88.aShortArray4;
@@ -670,10 +1724,10 @@ public final class Client extends GameEngine {
         Class3.socket = null;
         Class88.rssocket = null;
         js5State = 0;
-        if (DynamicObject.anInt577 == AClass3.myWorldPort) {
+        if (port == AClass3.myWorldPort) {
             AClass3.myWorldPort = MessageNode.anInt509;
         } else {
-            AClass3.myWorldPort = DynamicObject.anInt577;
+            AClass3.myWorldPort = port;
         }
 
         ++anInt617;
@@ -809,7 +1863,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket14 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readUnsignedShortOb1();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = Junk.method671(int_0);
+                    widget_1 = getWidget(int_0);
                     if (widget_1 != null && widget_1.type == 0) {
                         if (int_1 > widget_1.scrollHeight - widget_1.height) {
                             int_1 = widget_1.scrollHeight - widget_1.height;
@@ -847,7 +1901,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket19 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method707();
                     int_0 = packetbuffer_0.readInt();
-                    widget_1 = Junk.method671(int_0);
+                    widget_1 = getWidget(int_0);
                     if (int_1 != widget_1.disabledAnimation || int_1 == -1) {
                         widget_1.disabledAnimation = int_1;
                         widget_1.anInt281 = 0;
@@ -860,7 +1914,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.setWeightPacket == class46_0.serverPacket) {
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     weight = packetbuffer_0.readShort();
                     anInt640 = cycleCntr;
                     class46_0.serverPacket = null;
@@ -871,7 +1925,7 @@ public final class Client extends GameEngine {
                     for (int_1 = 0; int_1 < Settings.widgetSettings.length; int_1++) {
                         if (Settings.widgetSettings[int_1] != Settings.settings[int_1]) {
                             Settings.widgetSettings[int_1] = Settings.settings[int_1];
-                            DynamicObject.method1064(int_1);
+                            method1064(int_1);
                             anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                         }
                     }
@@ -954,7 +2008,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.readNegUByte();
                     int_0 = packetbuffer_0.getUnsignedShortInverse();
                     int_2 = packetbuffer_0.method714();
-                    widgetnode_1 = (WidgetNode) componentTable.get((long) int_2);
+                    widgetnode_1 = (WidgetNode) widgetNodeTable.get((long) int_2);
                     if (widgetnode_1 != null) {
                         Frames.method873(widgetnode_1, int_0 != widgetnode_1.id);
                     }
@@ -971,15 +2025,15 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.resetVarpPacket == class46_0.serverPacket) {
-                    for (int_1 = 0; int_1 < VarPlayerType.anInt508; int_1++) {
-                        VarPlayerType varplayertype_0 = ClanMember.method677(int_1);
-                        if (varplayertype_0 != null) {
+                    for (int_1 = 0; int_1 < VarPlayerType.varPlayerCount; int_1++) {
+                        VarPlayerType playerType = VarPlayerType.getVarPlayer(int_1);
+                        if (playerType != null) {
                             Settings.settings[int_1] = 0;
                             Settings.widgetSettings[int_1] = 0;
                         }
                     }
 
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     anInt649 += 32;
                     class46_0.serverPacket = null;
                     return true;
@@ -995,7 +2049,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket42 == class46_0.serverPacket) {
                     bool_5 = packetbuffer_0.getUnsignedByteS() == 1;
                     int_0 = packetbuffer_0.method714();
-                    widget_1 = Junk.method671(int_0);
+                    widget_1 = getWidget(int_0);
                     if (bool_5 != widget_1.isHidden) {
                         widget_1.isHidden = bool_5;
                         WorldMapData.method305(widget_1);
@@ -1006,7 +2060,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.skillLvlPacket == class46_0.serverPacket) {
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     int_1 = packetbuffer_0.method706();
                     int_0 = packetbuffer_0.getUnsignedByteC();
                     int_2 = packetbuffer_0.getUnsignedByte();
@@ -1033,7 +2087,7 @@ public final class Client extends GameEngine {
                         Settings.widgetSettings[int_1] = byte_2;
                     }
 
-                    DynamicObject.method1064(int_1);
+                    method1064(int_1);
                     anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                     class46_0.serverPacket = null;
                     return true;
@@ -1075,7 +2129,7 @@ public final class Client extends GameEngine {
                 Widget widget_2;
                 if (ServerPacket.aServerPacket49 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    widget_2 = Junk.method671(int_1);
+                    widget_2 = getWidget(int_1);
 
                     for (int_2 = 0; int_2 < widget_2.itemIds.length; int_2++) {
                         widget_2.itemIds[int_2] = -1;
@@ -1285,7 +2339,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (int_1 >= 0) {
-                        widget_1 = Junk.method671(int_1);
+                        widget_1 = getWidget(int_1);
                     } else {
                         widget_1 = null;
                     }
@@ -1311,7 +2365,7 @@ public final class Client extends GameEngine {
                         WorldMapData.method305(widget_1);
                     }
 
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     interfaceItemTriggers[++anInt663 - 1 & 0x1F] = int_0 & 0x7FFF;
                     class46_0.serverPacket = null;
                     return true;
@@ -1322,7 +2376,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.method724();
                     int_0 = packetbuffer_0.method707();
                     int_2 = packetbuffer_0.readInt();
-                    widget_0 = Junk.method671(int_2);
+                    widget_0 = getWidget(int_2);
                     if (int_0 != widget_0.originalX || int_1 != widget_0.originalY || widget_0.anInt270 != 0 || widget_0.anInt273 != 0) {
                         widget_0.originalX = int_0;
                         widget_0.originalY = int_1;
@@ -1390,7 +2444,7 @@ public final class Client extends GameEngine {
                         int_11 = packetbuffer_0.readInt();
                         int_12 = packetbuffer_0.getUnsignedShort();
                         int_3 = packetbuffer_0.getUnsignedByte();
-                        widgetnode_3 = (WidgetNode) componentTable.get((long) int_11);
+                        widgetnode_3 = (WidgetNode) widgetNodeTable.get((long) int_11);
                         if (widgetnode_3 != null && int_12 != widgetnode_3.id) {
                             Frames.method873(widgetnode_3, true);
                             widgetnode_3 = null;
@@ -1401,7 +2455,7 @@ public final class Client extends GameEngine {
                         }
                     }
 
-                    for (widgetnode_1 = (WidgetNode) componentTable.method67(); widgetnode_1 != null; widgetnode_1 = (WidgetNode) componentTable.method68()) {
+                    for (widgetnode_1 = (WidgetNode) widgetNodeTable.method67(); widgetnode_1 != null; widgetnode_1 = (WidgetNode) widgetNodeTable.method68()) {
                         if (widgetnode_1.aBool54) {
                             widgetnode_1.aBool54 = false;
                         } else {
@@ -1441,7 +2495,7 @@ public final class Client extends GameEngine {
                     }
 
                     int_2 = packetbuffer_0.method727();
-                    widget_0 = Junk.method671(int_1);
+                    widget_0 = getWidget(int_1);
                     ItemDefinition itemcomposition_0;
                     if (!widget_0.hasScript) {
                         if (int_0 == -1) {
@@ -1503,7 +2557,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket57 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method727();
-                    widget_2 = Junk.method671(int_1);
+                    widget_2 = getWidget(int_1);
                     widget_2.disabledMediaType = 3;
                     widget_2.disabledMediaId = Class4.localPlayer.composition.method507();
                     WorldMapData.method305(widget_2);
@@ -1525,7 +2579,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (int_1 >= 0) {
-                        widget_1 = Junk.method671(int_1);
+                        widget_1 = getWidget(int_1);
                     } else {
                         widget_1 = null;
                     }
@@ -1559,7 +2613,7 @@ public final class Client extends GameEngine {
                         WorldMapData.method305(widget_1);
                     }
 
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     interfaceItemTriggers[++anInt663 - 1 & 0x1F] = int_0 & 0x7FFF;
                     class46_0.serverPacket = null;
                     return true;
@@ -1567,7 +2621,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket31 == class46_0.serverPacket) {
                     Class23.anInt75 = packetbuffer_0.getUnsignedByte();
-                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -1632,7 +2686,7 @@ public final class Client extends GameEngine {
                     int_11 = int_1 >> 5 & 0x1F;
                     int_12 = int_1 & 0x1F;
                     int_3 = (int_11 << 11) + (int_2 << 19) + (int_12 << 3);
-                    Widget widget_4 = Junk.method671(int_0);
+                    Widget widget_4 = getWidget(int_0);
                     if (int_3 != widget_4.disabledColour) {
                         widget_4.disabledColour = int_3;
                         WorldMapData.method305(widget_4);
@@ -1646,23 +2700,23 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket32 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method714();
                     int_0 = packetbuffer_0.method714();
-                    WidgetNode widgetnode_0 = (WidgetNode) componentTable.get((long) int_0);
-                    widgetnode_1 = (WidgetNode) componentTable.get((long) int_1);
+                    WidgetNode widgetnode_0 = (WidgetNode) widgetNodeTable.get((long) int_0);
+                    widgetnode_1 = (WidgetNode) widgetNodeTable.get((long) int_1);
                     if (widgetnode_1 != null) {
                         Frames.method873(widgetnode_1, widgetnode_0 == null || widgetnode_0.id != widgetnode_1.id);
                     }
 
                     if (widgetnode_0 != null) {
                         widgetnode_0.unlink();
-                        componentTable.put(widgetnode_0, (long) int_1);
+                        widgetNodeTable.put(widgetnode_0, (long) int_1);
                     }
 
-                    widget_3 = Junk.method671(int_0);
+                    widget_3 = getWidget(int_0);
                     if (widget_3 != null) {
                         WorldMapData.method305(widget_3);
                     }
 
-                    widget_3 = Junk.method671(int_1);
+                    widget_3 = getWidget(int_1);
                     if (widget_3 != null) {
                         WorldMapData.method305(widget_3);
                         AClass1_Sub2.method637(Class91.widgets[widget_3.id >>> 16], widget_3, true);
@@ -1703,7 +2757,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket35 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.readInt();
-                    WidgetNode widgetnode_2 = (WidgetNode) componentTable.get((long) int_1);
+                    WidgetNode widgetnode_2 = (WidgetNode) widgetNodeTable.get((long) int_1);
                     if (widgetnode_2 != null) {
                         Frames.method873(widgetnode_2, true);
                     }
@@ -1739,7 +2793,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.energyPacket == class46_0.serverPacket) {
-                    Class12.method165();
+                    Class12.processWidgetQueue();
                     energy = packetbuffer_0.getUnsignedByte();
                     anInt640 = cycleCntr;
                     class46_0.serverPacket = null;
@@ -1754,7 +2808,7 @@ public final class Client extends GameEngine {
                         Settings.widgetSettings[int_1] = int_0;
                     }
 
-                    DynamicObject.method1064(int_1);
+                    method1064(int_1);
                     anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                     class46_0.serverPacket = null;
                     return true;
@@ -1798,7 +2852,7 @@ public final class Client extends GameEngine {
                     int_0 = packetbuffer_0.getUnsignedShortAInverse();
                     int_2 = packetbuffer_0.getUnsignedShortInverse();
                     int_11 = packetbuffer_0.readUnsignedShortOb1();
-                    widget_3 = Junk.method671(int_1);
+                    widget_3 = getWidget(int_1);
                     if (int_2 != widget_3.modelRotationX || int_0 != widget_3.modelRotationZ || int_11 != widget_3.modelZoom) {
                         widget_3.modelRotationX = int_2;
                         widget_3.modelRotationZ = int_0;
@@ -1843,9 +2897,9 @@ public final class Client extends GameEngine {
                         if (permission_1.iconSpriteId != -1) {
                             int_7 = permission_1.iconSpriteId;
                             string_3 = "<img=" + int_7 + ">";
-                            DynamicObject.addChatMessage(9, string_3 + string_4, string_6, Preferences.method419(long_1));
+                            addChatMessage(9, string_3 + string_4, string_6, Preferences.method419(long_1));
                         } else {
-                            DynamicObject.addChatMessage(9, string_4, string_6, Preferences.method419(long_1));
+                            addChatMessage(9, string_4, string_6, Preferences.method419(long_1));
                         }
                     }
 
@@ -1855,10 +2909,10 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket29 == class46_0.serverPacket) {
                     Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
-                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
 
                     for (int_1 = Class23.anInt75; int_1 < Class23.anInt75 + 8; int_1++) {
-                        for (int_0 = GameObject.anInt222; int_0 < GameObject.anInt222 + 8; int_0++) {
+                        for (int_0 = InteractiveObject.anInt222; int_0 < InteractiveObject.anInt222 + 8; int_0++) {
                             if (groundItemDeque[Ignore.plane][int_1][int_0] != null) {
                                 groundItemDeque[Ignore.plane][int_1][int_0] = null;
                                 Enum1.groundItemSpawned(int_1, int_0);
@@ -1867,7 +2921,7 @@ public final class Client extends GameEngine {
                     }
 
                     for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
-                        if (pendingspawn_0.x >= Class23.anInt75 && pendingspawn_0.objectFace < Class23.anInt75 + 8 && pendingspawn_0.y >= GameObject.anInt222 && pendingspawn_0.y < GameObject.anInt222 + 8 && pendingspawn_0.plane == Ignore.plane) {
+                        if (pendingspawn_0.x >= Class23.anInt75 && pendingspawn_0.objectFace < Class23.anInt75 + 8 && pendingspawn_0.y >= InteractiveObject.anInt222 && pendingspawn_0.y < InteractiveObject.anInt222 + 8 && pendingspawn_0.plane == Ignore.plane) {
                             pendingspawn_0.timeLeftTillSpawn = 0;
                         }
                     }
@@ -1906,7 +2960,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.getUnsignedShortInverse();
                     int_0 = packetbuffer_0.readUnsignedShortOb1();
                     int_2 = packetbuffer_0.method727();
-                    widget_0 = Junk.method671(int_2);
+                    widget_0 = getWidget(int_2);
                     widget_0.anInt279 = int_0 + (int_1 << 16);
                     class46_0.serverPacket = null;
                     return true;
@@ -1960,7 +3014,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket61 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = Junk.method671(int_0);
+                    widget_1 = getWidget(int_0);
                     if (widget_1.disabledMediaType != 1 || int_1 != widget_1.disabledMediaId) {
                         widget_1.disabledMediaType = 1;
                         widget_1.disabledMediaId = int_1;
@@ -1996,7 +3050,7 @@ public final class Client extends GameEngine {
 
                 if (ServerPacket.aServerPacket27 == class46_0.serverPacket) {
                     Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
-                    GameObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
 
                     while (packetbuffer_0.position < class46_0.packetLength) {
                         int_1 = packetbuffer_0.getUnsignedByte();
@@ -2211,7 +3265,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.interfaceTextPacket == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.method714();
                     string_1 = packetbuffer_0.readString();
-                    widget_1 = Junk.method671(int_1);
+                    widget_1 = getWidget(int_1);
                     if (!string_1.equals(widget_1.disabledText)) {
                         widget_1.disabledText = string_1;
                         WorldMapData.method305(widget_1);
@@ -2224,7 +3278,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket59 == class46_0.serverPacket) {
                     int_1 = packetbuffer_0.getUnsignedShortAInverse();
                     int_0 = packetbuffer_0.method706();
-                    widget_1 = Junk.method671(int_0);
+                    widget_1 = getWidget(int_0);
                     if (widget_1.disabledMediaType != 2 || int_1 != widget_1.disabledMediaId) {
                         widget_1.disabledMediaType = 2;
                         widget_1.disabledMediaId = int_1;
@@ -2260,7 +3314,7 @@ public final class Client extends GameEngine {
                         clanChatOwner = null;
                         clanChatName = null;
                         clanChatCount = 0;
-                        DynamicObject.clanMembers = null;
+                        Class20.clanMembers = null;
                         class46_0.serverPacket = null;
                         return true;
                     }
@@ -2336,7 +3390,7 @@ public final class Client extends GameEngine {
                         }
                     }
 
-                    DynamicObject.clanMembers = clanmembers_0;
+                    Class20.clanMembers = clanmembers_0;
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -2358,18 +3412,18 @@ public final class Client extends GameEngine {
 
                         boolean bool_1 = false;
 
-                        for (int_12 = 0; int_12 < clanChatCount && (!DynamicObject.clanMembers[int_12].username.equals(string_4) || int_0 != DynamicObject.clanMembers[int_12].world); int_12++) {
+                        for (int_12 = 0; int_12 < clanChatCount && (!Class20.clanMembers[int_12].username.equals(string_4) || int_0 != Class20.clanMembers[int_12].world); int_12++) {
                             ;
                         }
 
                         if (int_12 < clanChatCount) {
                             while (int_12 < clanChatCount - 1) {
-                                DynamicObject.clanMembers[int_12] = DynamicObject.clanMembers[int_12 + 1];
+                                Class20.clanMembers[int_12] = Class20.clanMembers[int_12 + 1];
                                 ++int_12;
                             }
 
                             --clanChatCount;
-                            DynamicObject.clanMembers[clanChatCount] = null;
+                            Class20.clanMembers[clanChatCount] = null;
                         }
                     } else {
                         packetbuffer_0.readString();
@@ -2380,10 +3434,10 @@ public final class Client extends GameEngine {
                         clanmember_0.rank = byte_1;
 
                         for (int_3 = clanChatCount - 1; int_3 >= 0; --int_3) {
-                            int_4 = DynamicObject.clanMembers[int_3].aString20.compareTo(clanmember_0.aString20);
+                            int_4 = Class20.clanMembers[int_3].aString20.compareTo(clanmember_0.aString20);
                             if (int_4 == 0) {
-                                DynamicObject.clanMembers[int_3].world = int_0;
-                                DynamicObject.clanMembers[int_3].rank = byte_1;
+                                Class20.clanMembers[int_3].world = int_0;
+                                Class20.clanMembers[int_3].rank = byte_1;
                                 if (string_4.equals(Class4.localPlayer.name)) {
                                     AClass3.clanChatRank = byte_1;
                                 }
@@ -2398,20 +3452,20 @@ public final class Client extends GameEngine {
                             }
                         }
 
-                        if (clanChatCount >= DynamicObject.clanMembers.length) {
+                        if (clanChatCount >= Class20.clanMembers.length) {
                             class46_0.serverPacket = null;
                             return true;
                         }
 
                         for (int_4 = clanChatCount - 1; int_4 > int_3; --int_4) {
-                            DynamicObject.clanMembers[int_4 + 1] = DynamicObject.clanMembers[int_4];
+                            Class20.clanMembers[int_4 + 1] = Class20.clanMembers[int_4];
                         }
 
                         if (clanChatCount == 0) {
-                            DynamicObject.clanMembers = new ClanMember[100];
+                            Class20.clanMembers = new ClanMember[100];
                         }
 
-                        DynamicObject.clanMembers[int_3 + 1] = clanmember_0;
+                        Class20.clanMembers[int_3 + 1] = clanmember_0;
                         ++clanChatCount;
                         if (string_4.equals(Class4.localPlayer.name)) {
                             AClass3.clanChatRank = byte_1;
@@ -2502,7 +3556,7 @@ public final class Client extends GameEngine {
             } catch (IOException ioexception_0) {
                 WidgetNode.method684();
             } catch (Exception exception_0) {
-                string_1 = "" + (class46_0.serverPacket != null ? class46_0.serverPacket.packetId : -1) + "," + (class46_0.aServerPacket1 != null ? class46_0.aServerPacket1.packetId : -1) + "," + (class46_0.aServerPacket2 != null ? class46_0.aServerPacket2.packetId : -1) + "," + class46_0.packetLength + "," + (Class4.localPlayer.pathX[0] + ItemLayer.baseX) + "," + (Class4.localPlayer.pathY[0] + ItemLayer.baseY) + ",";
+                string_1 = "" + (class46_0.serverPacket != null ? class46_0.serverPacket.packetId : -1) + "," + (class46_0.aServerPacket1 != null ? class46_0.aServerPacket1.packetId : -1) + "," + (class46_0.aServerPacket2 != null ? class46_0.aServerPacket2.packetId : -1) + "," + class46_0.packetLength + "," + (Class4.localPlayer.pathX[0] + regionBaseX) + "," + (Class4.localPlayer.pathY[0] + regionBaseY) + ",";
 
                 for (int_2 = 0; int_2 < class46_0.packetLength && int_2 < 50; int_2++) {
                     string_1 = string_1 + packetbuffer_0.buffer[int_2] + ",";
@@ -2621,7 +3675,7 @@ public final class Client extends GameEngine {
                         Frames.method872(this);
                         this.handleLoginState();
                     } else if (gameState == 25) {
-                        DynamicObject.method1065();
+                        processRegion();
                     }
                 } else {
                     Frames.method872(this);
@@ -3067,28 +4121,28 @@ public final class Client extends GameEngine {
                             return;
                         }
 
-                        for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
-                            if (pendingspawn_0.timeLeftTillSpawn > 0) {
-                                --pendingspawn_0.timeLeftTillSpawn;
+                        for (SceneSpawnNode spawnNode = (SceneSpawnNode) pendingSpawns.getFront(); spawnNode != null; spawnNode = (SceneSpawnNode) pendingSpawns.getNext()) {
+                            if (spawnNode.timeLeftTillSpawn > 0) {
+                                --spawnNode.timeLeftTillSpawn;
                             }
 
-                            if (pendingspawn_0.timeLeftTillSpawn == 0) {
-                                if (pendingspawn_0.objectId < 0 || method1110(pendingspawn_0.objectId, pendingspawn_0.objectType)) {
-                                    Class10.method154(pendingspawn_0.plane, pendingspawn_0.spawnType, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.objectId, pendingspawn_0.objectFace, pendingspawn_0.objectType);
-                                    pendingspawn_0.unlink();
+                            if (spawnNode.timeLeftTillSpawn == 0) {
+                                if (spawnNode.objectId < 0 || objectHasModelType(spawnNode.objectId, spawnNode.objectType)) {
+                                    Class10.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.objectId, spawnNode.objectFace, spawnNode.objectType);
+                                    spawnNode.unlink();
                                 }
                             } else {
-                                if (pendingspawn_0.updateCycle > 0) {
-                                    --pendingspawn_0.updateCycle;
+                                if (spawnNode.updateCycle > 0) {
+                                    --spawnNode.updateCycle;
                                 }
 
-                                if (pendingspawn_0.updateCycle == 0 && pendingspawn_0.x >= 1 && pendingspawn_0.y >= 1 && pendingspawn_0.x <= 102 && pendingspawn_0.y <= 102 && (pendingspawn_0.id < 0 || method1110(pendingspawn_0.id, pendingspawn_0.objectType2))) {
-                                    Class10.method154(pendingspawn_0.plane, pendingspawn_0.spawnType, pendingspawn_0.x, pendingspawn_0.y, pendingspawn_0.id, pendingspawn_0.orientation, pendingspawn_0.objectType2);
-                                    pendingspawn_0.updateCycle = -1;
-                                    if (pendingspawn_0.objectId == pendingspawn_0.id && pendingspawn_0.objectId == -1) {
-                                        pendingspawn_0.unlink();
-                                    } else if (pendingspawn_0.objectId == pendingspawn_0.id && pendingspawn_0.objectFace == pendingspawn_0.orientation && pendingspawn_0.objectType == pendingspawn_0.objectType2) {
-                                        pendingspawn_0.unlink();
+                                if (spawnNode.updateCycle == 0 && spawnNode.x >= 1 && spawnNode.y >= 1 && spawnNode.x <= 102 && spawnNode.y <= 102 && (spawnNode.id < 0 || objectHasModelType(spawnNode.id, spawnNode.objectType2))) {
+                                    Class10.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.id, spawnNode.orientation, spawnNode.objectType2);
+                                    spawnNode.updateCycle = -1;
+                                    if (spawnNode.objectId == spawnNode.id && spawnNode.objectId == -1) {
+                                        spawnNode.unlink();
+                                    } else if (spawnNode.objectId == spawnNode.id && spawnNode.objectFace == spawnNode.orientation && spawnNode.objectType == spawnNode.objectType2) {
+                                        spawnNode.unlink();
                                     }
                                 }
                             }
@@ -3177,8 +4231,8 @@ public final class Client extends GameEngine {
                             }
 
                             if (int_2 != Class4.localPlayer.currentPlane) {
-                                int_3 = Class4.localPlayer.pathX[0] + ItemLayer.baseX;
-                                int_4 = Class4.localPlayer.pathY[0] + ItemLayer.baseY;
+                                int_3 = Class4.localPlayer.pathX[0] + regionBaseX;
+                                int_4 = Class4.localPlayer.pathY[0] + regionBaseY;
                                 packetnode_1 = Actor.method953(ClientPacket.aClientPacket18, aClass46_1.cipher);
                                 packetnode_1.packetBuffer.putShort(int_4);
                                 packetnode_1.packetBuffer.putShortS(int_3);
@@ -3212,7 +4266,7 @@ public final class Client extends GameEngine {
                                                         if (scriptevent_0 == null) {
                                                             this.method1107();
                                                             if (renderOverview != null) {
-                                                                renderOverview.method36(Ignore.plane, (Class4.localPlayer.x >> 7) + ItemLayer.baseX, (Class4.localPlayer.y >> 7) + ItemLayer.baseY, false);
+                                                                renderOverview.method36(Ignore.plane, (Class4.localPlayer.x >> 7) + regionBaseX, (Class4.localPlayer.y >> 7) + regionBaseY, false);
                                                                 renderOverview.method37();
                                                             }
 
@@ -3292,8 +4346,8 @@ public final class Client extends GameEngine {
                                                                 int_3 = Region.selectedRegionTileY;
                                                                 PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket82, aClass46_1.cipher);
                                                                 packetnode_4.packetBuffer.putByte(5);
-                                                                packetnode_4.packetBuffer.putShortS(int_3 + ItemLayer.baseY);
-                                                                packetnode_4.packetBuffer.putShortS(int_2 + ItemLayer.baseX);
+                                                                packetnode_4.packetBuffer.putShortS(int_3 + regionBaseY);
+                                                                packetnode_4.packetBuffer.putShortS(int_2 + regionBaseX);
                                                                 packetnode_4.packetBuffer.putByteA(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
                                                                 aClass46_1.method282(packetnode_4);
                                                                 Region.method386();
@@ -3389,7 +4443,7 @@ public final class Client extends GameEngine {
                                                             break;
                                                         }
 
-                                                        widget_4 = Junk.method671(widget_3.parentId);
+                                                        widget_4 = getWidget(widget_3.parentId);
                                                     }
                                                     while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -3402,7 +4456,7 @@ public final class Client extends GameEngine {
                                                 break;
                                             }
 
-                                            widget_4 = Junk.method671(widget_3.parentId);
+                                            widget_4 = getWidget(widget_3.parentId);
                                         }
                                         while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -3415,7 +4469,7 @@ public final class Client extends GameEngine {
                                     break;
                                 }
 
-                                widget_4 = Junk.method671(widget_3.parentId);
+                                widget_4 = getWidget(widget_3.parentId);
                             }
                             while (widget_4 == null || widget_4.children == null || widget_3.index >= widget_4.children.length || widget_3 != widget_4.children[widget_3.index]);
 
@@ -3783,9 +4837,9 @@ public final class Client extends GameEngine {
                         friendCount = 0;
                         ignoreCount = 0;
 
-                        for (int_0 = 0; int_0 < VarPlayerType.anInt508; int_0++) {
-                            VarPlayerType varplayertype_0 = ClanMember.method677(int_0);
-                            if (varplayertype_0 != null) {
+                        for (int_0 = 0; int_0 < VarPlayerType.varPlayerCount; int_0++) {
+                            VarPlayerType varPlayer = VarPlayerType.getVarPlayer(int_0);
+                            if (varPlayer != null) {
                                 Settings.settings[int_0] = 0;
                                 Settings.widgetSettings[int_0] = 0;
                             }
@@ -3819,12 +4873,12 @@ public final class Client extends GameEngine {
                             }
                         }
 
-                        for (WidgetNode widgetnode_0 = (WidgetNode) componentTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) componentTable.method68()) {
+                        for (WidgetNode widgetnode_0 = (WidgetNode) widgetNodeTable.method67(); widgetnode_0 != null; widgetnode_0 = (WidgetNode) widgetNodeTable.method68()) {
                             Frames.method873(widgetnode_0, true);
                         }
 
                         widgetRoot = -1;
-                        componentTable = new HashTable(8);
+                        widgetNodeTable = new HashTable(8);
                         aWidget12 = null;
                         Class9.method147();
                         aPlayerComposition1.updateAppearance((int[]) null, new int[]{0, 0, 0, 0, 0}, false, -1);
@@ -3844,7 +4898,7 @@ public final class Client extends GameEngine {
                         ScriptVarType.method469();
                         clanChatOwner = null;
                         clanChatCount = 0;
-                        DynamicObject.clanMembers = null;
+                        Class20.clanMembers = null;
 
                         for (int_0 = 0; int_0 < 8; int_0++) {
                             grandExchangeOffers[int_0] = new GrandExchangeOffer();
@@ -3881,10 +4935,10 @@ public final class Client extends GameEngine {
                         ++anInt618;
                         if (anInt618 > 2000) {
                             if (anInt614 < 1) {
-                                if (AClass3.myWorldPort == DynamicObject.anInt577) {
+                                if (AClass3.myWorldPort == port) {
                                     AClass3.myWorldPort = MessageNode.anInt509;
                                 } else {
-                                    AClass3.myWorldPort = DynamicObject.anInt577;
+                                    AClass3.myWorldPort = port;
                                 }
 
                                 ++anInt614;
@@ -3954,10 +5008,10 @@ public final class Client extends GameEngine {
             }
         } catch (IOException ioexception_0) {
             if (anInt614 < 1) {
-                if (AClass3.myWorldPort == DynamicObject.anInt577) {
+                if (AClass3.myWorldPort == port) {
                     AClass3.myWorldPort = MessageNode.anInt509;
                 } else {
-                    AClass3.myWorldPort = DynamicObject.anInt577;
+                    AClass3.myWorldPort = port;
                 }
 
                 ++anInt614;
@@ -4040,23 +5094,23 @@ public final class Client extends GameEngine {
                     }
 
                     int_0 = (anInt632 * 50 - anInt631 * 50) / anInt632;
-                    Class68_Sub1.drawStatusBox("Loading - please wait." + "<br>" + " (" + int_0 + "%" + ")", false);
+                    drawStatusBox("Loading - please wait." + "<br>" + " (" + int_0 + "%" + ")", false);
                 } else if (anInt630 == 2) {
-                    if (anInt633 > anInt634) {
-                        anInt634 = anInt633;
+                    if (objectsNeedingLoad > anInt634) {
+                        anInt634 = objectsNeedingLoad;
                     }
 
-                    int_0 = (anInt634 * 50 - anInt633 * 50) / anInt634 + 50;
-                    Class68_Sub1.drawStatusBox("Loading - please wait." + "<br>" + " (" + int_0 + "%" + ")", false);
+                    int_0 = (anInt634 * 50 - objectsNeedingLoad * 50) / anInt634 + 50;
+                    drawStatusBox("Loading - please wait." + "<br>" + " (" + int_0 + "%" + ")", false);
                 } else {
-                    Class68_Sub1.drawStatusBox("Loading - please wait.", false);
+                    drawStatusBox("Loading - please wait.", false);
                 }
             } else if (gameState == 30) {
                 this.method1103();
             } else if (gameState == 40) {
-                Class68_Sub1.drawStatusBox("Connection lost" + "<br>" + "Please wait - attempting to reestablish", false);
+                drawStatusBox("Connection lost" + "<br>" + "Please wait - attempting to reestablish", false);
             } else if (gameState == 45) {
-                Class68_Sub1.drawStatusBox("Please wait...", false);
+                drawStatusBox("Please wait...", false);
             }
         } else {
             FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.font_p12full, bool_0);
@@ -4080,7 +5134,7 @@ public final class Client extends GameEngine {
     }
 
     void method1106(Widget widget_0) {
-        Widget widget_1 = widget_0.parentId == -1 ? null : Junk.method671(widget_0.parentId);
+        Widget widget_1 = widget_0.parentId == -1 ? null : getWidget(widget_0.parentId);
         int int_0;
         int int_1;
         if (widget_1 == null) {
@@ -4180,7 +5234,7 @@ public final class Client extends GameEngine {
                             if (int_3 == 39 || int_3 == 40 || int_3 == 41 || int_3 == 42 || int_3 == 43 || int_3 == 33 || int_3 == 34 || int_3 == 35 || int_3 == 36 || int_3 == 37 || int_3 == 38 || int_3 == 1005) {
                                 int_1 = menuActionParams0[int_0];
                                 int_8 = menuActionParams1[int_0];
-                                Widget widget_0 = Junk.method671(int_8);
+                                Widget widget_0 = getWidget(int_8);
                                 int_5 = Preferences.getWidgetConfig(widget_0);
                                 boolean bool_2 = (int_5 >> 28 & 0x1) != 0;
                                 if (bool_2) {
@@ -4225,7 +5279,7 @@ public final class Client extends GameEngine {
                     WorldMapData.method305(ClanMember.aWidget7);
                 }
 
-                ClanMember.aWidget7 = Junk.method671(int_8);
+                ClanMember.aWidget7 = getWidget(int_8);
                 anInt635 = int_1;
                 anInt628 = MouseInput.anInt264;
                 anInt629 = MouseInput.anInt265;
@@ -4310,7 +5364,7 @@ public final class Client extends GameEngine {
                                     break;
                                 }
 
-                                widget_0 = Junk.method671(widget_0.parentId);
+                                widget_0 = getWidget(widget_0.parentId);
                                 if (widget_0 == null) {
                                     widget_1 = null;
                                     break;
@@ -4354,37 +5408,37 @@ public final class Client extends GameEngine {
 
     public void init() {
         if (this.isValidHost()) {
-            Parameters[] parameterss_0 = new Parameters[]{Parameters.aParameters2, Parameters.aParameters3, Parameters.aParameters4, Parameters.aParameters1, Parameters.aParameters5, Parameters.aParameters6, Parameters.aParameters7, Parameters.aParameters8, Parameters.aParameters9, Parameters.aParameters10, Parameters.aParameters12, Parameters.aParameters13, Parameters.aParameters14, Parameters.aParameters15, Parameters.aParameters11};
-            Parameters[] parameterss_1 = parameterss_0;
+            Parameter[] parameters = new Parameter[]{Parameter.A_PARAMETER_2, Parameter.A_PARAMETER_3, Parameter.A_PARAMETER_4, Parameter.A_PARAMETER_1, Parameter.A_PARAMETER_5, Parameter.A_PARAMETER_6, Parameter.A_PARAMETER_7, Parameter.A_PARAMETER_8, Parameter.A_PARAMETER_9, Parameter.A_PARAMETER_10, Parameter.A_PARAMETER_12, Parameter.A_PARAMETER_13, Parameter.A_PARAMETER_14, Parameter.A_PARAMETER_15, Parameter.A_PARAMETER_11};
+            Parameter[] clone = parameters;
 
-            int int_0;
-            for (int_0 = 0; int_0 < parameterss_1.length; int_0++) {
-                Parameters parameters_0 = parameterss_1[int_0];
-                String string_0 = this.getParameter(parameters_0.key);
-                if (string_0 != null) {
-                    switch (Integer.parseInt(parameters_0.key)) {
+            int index;
+            for (index = 0; index < clone.length; index++) {
+                Parameter parameter = clone[index];
+                String value = this.getParameter(parameter.key);
+                if (value != null) {
+                    switch (Integer.parseInt(parameter.key)) {
                         case 1:
-                            if (string_0.equalsIgnoreCase("true")) {
+                            if (value.equalsIgnoreCase("true")) {
                                 isMembers = true;
                             } else {
                                 isMembers = false;
                             }
                             break;
                         case 2:
-                            socketType = Integer.parseInt(string_0);
+                            socketType = Integer.parseInt(value);
                             break;
                         case 3:
-                            Class10.anInt48 = Integer.parseInt(string_0);
+                            Class10.anInt48 = Integer.parseInt(value);
                             break;
                         case 4:
-                            TileStrategy.aString18 = string_0;
+                            TileStrategy.aString18 = value;
                         case 5:
                         case 13:
                         case 14:
                         default:
                             break;
                         case 6:
-                            Class14.anEnum6_1 = (Enum6) Class1.forOrdinal(Class52.method336(), Integer.parseInt(string_0));
+                            Class14.anEnum6_1 = (Enum6) Class1.forOrdinal(Class52.method336(), Integer.parseInt(value));
                             if (Enum6.anEnum6_7 == Class14.anEnum6_1) {
                                 Class24.aClass109_1 = Class109.aClass109_2;
                             } else {
@@ -4392,39 +5446,39 @@ public final class Client extends GameEngine {
                             }
                             break;
                         case 7:
-                            Class16.sessionToken = string_0;
+                            Class16.sessionToken = value;
                             break;
                         case 8:
-                            languageId = Integer.parseInt(string_0);
+                            languageId = Integer.parseInt(value);
                             break;
                         case 9:
-                            flags = Integer.parseInt(string_0);
+                            flags = Integer.parseInt(value);
                             break;
                         case 10:
-                            Class65.anInt168 = Integer.parseInt(string_0);
+                            Class65.anInt168 = Integer.parseInt(value);
                             break;
                         case 11:
-                            if (string_0.equalsIgnoreCase("true")) {
+                            if (value.equalsIgnoreCase("true")) {
                                 ;
                             }
                             break;
                         case 12:
-                            world = Integer.parseInt(string_0);
+                            world = Integer.parseInt(value);
                             break;
                         case 15:
-                            GameEngine.aBuildType1 = Class88.method495(Integer.parseInt(string_0));
+                            GameEngine.aBuildType1 = Class88.method495(Integer.parseInt(value));
                     }
                 }
             }
 
             TileStrategy.method630();
             MilliTimer.host = this.getCodeBase().getHost();
-            String string_1 = GameEngine.aBuildType1.identifier;
+            String identifier = GameEngine.aBuildType1.identifier;
             byte byte_0 = 0;
 
             try {
                 Class64.anInt167 = 17;
-                VarPlayerType.anInt507 = byte_0;
+                Varcs.anInt507 = byte_0;
 
                 try {
                     Class97.osName = System.getProperty("os.name");
@@ -4464,34 +5518,34 @@ public final class Client extends GameEngine {
                 }
 
                 WorldMapData_Sub1.cacheLocations = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", Class51.userHome, "/tmp/", ""};
-                Class64.aStringArray2 = new String[]{".jagex_cache_" + VarPlayerType.anInt507, ".file_store_" + VarPlayerType.anInt507};
+                Class64.aStringArray2 = new String[]{".jagex_cache_" + Varcs.anInt507, ".file_store_" + Varcs.anInt507};
 
-                label118:
-                for (int_0 = 0; int_0 < 4; int_0++) {
-                    Class50.aFile1 = Class32.method239("oldschool", string_1, int_0);
+                fileLoop:
+                for (index = 0; index < 4; index++) {
+                    Class50.aFile1 = Class32.method239("oldschool", identifier, index);
                     if (!Class50.aFile1.exists()) {
                         Class50.aFile1.mkdirs();
                     }
 
-                    File[] files_0 = Class50.aFile1.listFiles();
-                    if (files_0 == null) {
+                    File[] list = Class50.aFile1.listFiles();
+                    if (list == null) {
                         break;
                     }
 
-                    File[] files_1 = files_0;
-                    int int_1 = 0;
+                    File[] files = list;
+                    int maxLength = 0;
 
                     while (true) {
-                        if (int_1 >= files_1.length) {
-                            break label118;
+                        if (maxLength >= files.length) {
+                            break fileLoop;
                         }
 
-                        File file_0 = files_1[int_1];
+                        File file_0 = files[maxLength];
                         if (!WorldMapType3.method574(file_0, false)) {
                             break;
                         }
 
-                        ++int_1;
+                        ++maxLength;
                     }
                 }
 
@@ -4525,17 +5579,17 @@ public final class Client extends GameEngine {
         ItemDefinition.itemSpriteCache.reset();
     }
 
-    static boolean method1110(int int_0, int int_1) {
-        ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_0);
-        if (int_1 == 11) {
-            int_1 = 10;
+    static boolean objectHasModelType(int id, int type) {
+        ObjectDefinition definition = ObjectDefinition.getDefinition(id);
+        if (type == 11) {
+            type = 10;
         }
 
-        if (int_1 >= 5 && int_1 <= 8) {
-            int_1 = 4;
+        if (type >= 5 && type <= 8) {
+            type = 4;
         }
 
-        return objectcomposition_0.method824(int_1);
+        return definition.hasModelType(type);
     }
 
     static void method1111(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, CollisionData[] collisiondatas_0) {
@@ -4543,7 +5597,7 @@ public final class Client extends GameEngine {
         for (int int_7 = 0; int_7 < 8; int_7++) {
             for (int_8 = 0; int_8 < 8; int_8++) {
                 if (int_7 + int_1 > 0 && int_7 + int_1 < 103 && int_2 + int_8 > 0 && int_2 + int_8 < 103) {
-                    collisiondatas_0[int_0].flags[int_7 + int_1][int_2 + int_8] &= 0xFEFFFFFF;
+                    collisiondatas_0[int_0].adjacency[int_7 + int_1][int_2 + int_8] &= 0xFEFFFFFF;
                 }
             }
         }

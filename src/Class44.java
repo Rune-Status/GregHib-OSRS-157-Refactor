@@ -86,7 +86,7 @@ final class Class44 implements Comparator {
       byte byte_3 = byte_2;
       int write = byte_2 + 1;
       Class58.tileQueueY[byte_3] = sourceY;
-      int[][] masks = collision.flags;
+      int[][] masks = collision.adjacency;
 
       while (read != write) {
          currentX = Class58.tileQueueX[read];

@@ -29,11 +29,79 @@ public class IndexData extends IndexDataBase {
       Enum1.method610(this, this.index);
    }
 
-   void method425(int int_0) {
+   static byte[] decodeContainer(byte[] bytes_0) {
+      Buffer buffer_0 = new Buffer(bytes_0);
+      int int_0 = buffer_0.getUnsignedByte();
+      int int_1 = buffer_0.readInt();
+      if (int_1 < 0 || anInt170 != 0 && int_1 > anInt170) {
+         throw new RuntimeException();
+      } else if (int_0 == 0) {
+         byte[] bytes_1 = new byte[int_1];
+         buffer_0.readBytes(bytes_1, 0, int_1);
+         return bytes_1;
+      } else {
+         int int_2 = buffer_0.readInt();
+         if (int_2 >= 0 && (anInt170 == 0 || int_2 <= anInt170)) {
+            byte[] bytes_2 = new byte[int_2];
+            if (int_0 == 1) {
+               Class66.method404(bytes_2, int_2, bytes_0, int_1, 9);
+            } else {
+               gzip.decompress(buffer_0, bytes_2);
+            }
+
+            return bytes_2;
+         } else {
+            throw new RuntimeException();
+         }
+      }
+   }
+
+    static void method676(IndexData indexdata_0, int int_0, int int_1, int int_2, byte byte_0, boolean bool_0) {
+       long long_0 = (long)((int_0 << 16) + int_1);
+       FileRequest filerequest_0 = (FileRequest) Class95.aHashTable4.get(long_0);
+       if (filerequest_0 == null) {
+          filerequest_0 = (FileRequest) Class95.aHashTable5.get(long_0);
+          if (filerequest_0 == null) {
+             filerequest_0 = (FileRequest) Class95.aHashTable3.get(long_0);
+             if (filerequest_0 != null) {
+                if (bool_0) {
+                   filerequest_0.unlinkDual();
+                   Class95.aHashTable4.put(filerequest_0, long_0);
+                   --Class95.anInt199;
+                   ++Class95.anInt197;
+                }
+
+             } else {
+                if (!bool_0) {
+                   filerequest_0 = (FileRequest) Class95.aHashTable6.get(long_0);
+                   if (filerequest_0 != null) {
+                      return;
+                   }
+                }
+
+                filerequest_0 = new FileRequest();
+                filerequest_0.index = indexdata_0;
+                filerequest_0.crc = int_2;
+                filerequest_0.padding = byte_0;
+                if (bool_0) {
+                   Class95.aHashTable4.put(filerequest_0, long_0);
+                   ++Class95.anInt197;
+                } else {
+                   Class95.aNode2LinkedList1.push(filerequest_0);
+                   Class95.aHashTable3.put(filerequest_0, long_0);
+                   ++Class95.anInt199;
+                }
+
+             }
+          }
+       }
+    }
+
+    void method425(int int_0) {
       if (this.anIndexFile2 != null && this.aBoolArray5 != null && this.aBoolArray5[int_0]) {
          Class74.method445(int_0, this.anIndexFile2, this);
       } else {
-         ClanMember.method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, true);
+         method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, true);
       }
 
    }
@@ -87,14 +155,14 @@ public class IndexData extends IndexDataBase {
          }
 
          if (bytes_0 == null) {
-            ClanMember.method676(this, 255, this.index, this.crcValue, (byte) 0, true);
+            method676(this, 255, this.index, this.crcValue, (byte) 0, true);
             return;
          }
 
          crc32.reset();
          crc32.update(bytes_0, 0, bytes_0.length);
          int_1 = (int)crc32.getValue();
-         Buffer buffer_0 = new Buffer(DynamicObject.decodeContainer(bytes_0));
+         Buffer buffer_0 = new Buffer(decodeContainer(bytes_0));
          int int_3 = buffer_0.getUnsignedByte();
          if (int_3 != 5 && int_3 != 6) {
             throw new RuntimeException(int_3 + "," + this.index + "," + int_0);
@@ -106,7 +174,7 @@ public class IndexData extends IndexDataBase {
          }
 
          if (int_1 != this.crcValue || int_4 != this.anInt305) {
-            ClanMember.method676(this, 255, this.index, this.crcValue, (byte) 0, true);
+            method676(this, 255, this.index, this.crcValue, (byte) 0, true);
             return;
          }
 
@@ -120,7 +188,7 @@ public class IndexData extends IndexDataBase {
          if (bytes_0 == null || bytes_0.length <= 2) {
             this.aBoolArray5[int_0] = false;
             if (this.aBool48 || bool_0) {
-               ClanMember.method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, bool_0);
+               method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, bool_0);
             }
 
             return;
@@ -133,7 +201,7 @@ public class IndexData extends IndexDataBase {
          if (int_1 != super.archiveCrcs[int_0] || int_2 != super.archiveRevisions[int_0]) {
             this.aBoolArray5[int_0] = false;
             if (this.aBool48 || bool_0) {
-               ClanMember.method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, bool_0);
+               method676(this, this.index, int_0, super.archiveCrcs[int_0], (byte) 2, bool_0);
             }
 
             return;
@@ -153,7 +221,7 @@ public class IndexData extends IndexDataBase {
       if (this.anIndexFile1 != null) {
          Class74.method445(this.index, this.anIndexFile1, this);
       } else {
-         ClanMember.method676(this, 255, this.index, this.crcValue, (byte) 0, true);
+         method676(this, 255, this.index, this.crcValue, (byte) 0, true);
       }
 
    }

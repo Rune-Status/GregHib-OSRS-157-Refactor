@@ -209,11 +209,10 @@ public class WorldMapData {
       return new Coordinates(this.aCoordinates8);
    }
 
-   static void method305(Widget widget_0) {
-      if (widget_0.loopCycle == Client.anInt611) {
-         Client.aBoolArray8[widget_0.boundsIndex] = true;
+   static void method305(Widget widget) {
+      if (widget.loopCycle == Client.anInt611) {
+         Client.aBoolArray8[widget.boundsIndex] = true;
       }
-
    }
 
    static void characterToScreen(Actor actor_0, int int_0) {
@@ -222,8 +221,8 @@ public class WorldMapData {
 
    static void method306() {
       Client.onTutorialIsland = 0;
-      int int_0 = (Class4.localPlayer.x >> 7) + ItemLayer.baseX;
-      int int_1 = (Class4.localPlayer.y >> 7) + ItemLayer.baseY;
+      int int_0 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
+      int int_1 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
       if (int_0 >= 3053 && int_0 <= 3156 && int_1 >= 3056 && int_1 <= 3136) {
          Client.onTutorialIsland = 1;
       }
