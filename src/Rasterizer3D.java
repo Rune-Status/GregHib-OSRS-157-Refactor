@@ -1,9 +1,9 @@
-public class Graphics3D extends Rasterizer2D {
+public class Rasterizer3D extends Rasterizer2D {
 
-   static boolean rasterClipEnable;
+   static boolean restrictEdges;
    static int centerX;
    static int centerY;
-   static int rasterAlpha;
+   static int alpha;
    static boolean aBool72;
    static boolean lowMem;
    public static boolean rasterGouraudLowRes;
@@ -20,14 +20,14 @@ public class Graphics3D extends Rasterizer2D {
    static int anInt546;
    static int rasterClipX;
    static int anInt547;
-   static int anInt548;
+   static int graphicsPixelsBottomY;
 
    static {
-      rasterClipEnable = false;
+      restrictEdges = false;
       aBool72 = false;
       lowMem = false;
       rasterGouraudLowRes = true;
-      rasterAlpha = 0;
+      alpha = 0;
       anInt543 = 512;
       rasterClipY = new int[1024];
       colorPalette = new int[65536];
@@ -73,7 +73,7 @@ public class Graphics3D extends Rasterizer2D {
       return int_3 + (int_2 << 8) + (int_1 << 16);
    }
 
-   public static void rasterFlat(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
+   public static void drawFlatTriangle(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
       int int_7 = 0;
       if (int_0 != int_1) {
          int_7 = (int_4 - int_3 << 14) / (int_1 - int_0);
@@ -90,13 +90,13 @@ public class Graphics3D extends Rasterizer2D {
       }
 
       if (int_0 <= int_1 && int_0 <= int_2) {
-         if (int_0 < anInt548) {
-            if (int_1 > anInt548) {
-               int_1 = anInt548;
+         if (int_0 < graphicsPixelsBottomY) {
+            if (int_1 > graphicsPixelsBottomY) {
+               int_1 = graphicsPixelsBottomY;
             }
 
-            if (int_2 > anInt548) {
-               int_2 = anInt548;
+            if (int_2 > graphicsPixelsBottomY) {
+               int_2 = graphicsPixelsBottomY;
             }
 
             if (int_1 < int_2) {
@@ -236,13 +236,13 @@ public class Graphics3D extends Rasterizer2D {
             }
          }
       } else if (int_1 <= int_2) {
-         if (int_1 < anInt548) {
-            if (int_2 > anInt548) {
-               int_2 = anInt548;
+         if (int_1 < graphicsPixelsBottomY) {
+            if (int_2 > graphicsPixelsBottomY) {
+               int_2 = graphicsPixelsBottomY;
             }
 
-            if (int_0 > anInt548) {
-               int_0 = anInt548;
+            if (int_0 > graphicsPixelsBottomY) {
+               int_0 = graphicsPixelsBottomY;
             }
 
             if (int_2 < int_0) {
@@ -381,13 +381,13 @@ public class Graphics3D extends Rasterizer2D {
                }
             }
          }
-      } else if (int_2 < anInt548) {
-         if (int_0 > anInt548) {
-            int_0 = anInt548;
+      } else if (int_2 < graphicsPixelsBottomY) {
+         if (int_0 > graphicsPixelsBottomY) {
+            int_0 = graphicsPixelsBottomY;
          }
 
-         if (int_1 > anInt548) {
-            int_1 = anInt548;
+         if (int_1 > graphicsPixelsBottomY) {
+            int_1 = graphicsPixelsBottomY;
          }
 
          if (int_0 < int_1) {
@@ -528,29 +528,29 @@ public class Graphics3D extends Rasterizer2D {
       }
    }
 
-   static void rasterGouraud(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
+   static void drawShadedTriangle(int int_0, int triangleScreenY_A, int triangleScreenY_B, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
       int int_9 = int_4 - int_3;
-      int int_10 = int_1 - int_0;
+      int int_10 = triangleScreenY_A - int_0;
       int int_11 = int_5 - int_3;
-      int int_12 = int_2 - int_0;
+      int int_12 = triangleScreenY_B - int_0;
       int int_13 = int_7 - int_6;
       int int_14 = int_8 - int_6;
-      int int_15;
-      if (int_2 != int_1) {
-         int_15 = (int_5 - int_4 << 14) / (int_2 - int_1);
+      int z_a_off;
+      if (triangleScreenY_B != triangleScreenY_A) {
+         z_a_off = (int_5 - int_4 << 14) / (triangleScreenY_B - triangleScreenY_A);
       } else {
-         int_15 = 0;
+         z_a_off = 0;
       }
 
       int int_16;
-      if (int_0 != int_1) {
+      if (int_0 != triangleScreenY_A) {
          int_16 = (int_9 << 14) / int_10;
       } else {
          int_16 = 0;
       }
 
       int int_17;
-      if (int_0 != int_2) {
+      if (int_0 != triangleScreenY_B) {
          int_17 = (int_11 << 14) / int_12;
       } else {
          int_17 = 0;
@@ -560,18 +560,18 @@ public class Graphics3D extends Rasterizer2D {
       if (int_18 != 0) {
          int int_19 = (int_13 * int_12 - int_14 * int_10 << 8) / int_18;
          int int_20 = (int_14 * int_9 - int_13 * int_11 << 8) / int_18;
-         if (int_0 <= int_1 && int_0 <= int_2) {
-            if (int_0 < anInt548) {
-               if (int_1 > anInt548) {
-                  int_1 = anInt548;
+         if (int_0 <= triangleScreenY_A && int_0 <= triangleScreenY_B) {
+            if (int_0 < graphicsPixelsBottomY) {
+               if (triangleScreenY_A > graphicsPixelsBottomY) {
+                  triangleScreenY_A = graphicsPixelsBottomY;
                }
 
-               if (int_2 > anInt548) {
-                  int_2 = anInt548;
+               if (triangleScreenY_B > graphicsPixelsBottomY) {
+                  triangleScreenY_B = graphicsPixelsBottomY;
                }
 
                int_6 = int_19 + ((int_6 << 8) - int_3 * int_19);
-               if (int_1 < int_2) {
+               if (triangleScreenY_A < triangleScreenY_B) {
                   int_5 = int_3 <<= 14;
                   if (int_0 < 0) {
                      int_5 -= int_0 * int_17;
@@ -581,62 +581,62 @@ public class Graphics3D extends Rasterizer2D {
                   }
 
                   int_4 <<= 14;
-                  if (int_1 < 0) {
-                     int_4 -= int_15 * int_1;
-                     int_1 = 0;
+                  if (triangleScreenY_A < 0) {
+                     int_4 -= z_a_off * triangleScreenY_A;
+                     triangleScreenY_A = 0;
                   }
 
-                  if (int_0 != int_1 && int_17 < int_16 || int_0 == int_1 && int_17 > int_15) {
-                     int_2 -= int_1;
-                     int_1 -= int_0;
+                  if (int_0 != triangleScreenY_A && int_17 < int_16 || int_0 == triangleScreenY_A && int_17 > z_a_off) {
+                     triangleScreenY_B -= triangleScreenY_A;
+                     triangleScreenY_A -= int_0;
                      int_0 = rasterClipY[int_0];
 
                      while (true) {
-                        --int_1;
-                        if (int_1 < 0) {
+                        --triangleScreenY_A;
+                        if (triangleScreenY_A < 0) {
                            while (true) {
-                              --int_2;
-                              if (int_2 < 0) {
+                              --triangleScreenY_B;
+                              if (triangleScreenY_B < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_4 >> 14, int_6, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_4 >> 14, int_6, int_19);
                               int_5 += int_17;
-                              int_4 += int_15;
+                              int_4 += z_a_off;
                               int_6 += int_20;
                               int_0 += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_3 >> 14, int_6, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_3 >> 14, int_6, int_19);
                         int_5 += int_17;
                         int_3 += int_16;
                         int_6 += int_20;
                         int_0 += Rasterizer2D.graphicsPixelsWidth;
                      }
                   } else {
-                     int_2 -= int_1;
-                     int_1 -= int_0;
+                     triangleScreenY_B -= triangleScreenY_A;
+                     triangleScreenY_A -= int_0;
                      int_0 = rasterClipY[int_0];
 
                      while (true) {
-                        --int_1;
-                        if (int_1 < 0) {
+                        --triangleScreenY_A;
+                        if (triangleScreenY_A < 0) {
                            while (true) {
-                              --int_2;
-                              if (int_2 < 0) {
+                              --triangleScreenY_B;
+                              if (triangleScreenY_B < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_4 >> 14, int_5 >> 14, int_6, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_4 >> 14, int_5 >> 14, int_6, int_19);
                               int_5 += int_17;
-                              int_4 += int_15;
+                              int_4 += z_a_off;
                               int_6 += int_20;
                               int_0 += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_5 >> 14, int_6, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_5 >> 14, int_6, int_19);
                         int_5 += int_17;
                         int_3 += int_16;
                         int_6 += int_20;
@@ -653,62 +653,62 @@ public class Graphics3D extends Rasterizer2D {
                   }
 
                   int_5 <<= 14;
-                  if (int_2 < 0) {
-                     int_5 -= int_15 * int_2;
-                     int_2 = 0;
+                  if (triangleScreenY_B < 0) {
+                     int_5 -= z_a_off * triangleScreenY_B;
+                     triangleScreenY_B = 0;
                   }
 
-                  if ((int_0 == int_2 || int_17 >= int_16) && (int_0 != int_2 || int_15 <= int_16)) {
-                     int_1 -= int_2;
-                     int_2 -= int_0;
+                  if ((int_0 == triangleScreenY_B || int_17 >= int_16) && (int_0 != triangleScreenY_B || z_a_off <= int_16)) {
+                     triangleScreenY_A -= triangleScreenY_B;
+                     triangleScreenY_B -= int_0;
                      int_0 = rasterClipY[int_0];
 
                      while (true) {
-                        --int_2;
-                        if (int_2 < 0) {
+                        --triangleScreenY_B;
+                        if (triangleScreenY_B < 0) {
                            while (true) {
-                              --int_1;
-                              if (int_1 < 0) {
+                              --triangleScreenY_A;
+                              if (triangleScreenY_A < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_5 >> 14, int_6, int_19);
-                              int_5 += int_15;
+                              drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_5 >> 14, int_6, int_19);
+                              int_5 += z_a_off;
                               int_3 += int_16;
                               int_6 += int_20;
                               int_0 += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_4 >> 14, int_6, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_3 >> 14, int_4 >> 14, int_6, int_19);
                         int_4 += int_17;
                         int_3 += int_16;
                         int_6 += int_20;
                         int_0 += Rasterizer2D.graphicsPixelsWidth;
                      }
                   } else {
-                     int_1 -= int_2;
-                     int_2 -= int_0;
+                     triangleScreenY_A -= triangleScreenY_B;
+                     triangleScreenY_B -= int_0;
                      int_0 = rasterClipY[int_0];
 
                      while (true) {
-                        --int_2;
-                        if (int_2 < 0) {
+                        --triangleScreenY_B;
+                        if (triangleScreenY_B < 0) {
                            while (true) {
-                              --int_1;
-                              if (int_1 < 0) {
+                              --triangleScreenY_A;
+                              if (triangleScreenY_A < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_3 >> 14, int_6, int_19);
-                              int_5 += int_15;
+                              drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_5 >> 14, int_3 >> 14, int_6, int_19);
+                              int_5 += z_a_off;
                               int_3 += int_16;
                               int_6 += int_20;
                               int_0 += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_4 >> 14, int_3 >> 14, int_6, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, int_0, 0, 0, int_4 >> 14, int_3 >> 14, int_6, int_19);
                         int_4 += int_17;
                         int_3 += int_16;
                         int_6 += int_20;
@@ -717,96 +717,96 @@ public class Graphics3D extends Rasterizer2D {
                   }
                }
             }
-         } else if (int_1 <= int_2) {
-            if (int_1 < anInt548) {
-               if (int_2 > anInt548) {
-                  int_2 = anInt548;
+         } else if (triangleScreenY_A <= triangleScreenY_B) {
+            if (triangleScreenY_A < graphicsPixelsBottomY) {
+               if (triangleScreenY_B > graphicsPixelsBottomY) {
+                  triangleScreenY_B = graphicsPixelsBottomY;
                }
 
-               if (int_0 > anInt548) {
-                  int_0 = anInt548;
+               if (int_0 > graphicsPixelsBottomY) {
+                  int_0 = graphicsPixelsBottomY;
                }
 
                int_7 = int_19 + ((int_7 << 8) - int_19 * int_4);
-               if (int_2 < int_0) {
+               if (triangleScreenY_B < int_0) {
                   int_3 = int_4 <<= 14;
-                  if (int_1 < 0) {
-                     int_3 -= int_16 * int_1;
-                     int_4 -= int_15 * int_1;
-                     int_7 -= int_20 * int_1;
-                     int_1 = 0;
+                  if (triangleScreenY_A < 0) {
+                     int_3 -= int_16 * triangleScreenY_A;
+                     int_4 -= z_a_off * triangleScreenY_A;
+                     int_7 -= int_20 * triangleScreenY_A;
+                     triangleScreenY_A = 0;
                   }
 
                   int_5 <<= 14;
-                  if (int_2 < 0) {
-                     int_5 -= int_17 * int_2;
-                     int_2 = 0;
+                  if (triangleScreenY_B < 0) {
+                     int_5 -= int_17 * triangleScreenY_B;
+                     triangleScreenY_B = 0;
                   }
 
-                  if (int_2 != int_1 && int_16 < int_15 || int_2 == int_1 && int_16 > int_17) {
-                     int_0 -= int_2;
-                     int_2 -= int_1;
-                     int_1 = rasterClipY[int_1];
+                  if (triangleScreenY_B != triangleScreenY_A && int_16 < z_a_off || triangleScreenY_B == triangleScreenY_A && int_16 > int_17) {
+                     int_0 -= triangleScreenY_B;
+                     triangleScreenY_B -= triangleScreenY_A;
+                     triangleScreenY_A = rasterClipY[triangleScreenY_A];
 
                      while (true) {
-                        --int_2;
-                        if (int_2 < 0) {
+                        --triangleScreenY_B;
+                        if (triangleScreenY_B < 0) {
                            while (true) {
                               --int_0;
                               if (int_0 < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_3 >> 14, int_5 >> 14, int_7, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_3 >> 14, int_5 >> 14, int_7, int_19);
                               int_3 += int_16;
                               int_5 += int_17;
                               int_7 += int_20;
-                              int_1 += Rasterizer2D.graphicsPixelsWidth;
+                              triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_3 >> 14, int_4 >> 14, int_7, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_3 >> 14, int_4 >> 14, int_7, int_19);
                         int_3 += int_16;
-                        int_4 += int_15;
+                        int_4 += z_a_off;
                         int_7 += int_20;
-                        int_1 += Rasterizer2D.graphicsPixelsWidth;
+                        triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                      }
                   } else {
-                     int_0 -= int_2;
-                     int_2 -= int_1;
-                     int_1 = rasterClipY[int_1];
+                     int_0 -= triangleScreenY_B;
+                     triangleScreenY_B -= triangleScreenY_A;
+                     triangleScreenY_A = rasterClipY[triangleScreenY_A];
 
                      while (true) {
-                        --int_2;
-                        if (int_2 < 0) {
+                        --triangleScreenY_B;
+                        if (triangleScreenY_B < 0) {
                            while (true) {
                               --int_0;
                               if (int_0 < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_5 >> 14, int_3 >> 14, int_7, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_5 >> 14, int_3 >> 14, int_7, int_19);
                               int_3 += int_16;
                               int_5 += int_17;
                               int_7 += int_20;
-                              int_1 += Rasterizer2D.graphicsPixelsWidth;
+                              triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_4 >> 14, int_3 >> 14, int_7, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_4 >> 14, int_3 >> 14, int_7, int_19);
                         int_3 += int_16;
-                        int_4 += int_15;
+                        int_4 += z_a_off;
                         int_7 += int_20;
-                        int_1 += Rasterizer2D.graphicsPixelsWidth;
+                        triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                      }
                   }
                } else {
                   int_5 = int_4 <<= 14;
-                  if (int_1 < 0) {
-                     int_5 -= int_16 * int_1;
-                     int_4 -= int_15 * int_1;
-                     int_7 -= int_20 * int_1;
-                     int_1 = 0;
+                  if (triangleScreenY_A < 0) {
+                     int_5 -= int_16 * triangleScreenY_A;
+                     int_4 -= z_a_off * triangleScreenY_A;
+                     int_7 -= int_20 * triangleScreenY_A;
+                     triangleScreenY_A = 0;
                   }
 
                   int_3 <<= 14;
@@ -815,82 +815,82 @@ public class Graphics3D extends Rasterizer2D {
                      int_0 = 0;
                   }
 
-                  if (int_16 < int_15) {
-                     int_2 -= int_0;
-                     int_0 -= int_1;
-                     int_1 = rasterClipY[int_1];
+                  if (int_16 < z_a_off) {
+                     triangleScreenY_B -= int_0;
+                     int_0 -= triangleScreenY_A;
+                     triangleScreenY_A = rasterClipY[triangleScreenY_A];
 
                      while (true) {
                         --int_0;
                         if (int_0 < 0) {
                            while (true) {
-                              --int_2;
-                              if (int_2 < 0) {
+                              --triangleScreenY_B;
+                              if (triangleScreenY_B < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_3 >> 14, int_4 >> 14, int_7, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_3 >> 14, int_4 >> 14, int_7, int_19);
                               int_3 += int_17;
-                              int_4 += int_15;
+                              int_4 += z_a_off;
                               int_7 += int_20;
-                              int_1 += Rasterizer2D.graphicsPixelsWidth;
+                              triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_5 >> 14, int_4 >> 14, int_7, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_5 >> 14, int_4 >> 14, int_7, int_19);
                         int_5 += int_16;
-                        int_4 += int_15;
+                        int_4 += z_a_off;
                         int_7 += int_20;
-                        int_1 += Rasterizer2D.graphicsPixelsWidth;
+                        triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                      }
                   } else {
-                     int_2 -= int_0;
-                     int_0 -= int_1;
-                     int_1 = rasterClipY[int_1];
+                     triangleScreenY_B -= int_0;
+                     int_0 -= triangleScreenY_A;
+                     triangleScreenY_A = rasterClipY[triangleScreenY_A];
 
                      while (true) {
                         --int_0;
                         if (int_0 < 0) {
                            while (true) {
-                              --int_2;
-                              if (int_2 < 0) {
+                              --triangleScreenY_B;
+                              if (triangleScreenY_B < 0) {
                                  return;
                               }
 
-                              method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_4 >> 14, int_3 >> 14, int_7, int_19);
+                              drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_4 >> 14, int_3 >> 14, int_7, int_19);
                               int_3 += int_17;
-                              int_4 += int_15;
+                              int_4 += z_a_off;
                               int_7 += int_20;
-                              int_1 += Rasterizer2D.graphicsPixelsWidth;
+                              triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                            }
                         }
 
-                        method967(Rasterizer2D.graphicsPixels, int_1, 0, 0, int_4 >> 14, int_5 >> 14, int_7, int_19);
+                        drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_A, 0, 0, int_4 >> 14, int_5 >> 14, int_7, int_19);
                         int_5 += int_16;
-                        int_4 += int_15;
+                        int_4 += z_a_off;
                         int_7 += int_20;
-                        int_1 += Rasterizer2D.graphicsPixelsWidth;
+                        triangleScreenY_A += Rasterizer2D.graphicsPixelsWidth;
                      }
                   }
                }
             }
-         } else if (int_2 < anInt548) {
-            if (int_0 > anInt548) {
-               int_0 = anInt548;
+         } else if (triangleScreenY_B < graphicsPixelsBottomY) {
+            if (int_0 > graphicsPixelsBottomY) {
+               int_0 = graphicsPixelsBottomY;
             }
 
-            if (int_1 > anInt548) {
-               int_1 = anInt548;
+            if (triangleScreenY_A > graphicsPixelsBottomY) {
+               triangleScreenY_A = graphicsPixelsBottomY;
             }
 
             int_8 = int_19 + ((int_8 << 8) - int_5 * int_19);
-            if (int_0 < int_1) {
+            if (int_0 < triangleScreenY_A) {
                int_4 = int_5 <<= 14;
-               if (int_2 < 0) {
-                  int_4 -= int_15 * int_2;
-                  int_5 -= int_17 * int_2;
-                  int_8 -= int_20 * int_2;
-                  int_2 = 0;
+               if (triangleScreenY_B < 0) {
+                  int_4 -= z_a_off * triangleScreenY_B;
+                  int_5 -= int_17 * triangleScreenY_B;
+                  int_8 -= int_20 * triangleScreenY_B;
+                  triangleScreenY_B = 0;
                }
 
                int_3 <<= 14;
@@ -899,133 +899,133 @@ public class Graphics3D extends Rasterizer2D {
                   int_0 = 0;
                }
 
-               if (int_15 < int_17) {
-                  int_1 -= int_0;
-                  int_0 -= int_2;
-                  int_2 = rasterClipY[int_2];
+               if (z_a_off < int_17) {
+                  triangleScreenY_A -= int_0;
+                  int_0 -= triangleScreenY_B;
+                  triangleScreenY_B = rasterClipY[triangleScreenY_B];
 
                   while (true) {
                      --int_0;
                      if (int_0 < 0) {
                         while (true) {
-                           --int_1;
-                           if (int_1 < 0) {
+                           --triangleScreenY_A;
+                           if (triangleScreenY_A < 0) {
                               return;
                            }
 
-                           method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_4 >> 14, int_3 >> 14, int_8, int_19);
-                           int_4 += int_15;
+                           drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_4 >> 14, int_3 >> 14, int_8, int_19);
+                           int_4 += z_a_off;
                            int_3 += int_16;
                            int_8 += int_20;
-                           int_2 += Rasterizer2D.graphicsPixelsWidth;
+                           triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                         }
                      }
 
-                     method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_4 >> 14, int_5 >> 14, int_8, int_19);
-                     int_4 += int_15;
+                     drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_4 >> 14, int_5 >> 14, int_8, int_19);
+                     int_4 += z_a_off;
                      int_5 += int_17;
                      int_8 += int_20;
-                     int_2 += Rasterizer2D.graphicsPixelsWidth;
+                     triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                   }
                } else {
-                  int_1 -= int_0;
-                  int_0 -= int_2;
-                  int_2 = rasterClipY[int_2];
+                  triangleScreenY_A -= int_0;
+                  int_0 -= triangleScreenY_B;
+                  triangleScreenY_B = rasterClipY[triangleScreenY_B];
 
                   while (true) {
                      --int_0;
                      if (int_0 < 0) {
                         while (true) {
-                           --int_1;
-                           if (int_1 < 0) {
+                           --triangleScreenY_A;
+                           if (triangleScreenY_A < 0) {
                               return;
                            }
 
-                           method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_3 >> 14, int_4 >> 14, int_8, int_19);
-                           int_4 += int_15;
+                           drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_3 >> 14, int_4 >> 14, int_8, int_19);
+                           int_4 += z_a_off;
                            int_3 += int_16;
                            int_8 += int_20;
-                           int_2 += Rasterizer2D.graphicsPixelsWidth;
+                           triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                         }
                      }
 
-                     method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_5 >> 14, int_4 >> 14, int_8, int_19);
-                     int_4 += int_15;
+                     drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_5 >> 14, int_4 >> 14, int_8, int_19);
+                     int_4 += z_a_off;
                      int_5 += int_17;
                      int_8 += int_20;
-                     int_2 += Rasterizer2D.graphicsPixelsWidth;
+                     triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                   }
                }
             } else {
                int_3 = int_5 <<= 14;
-               if (int_2 < 0) {
-                  int_3 -= int_15 * int_2;
-                  int_5 -= int_17 * int_2;
-                  int_8 -= int_20 * int_2;
-                  int_2 = 0;
+               if (triangleScreenY_B < 0) {
+                  int_3 -= z_a_off * triangleScreenY_B;
+                  int_5 -= int_17 * triangleScreenY_B;
+                  int_8 -= int_20 * triangleScreenY_B;
+                  triangleScreenY_B = 0;
                }
 
                int_4 <<= 14;
-               if (int_1 < 0) {
-                  int_4 -= int_16 * int_1;
-                  int_1 = 0;
+               if (triangleScreenY_A < 0) {
+                  int_4 -= int_16 * triangleScreenY_A;
+                  triangleScreenY_A = 0;
                }
 
-               if (int_15 < int_17) {
-                  int_0 -= int_1;
-                  int_1 -= int_2;
-                  int_2 = rasterClipY[int_2];
+               if (z_a_off < int_17) {
+                  int_0 -= triangleScreenY_A;
+                  triangleScreenY_A -= triangleScreenY_B;
+                  triangleScreenY_B = rasterClipY[triangleScreenY_B];
 
                   while (true) {
-                     --int_1;
-                     if (int_1 < 0) {
+                     --triangleScreenY_A;
+                     if (triangleScreenY_A < 0) {
                         while (true) {
                            --int_0;
                            if (int_0 < 0) {
                               return;
                            }
 
-                           method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_4 >> 14, int_5 >> 14, int_8, int_19);
+                           drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_4 >> 14, int_5 >> 14, int_8, int_19);
                            int_4 += int_16;
                            int_5 += int_17;
                            int_8 += int_20;
-                           int_2 += Rasterizer2D.graphicsPixelsWidth;
+                           triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                         }
                      }
 
-                     method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_3 >> 14, int_5 >> 14, int_8, int_19);
-                     int_3 += int_15;
+                     drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_3 >> 14, int_5 >> 14, int_8, int_19);
+                     int_3 += z_a_off;
                      int_5 += int_17;
                      int_8 += int_20;
-                     int_2 += Rasterizer2D.graphicsPixelsWidth;
+                     triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                   }
                } else {
-                  int_0 -= int_1;
-                  int_1 -= int_2;
-                  int_2 = rasterClipY[int_2];
+                  int_0 -= triangleScreenY_A;
+                  triangleScreenY_A -= triangleScreenY_B;
+                  triangleScreenY_B = rasterClipY[triangleScreenY_B];
 
                   while (true) {
-                     --int_1;
-                     if (int_1 < 0) {
+                     --triangleScreenY_A;
+                     if (triangleScreenY_A < 0) {
                         while (true) {
                            --int_0;
                            if (int_0 < 0) {
                               return;
                            }
 
-                           method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_5 >> 14, int_4 >> 14, int_8, int_19);
+                           drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_5 >> 14, int_4 >> 14, int_8, int_19);
                            int_4 += int_16;
                            int_5 += int_17;
                            int_8 += int_20;
-                           int_2 += Rasterizer2D.graphicsPixelsWidth;
+                           triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                         }
                      }
 
-                     method967(Rasterizer2D.graphicsPixels, int_2, 0, 0, int_5 >> 14, int_3 >> 14, int_8, int_19);
-                     int_3 += int_15;
+                     drawShadedLine(Rasterizer2D.graphicsPixels, triangleScreenY_B, 0, 0, int_5 >> 14, int_3 >> 14, int_8, int_19);
+                     int_3 += z_a_off;
                      int_5 += int_17;
                      int_8 += int_20;
-                     int_2 += Rasterizer2D.graphicsPixelsWidth;
+                     triangleScreenY_B += Rasterizer2D.graphicsPixelsWidth;
                   }
                }
             }
@@ -1039,15 +1039,15 @@ public class Graphics3D extends Rasterizer2D {
 
    static void setRasterClipping(int int_0, int int_1, int int_2, int int_3) {
       rasterClipX = int_2 - int_0;
-      anInt548 = int_3 - int_1;
+      graphicsPixelsBottomY = int_3 - int_1;
       method961();
-      if (rasterClipY.length < anInt548) {
-         rasterClipY = new int[Class58.method389(anInt548)];
+      if (rasterClipY.length < graphicsPixelsBottomY) {
+         rasterClipY = new int[Class58.method389(graphicsPixelsBottomY)];
       }
 
       int int_4 = int_0 + Rasterizer2D.graphicsPixelsWidth * int_1;
 
-      for (int int_5 = 0; int_5 < anInt548; int_5++) {
+      for (int int_5 = 0; int_5 < graphicsPixelsBottomY; int_5++) {
          rasterClipY[int_5] = int_4;
          int_4 += Rasterizer2D.graphicsPixelsWidth;
       }
@@ -1056,11 +1056,11 @@ public class Graphics3D extends Rasterizer2D {
 
    public static void method961() {
       centerX = rasterClipX / 2;
-      centerY = anInt548 / 2;
+      centerY = graphicsPixelsBottomY / 2;
       anInt545 = -centerX;
       anInt544 = rasterClipX - centerX;
       anInt546 = -centerY;
-      anInt547 = anInt548 - centerY;
+      anInt547 = graphicsPixelsBottomY - centerY;
    }
 
    static void rasterTextureAffine(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8, int int_9, int int_10, int int_11, int int_12, int int_13, int int_14, int int_15, int int_16, int int_17, int int_18) {
@@ -1068,7 +1068,7 @@ public class Graphics3D extends Rasterizer2D {
       int int_19;
       if (ints_0 == null) {
          int_19 = textureLoader.getAverageTextureRGB(int_18);
-         rasterGouraud(int_0, int_1, int_2, int_3, int_4, int_5, method965(int_19, int_6), method965(int_19, int_7), method965(int_19, int_8));
+         drawShadedTriangle(int_0, int_1, int_2, int_3, int_4, int_5, method965(int_19, int_6), method965(int_19, int_7), method965(int_19, int_8));
       } else {
          lowMem = textureLoader.method1(int_18);
          aBool72 = textureLoader.method2(int_18);
@@ -1114,13 +1114,13 @@ public class Graphics3D extends Rasterizer2D {
             int int_39 = (int)(((long)(int_17 * int_10 - int_11 * int_16) << 14) / (long)anInt543);
             int int_40;
             if (int_0 <= int_1 && int_0 <= int_2) {
-               if (int_0 < anInt548) {
-                  if (int_1 > anInt548) {
-                     int_1 = anInt548;
+               if (int_0 < graphicsPixelsBottomY) {
+                  if (int_1 > graphicsPixelsBottomY) {
+                     int_1 = graphicsPixelsBottomY;
                   }
 
-                  if (int_2 > anInt548) {
-                     int_2 = anInt548;
+                  if (int_2 > graphicsPixelsBottomY) {
+                     int_2 = graphicsPixelsBottomY;
                   }
 
                   int_6 = int_29 + ((int_6 << 9) - int_3 * int_29);
@@ -1303,13 +1303,13 @@ public class Graphics3D extends Rasterizer2D {
                   }
                }
             } else if (int_1 <= int_2) {
-               if (int_1 < anInt548) {
-                  if (int_2 > anInt548) {
-                     int_2 = anInt548;
+               if (int_1 < graphicsPixelsBottomY) {
+                  if (int_2 > graphicsPixelsBottomY) {
+                     int_2 = graphicsPixelsBottomY;
                   }
 
-                  if (int_0 > anInt548) {
-                     int_0 = anInt548;
+                  if (int_0 > graphicsPixelsBottomY) {
+                     int_0 = graphicsPixelsBottomY;
                   }
 
                   int_7 = int_29 + ((int_7 << 9) - int_29 * int_4);
@@ -1491,13 +1491,13 @@ public class Graphics3D extends Rasterizer2D {
                      }
                   }
                }
-            } else if (int_2 < anInt548) {
-               if (int_0 > anInt548) {
-                  int_0 = anInt548;
+            } else if (int_2 < graphicsPixelsBottomY) {
+               if (int_0 > graphicsPixelsBottomY) {
+                  int_0 = graphicsPixelsBottomY;
                }
 
-               if (int_1 > anInt548) {
-                  int_1 = anInt548;
+               if (int_1 > graphicsPixelsBottomY) {
+                  int_1 = graphicsPixelsBottomY;
                }
 
                int_8 = (int_8 << 9) - int_5 * int_29 + int_29;
@@ -1688,7 +1688,7 @@ public class Graphics3D extends Rasterizer2D {
    }
 
    static void method962(int[] ints_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (rasterClipEnable) {
+      if (restrictEdges) {
          if (int_4 > rasterClipX) {
             int_4 = rasterClipX;
          }
@@ -1701,8 +1701,8 @@ public class Graphics3D extends Rasterizer2D {
       if (int_3 < int_4) {
          int_0 += int_3;
          int_2 = int_4 - int_3 >> 2;
-         if (rasterAlpha != 0) {
-            if (rasterAlpha == 254) {
+         if (alpha != 0) {
+            if (alpha == 254) {
                while (true) {
                   --int_2;
                   if (int_2 < 0) {
@@ -1724,8 +1724,8 @@ public class Graphics3D extends Rasterizer2D {
                   ints_0[int_0++] = ints_0[int_0];
                }
             } else {
-               int int_5 = rasterAlpha;
-               int int_6 = 256 - rasterAlpha;
+               int int_5 = alpha;
+               int int_6 = 256 - alpha;
                int_1 = (int_6 * (int_1 & 0xFF00) >> 8 & 0xFF00) + (int_6 * (int_1 & 0xFF00FF) >> 8 & 0xFF00FF);
 
                while (true) {
@@ -1885,7 +1885,7 @@ public class Graphics3D extends Rasterizer2D {
       int int_19;
       if (ints_0 == null) {
          int_19 = textureLoader.getAverageTextureRGB(int_18);
-         rasterGouraud(int_0, int_1, int_2, int_3, int_4, int_5, method965(int_19, int_6), method965(int_19, int_7), method965(int_19, int_8));
+         drawShadedTriangle(int_0, int_1, int_2, int_3, int_4, int_5, method965(int_19, int_6), method965(int_19, int_7), method965(int_19, int_8));
       } else {
          lowMem = textureLoader.method1(int_18);
          aBool72 = textureLoader.method2(int_18);
@@ -1931,13 +1931,13 @@ public class Graphics3D extends Rasterizer2D {
             int int_39 = (int)(((long)(int_17 * int_10 - int_11 * int_16) << 14) / (long)anInt543);
             int int_40;
             if (int_0 <= int_1 && int_0 <= int_2) {
-               if (int_0 < anInt548) {
-                  if (int_1 > anInt548) {
-                     int_1 = anInt548;
+               if (int_0 < graphicsPixelsBottomY) {
+                  if (int_1 > graphicsPixelsBottomY) {
+                     int_1 = graphicsPixelsBottomY;
                   }
 
-                  if (int_2 > anInt548) {
-                     int_2 = anInt548;
+                  if (int_2 > graphicsPixelsBottomY) {
+                     int_2 = graphicsPixelsBottomY;
                   }
 
                   int_6 = int_29 + ((int_6 << 9) - int_3 * int_29);
@@ -2120,13 +2120,13 @@ public class Graphics3D extends Rasterizer2D {
                   }
                }
             } else if (int_1 <= int_2) {
-               if (int_1 < anInt548) {
-                  if (int_2 > anInt548) {
-                     int_2 = anInt548;
+               if (int_1 < graphicsPixelsBottomY) {
+                  if (int_2 > graphicsPixelsBottomY) {
+                     int_2 = graphicsPixelsBottomY;
                   }
 
-                  if (int_0 > anInt548) {
-                     int_0 = anInt548;
+                  if (int_0 > graphicsPixelsBottomY) {
+                     int_0 = graphicsPixelsBottomY;
                   }
 
                   int_7 = int_29 + ((int_7 << 9) - int_29 * int_4);
@@ -2308,13 +2308,13 @@ public class Graphics3D extends Rasterizer2D {
                      }
                   }
                }
-            } else if (int_2 < anInt548) {
-               if (int_0 > anInt548) {
-                  int_0 = anInt548;
+            } else if (int_2 < graphicsPixelsBottomY) {
+               if (int_0 > graphicsPixelsBottomY) {
+                  int_0 = graphicsPixelsBottomY;
                }
 
-               if (int_1 > anInt548) {
-                  int_1 = anInt548;
+               if (int_1 > graphicsPixelsBottomY) {
+                  int_1 = graphicsPixelsBottomY;
                }
 
                int_8 = (int_8 << 9) - int_5 * int_29 + int_29;
@@ -2500,8 +2500,8 @@ public class Graphics3D extends Rasterizer2D {
       }
    }
 
-   static void method967(int[] ints_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
-      if (rasterClipEnable) {
+   static void drawShadedLine(int[] ints_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
+      if (restrictEdges) {
          if (int_4 > rasterClipX) {
             int_4 = rasterClipX;
          }
@@ -2520,7 +2520,7 @@ public class Graphics3D extends Rasterizer2D {
          if (rasterGouraudLowRes) {
             int_2 = int_4 - int_3 >> 2;
             int_6 <<= 2;
-            if (rasterAlpha == 0) {
+            if (alpha == 0) {
                if (int_2 > 0) {
                   do {
                      int_1 = colorPalette[int_5 >> 8];
@@ -2543,8 +2543,8 @@ public class Graphics3D extends Rasterizer2D {
                   } while (int_2 > 0);
                }
             } else {
-               int_7 = rasterAlpha;
-               int_8 = 256 - rasterAlpha;
+               int_7 = alpha;
+               int_8 = 256 - alpha;
                if (int_2 > 0) {
                   do {
                      int_1 = colorPalette[int_5 >> 8];
@@ -2577,15 +2577,15 @@ public class Graphics3D extends Rasterizer2D {
 
          } else {
             int_2 = int_4 - int_3;
-            if (rasterAlpha == 0) {
+            if (alpha == 0) {
                do {
                   ints_0[int_0++] = colorPalette[int_5 >> 8];
                   int_5 += int_6;
                   --int_2;
                } while (int_2 > 0);
             } else {
-               int_7 = rasterAlpha;
-               int_8 = 256 - rasterAlpha;
+               int_7 = alpha;
+               int_8 = 256 - alpha;
 
                do {
                   int_1 = colorPalette[int_5 >> 8];
@@ -2618,11 +2618,11 @@ public class Graphics3D extends Rasterizer2D {
       anInt545 = -centerX;
       anInt544 = rasterClipX - centerX;
       anInt546 = -centerY;
-      anInt547 = anInt548 - centerY;
+      anInt547 = graphicsPixelsBottomY - centerY;
    }
 
    static void method971(int[] ints_0, int[] ints_1, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8, int int_9, int int_10, int int_11, int int_12) {
-      if (rasterClipEnable) {
+      if (restrictEdges) {
          if (int_4 > rasterClipX) {
             int_4 = rasterClipX;
          }
@@ -3041,11 +3041,11 @@ public class Graphics3D extends Rasterizer2D {
    }
 
    public static void setRasterClippingEnabled(int int_0, int int_1, int int_2) {
-      rasterClipEnable = int_0 < 0 || int_0 > rasterClipX || int_1 < 0 || int_1 > rasterClipX || int_2 < 0 || int_2 > rasterClipX;
+      restrictEdges = int_0 < 0 || int_0 > rasterClipX || int_1 < 0 || int_1 > rasterClipX || int_2 < 0 || int_2 > rasterClipX;
    }
 
    static void method972(int[] ints_0, int[] ints_1, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8, int int_9, int int_10, int int_11, int int_12) {
-      if (rasterClipEnable) {
+      if (restrictEdges) {
          if (int_4 > rasterClipX) {
             int_4 = rasterClipX;
          }

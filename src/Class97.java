@@ -40,8 +40,8 @@ public class Class97 {
       return new Class97[] {aClass97_4, aClass97_7, aClass97_6, aClass97_9, aClass97_8, aClass97_5};
    }
 
-   static void method521(String string_0) {
-      if (string_0.equalsIgnoreCase("toggleroof")) {
+   static void method521(String command) {
+      if (command.equalsIgnoreCase("toggleroof")) {
          Buffer.preferences.hideRoofs = !Buffer.preferences.hideRoofs;
          Class59.method390();
          if (Buffer.preferences.hideRoofs) {
@@ -51,48 +51,48 @@ public class Class97 {
          }
       }
 
-      if (string_0.equalsIgnoreCase("displayfps")) {
+      if (command.equalsIgnoreCase("displayfps")) {
          Client.displayFps = !Client.displayFps;
       }
 
       if (Client.rights >= 2) {
-         if (string_0.equalsIgnoreCase("aabb")) {
-            if (!Class37.fitsOnSingleSquare) {
-               Class37.fitsOnSingleSquare = true;
+         if (command.equalsIgnoreCase("aabb")) {
+            if (!Class37.displayBoundingVolume) {
+               Class37.displayBoundingVolume = true;
                Class37.aClass26_3 = Class26.aClass26_2;
             } else if (Class37.aClass26_3 == Class26.aClass26_2) {
-               Class37.fitsOnSingleSquare = true;
+               Class37.displayBoundingVolume = true;
                Class37.aClass26_3 = Class26.aClass26_1;
             } else {
-               Class37.fitsOnSingleSquare = false;
+               Class37.displayBoundingVolume = false;
             }
          }
 
-         if (string_0.equalsIgnoreCase("fpson")) {
+         if (command.equalsIgnoreCase("fpson")) {
             Client.displayFps = true;
          }
 
-         if (string_0.equalsIgnoreCase("fpsoff")) {
+         if (command.equalsIgnoreCase("fpsoff")) {
             Client.displayFps = false;
          }
 
-         if (string_0.equalsIgnoreCase("gc")) {
+         if (command.equalsIgnoreCase("gc")) {
             System.gc();
          }
 
-         if (string_0.equalsIgnoreCase("clientdrop")) {
-            WidgetNode.method684();
+         if (command.equalsIgnoreCase("clientdrop")) {
+            Client.drop();
          }
 
-         if (string_0.equalsIgnoreCase("errortest") && Client.socketType == 2) {
+         if (command.equalsIgnoreCase("errortest") && Client.socketType == 2) {
             throw new RuntimeException();
          }
       }
 
-      PacketNode packetnode_0 = Actor.method953(ClientPacket.aClientPacket92, Client.aClass46_1.cipher);
-      packetnode_0.packetBuffer.putByte(string_0.length() + 1);
-      packetnode_0.packetBuffer.putString(string_0);
-      Client.aClass46_1.method282(packetnode_0);
+      PacketNode packet = Actor.method953(ClientPacket.aClientPacket92, Client.aClass46_1.cipher);
+      packet.packetBuffer.putByte(command.length() + 1);
+      packet.packetBuffer.putString(command);
+      Client.aClass46_1.method282(packet);
    }
 
 }

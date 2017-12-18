@@ -52,8 +52,8 @@ public class ModelHeader extends Renderable {
       snappedVerticePoints = new int[10000];
       snappedVerticePoints2 = new int[10000];
       snappedVertices = 0;
-      anIntArray138 = Graphics3D.SINE;
-      anIntArray140 = Graphics3D.COSINE;
+      anIntArray138 = Rasterizer3D.SINE;
+      anIntArray140 = Rasterizer3D.COSINE;
    }
 
    ModelHeader() {
@@ -802,7 +802,7 @@ public class ModelHeader extends Renderable {
       int lightMagnitude = (int)Math.sqrt((double)(z * z + x * x + y * y));
       int magnitude = lightMagnitude * multiplier >> 8;
       Model model = new Model();
-      model.anIntArray131 = new int[this.triangleCount];
+      model.triangleHSLA = new int[this.triangleCount];
       model.anIntArray133 = new int[this.triangleCount];
       model.anIntArray132 = new int[this.triangleCount];
       if (this.anInt576 > 0 && this.textureCoords != null) {
@@ -889,10 +889,10 @@ public class ModelHeader extends Renderable {
                if (type == 1) {
                   faceNormal = this.faceNormals[triangle];
                   lightness = (y * faceNormal.y + z * faceNormal.z + x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
-                  model.anIntArray131[triangle] = mixLightness(this.triangleColours[triangle] & 0xFFFF, lightness);
+                  model.triangleHSLA[triangle] = mixLightness(this.triangleColours[triangle] & 0xFFFF, lightness);
                   model.anIntArray132[triangle] = -1;
                } else if (type == 3) {
-                  model.anIntArray131[triangle] = 128;
+                  model.triangleHSLA[triangle] = 128;
                   model.anIntArray132[triangle] = -1;
                } else {
                   model.anIntArray132[triangle] = -2;
@@ -906,7 +906,7 @@ public class ModelHeader extends Renderable {
                }
 
                lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-               model.anIntArray131[triangle] = mixLightness(hsl, lightness);
+               model.triangleHSLA[triangle] = mixLightness(hsl, lightness);
                if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsY[triangle]] != null) {
                   vertexNormal = this.vertexNormalOffset[this.trianglePointsY[triangle]];
                } else {
@@ -928,7 +928,7 @@ public class ModelHeader extends Renderable {
             if (type == 1) {
                faceNormal = this.faceNormals[triangle];
                lightness = (y * faceNormal.y + z * faceNormal.z + x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
-               model.anIntArray131[triangle] = limitLightness(lightness);
+               model.triangleHSLA[triangle] = limitLightness(lightness);
                model.anIntArray132[triangle] = -1;
             } else {
                model.anIntArray132[triangle] = -2;
@@ -941,7 +941,7 @@ public class ModelHeader extends Renderable {
             }
 
             lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-            model.anIntArray131[triangle] = limitLightness(lightness);
+            model.triangleHSLA[triangle] = limitLightness(lightness);
             if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsY[triangle]] != null) {
                vertexNormal = this.vertexNormalOffset[this.trianglePointsY[triangle]];
             } else {
@@ -967,11 +967,11 @@ public class ModelHeader extends Renderable {
       model.verticesY = this.vertexY;
       model.verticesZ = this.vertexZ;
       model.triangleCount = this.triangleCount;
-      model.indices1 = this.trianglePointsX;
-      model.indices2 = this.trianglePointsY;
-      model.indices3 = this.trianglePointsZ;
+      model.trianglePointsX = this.trianglePointsX;
+      model.trianglePointsY = this.trianglePointsY;
+      model.trianglePointsZ = this.trianglePointsZ;
       model.trianglePriorities = this.faceRenderPriorities;
-      model.aByteArray23 = this.faceAlphas;
+      model.triangleAlphaValues = this.faceAlphas;
       model.priorityOffset = this.priority;
       model.anIntArrayArray17 = this.anIntArrayArray19;
       model.anIntArrayArray18 = this.anIntArrayArray20;

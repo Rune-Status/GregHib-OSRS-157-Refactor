@@ -22,8 +22,8 @@ public class Class23 {
          int int_4 = Client.mapAngle & 0x7FF;
          int int_5 = int_3 * int_3 + int_2 * int_2;
          if (int_5 <= 6400) {
-            int int_6 = Graphics3D.SINE[int_4];
-            int int_7 = Graphics3D.COSINE[int_4];
+            int int_6 = Rasterizer3D.SINE[int_4];
+            int int_7 = Rasterizer3D.COSINE[int_4];
             int int_8 = int_7 * int_2 + int_3 * int_6 >> 16;
             int int_9 = int_3 * int_7 - int_6 * int_2 >> 16;
             if (int_5 > 2500) {

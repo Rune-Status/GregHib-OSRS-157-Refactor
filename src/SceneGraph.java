@@ -432,20 +432,20 @@ public class SceneGraph {
                int_19 = int_18 * int_2 - int_1 * int_13 >> 16;
                int_13 = int_1 * int_18 + int_13 * int_2 >> 16;
                if (int_13 >= 50) {
-                  int int_20 = int_8 * Graphics3D.anInt543 / distZ + Graphics3D.centerX;
-                  int int_21 = int_15 * Graphics3D.anInt543 / distZ + Graphics3D.centerY;
-                  int int_22 = int_12 * Graphics3D.anInt543 / int_9 + Graphics3D.centerX;
-                  int int_23 = int_16 * Graphics3D.anInt543 / int_9 + Graphics3D.centerY;
-                  int int_24 = int_11 * Graphics3D.anInt543 / int_14 + Graphics3D.centerX;
-                  int int_25 = int_17 * Graphics3D.anInt543 / int_14 + Graphics3D.centerY;
-                  int int_26 = int_7 * Graphics3D.anInt543 / int_13 + Graphics3D.centerX;
-                  int int_27 = int_19 * Graphics3D.anInt543 / int_13 + Graphics3D.centerY;
-                  Graphics3D.rasterAlpha = 0;
+                  int int_20 = int_8 * Rasterizer3D.anInt543 / distZ + Rasterizer3D.centerX;
+                  int int_21 = int_15 * Rasterizer3D.anInt543 / distZ + Rasterizer3D.centerY;
+                  int int_22 = int_12 * Rasterizer3D.anInt543 / int_9 + Rasterizer3D.centerX;
+                  int int_23 = int_16 * Rasterizer3D.anInt543 / int_9 + Rasterizer3D.centerY;
+                  int int_24 = int_11 * Rasterizer3D.anInt543 / int_14 + Rasterizer3D.centerX;
+                  int int_25 = int_17 * Rasterizer3D.anInt543 / int_14 + Rasterizer3D.centerY;
+                  int int_26 = int_7 * Rasterizer3D.anInt543 / int_13 + Rasterizer3D.centerX;
+                  int int_27 = int_19 * Rasterizer3D.anInt543 / int_13 + Rasterizer3D.centerY;
+                  Rasterizer3D.alpha = 0;
                   int int_28;
                   if ((int_24 - int_26) * (int_23 - int_27) - (int_25 - int_27) * (int_22 - int_26) > 0) {
-                     Graphics3D.rasterClipEnable = false;
-                     if (int_24 < 0 || int_26 < 0 || int_22 < 0 || int_24 > Graphics3D.rasterClipX || int_26 > Graphics3D.rasterClipX || int_22 > Graphics3D.rasterClipX) {
-                        Graphics3D.rasterClipEnable = true;
+                     Rasterizer3D.restrictEdges = false;
+                     if (int_24 < 0 || int_26 < 0 || int_22 < 0 || int_24 > Rasterizer3D.rasterClipX || int_26 > Rasterizer3D.rasterClipX || int_22 > Rasterizer3D.rasterClipX) {
+                        Rasterizer3D.restrictEdges = true;
                      }
 
                      if (isClicked && this.isMouseWithinTriangle(clickX, clickY, int_25, int_27, int_23, int_24, int_26, int_22)) {
@@ -455,24 +455,24 @@ public class SceneGraph {
 
                      if (compexTile.texture == -1) {
                         if (compexTile.neColour != 12345678) {
-                           Graphics3D.rasterGouraud(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour);
+                           Rasterizer3D.drawShadedTriangle(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour);
                         }
                      } else if (!lowMemory) {
                         if (compexTile.flatShade) {
-                           Graphics3D.rasterTexture(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour, int_8, int_12, int_7, int_15, int_16, int_19, distZ, int_9, int_13, compexTile.texture);
+                           Rasterizer3D.rasterTexture(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour, int_8, int_12, int_7, int_15, int_16, int_19, distZ, int_9, int_13, compexTile.texture);
                         } else {
-                           Graphics3D.rasterTexture(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour, int_11, int_7, int_12, int_17, int_19, int_16, int_14, int_13, int_9, compexTile.texture);
+                           Rasterizer3D.rasterTexture(int_25, int_27, int_23, int_24, int_26, int_22, compexTile.neColour, compexTile.nwColour, compexTile.seColour, int_11, int_7, int_12, int_17, int_19, int_16, int_14, int_13, int_9, compexTile.texture);
                         }
                      } else {
-                        int_28 = Graphics3D.textureLoader.getAverageTextureRGB(compexTile.texture);
-                        Graphics3D.rasterGouraud(int_25, int_27, int_23, int_24, int_26, int_22, method384(int_28, compexTile.neColour), method384(int_28, compexTile.nwColour), method384(int_28, compexTile.seColour));
+                        int_28 = Rasterizer3D.textureLoader.getAverageTextureRGB(compexTile.texture);
+                        Rasterizer3D.drawShadedTriangle(int_25, int_27, int_23, int_24, int_26, int_22, method384(int_28, compexTile.neColour), method384(int_28, compexTile.nwColour), method384(int_28, compexTile.seColour));
                      }
                   }
 
                   if ((int_20 - int_22) * (int_27 - int_23) - (int_21 - int_23) * (int_26 - int_22) > 0) {
-                     Graphics3D.rasterClipEnable = false;
-                     if (int_20 < 0 || int_22 < 0 || int_26 < 0 || int_20 > Graphics3D.rasterClipX || int_22 > Graphics3D.rasterClipX || int_26 > Graphics3D.rasterClipX) {
-                        Graphics3D.rasterClipEnable = true;
+                     Rasterizer3D.restrictEdges = false;
+                     if (int_20 < 0 || int_22 < 0 || int_26 < 0 || int_20 > Rasterizer3D.rasterClipX || int_22 > Rasterizer3D.rasterClipX || int_26 > Rasterizer3D.rasterClipX) {
+                        Rasterizer3D.restrictEdges = true;
                      }
 
                      if (isClicked && this.isMouseWithinTriangle(clickX, clickY, int_21, int_23, int_27, int_20, int_22, int_26)) {
@@ -482,13 +482,13 @@ public class SceneGraph {
 
                      if (compexTile.texture == -1) {
                         if (compexTile.swColour != 12345678) {
-                           Graphics3D.rasterGouraud(int_21, int_23, int_27, int_20, int_22, int_26, compexTile.swColour, compexTile.seColour, compexTile.nwColour);
+                           Rasterizer3D.drawShadedTriangle(int_21, int_23, int_27, int_20, int_22, int_26, compexTile.swColour, compexTile.seColour, compexTile.nwColour);
                         }
                      } else if (!lowMemory) {
-                        Graphics3D.rasterTexture(int_21, int_23, int_27, int_20, int_22, int_26, compexTile.swColour, compexTile.seColour, compexTile.nwColour, int_8, int_12, int_7, int_15, int_16, int_19, distZ, int_9, int_13, compexTile.texture);
+                        Rasterizer3D.rasterTexture(int_21, int_23, int_27, int_20, int_22, int_26, compexTile.swColour, compexTile.seColour, compexTile.nwColour, int_8, int_12, int_7, int_15, int_16, int_19, distZ, int_9, int_13, compexTile.texture);
                      } else {
-                        int_28 = Graphics3D.textureLoader.getAverageTextureRGB(compexTile.texture);
-                        Graphics3D.rasterGouraud(int_21, int_23, int_27, int_20, int_22, int_26, method384(int_28, compexTile.swColour), method384(int_28, compexTile.seColour), method384(int_28, compexTile.nwColour));
+                        int_28 = Rasterizer3D.textureLoader.getAverageTextureRGB(compexTile.texture);
+                        Rasterizer3D.drawShadedTriangle(int_21, int_23, int_27, int_20, int_22, int_26, method384(int_28, compexTile.swColour), method384(int_28, compexTile.seColour), method384(int_28, compexTile.nwColour));
                      }
                   }
 
@@ -525,11 +525,11 @@ public class SceneGraph {
             SceneTileModel.vertexSceneZ[int_7] = int_10;
          }
 
-         SceneTileModel.tmpScreenX[int_7] = int_8 * Graphics3D.anInt543 / int_10 + Graphics3D.centerX;
-         SceneTileModel.tmpScreenY[int_7] = int_11 * Graphics3D.anInt543 / int_10 + Graphics3D.centerY;
+         SceneTileModel.tmpScreenX[int_7] = int_8 * Rasterizer3D.anInt543 / int_10 + Rasterizer3D.centerX;
+         SceneTileModel.tmpScreenY[int_7] = int_11 * Rasterizer3D.anInt543 / int_10 + Rasterizer3D.centerY;
       }
 
-      Graphics3D.rasterAlpha = 0;
+      Rasterizer3D.alpha = 0;
       int_6 = scenetilemodel_0.anIntArray60.length;
 
       for (int_7 = 0; int_7 < int_6; int_7++) {
@@ -543,9 +543,9 @@ public class SceneGraph {
          int int_15 = SceneTileModel.tmpScreenY[int_9];
          int int_16 = SceneTileModel.tmpScreenY[int_10];
          if ((int_11 - int_12) * (int_16 - int_15) - (int_14 - int_15) * (int_13 - int_12) > 0) {
-            Graphics3D.rasterClipEnable = false;
-            if (int_11 < 0 || int_12 < 0 || int_13 < 0 || int_11 > Graphics3D.rasterClipX || int_12 > Graphics3D.rasterClipX || int_13 > Graphics3D.rasterClipX) {
-               Graphics3D.rasterClipEnable = true;
+            Rasterizer3D.restrictEdges = false;
+            if (int_11 < 0 || int_12 < 0 || int_13 < 0 || int_11 > Rasterizer3D.rasterClipX || int_12 > Rasterizer3D.rasterClipX || int_13 > Rasterizer3D.rasterClipX) {
+               Rasterizer3D.restrictEdges = true;
             }
 
             if (isClicked && this.isMouseWithinTriangle(clickX, clickY, int_14, int_15, int_16, int_11, int_12, int_13)) {
@@ -556,16 +556,16 @@ public class SceneGraph {
             if (scenetilemodel_0.triangleTextureId != null && scenetilemodel_0.triangleTextureId[int_7] != -1) {
                if (!lowMemory) {
                   if (scenetilemodel_0.flatShade) {
-                     Graphics3D.rasterTexture(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7], SceneTileModel.vertexSceneX[0], SceneTileModel.vertexSceneX[1], SceneTileModel.vertexSceneX[3], SceneTileModel.vertexSceneY[0], SceneTileModel.vertexSceneY[1], SceneTileModel.vertexSceneY[3], SceneTileModel.vertexSceneZ[0], SceneTileModel.vertexSceneZ[1], SceneTileModel.vertexSceneZ[3], scenetilemodel_0.triangleTextureId[int_7]);
+                     Rasterizer3D.rasterTexture(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7], SceneTileModel.vertexSceneX[0], SceneTileModel.vertexSceneX[1], SceneTileModel.vertexSceneX[3], SceneTileModel.vertexSceneY[0], SceneTileModel.vertexSceneY[1], SceneTileModel.vertexSceneY[3], SceneTileModel.vertexSceneZ[0], SceneTileModel.vertexSceneZ[1], SceneTileModel.vertexSceneZ[3], scenetilemodel_0.triangleTextureId[int_7]);
                   } else {
-                     Graphics3D.rasterTexture(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7], SceneTileModel.vertexSceneX[int_8], SceneTileModel.vertexSceneX[int_9], SceneTileModel.vertexSceneX[int_10], SceneTileModel.vertexSceneY[int_8], SceneTileModel.vertexSceneY[int_9], SceneTileModel.vertexSceneY[int_10], SceneTileModel.vertexSceneZ[int_8], SceneTileModel.vertexSceneZ[int_9], SceneTileModel.vertexSceneZ[int_10], scenetilemodel_0.triangleTextureId[int_7]);
+                     Rasterizer3D.rasterTexture(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7], SceneTileModel.vertexSceneX[int_8], SceneTileModel.vertexSceneX[int_9], SceneTileModel.vertexSceneX[int_10], SceneTileModel.vertexSceneY[int_8], SceneTileModel.vertexSceneY[int_9], SceneTileModel.vertexSceneY[int_10], SceneTileModel.vertexSceneZ[int_8], SceneTileModel.vertexSceneZ[int_9], SceneTileModel.vertexSceneZ[int_10], scenetilemodel_0.triangleTextureId[int_7]);
                   }
                } else {
-                  int int_17 = Graphics3D.textureLoader.getAverageTextureRGB(scenetilemodel_0.triangleTextureId[int_7]);
-                  Graphics3D.rasterGouraud(int_14, int_15, int_16, int_11, int_12, int_13, method384(int_17, scenetilemodel_0.triangleColorA[int_7]), method384(int_17, scenetilemodel_0.triangleColorB[int_7]), method384(int_17, scenetilemodel_0.triangleColorC[int_7]));
+                  int int_17 = Rasterizer3D.textureLoader.getAverageTextureRGB(scenetilemodel_0.triangleTextureId[int_7]);
+                  Rasterizer3D.drawShadedTriangle(int_14, int_15, int_16, int_11, int_12, int_13, method384(int_17, scenetilemodel_0.triangleColorA[int_7]), method384(int_17, scenetilemodel_0.triangleColorB[int_7]), method384(int_17, scenetilemodel_0.triangleColorC[int_7]));
                }
             } else if (scenetilemodel_0.triangleColorA[int_7] != 12345678) {
-               Graphics3D.rasterGouraud(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7]);
+               Rasterizer3D.drawShadedTriangle(int_14, int_15, int_16, int_11, int_12, int_13, scenetilemodel_0.triangleColorA[int_7], scenetilemodel_0.triangleColorB[int_7], scenetilemodel_0.triangleColorC[int_7]);
             }
          }
       }
@@ -1876,10 +1876,10 @@ public class SceneGraph {
       }
 
       ++RENDERABLE_RULE;
-      pitchSin = Graphics3D.SINE[int_3];
-      pitchCos = Graphics3D.COSINE[int_3];
-      yawSin = Graphics3D.SINE[int_4];
-      yawCos = Graphics3D.COSINE[int_4];
+      pitchSin = Rasterizer3D.SINE[int_3];
+      pitchCos = Rasterizer3D.COSINE[int_3];
+      yawSin = Rasterizer3D.SINE[int_4];
+      yawCos = Rasterizer3D.COSINE[int_4];
       renderArea = visibilityMaps[(int_3 - 128) / 32][int_4 / 64];
       cameraPositionX = int_0;
       cameraY2 = int_1;
@@ -2207,8 +2207,8 @@ public class SceneGraph {
       int_3 = pitchCos * int_1 - int_2 * pitchSin >> 16;
       int_2 = pitchSin * int_1 + int_2 * pitchCos >> 16;
       int_2 |= 0x1;
-      int int_4 = int_0 * Graphics3D.anInt543 / int_2 + Graphics3D.centerX + Rasterizer2D.topX;
-      int int_5 = Graphics3D.anInt543 * int_3 / int_2 + Graphics3D.centerY + Rasterizer2D.topY;
+      int int_4 = int_0 * Rasterizer3D.anInt543 / int_2 + Rasterizer3D.centerX + Rasterizer2D.topX;
+      int int_5 = Rasterizer3D.anInt543 * int_3 / int_2 + Rasterizer3D.centerY + Rasterizer2D.topY;
       return new int[] {int_4, int_5};
    }
 
@@ -2229,10 +2229,10 @@ public class SceneGraph {
       int int_10;
       for (int_4 = 128; int_4 <= 384; int_4 += 32) {
          for (int_5 = 0; int_5 < 2048; int_5 += 64) {
-            pitchSin = Graphics3D.SINE[int_4];
-            pitchCos = Graphics3D.COSINE[int_4];
-            yawSin = Graphics3D.SINE[int_5];
-            yawCos = Graphics3D.COSINE[int_5];
+            pitchSin = Rasterizer3D.SINE[int_4];
+            pitchCos = Rasterizer3D.COSINE[int_4];
+            yawSin = Rasterizer3D.SINE[int_5];
+            yawCos = Rasterizer3D.COSINE[int_5];
             int_6 = (int_4 - 128) / 32;
             int_7 = int_5 / 64;
 

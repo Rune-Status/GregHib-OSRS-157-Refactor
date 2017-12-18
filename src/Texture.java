@@ -102,7 +102,7 @@ public class Texture extends Node {
          }
 
          for (int_4 = 0; int_4 < ints_0.length; int_4++) {
-            ints_0[int_4] = Graphics3D.adjustRGB(ints_0[int_4], double_0);
+            ints_0[int_4] = Rasterizer3D.adjustRGB(ints_0[int_4], double_0);
          }
 
          if (int_2 == 0) {

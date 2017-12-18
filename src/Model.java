@@ -1,6 +1,6 @@
 public class Model extends Renderable {
 
-   static boolean[] aBoolArray6;
+   static boolean[] triangleRenderRules;
    static int[] anIntArray115;
    static int[] SINE;
    static Model aModel1;
@@ -11,20 +11,20 @@ public class Model extends Renderable {
    static int[] COSINE;
    static int anInt552;
    static int anInt553;
-   static int[] anIntArray118;
+   static int[] vertexMvZ;
    static boolean[] aBoolArray7;
    static int[] anIntArray119;
-   public static int[] anIntArray120;
+   public static int[] vertexScreenX;
    static int[] anIntArray121;
-   public static int[] anIntArray122;
-   static int[] anIntArray123;
-   static int[] yViewportBuffer;
+   public static int[] vertexScreenY;
+   static int[] writtenScreenPixelsX;
+   static int[] vertexMvX;
    static int[][] anIntArrayArray15;
-   static int[] anIntArray124;
-   static int[] anIntArray125;
-   static int[] anIntArray126;
-   static int[] anIntArray127;
-   static int[] xViewportBuffer;
+   static int[] vertexScreenZ;
+   static int[] vertexMvY;
+   static int[] writtenScreenPixelsY;
+   static int[] mvzDistances;
+   static int[] writtenScreenPixelsHLSAColour;
    static int[][] anIntArrayArray16;
    static int[] anIntArray128;
    static int[] anIntArray129;
@@ -36,21 +36,21 @@ public class Model extends Renderable {
    int[][] anIntArrayArray17;
    int vertexCount;
    public int anInt558;
-   public int[] indices1;
+   public int[] trianglePointsX;
    int shadowIntensity;
    int[] verticesX;
    int[] verticesZ;
    public int triangleCount;
-   public int[] indices2;
+   public int[] trianglePointsY;
    int[][] anIntArrayArray18;
    byte priorityOffset;
    int maxY;
-   public int[] indices3;
+   public int[] trianglePointsZ;
    int[] verticesY;
    int texturedTriangleCount;
-   byte[] aByteArray23;
+   byte[] triangleAlphaValues;
    public int anInt562;
-   int[] anIntArray131;
+   int[] triangleHSLA;
    public int[] anIntArray132;
    public int anInt563;
    public boolean fitsOnSingleSquare;
@@ -71,13 +71,13 @@ public class Model extends Renderable {
       aModel1 = new Model();
       moreTempTriangleAlphas = new byte[1];
       aBoolArray7 = new boolean[4700];
-      aBoolArray6 = new boolean[4700];
-      anIntArray120 = new int[4700];
-      anIntArray122 = new int[4700];
-      anIntArray124 = new int[4700];
-      yViewportBuffer = new int[4700];
-      anIntArray125 = new int[4700];
-      anIntArray118 = new int[4700];
+      triangleRenderRules = new boolean[4700];
+      vertexScreenX = new int[4700];
+      vertexScreenY = new int[4700];
+      vertexScreenZ = new int[4700];
+      vertexMvX = new int[4700];
+      vertexMvY = new int[4700];
+      vertexMvZ = new int[4700];
       anIntArray115 = new int[1600];
       anIntArrayArray15 = new int[1600][512];
       anIntArray119 = new int[12];
@@ -85,14 +85,14 @@ public class Model extends Renderable {
       anIntArray129 = new int[2000];
       anIntArray130 = new int[2000];
       anIntArray121 = new int[12];
-      anIntArray123 = new int[10];
-      anIntArray126 = new int[10];
-      xViewportBuffer = new int[10];
+      writtenScreenPixelsX = new int[10];
+      writtenScreenPixelsY = new int[10];
+      writtenScreenPixelsHLSAColour = new int[10];
       aBool74 = true;
-      SINE = Graphics3D.SINE;
-      COSINE = Graphics3D.COSINE;
-      anIntArray128 = Graphics3D.colorPalette;
-      anIntArray127 = Graphics3D.anIntArray114;
+      SINE = Rasterizer3D.SINE;
+      COSINE = Rasterizer3D.COSINE;
+      anIntArray128 = Rasterizer3D.colorPalette;
+      mvzDistances = Rasterizer3D.anIntArray114;
    }
 
    Model() {
@@ -144,7 +144,7 @@ public class Model extends Renderable {
                }
             }
 
-            bool_1 |= model.aByteArray23 != null;
+            bool_1 |= model.triangleAlphaValues != null;
             bool_2 |= model.aShortArray12 != null;
             bool_3 |= model.aByteArray25 != null;
          }
@@ -153,10 +153,10 @@ public class Model extends Renderable {
       this.verticesX = new int[this.vertexCount];
       this.verticesY = new int[this.vertexCount];
       this.verticesZ = new int[this.vertexCount];
-      this.indices1 = new int[this.triangleCount];
-      this.indices2 = new int[this.triangleCount];
-      this.indices3 = new int[this.triangleCount];
-      this.anIntArray131 = new int[this.triangleCount];
+      this.trianglePointsX = new int[this.triangleCount];
+      this.trianglePointsY = new int[this.triangleCount];
+      this.trianglePointsZ = new int[this.triangleCount];
+      this.triangleHSLA = new int[this.triangleCount];
       this.anIntArray133 = new int[this.triangleCount];
       this.anIntArray132 = new int[this.triangleCount];
       if (hasTriangleProperties) {
@@ -164,7 +164,7 @@ public class Model extends Renderable {
       }
 
       if (bool_1) {
-         this.aByteArray23 = new byte[this.triangleCount];
+         this.triangleAlphaValues = new byte[this.triangleCount];
       }
 
       if (bool_2) {
@@ -190,10 +190,10 @@ public class Model extends Renderable {
          if (model != null) {
             int vertex;
             for (vertex = 0; vertex < model.triangleCount; vertex++) {
-               this.indices1[this.triangleCount] = this.vertexCount + model.indices1[vertex];
-               this.indices2[this.triangleCount] = this.vertexCount + model.indices2[vertex];
-               this.indices3[this.triangleCount] = this.vertexCount + model.indices3[vertex];
-               this.anIntArray131[this.triangleCount] = model.anIntArray131[vertex];
+               this.trianglePointsX[this.triangleCount] = this.vertexCount + model.trianglePointsX[vertex];
+               this.trianglePointsY[this.triangleCount] = this.vertexCount + model.trianglePointsY[vertex];
+               this.trianglePointsZ[this.triangleCount] = this.vertexCount + model.trianglePointsZ[vertex];
+               this.triangleHSLA[this.triangleCount] = model.triangleHSLA[vertex];
                this.anIntArray133[this.triangleCount] = model.anIntArray133[vertex];
                this.anIntArray132[this.triangleCount] = model.anIntArray132[vertex];
                if (hasTriangleProperties) {
@@ -204,8 +204,8 @@ public class Model extends Renderable {
                   }
                }
 
-               if (bool_1 && model.aByteArray23 != null) {
-                  this.aByteArray23[this.triangleCount] = model.aByteArray23[vertex];
+               if (bool_1 && model.triangleAlphaValues != null) {
+                  this.triangleAlphaValues[this.triangleCount] = model.triangleAlphaValues[vertex];
                }
 
                if (bool_2) {
@@ -241,6 +241,15 @@ public class Model extends Renderable {
                ++this.vertexCount;
             }
          }
+      }
+
+   }
+
+   public static void drawCube(Model model_0, int renderX, int renderZ, int renderY) {
+      if (Class4.method82(model_0, renderX, renderZ, renderY)) {
+         Class42.method264(model_0, renderX, renderZ, renderY, -65281);
+      } else if (Class37.aClass26_3 == Class26.aClass26_2) {
+         Class42.method264(model_0, renderX, renderZ, renderY, -16776961);
       }
 
    }
@@ -298,167 +307,167 @@ public class Model extends Renderable {
       this.anInt555 = -1;
    }
 
-   void method1010(int int_0) {
-      int int_1 = Graphics3D.centerX;
-      int int_2 = Graphics3D.centerY;
-      int int_3 = 0;
-      int int_4 = this.indices1[int_0];
-      int int_5 = this.indices2[int_0];
-      int int_6 = this.indices3[int_0];
-      int int_7 = anIntArray118[int_4];
-      int int_8 = anIntArray118[int_5];
-      int int_9 = anIntArray118[int_6];
-      if (this.aByteArray23 == null) {
-         Graphics3D.rasterAlpha = 0;
+   void rasterizeTriangle(int triangleIndex) {
+      int screenX = Rasterizer3D.centerX;
+      int screenY = Rasterizer3D.centerY;
+      int pixelIndex = 0;
+      int trianglePointX = this.trianglePointsX[triangleIndex];
+      int trianglePointY = this.trianglePointsY[triangleIndex];
+      int trianglePointZ = this.trianglePointsZ[triangleIndex];
+      int mvzPointX = vertexMvZ[trianglePointX];
+      int mvzPointY = vertexMvZ[trianglePointY];
+      int mvzPointZ = vertexMvZ[trianglePointZ];
+      if (this.triangleAlphaValues == null) {
+         Rasterizer3D.alpha = 0;
       } else {
-         Graphics3D.rasterAlpha = this.aByteArray23[int_0] & 0xFF;
+         Rasterizer3D.alpha = this.triangleAlphaValues[triangleIndex] & 0xFF;
       }
 
-      int int_10;
-      int int_11;
-      int int_12;
-      int int_13;
-      if (int_7 >= 50) {
-         anIntArray123[int_3] = anIntArray120[int_4];
-         anIntArray126[int_3] = anIntArray122[int_4];
-         xViewportBuffer[int_3++] = this.anIntArray131[int_0];
+      int mvxPointX;
+      int mvyPointX;
+      int colour;
+      int calc;
+      if (mvzPointX >= 50) {
+         writtenScreenPixelsX[pixelIndex] = vertexScreenX[trianglePointX];
+         writtenScreenPixelsY[pixelIndex] = vertexScreenY[trianglePointX];
+         writtenScreenPixelsHLSAColour[pixelIndex++] = this.triangleHSLA[triangleIndex];
       } else {
-         int_10 = yViewportBuffer[int_4];
-         int_11 = anIntArray125[int_4];
-         int_12 = this.anIntArray131[int_0];
-         if (int_9 >= 50) {
-            int_13 = anIntArray127[int_9 - int_7] * (50 - int_7);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_6] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_6] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray132[int_0] - int_12) * int_13 >> 16);
+         mvxPointX = vertexMvX[trianglePointX];
+         mvyPointX = vertexMvY[trianglePointX];
+         colour = this.triangleHSLA[triangleIndex];
+         if (mvzPointZ >= 50) {
+            calc = mvzDistances[mvzPointZ - mvzPointX] * (50 - mvzPointX);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointZ] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointZ] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.anIntArray132[triangleIndex] - colour) * calc >> 16);
          }
 
-         if (int_8 >= 50) {
-            int_13 = anIntArray127[int_8 - int_7] * (50 - int_7);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_5] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_5] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray133[int_0] - int_12) * int_13 >> 16);
-         }
-      }
-
-      if (int_8 >= 50) {
-         anIntArray123[int_3] = anIntArray120[int_5];
-         anIntArray126[int_3] = anIntArray122[int_5];
-         xViewportBuffer[int_3++] = this.anIntArray133[int_0];
-      } else {
-         int_10 = yViewportBuffer[int_5];
-         int_11 = anIntArray125[int_5];
-         int_12 = this.anIntArray133[int_0];
-         if (int_7 >= 50) {
-            int_13 = anIntArray127[int_7 - int_8] * (50 - int_8);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_4] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_4] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray131[int_0] - int_12) * int_13 >> 16);
-         }
-
-         if (int_9 >= 50) {
-            int_13 = anIntArray127[int_9 - int_8] * (50 - int_8);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_6] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_6] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray132[int_0] - int_12) * int_13 >> 16);
+         if (mvzPointY >= 50) {
+            calc = mvzDistances[mvzPointY - mvzPointX] * (50 - mvzPointX);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointY] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointY] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.anIntArray133[triangleIndex] - colour) * calc >> 16);
          }
       }
 
-      if (int_9 >= 50) {
-         anIntArray123[int_3] = anIntArray120[int_6];
-         anIntArray126[int_3] = anIntArray122[int_6];
-         xViewportBuffer[int_3++] = this.anIntArray132[int_0];
+      if (mvzPointY >= 50) {
+         writtenScreenPixelsX[pixelIndex] = vertexScreenX[trianglePointY];
+         writtenScreenPixelsY[pixelIndex] = vertexScreenY[trianglePointY];
+         writtenScreenPixelsHLSAColour[pixelIndex++] = this.anIntArray133[triangleIndex];
       } else {
-         int_10 = yViewportBuffer[int_6];
-         int_11 = anIntArray125[int_6];
-         int_12 = this.anIntArray132[int_0];
-         if (int_8 >= 50) {
-            int_13 = anIntArray127[int_8 - int_9] * (50 - int_9);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_5] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_5] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray133[int_0] - int_12) * int_13 >> 16);
+         mvxPointX = vertexMvX[trianglePointY];
+         mvyPointX = vertexMvY[trianglePointY];
+         colour = this.anIntArray133[triangleIndex];
+         if (mvzPointX >= 50) {
+            calc = mvzDistances[mvzPointX - mvzPointY] * (50 - mvzPointY);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointX] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointX] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.triangleHSLA[triangleIndex] - colour) * calc >> 16);
          }
 
-         if (int_7 >= 50) {
-            int_13 = anIntArray127[int_7 - int_9] * (50 - int_9);
-            anIntArray123[int_3] = int_1 + Graphics3D.anInt543 * (int_10 + ((yViewportBuffer[int_4] - int_10) * int_13 >> 16)) / 50;
-            anIntArray126[int_3] = int_2 + Graphics3D.anInt543 * (int_11 + ((anIntArray125[int_4] - int_11) * int_13 >> 16)) / 50;
-            xViewportBuffer[int_3++] = int_12 + ((this.anIntArray131[int_0] - int_12) * int_13 >> 16);
+         if (mvzPointZ >= 50) {
+            calc = mvzDistances[mvzPointZ - mvzPointY] * (50 - mvzPointY);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointZ] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointZ] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.anIntArray132[triangleIndex] - colour) * calc >> 16);
          }
       }
 
-      int_10 = anIntArray123[0];
-      int_11 = anIntArray123[1];
-      int_12 = anIntArray123[2];
-      int_13 = anIntArray126[0];
-      int int_14 = anIntArray126[1];
-      int int_15 = anIntArray126[2];
-      Graphics3D.rasterClipEnable = false;
-      int int_16;
-      int int_17;
-      int int_18;
-      int int_19;
-      if (int_3 == 3) {
-         if (int_10 < 0 || int_11 < 0 || int_12 < 0 || int_10 > Graphics3D.rasterClipX || int_11 > Graphics3D.rasterClipX || int_12 > Graphics3D.rasterClipX) {
-            Graphics3D.rasterClipEnable = true;
+      if (mvzPointZ >= 50) {
+         writtenScreenPixelsX[pixelIndex] = vertexScreenX[trianglePointZ];
+         writtenScreenPixelsY[pixelIndex] = vertexScreenY[trianglePointZ];
+         writtenScreenPixelsHLSAColour[pixelIndex++] = this.anIntArray132[triangleIndex];
+      } else {
+         mvxPointX = vertexMvX[trianglePointZ];
+         mvyPointX = vertexMvY[trianglePointZ];
+         colour = this.anIntArray132[triangleIndex];
+         if (mvzPointY >= 50) {
+            calc = mvzDistances[mvzPointY - mvzPointZ] * (50 - mvzPointZ);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointY] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointY] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.anIntArray133[triangleIndex] - colour) * calc >> 16);
          }
 
-         if (this.aShortArray12 != null && this.aShortArray12[int_0] != -1) {
-            if (this.aByteArray25 != null && this.aByteArray25[int_0] != -1) {
-               int_17 = this.aByteArray25[int_0] & 0xFF;
-               int_16 = this.texturedTrianglePointsX[int_17];
-               int_18 = this.texturedTrianglePointsY[int_17];
-               int_19 = this.texturedTrianglePointsZ[int_17];
+         if (mvzPointX >= 50) {
+            calc = mvzDistances[mvzPointX - mvzPointZ] * (50 - mvzPointZ);
+            writtenScreenPixelsX[pixelIndex] = screenX + Rasterizer3D.anInt543 * (mvxPointX + ((vertexMvX[trianglePointX] - mvxPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsY[pixelIndex] = screenY + Rasterizer3D.anInt543 * (mvyPointX + ((vertexMvY[trianglePointX] - mvyPointX) * calc >> 16)) / 50;
+            writtenScreenPixelsHLSAColour[pixelIndex++] = colour + ((this.triangleHSLA[triangleIndex] - colour) * calc >> 16);
+         }
+      }
+
+      mvxPointX = writtenScreenPixelsX[0];
+      mvyPointX = writtenScreenPixelsX[1];
+      colour = writtenScreenPixelsX[2];
+      calc = writtenScreenPixelsY[0];
+      int pixelY2 = writtenScreenPixelsY[1];
+      int pixelY3 = writtenScreenPixelsY[2];
+      Rasterizer3D.restrictEdges = false;
+      int pointX;
+      int pointIndex;
+      int pointY;
+      int pointZ;
+      if (pixelIndex == 3) {
+         if (mvxPointX < 0 || mvyPointX < 0 || colour < 0 || mvxPointX > Rasterizer3D.rasterClipX || mvyPointX > Rasterizer3D.rasterClipX || colour > Rasterizer3D.rasterClipX) {
+            Rasterizer3D.restrictEdges = true;
+         }
+
+         if (this.aShortArray12 != null && this.aShortArray12[triangleIndex] != -1) {
+            if (this.aByteArray25 != null && this.aByteArray25[triangleIndex] != -1) {
+               pointIndex = this.aByteArray25[triangleIndex] & 0xFF;
+               pointX = this.texturedTrianglePointsX[pointIndex];
+               pointY = this.texturedTrianglePointsY[pointIndex];
+               pointZ = this.texturedTrianglePointsZ[pointIndex];
             } else {
-               int_16 = int_4;
-               int_18 = int_5;
-               int_19 = int_6;
+               pointX = trianglePointX;
+               pointY = trianglePointY;
+               pointZ = trianglePointZ;
             }
 
-            if (this.anIntArray132[int_0] == -1) {
-               Graphics3D.rasterTextureAffine(int_13, int_14, int_15, int_10, int_11, int_12, this.anIntArray131[int_0], this.anIntArray131[int_0], this.anIntArray131[int_0], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], this.aShortArray12[int_0]);
+            if (this.anIntArray132[triangleIndex] == -1) {
+               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
             } else {
-               Graphics3D.rasterTextureAffine(int_13, int_14, int_15, int_10, int_11, int_12, xViewportBuffer[0], xViewportBuffer[1], xViewportBuffer[2], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], this.aShortArray12[int_0]);
+               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
             }
-         } else if (this.anIntArray132[int_0] == -1) {
-            Graphics3D.rasterFlat(int_13, int_14, int_15, int_10, int_11, int_12, anIntArray128[this.anIntArray131[int_0]]);
+         } else if (this.anIntArray132[triangleIndex] == -1) {
+            Rasterizer3D.drawFlatTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, anIntArray128[this.triangleHSLA[triangleIndex]]);
          } else {
-            Graphics3D.rasterGouraud(int_13, int_14, int_15, int_10, int_11, int_12, xViewportBuffer[0], xViewportBuffer[1], xViewportBuffer[2]);
+            Rasterizer3D.drawShadedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2]);
          }
       }
 
-      if (int_3 == 4) {
-         if (int_10 < 0 || int_11 < 0 || int_12 < 0 || int_10 > Graphics3D.rasterClipX || int_11 > Graphics3D.rasterClipX || int_12 > Graphics3D.rasterClipX || anIntArray123[3] < 0 || anIntArray123[3] > Graphics3D.rasterClipX) {
-            Graphics3D.rasterClipEnable = true;
+      if (pixelIndex == 4) {
+         if (mvxPointX < 0 || mvyPointX < 0 || colour < 0 || mvxPointX > Rasterizer3D.rasterClipX || mvyPointX > Rasterizer3D.rasterClipX || colour > Rasterizer3D.rasterClipX || writtenScreenPixelsX[3] < 0 || writtenScreenPixelsX[3] > Rasterizer3D.rasterClipX) {
+            Rasterizer3D.restrictEdges = true;
          }
 
-         if (this.aShortArray12 != null && this.aShortArray12[int_0] != -1) {
-            if (this.aByteArray25 != null && this.aByteArray25[int_0] != -1) {
-               int_17 = this.aByteArray25[int_0] & 0xFF;
-               int_16 = this.texturedTrianglePointsX[int_17];
-               int_18 = this.texturedTrianglePointsY[int_17];
-               int_19 = this.texturedTrianglePointsZ[int_17];
+         if (this.aShortArray12 != null && this.aShortArray12[triangleIndex] != -1) {
+            if (this.aByteArray25 != null && this.aByteArray25[triangleIndex] != -1) {
+               pointIndex = this.aByteArray25[triangleIndex] & 0xFF;
+               pointX = this.texturedTrianglePointsX[pointIndex];
+               pointY = this.texturedTrianglePointsY[pointIndex];
+               pointZ = this.texturedTrianglePointsZ[pointIndex];
             } else {
-               int_16 = int_4;
-               int_18 = int_5;
-               int_19 = int_6;
+               pointX = trianglePointX;
+               pointY = trianglePointY;
+               pointZ = trianglePointZ;
             }
 
-            short short_0 = this.aShortArray12[int_0];
-            if (this.anIntArray132[int_0] == -1) {
-               Graphics3D.rasterTextureAffine(int_13, int_14, int_15, int_10, int_11, int_12, this.anIntArray131[int_0], this.anIntArray131[int_0], this.anIntArray131[int_0], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], short_0);
-               Graphics3D.rasterTextureAffine(int_13, int_15, anIntArray126[3], int_10, int_12, anIntArray123[3], this.anIntArray131[int_0], this.anIntArray131[int_0], this.anIntArray131[int_0], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], short_0);
+            short short_0 = this.aShortArray12[triangleIndex];
+            if (this.anIntArray132[triangleIndex] == -1) {
+               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.rasterTextureAffine(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
             } else {
-               Graphics3D.rasterTextureAffine(int_13, int_14, int_15, int_10, int_11, int_12, xViewportBuffer[0], xViewportBuffer[1], xViewportBuffer[2], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], short_0);
-               Graphics3D.rasterTextureAffine(int_13, int_15, anIntArray126[3], int_10, int_12, anIntArray123[3], xViewportBuffer[0], xViewportBuffer[2], xViewportBuffer[3], yViewportBuffer[int_16], yViewportBuffer[int_18], yViewportBuffer[int_19], anIntArray125[int_16], anIntArray125[int_18], anIntArray125[int_19], anIntArray118[int_16], anIntArray118[int_18], anIntArray118[int_19], short_0);
+               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.rasterTextureAffine(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[2], writtenScreenPixelsHLSAColour[3], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
             }
-         } else if (this.anIntArray132[int_0] == -1) {
-            int_16 = anIntArray128[this.anIntArray131[int_0]];
-            Graphics3D.rasterFlat(int_13, int_14, int_15, int_10, int_11, int_12, int_16);
-            Graphics3D.rasterFlat(int_13, int_15, anIntArray126[3], int_10, int_12, anIntArray123[3], int_16);
+         } else if (this.anIntArray132[triangleIndex] == -1) {
+            pointX = anIntArray128[this.triangleHSLA[triangleIndex]];
+            Rasterizer3D.drawFlatTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, pointX);
+            Rasterizer3D.drawFlatTriangle(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], pointX);
          } else {
-            Graphics3D.rasterGouraud(int_13, int_14, int_15, int_10, int_11, int_12, xViewportBuffer[0], xViewportBuffer[1], xViewportBuffer[2]);
-            Graphics3D.rasterGouraud(int_13, int_15, anIntArray126[3], int_10, int_12, anIntArray123[3], xViewportBuffer[0], xViewportBuffer[2], xViewportBuffer[3]);
+            Rasterizer3D.drawShadedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2]);
+            Rasterizer3D.drawShadedTriangle(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[2], writtenScreenPixelsHLSAColour[3]);
          }
       }
 
@@ -482,24 +491,24 @@ public class Model extends Renderable {
       }
 
       if (replace) {
-         model.aByteArray23 = this.aByteArray23;
+         model.triangleAlphaValues = this.triangleAlphaValues;
       } else {
-         model.aByteArray23 = alphas;
-         if (this.aByteArray23 == null) {
+         model.triangleAlphaValues = alphas;
+         if (this.triangleAlphaValues == null) {
             for (vertex = 0; vertex < this.triangleCount; vertex++) {
-               model.aByteArray23[vertex] = 0;
+               model.triangleAlphaValues[vertex] = 0;
             }
          } else {
             for (vertex = 0; vertex < this.triangleCount; vertex++) {
-               model.aByteArray23[vertex] = this.aByteArray23[vertex];
+               model.triangleAlphaValues[vertex] = this.triangleAlphaValues[vertex];
             }
          }
       }
 
-      model.indices1 = this.indices1;
-      model.indices2 = this.indices2;
-      model.indices3 = this.indices3;
-      model.anIntArray131 = this.anIntArray131;
+      model.trianglePointsX = this.trianglePointsX;
+      model.trianglePointsY = this.trianglePointsY;
+      model.trianglePointsZ = this.trianglePointsZ;
+      model.triangleHSLA = this.triangleHSLA;
       model.anIntArray133 = this.anIntArray133;
       model.anIntArray132 = this.anIntArray132;
       model.trianglePriorities = this.trianglePriorities;
@@ -528,9 +537,9 @@ public class Model extends Renderable {
          int sine = SINE[rotation];
 
          for (int int_9 = 0; int_9 < this.vertexCount; int_9++) {
-            int int_10 = Graphics3D.method958(this.verticesX[int_9], this.verticesZ[int_9], cos, sine);
+            int int_10 = Rasterizer3D.method958(this.verticesX[int_9], this.verticesZ[int_9], cos, sine);
             int int_11 = this.verticesY[int_9];
-            int int_12 = Graphics3D.method959(this.verticesX[int_9], this.verticesZ[int_9], cos, sine);
+            int int_12 = Rasterizer3D.method959(this.verticesX[int_9], this.verticesZ[int_9], cos, sine);
             if (int_10 < int_1) {
                int_1 = int_10;
             }
@@ -650,14 +659,14 @@ public class Model extends Renderable {
                model.texturedTriangleCount = this.texturedTriangleCount;
                model.verticesX = this.verticesX;
                model.verticesZ = this.verticesZ;
-               model.indices1 = this.indices1;
-               model.indices2 = this.indices2;
-               model.indices3 = this.indices3;
-               model.anIntArray131 = this.anIntArray131;
+               model.trianglePointsX = this.trianglePointsX;
+               model.trianglePointsY = this.trianglePointsY;
+               model.trianglePointsZ = this.trianglePointsZ;
+               model.triangleHSLA = this.triangleHSLA;
                model.anIntArray133 = this.anIntArray133;
                model.anIntArray132 = this.anIntArray132;
                model.trianglePriorities = this.trianglePriorities;
-               model.aByteArray23 = this.aByteArray23;
+               model.triangleAlphaValues = this.triangleAlphaValues;
                model.aByteArray25 = this.aByteArray25;
                model.aShortArray12 = this.aShortArray12;
                model.priorityOffset = this.priorityOffset;
@@ -721,31 +730,31 @@ public class Model extends Renderable {
       }
    }
 
-   void draw(int rotation, int int_1, int yCurveCosine, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
+   void draw(int rotation, int yCurveSine, int yCurveCosine, int xCurveSine, int xCurveCosine, int renderX, int renderZ, int renderY, int hash) {
       anIntArray115[0] = -1;
       if (this.anInt556 != 1) {
          this.calculateDiagonals();
       }
 
       this.method1012(rotation);
-      int int_9 = int_4 * int_7 - int_3 * int_5 >> 16;
-      int int_10 = int_1 * int_6 + yCurveCosine * int_9 >> 16;
+      int int_9 = xCurveCosine * renderY - xCurveSine * renderX >> 16;
+      int int_10 = yCurveSine * renderZ + yCurveCosine * int_9 >> 16;
       int int_11 = yCurveCosine * this.shadowIntensity >> 16;
       int int_12 = int_10 + int_11;
       if (int_12 > 50 && int_10 < 3500) {
-         int int_13 = int_7 * int_3 + int_4 * int_5 >> 16;
-         int int_14 = (int_13 - this.shadowIntensity) * Graphics3D.anInt543;
-         if (int_14 / int_12 < Graphics3D.anInt544) {
-            int int_15 = (int_13 + this.shadowIntensity) * Graphics3D.anInt543;
-            if (int_15 / int_12 > Graphics3D.anInt545) {
-               int int_16 = yCurveCosine * int_6 - int_9 * int_1 >> 16;
-               int int_17 = int_1 * this.shadowIntensity >> 16;
-               int int_18 = (int_16 + int_17) * Graphics3D.anInt543;
-               if (int_18 / int_12 > Graphics3D.anInt546) {
+         int int_13 = renderY * xCurveSine + xCurveCosine * renderX >> 16;
+         int int_14 = (int_13 - this.shadowIntensity) * Rasterizer3D.anInt543;
+         if (int_14 / int_12 < Rasterizer3D.anInt544) {
+            int int_15 = (int_13 + this.shadowIntensity) * Rasterizer3D.anInt543;
+            if (int_15 / int_12 > Rasterizer3D.anInt545) {
+               int int_16 = yCurveCosine * renderZ - int_9 * yCurveSine >> 16;
+               int int_17 = yCurveSine * this.shadowIntensity >> 16;
+               int int_18 = (int_16 + int_17) * Rasterizer3D.anInt543;
+               if (int_18 / int_12 > Rasterizer3D.anInt546) {
                   int int_19 = (yCurveCosine * super.modelHeight >> 16) + int_17;
-                  int int_20 = (int_16 - int_19) * Graphics3D.anInt543;
-                  if (int_20 / int_12 < Graphics3D.anInt547) {
-                     int int_21 = int_11 + (int_1 * super.modelHeight >> 16);
+                  int int_20 = (int_16 - int_19) * Rasterizer3D.anInt543;
+                  if (int_20 / int_12 < Rasterizer3D.anInt547) {
+                     int int_21 = int_11 + (yCurveSine * super.modelHeight >> 16);
                      boolean bool_0 = false;
                      boolean bool_1 = false;
                      if (int_10 - int_21 <= 50) {
@@ -756,18 +765,18 @@ public class Model extends Renderable {
                      int cursorX = Class54.anInt138;
                      int cursorY = WorldMapType1.method579();
                      boolean bool_3 = Class21.method211();
-                     if (Class37.fitsOnSingleSquare && int_8 > 0) {
-                        Class14.method187(this, int_5, int_6, int_7);
+                     if (Class37.displayBoundingVolume && hash > 0) {
+                        drawCube(this, renderX, renderZ, renderY);
                      }
 
                      int int_25;
                      int int_26;
                      int int_27;
                      int int_28;
-                     int int_29;
+                     int vertexScreenIndex;
                      int int_30;
                      int int_31;
-                     if (Class37.aBool15 && int_8 > 0) {
+                     if (Class37.aBool15 && hash > 0) {
                         int int_24 = int_10 - int_11;
                         if (int_24 <= 50) {
                            int_24 = 50;
@@ -789,21 +798,21 @@ public class Model extends Renderable {
                            int_27 = int_20 / int_24;
                         }
 
-                        int_29 = -8355840;
-                        int_30 = cursorX - Graphics3D.centerX;
-                        int_31 = cursorY - Graphics3D.centerY;
+                        vertexScreenIndex = -8355840;
+                        int_30 = cursorX - Rasterizer3D.centerX;
+                        int_31 = cursorY - Rasterizer3D.centerY;
                         if (int_30 > int_25 && int_30 < int_26 && int_31 > int_27 && int_31 < int_28) {
-                           int_29 = -256;
+                           vertexScreenIndex = -256;
                         }
 
-                        Class35.method566(int_25 + Graphics3D.centerX, int_27 + Graphics3D.centerY, int_26 + Graphics3D.centerX, int_28 + Graphics3D.centerY, int_29);
+                        Class35.method566(int_25 + Rasterizer3D.centerX, int_27 + Rasterizer3D.centerY, int_26 + Rasterizer3D.centerX, int_28 + Rasterizer3D.centerY, vertexScreenIndex);
                      }
 
                      boolean bool_4 = false;
-                     if (int_8 > 0 && bool_3) {
+                     if (hash > 0 && bool_3) {
                         boolean bool_5 = false;
                         if (aBool74) {
-                           bool_5 = Class4.method82(this, int_5, int_6, int_7);
+                           bool_5 = Class4.method82(this, renderX, renderZ, renderY);
                         } else {
                            int_26 = int_10 - int_11;
                            if (int_26 <= 50) {
@@ -826,8 +835,8 @@ public class Model extends Renderable {
                               int_20 /= int_26;
                            }
 
-                           int_27 = cursorX - Graphics3D.centerX;
-                           int_28 = cursorY - Graphics3D.centerY;
+                           int_27 = cursorX - Rasterizer3D.centerX;
+                           int_28 = cursorY - Rasterizer3D.centerY;
                            if (int_27 > int_14 && int_27 < int_15 && int_28 > int_20 && int_28 < int_18) {
                               bool_5 = true;
                            }
@@ -835,15 +844,15 @@ public class Model extends Renderable {
 
                         if (bool_5) {
                            if (this.fitsOnSingleSquare) {
-                              Class54.anIntArray34[++Class54.anInt140 - 1] = int_8;
+                              Class54.anIntArray34[++Class54.anInt140 - 1] = hash;
                            } else {
                               bool_4 = true;
                            }
                         }
                      }
 
-                     int_25 = Graphics3D.centerX;
-                     int_26 = Graphics3D.centerY;
+                     int_25 = Rasterizer3D.centerX;
+                     int_26 = Rasterizer3D.centerY;
                      int_27 = 0;
                      int_28 = 0;
                      if (rotation != 0) {
@@ -851,10 +860,10 @@ public class Model extends Renderable {
                         int_28 = COSINE[rotation];
                      }
 
-                     for (int_29 = 0; int_29 < this.vertexCount; int_29++) {
-                        int_30 = this.verticesX[int_29];
-                        int_31 = this.verticesY[int_29];
-                        int int_32 = this.verticesZ[int_29];
+                     for (vertexScreenIndex = 0; vertexScreenIndex < this.vertexCount; vertexScreenIndex++) {
+                        int_30 = this.verticesX[vertexScreenIndex];
+                        int_31 = this.verticesY[vertexScreenIndex];
+                        int int_32 = this.verticesZ[vertexScreenIndex];
                         int int_33;
                         if (rotation != 0) {
                            int_33 = int_32 * int_27 + int_30 * int_28 >> 16;
@@ -862,32 +871,32 @@ public class Model extends Renderable {
                            int_30 = int_33;
                         }
 
-                        int_30 += int_5;
-                        int_31 += int_6;
-                        int_32 += int_7;
-                        int_33 = int_32 * int_3 + int_4 * int_30 >> 16;
-                        int_32 = int_4 * int_32 - int_30 * int_3 >> 16;
+                        int_30 += renderX;
+                        int_31 += renderZ;
+                        int_32 += renderY;
+                        int_33 = int_32 * xCurveSine + xCurveCosine * int_30 >> 16;
+                        int_32 = xCurveCosine * int_32 - int_30 * xCurveSine >> 16;
                         int_30 = int_33;
-                        int_33 = yCurveCosine * int_31 - int_32 * int_1 >> 16;
-                        int_32 = int_31 * int_1 + yCurveCosine * int_32 >> 16;
-                        anIntArray124[int_29] = int_32 - int_10;
+                        int_33 = yCurveCosine * int_31 - int_32 * yCurveSine >> 16;
+                        int_32 = int_31 * yCurveSine + yCurveCosine * int_32 >> 16;
+                        vertexScreenZ[vertexScreenIndex] = int_32 - int_10;
                         if (int_32 >= 50) {
-                           anIntArray120[int_29] = int_30 * Graphics3D.anInt543 / int_32 + int_25;
-                           anIntArray122[int_29] = int_33 * Graphics3D.anInt543 / int_32 + int_26;
+                           vertexScreenX[vertexScreenIndex] = int_30 * Rasterizer3D.anInt543 / int_32 + int_25;
+                           vertexScreenY[vertexScreenIndex] = int_33 * Rasterizer3D.anInt543 / int_32 + int_26;
                         } else {
-                           anIntArray120[int_29] = -5000;
+                           vertexScreenX[vertexScreenIndex] = -5000;
                            bool_0 = true;
                         }
 
                         if (bool_2) {
-                           yViewportBuffer[int_29] = int_30;
-                           anIntArray125[int_29] = int_33;
-                           anIntArray118[int_29] = int_32;
+                           vertexMvX[vertexScreenIndex] = int_30;
+                           vertexMvY[vertexScreenIndex] = int_33;
+                           vertexMvZ[vertexScreenIndex] = int_32;
                         }
                      }
 
                      try {
-                        this.method1025(bool_0, bool_4, this.fitsOnSingleSquare, int_8);
+                        this.method1025(bool_0, bool_4, this.fitsOnSingleSquare, hash);
                      } catch (Exception exception_0) {
                         ;
                      }
@@ -987,44 +996,44 @@ public class Model extends Renderable {
       }
    }
 
-   void method1023(int int_0) {
-      if (aBoolArray6[int_0]) {
-         this.method1010(int_0);
+   void rasterize(int triangle) {
+      if (triangleRenderRules[triangle]) {
+         this.rasterizeTriangle(triangle);
       } else {
-         int int_1 = this.indices1[int_0];
-         int int_2 = this.indices2[int_0];
-         int int_3 = this.indices3[int_0];
-         Graphics3D.rasterClipEnable = aBoolArray7[int_0];
-         if (this.aByteArray23 == null) {
-            Graphics3D.rasterAlpha = 0;
+         int trianglePointX = this.trianglePointsX[triangle];
+         int trianglePointY = this.trianglePointsY[triangle];
+         int trianglePointZ = this.trianglePointsZ[triangle];
+         Rasterizer3D.restrictEdges = aBoolArray7[triangle];
+         if (this.triangleAlphaValues == null) {
+            Rasterizer3D.alpha = 0;
          } else {
-            Graphics3D.rasterAlpha = this.aByteArray23[int_0] & 0xFF;
+            Rasterizer3D.alpha = this.triangleAlphaValues[triangle] & 0xFF;
          }
 
-         if (this.aShortArray12 != null && this.aShortArray12[int_0] != -1) {
-            int int_5;
-            int int_6;
-            int int_7;
-            if (this.aByteArray25 != null && this.aByteArray25[int_0] != -1) {
-               int int_4 = this.aByteArray25[int_0] & 0xFF;
-               int_5 = this.texturedTrianglePointsX[int_4];
-               int_6 = this.texturedTrianglePointsY[int_4];
-               int_7 = this.texturedTrianglePointsZ[int_4];
+         if (this.aShortArray12 != null && this.aShortArray12[triangle] != -1) {
+            int texturePointX;
+            int texturePointY;
+            int texturePointZ;
+            if (this.aByteArray25 != null && this.aByteArray25[triangle] != -1) {
+               int int_4 = this.aByteArray25[triangle] & 0xFF;
+               texturePointX = this.texturedTrianglePointsX[int_4];
+               texturePointY = this.texturedTrianglePointsY[int_4];
+               texturePointZ = this.texturedTrianglePointsZ[int_4];
             } else {
-               int_5 = int_1;
-               int_6 = int_2;
-               int_7 = int_3;
+               texturePointX = trianglePointX;
+               texturePointY = trianglePointY;
+               texturePointZ = trianglePointZ;
             }
 
-            if (this.anIntArray132[int_0] == -1) {
-               Graphics3D.rasterTextureAffine(anIntArray122[int_1], anIntArray122[int_2], anIntArray122[int_3], anIntArray120[int_1], anIntArray120[int_2], anIntArray120[int_3], this.anIntArray131[int_0], this.anIntArray131[int_0], this.anIntArray131[int_0], yViewportBuffer[int_5], yViewportBuffer[int_6], yViewportBuffer[int_7], anIntArray125[int_5], anIntArray125[int_6], anIntArray125[int_7], anIntArray118[int_5], anIntArray118[int_6], anIntArray118[int_7], this.aShortArray12[int_0]);
+            if (this.anIntArray132[triangle] == -1) {
+               Rasterizer3D.rasterTextureAffine(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.triangleHSLA[triangle], this.triangleHSLA[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
             } else {
-               Graphics3D.rasterTextureAffine(anIntArray122[int_1], anIntArray122[int_2], anIntArray122[int_3], anIntArray120[int_1], anIntArray120[int_2], anIntArray120[int_3], this.anIntArray131[int_0], this.anIntArray133[int_0], this.anIntArray132[int_0], yViewportBuffer[int_5], yViewportBuffer[int_6], yViewportBuffer[int_7], anIntArray125[int_5], anIntArray125[int_6], anIntArray125[int_7], anIntArray118[int_5], anIntArray118[int_6], anIntArray118[int_7], this.aShortArray12[int_0]);
+               Rasterizer3D.rasterTextureAffine(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.anIntArray133[triangle], this.anIntArray132[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
             }
-         } else if (this.anIntArray132[int_0] == -1) {
-            Graphics3D.rasterFlat(anIntArray122[int_1], anIntArray122[int_2], anIntArray122[int_3], anIntArray120[int_1], anIntArray120[int_2], anIntArray120[int_3], anIntArray128[this.anIntArray131[int_0]]);
+         } else if (this.anIntArray132[triangle] == -1) {
+            Rasterizer3D.drawFlatTriangle(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], anIntArray128[this.triangleHSLA[triangle]]);
          } else {
-            Graphics3D.rasterGouraud(anIntArray122[int_1], anIntArray122[int_2], anIntArray122[int_3], anIntArray120[int_1], anIntArray120[int_2], anIntArray120[int_3], this.anIntArray131[int_0], this.anIntArray133[int_0], this.anIntArray132[int_0]);
+            Rasterizer3D.drawShadedTriangle(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.anIntArray133[triangle], this.anIntArray132[triangle]);
          }
 
       }
@@ -1155,7 +1164,7 @@ public class Model extends Renderable {
             }
 
          } else if (int_0 == 5) {
-            if (this.anIntArrayArray18 != null && this.aByteArray23 != null) {
+            if (this.anIntArrayArray18 != null && this.triangleAlphaValues != null) {
                for (int_5 = 0; int_5 < int_4; int_5++) {
                   int_6 = ints_0[int_5];
                   if (int_6 < this.anIntArrayArray18.length) {
@@ -1163,14 +1172,14 @@ public class Model extends Renderable {
 
                      for (int_10 = 0; int_10 < ints_2.length; int_10++) {
                         int_8 = ints_2[int_10];
-                        int_9 = (this.aByteArray23[int_8] & 0xFF) + int_1 * 8;
+                        int_9 = (this.triangleAlphaValues[int_8] & 0xFF) + int_1 * 8;
                         if (int_9 < 0) {
                            int_9 = 0;
                         } else if (int_9 > 255) {
                            int_9 = 255;
                         }
 
-                        this.aByteArray23[int_8] = (byte)int_9;
+                        this.triangleAlphaValues[int_8] = (byte)int_9;
                      }
                   }
                }
@@ -1204,40 +1213,40 @@ public class Model extends Renderable {
          int int_13;
          for (int_2 = 0; int_2 < this.triangleCount; int_2++) {
             if (this.anIntArray132[int_2] != -2) {
-               int_3 = this.indices1[int_2];
-               int_4 = this.indices2[int_2];
-               int_5 = this.indices3[int_2];
-               int_6 = anIntArray120[int_3];
-               int_7 = anIntArray120[int_4];
-               int_8 = anIntArray120[int_5];
+               int_3 = this.trianglePointsX[int_2];
+               int_4 = this.trianglePointsY[int_2];
+               int_5 = this.trianglePointsZ[int_2];
+               int_6 = vertexScreenX[int_3];
+               int_7 = vertexScreenX[int_4];
+               int_8 = vertexScreenX[int_5];
                int int_9;
                if (!bool_0 || int_6 != -5000 && int_7 != -5000 && int_8 != -5000) {
-                  if (bool_1 && WorldMapData_Sub1.method603(anIntArray122[int_3], anIntArray122[int_4], anIntArray122[int_5], int_6, int_7, int_8, int_1)) {
+                  if (bool_1 && WorldMapData_Sub1.method603(vertexScreenY[int_3], vertexScreenY[int_4], vertexScreenY[int_5], int_6, int_7, int_8, int_1)) {
                      Class54.anIntArray34[++Class54.anInt140 - 1] = int_0;
                      bool_1 = false;
                   }
 
-                  if ((int_6 - int_7) * (anIntArray122[int_5] - anIntArray122[int_4]) - (int_8 - int_7) * (anIntArray122[int_3] - anIntArray122[int_4]) > 0) {
-                     aBoolArray6[int_2] = false;
-                     if (int_6 >= 0 && int_7 >= 0 && int_8 >= 0 && int_6 <= Graphics3D.rasterClipX && int_7 <= Graphics3D.rasterClipX && int_8 <= Graphics3D.rasterClipX) {
+                  if ((int_6 - int_7) * (vertexScreenY[int_5] - vertexScreenY[int_4]) - (int_8 - int_7) * (vertexScreenY[int_3] - vertexScreenY[int_4]) > 0) {
+                     triangleRenderRules[int_2] = false;
+                     if (int_6 >= 0 && int_7 >= 0 && int_8 >= 0 && int_6 <= Rasterizer3D.rasterClipX && int_7 <= Rasterizer3D.rasterClipX && int_8 <= Rasterizer3D.rasterClipX) {
                         aBoolArray7[int_2] = false;
                      } else {
                         aBoolArray7[int_2] = true;
                      }
 
-                     int_9 = (anIntArray124[int_3] + anIntArray124[int_4] + anIntArray124[int_5]) / 3 + this.shadowIntensity3D;
+                     int_9 = (vertexScreenZ[int_3] + vertexScreenZ[int_4] + vertexScreenZ[int_5]) / 3 + this.shadowIntensity3D;
                      anIntArrayArray15[int_9][anIntArray115[int_9]++] = int_2;
                   }
                } else {
-                  int_9 = yViewportBuffer[int_3];
-                  int_10 = yViewportBuffer[int_4];
-                  int_11 = yViewportBuffer[int_5];
-                  int int_12 = anIntArray125[int_3];
-                  int_13 = anIntArray125[int_4];
-                  int int_14 = anIntArray125[int_5];
-                  int int_15 = anIntArray118[int_3];
-                  int int_16 = anIntArray118[int_4];
-                  int int_17 = anIntArray118[int_5];
+                  int_9 = vertexMvX[int_3];
+                  int_10 = vertexMvX[int_4];
+                  int_11 = vertexMvX[int_5];
+                  int int_12 = vertexMvY[int_3];
+                  int_13 = vertexMvY[int_4];
+                  int int_14 = vertexMvY[int_5];
+                  int int_15 = vertexMvZ[int_3];
+                  int int_16 = vertexMvZ[int_4];
+                  int int_17 = vertexMvZ[int_5];
                   int_9 -= int_10;
                   int_11 -= int_10;
                   int_12 -= int_13;
@@ -1248,8 +1257,8 @@ public class Model extends Renderable {
                   int int_19 = int_15 * int_11 - int_9 * int_17;
                   int int_20 = int_9 * int_14 - int_12 * int_11;
                   if (int_10 * int_18 + int_13 * int_19 + int_16 * int_20 > 0) {
-                     aBoolArray6[int_2] = true;
-                     int int_21 = (anIntArray124[int_3] + anIntArray124[int_4] + anIntArray124[int_5]) / 3 + this.shadowIntensity3D;
+                     triangleRenderRules[int_2] = true;
+                     int int_21 = (vertexScreenZ[int_3] + vertexScreenZ[int_4] + vertexScreenZ[int_5]) / 3 + this.shadowIntensity3D;
                      anIntArrayArray15[int_21][anIntArray115[int_21]++] = int_2;
                   }
                }
@@ -1264,7 +1273,7 @@ public class Model extends Renderable {
                   ints_0 = anIntArrayArray15[int_2];
 
                   for (int_5 = 0; int_5 < int_3; int_5++) {
-                     this.method1023(ints_0[int_5]);
+                     this.rasterize(ints_0[int_5]);
                   }
                }
             }
@@ -1330,7 +1339,7 @@ public class Model extends Renderable {
 
             for (int_10 = 0; int_10 < 10; int_10++) {
                while (int_10 == 0 && int_5 > int_2) {
-                  this.method1023(ints_1[int_6++]);
+                  this.rasterize(ints_1[int_6++]);
                   if (int_6 == int_7 && ints_1 != anIntArrayArray16[11]) {
                      int_6 = 0;
                      int_7 = anIntArray119[11];
@@ -1346,7 +1355,7 @@ public class Model extends Renderable {
                }
 
                while (int_10 == 3 && int_5 > int_3) {
-                  this.method1023(ints_1[int_6++]);
+                  this.rasterize(ints_1[int_6++]);
                   if (int_6 == int_7 && ints_1 != anIntArrayArray16[11]) {
                      int_6 = 0;
                      int_7 = anIntArray119[11];
@@ -1362,7 +1371,7 @@ public class Model extends Renderable {
                }
 
                while (int_10 == 5 && int_5 > int_4) {
-                  this.method1023(ints_1[int_6++]);
+                  this.rasterize(ints_1[int_6++]);
                   if (int_6 == int_7 && ints_1 != anIntArrayArray16[11]) {
                      int_6 = 0;
                      int_7 = anIntArray119[11];
@@ -1381,12 +1390,12 @@ public class Model extends Renderable {
                int[] ints_3 = anIntArrayArray16[int_10];
 
                for (int_13 = 0; int_13 < int_11; int_13++) {
-                  this.method1023(ints_3[int_13]);
+                  this.rasterize(ints_3[int_13]);
                }
             }
 
             while (int_5 != -1000) {
-               this.method1023(ints_1[int_6++]);
+               this.rasterize(ints_1[int_6++]);
                if (int_6 == int_7 && ints_1 != anIntArrayArray16[11]) {
                   int_6 = 0;
                   ints_1 = anIntArrayArray16[11];
@@ -1421,8 +1430,8 @@ public class Model extends Renderable {
          this.method1014();
       }
 
-      int int_7 = Graphics3D.centerX;
-      int int_8 = Graphics3D.centerY;
+      int int_7 = Rasterizer3D.centerX;
+      int int_8 = Rasterizer3D.centerY;
       int int_9 = SINE[int_0];
       int int_10 = COSINE[int_0];
       int int_11 = SINE[int_1];
@@ -1461,13 +1470,13 @@ public class Model extends Renderable {
          int_21 += int_6;
          int_22 = int_20 * int_16 - int_21 * int_15 >> 16;
          int_21 = int_20 * int_15 + int_21 * int_16 >> 16;
-         anIntArray124[int_18] = int_21 - int_17;
-         anIntArray120[int_18] = int_19 * Graphics3D.anInt543 / int_21 + int_7;
-         anIntArray122[int_18] = int_22 * Graphics3D.anInt543 / int_21 + int_8;
+         vertexScreenZ[int_18] = int_21 - int_17;
+         vertexScreenX[int_18] = int_19 * Rasterizer3D.anInt543 / int_21 + int_7;
+         vertexScreenY[int_18] = int_22 * Rasterizer3D.anInt543 / int_21 + int_8;
          if (this.texturedTriangleCount > 0) {
-            yViewportBuffer[int_18] = int_19;
-            anIntArray125[int_18] = int_22;
-            anIntArray118[int_18] = int_21;
+            vertexMvX[int_18] = int_19;
+            vertexMvY[int_18] = int_22;
+            vertexMvZ[int_18] = int_21;
          }
       }
 
@@ -1485,8 +1494,8 @@ public class Model extends Renderable {
          this.method1014();
       }
 
-      int int_8 = Graphics3D.centerX;
-      int int_9 = Graphics3D.centerY;
+      int int_8 = Rasterizer3D.centerX;
+      int int_9 = Rasterizer3D.centerY;
       int int_10 = SINE[int_0];
       int int_11 = COSINE[int_0];
       int int_12 = SINE[int_1];
@@ -1525,13 +1534,13 @@ public class Model extends Renderable {
          int_22 += int_6;
          int_23 = int_21 * int_17 - int_22 * int_16 >> 16;
          int_22 = int_21 * int_16 + int_22 * int_17 >> 16;
-         anIntArray124[int_19] = int_22 - int_18;
-         anIntArray120[int_19] = int_8 + int_20 * Graphics3D.anInt543 / int_7;
-         anIntArray122[int_19] = int_9 + int_23 * Graphics3D.anInt543 / int_7;
+         vertexScreenZ[int_19] = int_22 - int_18;
+         vertexScreenX[int_19] = int_8 + int_20 * Rasterizer3D.anInt543 / int_7;
+         vertexScreenY[int_19] = int_9 + int_23 * Rasterizer3D.anInt543 / int_7;
          if (this.texturedTriangleCount > 0) {
-            yViewportBuffer[int_19] = int_20;
-            anIntArray125[int_19] = int_23;
-            anIntArray118[int_19] = int_22;
+            vertexMvX[int_19] = int_20;
+            vertexMvY[int_19] = int_23;
+            vertexMvZ[int_19] = int_22;
          }
       }
 

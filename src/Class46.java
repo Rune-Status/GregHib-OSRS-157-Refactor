@@ -116,7 +116,7 @@ public class Class46 {
             for (int_1 = 0; int_1 < 9; int_1++) {
                int_2 = int_1 * 32 + 15 + 128;
                int_3 = int_2 * 3 + 600;
-               int_4 = Graphics3D.SINE[int_2];
+               int_4 = Rasterizer3D.SINE[int_2];
                ints_0[int_1] = int_3 * int_4 >> 16;
             }
 
@@ -392,8 +392,8 @@ public class Class46 {
                Class25.loadingBarPercentage = 90;
             } else {
                TextureProvider textureprovider_0 = new TextureProvider(Class49.texturesIndex, Class34.spritesIndex, 20, 0.8D, Client.lowMemory ? 64 : 128);
-               Graphics3D.setTextureLoader(textureprovider_0);
-               Graphics3D.setBrightness(0.8D);
+               Rasterizer3D.setTextureLoader(textureprovider_0);
+               Rasterizer3D.setBrightness(0.8D);
                Class25.loadingText = "Loaded textures";
                Class25.loadingBarPercentage = 90;
                Client.loadingStage = 110;

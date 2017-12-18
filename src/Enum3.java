@@ -43,13 +43,13 @@ public enum Enum3 implements RSEnum {
    public static void method669(Model model_0, int int_0) {
       for (int int_1 = 0; int_1 < model_0.triangleCount; int_1++) {
          if (model_0.anIntArray132[int_1] != -2) {
-            int int_2 = model_0.indices1[int_1];
-            int int_3 = model_0.indices2[int_1];
-            int int_4 = model_0.indices3[int_1];
-            int int_5 = Model.anIntArray120[int_2];
-            int int_6 = Model.anIntArray120[int_3];
-            int int_7 = Model.anIntArray120[int_4];
-            Class35.method244(Model.anIntArray122[int_2], Model.anIntArray122[int_3], Model.anIntArray122[int_4], int_5, int_6, int_7, int_0);
+            int int_2 = model_0.trianglePointsX[int_1];
+            int int_3 = model_0.trianglePointsY[int_1];
+            int int_4 = model_0.trianglePointsZ[int_1];
+            int int_5 = Model.vertexScreenX[int_2];
+            int int_6 = Model.vertexScreenX[int_3];
+            int int_7 = Model.vertexScreenX[int_4];
+            Class35.method244(Model.vertexScreenY[int_2], Model.vertexScreenY[int_3], Model.vertexScreenY[int_4], int_5, int_6, int_7, int_0);
          }
       }
 

@@ -395,7 +395,7 @@ public final class Class14 {
 
    static void gameDraw(Widget[] widgets_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7) {
       Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
-      Graphics3D.method960();
+      Rasterizer3D.method960();
 
       for (int int_8 = 0; int_8 < widgets_0.length; int_8++) {
          Widget widget_0 = widgets_0[int_8];
@@ -616,7 +616,7 @@ public final class Class14 {
                      }
 
                      Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
-                     Graphics3D.method960();
+                     Rasterizer3D.method960();
                   }
 
                   if (Client.isResized || Client.aBoolArray10[int_9] || Client.gameDrawingMode > 1) {
@@ -914,9 +914,9 @@ public final class Class14 {
                                     }
                                  }
 
-                                 Graphics3D.method970(widget_0.width / 2 + int_10, widget_0.height / 2 + int_11);
-                                 int_21 = Graphics3D.SINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
-                                 int_22 = Graphics3D.COSINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
+                                 Rasterizer3D.method970(widget_0.width / 2 + int_10, widget_0.height / 2 + int_11);
+                                 int_21 = Rasterizer3D.SINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
+                                 int_22 = Rasterizer3D.COSINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
                                  if (model_0 != null) {
                                     if (!widget_0.hasScript) {
                                        model_0.method1027(0, widget_0.modelRotationZ, 0, widget_0.modelRotationX, 0, int_21, int_22);
@@ -930,7 +930,7 @@ public final class Class14 {
                                     }
                                  }
 
-                                 Graphics3D.method961();
+                                 Rasterizer3D.method961();
                               } else {
                                  if (widget_0.type == 7) {
                                     font_1 = widget_0.getFont();
@@ -1055,15 +1055,6 @@ public final class Class14 {
                }
             }
          }
-      }
-
-   }
-
-   public static void method187(Model model_0, int int_0, int int_1, int int_2) {
-      if (Class4.method82(model_0, int_0, int_1, int_2)) {
-         Class42.method264(model_0, int_0, int_1, int_2, -65281);
-      } else if (Class37.aClass26_3 == Class26.aClass26_2) {
-         Class42.method264(model_0, int_0, int_1, int_2, -16776961);
       }
 
    }

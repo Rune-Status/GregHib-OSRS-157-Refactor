@@ -295,8 +295,8 @@ public class ItemContainer extends Node {
                            int_18 -= cacheablenode_sub1_0.width / 2;
                            int_19 -= cacheablenode_sub1_0.height / 2;
                            int_20 = Client.mapAngle & 0x7FF;
-                           int_21 = Graphics3D.SINE[int_20];
-                           int_22 = Graphics3D.COSINE[int_20];
+                           int_21 = Rasterizer3D.SINE[int_20];
+                           int_22 = Rasterizer3D.COSINE[int_20];
                            int_23 = int_22 * int_18 + int_19 * int_21 >> 11;
                            int_24 = int_19 * int_22 - int_18 * int_21 >> 11;
                            int int_30 = int_23 + Class4.localPlayer.x >> 7;

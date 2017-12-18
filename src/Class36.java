@@ -452,16 +452,16 @@ public class Class36 {
       int int_12;
       int int_13;
       if (int_6 != 0) {
-         int_11 = Graphics3D.SINE[int_6];
-         int_12 = Graphics3D.COSINE[int_6];
+         int_11 = Rasterizer3D.SINE[int_6];
+         int_12 = Rasterizer3D.COSINE[int_6];
          int_13 = int_9 * int_12 - int_11 * int_5 >> 16;
          int_10 = int_11 * int_9 + int_5 * int_12 >> 16;
          int_9 = int_13;
       }
 
       if (int_7 != 0) {
-         int_11 = Graphics3D.SINE[int_7];
-         int_12 = Graphics3D.COSINE[int_7];
+         int_11 = Rasterizer3D.SINE[int_7];
+         int_12 = Rasterizer3D.COSINE[int_7];
          int_13 = int_11 * int_10 + int_8 * int_12 >> 16;
          int_10 = int_10 * int_12 - int_8 * int_11 >> 16;
          int_8 = int_13;

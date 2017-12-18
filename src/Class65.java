@@ -72,7 +72,7 @@ public class Class65 {
          for (int int_9 = 0; int_9 < 9; int_9++) {
             int int_10 = int_9 * 32 + 15 + 128;
             int int_11 = int_10 * 3 + 600;
-            int int_12 = Graphics3D.SINE[int_10];
+            int int_12 = Rasterizer3D.SINE[int_10];
             ints_0[int_9] = int_12 * int_11 >> 16;
          }
 

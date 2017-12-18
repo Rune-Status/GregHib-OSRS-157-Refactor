@@ -160,7 +160,7 @@ public class Spotanim extends CacheableNode {
       int_2 = Client.viewportHeight;
       int_3 = Client.viewportWidth;
       Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
-      Graphics3D.method960();
+      Rasterizer3D.method960();
       int int_4;
       int int_5;
       if (!Client.aBool94) {
@@ -356,11 +356,11 @@ public class Spotanim extends CacheableNode {
       Enum2.reloadSound();
       Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
       Enum2.reloadSound();
-      int_12 = Graphics3D.anInt543;
-      Graphics3D.anInt543 = Client.scale;
+      int_12 = Rasterizer3D.anInt543;
+      Rasterizer3D.anInt543 = Client.scale;
       Class23.sceneGraph.draw(Class2.cameraX, Class18.cameraZ, Player.cameraY, AClass1.cameraPitch, Enum4.cameraYaw, int_4);
       Class44.method273();
-      Graphics3D.anInt543 = int_12;
+      Rasterizer3D.anInt543 = int_12;
       Enum2.reloadSound();
       Class23.sceneGraph.clearInteractiveObjectCache();
       Client.anInt691 = 0;
@@ -511,7 +511,7 @@ public class Spotanim extends CacheableNode {
          }
       }
 
-      ((TextureProvider) Graphics3D.textureLoader).method569(Client.anInt625);
+      ((TextureProvider) Rasterizer3D.textureLoader).method569(Client.anInt625);
       if (Client.cursorState == 1) {
          CombatInfoListHolder.aSpritePixelsArray2[Client.anInt645 / 100].drawAt(Client.anInt641 - 8, Client.anInt642 - 8);
       }

@@ -18,10 +18,10 @@ final class Class35 implements Interface1 {
          int_0 -= Class2.cameraX;
          int_3 -= Class18.cameraZ;
          int_1 -= Player.cameraY;
-         int int_4 = Graphics3D.SINE[AClass1.cameraPitch];
-         int int_5 = Graphics3D.COSINE[AClass1.cameraPitch];
-         int int_6 = Graphics3D.SINE[Enum4.cameraYaw];
-         int int_7 = Graphics3D.COSINE[Enum4.cameraYaw];
+         int int_4 = Rasterizer3D.SINE[AClass1.cameraPitch];
+         int int_5 = Rasterizer3D.COSINE[AClass1.cameraPitch];
+         int int_6 = Rasterizer3D.SINE[Enum4.cameraYaw];
+         int int_7 = Rasterizer3D.COSINE[Enum4.cameraYaw];
          int int_8 = int_6 * int_1 + int_0 * int_7 >> 16;
          int_1 = int_7 * int_1 - int_0 * int_6 >> 16;
          int_0 = int_8;

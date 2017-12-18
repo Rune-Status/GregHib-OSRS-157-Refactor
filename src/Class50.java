@@ -106,10 +106,10 @@ public class Class50 {
          int int_22 = int_1 - int_16;
          int int_23 = int_7 + int_1 - int_16;
          int int_24 = int_15 + int_7 + int_1;
-         Graphics3D.setRasterClippingEnabled(int_17, int_18, int_19);
-         Graphics3D.rasterFlat(int_21, int_22, int_23, int_17, int_18, int_19, int_4);
-         Graphics3D.setRasterClippingEnabled(int_17, int_19, int_20);
-         Graphics3D.rasterFlat(int_21, int_23, int_24, int_17, int_19, int_20, int_4);
+         Rasterizer3D.setRasterClippingEnabled(int_17, int_18, int_19);
+         Rasterizer3D.drawFlatTriangle(int_21, int_22, int_23, int_17, int_18, int_19, int_4);
+         Rasterizer3D.setRasterClippingEnabled(int_17, int_19, int_20);
+         Rasterizer3D.drawFlatTriangle(int_21, int_23, int_24, int_17, int_19, int_20, int_4);
       }
    }
 

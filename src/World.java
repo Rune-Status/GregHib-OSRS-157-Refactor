@@ -83,7 +83,7 @@ public class World {
       Widget.widgetModelCache.reset();
       Widget.fontCache.reset();
       Widget.spriteCache.reset();
-      ((TextureProvider) Graphics3D.textureLoader).reset();
+      ((TextureProvider) Rasterizer3D.textureLoader).reset();
       Script.aNodeCache18.reset();
       Varcs.interfacesIndex.reset();
       Class6.skinsIndex.reset();

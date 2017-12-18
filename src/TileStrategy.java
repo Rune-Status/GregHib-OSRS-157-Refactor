@@ -30,7 +30,7 @@ public class TileStrategy extends RouteStrategy {
          int int_3;
          int int_4;
          if (overlay_0.texture >= 0) {
-            int_2 = Graphics3D.textureLoader.getAverageTextureRGB(overlay_0.texture);
+            int_2 = Rasterizer3D.textureLoader.getAverageTextureRGB(overlay_0.texture);
             byte_0 = 96;
             if (int_2 == -2) {
                int_3 = 12345678;
@@ -54,7 +54,7 @@ public class TileStrategy extends RouteStrategy {
                int_3 = int_4 + (int_2 & 0xFF80);
             }
 
-            return Graphics3D.colorPalette[int_3] | 0xFF000000;
+            return Rasterizer3D.colorPalette[int_3] | 0xFF000000;
          } else if (overlay_0.color == 16711935) {
             return int_1;
          } else {
@@ -82,7 +82,7 @@ public class TileStrategy extends RouteStrategy {
                int_2 = int_4 + (int_3 & 0xFF80);
             }
 
-            return Graphics3D.colorPalette[int_2] | 0xFF000000;
+            return Rasterizer3D.colorPalette[int_2] | 0xFF000000;
          }
       }
    }

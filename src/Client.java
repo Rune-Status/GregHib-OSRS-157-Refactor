@@ -564,23 +564,23 @@ public final class Client extends GameEngine {
           int setting = Settings.widgetSettings[id];
           if (type == 1) {
              if (setting == 1) {
-                Graphics3D.setBrightness(0.9D);
-                ((TextureProvider) Graphics3D.textureLoader).brightness(0.9D);
+                Rasterizer3D.setBrightness(0.9D);
+                ((TextureProvider) Rasterizer3D.textureLoader).brightness(0.9D);
              }
 
              if (setting == 2) {
-                Graphics3D.setBrightness(0.8D);
-                ((TextureProvider) Graphics3D.textureLoader).brightness(0.8D);
+                Rasterizer3D.setBrightness(0.8D);
+                ((TextureProvider) Rasterizer3D.textureLoader).brightness(0.8D);
              }
 
              if (setting == 3) {
-                Graphics3D.setBrightness(0.7D);
-                ((TextureProvider) Graphics3D.textureLoader).brightness(0.7D);
+                Rasterizer3D.setBrightness(0.7D);
+                ((TextureProvider) Rasterizer3D.textureLoader).brightness(0.7D);
              }
 
              if (setting == 4) {
-                Graphics3D.setBrightness(0.6D);
-                ((TextureProvider) Graphics3D.textureLoader).brightness(0.6D);
+                Rasterizer3D.setBrightness(0.6D);
+                ((TextureProvider) Rasterizer3D.textureLoader).brightness(0.6D);
              }
 
              ItemDefinition.itemSpriteCache.reset();
@@ -1215,7 +1215,7 @@ public final class Client extends GameEngine {
 
                                int_31 = 0;
                                if (hsl != -1) {
-                                  int_31 = Graphics3D.colorPalette[GameObject.getRgbTableId(hsl, 96)];
+                                  int_31 = Rasterizer3D.colorPalette[GameObject.getRgbTableId(hsl, 96)];
                                }
 
                                if (tileHashOffset == 0) {
@@ -1230,7 +1230,7 @@ public final class Client extends GameEngine {
                                   int int_37;
                                   int int_38;
                                   if (int_34 >= 0) {
-                                     int_35 = Graphics3D.textureLoader.getAverageTextureRGB(int_34);
+                                     int_35 = Rasterizer3D.textureLoader.getAverageTextureRGB(int_34);
                                      int_36 = -1;
                                   } else if (overlay_0.color == 16711935) {
                                      int_36 = -2;
@@ -1251,7 +1251,7 @@ public final class Client extends GameEngine {
 
                                   int_37 = 0;
                                   if (int_35 != -2) {
-                                     int_37 = Graphics3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                     int_37 = Rasterizer3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
                                   }
 
                                   if (overlay_0.otherRgbColor != -1) {
@@ -1264,7 +1264,7 @@ public final class Client extends GameEngine {
                                      }
 
                                      int_35 = WorldMapData_Sub1.method609(int_38, overlay_0.otherSaturation, int_39);
-                                     int_37 = Graphics3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                     int_37 = Rasterizer3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
                                   }
 
                                   sceneGraph.addTile(localY, terminate, int_16, int_32, byte_0, int_34, tileType, tileX, tileY, info, GameObject.getRgbTableId(objectY, objectType), GameObject.getRgbTableId(objectY, face), GameObject.getRgbTableId(objectY, int_30), GameObject.getRgbTableId(objectY, objectX), Class14.adjustHSLListness0(int_36, objectType), Class14.adjustHSLListness0(int_36, face), Class14.adjustHSLListness0(int_36, int_30), Class14.adjustHSLListness0(int_36, objectX), int_31, int_37);
@@ -1591,6 +1591,17 @@ public final class Client extends GameEngine {
     public static int getRotatedMapChunk(int x, int y, int rotation) {
        rotation &= 0x3;
        return rotation == 0 ? x : (rotation == 1 ? y : (rotation == 2 ? 7 - x : 7 - y));
+    }
+
+    static void drop() {
+       if (anInt609 > 0) {
+          Class62.method396();
+       } else {
+          aClass100_1.method526();
+          Class110.setGameState(40);
+          MessageNode.aRSSocket2 = aClass46_1.createSocket();
+          aClass46_1.method279();
+       }
     }
 
     void processJS5Connection() {
@@ -3559,7 +3570,7 @@ public final class Client extends GameEngine {
                 Class13.method168("" + (class46_0.serverPacket != null ? class46_0.serverPacket.packetId : -1) + "," + (class46_0.aServerPacket1 != null ? class46_0.aServerPacket1.packetId : -1) + "," + (class46_0.aServerPacket2 != null ? class46_0.aServerPacket2.packetId : -1) + "," + class46_0.packetLength, (Throwable) null);
                 Class62.method396();
             } catch (IOException ioexception_0) {
-                WidgetNode.method684();
+                drop();
             } catch (Exception exception_0) {
                 string_1 = "" + (class46_0.serverPacket != null ? class46_0.serverPacket.packetId : -1) + "," + (class46_0.aServerPacket1 != null ? class46_0.aServerPacket1.packetId : -1) + "," + (class46_0.aServerPacket2 != null ? class46_0.aServerPacket2.packetId : -1) + "," + class46_0.packetLength + "," + (Class4.localPlayer.pathX[0] + regionBaseX) + "," + (Class4.localPlayer.pathY[0] + regionBaseY) + ",";
 
@@ -3922,7 +3933,7 @@ public final class Client extends GameEngine {
 
         if (socketError) {
             socketError = false;
-            WidgetNode.method684();
+            drop();
         } else {
             if (!isMenuOpen) {
                 Class9.method147();
@@ -4156,7 +4167,7 @@ public final class Client extends GameEngine {
                         Class24.method216();
                         ++aClass46_1.anInt103;
                         if (aClass46_1.anInt103 > 750) {
-                            WidgetNode.method684();
+                            drop();
                             return;
                         }
 
@@ -4437,7 +4448,7 @@ public final class Client extends GameEngine {
                                                             try {
                                                                 aClass46_1.method283();
                                                             } catch (IOException ioexception_0) {
-                                                                WidgetNode.method684();
+                                                                drop();
                                                             }
 
                                                             return;

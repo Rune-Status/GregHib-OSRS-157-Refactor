@@ -145,9 +145,9 @@ public final class AClass3_Sub2 extends AClass3 {
          spritepixels_0 = new SpritePixels(36, 32);
          Rasterizer2D.setRasterBuffer(spritepixels_0.pixels, 36, 32);
          Rasterizer2D.reset();
-         Graphics3D.method960();
-         Graphics3D.method970(16, 16);
-         Graphics3D.rasterGouraudLowRes = false;
+         Rasterizer3D.method960();
+         Rasterizer3D.method970(16, 16);
+         Rasterizer3D.rasterGouraudLowRes = false;
          if (itemcomposition_0.anInt505 != -1) {
             spritepixels_1.drawAt(0, 0);
          }
@@ -159,8 +159,8 @@ public final class AClass3_Sub2 extends AClass3 {
             int_9 = (int)(1.04D * (double)int_9);
          }
 
-         int int_10 = int_9 * Graphics3D.SINE[itemcomposition_0.modelInventoryRotationY] >> 16;
-         int int_11 = int_9 * Graphics3D.COSINE[itemcomposition_0.modelInventoryRotationY] >> 16;
+         int int_10 = int_9 * Rasterizer3D.SINE[itemcomposition_0.modelInventoryRotationY] >> 16;
+         int int_11 = int_9 * Rasterizer3D.COSINE[itemcomposition_0.modelInventoryRotationY] >> 16;
          model_0.calculateDiagonals();
          model_0.method1027(0, itemcomposition_0.modelInventoryRotationX, itemcomposition_0.diagonalRotation, itemcomposition_0.modelInventoryRotationY, itemcomposition_0.spriteTranslateX, model_0.modelHeight / 2 + int_10 + itemcomposition_0.spriteTranslateY, int_11 + itemcomposition_0.spriteTranslateY);
          if (itemcomposition_0.notedId != -1) {
@@ -204,8 +204,8 @@ public final class AClass3_Sub2 extends AClass3 {
 
          Rasterizer2D.setRasterBuffer(ints_0, int_7, int_8);
          Rasterizer2D.setDrawRegion(ints_1);
-         Graphics3D.method960();
-         Graphics3D.rasterGouraudLowRes = true;
+         Rasterizer3D.method960();
+         Rasterizer3D.rasterGouraudLowRes = true;
          return spritepixels_0;
       }
    }

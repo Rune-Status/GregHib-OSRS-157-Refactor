@@ -23,8 +23,8 @@ public class Script extends CacheableNode {
       int int_4 = int_3 * int_3 + int_2 * int_2;
       if (int_4 > 4225 && int_4 < 90000) {
          int int_5 = Client.mapAngle & 0x7FF;
-         int int_6 = Graphics3D.SINE[int_5];
-         int int_7 = Graphics3D.COSINE[int_5];
+         int int_6 = Rasterizer3D.SINE[int_5];
+         int int_7 = Rasterizer3D.COSINE[int_5];
          int int_8 = int_7 * int_2 + int_3 * int_6 >> 16;
          int int_9 = int_3 * int_7 - int_6 * int_2 >> 16;
          double double_0 = Math.atan2((double)int_8, (double)int_9);

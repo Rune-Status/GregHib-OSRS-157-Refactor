@@ -145,7 +145,7 @@ public final class Region {
    }
 
    static int interpolate(int a, int b, int angle, int frequencyReciprocal) {
-      int cosine = 65536 - Graphics3D.COSINE[angle * 1024 / frequencyReciprocal] >> 1;
+      int cosine = 65536 - Rasterizer3D.COSINE[angle * 1024 / frequencyReciprocal] >> 1;
       return ((65536 - cosine) * a >> 16) + (cosine * b >> 16);
    }
 
