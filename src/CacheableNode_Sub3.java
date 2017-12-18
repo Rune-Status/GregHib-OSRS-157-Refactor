@@ -16,7 +16,7 @@ public class CacheableNode_Sub3 extends CacheableNode {
    }
 
    public int method876(int int_0, int int_1) {
-      return Occluder.method392(this.anIterableHashTable3, int_0, int_1);
+      return SceneCluster.method392(this.anIterableHashTable3, int_0, int_1);
    }
 
    public String method877(int int_0, String string_0) {
@@ -35,37 +35,6 @@ public class CacheableNode_Sub3 extends CacheableNode {
 
          this.method875(buffer_0, int_0);
       }
-   }
-
-   static void method880(int int_0, int int_1, int int_2, ObjectDefinition objectcomposition_0, int int_3) {
-      Node_Sub1 node_sub1_0 = new Node_Sub1();
-      node_sub1_0.anInt323 = int_0;
-      node_sub1_0.anInt320 = int_1 * 128;
-      node_sub1_0.anInt322 = int_2 * 128;
-      int int_4 = objectcomposition_0.sizeX;
-      int int_5 = objectcomposition_0.sizeY;
-      if (int_3 == 1 || int_3 == 3) {
-         int_4 = objectcomposition_0.sizeY;
-         int_5 = objectcomposition_0.sizeX;
-      }
-
-      node_sub1_0.anInt319 = (int_4 + int_1) * 128;
-      node_sub1_0.anInt321 = (int_5 + int_2) * 128;
-      node_sub1_0.anInt315 = objectcomposition_0.ambientSoundId;
-      node_sub1_0.anInt316 = objectcomposition_0.anInt463 * 128;
-      node_sub1_0.anInt317 = objectcomposition_0.anInt464;
-      node_sub1_0.anInt318 = objectcomposition_0.anInt465;
-      node_sub1_0.anIntArray72 = objectcomposition_0.anIntArray85;
-      if (objectcomposition_0.transformationIds != null) {
-         node_sub1_0.anObjectDefinition1 = objectcomposition_0;
-         node_sub1_0.method632();
-      }
-
-      Node_Sub1.aDeque3.addFront(node_sub1_0);
-      if (node_sub1_0.anIntArray72 != null) {
-         node_sub1_0.anInt324 = node_sub1_0.anInt317 + (int)(Math.random() * (double)(node_sub1_0.anInt318 - node_sub1_0.anInt317));
-      }
-
    }
 
 }

@@ -107,19 +107,19 @@ public class CombatInfo2 extends CacheableNode {
    }
 
    static void method820() {
-      for (Node_Sub1 node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getFront(); node_sub1_0 != null; node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getNext()) {
-         if (node_sub1_0.anAClass6_Sub2_1 != null) {
-            Class97.anAClass6_Sub1_1.method758(node_sub1_0.anAClass6_Sub2_1);
-            node_sub1_0.anAClass6_Sub2_1 = null;
+      for (AudioObject audioObject_0 = (AudioObject) AudioObject.aDeque3.getFront(); audioObject_0 != null; audioObject_0 = (AudioObject) AudioObject.aDeque3.getNext()) {
+         if (audioObject_0.anAClass6_Sub2_1 != null) {
+            Class97.anAClass6_Sub1_1.method758(audioObject_0.anAClass6_Sub2_1);
+            audioObject_0.anAClass6_Sub2_1 = null;
          }
 
-         if (node_sub1_0.anAClass6_Sub2_2 != null) {
-            Class97.anAClass6_Sub1_1.method758(node_sub1_0.anAClass6_Sub2_2);
-            node_sub1_0.anAClass6_Sub2_2 = null;
+         if (audioObject_0.anAClass6_Sub2_2 != null) {
+            Class97.anAClass6_Sub1_1.method758(audioObject_0.anAClass6_Sub2_2);
+            audioObject_0.anAClass6_Sub2_2 = null;
          }
       }
 
-      Node_Sub1.aDeque3.clear();
+      AudioObject.aDeque3.clear();
    }
 
 }

@@ -7,7 +7,7 @@ public class AbstractSoundSystem {
    protected static boolean highMemory;
    static ScheduledExecutorService aScheduledExecutorService1;
    public static Interface2 anInterface2_1;
-   static IndexData anIndexData1;
+   static IndexData wordPackIndex;
    static int priority;
    AClass6[] anAClass6Array1;
    protected int[] samples;
@@ -216,7 +216,7 @@ public class AbstractSoundSystem {
       this.anInt131 -= int_0;
       if (this.anAClass6_1 != null && this.anInt131 <= 0) {
          this.anInt131 += sampleRate >> 4;
-         Node_Sub1.method633(this.anAClass6_1);
+         AudioObject.method633(this.anAClass6_1);
          this.method342(this.anAClass6_1, this.anAClass6_1.method661());
          int int_2 = 0;
          int int_3 = 255;

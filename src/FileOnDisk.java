@@ -197,9 +197,9 @@ public final class FileOnDisk {
                   ;
                }
 
-               font_0.method1040(FontTypeFace.appendTags(string_1) + (Class25.anInt83 == 0 & Client.gameCycle % 40 < 20 ? WallObject.getColTags(16776960) + "|" : ""), Class83.anInt181 - 70, int_6, 16777215, 0);
+               font_0.method1040(FontTypeFace.appendTags(string_1) + (Class25.anInt83 == 0 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 70, int_6, 16777215, 0);
                int_6 += 15;
-               font_0.method1040("Password: " + Class84.method493(Class25.password) + (Class25.anInt83 == 1 & Client.gameCycle % 40 < 20 ? WallObject.getColTags(16776960) + "|" : ""), Class83.anInt181 - 108, int_6, 16777215, 0);
+               font_0.method1040("Password: " + Class84.method493(Class25.password) + (Class25.anInt83 == 1 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 108, int_6, 16777215, 0);
                int_6 += 15;
                short_3 = 277;
                int_2 = Class83.anInt181 + -117;
@@ -249,7 +249,7 @@ public final class FileOnDisk {
                   int_6 += 15;
                   font_0.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16777215, 0);
                   int_6 += 15;
-                  font_0.method1040("PIN: " + Class84.method493(Class97.aString11) + (Client.gameCycle % 40 < 20 ? WallObject.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
+                  font_0.method1040("PIN: " + Class84.method493(Class97.aString11) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
                   int_6 -= 8;
                   font_0.method1040("Trust this computer", Class25.loginWindowX + 180 - 9, int_6, 16776960, 0);
                   int_6 += 15;
@@ -260,7 +260,7 @@ public final class FileOnDisk {
                   if (Class25.aBool12) {
                      indexedsprite_1 = Class107.anIndexedSprite6;
                   } else {
-                     indexedsprite_1 = WallObject.anIndexedSprite4;
+                     indexedsprite_1 = Wall.anIndexedSprite4;
                   }
 
                   indexedsprite_1.drawSprite(int_0, int_7);
@@ -291,7 +291,7 @@ public final class FileOnDisk {
                      ;
                   }
 
-                  font_0.method1040(FontTypeFace.appendTags(string_1) + (Client.gameCycle % 40 < 20 ? WallObject.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 34, int_6, 16777215, 0);
+                  font_0.method1040(FontTypeFace.appendTags(string_1) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 34, int_6, 16777215, 0);
                   int_6 += 15;
                   int_2 = Class25.loginWindowX + 180 - 80;
                   short_1 = 321;
@@ -467,7 +467,7 @@ public final class FileOnDisk {
                   font_1.method1039("Click to switch", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
                }
             } else {
-               ItemContainer.anIndexedSprite7 = CacheableNode_Sub2.getSprite(Class34.indexSprites, "sl_button", "");
+               ItemContainer.anIndexedSprite7 = CacheableNode_Sub2.getSprite(Class34.spritesIndex, "sl_button", "");
             }
          }
 

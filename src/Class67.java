@@ -37,7 +37,7 @@ public class Class67 {
             if (player.playerModel != null && Client.gameCycle >= player.anInt594 && Client.gameCycle < player.anInt595) {
                player.aBool82 = false;
                player.anInt598 = Class18.getTileHeight(player.x, player.y, Ignore.plane);
-               Class23.region.method378(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.anInt604, player.anInt605, player.anInt606, player.anInt607);
+               Class23.sceneGraph.method378(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.anInt604, player.anInt605, player.anInt606, player.anInt607);
             } else {
                if ((player.x & 0x7F) == 64 && (player.y & 0x7F) == 64) {
                   if (Client.anIntArrayArray21[int_1][int_2] == Client.anInt664) {
@@ -48,7 +48,7 @@ public class Class67 {
                }
 
                player.anInt598 = Class18.getTileHeight(player.x, player.y, Ignore.plane);
-               Class23.region.method377(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.aBool69);
+               Class23.sceneGraph.method377(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.aBool69);
             }
          }
       }

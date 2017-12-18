@@ -11,7 +11,7 @@ public class Class101 {
    }
 
    static void flush(boolean bool_0) {
-      Enum2.method642();
+      Enum2.reloadSound();
       ++Client.aClass46_1.anInt104;
       if (Client.aClass46_1.anInt104 >= 50 || bool_0) {
          Client.aClass46_1.anInt104 = 0;

@@ -9,7 +9,7 @@ final class Class35 implements Interface1 {
       int int_8 = Math.max(int_3, Math.max(int_4, int_5)) + int_6;
       int int_9 = Math.min(int_0, Math.min(int_1, int_2)) - int_6;
       int int_10 = Math.max(int_0, Math.max(int_1, int_2)) + int_6;
-      GroundObject.method566(int_7, int_9, int_8, int_10, -49088);
+      method566(int_7, int_9, int_8, int_10, -49088);
    }
 
    static void method245(int int_0, int int_1, int int_2) {
@@ -41,4 +41,7 @@ final class Class35 implements Interface1 {
       }
    }
 
+    public static void method566(int int_0, int int_1, int int_2, int int_3, int int_4) {
+       Class37.aCombatInfoList1.method455(new AClass3_Sub1(int_0, int_1, int_2, int_3, int_4));
+    }
 }

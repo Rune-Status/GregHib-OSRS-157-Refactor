@@ -68,7 +68,7 @@ public class Class62 {
    static void method396() {
       Client.aClass46_1.method278();
       World.method557();
-      Class23.region.reset();
+      Class23.sceneGraph.reset();
 
       for (int int_0 = 0; int_0 < 4; int_0++) {
          Client.collisionMaps[int_0].reset();
@@ -88,7 +88,7 @@ public class Class62 {
       if (bytes_0 == null) {
          bool_0 = false;
       } else {
-         DecorativeObject.decodeSprite(bytes_0);
+         WallDecoration.decodeSprite(bytes_0);
          bool_0 = true;
       }
 

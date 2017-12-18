@@ -43,7 +43,7 @@ public class Frames extends CacheableNode {
             Buffer.preferences.muted = !Buffer.preferences.muted;
             Class59.method390();
             if (!Buffer.preferences.muted) {
-               AClass3.method644(Class38.indexTrack1, "scape main", "", 255, false);
+               AClass3.method644(Class38.songsIndex, "scape main", "", 255, false);
             } else {
                ItemLayer.method545();
             }

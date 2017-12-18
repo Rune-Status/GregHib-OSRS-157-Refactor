@@ -1,7 +1,6 @@
 public class Class106 {
 
    static final Class106 aClass106_1;
-   static byte[][][] aByteArrayArrayArray9;
    public static final Class106 aClass106_2;
    static final Class106 aClass106_3;
    public static char aChar1;

@@ -13,6 +13,10 @@ public class Class52 {
       this.vorbis_index = indexdatabase_1;
    }
 
+   public static String decodeAddress(int address) {
+      return (address >> 24 & 0xFF) + "." + (address >> 16 & 0xFF) + "." + (address >> 8 & 0xFF) + "." + (address & 0xFF);
+   }
+
    AClass4_Sub1 method331(int int_0, int int_1, int[] ints_0) {
       int int_2 = int_1 ^ (int_0 << 4 & 0xFFFF | int_0 >>> 12);
       int_2 |= int_0 << 16;
@@ -119,7 +123,7 @@ public class Class52 {
 
             String string_1 = "";
             if (FileSystem.aTask2 != null) {
-               string_1 = SceneTilePaint.method330(FileSystem.aTask2.anInt217);
+               string_1 = decodeAddress(FileSystem.aTask2.anInt217);
                if (FileSystem.aTask2.value != null) {
                   string_1 = (String) FileSystem.aTask2.value;
                }

@@ -34,7 +34,7 @@ public class Class25 {
    static IndexedSprite[] anIndexedSpriteArray5;
    static IndexedSprite[] titlemuteSprite;
    static int anInt85;
-   static int anInt86;
+   static int absoluteTileHashY;
 
    static {
       anInt76 = 0;

@@ -436,7 +436,7 @@ public final class AClass3_Sub1 extends AClass3 {
                      return 1;
                   } else if (int_0 == 5017) {
                      int_3 = Class39.intStack[--Class23.intStackSize];
-                     Class39.intStack[++Class23.intStackSize - 1] = DecorativeObject.method462(int_3);
+                     Class39.intStack[++Class23.intStackSize - 1] = WallDecoration.method462(int_3);
                      return 1;
                   } else if (int_0 == 5018) {
                      int_3 = Class39.intStack[--Class23.intStackSize];

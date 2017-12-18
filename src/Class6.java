@@ -5,7 +5,7 @@ import java.net.URL;
 public class Class6 {
 
    static int[] anIntArray3;
-   static IndexData indexSoundEffects;
+   static IndexData skinsIndex;
    final int anInt37;
    final int anInt38;
    final int anInt39;
@@ -142,20 +142,6 @@ public class Class6 {
             }
          }
       }
-   }
-
-   static int getSmoothNoise(int int_0, int int_1, int int_2) {
-      int int_3 = int_0 / int_2;
-      int int_4 = int_0 & int_2 - 1;
-      int int_5 = int_1 / int_2;
-      int int_6 = int_1 & int_2 - 1;
-      int int_7 = Class21.getSmoothNoise2D(int_3, int_5);
-      int int_8 = Class21.getSmoothNoise2D(int_3 + 1, int_5);
-      int int_9 = Class21.getSmoothNoise2D(int_3, int_5 + 1);
-      int int_10 = Class21.getSmoothNoise2D(int_3 + 1, int_5 + 1);
-      int int_11 = Class63.method400(int_7, int_8, int_4, int_2);
-      int int_12 = Class63.method400(int_9, int_10, int_4, int_2);
-      return Class63.method400(int_11, int_12, int_6, int_2);
    }
 
    static boolean method100(String string_0) {

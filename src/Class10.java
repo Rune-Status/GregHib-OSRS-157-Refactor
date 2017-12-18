@@ -40,84 +40,6 @@ public class Class10 {
       }
    }
 
-   static void spawnObject(int floorLevel, int spawnType, int x, int y, int objId, int orientation, int objType) {
-      if (x >= 1 && y >= 1 && x <= 102 && y <= 102) {
-         if (Client.lowMemory && floorLevel != Ignore.plane) {
-            return;
-         }
-
-         int UID = 0;
-         boolean bool_0 = true;
-         boolean bool_1 = false;
-         boolean bool_2 = false;
-         if (spawnType == 0) {
-            UID = Class23.region.getWallObjectUID(floorLevel, x, y);
-         }
-
-         if (spawnType == 1) {
-            UID = Class23.region.getWallDecorationUID(floorLevel, x, y);
-         }
-
-         if (spawnType == 2) {
-            UID = Class23.region.getInteractableObjectUID(floorLevel, x, y);
-         }
-
-         if (spawnType == 3) {
-            UID = Class23.region.getGroundDecorationUID(floorLevel, x, y);
-         }
-
-         int config;
-         if (UID != 0) {
-            config = Class23.region.getObjectConfig(floorLevel, x, y, UID);
-            int objectType = UID >> 14 & 0x7FFF;
-            int position = config & 0x1F;
-            int face = config >> 6 & 0x3;
-            ObjectDefinition definition;
-            if (spawnType == 0) {
-               Class23.region.method373(floorLevel, x, y);
-               definition = ObjectDefinition.getDefinition(objectType);
-               if (definition.interactType != 0) {
-                  Client.collisionMaps[floorLevel].removeWall(x, y, position, face, definition.projectileClipped);
-               }
-            }
-
-            if (spawnType == 1) {
-               Class23.region.removeWallDecoration(floorLevel, x, y);
-            }
-
-            if (spawnType == 2) {
-               Class23.region.removeInteractiveObject(floorLevel, x, y);
-               definition = ObjectDefinition.getDefinition(objectType);
-               if (x + definition.sizeX > 103 || y + definition.sizeX > 103 || x + definition.sizeY > 103 || y + definition.sizeY > 103) {
-                  return;
-               }
-
-               if (definition.interactType != 0) {
-                  Client.collisionMaps[floorLevel].removeObject(x, y, definition.sizeX, definition.sizeY, face, definition.projectileClipped);
-               }
-            }
-
-            if (spawnType == 3) {
-               Class23.region.removeGroundDecoration(floorLevel, x, y);
-               definition = ObjectDefinition.getDefinition(objectType);
-               if (definition.interactType == 1) {
-                  Client.collisionMaps[floorLevel].unblock(x, y);
-               }
-            }
-         }
-
-         if (objId >= 0) {
-            config = floorLevel;
-            if (floorLevel < 3 && (Class19.tileSettings[1][x][y] & 0x2) == 2) {
-               config = floorLevel + 1;
-            }
-
-            Class107.renderObject(floorLevel, config, x, y, objId, orientation, objType, Class23.region, Client.collisionMaps[floorLevel]);
-         }
-      }
-
-   }
-
    static int method155(int int_0, Script script_0, boolean bool_0) {
       Widget widget_0;
       if (int_0 >= 2000) {
@@ -195,7 +117,7 @@ public class Class10 {
       }
 
       if (byte_0 != -1 && string_0 != null) {
-         Class73.method444(string_0, WallObject.getColTags(16748608) + itemcomposition_0.name, byte_0, itemcomposition_0.id, int_0, widget_0.id, bool_0);
+         Class73.method444(string_0, Wall.getColTags(16748608) + itemcomposition_0.name, byte_0, itemcomposition_0.id, int_0, widget_0.id, bool_0);
       }
 
    }

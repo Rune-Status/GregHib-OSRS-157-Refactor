@@ -4,7 +4,7 @@ public final class InteractiveObject {
    int relativeX;
    int offsetX;
    public int hash;
-   int flags;
+   int objectConfig;
    int relativeY;
    int offsetY;
    int plane;
@@ -18,7 +18,7 @@ public final class InteractiveObject {
 
    InteractiveObject() {
       this.hash = 0;
-      this.flags = 0;
+      this.objectConfig = 0;
    }
 
    public static void method564(int[] ints_0, int[] ints_1) {

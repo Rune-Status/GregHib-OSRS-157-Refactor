@@ -17,7 +17,7 @@ public class Class17 {
          if (script_2 != null) {
             script_1 = script_2;
          } else {
-            byte[] bytes_1 = Class3.indexScripts.getConfigData(int_1, 0);
+            byte[] bytes_1 = Class3.interfaceScriptDataIndex.getConfigData(int_1, 0);
             if (bytes_1 == null) {
                script_1 = null;
             } else {
@@ -237,7 +237,7 @@ public class Class17 {
                                                                                                                                                                if (script_3 != null) {
                                                                                                                                                                   script_4 = script_3;
                                                                                                                                                                } else {
-                                                                                                                                                                  byte[] bytes_0 = Class3.indexScripts.getConfigData(int_5, 0);
+                                                                                                                                                                  byte[] bytes_0 = Class3.interfaceScriptDataIndex.getConfigData(int_5, 0);
                                                                                                                                                                   if (bytes_0 == null) {
                                                                                                                                                                      script_4 = null;
                                                                                                                                                                   } else {

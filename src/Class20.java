@@ -4,6 +4,7 @@ import java.util.Date;
 public class Class20 implements Comparator {
 
     static ClanMember[] clanMembers;
+    static long aLong1;
     boolean aBool8;
 
    int method206(Class36 class36_0, Class36 class36_1) {
@@ -440,7 +441,7 @@ public class Class20 implements Comparator {
                         int_1 = Class39.intStack[Class23.intStackSize];
                         int_9 = Class39.intStack[Class23.intStackSize + 1];
                         if (Client.anInt662 != 0 && int_1 != -1) {
-                           Class71.method424(Class92.indexTrack2, int_1, 0, Client.anInt662, false);
+                           Class71.method424(Class92.musicConfigIndex, int_1, 0, Client.anInt662, false);
                            Client.aBool87 = true;
                         }
 
@@ -920,7 +921,7 @@ public class Class20 implements Comparator {
                                     }
                                  }
 
-                                 Class39.intStack[++Class23.intStackSize - 1] = Client.isFriended(string_2, false) ? 1 : 0;
+                                 Class39.intStack[++Class23.intStackSize - 1] = Client.isFriend(string_2, false) ? 1 : 0;
                                  byte_0 = 1;
                               } else {
                                  long long_1;
@@ -1219,7 +1220,7 @@ public class Class20 implements Comparator {
                                  } else if (int_0 == 3923) {
                                     int_1 = Class39.intStack[--Class23.intStackSize];
                                     class36_0 = (Class36) Class65.aClass47_1.aList3.get(int_1);
-                                    long long_2 = Class97.currentTimeMs() - Class19.aLong1 - class36_0.aLong2;
+                                    long long_2 = Class97.currentTimeMs() - aLong1 - class36_0.aLong2;
                                     int_3 = (int)(long_2 / 3600000L);
                                     int_4 = (int)((long_2 - (long)(int_3 * 3600000)) / 60000L);
                                     int_5 = (int)((long_2 - (long)(int_3 * 3600000) - (long)(int_4 * 60000)) / 1000L);
@@ -1317,7 +1318,7 @@ public class Class20 implements Comparator {
                                     Class23.intStackSize -= 2;
                                     int_9 = Class39.intStack[Class23.intStackSize];
                                     int_2 = Class39.intStack[Class23.intStackSize + 1];
-                                    bytes_1 = Enum1.anIndexData4.getConfigData(int_2, 0);
+                                    bytes_1 = Enum1.fontConfigIndex.getConfigData(int_2, 0);
                                     font_0 = new Font(bytes_1);
                                     Class39.intStack[++Class23.intStackSize - 1] = font_0.method1035(string_2, int_9);
                                     byte_0 = 1;
@@ -1326,7 +1327,7 @@ public class Class20 implements Comparator {
                                     Class23.intStackSize -= 2;
                                     int_9 = Class39.intStack[Class23.intStackSize];
                                     int_2 = Class39.intStack[Class23.intStackSize + 1];
-                                    bytes_1 = Enum1.anIndexData4.getConfigData(int_2, 0);
+                                    bytes_1 = Enum1.fontConfigIndex.getConfigData(int_2, 0);
                                     font_0 = new Font(bytes_1);
                                     Class39.intStack[++Class23.intStackSize - 1] = font_0.method1038(string_2, int_9);
                                     byte_0 = 1;
@@ -1839,17 +1840,6 @@ public class Class20 implements Comparator {
             }
          }
       }
-   }
-
-   public static int method209(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      if ((int_5 & 0x1) == 1) {
-         int int_6 = int_3;
-         int_3 = int_4;
-         int_4 = int_6;
-      }
-
-      int_2 &= 0x3;
-      return int_2 == 0 ? int_0 : (int_2 == 1 ? int_1 : (int_2 == 2 ? 7 - int_0 - (int_3 - 1) : 7 - int_1 - (int_4 - 1)));
    }
 
 }

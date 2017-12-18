@@ -3,7 +3,7 @@ import java.net.URL;
 public class Class56 {
 
    public static FileRequest currentRequest;
-   static IndexData anIndexData2;
+   static IndexData interfaceDataIndex;
    volatile byte[] aByteArray7;
    volatile boolean aBool24;
    final URL anURL1;

@@ -306,81 +306,10 @@ public class CombatInfoListHolder extends Node {
                }
 
                projectile_0.method1006(Client.anInt625);
-               Class23.region.method377(Ignore.plane, (int)projectile_0.x, (int)projectile_0.velocityZ, (int)projectile_0.z, 60, projectile_0, projectile_0.rotationX, -1, false);
+               Class23.sceneGraph.method377(Ignore.plane, (int)projectile_0.x, (int)projectile_0.velocityZ, (int)projectile_0.z, 60, projectile_0, projectile_0.rotationX, -1, false);
             }
          } else {
             projectile_0.unlink();
-         }
-      }
-
-   }
-
-   static void loadTerrain(Buffer buffer_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      int int_6;
-      if (int_1 >= 0 && int_1 < 104 && int_2 >= 0 && int_2 < 104) {
-         Class19.tileSettings[int_0][int_1][int_2] = 0;
-
-         while (true) {
-            int_6 = buffer_0.getUnsignedByte();
-            if (int_6 == 0) {
-               if (int_0 == 0) {
-                  int[] ints_0 = Class19.tileHeights[0][int_1];
-                  int int_7 = int_1 + int_3 + 932731;
-                  int int_8 = int_2 + int_4 + 556238;
-                  int int_9 = Class6.getSmoothNoise(45365 + int_7, int_8 + 91923, 4) - 128 + (Class6.getSmoothNoise(int_7 + 10294, 37821 + int_8, 2) - 128 >> 1) + (Class6.getSmoothNoise(int_7, int_8, 1) - 128 >> 2);
-                  int_9 = (int)((double)int_9 * 0.3D) + 35;
-                  if (int_9 < 10) {
-                     int_9 = 10;
-                  } else if (int_9 > 60) {
-                     int_9 = 60;
-                  }
-
-                  ints_0[int_2] = -int_9 * 8;
-               } else {
-                  Class19.tileHeights[int_0][int_1][int_2] = Class19.tileHeights[int_0 - 1][int_1][int_2] - 240;
-               }
-               break;
-            }
-
-            if (int_6 == 1) {
-               int int_10 = buffer_0.getUnsignedByte();
-               if (int_10 == 1) {
-                  int_10 = 0;
-               }
-
-               if (int_0 == 0) {
-                  Class19.tileHeights[0][int_1][int_2] = -int_10 * 8;
-               } else {
-                  Class19.tileHeights[int_0][int_1][int_2] = Class19.tileHeights[int_0 - 1][int_1][int_2] - int_10 * 8;
-               }
-               break;
-            }
-
-            if (int_6 <= 49) {
-               Class106.aByteArrayArrayArray9[int_0][int_1][int_2] = buffer_0.readByte();
-               Class19.aByteArrayArrayArray6[int_0][int_1][int_2] = (byte)((int_6 - 2) / 4);
-               Class7.aByteArrayArrayArray2[int_0][int_1][int_2] = (byte)(int_6 - 2 + int_5 & 0x3);
-            } else if (int_6 <= 81) {
-               Class19.tileSettings[int_0][int_1][int_2] = (byte)(int_6 - 49);
-            } else {
-               Class19.aByteArrayArrayArray5[int_0][int_1][int_2] = (byte)(int_6 - 81);
-            }
-         }
-      } else {
-         while (true) {
-            int_6 = buffer_0.getUnsignedByte();
-            if (int_6 == 0) {
-               break;
-            }
-
-            if (int_6 == 1) {
-               buffer_0.getUnsignedByte();
-               break;
-            }
-
-            if (int_6 <= 49) {
-               buffer_0.getUnsignedByte();
-            }
          }
       }
 

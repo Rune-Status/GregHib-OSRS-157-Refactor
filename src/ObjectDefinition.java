@@ -30,7 +30,7 @@ public class ObjectDefinition extends CacheableNode {
    boolean nonFlatShading;
    int clipType;
    public int anInt464;
-   public boolean modelClipped;
+   public boolean needsCulling;
    int ambient;
    int contrast;
    public int anInt465;
@@ -41,7 +41,7 @@ public class ObjectDefinition extends CacheableNode {
    public int offsetMultiplier;
    int modelSizeY;
    short[] recolorToFind;
-   public boolean clipped;
+   public boolean hasModel;
    short[] textureToFind;
    short[] recolorToReplace;
    int modelSizeZ;
@@ -70,7 +70,7 @@ public class ObjectDefinition extends CacheableNode {
       this.hasOptions = -1;
       this.clipType = -1;
       this.nonFlatShading = false;
-      this.modelClipped = false;
+      this.needsCulling = false;
       this.animationId = -1;
       this.offsetMultiplier = 16;
       this.ambient = 0;
@@ -79,7 +79,7 @@ public class ObjectDefinition extends CacheableNode {
       this.mapIconId = -1;
       this.mapSceneId = -1;
       this.isRotated = false;
-      this.clipped = true;
+      this.hasModel = true;
       this.modelSizeX = 128;
       this.modelSizeY = 128;
       this.modelSizeZ = 128;
@@ -188,7 +188,7 @@ public class ObjectDefinition extends CacheableNode {
       } else if (opcode == 22) {
          this.nonFlatShading = true;
       } else if (opcode == 23) {
-         this.modelClipped = true;
+         this.needsCulling = true;
       } else if (opcode == 24) {
          this.animationId = buffer.getUnsignedShort();
          if (this.animationId == 65535) {
@@ -228,7 +228,7 @@ public class ObjectDefinition extends CacheableNode {
       } else if (opcode == 62) {
          this.isRotated = true;
       } else if (opcode == 64) {
-         this.clipped = false;
+         this.hasModel = false;
       } else if (opcode == 65) {
          this.modelSizeX = buffer.getUnsignedShort();
       } else if (opcode == 66) {
@@ -577,17 +577,17 @@ public class ObjectDefinition extends CacheableNode {
    }
 
    public int method827(int int_0, int int_1) {
-      return Occluder.method392(this.parameters, int_0, int_1);
+      return SceneCluster.method392(this.parameters, int_0, int_1);
    }
 
-   public boolean method828() {
+   public boolean hasAmbientSound() {
       if (this.transformationIds == null) {
          return this.ambientSoundId != -1 || this.anIntArray85 != null;
       } else {
-         for (int int_0 = 0; int_0 < this.transformationIds.length; int_0++) {
-            if (this.transformationIds[int_0] != -1) {
-               ObjectDefinition objectcomposition_1 = getDefinition(this.transformationIds[int_0]);
-               if (objectcomposition_1.ambientSoundId != -1 || objectcomposition_1.anIntArray85 != null) {
+         for (int index = 0; index < this.transformationIds.length; index++) {
+            if (this.transformationIds[index] != -1) {
+               ObjectDefinition definition = getDefinition(this.transformationIds[index]);
+               if (definition.ambientSoundId != -1 || definition.anIntArray85 != null) {
                   return true;
                }
             }

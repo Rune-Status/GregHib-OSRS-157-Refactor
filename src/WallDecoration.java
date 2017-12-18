@@ -1,21 +1,21 @@
-public final class DecorativeObject {
+public final class WallDecoration {
 
    public static Buffer aBuffer4;
    public int hash;
-   int renderInfoBitPacked;
+   int objectConfig;
    int offsetX;
    int x;
    int y;
    int offsetY;
    int floor;
-   public Renderable renderable1;
-   public Renderable renderable2;
-   int renderFlag;
-   int rotation;
+   public Renderable primaryRenderable;
+   public Renderable secondaryRenderable;
+   int primaryOrientation;
+   int secondaryOrientation;
 
-   DecorativeObject() {
+   WallDecoration() {
       this.hash = 0;
-      this.renderInfoBitPacked = 0;
+      this.objectConfig = 0;
    }
 
    static void decodeSprite(byte[] bytes_0) {

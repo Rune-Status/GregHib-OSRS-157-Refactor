@@ -71,7 +71,7 @@ final class Class44 implements Comparator {
       }
    }
 
-   static boolean findAlternateRoute(int sourceX, int sourceY, RouteStrategy strategy, CollisionData collision) {
+   static boolean findAlternateRoute(int sourceX, int sourceY, RouteStrategy strategy, CollisionMap collision) {
       int currentX = sourceX;
       int currentY = sourceY;
       byte graphSizeX = 64;

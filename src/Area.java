@@ -142,7 +142,7 @@ public class Area extends CacheableNode {
                Enum8[] enum8s_0 = new Enum8[] {Enum8.anEnum8_1, Enum8.anEnum8_3, Enum8.anEnum8_2};
                this.anEnum8_4 = (Enum8) Class1.forOrdinal(enum8s_0, buffer_0.getUnsignedByte());
             } else if (int_0 == 30) {
-               this.anEnum5_4 = (Enum5) Class1.forOrdinal(DecorativeObject.method461(), buffer_0.getUnsignedByte());
+               this.anEnum5_4 = (Enum5) Class1.forOrdinal(WallDecoration.method461(), buffer_0.getUnsignedByte());
             }
          }
       }

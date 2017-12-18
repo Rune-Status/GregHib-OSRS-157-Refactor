@@ -76,7 +76,7 @@ public class Class65 {
             ints_0[int_9] = int_12 * int_11 >> 16;
          }
 
-         Region.method383(ints_0, 500, 800, int_2, int_3);
+         SceneGraph.method383(ints_0, 500, 800, int_2, int_3);
       }
 
       Client.anInt679 = int_0;

@@ -376,7 +376,7 @@ public class NPCDefinition extends CacheableNode {
    }
 
    public int method902(int int_0, int int_1) {
-      return Occluder.method392(this.parameters, int_0, int_1);
+      return SceneCluster.method392(this.parameters, int_0, int_1);
    }
 
    public static int method903(CharSequence charsequence_0, CharSequence charsequence_1, int int_0) {

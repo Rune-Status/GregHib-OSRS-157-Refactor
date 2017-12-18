@@ -1,32 +1,23 @@
-public final class WallObject {
+public final class Wall {
 
    static IndexedSprite anIndexedSprite4;
    public int hash;
-   int config;
+   int objectConfig;
    int x;
    int y;
-   public Renderable renderable1;
+   public Renderable primaryRenderable;
    int floor;
-   public Renderable renderable2;
-   int orientationA;
-   int orientationB;
+   public Renderable secondaryRenderable;
+   int primaryOrientation;
+   int secondaryOrientation;
 
-   WallObject() {
+   Wall() {
       this.hash = 0;
-      this.config = 0;
+      this.objectConfig = 0;
    }
 
    static String getColTags(int int_0) {
       return "<col=" + Integer.toHexString(int_0) + ">";
-   }
-
-   static IndexData openCacheIndex(int int_0, boolean bool_0, boolean bool_1, boolean bool_2) {
-      IndexFile indexfile_0 = null;
-      if (Class64.aCacheFile2 != null) {
-         indexfile_0 = new IndexFile(int_0, Class64.aCacheFile2, Class64.aCacheFileArray1[int_0], 1000000);
-      }
-
-      return new IndexData(indexfile_0, MilliTimer.anIndexFile3, int_0, bool_0, bool_1, bool_2);
    }
 
    static void xteaChanged(boolean dynamic, PacketBuffer buffer) {
@@ -64,8 +55,8 @@ public final class WallObject {
                int regionId = y + (x << 8);
                if (!inTutorialIsland || y != 49 && y != 149 && y != 147 && x != 50 && (x != 49 || y != 47)) {
                   Script.localRegionIds[mapCount] = regionId;
-                  Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + x + "_" + y);
-                  Varbit.landRegionFileIds[mapCount] = Class23.indexMaps.getFile("l" + x + "_" + y);
+                  Varbit.landMapFileIds[mapCount] = Class23.mapsIndex.getFile("m" + x + "_" + y);
+                  Varbit.landRegionFileIds[mapCount] = Class23.mapsIndex.getFile("l" + x + "_" + y);
                   ++mapCount;
                }
             }
@@ -130,8 +121,8 @@ public final class WallObject {
                         Script.localRegionIds[mapCount] = regionId;
                         int mapX = regionId >> 8 & 0xFF;
                         int mapY = regionId & 0xFF;
-                        Varbit.landMapFileIds[mapCount] = Class23.indexMaps.getFile("m" + mapX + "_" + mapY);
-                        Varbit.landRegionFileIds[mapCount] = Class23.indexMaps.getFile("l" + mapX + "_" + mapY);
+                        Varbit.landMapFileIds[mapCount] = Class23.mapsIndex.getFile("m" + mapX + "_" + mapY);
+                        Varbit.landRegionFileIds[mapCount] = Class23.mapsIndex.getFile("l" + mapX + "_" + mapY);
                         ++mapCount;
                      }
                   }

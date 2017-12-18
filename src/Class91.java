@@ -50,7 +50,7 @@ public class Class91 implements Runnable {
                   anInt191 = 600;
                }
             } else {
-               Class19.method204(100L);
+               GameEngine.method204(100L);
                object_0 = anObject2;
                synchronized(object_0) {
                   if (anInt191 <= 1) {
@@ -69,8 +69,8 @@ public class Class91 implements Runnable {
    }
 
    static void method501(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
-      int[] ints_0 = Region.method382(int_0, int_1, int_2);
-      int[] ints_1 = Region.method382(int_3, int_4, int_5);
+      int[] ints_0 = SceneGraph.method382(int_0, int_1, int_2);
+      int[] ints_1 = SceneGraph.method382(int_3, int_4, int_5);
       Rasterizer2D.drawLine(ints_0[0], ints_0[1], ints_1[0], ints_1[1], int_6);
    }
 

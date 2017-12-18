@@ -118,7 +118,7 @@ public final class Client extends GameEngine {
     static Player[] players;
     static int[] anIntArray144;
     static int cycleCntr;
-    static CollisionData[] collisionMaps;
+    static CollisionMap[] collisionMaps;
     static Enum2 anEnum2_6;
     static int anInt640;
     static int anInt641;
@@ -328,7 +328,7 @@ public final class Client extends GameEngine {
         objectsNeedingLoad = 0;
         anInt634 = 1;
         anInt630 = 0;
-        collisionMaps = new CollisionData[4];
+        collisionMaps = new CollisionMap[4];
         isDynamicRegion = false;
         localRegions = new int[4][13][13];
         OBJECT_GROUPS = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
@@ -553,9 +553,9 @@ public final class Client extends GameEngine {
     static void method1064(int id) {
        Class12.processWidgetQueue();
 
-       for (Node_Sub1 node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getFront(); node_sub1_0 != null; node_sub1_0 = (Node_Sub1) Node_Sub1.aDeque3.getNext()) {
-          if (node_sub1_0.anObjectDefinition1 != null) {
-             node_sub1_0.method632();
+       for (AudioObject audioObject_0 = (AudioObject) AudioObject.aDeque3.getFront(); audioObject_0 != null; audioObject_0 = (AudioObject) AudioObject.aDeque3.getNext()) {
+          if (audioObject_0.transformationDefinition != null) {
+             audioObject_0.method632();
           }
        }
 
@@ -610,7 +610,7 @@ public final class Client extends GameEngine {
 
              if (short_0 != anInt662) {
                 if (anInt662 == 0 && anInt643 != -1) {
-                   Class71.method424(Class38.indexTrack1, anInt643, 0, short_0, false);
+                   Class71.method424(Class38.songsIndex, anInt643, 0, short_0, false);
                    aBool87 = false;
                 } else if (short_0 == 0) {
                    ItemLayer.method545();
@@ -739,7 +739,7 @@ public final class Client extends GameEngine {
        int index;
        for (index = 0; index < Class55.localRegionMapData.length; index++) {
           if (Varbit.landMapFileIds[index] != -1 && Class55.localRegionMapData[index] == null) {
-             Class55.localRegionMapData[index] = Class23.indexMaps.getConfigData(Varbit.landMapFileIds[index], 0);
+             Class55.localRegionMapData[index] = Class23.mapsIndex.getConfigData(Varbit.landMapFileIds[index], 0);
              if (Class55.localRegionMapData[index] == null) {
                 needsLoading = false;
                 ++anInt631;
@@ -747,7 +747,7 @@ public final class Client extends GameEngine {
           }
 
           if (Varbit.landRegionFileIds[index] != -1 && Class10.localRegionLandscapeData[index] == null) {
-             Class10.localRegionLandscapeData[index] = Class23.indexMaps.getConfigData(Varbit.landRegionFileIds[index], 0, Class38.xteaKeys[index]);
+             Class10.localRegionLandscapeData[index] = Class23.mapsIndex.getConfigData(Varbit.landRegionFileIds[index], 0, Class38.xteaKeys[index]);
              if (Class10.localRegionLandscapeData[index] == null) {
                 needsLoading = false;
                 ++anInt631;
@@ -763,9 +763,9 @@ public final class Client extends GameEngine {
 
           int localX;
           int localY;
-          int id;
-          int offset;
-          int position;
+          int localXHash;
+          int localYHash;
+          int tileHash;
           int terminate;
           int offsetY;
           int offsetX;
@@ -784,18 +784,18 @@ public final class Client extends GameEngine {
 
                 boolean ready = true;
                 Buffer buffer = new Buffer(data);
-                id = -1;
+                localXHash = -1;
 
                 offsetLoop:
                 while (true) {
-                   offset = buffer.getUSmart();
-                   if (offset == 0) {
+                   localYHash = buffer.getUSmart();
+                   if (localYHash == 0) {
                       needsLoading &= ready;
                       break;
                    }
 
-                   id += offset;
-                   position = 0;
+                   localXHash += localYHash;
+                   tileHash = 0;
                    boolean skip = false;
 
                    while (true) {
@@ -805,14 +805,14 @@ public final class Client extends GameEngine {
                             continue offsetLoop;
                          }
 
-                         position += terminate - 1;
-                         offsetY = position & 0x3F;
-                         offsetX = position >> 6 & 0x3F;
+                         tileHash += terminate - 1;
+                         offsetY = tileHash & 0x3F;
+                         offsetX = tileHash >> 6 & 0x3F;
                          type = buffer.getUnsignedByte() >> 2;
                          viewportX = localX + offsetX;
                          viewportY = localY + offsetY;
                          if (viewportX > 0 && viewportY > 0 && viewportX < 103 && viewportY < 103) {
-                            ObjectDefinition definition = ObjectDefinition.getDefinition(id);
+                            ObjectDefinition definition = ObjectDefinition.getDefinition(localXHash);
                             if (type != 22 || !lowMemory || definition.hasOptions != 0 || definition.interactType == 1 || definition.needsRedraw) {
                                if (!definition.ready()) {
                                   ++objectsNeedingLoad;
@@ -842,190 +842,190 @@ public final class Client extends GameEngine {
                 drawStatusBox("Loading - please wait." + "<br>" + " (" + 100 + "%" + ")", true);
              }
 
-             Enum2.method642();
+             Enum2.reloadSound();
              World.method557();
-             Enum2.method642();
-             Class23.region.reset();
-             Enum2.method642();
+             Enum2.reloadSound();
+             Class23.sceneGraph.reset();
+             Enum2.reloadSound();
              System.gc();
 
              for (index = 0; index < 4; index++) {
                 collisionMaps[index].reset();
              }
 
-             int int_9;
+             int tileIndex;
              for (index = 0; index < 4; index++) {
-                for (int_9 = 0; int_9 < 104; int_9++) {
+                for (tileIndex = 0; tileIndex < 104; tileIndex++) {
                    for (localX = 0; localX < 104; localX++) {
-                      Class19.tileSettings[index][int_9][localX] = 0;
+                      Region.renderRuleFlags[index][tileIndex][localX] = 0;
                    }
                 }
              }
 
-             Enum2.method642();
+             Enum2.reloadSound();
              Buffer.method734();
              index = Class55.localRegionMapData.length;
              CombatInfo2.method820();
              Class101.flush(true);
-             int int_3;
+             int actualLocalY;
              if (!isDynamicRegion) {
-                byte[] bytes_1;
-                for (int_9 = 0; int_9 < index; int_9++) {
-                   localX = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
-                   localY = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
-                   bytes_1 = Class55.localRegionMapData[int_9];
-                   if (bytes_1 != null) {
-                      Enum2.method642();
-                      ItemLayer.method546(bytes_1, localX, localY, Class87.anInt189 * 8 - 48, Class25.anInt86 * 8 - 48, collisionMaps);
+                byte[] tileData;
+                for (tileIndex = 0; tileIndex < index; tileIndex++) {
+                   localX = (Script.localRegionIds[tileIndex] >> 8) * 64 - regionBaseX;
+                   localY = (Script.localRegionIds[tileIndex] & 0xFF) * 64 - regionBaseY;
+                   tileData = Class55.localRegionMapData[tileIndex];
+                   if (tileData != null) {
+                      Enum2.reloadSound();
+                      Region.decodeLocalRegion(tileData, localX, localY, Class87.absoluteTileHashX * 8 - 48, Class25.absoluteTileHashY * 8 - 48, collisionMaps);
                    }
                 }
 
-                for (int_9 = 0; int_9 < index; int_9++) {
-                   localX = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
-                   localY = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
-                   bytes_1 = Class55.localRegionMapData[int_9];
-                   if (bytes_1 == null && Class25.anInt86 < 800) {
-                      Enum2.method642();
+                for (tileIndex = 0; tileIndex < index; tileIndex++) {
+                   localX = (Script.localRegionIds[tileIndex] >> 8) * 64 - regionBaseX;
+                   localY = (Script.localRegionIds[tileIndex] & 0xFF) * 64 - regionBaseY;
+                   tileData = Class55.localRegionMapData[tileIndex];
+                   if (tileData == null && Class25.absoluteTileHashY < 800) {
+                      Enum2.reloadSound();
                       initiateVertexHeights(localX, localY, 64, 64);
                    }
                 }
 
                 Class101.flush(true);
 
-                for (int_9 = 0; int_9 < index; int_9++) {
-                   byte[] bytes_2 = Class10.localRegionLandscapeData[int_9];
-                   if (bytes_2 != null) {
-                      localY = (Script.localRegionIds[int_9] >> 8) * 64 - regionBaseX;
-                      int_3 = (Script.localRegionIds[int_9] & 0xFF) * 64 - regionBaseY;
-                      Enum2.method642();
-                      Class15.method196(bytes_2, localY, int_3, Class23.region, collisionMaps);
+                for (tileIndex = 0; tileIndex < index; tileIndex++) {
+                   byte[] minimapData = Class10.localRegionLandscapeData[tileIndex];
+                   if (minimapData != null) {
+                      localY = (Script.localRegionIds[tileIndex] >> 8) * 64 - regionBaseX;
+                      actualLocalY = (Script.localRegionIds[tileIndex] & 0xFF) * 64 - regionBaseY;
+                      Enum2.reloadSound();
+                      Region.decodeLandscapes(minimapData, localY, actualLocalY, Class23.sceneGraph, collisionMaps);
                    }
                 }
              }
 
-             int int_6;
-             int int_15;
-             int int_17;
-             int int_18;
-             int int_19;
-             int int_20;
-             int int_21;
-             int int_22;
-             int int_23;
-             int int_24;
-             int int_25;
-             int int_26;
-             int int_27;
-             int int_28;
+             int localTileHash;
+             int rotationhash;
+             int tileObjectId;
+             int objectIdOffset;
+             int tileHashData;
+             int tileHashOffset;
+             int tileType;
+             int tileX;
+             int tileY;
+             int info;
+             int objectType;
+             int face;
+             int objectX;
+             int objectY;
              int hsl;
-             int int_40;
-             int int_41;
+             int height;
+             int regionIndex;
              if (isDynamicRegion) {
-                for (int_9 = 0; int_9 < 4; int_9++) {
-                   Enum2.method642();
+                for (tileIndex = 0; tileIndex < 4; tileIndex++) {
+                   Enum2.reloadSound();
 
                    for (localX = 0; localX < 13; localX++) {
                       for (localY = 0; localY < 13; localY++) {
-                         boolean bool_3 = false;
-                         int_6 = localRegions[int_9][localX][localY];
-                         if (int_6 != -1) {
-                            int_40 = int_6 >> 24 & 0x3;
-                            int_15 = int_6 >> 1 & 0x3;
-                            id = int_6 >> 14 & 0x3FF;
-                            offset = int_6 >> 3 & 0x7FF;
-                            position = (id / 8 << 8) + offset / 8;
+                         boolean tileProcessed = false;
+                         localTileHash = localRegions[tileIndex][localX][localY];
+                         if (localTileHash != -1) {
+                            height = localTileHash >> 24 & 0x3;
+                            rotationhash = localTileHash >> 1 & 0x3;
+                            localXHash = localTileHash >> 14 & 0x3FF;
+                            localYHash = localTileHash >> 3 & 0x7FF;
+                            tileHash = (localXHash / 8 << 8) + localYHash / 8;
 
-                            for (int_41 = 0; int_41 < Script.localRegionIds.length; int_41++) {
-                               if (Script.localRegionIds[int_41] == position && Class55.localRegionMapData[int_41] != null) {
-                                  method1111(Class55.localRegionMapData[int_41], int_9, localX * 8, localY * 8, int_40, (id & 0x7) * 8, (offset & 0x7) * 8, int_15, collisionMaps);
-                                  bool_3 = true;
+                            for (regionIndex = 0; regionIndex < Script.localRegionIds.length; regionIndex++) {
+                               if (Script.localRegionIds[regionIndex] == tileHash && Class55.localRegionMapData[regionIndex] != null) {
+                                  Region.decodeLandscapeTile(Class55.localRegionMapData[regionIndex], tileIndex, localX * 8, localY * 8, height, (localXHash & 0x7) * 8, (localYHash & 0x7) * 8, rotationhash, collisionMaps);
+                                  tileProcessed = true;
                                   break;
                                }
                             }
                          }
 
-                         if (!bool_3) {
-                            Class27.method227(int_9, localX * 8, localY * 8);
+                         if (!tileProcessed) {
+                            Region.shiftVertexHeights(tileIndex, localX * 8, localY * 8);
                          }
                       }
                    }
                 }
 
-                for (int_9 = 0; int_9 < 13; int_9++) {
+                for (tileIndex = 0; tileIndex < 13; tileIndex++) {
                    for (localX = 0; localX < 13; localX++) {
-                      localY = localRegions[0][int_9][localX];
+                      localY = localRegions[0][tileIndex][localX];
                       if (localY == -1) {
-                         initiateVertexHeights(int_9 * 8, localX * 8, 8, 8);
+                         initiateVertexHeights(tileIndex * 8, localX * 8, 8, 8);
                       }
                    }
                 }
 
                 Class101.flush(true);
 
-                for (int_9 = 0; int_9 < 4; int_9++) {
-                   Enum2.method642();
+                for (tileIndex = 0; tileIndex < 4; tileIndex++) {
+                   Enum2.reloadSound();
 
                    for (localX = 0; localX < 13; localX++) {
                       label1150:
                       for (localY = 0; localY < 13; localY++) {
-                         int_3 = localRegions[int_9][localX][localY];
-                         if (int_3 != -1) {
-                            int_6 = int_3 >> 24 & 0x3;
-                            int_40 = int_3 >> 1 & 0x3;
-                            int_15 = int_3 >> 14 & 0x3FF;
-                            id = int_3 >> 3 & 0x7FF;
-                            offset = (int_15 / 8 << 8) + id / 8;
+                         actualLocalY = localRegions[tileIndex][localX][localY];
+                         if (actualLocalY != -1) {
+                            localTileHash = actualLocalY >> 24 & 0x3;
+                            height = actualLocalY >> 1 & 0x3;
+                            rotationhash = actualLocalY >> 14 & 0x3FF;
+                            localXHash = actualLocalY >> 3 & 0x7FF;
+                            localYHash = (rotationhash / 8 << 8) + localXHash / 8;
 
-                            for (position = 0; position < Script.localRegionIds.length; position++) {
-                               if (Script.localRegionIds[position] == offset && Class10.localRegionLandscapeData[position] != null) {
-                                  byte[] bytes_3 = Class10.localRegionLandscapeData[position];
+                            for (tileHash = 0; tileHash < Script.localRegionIds.length; tileHash++) {
+                               if (Script.localRegionIds[tileHash] == localYHash && Class10.localRegionLandscapeData[tileHash] != null) {
+                                  byte[] landscapeData = Class10.localRegionLandscapeData[tileHash];
                                   terminate = localX * 8;
                                   offsetY = localY * 8;
-                                  offsetX = (int_15 & 0x7) * 8;
-                                  type = (id & 0x7) * 8;
-                                  Region region_0 = Class23.region;
-                                  CollisionData[] collisiondatas_0 = collisionMaps;
-                                  Buffer buffer_1 = new Buffer(bytes_3);
-                                  int_17 = -1;
+                                  offsetX = (rotationhash & 0x7) * 8;
+                                  type = (localXHash & 0x7) * 8;
+                                  SceneGraph sceneGraph = Class23.sceneGraph;
+                                  CollisionMap[] collisionMaps = Client.collisionMaps;
+                                  Buffer buffer = new Buffer(landscapeData);
+                                  tileObjectId = -1;
 
                                   while (true) {
-                                     int_18 = buffer_1.getUSmart();
-                                     if (int_18 == 0) {
+                                     objectIdOffset = buffer.getUSmart();
+                                     if (objectIdOffset == 0) {
                                         continue label1150;
                                      }
 
-                                     int_17 += int_18;
-                                     int_19 = 0;
+                                     tileObjectId += objectIdOffset;
+                                     tileHashData = 0;
 
                                      while (true) {
-                                        int_20 = buffer_1.getUSmart();
-                                        if (int_20 == 0) {
+                                        tileHashOffset = buffer.getUSmart();
+                                        if (tileHashOffset == 0) {
                                            break;
                                         }
 
-                                        int_19 += int_20 - 1;
-                                        int_21 = int_19 & 0x3F;
-                                        int_22 = int_19 >> 6 & 0x3F;
-                                        int_23 = int_19 >> 12;
-                                        int_24 = buffer_1.getUnsignedByte();
-                                        int_25 = int_24 >> 2;
-                                        int_26 = int_24 & 0x3;
-                                        if (int_6 == int_23 && int_22 >= offsetX && int_22 < offsetX + 8 && int_21 >= type && int_21 < type + 8) {
-                                           ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_17);
-                                           int_27 = terminate + Class20.method209(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
-                                           int_28 = offsetY + RSCanvas.method749(int_22 & 0x7, int_21 & 0x7, int_40, objectcomposition_1.sizeX, objectcomposition_1.sizeY, int_26);
-                                           if (int_27 > 0 && int_28 > 0 && int_27 < 103 && int_28 < 103) {
-                                              hsl = int_9;
-                                              if ((Class19.tileSettings[1][int_27][int_28] & 0x2) == 2) {
-                                                 hsl = int_9 - 1;
+                                        tileHashData += tileHashOffset - 1;
+                                        tileType = tileHashData & 0x3F;
+                                        tileX = tileHashData >> 6 & 0x3F;
+                                        tileY = tileHashData >> 12;
+                                        info = buffer.getUnsignedByte();
+                                        objectType = info >> 2;
+                                        face = info & 0x3;
+                                        if (localTileHash == tileY && tileX >= offsetX && tileX < offsetX + 8 && tileType >= type && tileType < type + 8) {
+                                           ObjectDefinition definition = ObjectDefinition.getDefinition(tileObjectId);
+                                           objectX = terminate + TileUtilities.getRotatedLandscapeChunkX(tileX & 0x7, tileType & 0x7, height, definition.sizeX, definition.sizeY, face);
+                                           objectY = offsetY + TileUtilities.getRotatedLandscapeChunkY(tileX & 0x7, tileType & 0x7, height, definition.sizeX, definition.sizeY, face);
+                                           if (objectX > 0 && objectY > 0 && objectX < 103 && objectY < 103) {
+                                              hsl = tileIndex;
+                                              if ((Region.renderRuleFlags[1][objectX][objectY] & 0x2) == 2) {
+                                                 hsl = tileIndex - 1;
                                               }
 
-                                              CollisionData collisiondata_0 = null;
+                                              CollisionMap map = null;
                                               if (hsl >= 0) {
-                                                 collisiondata_0 = collisiondatas_0[hsl];
+                                                 map = collisionMaps[hsl];
                                               }
 
-                                              RuntimeException_Sub1.addObject(int_9, int_27, int_28, int_17, int_26 + int_40 & 0x3, int_25, region_0, collisiondata_0);
+                                              Region.addObject(tileIndex, objectX, objectY, tileObjectId, face + height & 0x3, objectType, sceneGraph, map);
                                            }
                                         }
                                      }
@@ -1040,98 +1040,98 @@ public final class Client extends GameEngine {
 
              Class101.flush(true);
              World.method557();
-             Enum2.method642();
-             Region region_1 = Class23.region;
-             CollisionData[] collisiondatas_1 = collisionMaps;
+             Enum2.reloadSound();
+             SceneGraph sceneGraph = Class23.sceneGraph;
+             CollisionMap[] maps = collisionMaps;
 
              for (localY = 0; localY < 4; localY++) {
-                for (int_3 = 0; int_3 < 104; int_3++) {
-                   for (int_6 = 0; int_6 < 104; int_6++) {
-                      if ((Class19.tileSettings[localY][int_3][int_6] & 0x1) == 1) {
-                         int_40 = localY;
-                         if ((Class19.tileSettings[1][int_3][int_6] & 0x2) == 2) {
-                            int_40 = localY - 1;
+                for (actualLocalY = 0; actualLocalY < 104; actualLocalY++) {
+                   for (localTileHash = 0; localTileHash < 104; localTileHash++) {
+                      if ((Region.renderRuleFlags[localY][actualLocalY][localTileHash] & 0x1) == 1) {
+                         height = localY;
+                         if ((Region.renderRuleFlags[1][actualLocalY][localTileHash] & 0x2) == 2) {
+                            height = localY - 1;
                          }
 
-                         if (int_40 >= 0) {
-                            collisiondatas_1[int_40].method581(int_3, int_6);
+                         if (height >= 0) {
+                            maps[height].addBlocked(actualLocalY, localTileHash);
                          }
                       }
                    }
                 }
              }
 
-             Class19.anInt73 += (int)(Math.random() * 5.0D) - 2;
-             if (Class19.anInt73 < -8) {
-                Class19.anInt73 = -8;
+             Region.minRandom += (int)(Math.random() * 5.0D) - 2;
+             if (Region.minRandom < -8) {
+                Region.minRandom = -8;
              }
 
-             if (Class19.anInt73 > 8) {
-                Class19.anInt73 = 8;
+             if (Region.minRandom > 8) {
+                Region.minRandom = 8;
              }
 
-             Class19.anInt74 += (int)(Math.random() * 5.0D) - 2;
-             if (Class19.anInt74 < -16) {
-                Class19.anInt74 = -16;
+             Region.maxRandom += (int)(Math.random() * 5.0D) - 2;
+             if (Region.maxRandom < -16) {
+                Region.maxRandom = -16;
              }
 
-             if (Class19.anInt74 > 16) {
-                Class19.anInt74 = 16;
+             if (Region.maxRandom > 16) {
+                Region.maxRandom = 16;
              }
 
              int int_16;
              for (localY = 0; localY < 4; localY++) {
-                byte[][] bytes_4 = Class19.tileShadowIntensity[localY];
-                position = (int)Math.sqrt(5100.0D);
-                int_41 = position * 768 >> 8;
+                byte[][] bytes_4 = SceneGraph.tileShadowIntensity[localY];
+                tileHash = (int)Math.sqrt(5100.0D);
+                regionIndex = tileHash * 768 >> 8;
 
                 for (terminate = 1; terminate < 103; terminate++) {
                    for (offsetY = 1; offsetY < 103; offsetY++) {
-                      offsetX = Class19.tileHeights[localY][offsetY + 1][terminate] - Class19.tileHeights[localY][offsetY - 1][terminate];
-                      type = Class19.tileHeights[localY][offsetY][terminate + 1] - Class19.tileHeights[localY][offsetY][terminate - 1];
+                      offsetX = Region.tileHeightArray[localY][offsetY + 1][terminate] - Region.tileHeightArray[localY][offsetY - 1][terminate];
+                      type = Region.tileHeightArray[localY][offsetY][terminate + 1] - Region.tileHeightArray[localY][offsetY][terminate - 1];
                       viewportX = (int)Math.sqrt((double)(type * type + offsetX * offsetX + 65536));
                       viewportY = (offsetX << 8) / viewportX;
                       int_16 = 65536 / viewportX;
-                      int_17 = (type << 8) / viewportX;
-                      int_18 = (int_17 * -50 + viewportY * -50 + int_16 * -10) / int_41 + 96;
-                      int_19 = (bytes_4[offsetY][terminate + 1] >> 3) + (bytes_4[offsetY - 1][terminate] >> 2) + (bytes_4[offsetY][terminate - 1] >> 2) + (bytes_4[offsetY + 1][terminate] >> 3) + (bytes_4[offsetY][terminate] >> 1);
-                      Settings.tileHeightArray[offsetY][terminate] = int_18 - int_19;
+                      tileObjectId = (type << 8) / viewportX;
+                      objectIdOffset = (tileObjectId * -50 + viewportY * -50 + int_16 * -10) / regionIndex + 96;
+                      tileHashData = (bytes_4[offsetY][terminate + 1] >> 3) + (bytes_4[offsetY - 1][terminate] >> 2) + (bytes_4[offsetY][terminate - 1] >> 2) + (bytes_4[offsetY + 1][terminate] >> 3) + (bytes_4[offsetY][terminate] >> 1);
+                      Settings.tileHeightArray[offsetY][terminate] = objectIdOffset - tileHashData;
                    }
                 }
 
                 for (terminate = 0; terminate < 104; terminate++) {
-                   Class19.anIntArray8[terminate] = 0;
+                   WorldMapData_Sub1.anIntArray8[terminate] = 0;
                    RSCanvas.anIntArray82[terminate] = 0;
                    Preferences.anIntArray39[terminate] = 0;
                    FloorUnderlayDefinition.anIntArray105[terminate] = 0;
-                   Class19.anIntArray11[terminate] = 0;
+                   WorldMapData_Sub1.anIntArray11[terminate] = 0;
                 }
 
                 for (terminate = -5; terminate < 109; terminate++) {
                    for (offsetY = 0; offsetY < 104; offsetY++) {
                       offsetX = terminate + 5;
                       if (offsetX >= 0 && offsetX < 104) {
-                         type = Class19.aByteArrayArrayArray5[localY][offsetX][offsetY] & 0xFF;
+                         type = Region.underlayFloorIds[localY][offsetX][offsetY] & 0xFF;
                          if (type > 0) {
                             FloorUnderlayDefinition floorunderlaydefinition_0 = Class33.method240(type - 1);
-                            Class19.anIntArray8[offsetY] += floorunderlaydefinition_0.hue;
+                            WorldMapData_Sub1.anIntArray8[offsetY] += floorunderlaydefinition_0.hue;
                             RSCanvas.anIntArray82[offsetY] += floorunderlaydefinition_0.saturation;
                             Preferences.anIntArray39[offsetY] += floorunderlaydefinition_0.lightness;
                             FloorUnderlayDefinition.anIntArray105[offsetY] += floorunderlaydefinition_0.hueMultiplier;
-                            ++Class19.anIntArray11[offsetY];
+                            ++WorldMapData_Sub1.anIntArray11[offsetY];
                          }
                       }
 
                       type = terminate - 5;
                       if (type >= 0 && type < 104) {
-                         viewportX = Class19.aByteArrayArrayArray5[localY][type][offsetY] & 0xFF;
+                         viewportX = Region.underlayFloorIds[localY][type][offsetY] & 0xFF;
                          if (viewportX > 0) {
                             FloorUnderlayDefinition floorunderlaydefinition_1 = Class33.method240(viewportX - 1);
-                            Class19.anIntArray8[offsetY] -= floorunderlaydefinition_1.hue;
+                            WorldMapData_Sub1.anIntArray8[offsetY] -= floorunderlaydefinition_1.hue;
                             RSCanvas.anIntArray82[offsetY] -= floorunderlaydefinition_1.saturation;
                             Preferences.anIntArray39[offsetY] -= floorunderlaydefinition_1.lightness;
                             FloorUnderlayDefinition.anIntArray105[offsetY] -= floorunderlaydefinition_1.hueMultiplier;
-                            --Class19.anIntArray11[offsetY];
+                            --WorldMapData_Sub1.anIntArray11[offsetY];
                          }
                       }
                    }
@@ -1144,51 +1144,51 @@ public final class Client extends GameEngine {
                       viewportY = 0;
 
                       for (int_16 = -5; int_16 < 109; int_16++) {
-                         int_17 = int_16 + 5;
-                         if (int_17 >= 0 && int_17 < 104) {
-                            offsetY += Class19.anIntArray8[int_17];
-                            offsetX += RSCanvas.anIntArray82[int_17];
-                            type += Preferences.anIntArray39[int_17];
-                            viewportX += FloorUnderlayDefinition.anIntArray105[int_17];
-                            viewportY += Class19.anIntArray11[int_17];
+                         tileObjectId = int_16 + 5;
+                         if (tileObjectId >= 0 && tileObjectId < 104) {
+                            offsetY += WorldMapData_Sub1.anIntArray8[tileObjectId];
+                            offsetX += RSCanvas.anIntArray82[tileObjectId];
+                            type += Preferences.anIntArray39[tileObjectId];
+                            viewportX += FloorUnderlayDefinition.anIntArray105[tileObjectId];
+                            viewportY += WorldMapData_Sub1.anIntArray11[tileObjectId];
                          }
 
-                         int_18 = int_16 - 5;
-                         if (int_18 >= 0 && int_18 < 104) {
-                            offsetY -= Class19.anIntArray8[int_18];
-                            offsetX -= RSCanvas.anIntArray82[int_18];
-                            type -= Preferences.anIntArray39[int_18];
-                            viewportX -= FloorUnderlayDefinition.anIntArray105[int_18];
-                            viewportY -= Class19.anIntArray11[int_18];
+                         objectIdOffset = int_16 - 5;
+                         if (objectIdOffset >= 0 && objectIdOffset < 104) {
+                            offsetY -= WorldMapData_Sub1.anIntArray8[objectIdOffset];
+                            offsetX -= RSCanvas.anIntArray82[objectIdOffset];
+                            type -= Preferences.anIntArray39[objectIdOffset];
+                            viewportX -= FloorUnderlayDefinition.anIntArray105[objectIdOffset];
+                            viewportY -= WorldMapData_Sub1.anIntArray11[objectIdOffset];
                          }
 
-                         if (int_16 >= 1 && int_16 < 103 && (!lowMemory || (Class19.tileSettings[0][terminate][int_16] & 0x2) != 0 || (Class19.tileSettings[localY][terminate][int_16] & 0x10) == 0)) {
-                            if (localY < Class19.anInt72) {
-                               Class19.anInt72 = localY;
+                         if (int_16 >= 1 && int_16 < 103 && (!lowMemory || (Region.renderRuleFlags[0][terminate][int_16] & 0x2) != 0 || (Region.renderRuleFlags[localY][terminate][int_16] & 0x10) == 0)) {
+                            if (localY < SceneGraph.lowestPlane) {
+                               SceneGraph.lowestPlane = localY;
                             }
 
-                            int_19 = Class19.aByteArrayArrayArray5[localY][terminate][int_16] & 0xFF;
-                            int_20 = Class106.aByteArrayArrayArray9[localY][terminate][int_16] & 0xFF;
-                            if (int_19 > 0 || int_20 > 0) {
-                               int_21 = Class19.tileHeights[localY][terminate][int_16];
-                               int_22 = Class19.tileHeights[localY][terminate + 1][int_16];
-                               int_23 = Class19.tileHeights[localY][terminate + 1][int_16 + 1];
-                               int_24 = Class19.tileHeights[localY][terminate][int_16 + 1];
-                               int_25 = Settings.tileHeightArray[terminate][int_16];
-                               int_26 = Settings.tileHeightArray[terminate + 1][int_16];
+                            tileHashData = Region.underlayFloorIds[localY][terminate][int_16] & 0xFF;
+                            tileHashOffset = Region.overlayFloorIds[localY][terminate][int_16] & 0xFF;
+                            if (tileHashData > 0 || tileHashOffset > 0) {
+                               tileType = Region.tileHeightArray[localY][terminate][int_16];
+                               tileX = Region.tileHeightArray[localY][terminate + 1][int_16];
+                               tileY = Region.tileHeightArray[localY][terminate + 1][int_16 + 1];
+                               info = Region.tileHeightArray[localY][terminate][int_16 + 1];
+                               objectType = Settings.tileHeightArray[terminate][int_16];
+                               face = Settings.tileHeightArray[terminate + 1][int_16];
                                int int_30 = Settings.tileHeightArray[terminate + 1][int_16 + 1];
-                               int_27 = Settings.tileHeightArray[terminate][int_16 + 1];
-                               int_28 = -1;
+                               objectX = Settings.tileHeightArray[terminate][int_16 + 1];
+                               objectY = -1;
                                hsl = -1;
                                int int_31;
                                int int_32;
-                               if (int_19 > 0) {
+                               if (tileHashData > 0) {
                                   int_31 = offsetY * 256 / viewportX;
                                   int_32 = offsetX / viewportY;
                                   int int_33 = type / viewportY;
-                                  int_28 = WorldMapData_Sub1.method609(int_31, int_32, int_33);
-                                  int_31 = int_31 + Class19.anInt73 & 0xFF;
-                                  int_33 += Class19.anInt74;
+                                  objectY = WorldMapData_Sub1.method609(int_31, int_32, int_33);
+                                  int_31 = int_31 + Region.minRandom & 0xFF;
+                                  int_33 += Region.maxRandom;
                                   if (int_33 < 0) {
                                      int_33 = 0;
                                   } else if (int_33 > 255) {
@@ -1200,16 +1200,16 @@ public final class Client extends GameEngine {
 
                                if (localY > 0) {
                                   boolean bool_4 = true;
-                                  if (int_19 == 0 && Class19.aByteArrayArrayArray6[localY][terminate][int_16] != 0) {
+                                  if (tileHashData == 0 && Region.overlayClippingPaths[localY][terminate][int_16] != 0) {
                                      bool_4 = false;
                                   }
 
-                                  if (int_20 > 0 && !Class39.getOverlay(int_20 - 1).isHidden) {
+                                  if (tileHashOffset > 0 && !Class39.getOverlay(tileHashOffset - 1).isHidden) {
                                      bool_4 = false;
                                   }
 
-                                  if (bool_4 && int_22 == int_21 && int_23 == int_21 && int_21 == int_24) {
-                                     ItemLayer.anIntArrayArrayArray1[localY][terminate][int_16] |= 0x924;
+                                  if (bool_4 && tileX == tileType && tileY == tileType && tileType == info) {
+                                     SceneGraph.tileCullingBitsets[localY][terminate][int_16] |= 0x924;
                                   }
                                }
 
@@ -1218,12 +1218,12 @@ public final class Client extends GameEngine {
                                   int_31 = Graphics3D.colorPalette[GameObject.getRgbTableId(hsl, 96)];
                                }
 
-                               if (int_20 == 0) {
-                                  region_1.addTile(localY, terminate, int_16, 0, 0, -1, int_21, int_22, int_23, int_24, GameObject.getRgbTableId(int_28, int_25), GameObject.getRgbTableId(int_28, int_26), GameObject.getRgbTableId(int_28, int_30), GameObject.getRgbTableId(int_28, int_27), 0, 0, 0, 0, int_31, 0);
+                               if (tileHashOffset == 0) {
+                                  sceneGraph.addTile(localY, terminate, int_16, 0, 0, -1, tileType, tileX, tileY, info, GameObject.getRgbTableId(objectY, objectType), GameObject.getRgbTableId(objectY, face), GameObject.getRgbTableId(objectY, int_30), GameObject.getRgbTableId(objectY, objectX), 0, 0, 0, 0, int_31, 0);
                                } else {
-                                  int_32 = Class19.aByteArrayArrayArray6[localY][terminate][int_16] + 1;
-                                  byte byte_0 = Class7.aByteArrayArrayArray2[localY][terminate][int_16];
-                                  Overlay overlay_0 = Class39.getOverlay(int_20 - 1);
+                                  int_32 = Region.overlayClippingPaths[localY][terminate][int_16] + 1;
+                                  byte byte_0 = Class7.overlayRotations[localY][terminate][int_16];
+                                  Overlay overlay_0 = Class39.getOverlay(tileHashOffset - 1);
                                   int int_34 = overlay_0.texture;
                                   int int_35;
                                   int int_36;
@@ -1238,8 +1238,8 @@ public final class Client extends GameEngine {
                                      int_35 = -2;
                                   } else {
                                      int_36 = WorldMapData_Sub1.method609(overlay_0.hue, overlay_0.saturation, overlay_0.lightness);
-                                     int_37 = overlay_0.hue + Class19.anInt73 & 0xFF;
-                                     int_38 = overlay_0.lightness + Class19.anInt74;
+                                     int_37 = overlay_0.hue + Region.minRandom & 0xFF;
+                                     int_38 = overlay_0.lightness + Region.maxRandom;
                                      if (int_38 < 0) {
                                         int_38 = 0;
                                      } else if (int_38 > 255) {
@@ -1255,8 +1255,8 @@ public final class Client extends GameEngine {
                                   }
 
                                   if (overlay_0.otherRgbColor != -1) {
-                                     int_38 = overlay_0.otherHue + Class19.anInt73 & 0xFF;
-                                     int int_39 = overlay_0.otherLightness + Class19.anInt74;
+                                     int_38 = overlay_0.otherHue + Region.minRandom & 0xFF;
+                                     int int_39 = overlay_0.otherLightness + Region.maxRandom;
                                      if (int_39 < 0) {
                                         int_39 = 0;
                                      } else if (int_39 > 255) {
@@ -1267,7 +1267,7 @@ public final class Client extends GameEngine {
                                      int_37 = Graphics3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
                                   }
 
-                                  region_1.addTile(localY, terminate, int_16, int_32, byte_0, int_34, int_21, int_22, int_23, int_24, GameObject.getRgbTableId(int_28, int_25), GameObject.getRgbTableId(int_28, int_26), GameObject.getRgbTableId(int_28, int_30), GameObject.getRgbTableId(int_28, int_27), Class14.adjustHSLListness0(int_36, int_25), Class14.adjustHSLListness0(int_36, int_26), Class14.adjustHSLListness0(int_36, int_30), Class14.adjustHSLListness0(int_36, int_27), int_31, int_37);
+                                  sceneGraph.addTile(localY, terminate, int_16, int_32, byte_0, int_34, tileType, tileX, tileY, info, GameObject.getRgbTableId(objectY, objectType), GameObject.getRgbTableId(objectY, face), GameObject.getRgbTableId(objectY, int_30), GameObject.getRgbTableId(objectY, objectX), Class14.adjustHSLListness0(int_36, objectType), Class14.adjustHSLListness0(int_36, face), Class14.adjustHSLListness0(int_36, int_30), Class14.adjustHSLListness0(int_36, objectX), int_31, int_37);
                                }
                             }
                          }
@@ -1277,67 +1277,67 @@ public final class Client extends GameEngine {
 
                 for (terminate = 1; terminate < 103; terminate++) {
                    for (offsetY = 1; offsetY < 103; offsetY++) {
-                      if ((Class19.tileSettings[localY][offsetY][terminate] & 0x8) != 0) {
+                      if ((Region.renderRuleFlags[localY][offsetY][terminate] & 0x8) != 0) {
                          int_16 = 0;
-                      } else if (localY > 0 && (Class19.tileSettings[1][offsetY][terminate] & 0x2) != 0) {
+                      } else if (localY > 0 && (Region.renderRuleFlags[1][offsetY][terminate] & 0x2) != 0) {
                          int_16 = localY - 1;
                       } else {
                          int_16 = localY;
                       }
 
-                      region_1.setPhysicalLevel(localY, offsetY, terminate, int_16);
+                      sceneGraph.setPhysicalLevel(localY, offsetY, terminate, int_16);
                    }
                 }
 
-                Class19.aByteArrayArrayArray5[localY] = null;
-                Class106.aByteArrayArrayArray9[localY] = null;
-                Class19.aByteArrayArrayArray6[localY] = null;
-                Class7.aByteArrayArrayArray2[localY] = null;
-                Class19.tileShadowIntensity[localY] = null;
+                Region.underlayFloorIds[localY] = null;
+                Region.overlayFloorIds[localY] = null;
+                Region.overlayClippingPaths[localY] = null;
+                Class7.overlayRotations[localY] = null;
+                SceneGraph.tileShadowIntensity[localY] = null;
              }
 
-             region_1.applyLighting(-50, -10, -50);
+             sceneGraph.shadeModels(-50, -10, -50);
 
              for (localY = 0; localY < 104; localY++) {
-                for (int_3 = 0; int_3 < 104; int_3++) {
-                   if ((Class19.tileSettings[1][localY][int_3] & 0x2) == 2) {
-                      region_1.setBridge(localY, int_3);
+                for (actualLocalY = 0; actualLocalY < 104; actualLocalY++) {
+                   if ((Region.renderRuleFlags[1][localY][actualLocalY] & 0x2) == 2) {
+                      sceneGraph.setBridge(localY, actualLocalY);
                    }
                 }
              }
 
              localY = 1;
-             int_3 = 2;
-             int_6 = 4;
+             actualLocalY = 2;
+             localTileHash = 4;
 
-             for (int_40 = 0; int_40 < 4; int_40++) {
-                if (int_40 > 0) {
+             for (height = 0; height < 4; height++) {
+                if (height > 0) {
                    localY <<= 3;
-                   int_3 <<= 3;
-                   int_6 <<= 3;
+                   actualLocalY <<= 3;
+                   localTileHash <<= 3;
                 }
 
-                for (int_15 = 0; int_15 <= int_40; int_15++) {
-                   for (id = 0; id <= 104; id++) {
-                      for (offset = 0; offset <= 104; offset++) {
+                for (rotationhash = 0; rotationhash <= height; rotationhash++) {
+                   for (localXHash = 0; localXHash <= 104; localXHash++) {
+                      for (localYHash = 0; localYHash <= 104; localYHash++) {
                          short short_0;
-                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & localY) != 0) {
-                            position = id;
-                            int_41 = id;
-                            terminate = int_15;
+                         if ((SceneGraph.tileCullingBitsets[rotationhash][localYHash][localXHash] & localY) != 0) {
+                            tileHash = localXHash;
+                            regionIndex = localXHash;
+                            terminate = rotationhash;
 
-                            for (offsetY = int_15; position > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][position - 1] & localY) != 0; --position) {
+                            for (offsetY = rotationhash; tileHash > 0 && (SceneGraph.tileCullingBitsets[rotationhash][localYHash][tileHash - 1] & localY) != 0; --tileHash) {
                                ;
                             }
 
-                            while (int_41 < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][int_41 + 1] & localY) != 0) {
-                               ++int_41;
+                            while (regionIndex < 104 && (SceneGraph.tileCullingBitsets[rotationhash][localYHash][regionIndex + 1] & localY) != 0) {
+                               ++regionIndex;
                             }
 
                             label878:
                             while (terminate > 0) {
-                               for (offsetX = position; offsetX <= int_41; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[terminate - 1][offset][offsetX] & localY) == 0) {
+                               for (offsetX = tileHash; offsetX <= regionIndex; offsetX++) {
+                                  if ((SceneGraph.tileCullingBitsets[terminate - 1][localYHash][offsetX] & localY) == 0) {
                                      break label878;
                                   }
                                }
@@ -1346,9 +1346,9 @@ public final class Client extends GameEngine {
                             }
 
                             label867:
-                            while (offsetY < int_40) {
-                               for (offsetX = position; offsetX <= int_41; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[offsetY + 1][offset][offsetX] & localY) == 0) {
+                            while (offsetY < height) {
+                               for (offsetX = tileHash; offsetX <= regionIndex; offsetX++) {
+                                  if ((SceneGraph.tileCullingBitsets[offsetY + 1][localYHash][offsetX] & localY) == 0) {
                                      break label867;
                                   }
                                }
@@ -1356,38 +1356,38 @@ public final class Client extends GameEngine {
                                ++offsetY;
                             }
 
-                            offsetX = (int_41 - position + 1) * (offsetY + 1 - terminate);
+                            offsetX = (regionIndex - tileHash + 1) * (offsetY + 1 - terminate);
                             if (offsetX >= 8) {
                                short_0 = 240;
-                               viewportX = Class19.tileHeights[offsetY][offset][position] - short_0;
-                               viewportY = Class19.tileHeights[terminate][offset][position];
-                               Region.addOcclude(int_40, 1, offset * 128, offset * 128, position * 128, int_41 * 128 + 128, viewportX, viewportY);
+                               viewportX = Region.tileHeightArray[offsetY][localYHash][tileHash] - short_0;
+                               viewportY = Region.tileHeightArray[terminate][localYHash][tileHash];
+                               SceneGraph.addOcclude(height, 1, localYHash * 128, localYHash * 128, tileHash * 128, regionIndex * 128 + 128, viewportX, viewportY);
 
                                for (int_16 = terminate; int_16 <= offsetY; int_16++) {
-                                  for (int_17 = position; int_17 <= int_41; int_17++) {
-                                     ItemLayer.anIntArrayArrayArray1[int_16][offset][int_17] &= ~localY;
+                                  for (tileObjectId = tileHash; tileObjectId <= regionIndex; tileObjectId++) {
+                                     SceneGraph.tileCullingBitsets[int_16][localYHash][tileObjectId] &= ~localY;
                                   }
                                }
                             }
                          }
 
-                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & int_3) != 0) {
-                            position = offset;
-                            int_41 = offset;
-                            terminate = int_15;
+                         if ((SceneGraph.tileCullingBitsets[rotationhash][localYHash][localXHash] & actualLocalY) != 0) {
+                            tileHash = localYHash;
+                            regionIndex = localYHash;
+                            terminate = rotationhash;
 
-                            for (offsetY = int_15; position > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][position - 1][id] & int_3) != 0; --position) {
+                            for (offsetY = rotationhash; tileHash > 0 && (SceneGraph.tileCullingBitsets[rotationhash][tileHash - 1][localXHash] & actualLocalY) != 0; --tileHash) {
                                ;
                             }
 
-                            while (int_41 < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][int_41 + 1][id] & int_3) != 0) {
-                               ++int_41;
+                            while (regionIndex < 104 && (SceneGraph.tileCullingBitsets[rotationhash][regionIndex + 1][localXHash] & actualLocalY) != 0) {
+                               ++regionIndex;
                             }
 
                             label931:
                             while (terminate > 0) {
-                               for (offsetX = position; offsetX <= int_41; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[terminate - 1][offsetX][id] & int_3) == 0) {
+                               for (offsetX = tileHash; offsetX <= regionIndex; offsetX++) {
+                                  if ((SceneGraph.tileCullingBitsets[terminate - 1][offsetX][localXHash] & actualLocalY) == 0) {
                                      break label931;
                                   }
                                }
@@ -1396,9 +1396,9 @@ public final class Client extends GameEngine {
                             }
 
                             label920:
-                            while (offsetY < int_40) {
-                               for (offsetX = position; offsetX <= int_41; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[offsetY + 1][offsetX][id] & int_3) == 0) {
+                            while (offsetY < height) {
+                               for (offsetX = tileHash; offsetX <= regionIndex; offsetX++) {
+                                  if ((SceneGraph.tileCullingBitsets[offsetY + 1][offsetX][localXHash] & actualLocalY) == 0) {
                                      break label920;
                                   }
                                }
@@ -1406,63 +1406,63 @@ public final class Client extends GameEngine {
                                ++offsetY;
                             }
 
-                            offsetX = (offsetY + 1 - terminate) * (int_41 - position + 1);
+                            offsetX = (offsetY + 1 - terminate) * (regionIndex - tileHash + 1);
                             if (offsetX >= 8) {
                                short_0 = 240;
-                               viewportX = Class19.tileHeights[offsetY][position][id] - short_0;
-                               viewportY = Class19.tileHeights[terminate][position][id];
-                               Region.addOcclude(int_40, 2, position * 128, int_41 * 128 + 128, id * 128, id * 128, viewportX, viewportY);
+                               viewportX = Region.tileHeightArray[offsetY][tileHash][localXHash] - short_0;
+                               viewportY = Region.tileHeightArray[terminate][tileHash][localXHash];
+                               SceneGraph.addOcclude(height, 2, tileHash * 128, regionIndex * 128 + 128, localXHash * 128, localXHash * 128, viewportX, viewportY);
 
                                for (int_16 = terminate; int_16 <= offsetY; int_16++) {
-                                  for (int_17 = position; int_17 <= int_41; int_17++) {
-                                     ItemLayer.anIntArrayArrayArray1[int_16][int_17][id] &= ~int_3;
+                                  for (tileObjectId = tileHash; tileObjectId <= regionIndex; tileObjectId++) {
+                                     SceneGraph.tileCullingBitsets[int_16][tileObjectId][localXHash] &= ~actualLocalY;
                                   }
                                }
                             }
                          }
 
-                         if ((ItemLayer.anIntArrayArrayArray1[int_15][offset][id] & int_6) != 0) {
-                            position = offset;
-                            int_41 = offset;
-                            terminate = id;
+                         if ((SceneGraph.tileCullingBitsets[rotationhash][localYHash][localXHash] & localTileHash) != 0) {
+                            tileHash = localYHash;
+                            regionIndex = localYHash;
+                            terminate = localXHash;
 
-                            for (offsetY = id; terminate > 0 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][terminate - 1] & int_6) != 0; --terminate) {
+                            for (offsetY = localXHash; terminate > 0 && (SceneGraph.tileCullingBitsets[rotationhash][localYHash][terminate - 1] & localTileHash) != 0; --terminate) {
                                ;
                             }
 
-                            while (offsetY < 104 && (ItemLayer.anIntArrayArrayArray1[int_15][offset][offsetY + 1] & int_6) != 0) {
+                            while (offsetY < 104 && (SceneGraph.tileCullingBitsets[rotationhash][localYHash][offsetY + 1] & localTileHash) != 0) {
                                ++offsetY;
                             }
 
                             label984:
-                            while (position > 0) {
+                            while (tileHash > 0) {
                                for (offsetX = terminate; offsetX <= offsetY; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[int_15][position - 1][offsetX] & int_6) == 0) {
+                                  if ((SceneGraph.tileCullingBitsets[rotationhash][tileHash - 1][offsetX] & localTileHash) == 0) {
                                      break label984;
                                   }
                                }
 
-                               --position;
+                               --tileHash;
                             }
 
                             label973:
-                            while (int_41 < 104) {
+                            while (regionIndex < 104) {
                                for (offsetX = terminate; offsetX <= offsetY; offsetX++) {
-                                  if ((ItemLayer.anIntArrayArrayArray1[int_15][int_41 + 1][offsetX] & int_6) == 0) {
+                                  if ((SceneGraph.tileCullingBitsets[rotationhash][regionIndex + 1][offsetX] & localTileHash) == 0) {
                                      break label973;
                                   }
                                }
 
-                               ++int_41;
+                               ++regionIndex;
                             }
 
-                            if ((int_41 - position + 1) * (offsetY - terminate + 1) >= 4) {
-                               offsetX = Class19.tileHeights[int_15][position][terminate];
-                               Region.addOcclude(int_40, 4, position * 128, int_41 * 128 + 128, terminate * 128, offsetY * 128 + 128, offsetX, offsetX);
+                            if ((regionIndex - tileHash + 1) * (offsetY - terminate + 1) >= 4) {
+                               offsetX = Region.tileHeightArray[rotationhash][tileHash][terminate];
+                               SceneGraph.addOcclude(height, 4, tileHash * 128, regionIndex * 128 + 128, terminate * 128, offsetY * 128 + 128, offsetX, offsetX);
 
-                               for (type = position; type <= int_41; type++) {
+                               for (type = tileHash; type <= regionIndex; type++) {
                                   for (viewportX = terminate; viewportX <= offsetY; viewportX++) {
-                                     ItemLayer.anIntArrayArrayArray1[int_15][type][viewportX] &= ~int_6;
+                                     SceneGraph.tileCullingBitsets[rotationhash][type][viewportX] &= ~localTileHash;
                                   }
                                }
                             }
@@ -1473,7 +1473,7 @@ public final class Client extends GameEngine {
              }
 
              Class101.flush(true);
-             localY = Class19.anInt72;
+             localY = SceneGraph.lowestPlane;
              if (localY > Ignore.plane) {
                 localY = Ignore.plane;
              }
@@ -1483,18 +1483,18 @@ public final class Client extends GameEngine {
              }
 
              if (lowMemory) {
-                Class23.region.setup(Class19.anInt72);
+                Class23.sceneGraph.setup(SceneGraph.lowestPlane);
              } else {
-                Class23.region.setup(0);
+                Class23.sceneGraph.setup(0);
              }
 
-             for (int_3 = 0; int_3 < 104; int_3++) {
-                for (int_6 = 0; int_6 < 104; int_6++) {
-                   Enum1.groundItemSpawned(int_3, int_6);
+             for (actualLocalY = 0; actualLocalY < 104; actualLocalY++) {
+                for (localTileHash = 0; localTileHash < 104; localTileHash++) {
+                   Enum1.groundItemSpawned(actualLocalY, localTileHash);
                 }
              }
 
-             Enum2.method642();
+             Enum2.reloadSound();
 
              for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
                 if (pendingspawn_0.timeLeftTillSpawn == -1) {
@@ -1514,34 +1514,34 @@ public final class Client extends GameEngine {
              }
 
              if (!isDynamicRegion) {
-                int_3 = (Class87.anInt189 - 6) / 8;
-                int_6 = (Class87.anInt189 + 6) / 8;
-                int_40 = (Class25.anInt86 - 6) / 8;
-                int_15 = (Class25.anInt86 + 6) / 8;
+                actualLocalY = (Class87.absoluteTileHashX - 6) / 8;
+                localTileHash = (Class87.absoluteTileHashX + 6) / 8;
+                height = (Class25.absoluteTileHashY - 6) / 8;
+                rotationhash = (Class25.absoluteTileHashY + 6) / 8;
 
-                for (id = int_3 - 1; id <= int_6 + 1; id++) {
-                   for (offset = int_40 - 1; offset <= int_15 + 1; offset++) {
-                      if (id < int_3 || id > int_6 || offset < int_40 || offset > int_15) {
-                         Class23.indexMaps.method440("m" + id + "_" + offset);
-                         Class23.indexMaps.method440("l" + id + "_" + offset);
+                for (localXHash = actualLocalY - 1; localXHash <= localTileHash + 1; localXHash++) {
+                   for (localYHash = height - 1; localYHash <= rotationhash + 1; localYHash++) {
+                      if (localXHash < actualLocalY || localXHash > localTileHash || localYHash < height || localYHash > rotationhash) {
+                         Class23.mapsIndex.method440("m" + localXHash + "_" + localYHash);
+                         Class23.mapsIndex.method440("l" + localXHash + "_" + localYHash);
                       }
                    }
                 }
              }
 
              Class110.setGameState(30);
-             Enum2.method642();
-             WorldMapData_Sub1.method608();
+             Enum2.reloadSound();
+             WorldMapData_Sub1.nullify();
              packetnode_0 = Actor.method953(ClientPacket.aClientPacket96, aClass46_1.cipher);
              aClass46_1.method282(packetnode_0);
              timer.method585();
 
-             for (int_6 = 0; int_6 < 32; int_6++) {
-                aLongArray3[int_6] = 0L;
+             for (localTileHash = 0; localTileHash < 32; localTileHash++) {
+                aLongArray3[localTileHash] = 0L;
              }
 
-             for (int_6 = 0; int_6 < 32; int_6++) {
-                aLongArray2[int_6] = 0L;
+             for (localTileHash = 0; localTileHash < 32; localTileHash++) {
+                aLongArray2[localTileHash] = 0L;
              }
 
              AClass3.anInt326 = 0;
@@ -1566,26 +1566,31 @@ public final class Client extends GameEngine {
        for (int y = yOffset; y <= yLength + yOffset; y++) {
           for (int x = xOffset; x <= xOffset + xLength; x++) {
              if (x >= 0 && x < 104 && y >= 0 && y < 104) {
-                Class19.tileShadowIntensity[0][x][y] = 127;
+                SceneGraph.tileShadowIntensity[0][x][y] = 127;
                 if (xOffset == x && x > 0) {
-                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x - 1][y];
+                   Region.tileHeightArray[0][x][y] = Region.tileHeightArray[0][x - 1][y];
                 }
 
                 if (x == xOffset + xLength && x < 103) {
-                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x + 1][y];
+                   Region.tileHeightArray[0][x][y] = Region.tileHeightArray[0][x + 1][y];
                 }
 
                 if (y == yOffset && y > 0) {
-                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x][y - 1];
+                   Region.tileHeightArray[0][x][y] = Region.tileHeightArray[0][x][y - 1];
                 }
 
                 if (yLength + yOffset == y && y < 103) {
-                   Class19.tileHeights[0][x][y] = Class19.tileHeights[0][x][y + 1];
+                   Region.tileHeightArray[0][x][y] = Region.tileHeightArray[0][x][y + 1];
                 }
              }
           }
        }
 
+    }
+
+    public static int getRotatedMapChunk(int x, int y, int rotation) {
+       rotation &= 0x3;
+       return rotation == 0 ? x : (rotation == 1 ? y : (rotation == 2 ? 7 - x : 7 - y));
     }
 
     void processJS5Connection() {
@@ -1818,7 +1823,7 @@ public final class Client extends GameEngine {
                     }
 
                     class46_0.aBool18 = true;
-                    ServerPacket[] serverpackets_0 = DecorativeObject.method460();
+                    ServerPacket[] serverpackets_0 = WallDecoration.method460();
                     int_0 = packetbuffer_0.method906();
                     if (int_0 < 0 || int_0 >= serverpackets_0.length) {
                         throw new IOException(int_0 + " " + packetbuffer_0.position);
@@ -2645,7 +2650,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (anInt662 != 0 && int_0 != -1) {
-                        Class71.method424(Class92.indexTrack2, int_0, 0, anInt662, false);
+                        Class71.method424(Class92.musicConfigIndex, int_0, 0, anInt662, false);
                         aBool87 = true;
                     }
 
@@ -2772,7 +2777,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.regionUpdatePacket == class46_0.serverPacket) {
-                    WallObject.xteaChanged(false, class46_0.aPacketBuffer1);
+                    Wall.xteaChanged(false, class46_0.aPacketBuffer1);
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -3072,7 +3077,7 @@ public final class Client extends GameEngine {
                 if (ServerPacket.aServerPacket55 == class46_0.serverPacket) {
                     bool_5 = packetbuffer_0.getUnsignedByte() == 1;
                     if (bool_5) {
-                        Class19.aLong1 = Class97.currentTimeMs() - packetbuffer_0.readLong();
+                        Class20.aLong1 = Class97.currentTimeMs() - packetbuffer_0.readLong();
                         Class65.aClass47_1 = new Class47(packetbuffer_0, true);
                     } else {
                         Class65.aClass47_1 = null;
@@ -3478,7 +3483,7 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.dynamicRegionPacket == class46_0.serverPacket) {
-                    WallObject.xteaChanged(true, class46_0.aPacketBuffer1);
+                    Wall.xteaChanged(true, class46_0.aPacketBuffer1);
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -3602,7 +3607,7 @@ public final class Client extends GameEngine {
             int_5 = 0;
         }
 
-        Class23.region.method359(Ignore.plane, int_0, int_1, false);
+        Class23.sceneGraph.method359(Ignore.plane, int_0, int_1, false);
         isMenuOpen = true;
         CacheFile.menuX = int_4;
         AClass1_Sub1.menuY = int_5;
@@ -3623,7 +3628,7 @@ public final class Client extends GameEngine {
 
             if (filesystem_0 == null) {
                 Class7.method101();
-                Enum2.method642();
+                Enum2.reloadSound();
                 Class5.method96();
                 MouseInput mouseinput_0 = MouseInput.mouse;
                 synchronized (mouseinput_0) {
@@ -3772,7 +3777,7 @@ public final class Client extends GameEngine {
                         Class2.sendConInfo(bool_0);
                         Class95.aBuffer6.position = 0;
                         Class56.currentRequest = null;
-                        DecorativeObject.aBuffer4 = null;
+                        WallDecoration.aBuffer4 = null;
                         Class95.anInt201 = 0;
 
                         while (true) {
@@ -3873,7 +3878,7 @@ public final class Client extends GameEngine {
                     }
 
                     if (menuOptionCount > 2) {
-                        string_0 = string_0 + WallObject.getColTags(16777215) + " " + '/' + " " + (menuOptionCount - 2) + " more options";
+                        string_0 = string_0 + Wall.getColTags(16777215) + " " + '/' + " " + (menuOptionCount - 2) + " more options";
                     }
 
                     Class50.aFont3.drawRandomizedMouseoverText(string_0, int_0 + 4, int_1 + 15, 16777215, 0, gameCycle / 1000);
@@ -4128,7 +4133,7 @@ public final class Client extends GameEngine {
 
                             if (spawnNode.timeLeftTillSpawn == 0) {
                                 if (spawnNode.objectId < 0 || objectHasModelType(spawnNode.objectId, spawnNode.objectType)) {
-                                    Class10.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.objectId, spawnNode.objectFace, spawnNode.objectType);
+                                    Region.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.objectId, spawnNode.objectFace, spawnNode.objectType);
                                     spawnNode.unlink();
                                 }
                             } else {
@@ -4137,7 +4142,7 @@ public final class Client extends GameEngine {
                                 }
 
                                 if (spawnNode.updateCycle == 0 && spawnNode.x >= 1 && spawnNode.y >= 1 && spawnNode.x <= 102 && spawnNode.y <= 102 && (spawnNode.id < 0 || objectHasModelType(spawnNode.id, spawnNode.objectType2))) {
-                                    Class10.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.id, spawnNode.orientation, spawnNode.objectType2);
+                                    Region.spawnObject(spawnNode.plane, spawnNode.spawnType, spawnNode.x, spawnNode.y, spawnNode.id, spawnNode.orientation, spawnNode.objectType2);
                                     spawnNode.updateCycle = -1;
                                     if (spawnNode.objectId == spawnNode.id && spawnNode.objectId == -1) {
                                         spawnNode.unlink();
@@ -4341,16 +4346,16 @@ public final class Client extends GameEngine {
                                                                 }
                                                             }
 
-                                                            if (Region.method381()) {
-                                                                int_2 = Region.selectedRegionTileX;
-                                                                int_3 = Region.selectedRegionTileY;
+                                                            if (SceneGraph.method381()) {
+                                                                int_2 = SceneGraph.clickedTileX;
+                                                                int_3 = SceneGraph.clickedTileY;
                                                                 PacketNode packetnode_4 = Actor.method953(ClientPacket.aClientPacket82, aClass46_1.cipher);
                                                                 packetnode_4.packetBuffer.putByte(5);
                                                                 packetnode_4.packetBuffer.putShortS(int_3 + regionBaseY);
                                                                 packetnode_4.packetBuffer.putShortS(int_2 + regionBaseX);
                                                                 packetnode_4.packetBuffer.putByteA(KeyFocusListener.aBoolArray3[82] ? (KeyFocusListener.aBoolArray3[81] ? 2 : 1) : 0);
                                                                 aClass46_1.method282(packetnode_4);
-                                                                Region.method386();
+                                                                SceneGraph.method386();
                                                                 anInt641 = MouseInput.anInt264;
                                                                 anInt642 = MouseInput.anInt265;
                                                                 cursorState = 1;
@@ -4639,23 +4644,23 @@ public final class Client extends GameEngine {
                 login.packetBuffer.putBytes(buffer_0.buffer, 0, buffer_0.buffer.length);
                 login.packetBuffer.putByte(Class65.anInt168);
                 login.packetBuffer.putInt(0);
-                login.packetBuffer.putInt(Varcs.indexInterfaces.crc);
-                login.packetBuffer.putInt(Class6.indexSoundEffects.crc);
+                login.packetBuffer.putInt(Varcs.interfacesIndex.crc);
+                login.packetBuffer.putInt(Class6.skinsIndex.crc);
                 login.packetBuffer.putInt(GrandExchangeOffer.configsIndex.crc);
-                login.packetBuffer.putInt(Class56.anIndexData2.crc);
-                login.packetBuffer.putInt(Tile.anIndexData5.crc);
-                login.packetBuffer.putInt(Class23.indexMaps.crc);
-                login.packetBuffer.putInt(Class38.indexTrack1.crc);
-                login.packetBuffer.putInt(Class4.indexModels.crc);
-                login.packetBuffer.putInt(Class34.indexSprites.crc);
-                login.packetBuffer.putInt(Class49.indexTextures.crc);
-                login.packetBuffer.putInt(AbstractSoundSystem.anIndexData1.crc);
-                login.packetBuffer.putInt(Class92.indexTrack2.crc);
-                login.packetBuffer.putInt(Class3.indexScripts.crc);
-                login.packetBuffer.putInt(Enum1.anIndexData4.crc);
+                login.packetBuffer.putInt(Class56.interfaceDataIndex.crc);
+                login.packetBuffer.putInt(Tile.soundEffectsIndex.crc);
+                login.packetBuffer.putInt(Class23.mapsIndex.crc);
+                login.packetBuffer.putInt(Class38.songsIndex.crc);
+                login.packetBuffer.putInt(Class4.modelsIndex.crc);
+                login.packetBuffer.putInt(Class34.spritesIndex.crc);
+                login.packetBuffer.putInt(Class49.texturesIndex.crc);
+                login.packetBuffer.putInt(AbstractSoundSystem.wordPackIndex.crc);
+                login.packetBuffer.putInt(Class92.musicConfigIndex.crc);
+                login.packetBuffer.putInt(Class3.interfaceScriptDataIndex.crc);
+                login.packetBuffer.putInt(Enum1.fontConfigIndex.crc);
                 login.packetBuffer.putInt(WorldMapType2.vorbisIndex.crc);
-                login.packetBuffer.putInt(Class61.anIndexData3.crc);
-                login.packetBuffer.putInt(RSCanvas.indexWorldMap.crc);
+                login.packetBuffer.putInt(Class61.trackIndex.crc);
+                login.packetBuffer.putInt(RSCanvas.worldMapIndex.crc);
                 login.packetBuffer.encryptXtea(seed, int_2, login.packetBuffer.position);
                 login.packetBuffer.method722(login.packetBuffer.position - int_1);
                 aClass46_1.method282(login);
@@ -4744,7 +4749,7 @@ public final class Client extends GameEngine {
                     anInt678 = socket.readByte();
                     socket.read(buffer.buffer, 0, 1);
                     buffer.position = 0;
-                    ServerPacket[] packets = DecorativeObject.method460();
+                    ServerPacket[] packets = WallDecoration.method460();
                     int int_5 = buffer.method906();
                     if (int_5 < 0 || int_5 >= packets.length) {
                         throw new IOException(int_5 + " " + buffer.position);
@@ -4906,8 +4911,8 @@ public final class Client extends GameEngine {
 
                         Class65.aClass47_1 = null;
                         Class85.initializeGPI(buffer);
-                        Class87.anInt189 = -1;
-                        WallObject.xteaChanged(false, buffer);
+                        Class87.absoluteTileHashX = -1;
+                        Wall.xteaChanged(false, buffer);
                         aClass46_1.serverPacket = null;
                     }
 
@@ -5592,48 +5597,7 @@ public final class Client extends GameEngine {
         return definition.hasModelType(type);
     }
 
-    static void method1111(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, CollisionData[] collisiondatas_0) {
-        int int_8;
-        for (int int_7 = 0; int_7 < 8; int_7++) {
-            for (int_8 = 0; int_8 < 8; int_8++) {
-                if (int_7 + int_1 > 0 && int_7 + int_1 < 103 && int_2 + int_8 > 0 && int_2 + int_8 < 103) {
-                    collisiondatas_0[int_0].adjacency[int_7 + int_1][int_2 + int_8] &= 0xFEFFFFFF;
-                }
-            }
-        }
-
-        Buffer buffer_0 = new Buffer(bytes_0);
-
-        for (int_8 = 0; int_8 < 4; int_8++) {
-            for (int int_9 = 0; int_9 < 64; int_9++) {
-                for (int int_10 = 0; int_10 < 64; int_10++) {
-                    if (int_8 == int_3 && int_9 >= int_4 && int_9 < int_4 + 8 && int_10 >= int_5 && int_10 < int_5 + 8) {
-                        int int_11 = int_1 + WidgetNode.method685(int_9 & 0x7, int_10 & 0x7, int_6);
-                        int int_12 = int_9 & 0x7;
-                        int int_13 = int_10 & 0x7;
-                        int int_14 = int_6 & 0x3;
-                        int int_15;
-                        if (int_14 == 0) {
-                            int_15 = int_13;
-                        } else if (int_14 == 1) {
-                            int_15 = 7 - int_12;
-                        } else if (int_14 == 2) {
-                            int_15 = 7 - int_13;
-                        } else {
-                            int_15 = int_12;
-                        }
-
-                        CombatInfoListHolder.loadTerrain(buffer_0, int_0, int_11, int_2 + int_15, 0, 0, int_6);
-                    } else {
-                        CombatInfoListHolder.loadTerrain(buffer_0, 0, -1, -1, 0, 0, 0);
-                    }
-                }
-            }
-        }
-
-    }
-
-    static boolean isFriended(String string_0, boolean bool_0) {
+    static boolean isFriend(String string_0, boolean bool_0) {
         if (string_0 == null) {
             return false;
         } else {

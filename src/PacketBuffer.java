@@ -12,6 +12,19 @@ public final class PacketBuffer extends Buffer {
       super(int_0);
    }
 
+   static int method205(Class109 class109_0) {
+      if (class109_0 == null) {
+         return 12;
+      } else {
+         switch(class109_0.anInt211) {
+         case 1:
+            return 20;
+         default:
+            return 12;
+         }
+      }
+   }
+
    public boolean method904() {
       //int int_0 = super.buffer[super.position] - this.cipher.method475() & 0xFF;
       int int_0 = super.buffer[super.position] & 0xFF;
@@ -107,7 +120,7 @@ public final class PacketBuffer extends Buffer {
          }
 
          int int_2 = int_1 - int_0;
-         if (int_2 >= 1 && int_2 <= Class19.method205(class109_0)) {
+         if (int_2 >= 1 && int_2 <= method205(class109_0)) {
             StringBuilder stringbuilder_0 = new StringBuilder(int_2);
 
             for (int int_3 = int_0; int_3 < int_1; int_3++) {

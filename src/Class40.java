@@ -129,9 +129,9 @@ public class Class40 {
 
                         int int_9 = int_6 == 0 ? 5 : 9;
                         Class56.currentRequest = filerequest_1;
-                        DecorativeObject.aBuffer4 = new Buffer(int_7 + int_9 + Class56.currentRequest.padding);
-                        DecorativeObject.aBuffer4.putByte(int_6);
-                        DecorativeObject.aBuffer4.putInt(int_7);
+                        WallDecoration.aBuffer4 = new Buffer(int_7 + int_9 + Class56.currentRequest.padding);
+                        WallDecoration.aBuffer4.putByte(int_6);
+                        WallDecoration.aBuffer4.putInt(int_7);
                         Class95.anInt201 = 8;
                         Class95.aBuffer6.position = 0;
                      } else if (Class95.anInt201 == 0) {
@@ -143,28 +143,28 @@ public class Class40 {
                         }
                      }
                   } else {
-                     int_3 = DecorativeObject.aBuffer4.buffer.length - Class56.currentRequest.padding;
+                     int_3 = WallDecoration.aBuffer4.buffer.length - Class56.currentRequest.padding;
                      int_4 = 512 - Class95.anInt201;
-                     if (int_4 > int_3 - DecorativeObject.aBuffer4.position) {
-                        int_4 = int_3 - DecorativeObject.aBuffer4.position;
+                     if (int_4 > int_3 - WallDecoration.aBuffer4.position) {
+                        int_4 = int_3 - WallDecoration.aBuffer4.position;
                      }
 
                      if (int_4 > int_2) {
                         int_4 = int_2;
                      }
 
-                     Class95.aRSSocket1.read(DecorativeObject.aBuffer4.buffer, DecorativeObject.aBuffer4.position, int_4);
+                     Class95.aRSSocket1.read(WallDecoration.aBuffer4.buffer, WallDecoration.aBuffer4.position, int_4);
                      if (Class95.aByte2 != 0) {
                         for (int_5 = 0; int_5 < int_4; int_5++) {
-                           DecorativeObject.aBuffer4.buffer[DecorativeObject.aBuffer4.position + int_5] ^= Class95.aByte2;
+                           WallDecoration.aBuffer4.buffer[WallDecoration.aBuffer4.position + int_5] ^= Class95.aByte2;
                         }
                      }
 
-                     DecorativeObject.aBuffer4.position += int_4;
+                     WallDecoration.aBuffer4.position += int_4;
                      Class95.anInt201 += int_4;
-                     if (int_3 == DecorativeObject.aBuffer4.position) {
+                     if (int_3 == WallDecoration.aBuffer4.position) {
                         if (Class56.currentRequest.hash == 16711935L) {
-                           Class23.aBuffer1 = DecorativeObject.aBuffer4;
+                           Class23.aBuffer1 = WallDecoration.aBuffer4;
 
                            for (int_5 = 0; int_5 < 256; int_5++) {
                               IndexData indexdata_0 = Class95.anIndexDataArray1[int_5];
@@ -177,7 +177,7 @@ public class Class40 {
                            }
                         } else {
                            Class95.aCRC32_1.reset();
-                           Class95.aCRC32_1.update(DecorativeObject.aBuffer4.buffer, 0, int_3);
+                           Class95.aCRC32_1.update(WallDecoration.aBuffer4.buffer, 0, int_3);
                            int_5 = (int)Class95.aCRC32_1.getValue();
                            if (int_5 != Class56.currentRequest.crc) {
                               try {
@@ -194,7 +194,7 @@ public class Class40 {
 
                            Class95.anInt194 = 0;
                            Class95.anInt196 = 0;
-                           Class56.currentRequest.index.method616((int)(Class56.currentRequest.hash & 0xFFFFL), DecorativeObject.aBuffer4.buffer, (Class56.currentRequest.hash & 0xFF0000L) == 16711680L, Class13.aBool4);
+                           Class56.currentRequest.index.method616((int)(Class56.currentRequest.hash & 0xFFFFL), WallDecoration.aBuffer4.buffer, (Class56.currentRequest.hash & 0xFF0000L) == 16711680L, Class13.aBool4);
                         }
 
                         Class56.currentRequest.unlink();
@@ -206,7 +206,7 @@ public class Class40 {
 
                         Class95.anInt201 = 0;
                         Class56.currentRequest = null;
-                        DecorativeObject.aBuffer4 = null;
+                        WallDecoration.aBuffer4 = null;
                      } else {
                         if (Class95.anInt201 != 512) {
                            break;
@@ -234,9 +234,9 @@ public class Class40 {
    }
 
    static void method259(int regionX, int regionY, boolean bool_0) {
-      if (!bool_0 || regionX != Class87.anInt189 || Class25.anInt86 != regionY) {
-         Class87.anInt189 = regionX;
-         Class25.anInt86 = regionY;
+      if (!bool_0 || regionX != Class87.absoluteTileHashX || Class25.absoluteTileHashY != regionY) {
+         Class87.absoluteTileHashX = regionX;
+         Class25.absoluteTileHashY = regionY;
          Class110.setGameState(25);
          Client.drawStatusBox("Loading - please wait.", true);
          int int_2 = Client.regionBaseX;
@@ -334,13 +334,6 @@ public class Class40 {
          }
 
       }
-   }
-
-   static int method260(int int_0, int int_1) {
-      int int_2 = int_1 * 57 + int_0;
-      int_2 ^= int_2 << 13;
-      int int_3 = (int_2 * int_2 * 15731 + 789221) * int_2 + 1376312589 & 0x7FFFFFFF;
-      return int_3 >> 19 & 0xFF;
    }
 
 }

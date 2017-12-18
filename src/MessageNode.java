@@ -50,12 +50,12 @@ public class MessageNode extends CacheableNode {
          Class25.anIndexedSprite2 = CacheableNode_Sub2.getSprite(indexdatabase_1, "titlebutton", "");
          Class25.anIndexedSpriteArray5 = Enum3.method670(indexdatabase_1, "runes", "");
          Class25.titlemuteSprite = Enum3.method670(indexdatabase_1, "title_mute", "");
-         WallObject.anIndexedSprite4 = CacheableNode_Sub2.getSprite(indexdatabase_1, "options_radio_buttons,0", "");
+         Wall.anIndexedSprite4 = CacheableNode_Sub2.getSprite(indexdatabase_1, "options_radio_buttons,0", "");
          Preferences.anIndexedSprite5 = CacheableNode_Sub2.getSprite(indexdatabase_1, "options_radio_buttons,4", "");
          Class107.anIndexedSprite6 = CacheableNode_Sub2.getSprite(indexdatabase_1, "options_radio_buttons,2", "");
          Class39.anIndexedSprite3 = CacheableNode_Sub2.getSprite(indexdatabase_1, "options_radio_buttons,6", "");
-         WorldMapData_Sub1.anInt303 = WallObject.anIndexedSprite4.originalWidth;
-         Class25.anInt85 = WallObject.anIndexedSprite4.height;
+         WorldMapData_Sub1.anInt303 = Wall.anIndexedSprite4.originalWidth;
+         Class25.anInt85 = Wall.anIndexedSprite4.height;
          ClanMember.anIntArray77 = new int[256];
 
          int int_1;
@@ -127,7 +127,7 @@ public class MessageNode extends CacheableNode {
          Class25.aBool12 = true;
          Class25.worldSelectShown = false;
          if (!Buffer.preferences.muted) {
-            IndexData indexdata_0 = Class38.indexTrack1;
+            IndexData indexdata_0 = Class38.songsIndex;
             int int_2 = indexdata_0.getFile("scape main");
             int int_3 = indexdata_0.getChild(int_2, "");
             Class78.anInt172 = 1;

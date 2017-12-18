@@ -800,7 +800,7 @@ public final class Class14 {
                                     }
 
                                     if ((itemcomposition_1.isStackable == 1 || widget_0.itemQuantity != 1) && widget_0.itemQuantity != -1) {
-                                       string_3 = WallObject.getColTags(16748608) + string_3 + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantity);
+                                       string_3 = Wall.getColTags(16748608) + string_3 + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantity);
                                     }
                                  }
 
@@ -949,9 +949,9 @@ public final class Class14 {
                                              itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemIds[int_17] - 1);
                                              String string_0;
                                              if (itemcomposition_0.isStackable != 1 && widget_0.itemQuantities[int_17] == 1) {
-                                                string_0 = WallObject.getColTags(16748608) + itemcomposition_0.name + "</col>";
+                                                string_0 = Wall.getColTags(16748608) + itemcomposition_0.name + "</col>";
                                              } else {
-                                                string_0 = WallObject.getColTags(16748608) + itemcomposition_0.name + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantities[int_17]);
+                                                string_0 = Wall.getColTags(16748608) + itemcomposition_0.name + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantities[int_17]);
                                              }
 
                                              int_23 = int_20 * (widget_0.paddingX + 115) + int_10;
@@ -1326,11 +1326,11 @@ public final class Class14 {
          return script_0;
       } else {
          String string_0 = String.valueOf(int_0);
-         int int_1 = Class3.indexScripts.getFile(string_0);
+         int int_1 = Class3.interfaceScriptDataIndex.getFile(string_0);
          if (int_1 == -1) {
             return null;
          } else {
-            byte[] bytes_0 = Class3.indexScripts.method432(int_1);
+            byte[] bytes_0 = Class3.interfaceScriptDataIndex.method432(int_1);
             if (bytes_0 != null) {
                if (bytes_0.length <= 1) {
                   return null;
@@ -1366,37 +1366,37 @@ public final class Class14 {
                      int int_5 = int_4 - int_3;
                      String string_1;
                      if (int_5 < -9) {
-                        string_1 = WallObject.getColTags(16711680);
+                        string_1 = Wall.getColTags(16711680);
                      } else if (int_5 < -6) {
-                        string_1 = WallObject.getColTags(16723968);
+                        string_1 = Wall.getColTags(16723968);
                      } else if (int_5 < -3) {
-                        string_1 = WallObject.getColTags(16740352);
+                        string_1 = Wall.getColTags(16740352);
                      } else if (int_5 < 0) {
-                        string_1 = WallObject.getColTags(16756736);
+                        string_1 = Wall.getColTags(16756736);
                      } else if (int_5 > 9) {
-                        string_1 = WallObject.getColTags(65280);
+                        string_1 = Wall.getColTags(65280);
                      } else if (int_5 > 6) {
-                        string_1 = WallObject.getColTags(4259584);
+                        string_1 = Wall.getColTags(4259584);
                      } else if (int_5 > 3) {
-                        string_1 = WallObject.getColTags(8453888);
+                        string_1 = Wall.getColTags(8453888);
                      } else if (int_5 > 0) {
-                        string_1 = WallObject.getColTags(12648192);
+                        string_1 = Wall.getColTags(12648192);
                      } else {
-                        string_1 = WallObject.getColTags(16776960);
+                        string_1 = Wall.getColTags(16776960);
                      }
 
                      string_0 = string_0 + string_1 + " " + " (" + "level-" + npccomposition_0.combatLevel + ")";
                   }
 
                   if (npccomposition_0.aBool67 && Client.aBool98) {
-                     Class24.addMenuEntry("Examine", WallObject.getColTags(16776960) + string_0, 1003, int_0, int_1, int_2);
+                     Class24.addMenuEntry("Examine", Wall.getColTags(16776960) + string_0, 1003, int_0, int_1, int_2);
                   }
 
                   if (Client.itemSelectionState == 1) {
-                     Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + WallObject.getColTags(16776960) + string_0, 7, int_0, int_1, int_2);
+                     Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16776960) + string_0, 7, int_0, int_1, int_2);
                   } else if (Client.spellSelected) {
                      if ((Enum4.anInt381 & 0x2) == 2) {
-                        Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(16776960) + string_0, 8, int_0, int_1, int_2);
+                        Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16776960) + string_0, 8, int_0, int_1, int_2);
                      }
                   } else {
                      int int_6 = npccomposition_0.aBool67 && Client.aBool98 ? 2000 : 0;
@@ -1429,7 +1429,7 @@ public final class Class14 {
                                  int_4 = int_6 + 13;
                               }
 
-                              Class24.addMenuEntry(strings_0[int_3], WallObject.getColTags(16776960) + string_0, int_4, int_0, int_1, int_2);
+                              Class24.addMenuEntry(strings_0[int_3], Wall.getColTags(16776960) + string_0, int_4, int_0, int_1, int_2);
                            }
                         }
                      }
@@ -1464,14 +1464,14 @@ public final class Class14 {
                                     int_4 = short_0 + 13;
                                  }
 
-                                 Class24.addMenuEntry(strings_0[int_3], WallObject.getColTags(16776960) + string_0, int_4, int_0, int_1, int_2);
+                                 Class24.addMenuEntry(strings_0[int_3], Wall.getColTags(16776960) + string_0, int_4, int_0, int_1, int_2);
                               }
                            }
                         }
                      }
 
                      if (!npccomposition_0.aBool67 || !Client.aBool98) {
-                        Class24.addMenuEntry("Examine", WallObject.getColTags(16776960) + string_0, 1003, int_0, int_1, int_2);
+                        Class24.addMenuEntry("Examine", Wall.getColTags(16776960) + string_0, 1003, int_0, int_1, int_2);
                      }
                   }
 

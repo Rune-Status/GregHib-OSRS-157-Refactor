@@ -689,19 +689,19 @@ public class Buffer extends Node {
     }
 
     static void method734() {
-        Class19.anInt72 = -794026349 * -1409881871;
-        Class19.aByteArrayArrayArray5 = new byte[4][104][104];
-        Class106.aByteArrayArrayArray9 = new byte[4][104][104];
-        Class19.aByteArrayArrayArray6 = new byte[4][104][104];
-        Class7.aByteArrayArrayArray2 = new byte[4][104][104];
-        ItemLayer.anIntArrayArrayArray1 = new int[4][105][105];
-        Class19.tileShadowIntensity = new byte[4][105][105];
+        SceneGraph.lowestPlane = -794026349 * -1409881871;
+        Region.underlayFloorIds = new byte[4][104][104];
+        Region.overlayFloorIds = new byte[4][104][104];
+        Region.overlayClippingPaths = new byte[4][104][104];
+        Class7.overlayRotations = new byte[4][104][104];
+        SceneGraph.tileCullingBitsets = new int[4][105][105];
+        SceneGraph.tileShadowIntensity = new byte[4][105][105];
         Settings.tileHeightArray = new int[105][105];
-        Class19.anIntArray8 = new int[104];
+        WorldMapData_Sub1.anIntArray8 = new int[104];
         RSCanvas.anIntArray82 = new int[104];
         Preferences.anIntArray39 = new int[104];
         FloorUnderlayDefinition.anIntArray105 = new int[104];
-        Class19.anIntArray11 = new int[104];
+        WorldMapData_Sub1.anIntArray11 = new int[104];
     }
 
     public static SpritePixels[] method735(IndexDataBase indexdatabase_0, String string_0, String string_1) {

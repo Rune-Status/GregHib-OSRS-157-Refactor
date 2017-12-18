@@ -102,7 +102,7 @@ public class GameObject extends Renderable {
          int secondaryX = (sizeX + 1 >> 1) + this.sceneX;
          int primaryY = (sizeY >> 1) + this.sceneY;
          int secondaryY = (sizeY + 1 >> 1) + this.sceneY;
-         int[][] heights = Class19.tileHeights[this.level];
+         int[][] heights = Region.tileHeightArray[this.level];
          int mean = heights[secondaryX][secondaryY] + heights[primaryX][secondaryY] + heights[secondaryX][primaryY] + heights[primaryX][primaryY] >> 2;
          int x = (this.sceneX << 7) + (sizeX << 6);
          int y = (this.sceneY << 7) + (sizeY << 6);

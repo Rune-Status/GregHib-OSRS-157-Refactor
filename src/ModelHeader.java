@@ -1,10 +1,10 @@
 public class ModelHeader extends Renderable {
 
    static int[] anIntArray138;
-   static int[] anIntArray139;
+   static int[] snappedVerticePoints;
    static int[] anIntArray140;
-   static int[] anIntArray141;
-   static int anInt570;
+   static int[] snappedVerticePoints2;
+   static int snappedVertices;
    boolean aBool76;
    int[] vertexSkins;
    VertexNormal[] normals;
@@ -12,23 +12,23 @@ public class ModelHeader extends Renderable {
    int vertexCount;
    short[] faceTextures;
    int triangleCount;
-   int anInt571;
+   int minX;
    int[] triangleSkinValues;
    int[] vertexY;
    int[] vertexZ;
    short[] triangleColours;
    byte[] faceRenderType;
-   VertexNormal[] aVertexNormalArray1;
-   int anInt572;
-   int anInt573;
+   VertexNormal[] vertexNormalOffset;
+   int maxX;
+   int maxY;
    FaceNormal[] faceNormals;
    int[] trianglePointsX;
    int[][] anIntArrayArray19;
-   int anInt574;
+   int minZ;
    byte priority;
    int[][] anIntArrayArray20;
    int[] trianglePointsZ;
-   int anInt575;
+   int maxZ;
    int anInt576;
    int[] trianglePointsY;
    public short aShort2;
@@ -49,9 +49,9 @@ public class ModelHeader extends Renderable {
    short[] texturePrimaryColor;
 
    static {
-      anIntArray139 = new int[10000];
-      anIntArray141 = new int[10000];
-      anInt570 = 0;
+      snappedVerticePoints = new int[10000];
+      snappedVerticePoints2 = new int[10000];
+      snappedVertices = 0;
       anIntArray138 = Graphics3D.SINE;
       anIntArray140 = Graphics3D.COSINE;
    }
@@ -319,7 +319,7 @@ public class ModelHeader extends Renderable {
       this.anIntArrayArray20 = modeldata_1.anIntArrayArray20;
       this.normals = modeldata_1.normals;
       this.faceNormals = modeldata_1.faceNormals;
-      this.aVertexNormalArray1 = modeldata_1.aVertexNormalArray1;
+      this.vertexNormalOffset = modeldata_1.vertexNormalOffset;
       this.aShort2 = modeldata_1.aShort2;
       this.contrast = modeldata_1.contrast;
    }
@@ -327,38 +327,38 @@ public class ModelHeader extends Renderable {
    void method1047() {
       if (!this.aBool76) {
          super.modelHeight = 0;
-         this.anInt573 = 0;
-         this.anInt571 = 999999;
-         this.anInt572 = -999999;
-         this.anInt575 = -99999;
-         this.anInt574 = 99999;
+         this.maxY = 0;
+         this.minX = 999999;
+         this.maxX = -999999;
+         this.maxZ = -99999;
+         this.minZ = 99999;
 
          for (int int_0 = 0; int_0 < this.vertexCount; int_0++) {
             int int_1 = this.vertexX[int_0];
             int int_2 = this.vertexY[int_0];
             int int_3 = this.vertexZ[int_0];
-            if (int_1 < this.anInt571) {
-               this.anInt571 = int_1;
+            if (int_1 < this.minX) {
+               this.minX = int_1;
             }
 
-            if (int_1 > this.anInt572) {
-               this.anInt572 = int_1;
+            if (int_1 > this.maxX) {
+               this.maxX = int_1;
             }
 
-            if (int_3 < this.anInt574) {
-               this.anInt574 = int_3;
+            if (int_3 < this.minZ) {
+               this.minZ = int_3;
             }
 
-            if (int_3 > this.anInt575) {
-               this.anInt575 = int_3;
+            if (int_3 > this.maxZ) {
+               this.maxZ = int_3;
             }
 
             if (-int_2 > super.modelHeight) {
                super.modelHeight = -int_2;
             }
 
-            if (int_2 > this.anInt573) {
-               this.anInt573 = int_2;
+            if (int_2 > this.maxY) {
+               this.maxY = int_2;
             }
          }
 
@@ -442,7 +442,7 @@ public class ModelHeader extends Renderable {
 
    void clean() {
       this.normals = null;
-      this.aVertexNormalArray1 = null;
+      this.vertexNormalOffset = null;
       this.faceNormals = null;
       this.aBool76 = false;
    }
@@ -797,9 +797,9 @@ public class ModelHeader extends Renderable {
       }
    }
 
-   public Model applyLighting(int lightAmbient, int multiplier, int l_x, int l_y, int l_z) {
+   public Model applyLighting(int lightAmbient, int multiplier, int x, int y, int z) {
       this.computeNormals();
-      int lightMagnitude = (int)Math.sqrt((double)(l_z * l_z + l_x * l_x + l_y * l_y));
+      int lightMagnitude = (int)Math.sqrt((double)(z * z + x * x + y * y));
       int magnitude = lightMagnitude * multiplier >> 8;
       Model model = new Model();
       model.anIntArray131 = new int[this.triangleCount];
@@ -828,136 +828,136 @@ public class ModelHeader extends Renderable {
          model.texturedTrianglePointsZ = new int[model.texturedTriangleCount];
          triangle = 0;
 
-         int int_9;
-         for (int_9 = 0; int_9 < this.anInt576; int_9++) {
-            if (ints_0[int_9] > 0 && this.textureRenderTypes[int_9] == 0) {
-               model.texturedTrianglePointsX[triangle] = this.texTriangleX[int_9] & 0xFFFF;
-               model.texturedTrianglePointsY[triangle] = this.texTriangleY[int_9] & 0xFFFF;
-               model.texturedTrianglePointsZ[triangle] = this.texTriangleZ[int_9] & 0xFFFF;
-               ints_0[int_9] = triangle++;
+         int index;
+         for (index = 0; index < this.anInt576; index++) {
+            if (ints_0[index] > 0 && this.textureRenderTypes[index] == 0) {
+               model.texturedTrianglePointsX[triangle] = this.texTriangleX[index] & 0xFFFF;
+               model.texturedTrianglePointsY[triangle] = this.texTriangleY[index] & 0xFFFF;
+               model.texturedTrianglePointsZ[triangle] = this.texTriangleZ[index] & 0xFFFF;
+               ints_0[index] = triangle++;
             } else {
-               ints_0[int_9] = -1;
+               ints_0[index] = -1;
             }
          }
 
          model.aByteArray25 = new byte[this.triangleCount];
 
-         for (int_9 = 0; int_9 < this.triangleCount; int_9++) {
-            if (this.textureCoords[int_9] != -1) {
-               model.aByteArray25[int_9] = (byte)ints_0[this.textureCoords[int_9] & 0xFF];
+         for (index = 0; index < this.triangleCount; index++) {
+            if (this.textureCoords[index] != -1) {
+               model.aByteArray25[index] = (byte)ints_0[this.textureCoords[index] & 0xFF];
             } else {
-               model.aByteArray25[int_9] = -1;
+               model.aByteArray25[index] = -1;
             }
          }
       }
 
       for (int triangle = 0; triangle < this.triangleCount; triangle++) {
-         byte byte_0;
+         byte type;
          if (this.faceRenderType == null) {
-            byte_0 = 0;
+            type = 0;
          } else {
-            byte_0 = this.faceRenderType[triangle];
+            type = this.faceRenderType[triangle];
          }
 
-         byte byte_1;
+         byte alpha;
          if (this.faceAlphas == null) {
-            byte_1 = 0;
+            alpha = 0;
          } else {
-            byte_1 = this.faceAlphas[triangle];
+            alpha = this.faceAlphas[triangle];
          }
 
-         short short_0;
+         short texture;
          if (this.faceTextures == null) {
-            short_0 = -1;
+            texture = -1;
          } else {
-            short_0 = this.faceTextures[triangle];
+            texture = this.faceTextures[triangle];
          }
 
-         if (byte_1 == -2) {
-            byte_0 = 3;
+         if (alpha == -2) {
+            type = 3;
          }
 
-         if (byte_1 == -1) {
-            byte_0 = 2;
+         if (alpha == -1) {
+            type = 2;
          }
 
          VertexNormal vertexNormal;
          int lightness;
          FaceNormal faceNormal;
-         if (short_0 == -1) {
-            if (byte_0 != 0) {
-               if (byte_0 == 1) {
+         if (texture == -1) {
+            if (type != 0) {
+               if (type == 1) {
                   faceNormal = this.faceNormals[triangle];
-                  lightness = (l_y * faceNormal.y + l_z * faceNormal.z + l_x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
+                  lightness = (y * faceNormal.y + z * faceNormal.z + x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
                   model.anIntArray131[triangle] = mixLightness(this.triangleColours[triangle] & 0xFFFF, lightness);
                   model.anIntArray132[triangle] = -1;
-               } else if (byte_0 == 3) {
+               } else if (type == 3) {
                   model.anIntArray131[triangle] = 128;
                   model.anIntArray132[triangle] = -1;
                } else {
                   model.anIntArray132[triangle] = -2;
                }
             } else {
-               int int_10 = this.triangleColours[triangle] & 0xFFFF;
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[triangle]] != null) {
-                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsX[triangle]];
+               int hsl = this.triangleColours[triangle] & 0xFFFF;
+               if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsX[triangle]] != null) {
+                  vertexNormal = this.vertexNormalOffset[this.trianglePointsX[triangle]];
                } else {
                   vertexNormal = this.normals[this.trianglePointsX[triangle]];
                }
 
-               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-               model.anIntArray131[triangle] = mixLightness(int_10, lightness);
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[triangle]] != null) {
-                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsY[triangle]];
+               lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray131[triangle] = mixLightness(hsl, lightness);
+               if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsY[triangle]] != null) {
+                  vertexNormal = this.vertexNormalOffset[this.trianglePointsY[triangle]];
                } else {
                   vertexNormal = this.normals[this.trianglePointsY[triangle]];
                }
 
-               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-               model.anIntArray133[triangle] = mixLightness(int_10, lightness);
-               if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[triangle]] != null) {
-                  vertexNormal = this.aVertexNormalArray1[this.trianglePointsZ[triangle]];
+               lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray133[triangle] = mixLightness(hsl, lightness);
+               if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsZ[triangle]] != null) {
+                  vertexNormal = this.vertexNormalOffset[this.trianglePointsZ[triangle]];
                } else {
                   vertexNormal = this.normals[this.trianglePointsZ[triangle]];
                }
 
-               lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-               model.anIntArray132[triangle] = mixLightness(int_10, lightness);
+               lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+               model.anIntArray132[triangle] = mixLightness(hsl, lightness);
             }
-         } else if (byte_0 != 0) {
-            if (byte_0 == 1) {
+         } else if (type != 0) {
+            if (type == 1) {
                faceNormal = this.faceNormals[triangle];
-               lightness = (l_y * faceNormal.y + l_z * faceNormal.z + l_x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
-               model.anIntArray131[triangle] = method1062(lightness);
+               lightness = (y * faceNormal.y + z * faceNormal.z + x * faceNormal.x) / (magnitude / 2 + magnitude) + lightAmbient;
+               model.anIntArray131[triangle] = limitLightness(lightness);
                model.anIntArray132[triangle] = -1;
             } else {
                model.anIntArray132[triangle] = -2;
             }
          } else {
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsX[triangle]] != null) {
-               vertexNormal = this.aVertexNormalArray1[this.trianglePointsX[triangle]];
+            if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsX[triangle]] != null) {
+               vertexNormal = this.vertexNormalOffset[this.trianglePointsX[triangle]];
             } else {
                vertexNormal = this.normals[this.trianglePointsX[triangle]];
             }
 
-            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-            model.anIntArray131[triangle] = method1062(lightness);
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsY[triangle]] != null) {
-               vertexNormal = this.aVertexNormalArray1[this.trianglePointsY[triangle]];
+            lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray131[triangle] = limitLightness(lightness);
+            if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsY[triangle]] != null) {
+               vertexNormal = this.vertexNormalOffset[this.trianglePointsY[triangle]];
             } else {
                vertexNormal = this.normals[this.trianglePointsY[triangle]];
             }
 
-            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-            model.anIntArray133[triangle] = method1062(lightness);
-            if (this.aVertexNormalArray1 != null && this.aVertexNormalArray1[this.trianglePointsZ[triangle]] != null) {
-               vertexNormal = this.aVertexNormalArray1[this.trianglePointsZ[triangle]];
+            lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray133[triangle] = limitLightness(lightness);
+            if (this.vertexNormalOffset != null && this.vertexNormalOffset[this.trianglePointsZ[triangle]] != null) {
+               vertexNormal = this.vertexNormalOffset[this.trianglePointsZ[triangle]];
             } else {
                vertexNormal = this.normals[this.trianglePointsZ[triangle]];
             }
 
-            lightness = (l_y * vertexNormal.y + l_z * vertexNormal.z + l_x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
-            model.anIntArray132[triangle] = method1062(lightness);
+            lightness = (y * vertexNormal.y + z * vertexNormal.z + x * vertexNormal.x) / (magnitude * vertexNormal.magnitude) + lightAmbient;
+            model.anIntArray132[triangle] = limitLightness(lightness);
          }
       }
 
@@ -1345,10 +1345,10 @@ public class ModelHeader extends Renderable {
 
    public ModelHeader method1053(int[][] ints_0, int int_0, int int_1, int int_2, boolean bool_0, int int_3) {
       this.method1047();
-      int int_4 = int_0 + this.anInt571;
-      int int_5 = int_0 + this.anInt572;
-      int int_6 = int_2 + this.anInt574;
-      int int_7 = int_2 + this.anInt575;
+      int int_4 = int_0 + this.minX;
+      int int_5 = int_0 + this.maxX;
+      int int_6 = int_2 + this.minZ;
+      int int_7 = int_2 + this.maxZ;
       if (int_4 >= 0 && int_5 + 128 >> 7 < ints_0.length && int_6 >= 0 && int_7 + 128 >> 7 < ints_0[0].length) {
          int_4 >>= 7;
          int_5 = int_5 + 127 >> 7;
@@ -1588,58 +1588,58 @@ public class ModelHeader extends Renderable {
       return data == null ? null : new ModelHeader(data);
    }
 
-   static void method1061(ModelHeader modeldata_0, ModelHeader modeldata_1, int int_0, int int_1, int int_2, boolean bool_0) {
-      modeldata_0.method1047();
-      modeldata_0.computeNormals();
-      modeldata_1.method1047();
-      modeldata_1.computeNormals();
-      ++anInt570;
-      int int_3 = 0;
-      int[] ints_0 = modeldata_1.vertexX;
-      int int_4 = modeldata_1.vertexCount;
+   static void snapModelVertices(ModelHeader firstHeader, ModelHeader secondHeader, int xOffset, int yOffset, int zOffset, boolean flag) {
+      firstHeader.method1047();
+      firstHeader.computeNormals();
+      secondHeader.method1047();
+      secondHeader.computeNormals();
+      ++snappedVertices;
+      int count = 0;
+      int[] verticesX = secondHeader.vertexX;
+      int vertexCount = secondHeader.vertexCount;
 
-      int int_5;
-      for (int_5 = 0; int_5 < modeldata_0.vertexCount; int_5++) {
-         VertexNormal vertexnormal_0 = modeldata_0.normals[int_5];
-         if (vertexnormal_0.magnitude != 0) {
-            int int_6 = modeldata_0.vertexY[int_5] - int_1;
-            if (int_6 <= modeldata_1.anInt573) {
-               int int_7 = modeldata_0.vertexX[int_5] - int_0;
-               if (int_7 >= modeldata_1.anInt571 && int_7 <= modeldata_1.anInt572) {
-                  int int_8 = modeldata_0.vertexZ[int_5] - int_2;
-                  if (int_8 >= modeldata_1.anInt574 && int_8 <= modeldata_1.anInt575) {
-                     for (int int_9 = 0; int_9 < int_4; int_9++) {
-                        VertexNormal vertexnormal_1 = modeldata_1.normals[int_9];
-                        if (int_7 == ints_0[int_9] && int_8 == modeldata_1.vertexZ[int_9] && int_6 == modeldata_1.vertexY[int_9] && vertexnormal_1.magnitude != 0) {
-                           if (modeldata_0.aVertexNormalArray1 == null) {
-                              modeldata_0.aVertexNormalArray1 = new VertexNormal[modeldata_0.vertexCount];
+      int vertexIndex1;
+      for (vertexIndex1 = 0; vertexIndex1 < firstHeader.vertexCount; vertexIndex1++) {
+         VertexNormal vertexNormal = firstHeader.normals[vertexIndex1];
+         if (vertexNormal.magnitude != 0) {
+            int vertexY = firstHeader.vertexY[vertexIndex1] - yOffset;
+            if (vertexY <= secondHeader.maxY) {
+               int vertexX = firstHeader.vertexX[vertexIndex1] - xOffset;
+               if (vertexX >= secondHeader.minX && vertexX <= secondHeader.maxX) {
+                  int vertexZ = firstHeader.vertexZ[vertexIndex1] - zOffset;
+                  if (vertexZ >= secondHeader.minZ && vertexZ <= secondHeader.maxZ) {
+                     for (int vertexIndex2 = 0; vertexIndex2 < vertexCount; vertexIndex2++) {
+                        VertexNormal secondNormal = secondHeader.normals[vertexIndex2];
+                        if (vertexX == verticesX[vertexIndex2] && vertexZ == secondHeader.vertexZ[vertexIndex2] && vertexY == secondHeader.vertexY[vertexIndex2] && secondNormal.magnitude != 0) {
+                           if (firstHeader.vertexNormalOffset == null) {
+                              firstHeader.vertexNormalOffset = new VertexNormal[firstHeader.vertexCount];
                            }
 
-                           if (modeldata_1.aVertexNormalArray1 == null) {
-                              modeldata_1.aVertexNormalArray1 = new VertexNormal[int_4];
+                           if (secondHeader.vertexNormalOffset == null) {
+                              secondHeader.vertexNormalOffset = new VertexNormal[vertexCount];
                            }
 
-                           VertexNormal vertexnormal_2 = modeldata_0.aVertexNormalArray1[int_5];
-                           if (vertexnormal_2 == null) {
-                              vertexnormal_2 = modeldata_0.aVertexNormalArray1[int_5] = new VertexNormal(vertexnormal_0);
+                           VertexNormal vertexNormalOffset = firstHeader.vertexNormalOffset[vertexIndex1];
+                           if (vertexNormalOffset == null) {
+                              vertexNormalOffset = firstHeader.vertexNormalOffset[vertexIndex1] = new VertexNormal(vertexNormal);
                            }
 
-                           VertexNormal vertexnormal_3 = modeldata_1.aVertexNormalArray1[int_9];
-                           if (vertexnormal_3 == null) {
-                              vertexnormal_3 = modeldata_1.aVertexNormalArray1[int_9] = new VertexNormal(vertexnormal_1);
+                           VertexNormal vertexNormalOffset2 = secondHeader.vertexNormalOffset[vertexIndex2];
+                           if (vertexNormalOffset2 == null) {
+                              vertexNormalOffset2 = secondHeader.vertexNormalOffset[vertexIndex2] = new VertexNormal(secondNormal);
                            }
 
-                           vertexnormal_2.x += vertexnormal_1.x;
-                           vertexnormal_2.y += vertexnormal_1.y;
-                           vertexnormal_2.z += vertexnormal_1.z;
-                           vertexnormal_2.magnitude += vertexnormal_1.magnitude;
-                           vertexnormal_3.x += vertexnormal_0.x;
-                           vertexnormal_3.y += vertexnormal_0.y;
-                           vertexnormal_3.z += vertexnormal_0.z;
-                           vertexnormal_3.magnitude += vertexnormal_0.magnitude;
-                           ++int_3;
-                           anIntArray139[int_5] = anInt570;
-                           anIntArray141[int_9] = anInt570;
+                           vertexNormalOffset.x += secondNormal.x;
+                           vertexNormalOffset.y += secondNormal.y;
+                           vertexNormalOffset.z += secondNormal.z;
+                           vertexNormalOffset.magnitude += secondNormal.magnitude;
+                           vertexNormalOffset2.x += vertexNormal.x;
+                           vertexNormalOffset2.y += vertexNormal.y;
+                           vertexNormalOffset2.z += vertexNormal.z;
+                           vertexNormalOffset2.magnitude += vertexNormal.magnitude;
+                           ++count;
+                           snappedVerticePoints[vertexIndex1] = snappedVertices;
+                           snappedVerticePoints2[vertexIndex2] = snappedVertices;
                         }
                      }
                   }
@@ -1648,31 +1648,31 @@ public class ModelHeader extends Renderable {
          }
       }
 
-      if (int_3 >= 3 && bool_0) {
-         for (int_5 = 0; int_5 < modeldata_0.triangleCount; int_5++) {
-            if (anIntArray139[modeldata_0.trianglePointsX[int_5]] == anInt570 && anIntArray139[modeldata_0.trianglePointsY[int_5]] == anInt570 && anIntArray139[modeldata_0.trianglePointsZ[int_5]] == anInt570) {
-               if (modeldata_0.faceRenderType == null) {
-                  modeldata_0.faceRenderType = new byte[modeldata_0.triangleCount];
+      if (count >= 3 && flag) {
+         for (vertexIndex1 = 0; vertexIndex1 < firstHeader.triangleCount; vertexIndex1++) {
+            if (snappedVerticePoints[firstHeader.trianglePointsX[vertexIndex1]] == snappedVertices && snappedVerticePoints[firstHeader.trianglePointsY[vertexIndex1]] == snappedVertices && snappedVerticePoints[firstHeader.trianglePointsZ[vertexIndex1]] == snappedVertices) {
+               if (firstHeader.faceRenderType == null) {
+                  firstHeader.faceRenderType = new byte[firstHeader.triangleCount];
                }
 
-               modeldata_0.faceRenderType[int_5] = 2;
+               firstHeader.faceRenderType[vertexIndex1] = 2;
             }
          }
 
-         for (int_5 = 0; int_5 < modeldata_1.triangleCount; int_5++) {
-            if (anInt570 == anIntArray141[modeldata_1.trianglePointsX[int_5]] && anInt570 == anIntArray141[modeldata_1.trianglePointsY[int_5]] && anInt570 == anIntArray141[modeldata_1.trianglePointsZ[int_5]]) {
-               if (modeldata_1.faceRenderType == null) {
-                  modeldata_1.faceRenderType = new byte[modeldata_1.triangleCount];
+         for (vertexIndex1 = 0; vertexIndex1 < secondHeader.triangleCount; vertexIndex1++) {
+            if (snappedVertices == snappedVerticePoints2[secondHeader.trianglePointsX[vertexIndex1]] && snappedVertices == snappedVerticePoints2[secondHeader.trianglePointsY[vertexIndex1]] && snappedVertices == snappedVerticePoints2[secondHeader.trianglePointsZ[vertexIndex1]]) {
+               if (secondHeader.faceRenderType == null) {
+                  secondHeader.faceRenderType = new byte[secondHeader.triangleCount];
                }
 
-               modeldata_1.faceRenderType[int_5] = 2;
+               secondHeader.faceRenderType[vertexIndex1] = 2;
             }
          }
 
       }
    }
 
-   static int method1062(int lightness) {
+   static int limitLightness(int lightness) {
       if (lightness < 2) {
          lightness = 2;
       } else if (lightness > 126) {

@@ -45,7 +45,7 @@ public final class RSSocket implements Runnable {
 
          if (this.socketThread != null) {
             while (this.socketThread.status == 0) {
-               Class19.method204(1L);
+               GameEngine.method204(1L);
             }
 
             if (this.socketThread.status == 1) {

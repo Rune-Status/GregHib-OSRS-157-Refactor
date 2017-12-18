@@ -15,7 +15,7 @@ public enum Enum2 implements RSEnum {
       return this.anInt325;
    }
 
-   static void method642() {
+   static void reloadSound() {
       if (Class47.soundSystem1 != null) {
          Class47.soundSystem1.method339();
       }

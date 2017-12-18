@@ -615,7 +615,7 @@ public class ItemDefinition extends CacheableNode {
    }
 
    public int method941(int int_0, int int_1) {
-      return Occluder.method392(this.parameters, int_0, int_1);
+      return SceneCluster.method392(this.parameters, int_0, int_1);
    }
 
    public String method942(int int_0, String string_0) {

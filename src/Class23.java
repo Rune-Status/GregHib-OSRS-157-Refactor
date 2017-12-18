@@ -6,10 +6,10 @@ public class Class23 {
    public static String aString3;
    static Buffer aBuffer1;
    static Interface4 anInterface4_1;
-   static Region region;
+   static SceneGraph sceneGraph;
    static IndexedSprite[] anIndexedSpriteArray4;
    static int anInt75;
-   static IndexData indexMaps;
+   static IndexData mapsIndex;
    static int intStackSize;
 
    static {

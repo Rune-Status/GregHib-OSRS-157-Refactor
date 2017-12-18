@@ -2,7 +2,7 @@ public class Class3 {
 
    static Task socket;
    public static Class52 aClass52_1;
-   static IndexData indexScripts;
+   static IndexData interfaceScriptDataIndex;
    static int anInt22;
    int anInt23;
    int anInt24;

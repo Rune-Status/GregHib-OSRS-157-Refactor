@@ -44,19 +44,19 @@ public class Class12 {
 
    static void method166(Font font_0, Font font_1) {
       if (Class2.aSpritePixelsArray1 == null) {
-         Class2.aSpritePixelsArray1 = Buffer.method735(Class34.indexSprites, "sl_back", "");
+         Class2.aSpritePixelsArray1 = Buffer.method735(Class34.spritesIndex, "sl_back", "");
       }
 
       if (Class93.anIndexedSpriteArray7 == null) {
-         Class93.anIndexedSpriteArray7 = Enum3.method670(Class34.indexSprites, "sl_flags", "");
+         Class93.anIndexedSpriteArray7 = Enum3.method670(Class34.spritesIndex, "sl_flags", "");
       }
 
       if (Class23.anIndexedSpriteArray4 == null) {
-         Class23.anIndexedSpriteArray4 = Enum3.method670(Class34.indexSprites, "sl_arrows", "");
+         Class23.anIndexedSpriteArray4 = Enum3.method670(Class34.spritesIndex, "sl_arrows", "");
       }
 
       if (Class28.anIndexedSpriteArray6 == null) {
-         Class28.anIndexedSpriteArray6 = Enum3.method670(Class34.indexSprites, "sl_stars", "");
+         Class28.anIndexedSpriteArray6 = Enum3.method670(Class34.spritesIndex, "sl_stars", "");
       }
 
       Rasterizer2D.fillRect(Class25.anInt76, 23, 765, 480, 0);

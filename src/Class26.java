@@ -16,7 +16,7 @@ public class Class26 {
    }
 
    static void method223(Widget widget_0, int int_0, int int_1, int int_2) {
-      Enum2.method642();
+      Enum2.reloadSound();
       CachedSprite cacheablenode_sub1_0 = widget_0.method591(false);
       if (cacheablenode_sub1_0 != null) {
          Rasterizer2D.setDrawRegion(int_0, int_1, cacheablenode_sub1_0.width + int_0, int_1 + cacheablenode_sub1_0.height);
@@ -24,7 +24,7 @@ public class Class26 {
             int int_3 = Client.mapAngle & 0x7FF;
             int int_4 = Class4.localPlayer.x / 32 + 48;
             int int_5 = 464 - Class4.localPlayer.y / 32;
-            Class15.aSpritePixels3.rotate(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, int_4, int_5, int_3, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
+            Class15.spritePixels.rotate(int_0, int_1, cacheablenode_sub1_0.width, cacheablenode_sub1_0.height, int_4, int_5, int_3, 256, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
 
             int int_6;
             int int_7;
@@ -73,7 +73,7 @@ public class Class26 {
                   int_10 = player_0.x / 32 - Class4.localPlayer.x / 32;
                   int int_11 = player_0.y / 32 - Class4.localPlayer.y / 32;
                   boolean bool_0 = false;
-                  if (Client.isFriended(player_0.name, true)) {
+                  if (Client.isFriend(player_0.name, true)) {
                      bool_0 = true;
                   }
 
@@ -299,7 +299,7 @@ public class Class26 {
             }
          }
 
-         if (actor_0.overhead != null && (int_0 >= int_5 || !actor_0.inSequence && (Client.anInt683 == 4 || !actor_0.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriended(((Player) actor_0).name, false))))) {
+         if (actor_0.overhead != null && (int_0 >= int_5 || !actor_0.inSequence && (Client.anInt683 == 4 || !actor_0.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriend(((Player) actor_0).name, false))))) {
             WorldMapData.characterToScreen(actor_0, actor_0.anInt521);
             if (Client.screenY > -1 && Client.anInt691 < Client.anInt692) {
                Client.anIntArray162[Client.anInt691] = Class50.aFont3.method1030(actor_0.overhead) / 2;

@@ -1,15 +1,15 @@
 public final class Tile extends Node {
 
    public static int canvasWidth;
-   static IndexData anIndexData5;
+   static IndexData soundEffectsIndex;
    InteractiveObject[] objects;
    int[] entityFlags;
-   SceneTilePaint paint;
+   ComplexTile paint;
    ItemLayer itemLayer;
-   DecorativeObject decorativeObject;
-   WallObject wallObject;
-   int entityCount;
-   GroundObject groundObject;
+   WallDecoration wallDecoration;
+   Wall wall;
+   int objectCount;
+   FloorDecoration floorDecoration;
    int flags;
    SceneTileModel overlay;
    boolean visible;
@@ -26,13 +26,13 @@ public final class Tile extends Node {
    int wallDrawFlags;
    int wallCullOppositeDirection;
 
-   Tile(int int_0, int int_1, int int_2) {
+   Tile(int z, int x, int y) {
       this.objects = new InteractiveObject[5];
       this.entityFlags = new int[5];
       this.flags = 0;
-      this.renderLevel = this.plane = int_0;
-      this.x = int_1;
-      this.y = int_2;
+      this.renderLevel = this.plane = z;
+      this.x = x;
+      this.y = y;
    }
 
    public static Enum7[] method681() {

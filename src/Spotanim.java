@@ -202,7 +202,7 @@ public class Spotanim extends CacheableNode {
                      break label498;
                   }
 
-                  if ((Class19.tileSettings[Ignore.plane][int_7][int_8] & 0x4) != 0) {
+                  if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
                      int_6 = Ignore.plane;
                   }
 
@@ -229,7 +229,7 @@ public class Spotanim extends CacheableNode {
                            --int_7;
                         }
 
-                        if ((Class19.tileSettings[Ignore.plane][int_7][int_8] & 0x4) != 0) {
+                        if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
                            int_6 = Ignore.plane;
                         }
 
@@ -242,7 +242,7 @@ public class Spotanim extends CacheableNode {
                               --int_8;
                            }
 
-                           if ((Class19.tileSettings[Ignore.plane][int_7][int_8] & 0x4) != 0) {
+                           if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
                               int_6 = Ignore.plane;
                            }
                         }
@@ -258,7 +258,7 @@ public class Spotanim extends CacheableNode {
                            --int_8;
                         }
 
-                        if ((Class19.tileSettings[Ignore.plane][int_7][int_8] & 0x4) != 0) {
+                        if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
                            int_6 = Ignore.plane;
                         }
 
@@ -271,7 +271,7 @@ public class Spotanim extends CacheableNode {
                               --int_7;
                            }
 
-                           if ((Class19.tileSettings[Ignore.plane][int_7][int_8] & 0x4) != 0) {
+                           if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
                               int_6 = Ignore.plane;
                            }
                         }
@@ -280,7 +280,7 @@ public class Spotanim extends CacheableNode {
                }
 
                if (Class4.localPlayer.x >= 0 && Class4.localPlayer.y >= 0 && Class4.localPlayer.x < 13312 && Class4.localPlayer.y < 13312) {
-                  if ((Class19.tileSettings[Ignore.plane][Class4.localPlayer.x >> 7][Class4.localPlayer.y >> 7] & 0x4) != 0) {
+                  if ((Region.renderRuleFlags[Ignore.plane][Class4.localPlayer.x >> 7][Class4.localPlayer.y >> 7] & 0x4) != 0) {
                      int_6 = Ignore.plane;
                   }
 
@@ -353,16 +353,16 @@ public class Spotanim extends CacheableNode {
          Class67.method414();
       }
 
-      Enum2.method642();
+      Enum2.reloadSound();
       Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
-      Enum2.method642();
+      Enum2.reloadSound();
       int_12 = Graphics3D.anInt543;
       Graphics3D.anInt543 = Client.scale;
-      Class23.region.draw(Class2.cameraX, Class18.cameraZ, Player.cameraY, AClass1.cameraPitch, Enum4.cameraYaw, int_4);
+      Class23.sceneGraph.draw(Class2.cameraX, Class18.cameraZ, Player.cameraY, AClass1.cameraPitch, Enum4.cameraYaw, int_4);
       Class44.method273();
       Graphics3D.anInt543 = int_12;
-      Enum2.method642();
-      Class23.region.clearEntities();
+      Enum2.reloadSound();
+      Class23.sceneGraph.clearInteractiveObjectCache();
       Client.anInt691 = 0;
       boolean bool_1 = false;
       int_14 = -1;

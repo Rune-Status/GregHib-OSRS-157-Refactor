@@ -6,7 +6,7 @@ public enum Enum1 implements RSEnum {
    anEnum1_4(0, (byte) 3);
 
    public static IndexDataBase spriteCacheIndex;
-   static IndexData anIndexData4;
+   static IndexData fontConfigIndex;
    final byte aByte3;
    final int anInt304;
 
@@ -139,7 +139,7 @@ public enum Enum1 implements RSEnum {
    static void groundItemSpawned(int int_0, int int_1) {
       Deque deque_0 = Client.groundItemDeque[Ignore.plane][int_0][int_1];
       if (deque_0 == null) {
-         Class23.region.method364(Ignore.plane, int_0, int_1);
+         Class23.sceneGraph.method364(Ignore.plane, int_0, int_1);
       } else {
          long long_0 = -99999999L;
          Item item_0 = null;
@@ -159,7 +159,7 @@ public enum Enum1 implements RSEnum {
          }
 
          if (item_0 == null) {
-            Class23.region.method364(Ignore.plane, int_0, int_1);
+            Class23.sceneGraph.method364(Ignore.plane, int_0, int_1);
          } else {
             deque_0.addTail(item_0);
             Item item_3 = null;
@@ -178,7 +178,7 @@ public enum Enum1 implements RSEnum {
             }
 
             int int_2 = int_0 + (int_1 << 7) + 1610612736;
-            Class23.region.addItemPile(Ignore.plane, int_0, int_1, Class18.getTileHeight(int_0 * 128 + 64, int_1 * 128 + 64, Ignore.plane), item_0, int_2, item_3, item_2);
+            Class23.sceneGraph.addItemPile(Ignore.plane, int_0, int_1, Class18.getTileHeight(int_0 * 128 + 64, int_1 * 128 + 64, Ignore.plane), item_0, int_2, item_3, item_2);
          }
       }
    }

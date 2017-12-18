@@ -78,11 +78,11 @@ public class Class78 {
          for (int_6 = int_2 - 4; int_6 <= int_2 + 4; int_6++) {
             for (int int_7 = int_3 - 4; int_7 <= int_3 + 4; int_7++) {
                int int_8 = Ignore.plane;
-               if (int_8 < 3 && (Class19.tileSettings[1][int_6][int_7] & 0x2) == 2) {
+               if (int_8 < 3 && (Region.renderRuleFlags[1][int_6][int_7] & 0x2) == 2) {
                   ++int_8;
                }
 
-               int int_9 = int_4 - Class19.tileHeights[int_8][int_6][int_7];
+               int int_9 = int_4 - Region.tileHeightArray[int_8][int_6][int_7];
                if (int_9 > int_5) {
                   int_5 = int_9;
                }

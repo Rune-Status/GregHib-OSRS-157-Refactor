@@ -7,7 +7,7 @@ public class Class34 {
    static final Map chatLineMap;
    static final IterableHashTable anIterableHashTable1;
    static final Class77 aClass77_1;
-   static IndexData indexSprites;
+   static IndexData spritesIndex;
    static int playerPin;
 
    static {

@@ -18,7 +18,7 @@ public class Class18 implements Runnable {
    }
 
    public void run() {
-      for (; this.aBool7; Class19.method204(50L)) {
+      for (; this.aBool7; GameEngine.method204(50L)) {
          Object object_0 = this.anObject1;
          synchronized(object_0) {
             if (this.anInt71 < 500) {
@@ -36,14 +36,14 @@ public class Class18 implements Runnable {
       int int_4 = int_1 >> 7;
       if (int_3 >= 0 && int_4 >= 0 && int_3 <= 103 && int_4 <= 103) {
          int int_5 = int_2;
-         if (int_2 < 3 && (Class19.tileSettings[1][int_3][int_4] & 0x2) == 2) {
+         if (int_2 < 3 && (Region.renderRuleFlags[1][int_3][int_4] & 0x2) == 2) {
             int_5 = int_2 + 1;
          }
 
          int int_6 = int_0 & 0x7F;
          int int_7 = int_1 & 0x7F;
-         int int_8 = (128 - int_6) * Class19.tileHeights[int_5][int_3][int_4] + int_6 * Class19.tileHeights[int_5][int_3 + 1][int_4] >> 7;
-         int int_9 = int_6 * Class19.tileHeights[int_5][int_3 + 1][int_4 + 1] + Class19.tileHeights[int_5][int_3][int_4 + 1] * (128 - int_6) >> 7;
+         int int_8 = (128 - int_6) * Region.tileHeightArray[int_5][int_3][int_4] + int_6 * Region.tileHeightArray[int_5][int_3 + 1][int_4] >> 7;
+         int int_9 = int_6 * Region.tileHeightArray[int_5][int_3 + 1][int_4 + 1] + Region.tileHeightArray[int_5][int_3][int_4 + 1] * (128 - int_6) >> 7;
          return int_9 * int_7 + int_8 * (128 - int_7) >> 7;
       } else {
          return 0;

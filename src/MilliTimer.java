@@ -63,7 +63,7 @@ public class MilliTimer extends Timer {
          this.sleepTime = int_1;
       }
 
-      Class19.method204((long)this.sleepTime);
+      GameEngine.method204((long)this.sleepTime);
 
       for (int_4 = 0; this.anInt400 < 256; this.anInt400 += this.anInt399) {
          ++int_4;

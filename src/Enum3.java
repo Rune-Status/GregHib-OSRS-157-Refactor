@@ -13,6 +13,29 @@ public enum Enum3 implements RSEnum {
       this.anInt342 = int_2;
    }
 
+   static IndexedSprite[] method634(IndexDataBase indexdatabase_0, int int_0, int int_1) {
+      if (!TileStrategy.decodeIfExists(indexdatabase_0, int_0, int_1)) {
+         return null;
+      } else {
+         IndexedSprite[] indexedsprites_0 = new IndexedSprite[Class111.anInt216];
+
+         for (int int_2 = 0; int_2 < Class111.anInt216; int_2++) {
+            IndexedSprite indexedsprite_0 = indexedsprites_0[int_2] = new IndexedSprite();
+            indexedsprite_0.width = Class111.anInt214;
+            indexedsprite_0.originalHeight = Class111.anInt215;
+            indexedsprite_0.offsetX = Class111.anIntArray54[int_2];
+            indexedsprite_0.offsetY = Class7.offsetsY[int_2];
+            indexedsprite_0.originalWidth = ItemContainer.anIntArray76[int_2];
+            indexedsprite_0.height = Class6.anIntArray3[int_2];
+            indexedsprite_0.palette = Class111.loadedPixels;
+            indexedsprite_0.pixels = Class111.spritePixels[int_2];
+         }
+
+         Class98.cleanPixelLoader();
+         return indexedsprites_0;
+      }
+   }
+
    public int rsOrdinal() {
       return this.anInt342;
    }
@@ -35,7 +58,7 @@ public enum Enum3 implements RSEnum {
    public static IndexedSprite[] method670(IndexDataBase indexdatabase_0, String string_0, String string_1) {
       int int_0 = indexdatabase_0.getFile(string_0);
       int int_1 = indexdatabase_0.getChild(int_0, string_1);
-      return Node_Sub1.method634(indexdatabase_0, int_0, int_1);
+      return method634(indexdatabase_0, int_0, int_1);
    }
 
 }

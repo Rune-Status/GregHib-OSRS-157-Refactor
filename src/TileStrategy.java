@@ -4,7 +4,7 @@ public class TileStrategy extends RouteStrategy {
    static Class56 listFetcher;
    static SpritePixels[] headIconsPrayer;
 
-   protected boolean canExit(int sizeXY, int currentX, int currentY, CollisionData data) {
+   protected boolean canExit(int sizeXY, int currentX, int currentY, CollisionMap data) {
       return currentX == this.approxDestinationX && currentY == this.approxDestinationY;
    }
 
@@ -13,7 +13,7 @@ public class TileStrategy extends RouteStrategy {
       if (data == null) {
          return false;
       } else {
-         DecorativeObject.decodeSprite(data);
+         WallDecoration.decodeSprite(data);
          return true;
       }
    }
@@ -88,7 +88,7 @@ public class TileStrategy extends RouteStrategy {
    }
 
    static void method630() {
-      Region.lowMemory = false;
+      SceneGraph.lowMemory = false;
       Client.lowMemory = false;
    }
 

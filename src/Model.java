@@ -796,7 +796,7 @@ public class Model extends Renderable {
                            int_29 = -256;
                         }
 
-                        GroundObject.method566(int_25 + Graphics3D.centerX, int_27 + Graphics3D.centerY, int_26 + Graphics3D.centerX, int_28 + Graphics3D.centerY, int_29);
+                        Class35.method566(int_25 + Graphics3D.centerX, int_27 + Graphics3D.centerY, int_26 + Graphics3D.centerX, int_28 + Graphics3D.centerY, int_29);
                      }
 
                      boolean bool_4 = false;

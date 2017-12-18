@@ -9,7 +9,7 @@ public class FileRequest extends CacheableNode {
          return Ignore.plane;
       } else {
          int int_0 = Class18.getTileHeight(Class2.cameraX, Player.cameraY, Ignore.plane);
-         return int_0 - Class18.cameraZ < 800 && (Class19.tileSettings[Ignore.plane][Class2.cameraX >> 7][Player.cameraY >> 7] & 0x4) != 0 ? Ignore.plane : 3;
+         return int_0 - Class18.cameraZ < 800 && (Region.renderRuleFlags[Ignore.plane][Class2.cameraX >> 7][Player.cameraY >> 7] & 0x4) != 0 ? Ignore.plane : 3;
       }
    }
 

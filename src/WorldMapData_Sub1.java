@@ -10,6 +10,8 @@ public class WorldMapData_Sub1 extends WorldMapData {
    static ContextMenuRow topContextMenuRow;
    public static String[] cacheLocations;
    static int anInt303;
+   static int[] anIntArray11;
+   static int[] anIntArray8;
    List aList4;
    HashSet aHashSet7;
    HashSet aHashSet8;
@@ -155,7 +157,7 @@ public class WorldMapData_Sub1 extends WorldMapData {
                   int_1 -= Integer.MIN_VALUE;
                }
 
-               Class23.region.method377(Ignore.plane, npc_0.x, npc_0.y, Class18.getTileHeight(npc_0.anInt513 * 64 - 64 + npc_0.x, npc_0.anInt513 * 64 - 64 + npc_0.y, Ignore.plane), npc_0.anInt513 * 64 - 64 + 60, npc_0, npc_0.angle, int_1, npc_0.aBool69);
+               Class23.sceneGraph.method377(Ignore.plane, npc_0.x, npc_0.y, Class18.getTileHeight(npc_0.anInt513 * 64 - 64 + npc_0.x, npc_0.anInt513 * 64 - 64 + npc_0.y, Ignore.plane), npc_0.anInt513 * 64 - 64 + 60, npc_0, npc_0.angle, int_1, npc_0.aBool69);
             }
          }
       }
@@ -374,19 +376,19 @@ public class WorldMapData_Sub1 extends WorldMapData {
 
    }
 
-   static void method608() {
-      Class19.aByteArrayArrayArray5 = null;
-      Class106.aByteArrayArrayArray9 = null;
-      Class19.aByteArrayArrayArray6 = null;
-      Class7.aByteArrayArrayArray2 = null;
-      ItemLayer.anIntArrayArrayArray1 = null;
-      Class19.tileShadowIntensity = null;
+   static void nullify() {
+      Region.underlayFloorIds = null;
+      Region.overlayFloorIds = null;
+      Region.overlayClippingPaths = null;
+      Class7.overlayRotations = null;
+      SceneGraph.tileCullingBitsets = null;
+      SceneGraph.tileShadowIntensity = null;
       Settings.tileHeightArray = null;
-      Class19.anIntArray8 = null;
+      anIntArray8 = null;
       RSCanvas.anIntArray82 = null;
       Preferences.anIntArray39 = null;
       FloorUnderlayDefinition.anIntArray105 = null;
-      Class19.anIntArray11 = null;
+      anIntArray11 = null;
    }
 
    static int method609(int int_0, int int_1, int int_2) {

@@ -56,9 +56,4 @@ public class Class63 {
 
    }
 
-   static int method400(int int_0, int int_1, int int_2, int int_3) {
-      int int_4 = 65536 - Graphics3D.COSINE[int_2 * 1024 / int_3] >> 1;
-      return ((65536 - int_4) * int_0 >> 16) + (int_4 * int_1 >> 16);
-   }
-
 }

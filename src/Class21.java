@@ -33,11 +33,4 @@ public class Class21 {
       ItemContainer.itemContainers = new HashTable(32);
    }
 
-   static int getSmoothNoise2D(int int_0, int int_1) {
-      int int_2 = Class40.method260(int_0 - 1, int_1 - 1) + Class40.method260(1 + int_0, int_1 - 1) + Class40.method260(int_0 - 1, int_1 + 1) + Class40.method260(1 + int_0, 1 + int_1);
-      int int_3 = Class40.method260(int_0 - 1, int_1) + Class40.method260(1 + int_0, int_1) + Class40.method260(int_0, int_1 - 1) + Class40.method260(int_0, 1 + int_1);
-      int int_4 = Class40.method260(int_0, int_1);
-      return int_2 / 16 + int_3 / 8 + int_4 / 4;
-   }
-
 }

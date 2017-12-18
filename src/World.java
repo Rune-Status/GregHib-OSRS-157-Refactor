@@ -85,18 +85,18 @@ public class World {
       Widget.spriteCache.reset();
       ((TextureProvider) Graphics3D.textureLoader).reset();
       Script.aNodeCache18.reset();
-      Varcs.indexInterfaces.reset();
-      Class6.indexSoundEffects.reset();
-      Class56.anIndexData2.reset();
-      Tile.anIndexData5.reset();
-      Class23.indexMaps.reset();
-      Class38.indexTrack1.reset();
-      Class4.indexModels.reset();
-      Class34.indexSprites.reset();
-      Class49.indexTextures.reset();
-      AbstractSoundSystem.anIndexData1.reset();
-      Class92.indexTrack2.reset();
-      Class3.indexScripts.reset();
+      Varcs.interfacesIndex.reset();
+      Class6.skinsIndex.reset();
+      Class56.interfaceDataIndex.reset();
+      Tile.soundEffectsIndex.reset();
+      Class23.mapsIndex.reset();
+      Class38.songsIndex.reset();
+      Class4.modelsIndex.reset();
+      Class34.spritesIndex.reset();
+      Class49.texturesIndex.reset();
+      AbstractSoundSystem.wordPackIndex.reset();
+      Class92.musicConfigIndex.reset();
+      Class3.interfaceScriptDataIndex.reset();
    }
 
    public static void encodeClassVerifier(PacketBuffer packetbuffer_0) {

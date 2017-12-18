@@ -1,5 +1,5 @@
 public final class Class92 {
 
-   static IndexData indexTrack2;
+   static IndexData musicConfigIndex;
 
 }

@@ -1,6 +1,6 @@
 public class Class15 {
 
-   static SpritePixels aSpritePixels3;
+   static SpritePixels spritePixels;
    final Class13 aClass13_1;
    public final int anInt64;
    int anInt65;
@@ -108,7 +108,7 @@ public class Class15 {
    }
 
    static void method195(int int_0, int int_1, int int_2, int int_3, int int_4) {
-      int int_5 = Class23.region.getWallObjectUID(int_0, int_1, int_2);
+      int int_5 = Class23.sceneGraph.getWallObjectUID(int_0, int_1, int_2);
       int int_6;
       int int_7;
       int int_8;
@@ -116,7 +116,7 @@ public class Class15 {
       int int_10;
       int int_11;
       if (int_5 != 0) {
-         int_6 = Class23.region.getObjectConfig(int_0, int_1, int_2, int_5);
+         int_6 = Class23.sceneGraph.getObjectConfig(int_0, int_1, int_2, int_5);
          int_7 = int_6 >> 6 & 0x3;
          int_8 = int_6 & 0x1F;
          int_9 = int_3;
@@ -124,7 +124,7 @@ public class Class15 {
             int_9 = int_4;
          }
 
-         int[] ints_0 = aSpritePixels3.pixels;
+         int[] ints_0 = spritePixels.pixels;
          int_10 = int_1 * 4 + (103 - int_2) * 2048 + 24624;
          int_11 = int_5 >> 14 & 0x7FFF;
          ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_11);
@@ -198,9 +198,9 @@ public class Class15 {
          }
       }
 
-      int_5 = Class23.region.getInteractableObjectUID(int_0, int_1, int_2);
+      int_5 = Class23.sceneGraph.getInteractableObjectUID(int_0, int_1, int_2);
       if (int_5 != 0) {
-         int_6 = Class23.region.getObjectConfig(int_0, int_1, int_2, int_5);
+         int_6 = Class23.sceneGraph.getObjectConfig(int_0, int_1, int_2, int_5);
          int_7 = int_6 >> 6 & 0x3;
          int_8 = int_6 & 0x1F;
          int_9 = int_5 >> 14 & 0x7FFF;
@@ -219,7 +219,7 @@ public class Class15 {
                int_10 = 15597568;
             }
 
-            int[] ints_1 = aSpritePixels3.pixels;
+            int[] ints_1 = spritePixels.pixels;
             int_14 = int_1 * 4 + (103 - int_2) * 2048 + 24624;
             if (int_7 != 0 && int_7 != 2) {
                ints_1[int_14] = int_10;
@@ -235,7 +235,7 @@ public class Class15 {
          }
       }
 
-      int_5 = Class23.region.getGroundDecorationUID(int_0, int_1, int_2);
+      int_5 = Class23.sceneGraph.getGroundDecorationUID(int_0, int_1, int_2);
       if (int_5 != 0) {
          int_6 = int_5 >> 14 & 0x7FFF;
          ObjectDefinition objectcomposition_1 = ObjectDefinition.getDefinition(int_6);
@@ -249,51 +249,6 @@ public class Class15 {
          }
       }
 
-   }
-
-   static void method196(byte[] bytes_0, int int_0, int int_1, Region region_0, CollisionData[] collisiondatas_0) {
-      Buffer buffer_0 = new Buffer(bytes_0);
-      int int_2 = -1;
-
-      while (true) {
-         int int_3 = buffer_0.getUSmart();
-         if (int_3 == 0) {
-            return;
-         }
-
-         int_2 += int_3;
-         int int_4 = 0;
-
-         while (true) {
-            int int_5 = buffer_0.getUSmart();
-            if (int_5 == 0) {
-               break;
-            }
-
-            int_4 += int_5 - 1;
-            int int_6 = int_4 & 0x3F;
-            int int_7 = int_4 >> 6 & 0x3F;
-            int int_8 = int_4 >> 12;
-            int int_9 = buffer_0.getUnsignedByte();
-            int int_10 = int_9 >> 2;
-            int int_11 = int_9 & 0x3;
-            int int_12 = int_7 + int_0;
-            int int_13 = int_6 + int_1;
-            if (int_12 > 0 && int_13 > 0 && int_12 < 103 && int_13 < 103) {
-               int int_14 = int_8;
-               if ((Class19.tileSettings[1][int_12][int_13] & 0x2) == 2) {
-                  int_14 = int_8 - 1;
-               }
-
-               CollisionData collisiondata_0 = null;
-               if (int_14 >= 0) {
-                  collisiondata_0 = collisiondatas_0[int_14];
-               }
-
-               RuntimeException_Sub1.addObject(int_8, int_12, int_13, int_2, int_11, int_10, region_0, collisiondata_0);
-            }
-         }
-      }
    }
 
 }

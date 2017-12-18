@@ -13,7 +13,7 @@ public final class Class24 {
             SoundEffect soundeffect_0 = Client.audioEffects[int_0];
             if (soundeffect_0 == null) {
                Object object_0 = null;
-               soundeffect_0 = SoundEffect.getTrack(Tile.anIndexData5, Client.anIntArray149[int_0], 0);
+               soundeffect_0 = SoundEffect.getTrack(Tile.soundEffectsIndex, Client.anIntArray149[int_0], 0);
                if (soundeffect_0 == null) {
                   continue;
                }
@@ -87,7 +87,7 @@ public final class Class24 {
 
          if (!bool_0) {
             if (Client.anInt662 != 0 && Client.anInt643 != -1) {
-               Class71.method424(Class38.indexTrack1, Client.anInt643, 0, Client.anInt662, false);
+               Class71.method424(Class38.songsIndex, Client.anInt643, 0, Client.anInt662, false);
             }
 
             Client.aBool87 = false;

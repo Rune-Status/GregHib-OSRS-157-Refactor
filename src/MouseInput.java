@@ -138,7 +138,7 @@ public class MouseInput implements MouseListener, MouseMotionListener, FocusList
                if (graphicsobject_0.finished) {
                   graphicsobject_0.unlink();
                } else {
-                  Class23.region.method377(graphicsobject_0.level, graphicsobject_0.x, graphicsobject_0.y, graphicsobject_0.height, 60, graphicsobject_0, 0, -1, false);
+                  Class23.sceneGraph.method377(graphicsobject_0.level, graphicsobject_0.x, graphicsobject_0.y, graphicsobject_0.height, 60, graphicsobject_0, 0, -1, false);
                }
             }
          } else {

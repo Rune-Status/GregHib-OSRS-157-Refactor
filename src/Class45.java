@@ -15,7 +15,7 @@ final class Class45 implements Comparator {
    }
 
    static IndexedSprite method275(boolean bool_0, boolean bool_1) {
-      return bool_0 ? (bool_1 ? Class39.anIndexedSprite3 : Class107.anIndexedSprite6) : (bool_1 ? Preferences.anIndexedSprite5 : WallObject.anIndexedSprite4);
+      return bool_0 ? (bool_1 ? Class39.anIndexedSprite3 : Class107.anIndexedSprite6) : (bool_1 ? Preferences.anIndexedSprite5 : Wall.anIndexedSprite4);
    }
 
    static void method276(String string_0) {

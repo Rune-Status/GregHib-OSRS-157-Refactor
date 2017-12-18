@@ -98,7 +98,34 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       AbstractSoundSystem.anInterface2_1 = class11_0;
    }
 
-   public synchronized void paint(Graphics graphics_0) {
+    public static void method204(long long_0) {
+       if (long_0 > 0L) {
+          if (long_0 % 10L == 0L) {
+             long long_1 = long_0 - 1L;
+
+             try {
+                Thread.sleep(long_1);
+             } catch (InterruptedException interruptedexception_1) {
+                ;
+             }
+
+             try {
+                Thread.sleep(1L);
+             } catch (InterruptedException interruptedexception_2) {
+                ;
+             }
+          } else {
+             try {
+                Thread.sleep(long_0);
+             } catch (InterruptedException interruptedexception_0) {
+                ;
+             }
+          }
+
+       }
+    }
+
+    public synchronized void paint(Graphics graphics_0) {
       if (this == shell && !aBool77) {
          this.aBool80 = true;
          if (Class97.currentTimeMs() - this.aLong29 > 1000L) {
@@ -140,7 +167,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    public void destroy() {
       if (this == shell && !aBool77) {
          aLong26 = Class97.currentTimeMs();
-         Class19.method204(5000L);
+         method204(5000L);
          this.method1071();
       }
    }
@@ -410,7 +437,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    void method1079(Object object_0) {
       if (this.anEventQueue1 != null) {
          for (int int_0 = 0; int_0 < 50 && this.anEventQueue1.peekEvent() != null; int_0++) {
-            Class19.method204(1L);
+            method204(1L);
          }
 
          if (object_0 != null) {

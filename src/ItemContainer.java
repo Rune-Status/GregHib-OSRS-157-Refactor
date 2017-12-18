@@ -106,7 +106,7 @@ public class ItemContainer extends Node {
                         int_24 = int_20 >> 14 & 0x7FFF;
                         if (int_18 != int_20) {
                            int_18 = int_20;
-                           if (int_23 == 2 && Class23.region.getObjectConfig(Ignore.plane, int_21, int_22, int_20) >= 0) {
+                           if (int_23 == 2 && Class23.sceneGraph.getObjectConfig(Ignore.plane, int_21, int_22, int_20) >= 0) {
                               ObjectDefinition objectcomposition_0 = ObjectDefinition.getDefinition(int_24);
                               if (objectcomposition_0.transformationIds != null) {
                                  objectcomposition_0 = objectcomposition_0.morph();
@@ -117,10 +117,10 @@ public class ItemContainer extends Node {
                               }
 
                               if (Client.itemSelectionState == 1) {
-                                 Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + WallObject.getColTags(65535) + objectcomposition_0.name, 1, int_20, int_21, int_22);
+                                 Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(65535) + objectcomposition_0.name, 1, int_20, int_21, int_22);
                               } else if (Client.spellSelected) {
                                  if ((Enum4.anInt381 & 0x4) == 4) {
-                                    Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(65535) + objectcomposition_0.name, 2, int_20, int_21, int_22);
+                                    Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(65535) + objectcomposition_0.name, 2, int_20, int_21, int_22);
                                  }
                               } else {
                                  String[] strings_1 = objectcomposition_0.options;
@@ -152,12 +152,12 @@ public class ItemContainer extends Node {
                                              short_0 = 1001;
                                           }
 
-                                          Class24.addMenuEntry(strings_1[int_31], WallObject.getColTags(65535) + objectcomposition_0.name, short_0, int_20, int_21, int_22);
+                                          Class24.addMenuEntry(strings_1[int_31], Wall.getColTags(65535) + objectcomposition_0.name, short_0, int_20, int_21, int_22);
                                        }
                                     }
                                  }
 
-                                 Class24.addMenuEntry("Examine", WallObject.getColTags(65535) + objectcomposition_0.name, 1002, objectcomposition_0.id << 14, int_21, int_22);
+                                 Class24.addMenuEntry("Examine", Wall.getColTags(65535) + objectcomposition_0.name, 1002, objectcomposition_0.id << 14, int_21, int_22);
                               }
                            }
 
@@ -230,10 +230,10 @@ public class ItemContainer extends Node {
                                  for (Item item_0 = (Item) deque_0.getTail(); item_0 != null; item_0 = (Item) deque_0.getPrevious()) {
                                     ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(item_0.id);
                                     if (Client.itemSelectionState == 1) {
-                                       Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_1.name, 16, item_0.id, int_21, int_22);
+                                       Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_1.name, 16, item_0.id, int_21, int_22);
                                     } else if (Client.spellSelected) {
                                        if ((Enum4.anInt381 & 0x1) == 1) {
-                                          Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_1.name, 17, item_0.id, int_21, int_22);
+                                          Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_1.name, 17, item_0.id, int_21, int_22);
                                        }
                                     } else {
                                        String[] strings_2 = itemcomposition_1.groundOptions;
@@ -264,13 +264,13 @@ public class ItemContainer extends Node {
                                                 byte_1 = 22;
                                              }
 
-                                             Class24.addMenuEntry(strings_2[int_27], WallObject.getColTags(16748608) + itemcomposition_1.name, byte_1, item_0.id, int_21, int_22);
+                                             Class24.addMenuEntry(strings_2[int_27], Wall.getColTags(16748608) + itemcomposition_1.name, byte_1, item_0.id, int_21, int_22);
                                           } else if (int_27 == 2) {
-                                             Class24.addMenuEntry("Take", WallObject.getColTags(16748608) + itemcomposition_1.name, 20, item_0.id, int_21, int_22);
+                                             Class24.addMenuEntry("Take", Wall.getColTags(16748608) + itemcomposition_1.name, 20, item_0.id, int_21, int_22);
                                           }
                                        }
 
-                                       Class24.addMenuEntry("Examine", WallObject.getColTags(16748608) + itemcomposition_1.name, 1004, item_0.id, int_21, int_22);
+                                       Class24.addMenuEntry("Examine", Wall.getColTags(16748608) + itemcomposition_1.name, 1004, item_0.id, int_21, int_22);
                                     }
                                  }
                               }
@@ -348,7 +348,7 @@ public class ItemContainer extends Node {
                            }
 
                            if (string_0 != null) {
-                              Class24.addMenuEntry(string_0, WallObject.getColTags(65280) + widget_0.spellName, 25, 0, -1, widget_0.id);
+                              Class24.addMenuEntry(string_0, Wall.getColTags(65280) + widget_0.spellName, 25, 0, -1, widget_0.id);
                            }
                         }
 
@@ -392,7 +392,7 @@ public class ItemContainer extends Node {
                                              bool_0 = (int_25 >> 30 & 0x1) != 0;
                                              if (bool_0) {
                                                 if (widget_0.id != Class48.anInt111 || int_19 != GameEngine.selectedItemIndex) {
-                                                   Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_0.name, 31, itemcomposition_0.id, int_19, widget_0.id);
+                                                   Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_0.name, 31, itemcomposition_0.id, int_19, widget_0.id);
                                                 }
                                                 break label1900;
                                              }
@@ -403,7 +403,7 @@ public class ItemContainer extends Node {
                                              bool_0 = (int_25 >> 30 & 0x1) != 0;
                                              if (bool_0) {
                                                 if ((Enum4.anInt381 & 0x10) == 16) {
-                                                   Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + WallObject.getColTags(16748608) + itemcomposition_0.name, 32, itemcomposition_0.id, int_19, widget_0.id);
+                                                   Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_0.name, 32, itemcomposition_0.id, int_19, widget_0.id);
                                                 }
                                                 break label1900;
                                              }
@@ -431,7 +431,7 @@ public class ItemContainer extends Node {
 
                                           Object object_0 = null;
                                           if (Timer.method589(Preferences.getWidgetConfig(widget_0))) {
-                                             Class24.addMenuEntry("Use", WallObject.getColTags(16748608) + itemcomposition_0.name, 38, itemcomposition_0.id, int_19, widget_0.id);
+                                             Class24.addMenuEntry("Use", Wall.getColTags(16748608) + itemcomposition_0.name, 38, itemcomposition_0.id, int_19, widget_0.id);
                                           }
 
                                           int int_28 = Preferences.getWidgetConfig(widget_0);
@@ -478,12 +478,12 @@ public class ItemContainer extends Node {
                                                       byte_0 = 43;
                                                    }
 
-                                                   Class24.addMenuEntry(strings_0[int_29], WallObject.getColTags(16748608) + itemcomposition_0.name, byte_0, itemcomposition_0.id, int_19, widget_0.id);
+                                                   Class24.addMenuEntry(strings_0[int_29], Wall.getColTags(16748608) + itemcomposition_0.name, byte_0, itemcomposition_0.id, int_19, widget_0.id);
                                                 }
                                              }
                                           }
 
-                                          Class24.addMenuEntry("Examine", WallObject.getColTags(16748608) + itemcomposition_0.name, 1005, itemcomposition_0.id, int_19, widget_0.id);
+                                          Class24.addMenuEntry("Examine", Wall.getColTags(16748608) + itemcomposition_0.name, 1005, itemcomposition_0.id, int_19, widget_0.id);
                                        }
                                     }
                                  }

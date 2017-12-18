@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Varcs {
 
    public static int anInt507;
-   static IndexData indexInterfaces;
+   static IndexData interfacesIndex;
    static int anInt209;
    boolean changed;
    String[] varcstrings;
@@ -265,10 +265,10 @@ public class Varcs {
 
    static void method543() {
       if (!Class54.aBool22) {
-         int int_0 = Region.pitchSin;
-         int int_1 = Region.pitchCos;
-         int int_2 = Region.yawSin;
-         int int_3 = Region.yawCos;
+         int int_0 = SceneGraph.pitchSin;
+         int int_1 = SceneGraph.pitchCos;
+         int int_2 = SceneGraph.yawSin;
+         int int_3 = SceneGraph.yawCos;
          byte byte_0 = 50;
          short short_0 = 3500;
          int int_4 = (Class54.anInt138 - Graphics3D.centerX) * byte_0 / Graphics3D.anInt543;

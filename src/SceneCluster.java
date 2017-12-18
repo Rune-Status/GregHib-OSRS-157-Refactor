@@ -1,6 +1,6 @@
-public final class Occluder {
+public final class SceneCluster {
 
-   int testDirection;
+   int tileDistanceEnum;
    int minX;
    int minZ;
    int type;

@@ -64,23 +64,23 @@ public class Coordinates {
       int type = 0;
       int face = 0;
       if (node.spawnType == 0) {
-         objectUID = Class23.region.getWallObjectUID(node.plane, node.x, node.y);
+         objectUID = Class23.sceneGraph.getWallObjectUID(node.plane, node.x, node.y);
       }
 
       if (node.spawnType == 1) {
-         objectUID = Class23.region.getWallDecorationUID(node.plane, node.x, node.y);
+         objectUID = Class23.sceneGraph.getWallDecorationUID(node.plane, node.x, node.y);
       }
 
       if (node.spawnType == 2) {
-         objectUID = Class23.region.getInteractableObjectUID(node.plane, node.x, node.y);
+         objectUID = Class23.sceneGraph.getInteractableObjectUID(node.plane, node.x, node.y);
       }
 
       if (node.spawnType == 3) {
-         objectUID = Class23.region.getGroundDecorationUID(node.plane, node.x, node.y);
+         objectUID = Class23.sceneGraph.getGroundDecorationUID(node.plane, node.x, node.y);
       }
 
       if (objectUID != 0) {
-         int configId = Class23.region.getObjectConfig(node.plane, node.x, node.y, objectUID);
+         int configId = Class23.sceneGraph.getObjectConfig(node.plane, node.x, node.y, objectUID);
          objId = objectUID >> 14 & 0x7FFF;
          type = configId & 0x1F;
          face = configId >> 6 & 0x3;

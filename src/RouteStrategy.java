@@ -5,7 +5,7 @@ public abstract class RouteStrategy {
    public int approxDestinationSizeX;
    public int approxDestinationSizeY;
 
-   protected abstract boolean canExit(int sizeXY, int currentX, int currentY, CollisionData data);
+   protected abstract boolean canExit(int sizeXY, int currentX, int currentY, CollisionMap data);
 
    static void method394(int int_0) {
       if (int_0 >= 0) {

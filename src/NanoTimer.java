@@ -13,7 +13,7 @@ public class NanoTimer extends Timer {
          long_1 = long_0;
       }
 
-      Class19.method204(long_1 / 1000000L);
+      GameEngine.method204(long_1 / 1000000L);
       long long_2 = System.nanoTime();
 
       int int_2;

@@ -333,9 +333,9 @@ public class Ignore {
                Client.aClass46_1.method282(packetnode_0);
             } else if (int_2 == 23) {
                if (Client.isMenuOpen) {
-                  Class23.region.method371();
+                  Class23.sceneGraph.method371();
                } else {
-                  Class23.region.method359(plane, int_0, int_1, true);
+                  Class23.sceneGraph.method359(plane, int_0, int_1, true);
                }
             } else {
                PacketNode packetnode_2;
@@ -381,9 +381,9 @@ public class Ignore {
                         }
 
                         if (widget_2.hasScript) {
-                           Client.aString36 = widget_2.name + WallObject.getColTags(16777215);
+                           Client.aString36 = widget_2.name + Wall.getColTags(16777215);
                         } else {
-                           Client.aString36 = WallObject.getColTags(65280) + widget_2.spellName + WallObject.getColTags(16777215);
+                           Client.aString36 = Wall.getColTags(65280) + widget_2.spellName + Wall.getColTags(16777215);
                         }
                      }
 
@@ -511,7 +511,7 @@ public class Ignore {
                            Class48.anInt111 = int_1;
                            KeyFocusListener.anInt128 = int_3;
                            WorldMapData.method305(widget_2);
-                           Client.aString35 = WallObject.getColTags(16748608) + ItemDefinition.getDefinition(int_3).name + WallObject.getColTags(16777215);
+                           Client.aString35 = Wall.getColTags(16748608) + ItemDefinition.getDefinition(int_3).name + Wall.getColTags(16777215);
                            if (Client.aString35 == null) {
                               Client.aString35 = "null";
                            }

@@ -52,7 +52,7 @@ public class Class90 implements Interface5 {
          string_0 = string_0.substring(0, int_1) + "," + string_0.substring(int_1);
       }
 
-      return string_0.length() > 9 ? " " + WallObject.getColTags(65408) + string_0.substring(0, string_0.length() - 8) + "M" + " " + " (" + string_0 + ")" + "</col>" : (string_0.length() > 6 ? " " + WallObject.getColTags(16777215) + string_0.substring(0, string_0.length() - 4) + "K" + " " + " (" + string_0 + ")" + "</col>" : " " + WallObject.getColTags(16776960) + string_0 + "</col>");
+      return string_0.length() > 9 ? " " + Wall.getColTags(65408) + string_0.substring(0, string_0.length() - 8) + "M" + " " + " (" + string_0 + ")" + "</col>" : (string_0.length() > 6 ? " " + Wall.getColTags(16777215) + string_0.substring(0, string_0.length() - 4) + "K" + " " + " (" + string_0 + ")" + "</col>" : " " + Wall.getColTags(16776960) + string_0 + "</col>");
    }
 
 }

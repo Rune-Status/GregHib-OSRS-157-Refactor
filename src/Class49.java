@@ -3,7 +3,7 @@ import java.util.Comparator;
 final class Class49 implements Comparator {
 
    public static IndexDataBase varbit_ref;
-   static IndexData indexTextures;
+   static IndexData texturesIndex;
 
    int method313(Class36 class36_0, Class36 class36_1) {
       return class36_0.anInt96 < class36_1.anInt96 ? -1 : (class36_1.anInt96 == class36_0.anInt96 ? 0 : 1);
@@ -239,7 +239,7 @@ final class Class49 implements Comparator {
       }
    }
 
-   public static int findPath(int sourceX, int sourceY, int size, RouteStrategy strategy, CollisionData collision, int[] tileQueueX, int[] tileQueueY) {
+   public static int findPath(int sourceX, int sourceY, int size, RouteStrategy strategy, CollisionMap collision, int[] tileQueueX, int[] tileQueueY) {
       for (int x = 0; x < 128; x++) {
          for (int y = 0; y < 128; y++) {
             Class58.directions[x][y] = 0;

@@ -80,7 +80,7 @@ public class Class47 {
       if (int_0 == -1 && !Client.aBool87) {
          ItemLayer.method545();
       } else if (int_0 != -1 && int_0 != Client.anInt643 && Client.anInt662 != 0 && !Client.aBool87) {
-         IndexData indexdata_0 = Class38.indexTrack1;
+         IndexData indexdata_0 = Class38.songsIndex;
          int int_1 = Client.anInt662;
          Class78.anInt172 = 1;
          Class70.anIndexDataBase3 = indexdata_0;

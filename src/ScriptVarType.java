@@ -485,39 +485,39 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int_7 = packetbuffer_0.readUnsignedShortOb1();
             if (int_1 >= 0 && delay >= 0 && int_1 < 103 && delay < 103) {
                if (locY == 0) {
-                  WallObject wallobject_0 = Class23.region.method361(Ignore.plane, int_1, delay);
+                  Wall wallobject_0 = Class23.sceneGraph.method361(Ignore.plane, int_1, delay);
                   if (wallobject_0 != null) {
                      spawnTypeHash = wallobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash == 2) {
-                        wallobject_0.renderable1 = new GameObject(spawnTypeHash, 2, locX + 4, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
-                        wallobject_0.renderable2 = new GameObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable2);
+                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, 2, locX + 4, Ignore.plane, int_1, delay, int_7, false, wallobject_0.primaryRenderable);
+                        wallobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, int_1, delay, int_7, false, wallobject_0.secondaryRenderable);
                      } else {
-                        wallobject_0.renderable1 = new GameObject(spawnTypeHash, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, wallobject_0.renderable1);
+                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, wallobject_0.primaryRenderable);
                      }
                   }
                }
 
                if (locY == 1) {
-                  DecorativeObject decorativeobject_0 = Class23.region.method363(Ignore.plane, int_1, delay);
+                  WallDecoration decorativeobject_0 = Class23.sceneGraph.method363(Ignore.plane, int_1, delay);
                   if (decorativeobject_0 != null) {
                      spawnTypeHash = decorativeobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash != 4 && locationHash != 5) {
                         if (locationHash == 6) {
-                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
                         } else if (locationHash == 7) {
-                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
                         } else if (locationHash == 8) {
-                           decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
-                           decorativeobject_0.renderable2 = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable2);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
+                           decorativeobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.secondaryRenderable);
                         }
                      } else {
-                        decorativeobject_0.renderable1 = new GameObject(spawnTypeHash, 4, locX, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.renderable1);
+                        decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
                      }
                   }
                }
 
                if (locY == 2) {
-                  InteractiveObject gameobject_0 = Class23.region.method370(Ignore.plane, int_1, delay);
+                  InteractiveObject gameobject_0 = Class23.sceneGraph.method370(Ignore.plane, int_1, delay);
                   if (locationHash == 11) {
                      locationHash = 10;
                   }
@@ -528,9 +528,9 @@ public class ScriptVarType implements RSEnum, Interface6 {
                }
 
                if (locY == 3) {
-                  GroundObject groundobject_0 = Class23.region.method372(Ignore.plane, int_1, delay);
-                  if (groundobject_0 != null) {
-                     groundobject_0.renderable = new GameObject(groundobject_0.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, int_1, delay, int_7, false, groundobject_0.renderable);
+                  FloorDecoration floor = Class23.sceneGraph.getFloorDecoration(Ignore.plane, int_1, delay);
+                  if (floor != null) {
+                     floor.renderable = new GameObject(floor.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, int_1, delay, int_7, false, floor.renderable);
                   }
                }
             }
@@ -720,7 +720,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
                            int right = locX + (sizeX + 1 >> 1);
                            int top = locY + (sizeY >> 1);
                            int bottom = locY + (sizeY + 1 >> 1);
-                           int[][] heights = Class19.tileHeights[Ignore.plane];
+                           int[][] heights = Region.tileHeightArray[Ignore.plane];
                            int mean = heights[left][bottom] + heights[right][top] + heights[left][top] + heights[right][bottom] >> 2;
                            int middleX = (locX << 7) + (sizeX << 6);
                            int middleY = (locY << 7) + (sizeY << 6);

@@ -1,6 +1,6 @@
 public class Class38 {
 
-   static IndexData indexTrack1;
+   static IndexData songsIndex;
    static int[][] xteaKeys;
 
    static String method253(int int_0) {

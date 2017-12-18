@@ -1,6 +1,6 @@
 public class Class7 {
 
-    static byte[][][] aByteArrayArrayArray2;
+    static byte[][][] overlayRotations;
     public static int anInt40;
     static int[] offsetsY;
 

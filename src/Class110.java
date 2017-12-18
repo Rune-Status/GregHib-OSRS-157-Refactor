@@ -51,9 +51,9 @@ public class Class110 {
 
          if (int_0 != 5 && int_0 != 10) {
             if (int_0 == 20) {
-               MessageNode.method946(AbstractSoundSystem.anIndexData1, Class34.indexSprites, true, Client.gameState == 11 ? 4 : 0);
+               MessageNode.method946(AbstractSoundSystem.wordPackIndex, Class34.spritesIndex, true, Client.gameState == 11 ? 4 : 0);
             } else if (int_0 == 11) {
-               MessageNode.method946(AbstractSoundSystem.anIndexData1, Class34.indexSprites, false, 4);
+               MessageNode.method946(AbstractSoundSystem.wordPackIndex, Class34.spritesIndex, false, 4);
             } else if (Class25.aBool13) {
                Class25.anIndexedSprite1 = null;
                Class25.anIndexedSprite2 = null;
@@ -62,7 +62,7 @@ public class Class110 {
                Class25.aSpritePixels5 = null;
                Class25.logoSprite = null;
                Class25.titlemuteSprite = null;
-               WallObject.anIndexedSprite4 = null;
+               Wall.anIndexedSprite4 = null;
                Class107.anIndexedSprite6 = null;
                Class2.aSpritePixelsArray1 = null;
                Class93.anIndexedSpriteArray7 = null;
@@ -82,7 +82,7 @@ public class Class110 {
                Class25.aBool13 = false;
             }
          } else {
-            MessageNode.method946(AbstractSoundSystem.anIndexData1, Class34.indexSprites, true, 0);
+            MessageNode.method946(AbstractSoundSystem.wordPackIndex, Class34.spritesIndex, true, 0);
          }
 
          Client.gameState = int_0;
