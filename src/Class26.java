@@ -302,7 +302,7 @@ public class Class26 {
          if (actor_0.overhead != null && (int_0 >= int_5 || !actor_0.inSequence && (Client.anInt683 == 4 || !actor_0.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriend(((Player) actor_0).name, false))))) {
             WorldMapData.characterToScreen(actor_0, actor_0.anInt521);
             if (Client.screenY > -1 && Client.anInt691 < Client.anInt692) {
-               Client.anIntArray162[Client.anInt691] = Class50.aFont3.method1030(actor_0.overhead) / 2;
+               Client.anIntArray162[Client.anInt691] = Class50.aFont3.getWidth(actor_0.overhead) / 2;
                Client.anIntArray161[Client.anInt691] = Class50.aFont3.verticalSpace;
                Client.anIntArray159[Client.anInt691] = Client.screenY;
                Client.anIntArray160[Client.anInt691] = Client.screenX;
@@ -502,10 +502,10 @@ public class Class26 {
                      boolean bool_1 = false;
                      int int_35 = 0;
                      string_0 = cacheablenode_sub6_1.method896(actor_0.hitsplatTypes[int_15]);
-                     int int_63 = font_0.method1030(string_0);
+                     int int_63 = font_0.getWidth(string_0);
                      if (cacheablenode_sub6_0 != null) {
                         string_1 = cacheablenode_sub6_0.method896(actor_0.anIntArray112[int_15]);
-                        int_35 = font_1.method1030(string_1);
+                        int_35 = font_1.getWidth(string_1);
                      }
 
                      int int_36 = 0;
@@ -688,7 +688,7 @@ public class Class26 {
                            spritepixels_5.drawAt(int_52 + int_43 - int_24, int_53);
                         }
 
-                        font_0.method1040(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.anInt483 | 0xFF000000, 0);
+                        font_0.drawString(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.anInt483 | 0xFF000000, 0);
                         if (cacheablenode_sub6_0 != null) {
                            if (spritepixels_6 != null) {
                               spritepixels_6.drawAt(int_44 + int_52 - int_29, int_53);
@@ -708,7 +708,7 @@ public class Class26 {
                               spritepixels_9.drawAt(int_52 + int_47 - int_32, int_53);
                            }
 
-                           font_1.method1040(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.anInt483 | 0xFF000000, 0);
+                           font_1.drawString(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.anInt483 | 0xFF000000, 0);
                         }
                      }
                   }

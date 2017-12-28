@@ -2,69 +2,69 @@ public class Class99 {
 
    public static Huffman aHuffman1;
 
-   public static byte method524(char char_0) {
-      byte byte_0;
-      if (char_0 > 0 && char_0 < 128 || char_0 >= 160 && char_0 <= 255) {
-         byte_0 = (byte)char_0;
-      } else if (char_0 == 8364) {
-         byte_0 = -128;
-      } else if (char_0 == 8218) {
-         byte_0 = -126;
-      } else if (char_0 == 402) {
-         byte_0 = -125;
-      } else if (char_0 == 8222) {
-         byte_0 = -124;
-      } else if (char_0 == 8230) {
-         byte_0 = -123;
-      } else if (char_0 == 8224) {
-         byte_0 = -122;
-      } else if (char_0 == 8225) {
-         byte_0 = -121;
-      } else if (char_0 == 710) {
-         byte_0 = -120;
-      } else if (char_0 == 8240) {
-         byte_0 = -119;
-      } else if (char_0 == 352) {
-         byte_0 = -118;
-      } else if (char_0 == 8249) {
-         byte_0 = -117;
-      } else if (char_0 == 338) {
-         byte_0 = -116;
-      } else if (char_0 == 381) {
-         byte_0 = -114;
-      } else if (char_0 == 8216) {
-         byte_0 = -111;
-      } else if (char_0 == 8217) {
-         byte_0 = -110;
-      } else if (char_0 == 8220) {
-         byte_0 = -109;
-      } else if (char_0 == 8221) {
-         byte_0 = -108;
-      } else if (char_0 == 8226) {
-         byte_0 = -107;
-      } else if (char_0 == 8211) {
-         byte_0 = -106;
-      } else if (char_0 == 8212) {
-         byte_0 = -105;
-      } else if (char_0 == 732) {
-         byte_0 = -104;
-      } else if (char_0 == 8482) {
-         byte_0 = -103;
-      } else if (char_0 == 353) {
-         byte_0 = -102;
-      } else if (char_0 == 8250) {
-         byte_0 = -101;
-      } else if (char_0 == 339) {
-         byte_0 = -100;
-      } else if (char_0 == 382) {
-         byte_0 = -98;
-      } else if (char_0 == 376) {
-         byte_0 = -97;
+   public static byte convertCharacter(char character) {
+      byte value;
+      if (character > 0 && character < 128 || character >= 160 && character <= 255) {
+         value = (byte)character;
+      } else if (character == 8364) {
+         value = -128;
+      } else if (character == 8218) {
+         value = -126;
+      } else if (character == 402) {
+         value = -125;
+      } else if (character == 8222) {
+         value = -124;
+      } else if (character == 8230) {
+         value = -123;
+      } else if (character == 8224) {
+         value = -122;
+      } else if (character == 8225) {
+         value = -121;
+      } else if (character == 710) {
+         value = -120;
+      } else if (character == 8240) {
+         value = -119;
+      } else if (character == 352) {
+         value = -118;
+      } else if (character == 8249) {
+         value = -117;
+      } else if (character == 338) {
+         value = -116;
+      } else if (character == 381) {
+         value = -114;
+      } else if (character == 8216) {
+         value = -111;
+      } else if (character == 8217) {
+         value = -110;
+      } else if (character == 8220) {
+         value = -109;
+      } else if (character == 8221) {
+         value = -108;
+      } else if (character == 8226) {
+         value = -107;
+      } else if (character == 8211) {
+         value = -106;
+      } else if (character == 8212) {
+         value = -105;
+      } else if (character == 732) {
+         value = -104;
+      } else if (character == 8482) {
+         value = -103;
+      } else if (character == 353) {
+         value = -102;
+      } else if (character == 8250) {
+         value = -101;
+      } else if (character == 339) {
+         value = -100;
+      } else if (character == 382) {
+         value = -98;
+      } else if (character == 376) {
+         value = -97;
       } else {
-         byte_0 = 63;
+         value = 63;
       }
 
-      return byte_0;
+      return value;
    }
 
 }

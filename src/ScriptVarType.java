@@ -447,7 +447,7 @@ public class ScriptVarType implements RSEnum, Interface6 {
          aScriptVarTypeArray1 = new ScriptVarType[256];
       }
 
-      aScriptVarTypeArray1[Class99.method524(scriptvartype_0.typeChar) & 0xFF] = scriptvartype_0;
+      aScriptVarTypeArray1[Class99.convertCharacter(scriptvartype_0.typeChar) & 0xFF] = scriptvartype_0;
    }
 
    static void method468(Class59 class59_0) {

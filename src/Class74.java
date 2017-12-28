@@ -43,7 +43,7 @@ public class Class74 {
       Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, int_4);
       Rasterizer2D.fillRect(int_0 + 1, int_1 + 1, int_2 - 2, 16, 0);
       Rasterizer2D.drawRectangle(int_0 + 1, int_1 + 18, int_2 - 2, int_3 - 19, 0);
-      Class50.aFont3.method1040("Choose Option", int_0 + 3, int_1 + 14, int_4, -1);
+      Class50.aFont3.drawString("Choose Option", int_0 + 3, int_1 + 14, int_4, -1);
       int int_5 = MouseInput.anInt260;
       int int_6 = MouseInput.anInt262;
 
@@ -54,7 +54,7 @@ public class Class74 {
             int_9 = 16776960;
          }
 
-         Class50.aFont3.method1040(Class38.method253(int_7), int_0 + 3, int_8, int_9, 0);
+         Class50.aFont3.drawString(Class38.method253(int_7), int_0 + 3, int_8, int_9, 0);
       }
 
       Class71.method423(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);

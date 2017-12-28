@@ -62,12 +62,12 @@ public class Class12 {
       Rasterizer2D.fillRect(Class25.anInt76, 23, 765, 480, 0);
       Rasterizer2D.method925(Class25.anInt76, 0, 125, 23, 12425273, 9135624);
       Rasterizer2D.method925(Class25.anInt76 + 125, 0, 640, 23, 5197647, 2697513);
-      font_0.method1039("Select a world", Class25.anInt76 + 62, 15, 0, -1);
+      font_0.drawStringCentred("Select a world", Class25.anInt76 + 62, 15, 0, -1);
       if (Class28.anIndexedSpriteArray6 != null) {
          Class28.anIndexedSpriteArray6[1].drawSprite(Class25.anInt76 + 140, 1);
-         font_1.method1040("Members only world", Class25.anInt76 + 152, 10, 16777215, -1);
+         font_1.drawString("Members only world", Class25.anInt76 + 152, 10, 16777215, -1);
          Class28.anIndexedSpriteArray6[0].drawSprite(Class25.anInt76 + 140, 12);
-         font_1.method1040("Free world", Class25.anInt76 + 152, 21, 16777215, -1);
+         font_1.drawString("Free world", Class25.anInt76 + 152, 21, 16777215, -1);
       }
 
       int int_2;
@@ -86,7 +86,7 @@ public class Class12 {
             Class23.anIndexedSpriteArray4[1].drawSprite(int_0 + 15, 4);
          }
 
-         font_0.method1040("World", int_0 + 32, 17, 16777215, -1);
+         font_0.drawString("World", int_0 + 32, 17, 16777215, -1);
          int int_1 = Class25.anInt76 + 390;
          if (World.anIntArray58[0] == 1 && World.anIntArray57[0] == 0) {
             Class23.anIndexedSpriteArray4[2].drawSprite(int_1, 4);
@@ -100,7 +100,7 @@ public class Class12 {
             Class23.anIndexedSpriteArray4[1].drawSprite(int_1 + 15, 4);
          }
 
-         font_0.method1040("Players", int_1 + 32, 17, 16777215, -1);
+         font_0.drawString("Players", int_1 + 32, 17, 16777215, -1);
          int_2 = Class25.anInt76 + 500;
          if (World.anIntArray58[0] == 2 && World.anIntArray57[0] == 0) {
             Class23.anIndexedSpriteArray4[2].drawSprite(int_2, 4);
@@ -114,7 +114,7 @@ public class Class12 {
             Class23.anIndexedSpriteArray4[1].drawSprite(int_2 + 15, 4);
          }
 
-         font_0.method1040("Location", int_2 + 32, 17, 16777215, -1);
+         font_0.drawString("Location", int_2 + 32, 17, 16777215, -1);
          int_3 = Class25.anInt76 + 610;
          if (World.anIntArray58[0] == 3 && World.anIntArray57[0] == 0) {
             Class23.anIndexedSpriteArray4[2].drawSprite(int_3, 4);
@@ -128,11 +128,11 @@ public class Class12 {
             Class23.anIndexedSpriteArray4[1].drawSprite(int_3 + 15, 4);
          }
 
-         font_0.method1040("Type", int_3 + 32, 17, 16777215, -1);
+         font_0.drawString("Type", int_3 + 32, 17, 16777215, -1);
       }
 
       Rasterizer2D.fillRect(Class25.anInt76 + 708, 4, 50, 16, 0);
-      font_1.method1039("Cancel", Class25.anInt76 + 708 + 25, 16, 16777215, -1);
+      font_1.drawStringCentred("Cancel", Class25.anInt76 + 708 + 25, 16, 16777215, -1);
       Class25.anInt84 = -1;
       if (Class2.aSpritePixelsArray1 != null) {
          byte byte_1 = 88;
@@ -227,8 +227,8 @@ public class Class12 {
                Class93.anIndexedSpriteArray7[(world_0.method551() ? 8 : 0) + world_0.location].drawSprite(int_9 + 29, int_8);
             }
 
-            font_0.method1039(Integer.toString(world_0.id), int_9 + 15, byte_2 / 2 + int_8 + 5, int_12, -1);
-            font_1.method1039(string_0, int_9 + 60, byte_2 / 2 + int_8 + 5, 268435455, -1);
+            font_0.drawStringCentred(Integer.toString(world_0.id), int_9 + 15, byte_2 / 2 + int_8 + 5, int_12, -1);
+            font_1.drawStringCentred(string_0, int_9 + 60, byte_2 / 2 + int_8 + 5, 268435455, -1);
             int_8 = int_8 + int_5 + byte_2;
             ++int_10;
             if (int_10 >= int_3) {
@@ -239,11 +239,11 @@ public class Class12 {
          }
 
          if (bool_0) {
-            int_11 = font_1.method1030(Coordinates.worldList[Class25.anInt84].activity) + 6;
+            int_11 = font_1.getWidth(Coordinates.worldList[Class25.anInt84].activity) + 6;
             int int_13 = font_1.verticalSpace + 8;
             Rasterizer2D.fillRect(MouseInput.anInt260 - int_11 / 2, MouseInput.anInt262 + 20 + 5, int_11, int_13, 16777120);
             Rasterizer2D.drawRectangle(MouseInput.anInt260 - int_11 / 2, MouseInput.anInt262 + 20 + 5, int_11, int_13, 0);
-            font_1.method1039(Coordinates.worldList[Class25.anInt84].activity, MouseInput.anInt260, MouseInput.anInt262 + font_1.verticalSpace + 20 + 5 + 4, 0, -1);
+            font_1.drawStringCentred(Coordinates.worldList[Class25.anInt84].activity, MouseInput.anInt260, MouseInput.anInt262 + font_1.verticalSpace + 20 + 5 + 4, 0, -1);
          }
       }
 

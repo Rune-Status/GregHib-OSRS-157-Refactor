@@ -2,14 +2,14 @@ import java.util.Random;
 
 public abstract class FontTypeFace extends Rasterizer2D {
 
-   static int strikeRGB;
+   static int strikethroughRGB;
    static String[] aStringArray5;
    static int underlineRGB;
    static Random aRandom1;
    static int anInt567;
    static int prevShadeRGB;
-   static int prevColorRGB;
-   static int color;
+   static int prevColourRGB;
+   static int colour;
    static int shadow;
    static int anInt568;
    static int anInt569;
@@ -26,12 +26,12 @@ public abstract class FontTypeFace extends Rasterizer2D {
    int[] glyphWidths;
 
    static {
-      strikeRGB = -1;
+      strikethroughRGB = -1;
       underlineRGB = -1;
       prevShadeRGB = -1;
       shadow = -1;
-      prevColorRGB = 0;
-      color = 0;
+      prevColourRGB = 0;
+      colour = 0;
       anInt567 = 256;
       anInt568 = 0;
       anInt569 = 0;
@@ -71,43 +71,51 @@ public abstract class FontTypeFace extends Rasterizer2D {
       this.method1033(bytes_0);
    }
 
-   void setColor(int int_0, int int_1) {
-      strikeRGB = -1;
+   public static int getInteger(CharSequence sequence, int length) {
+      return Enum5.parseInt(sequence, length);
+   }
+
+   public static int getInteger(CharSequence sequence) {
+      return Enum5.parseInt(sequence, 10);
+   }
+
+   void setAttributes(int colour, int shadow) {
+      strikethroughRGB = -1;
       underlineRGB = -1;
-      prevShadeRGB = int_1;
-      shadow = int_1;
-      prevColorRGB = int_0;
-      color = int_0;
+      prevShadeRGB = shadow;
+      FontTypeFace.shadow = shadow;
+      prevColourRGB = colour;
+      FontTypeFace.colour = colour;
       anInt567 = 256;
       anInt568 = 0;
       anInt569 = 0;
    }
 
-   public int method1030(String string_0) {
-      if (string_0 == null) {
+   public int getWidth(String string) {
+      if (string == null) {
          return 0;
       } else {
-         int int_0 = -1;
-         int int_1 = -1;
-         int int_2 = 0;
+         int tagStart = -1;
+         int previousCharacter = -1;
+         int width = 0;
 
-         for (int int_3 = 0; int_3 < string_0.length(); int_3++) {
-            char char_0 = string_0.charAt(int_3);
-            if (char_0 == 60) {
-               int_0 = int_3;
+         for (int index = 0; index < string.length(); index++) {
+            char character = string.charAt(index);
+            if (character == 60) {
+               tagStart = index;
             } else {
-               if (char_0 == 62 && int_0 != -1) {
-                  String string_1 = string_0.substring(int_0 + 1, int_3);
-                  int_0 = -1;
-                  if (string_1.equals("lt")) {
-                     char_0 = 60;
+               if (character == 62 && tagStart != -1) {
+                  String tagText = string.substring(tagStart + 1, index);
+                  tagStart = -1;
+                  if (tagText.equals("lt")) {
+                     character = 60;
                   } else {
-                     if (!string_1.equals("gt")) {
-                        if (string_1.startsWith("img=")) {
+                     if (!tagText.equals("gt")) {
+                        if (tagText.startsWith("img=")) {
                            try {
-                              int int_4 = Class27.method225(string_1.substring(4));
-                              int_2 += modIcons[int_4].width;
-                              int_1 = -1;
+                              int id = getInteger(tagText.substring(4));
+                              width += modIcons[id].width;
+                              previousCharacter = -1;
                            } catch (Exception exception_0) {
                               ;
                            }
@@ -115,26 +123,26 @@ public abstract class FontTypeFace extends Rasterizer2D {
                         continue;
                      }
 
-                     char_0 = 62;
+                     character = 62;
                   }
                }
 
-               if (char_0 == 160) {
-                  char_0 = 32;
+               if (character == 160) {
+                  character = 32;
                }
 
-               if (int_0 == -1) {
-                  int_2 += this.anIntArray137[(char)(Class99.method524(char_0) & 0xFF)];
-                  if (this.aByteArray26 != null && int_1 != -1) {
-                     int_2 += this.aByteArray26[char_0 + (int_1 << 8)];
+               if (tagStart == -1) {
+                  width += this.anIntArray137[(char)(Class99.convertCharacter(character) & 0xFF)];
+                  if (this.aByteArray26 != null && previousCharacter != -1) {
+                     width += this.aByteArray26[character + (previousCharacter << 8)];
                   }
 
-                  int_1 = char_0;
+                  previousCharacter = character;
                }
             }
          }
 
-         return int_2;
+         return width;
       }
    }
 
@@ -187,7 +195,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
                      char_0 = 62;
                   } else if (string_2.startsWith("img=")) {
                      try {
-                        int int_8 = Class27.method225(string_2.substring(4));
+                        int int_8 = getInteger(string_2.substring(4));
                         int_0 += modIcons[int_8].width;
                         char_0 = 0;
                      } catch (Exception exception_0) {
@@ -242,87 +250,87 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   void method1032(String string_0, int int_0, int int_1) {
-      int_1 -= this.verticalSpace;
-      int int_2 = -1;
-      int int_3 = -1;
+   void drawString(String string, int x, int y) {
+      y -= this.verticalSpace;
+      int tagStart = -1;
+      int previousCharacter = -1;
 
-      for (int int_4 = 0; int_4 < string_0.length(); int_4++) {
-         if (string_0.charAt(int_4) != 0) {
-            char char_0 = (char)(Class99.method524(string_0.charAt(int_4)) & 0xFF);
-            if (char_0 == 60) {
-               int_2 = int_4;
+      for (int index = 0; index < string.length(); index++) {
+         if (string.charAt(index) != 0) {
+            char character = (char)(Class99.convertCharacter(string.charAt(index)) & 0xFF);
+            if (character == 60) {
+               tagStart = index;
             } else {
-               int int_6;
-               if (char_0 == 62 && int_2 != -1) {
-                  String string_1 = string_0.substring(int_2 + 1, int_4);
-                  int_2 = -1;
-                  if (string_1.equals("lt")) {
-                     char_0 = 60;
+               int iconId;
+               if (character == 62 && tagStart != -1) {
+                  String tagText = string.substring(tagStart + 1, index);
+                  tagStart = -1;
+                  if (tagText.equals("lt")) {
+                     character = 60;
                   } else {
-                     if (!string_1.equals("gt")) {
-                        if (string_1.startsWith("img=")) {
+                     if (!tagText.equals("gt")) {
+                        if (tagText.startsWith("img=")) {
                            try {
-                              int_6 = Class27.method225(string_1.substring(4));
-                              IndexedSprite indexedsprite_0 = modIcons[int_6];
-                              indexedsprite_0.drawSprite(int_0, int_1 + this.verticalSpace - indexedsprite_0.originalHeight);
-                              int_0 += indexedsprite_0.width;
-                              int_3 = -1;
+                              iconId = getInteger(tagText.substring(4));
+                              IndexedSprite sprite = modIcons[iconId];
+                              sprite.drawSprite(x, y + this.verticalSpace - sprite.originalHeight);
+                              x += sprite.width;
+                              previousCharacter = -1;
                            } catch (Exception exception_0) {
                               ;
                            }
                         } else {
-                           this.setRGB(string_1);
+                           this.setAttribute(tagText);
                         }
                         continue;
                      }
 
-                     char_0 = 62;
+                     character = 62;
                   }
                }
 
-               if (char_0 == 160) {
-                  char_0 = 32;
+               if (character == 160) {
+                  character = 32;
                }
 
-               if (int_2 == -1) {
-                  if (this.aByteArray26 != null && int_3 != -1) {
-                     int_0 += this.aByteArray26[char_0 + (int_3 << 8)];
+               if (tagStart == -1) {
+                  if (this.aByteArray26 != null && previousCharacter != -1) {
+                     x += this.aByteArray26[character + (previousCharacter << 8)];
                   }
 
-                  int int_5 = this.gylphHeights[char_0];
-                  int_6 = this.glyphWidths[char_0];
-                  if (char_0 != 32) {
+                  int int_5 = this.gylphHeights[character];
+                  iconId = this.glyphWidths[character];
+                  if (character != 32) {
                      if (anInt567 == 256) {
                         if (shadow != -1) {
-                           renderShadeRGB(this.gylphs[char_0], int_0 + this.horizontalOffsets[char_0] + 1, int_1 + this.verticalOffsets[char_0] + 1, int_5, int_6, shadow);
+                           renderShadeRGB(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, int_5, iconId, shadow);
                         }
 
-                        this.renderRGB(this.gylphs[char_0], int_0 + this.horizontalOffsets[char_0], int_1 + this.verticalOffsets[char_0], int_5, int_6, color);
+                        this.renderRGB(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], int_5, iconId, colour);
                      } else {
                         if (shadow != -1) {
-                           renderShadeRGBA(this.gylphs[char_0], int_0 + this.horizontalOffsets[char_0] + 1, int_1 + this.verticalOffsets[char_0] + 1, int_5, int_6, shadow, anInt567);
+                           renderShadeRGBA(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, int_5, iconId, shadow, anInt567);
                         }
 
-                        this.renderRGBA(this.gylphs[char_0], int_0 + this.horizontalOffsets[char_0], int_1 + this.verticalOffsets[char_0], int_5, int_6, color, anInt567);
+                        this.renderRGBA(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], int_5, iconId, colour, anInt567);
                      }
                   } else if (anInt568 > 0) {
                      anInt569 += anInt568;
-                     int_0 += anInt569 >> 8;
+                     x += anInt569 >> 8;
                      anInt569 &= 0xFF;
                   }
 
-                  int int_7 = this.anIntArray137[char_0];
-                  if (strikeRGB != -1) {
-                     Rasterizer2D.method920(int_0, int_1 + (int)((double)this.verticalSpace * 0.7D), int_7, strikeRGB);
+                  int length = this.anIntArray137[character];
+                  if (strikethroughRGB != -1) {
+                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikethroughRGB);
                   }
 
                   if (underlineRGB != -1) {
-                     Rasterizer2D.method920(int_0, int_1 + this.verticalSpace + 1, int_7, underlineRGB);
+                     Rasterizer2D.drawHorizontal(x, y + this.verticalSpace + 1, length, underlineRGB);
                   }
 
-                  int_0 += int_7;
-                  int_3 = char_0;
+                  x += length;
+                  previousCharacter = character;
                }
             }
          }
@@ -401,121 +409,120 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
    }
 
-   void drawMouseoverText(String string_0, int int_0, int int_1, int[] ints_0, int[] ints_1) {
-      int_1 -= this.verticalSpace;
-      int int_2 = -1;
-      int int_3 = -1;
-      int int_4 = 0;
+   void drawMouseoverText(String string, int x, int y, int[] widths, int[] heights) {
+      y -= this.verticalSpace;
+      int tagStart = -1;
+      int previousCharacter = -1;
+      int count = 0;
 
-      for (int int_5 = 0; int_5 < string_0.length(); int_5++) {
-         if (string_0.charAt(int_5) != 0) {
-            char char_0 = (char)(Class99.method524(string_0.charAt(int_5)) & 0xFF);
-            if (char_0 == 60) {
-               int_2 = int_5;
+      for (int index = 0; index < string.length(); index++) {
+         if (string.charAt(index) != 0) {
+            char character = (char)(Class99.convertCharacter(string.charAt(index)) & 0xFF);
+            if (character == 60) {
+               tagStart = index;
             } else {
-               int int_7;
-               int int_8;
-               int int_9;
-               if (char_0 == 62 && int_2 != -1) {
-                  String string_1 = string_0.substring(int_2 + 1, int_5);
-                  int_2 = -1;
-                  if (string_1.equals("lt")) {
-                     char_0 = 60;
+               int width;
+               int height;
+               int id;
+               if (character == 62 && tagStart != -1) {
+                  String tagText = string.substring(tagStart + 1, index);
+                  tagStart = -1;
+                  if (tagText.equals("lt")) {
+                     character = 60;
                   } else {
-                     if (!string_1.equals("gt")) {
-                        if (string_1.startsWith("img=")) {
+                     if (!tagText.equals("gt")) {
+                        if (tagText.startsWith("img=")) {
                            try {
-                              if (ints_0 != null) {
-                                 int_7 = ints_0[int_4];
+                              if (widths != null) {
+                                 width = widths[count];
                               } else {
-                                 int_7 = 0;
+                                 width = 0;
                               }
 
-                              if (ints_1 != null) {
-                                 int_8 = ints_1[int_4];
+                              if (heights != null) {
+                                 height = heights[count];
                               } else {
-                                 int_8 = 0;
+                                 height = 0;
                               }
 
-                              ++int_4;
-                              int_9 = Class27.method225(string_1.substring(4));
-                              IndexedSprite indexedsprite_0 = modIcons[int_9];
-                              indexedsprite_0.drawSprite(int_7 + int_0, int_8 + (int_1 + this.verticalSpace - indexedsprite_0.originalHeight));
-                              int_0 += indexedsprite_0.width;
-                              int_3 = -1;
+                              ++count;
+                              id = getInteger(tagText.substring(4));
+                              IndexedSprite sprite = modIcons[id];
+                              sprite.drawSprite(width + x, height + (y + this.verticalSpace - sprite.originalHeight));
+                              x += sprite.width;
+                              previousCharacter = -1;
                            } catch (Exception exception_0) {
                               ;
                            }
                         } else {
-                           this.setRGB(string_1);
+                           this.setAttribute(tagText);
                         }
                         continue;
                      }
 
-                     char_0 = 62;
+                     character = 62;
                   }
                }
 
-               if (char_0 == 160) {
-                  char_0 = 32;
+               if (character == 160) {
+                  character = 32;
                }
 
-               if (int_2 == -1) {
-                  if (this.aByteArray26 != null && int_3 != -1) {
-                     int_0 += this.aByteArray26[char_0 + (int_3 << 8)];
+               if (tagStart == -1) {
+                  if (this.aByteArray26 != null && previousCharacter != -1) {
+                     x += this.aByteArray26[character + (previousCharacter << 8)];
                   }
 
-                  int int_6 = this.gylphHeights[char_0];
-                  int_7 = this.glyphWidths[char_0];
-                  if (ints_0 != null) {
-                     int_8 = ints_0[int_4];
+                  int int_6 = this.gylphHeights[character];
+                  width = this.glyphWidths[character];
+                  if (widths != null) {
+                     height = widths[count];
                   } else {
-                     int_8 = 0;
+                     height = 0;
                   }
 
-                  if (ints_1 != null) {
-                     int_9 = ints_1[int_4];
+                  if (heights != null) {
+                     id = heights[count];
                   } else {
-                     int_9 = 0;
+                     id = 0;
                   }
 
-                  ++int_4;
-                  if (char_0 != 32) {
+                  ++count;
+                  if (character != 32) {
                      if (anInt567 == 256) {
                         if (shadow != -1) {
-                           renderShadeRGB(this.gylphs[char_0], int_8 + int_0 + this.horizontalOffsets[char_0] + 1, int_1 + int_9 + this.verticalOffsets[char_0] + 1, int_6, int_7, shadow);
+                           renderShadeRGB(this.gylphs[character], height + x + this.horizontalOffsets[character] + 1, y + id + this.verticalOffsets[character] + 1, int_6, width, shadow);
                         }
 
-                        this.renderRGB(this.gylphs[char_0], int_8 + int_0 + this.horizontalOffsets[char_0], int_1 + int_9 + this.verticalOffsets[char_0], int_6, int_7, color);
+                        this.renderRGB(this.gylphs[character], height + x + this.horizontalOffsets[character], y + id + this.verticalOffsets[character], int_6, width, colour);
                      } else {
                         if (shadow != -1) {
-                           renderShadeRGBA(this.gylphs[char_0], int_8 + int_0 + this.horizontalOffsets[char_0] + 1, int_1 + int_9 + this.verticalOffsets[char_0] + 1, int_6, int_7, shadow, anInt567);
+                           renderShadeRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character] + 1, y + id + this.verticalOffsets[character] + 1, int_6, width, shadow, anInt567);
                         }
 
-                        this.renderRGBA(this.gylphs[char_0], int_8 + int_0 + this.horizontalOffsets[char_0], int_1 + int_9 + this.verticalOffsets[char_0], int_6, int_7, color, anInt567);
+                        this.renderRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character], y + id + this.verticalOffsets[character], int_6, width, colour, anInt567);
                      }
                   } else if (anInt568 > 0) {
                      anInt569 += anInt568;
-                     int_0 += anInt569 >> 8;
+                     x += anInt569 >> 8;
                      anInt569 &= 0xFF;
                   }
 
-                  int int_10 = this.anIntArray137[char_0];
-                  if (strikeRGB != -1) {
-                     Rasterizer2D.method920(int_0, int_1 + (int)((double)this.verticalSpace * 0.7D), int_10, strikeRGB);
+                  int length = this.anIntArray137[character];
+                  if (strikethroughRGB != -1) {
+                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikethroughRGB);
                   }
 
                   if (underlineRGB != -1) {
-                     Rasterizer2D.method920(int_0, int_1 + this.verticalSpace, int_10, underlineRGB);
+                     Rasterizer2D.drawHorizontal(x, y + this.verticalSpace, length, underlineRGB);
                   }
 
-                  int_0 += int_10;
-                  int_3 = char_0;
+                  x += length;
+                  previousCharacter = character;
                }
             }
          }
       }
-
    }
 
    int method1034(char char_0) {
@@ -523,39 +530,39 @@ public abstract class FontTypeFace extends Rasterizer2D {
          char_0 = 32;
       }
 
-      return this.anIntArray137[Class99.method524(char_0) & 0xFF];
+      return this.anIntArray137[Class99.convertCharacter(char_0) & 0xFF];
    }
 
    public int method1035(String string_0, int int_0) {
       return this.method1031(string_0, new int[] {int_0}, aStringArray5);
    }
 
-   void setRGB(String string_0) {
+   void setAttribute(String tag) {
       try {
-         if (string_0.startsWith("col=")) {
-            color = Class98.method522(string_0.substring(4), 16);
-         } else if (string_0.equals("/col")) {
-            color = prevColorRGB;
-         } else if (string_0.startsWith("str=")) {
-            strikeRGB = Class98.method522(string_0.substring(4), 16);
-         } else if (string_0.equals("str")) {
-            strikeRGB = 8388608;
-         } else if (string_0.equals("/str")) {
-            strikeRGB = -1;
-         } else if (string_0.startsWith("u=")) {
-            underlineRGB = Class98.method522(string_0.substring(2), 16);
-         } else if (string_0.equals("u")) {
+         if (tag.startsWith("col=")) {
+            FontTypeFace.colour = getInteger(tag.substring(4), 16);
+         } else if (tag.equals("/col")) {
+            FontTypeFace.colour = prevColourRGB;
+         } else if (tag.startsWith("str=")) {
+            strikethroughRGB = getInteger(tag.substring(4), 16);
+         } else if (tag.equals("str")) {
+            strikethroughRGB = 8388608;
+         } else if (tag.equals("/str")) {
+            strikethroughRGB = -1;
+         } else if (tag.startsWith("u=")) {
+            underlineRGB = getInteger(tag.substring(2), 16);
+         } else if (tag.equals("u")) {
             underlineRGB = 0;
-         } else if (string_0.equals("/u")) {
+         } else if (tag.equals("/u")) {
             underlineRGB = -1;
-         } else if (string_0.startsWith("shad=")) {
-            shadow = Class98.method522(string_0.substring(5), 16);
-         } else if (string_0.equals("shad")) {
+         } else if (tag.startsWith("shad=")) {
+            shadow = getInteger(tag.substring(5), 16);
+         } else if (tag.equals("shad")) {
             shadow = 0;
-         } else if (string_0.equals("/shad")) {
+         } else if (tag.equals("/shad")) {
             shadow = prevShadeRGB;
-         } else if (string_0.equals("br")) {
-            this.setColor(prevColorRGB, prevShadeRGB);
+         } else if (tag.equals("br")) {
+            this.setAttributes(prevColourRGB, prevShadeRGB);
          }
       } catch (Exception exception_0) {
          ;
@@ -567,7 +574,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
       if (string_0 == null) {
          return 0;
       } else {
-         this.setColor(int_4, int_5);
+         this.setAttributes(int_4, int_5);
          if (int_8 == 0) {
             int_8 = this.verticalSpace;
          }
@@ -602,16 +609,16 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
          for (int_11 = 0; int_11 < int_9; int_11++) {
             if (int_6 == 0) {
-               this.method1032(aStringArray5[int_11], int_0, int_10);
+               this.drawString(aStringArray5[int_11], int_0, int_10);
             } else if (int_6 == 1) {
-               this.method1032(aStringArray5[int_11], int_0 + (int_2 - this.method1030(aStringArray5[int_11])) / 2, int_10);
+               this.drawString(aStringArray5[int_11], int_0 + (int_2 - this.getWidth(aStringArray5[int_11])) / 2, int_10);
             } else if (int_6 == 2) {
-               this.method1032(aStringArray5[int_11], int_0 + int_2 - this.method1030(aStringArray5[int_11]), int_10);
+               this.drawString(aStringArray5[int_11], int_0 + int_2 - this.getWidth(aStringArray5[int_11]), int_10);
             } else if (int_11 == int_9 - 1) {
-               this.method1032(aStringArray5[int_11], int_0, int_10);
+               this.drawString(aStringArray5[int_11], int_0, int_10);
             } else {
                this.method1037(aStringArray5[int_11], int_2);
-               this.method1032(aStringArray5[int_11], int_0, int_10);
+               this.drawString(aStringArray5[int_11], int_0, int_10);
                anInt568 = 0;
             }
 
@@ -638,7 +645,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
 
       if (int_1 > 0) {
-         anInt568 = (int_0 - this.method1030(string_0) << 8) / int_1;
+         anInt568 = (int_0 - this.getWidth(string_0) << 8) / int_1;
       }
 
    }
@@ -652,7 +659,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
       int int_2 = 0;
 
       for (int int_3 = 0; int_3 < int_1; int_3++) {
-         int int_4 = this.method1030(aStringArray5[int_3]);
+         int int_4 = this.getWidth(aStringArray5[int_3]);
          if (int_4 > int_2) {
             int_2 = int_4;
          }
@@ -663,7 +670,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
    public void drawRandomizedMouseoverText(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
       if (string_0 != null) {
-         this.setColor(int_2, int_3);
+         this.setAttributes(int_2, int_3);
          aRandom1.setSeed((long)int_4);
          anInt567 = 192 + (aRandom1.nextInt() & 0x1F);
          int[] ints_0 = new int[string_0.length()];
@@ -680,58 +687,58 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   public void method1039(String string_0, int int_0, int int_1, int int_2, int int_3) {
-      if (string_0 != null) {
-         this.setColor(int_2, int_3);
-         this.method1032(string_0, int_0 - this.method1030(string_0) / 2, int_1);
+   public void drawStringCentred(String string, int x, int y, int colour, int shadow) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         this.drawString(string, x - this.getWidth(string) / 2, y);
       }
    }
 
-   public void method1040(String string_0, int int_0, int int_1, int int_2, int int_3) {
-      if (string_0 != null) {
-         this.setColor(int_2, int_3);
-         this.method1032(string_0, int_0, int_1);
+   public void drawString(String string, int x, int y, int colour, int shadow) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         this.drawString(string, x, y);
       }
    }
 
-   public void method1041(String string_0, int int_0, int int_1, int int_2, int int_3) {
-      if (string_0 != null) {
-         this.setColor(int_2, int_3);
-         this.method1032(string_0, int_0 - this.method1030(string_0), int_1);
+   public void drawStringRight(String string, int x, int y, int colour, int shadow) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         this.drawString(string, x - this.getWidth(string), y);
       }
    }
 
    public void method1042(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
       if (string_0 != null) {
-         this.setColor(int_2, int_3);
+         this.setAttributes(int_2, int_3);
          int[] ints_0 = new int[string_0.length()];
 
          for (int int_5 = 0; int_5 < string_0.length(); int_5++) {
             ints_0[int_5] = (int)(Math.sin((double)int_5 / 2.0D + (double)int_4 / 5.0D) * 5.0D);
          }
 
-         this.drawMouseoverText(string_0, int_0 - this.method1030(string_0) / 2, int_1, (int[]) null, ints_0);
+         this.drawMouseoverText(string_0, int_0 - this.getWidth(string_0) / 2, int_1, (int[]) null, ints_0);
       }
    }
 
-   public void method1043(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (string_0 != null) {
-         this.setColor(int_2, int_3);
-         int[] ints_0 = new int[string_0.length()];
-         int[] ints_1 = new int[string_0.length()];
+   public void drawWaveStringCentred(String string, int x, int y, int colour, int shadow, int wave) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         int[] xOffset = new int[string.length()];
+         int[] yOffset = new int[string.length()];
 
-         for (int int_5 = 0; int_5 < string_0.length(); int_5++) {
-            ints_0[int_5] = (int)(Math.sin((double)int_5 / 5.0D + (double)int_4 / 5.0D) * 5.0D);
-            ints_1[int_5] = (int)(Math.sin((double)int_5 / 3.0D + (double)int_4 / 5.0D) * 5.0D);
+         for (int index = 0; index < string.length(); index++) {
+            xOffset[index] = (int)(Math.sin((double)index / 5.0D + (double)wave / 5.0D) * 5.0D);
+            yOffset[index] = (int)(Math.sin((double)index / 3.0D + (double)wave / 5.0D) * 5.0D);
          }
 
-         this.drawMouseoverText(string_0, int_0 - this.method1030(string_0) / 2, int_1, ints_0, ints_1);
+         this.drawMouseoverText(string, x - this.getWidth(string) / 2, y, xOffset, yOffset);
       }
    }
 
    public void method1044(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
       if (string_0 != null) {
-         this.setColor(int_2, int_3);
+         this.setAttributes(int_2, int_3);
          double double_0 = 7.0D - (double)int_5 / 8.0D;
          if (double_0 < 0.0D) {
             double_0 = 0.0D;
@@ -743,15 +750,15 @@ public abstract class FontTypeFace extends Rasterizer2D {
             ints_0[int_6] = (int)(Math.sin((double)int_6 / 1.5D + (double)int_4 / 1.0D) * double_0);
          }
 
-         this.drawMouseoverText(string_0, int_0 - this.method1030(string_0) / 2, int_1, (int[]) null, ints_0);
+         this.drawMouseoverText(string_0, int_0 - this.getWidth(string_0) / 2, int_1, (int[]) null, ints_0);
       }
    }
 
    public void method1045(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
       if (string_0 != null) {
-         this.setColor(int_2, int_3);
+         this.setAttributes(int_2, int_3);
          anInt567 = int_4;
-         this.method1032(string_0, int_0, int_1);
+         this.drawString(string_0, int_0, int_1);
       }
    }
 

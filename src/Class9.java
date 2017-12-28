@@ -69,19 +69,19 @@ public class Class9 {
 
                   if (class6_0.anInt38 == Enum4.anEnum4_4.anInt382) {
                      if (class6_0.anInt39 == 0) {
-                        Rasterizer2D.method920(this.anInt45 * int_0, this.anInt45 * (63 - int_1), 1, int_4);
+                        Rasterizer2D.drawHorizontal(this.anInt45 * int_0, this.anInt45 * (63 - int_1), 1, int_4);
                      }
 
                      if (class6_0.anInt39 == 1) {
-                        Rasterizer2D.method920(this.anInt45 * int_0 + this.anInt45 - 1, this.anInt45 * (63 - int_1), 1, int_4);
+                        Rasterizer2D.drawHorizontal(this.anInt45 * int_0 + this.anInt45 - 1, this.anInt45 * (63 - int_1), 1, int_4);
                      }
 
                      if (class6_0.anInt39 == 2) {
-                        Rasterizer2D.method920(this.anInt45 + this.anInt45 * int_0 - 1, this.anInt45 * (63 - int_1) + this.anInt45 - 1, 1, int_4);
+                        Rasterizer2D.drawHorizontal(this.anInt45 + this.anInt45 * int_0 - 1, this.anInt45 * (63 - int_1) + this.anInt45 - 1, 1, int_4);
                      }
 
                      if (class6_0.anInt39 == 3) {
-                        Rasterizer2D.method920(this.anInt45 * int_0, this.anInt45 * (63 - int_1) + this.anInt45 - 1, 1, int_4);
+                        Rasterizer2D.drawHorizontal(this.anInt45 * int_0, this.anInt45 * (63 - int_1) + this.anInt45 - 1, 1, int_4);
                      }
                   }
 
@@ -90,11 +90,11 @@ public class Class9 {
                      int int_6;
                      if (int_5 == 0) {
                         for (int_6 = 0; int_6 < this.anInt45; int_6++) {
-                           Rasterizer2D.method920(int_6 + this.anInt45 * int_0, (64 - int_1) * this.anInt45 - 1 - int_6, 1, int_4);
+                           Rasterizer2D.drawHorizontal(int_6 + this.anInt45 * int_0, (64 - int_1) * this.anInt45 - 1 - int_6, 1, int_4);
                         }
                      } else {
                         for (int_6 = 0; int_6 < this.anInt45; int_6++) {
-                           Rasterizer2D.method920(int_6 + this.anInt45 * int_0, int_6 + this.anInt45 * (63 - int_1), 1, int_4);
+                           Rasterizer2D.drawHorizontal(int_6 + this.anInt45 * int_0, int_6 + this.anInt45 * (63 - int_1), 1, int_4);
                         }
                      }
                   }
@@ -173,7 +173,7 @@ public class Class9 {
 
                for (int int_3 = 0; int_3 < strings_1.length; int_3++) {
                   String string_0 = strings_1[int_3];
-                  int int_4 = font_0.method1030(string_0);
+                  int int_4 = font_0.getWidth(string_0);
                   if (int_4 > int_2) {
                      int_2 = int_4;
                   }
@@ -671,7 +671,7 @@ public class Class9 {
       }
 
       if (int_2 == 1) {
-         Rasterizer2D.method920(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, int_3);
+         Rasterizer2D.drawHorizontal(this.anInt45 * int_0, this.anInt45 * (63 - int_1), this.anInt45, int_3);
       }
 
       if (int_2 == 2) {
@@ -679,7 +679,7 @@ public class Class9 {
       }
 
       if (int_2 == 3) {
-         Rasterizer2D.method920(this.anInt45 * int_0, this.anInt45 * (63 - int_1) + this.anInt45 - 1, this.anInt45, int_3);
+         Rasterizer2D.drawHorizontal(this.anInt45 * int_0, this.anInt45 * (63 - int_1) + this.anInt45 - 1, this.anInt45, int_3);
       }
 
    }

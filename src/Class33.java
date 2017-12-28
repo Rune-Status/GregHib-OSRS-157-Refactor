@@ -53,7 +53,7 @@ final class Class33 implements Interface1 {
             if (char_0 == 32) {
                stringbuilder_0.append('+');
             } else {
-               byte byte_0 = Class99.method524(char_0);
+               byte byte_0 = Class99.convertCharacter(char_0);
                stringbuilder_0.append('%');
                int int_2 = byte_0 >> 4 & 0xF;
                if (int_2 >= 10) {

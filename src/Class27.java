@@ -30,10 +30,6 @@ public class Class27 {
       chatBuffer = new Buffer(new byte[5000]);
    }
 
-   public static int method225(CharSequence charsequence_0) {
-      return Enum5.parseInt(charsequence_0, 10, true);
-   }
-
    static void method226(int int_0, int int_1, int int_2, int int_3) {
       for (AudioObject audioObject_0 = (AudioObject) AudioObject.aDeque3.getFront(); audioObject_0 != null; audioObject_0 = (AudioObject) AudioObject.aDeque3.getNext()) {
          if (audioObject_0.ambientSound != -1 || audioObject_0.anIntArray72 != null) {

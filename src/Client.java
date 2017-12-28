@@ -717,11 +717,11 @@ public final class Client extends GameEngine {
        byte byte_0 = 4;
        int int_0 = byte_0 + 6;
        int int_1 = byte_0 + 6;
-       int int_2 = Class4.font_p12full.method1038(text, 250);
-       int int_3 = Class4.font_p12full.method1035(text, 250) * 13;
+       int int_2 = Class4.normalFont.method1038(text, 250);
+       int int_3 = Class4.normalFont.method1035(text, 250) * 13;
        Rasterizer2D.fillRect(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + int_3 + byte_0, 0);
        Rasterizer2D.drawRectangle(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + byte_0 + int_3, 16777215);
-       Class4.font_p12full.method1036(text, int_0, int_1, int_2, int_3, 16777215, -1, 1, 1, 0);
+       Class4.normalFont.method1036(text, int_0, int_1, int_2, int_3, 16777215, -1, 1, 1, 0);
        AClass1_Sub2.method636(int_0 - byte_0, int_1 - byte_0, byte_0 + byte_0 + int_2, byte_0 + int_3 + byte_0);
        if (buffer) {
           Class68_Sub1.aBufferProvider1.method499(0, 0);
@@ -1215,7 +1215,7 @@ public final class Client extends GameEngine {
 
                                int_31 = 0;
                                if (hsl != -1) {
-                                  int_31 = Rasterizer3D.colorPalette[GameObject.getRgbTableId(hsl, 96)];
+                                  int_31 = Rasterizer3D.colourPalette[GameObject.getRgbTableId(hsl, 96)];
                                }
 
                                if (tileHashOffset == 0) {
@@ -1251,7 +1251,7 @@ public final class Client extends GameEngine {
 
                                   int_37 = 0;
                                   if (int_35 != -2) {
-                                     int_37 = Rasterizer3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                     int_37 = Rasterizer3D.colourPalette[Class14.adjustHSLListness0(int_35, 96)];
                                   }
 
                                   if (overlay_0.otherRgbColor != -1) {
@@ -1264,7 +1264,7 @@ public final class Client extends GameEngine {
                                      }
 
                                      int_35 = WorldMapData_Sub1.method609(int_38, overlay_0.otherSaturation, int_39);
-                                     int_37 = Rasterizer3D.colorPalette[Class14.adjustHSLListness0(int_35, 96)];
+                                     int_37 = Rasterizer3D.colourPalette[Class14.adjustHSLListness0(int_35, 96)];
                                   }
 
                                   sceneGraph.addTile(localY, terminate, int_16, int_32, byte_0, int_34, tileType, tileX, tileY, info, GameObject.getRgbTableId(objectY, objectType), GameObject.getRgbTableId(objectY, face), GameObject.getRgbTableId(objectY, int_30), GameObject.getRgbTableId(objectY, objectX), Class14.adjustHSLListness0(int_36, objectType), Class14.adjustHSLListness0(int_36, face), Class14.adjustHSLListness0(int_36, int_30), Class14.adjustHSLListness0(int_36, objectX), int_31, int_37);
@@ -3587,12 +3587,12 @@ public final class Client extends GameEngine {
     }
 
     void method1101(int int_0, int int_1) {
-        int int_2 = Class50.aFont3.method1030("Choose Option");
+        int int_2 = Class50.aFont3.getWidth("Choose Option");
 
         int int_3;
         int int_4;
         for (int_3 = 0; int_3 < menuOptionCount; int_3++) {
-            int_4 = Class50.aFont3.method1030(Class38.method253(int_3));
+            int_4 = Class50.aFont3.getWidth(Class38.method253(int_3));
             if (int_4 > int_2) {
                 int_2 = int_4;
             }
@@ -5099,10 +5099,10 @@ public final class Client extends GameEngine {
         if (gameState == 0) {
             this.drawLoadingScreen(Class25.loadingBarPercentage, Class25.loadingText, bool_0);
         } else if (gameState == 5) {
-            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.font_p12full, bool_0);
+            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
         } else if (gameState != 10 && gameState != 11) {
             if (gameState == 20) {
-                FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.font_p12full, bool_0);
+                FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
             } else if (gameState == 25) {
                 if (anInt630 == 1) {
                     if (anInt631 > anInt632) {
@@ -5129,7 +5129,7 @@ public final class Client extends GameEngine {
                 drawStatusBox("Please wait...", false);
             }
         } else {
-            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.font_p12full, bool_0);
+            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
         }
 
         if (gameState == 30 && gameDrawingMode == 0 && !bool_0 && !isResized) {

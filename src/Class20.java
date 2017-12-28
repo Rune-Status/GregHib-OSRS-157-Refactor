@@ -289,7 +289,7 @@ public class Class20 implements Comparator {
                         string_2 = Class39.scriptStringStack[--Class28.scriptStringStackSize];
                         int_9 = 0;
                         if (Buffer.method736(string_2)) {
-                           int_9 = Class27.method225(string_2);
+                           int_9 = FontTypeFace.getInteger(string_2);
                         }
 
                         packetnode_1 = Actor.method953(ClientPacket.aClientPacket73, Client.aClass46_1.cipher);

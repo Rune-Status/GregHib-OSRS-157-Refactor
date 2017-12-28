@@ -64,10 +64,6 @@ public class Class98 {
       ints_1[45] = 63;
    }
 
-   public static int method522(CharSequence charsequence_0, int int_0) {
-      return Enum5.parseInt(charsequence_0, int_0, true);
-   }
-
    static void cleanPixelLoader() {
       Class111.anIntArray54 = null;
       Class7.offsetsY = null;

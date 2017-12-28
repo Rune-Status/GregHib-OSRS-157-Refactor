@@ -107,13 +107,13 @@ public final class FileOnDisk {
          int int_0;
          if (Client.gameState == 0 || Client.gameState == 5) {
             byte byte_0 = 20;
-            font_0.method1039("RuneScape is loading - please wait...", Class25.loginWindowX + 180, 245 - byte_0, 16777215, -1);
+            font_0.drawStringCentred("RuneScape is loading - please wait...", Class25.loginWindowX + 180, 245 - byte_0, 16777215, -1);
             int_0 = 253 - byte_0;
             Rasterizer2D.drawRectangle(Class25.loginWindowX + 180 - 152, int_0, 304, 34, 9179409);
             Rasterizer2D.drawRectangle(Class25.loginWindowX + 180 - 151, int_0 + 1, 302, 32, 0);
             Rasterizer2D.fillRect(Class25.loginWindowX + 180 - 150, int_0 + 2, Class25.loadingBarPercentage * 3, 30, 9179409);
             Rasterizer2D.fillRect(Class25.loadingBarPercentage * 3 + (Class25.loginWindowX + 180 - 150), int_0 + 2, 300 - Class25.loadingBarPercentage * 3, 30, 0);
-            font_0.method1039(Class25.loadingText, Class25.loginWindowX + 180, 276 - byte_0, 16777215, -1);
+            font_0.drawStringCentred(Class25.loadingText, Class25.loginWindowX + 180, 276 - byte_0, 16777215, -1);
          }
 
          String string_0;
@@ -124,25 +124,25 @@ public final class FileOnDisk {
          if (Client.gameState == 20) {
             Class25.anIndexedSprite1.drawSprite(Class25.loginWindowX + 180 - Class25.anIndexedSprite1.originalWidth / 2, 271 - Class25.anIndexedSprite1.height / 2);
             short_3 = 201;
-            font_0.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
+            font_0.drawStringCentred(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
             int_6 = short_3 + 15;
-            font_0.method1039(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
+            font_0.drawStringCentred(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
             int_6 += 15;
-            font_0.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
+            font_0.drawStringCentred(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
             int_6 += 15;
             int_6 += 7;
             if (Class25.loginIndex != 4) {
-               font_0.method1040("Login: ", Class25.loginWindowX + 180 - 110, int_6, 16777215, 0);
+               font_0.drawString("Login: ", Class25.loginWindowX + 180 - 110, int_6, 16777215, 0);
                short_4 = 200;
                string_0 = Buffer.preferences.aBool26 ? Class84.method493(Class25.username) : Class25.username;
 
-               for (string_1 = string_0; font_0.method1030(string_1) > short_4; string_1 = string_1.substring(0, string_1.length() - 1)) {
+               for (string_1 = string_0; font_0.getWidth(string_1) > short_4; string_1 = string_1.substring(0, string_1.length() - 1)) {
                   ;
                }
 
-               font_0.method1040(FontTypeFace.appendTags(string_1), Class25.loginWindowX + 180 - 70, int_6, 16777215, 0);
+               font_0.drawString(FontTypeFace.appendTags(string_1), Class25.loginWindowX + 180 - 70, int_6, 16777215, 0);
                int_6 += 15;
-               font_0.method1040("Password: " + Class84.method493(Class25.password), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
+               font_0.drawString("Password: " + Class84.method493(Class25.password), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
                int_6 += 15;
             }
          }
@@ -155,7 +155,7 @@ public final class FileOnDisk {
             short short_0;
             if (Class25.loginIndex == 0) {
                short_3 = 251;
-               font_0.method1039("Welcome to RuneScape", Class25.loginWindowX + 180, short_3, 16776960, 0);
+               font_0.drawStringCentred("Welcome to RuneScape", Class25.loginWindowX + 180, short_3, 16776960, 0);
                int_6 = short_3 + 30;
                int_0 = Class25.loginWindowX + 180 - 80;
                short_0 = 291;
@@ -165,96 +165,96 @@ public final class FileOnDisk {
                Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
                font_0.method1036("Existing User", int_0 - 73, short_0 - 20, 144, 40, 16777215, 0, 1, 1, 0);
             } else if (Class25.loginIndex == 1) {
-               font_0.method1039(Class25.aString4, Class25.loginWindowX + 180, 201, 16776960, 0);
+               font_0.drawStringCentred(Class25.aString4, Class25.loginWindowX + 180, 201, 16776960, 0);
                short_3 = 236;
-               font_0.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16777215, 0);
+               font_0.drawStringCentred(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16777215, 0);
                int_6 = short_3 + 15;
-               font_0.method1039(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16777215, 0);
+               font_0.drawStringCentred(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16777215, 0);
                int_6 += 15;
-               font_0.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16777215, 0);
+               font_0.drawStringCentred(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16777215, 0);
                int_6 += 15;
                int_0 = Class25.loginWindowX + 180 - 80;
                short_0 = 321;
                Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
-               font_0.method1039("Continue", int_0, short_0 + 5, 16777215, 0);
+               font_0.drawStringCentred("Continue", int_0, short_0 + 5, 16777215, 0);
                int_0 = Class25.loginWindowX + 180 + 80;
                Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
-               font_0.method1039("Cancel", int_0, short_0 + 5, 16777215, 0);
+               font_0.drawStringCentred("Cancel", int_0, short_0 + 5, 16777215, 0);
             } else if (Class25.loginIndex == 2) {
                short_3 = 201;
-               font_0.method1039(Class25.loginMessage1, Class83.anInt181, short_3, 16776960, 0);
+               font_0.drawStringCentred(Class25.loginMessage1, Class83.anInt181, short_3, 16776960, 0);
                int_6 = short_3 + 15;
-               font_0.method1039(Class25.loginMessage2, Class83.anInt181, int_6, 16776960, 0);
+               font_0.drawStringCentred(Class25.loginMessage2, Class83.anInt181, int_6, 16776960, 0);
                int_6 += 15;
-               font_0.method1039(Class25.loginMessage3, Class83.anInt181, int_6, 16776960, 0);
+               font_0.drawStringCentred(Class25.loginMessage3, Class83.anInt181, int_6, 16776960, 0);
                int_6 += 15;
                int_6 += 7;
-               font_0.method1040("Login: ", Class83.anInt181 - 110, int_6, 16777215, 0);
+               font_0.drawString("Login: ", Class83.anInt181 - 110, int_6, 16777215, 0);
                short_4 = 200;
                string_0 = Buffer.preferences.aBool26 ? Class84.method493(Class25.username) : Class25.username;
 
-               for (string_1 = string_0; font_0.method1030(string_1) > short_4; string_1 = string_1.substring(1)) {
+               for (string_1 = string_0; font_0.getWidth(string_1) > short_4; string_1 = string_1.substring(1)) {
                   ;
                }
 
-               font_0.method1040(FontTypeFace.appendTags(string_1) + (Class25.anInt83 == 0 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 70, int_6, 16777215, 0);
+               font_0.drawString(FontTypeFace.appendTags(string_1) + (Class25.anInt83 == 0 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 70, int_6, 16777215, 0);
                int_6 += 15;
-               font_0.method1040("Password: " + Class84.method493(Class25.password) + (Class25.anInt83 == 1 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 108, int_6, 16777215, 0);
+               font_0.drawString("Password: " + Class84.method493(Class25.password) + (Class25.anInt83 == 1 & Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class83.anInt181 - 108, int_6, 16777215, 0);
                int_6 += 15;
                short_3 = 277;
                int_2 = Class83.anInt181 + -117;
                IndexedSprite indexedsprite_0 = Class45.method275(Class25.aBool9, Class25.aBool10);
                indexedsprite_0.drawSprite(int_2, short_3);
                int_2 = int_2 + indexedsprite_0.originalWidth + 5;
-               font_1.method1040("Remember username", int_2, short_3 + 13, 16776960, 0);
+               font_1.drawString("Remember username", int_2, short_3 + 13, 16776960, 0);
                int_2 = Class83.anInt181 + 24;
                indexedsprite_0 = Class45.method275(Buffer.preferences.aBool26, Class25.aBool11);
                indexedsprite_0.drawSprite(int_2, short_3);
                int_2 = int_2 + indexedsprite_0.originalWidth + 5;
-               font_1.method1040("Hide username", int_2, short_3 + 13, 16776960, 0);
+               font_1.drawString("Hide username", int_2, short_3 + 13, 16776960, 0);
                int_6 = short_3 + 15;
                int_3 = Class83.anInt181 - 80;
                short short_2 = 321;
                Class25.anIndexedSprite2.drawSprite(int_3 - 73, short_2 - 20);
-               font_0.method1039("Login", int_3, short_2 + 5, 16777215, 0);
+               font_0.drawStringCentred("Login", int_3, short_2 + 5, 16777215, 0);
                int_3 = Class83.anInt181 + 80;
                Class25.anIndexedSprite2.drawSprite(int_3 - 73, short_2 - 20);
-               font_0.method1039("Cancel", int_3, short_2 + 5, 16777215, 0);
+               font_0.drawStringCentred("Cancel", int_3, short_2 + 5, 16777215, 0);
                short_3 = 357;
-               font_1.method1039("Forgotten your password? <col=ffffff>Click here.", Class83.anInt181, short_3, 16776960, 0);
+               font_1.drawStringCentred("Forgotten your password? <col=ffffff>Click here.", Class83.anInt181, short_3, 16776960, 0);
             } else if (Class25.loginIndex == 3) {
                short_3 = 201;
-               font_0.method1039("Invalid username or password.", Class25.loginWindowX + 180, short_3, 16776960, 0);
+               font_0.drawStringCentred("Invalid username or password.", Class25.loginWindowX + 180, short_3, 16776960, 0);
                int_6 = short_3 + 20;
-               font_1.method1039("For accounts created after 24th November 2010, please use your", Class25.loginWindowX + 180, int_6, 16776960, 0);
+               font_1.drawStringCentred("For accounts created after 24th November 2010, please use your", Class25.loginWindowX + 180, int_6, 16776960, 0);
                int_6 += 15;
-               font_1.method1039("email address to login. Otherwise please login with your username.", Class25.loginWindowX + 180, int_6, 16776960, 0);
+               font_1.drawStringCentred("email address to login. Otherwise please login with your username.", Class25.loginWindowX + 180, int_6, 16776960, 0);
                int_6 += 15;
                int_0 = Class25.loginWindowX + 180;
                short_0 = 276;
                Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
-               font_2.method1039("Try again", int_0, short_0 + 5, 16777215, 0);
+               font_2.drawStringCentred("Try again", int_0, short_0 + 5, 16777215, 0);
                int_0 = Class25.loginWindowX + 180;
                short_0 = 326;
                Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
-               font_2.method1039("Forgotten password?", int_0, short_0 + 5, 16777215, 0);
+               font_2.drawStringCentred("Forgotten password?", int_0, short_0 + 5, 16777215, 0);
             } else {
                short short_1;
                if (Class25.loginIndex == 4) {
-                  font_0.method1039("Authenticator", Class25.loginWindowX + 180, 201, 16776960, 0);
+                  font_0.drawStringCentred("Authenticator", Class25.loginWindowX + 180, 201, 16776960, 0);
                   short_3 = 236;
-                  font_0.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16777215, 0);
+                  font_0.drawStringCentred(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16777215, 0);
                   int_6 = short_3 + 15;
-                  font_0.method1039(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16777215, 0);
+                  font_0.drawStringCentred(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16777215, 0);
                   int_6 += 15;
-                  font_0.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16777215, 0);
+                  font_0.drawStringCentred(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16777215, 0);
                   int_6 += 15;
-                  font_0.method1040("PIN: " + Class84.method493(Class97.aString11) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
+                  font_0.drawString("PIN: " + Class84.method493(Class97.aString11) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 108, int_6, 16777215, 0);
                   int_6 -= 8;
-                  font_0.method1040("Trust this computer", Class25.loginWindowX + 180 - 9, int_6, 16776960, 0);
+                  font_0.drawString("Trust this computer", Class25.loginWindowX + 180 - 9, int_6, 16776960, 0);
                   int_6 += 15;
-                  font_0.method1040("for 30 days: ", Class25.loginWindowX + 180 - 9, int_6, 16776960, 0);
-                  int_0 = 180 + Class25.loginWindowX - 9 + font_0.method1030("for 30 days: ") + 15;
+                  font_0.drawString("for 30 days: ", Class25.loginWindowX + 180 - 9, int_6, 16776960, 0);
+                  int_0 = 180 + Class25.loginWindowX - 9 + font_0.getWidth("for 30 days: ") + 15;
                   int_7 = int_6 - font_0.verticalSpace;
                   IndexedSprite indexedsprite_1;
                   if (Class25.aBool12) {
@@ -268,50 +268,50 @@ public final class FileOnDisk {
                   int_2 = Class25.loginWindowX + 180 - 80;
                   short_1 = 321;
                   Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
-                  font_0.method1039("Continue", int_2, short_1 + 5, 16777215, 0);
+                  font_0.drawStringCentred("Continue", int_2, short_1 + 5, 16777215, 0);
                   int_2 = Class25.loginWindowX + 180 + 80;
                   Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
-                  font_0.method1039("Cancel", int_2, short_1 + 5, 16777215, 0);
-                  font_1.method1039("<u=ff>Can\'t Log In?</u>", Class25.loginWindowX + 180, short_1 + 36, 255, 0);
+                  font_0.drawStringCentred("Cancel", int_2, short_1 + 5, 16777215, 0);
+                  font_1.drawStringCentred("<u=ff>Can\'t Log In?</u>", Class25.loginWindowX + 180, short_1 + 36, 255, 0);
                } else if (Class25.loginIndex == 5) {
-                  font_0.method1039("Forgotten your password?", Class25.loginWindowX + 180, 201, 16776960, 0);
+                  font_0.drawStringCentred("Forgotten your password?", Class25.loginWindowX + 180, 201, 16776960, 0);
                   short_3 = 221;
-                  font_2.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
+                  font_2.drawStringCentred(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
                   int_6 = short_3 + 15;
-                  font_2.method1039(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
+                  font_2.drawStringCentred(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
                   int_6 += 15;
-                  font_2.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
+                  font_2.drawStringCentred(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
                   int_6 += 15;
                   int_6 += 14;
-                  font_0.method1040("Username/email: ", Class25.loginWindowX + 180 - 145, int_6, 16777215, 0);
+                  font_0.drawString("Username/email: ", Class25.loginWindowX + 180 - 145, int_6, 16777215, 0);
                   short_4 = 174;
                   string_0 = Buffer.preferences.aBool26 ? Class84.method493(Class25.username) : Class25.username;
 
-                  for (string_1 = string_0; font_0.method1030(string_1) > short_4; string_1 = string_1.substring(1)) {
+                  for (string_1 = string_0; font_0.getWidth(string_1) > short_4; string_1 = string_1.substring(1)) {
                      ;
                   }
 
-                  font_0.method1040(FontTypeFace.appendTags(string_1) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 34, int_6, 16777215, 0);
+                  font_0.drawString(FontTypeFace.appendTags(string_1) + (Client.gameCycle % 40 < 20 ? Wall.getColTags(16776960) + "|" : ""), Class25.loginWindowX + 180 - 34, int_6, 16777215, 0);
                   int_6 += 15;
                   int_2 = Class25.loginWindowX + 180 - 80;
                   short_1 = 321;
                   Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
-                  font_0.method1039("Recover", int_2, short_1 + 5, 16777215, 0);
+                  font_0.drawStringCentred("Recover", int_2, short_1 + 5, 16777215, 0);
                   int_2 = Class25.loginWindowX + 180 + 80;
                   Class25.anIndexedSprite2.drawSprite(int_2 - 73, short_1 - 20);
-                  font_0.method1039("Back", int_2, short_1 + 5, 16777215, 0);
+                  font_0.drawStringCentred("Back", int_2, short_1 + 5, 16777215, 0);
                } else if (Class25.loginIndex == 6) {
                   short_3 = 201;
-                  font_0.method1039(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
+                  font_0.drawStringCentred(Class25.loginMessage1, Class25.loginWindowX + 180, short_3, 16776960, 0);
                   int_6 = short_3 + 15;
-                  font_0.method1039(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
+                  font_0.drawStringCentred(Class25.loginMessage2, Class25.loginWindowX + 180, int_6, 16776960, 0);
                   int_6 += 15;
-                  font_0.method1039(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
+                  font_0.drawStringCentred(Class25.loginMessage3, Class25.loginWindowX + 180, int_6, 16776960, 0);
                   int_6 += 15;
                   int_0 = Class25.loginWindowX + 180;
                   short_0 = 321;
                   Class25.anIndexedSprite2.drawSprite(int_0 - 73, short_0 - 20);
-                  font_0.method1039("Back", int_0, short_0 + 5, 16777215, 0);
+                  font_0.drawStringCentred("Back", int_0, short_0 + 5, 16777215, 0);
                }
             }
          }
@@ -460,11 +460,11 @@ public final class FileOnDisk {
                byte byte_2 = 100;
                byte byte_1 = 35;
                ItemContainer.anIndexedSprite7.drawSprite(int_6, short_4);
-               font_0.method1039("World" + " " + Client.world, byte_2 / 2 + int_6, byte_1 / 2 + short_4 - 2, 16777215, 0);
+               font_0.drawStringCentred("World" + " " + Client.world, byte_2 / 2 + int_6, byte_1 / 2 + short_4 - 2, 16777215, 0);
                if (TileStrategy.listFetcher != null) {
-                  font_1.method1039("Loading...", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
+                  font_1.drawStringCentred("Loading...", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
                } else {
-                  font_1.method1039("Click to switch", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
+                  font_1.drawStringCentred("Click to switch", byte_2 / 2 + int_6, byte_1 / 2 + short_4 + 12, 16777215, 0);
                }
             } else {
                ItemContainer.anIndexedSprite7 = CacheableNode_Sub2.getSprite(Class34.spritesIndex, "sl_button", "");

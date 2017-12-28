@@ -256,7 +256,7 @@ public class RenderOverview {
       Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, -16777216);
       Rasterizer2D.drawRectangle(int_5 - 152, int_6, 304, 34, -65536);
       Rasterizer2D.fillRect(int_5 - 150, int_6 + 2, int_4 * 3, 30, -65536);
-      this.aFont1.method1039("Loading...", int_5, int_6 + byte_0, -1, -1);
+      this.aFont1.drawStringCentred("Loading...", int_5, int_6 + byte_0, -1, -1);
    }
 
    public int method33() {
@@ -332,7 +332,7 @@ public class RenderOverview {
          }
 
          if (WorldMapData_Sub1.method602() && this.aCoordinates1 != null) {
-            this.aFont1.method1040("Coord: " + this.aCoordinates1, Rasterizer2D.topX + 10, Rasterizer2D.topY + 20, 16776960, -1);
+            this.aFont1.drawString("Coord: " + this.aCoordinates1, Rasterizer2D.topX + 10, Rasterizer2D.topY + 20, 16776960, -1);
          }
 
          this.anInt2 = int_6;

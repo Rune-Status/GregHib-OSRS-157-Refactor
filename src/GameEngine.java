@@ -641,7 +641,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
                   String string_2 = string_1.substring(6, int_0);
                   boolean bool_0 = KeyFocusListener.method322(string_2, 10, true);
-                  if (bool_0 && Class27.method225(string_2) < 10) {
+                  if (bool_0 && FontTypeFace.getInteger(string_2) < 10) {
                      this.error("wrongjava");
                      return;
                   }

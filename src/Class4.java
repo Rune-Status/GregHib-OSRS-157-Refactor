@@ -1,7 +1,7 @@
 public class Class4 implements WorldMapSectionBase {
 
    static Player localPlayer;
-   static Font font_p12full;
+   static Font normalFont;
    static IndexData modelsIndex;
    static int anInt25;
    static Class1 aClass1_1;

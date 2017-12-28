@@ -464,7 +464,7 @@ public class Spotanim extends CacheableNode {
             }
 
             if (Client.anIntArray165[int_16] == 0) {
-               Class50.aFont3.method1039(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0);
+               Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0);
             }
 
             if (Client.anIntArray165[int_16] == 1) {
@@ -472,7 +472,7 @@ public class Spotanim extends CacheableNode {
             }
 
             if (Client.anIntArray165[int_16] == 2) {
-               Class50.aFont3.method1043(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0, Client.anInt664);
+               Class50.aFont3.drawWaveStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0, Client.anInt664);
             }
 
             if (Client.anIntArray165[int_16] == 3) {
@@ -480,9 +480,9 @@ public class Spotanim extends CacheableNode {
             }
 
             if (Client.anIntArray165[int_16] == 4) {
-               int_23 = (150 - Client.anIntArray167[int_16]) * (Class50.aFont3.method1030(string_0) + 100) / 150;
+               int_23 = (150 - Client.anIntArray167[int_16]) * (Class50.aFont3.getWidth(string_0) + 100) / 150;
                Rasterizer2D.setInnerDrawRegion(int_0 + Client.screenY - 50, int_1, int_0 + Client.screenY + 50, int_3 + int_1);
-               Class50.aFont3.method1040(string_0, int_0 + Client.screenY + 50 - int_23, Client.screenX + int_1, int_22, 0);
+               Class50.aFont3.drawString(string_0, int_0 + Client.screenY + 50 - int_23, Client.screenX + int_1, int_22, 0);
                Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
             }
 
@@ -496,11 +496,11 @@ public class Spotanim extends CacheableNode {
                }
 
                Rasterizer2D.setInnerDrawRegion(int_0, Client.screenX + int_1 - Class50.aFont3.verticalSpace - 1, int_0 + int_2, Client.screenX + int_1 + 5);
-               Class50.aFont3.method1039(string_0, int_0 + Client.screenY, int_24 + Client.screenX + int_1, int_22, 0);
+               Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, int_24 + Client.screenX + int_1, int_22, 0);
                Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
             }
          } else {
-            Class50.aFont3.method1039(string_0, int_0 + Client.screenY, Client.screenX + int_1, 16776960, 0);
+            Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, 16776960, 0);
          }
       }
 

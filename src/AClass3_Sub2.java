@@ -195,7 +195,7 @@ public final class AClass3_Sub2 extends AClass3 {
                string_0 = "<col=00ff80>" + int_1 / 1000000 + "M" + "</col>";
             }
 
-            font_0.method1040(string_0, 0, 9, 16776960, 1);
+            font_0.drawString(string_0, 0, 9, 16776960, 1);
          }
 
          if (!bool_0) {

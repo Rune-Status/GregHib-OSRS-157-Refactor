@@ -17,60 +17,60 @@ public enum Enum5 implements RSEnum {
       return this.anInt384;
    }
 
-   static int parseInt(CharSequence charsequence_0, int int_0, boolean bool_0) {
-      if (int_0 >= 2 && int_0 <= 36) {
-         boolean bool_1 = false;
-         boolean bool_2 = false;
-         int int_1 = 0;
-         int int_2 = charsequence_0.length();
+   static int parseInt(CharSequence sequence, int length) {
+      if (length >= 2 && length <= 36) {
+         boolean negative = false;
+         boolean hasValue = false;
+         int integer = 0;
+         int size = sequence.length();
 
-         for (int int_3 = 0; int_3 < int_2; int_3++) {
-            char char_0 = charsequence_0.charAt(int_3);
-            if (int_3 == 0) {
-               if (char_0 == 45) {
-                  bool_1 = true;
+         for (int index = 0; index < size; index++) {
+            char character = sequence.charAt(index);
+            if (index == 0) {
+               if (character == 45) {//-
+                  negative = true;
                   continue;
                }
 
-               if (char_0 == 43) {
+               if (character == 43) {//+
                   continue;
                }
             }
 
-            int int_5;
-            if (char_0 >= 48 && char_0 <= 57) {
-               int_5 = char_0 - 48;
-            } else if (char_0 >= 65 && char_0 <= 90) {
-               int_5 = char_0 - 55;
+            int customValue;
+            if (character >= 48 && character <= 57) {//0 - 9
+               customValue = character - 48;
+            } else if (character >= 65 && character <= 90) {//A - Z
+               customValue = character - 55;
             } else {
-               if (char_0 < 97 || char_0 > 122) {
+               if (character < 97 || character > 122) {//Not a - z
                   throw new NumberFormatException();
                }
 
-               int_5 = char_0 - 87;
+               customValue = character - 87;
             }
 
-            if (int_5 >= int_0) {
+            if (customValue >= length) {
                throw new NumberFormatException();
             }
 
-            if (bool_1) {
-               int_5 = -int_5;
+            if (negative) {
+               customValue = -customValue;
             }
 
-            int int_4 = int_1 * int_0 + int_5;
-            if (int_4 / int_0 != int_1) {
+            int value = integer * length + customValue;
+            if (value / length != integer) {
                throw new NumberFormatException();
             }
 
-            int_1 = int_4;
-            bool_2 = true;
+            integer = value;
+            hasValue = true;
          }
 
-         if (!bool_2) {
+         if (!hasValue) {
             throw new NumberFormatException();
          } else {
-            return int_1;
+            return integer;
          }
       } else {
          throw new IllegalArgumentException("");

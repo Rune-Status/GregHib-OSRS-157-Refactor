@@ -840,13 +840,13 @@ public class ModelHeader extends Renderable {
             }
          }
 
-         model.aByteArray25 = new byte[this.triangleCount];
+         model.texturePoints = new byte[this.triangleCount];
 
          for (index = 0; index < this.triangleCount; index++) {
             if (this.textureCoords[index] != -1) {
-               model.aByteArray25[index] = (byte)ints_0[this.textureCoords[index] & 0xFF];
+               model.texturePoints[index] = (byte)ints_0[this.textureCoords[index] & 0xFF];
             } else {
-               model.aByteArray25[index] = -1;
+               model.texturePoints[index] = -1;
             }
          }
       }

@@ -68,7 +68,7 @@ public class CacheableNode_Sub5 extends CacheableNode {
       int int_1 = 0;
 
       for (int int_2 = 0; int_2 < int_0; int_2++) {
-         int_1 = (int_1 << 5) - int_1 + Class99.method524(charsequence_0.charAt(int_2));
+         int_1 = (int_1 << 5) - int_1 + Class99.convertCharacter(charsequence_0.charAt(int_2));
       }
 
       return int_1;

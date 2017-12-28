@@ -60,7 +60,7 @@ public class Model extends Renderable {
    int shadowIntensity3D;
    public int anInt566;
    short[] aShortArray12;
-   byte[] aByteArray25;
+   byte[] texturePoints;
    int[] texturedTrianglePointsX;
    int[] texturedTrianglePointsY;
    int[] texturedTrianglePointsZ;
@@ -91,7 +91,7 @@ public class Model extends Renderable {
       aBool74 = true;
       SINE = Rasterizer3D.SINE;
       COSINE = Rasterizer3D.COSINE;
-      anIntArray128 = Rasterizer3D.colorPalette;
+      anIntArray128 = Rasterizer3D.colourPalette;
       mvzDistances = Rasterizer3D.anIntArray114;
    }
 
@@ -146,7 +146,7 @@ public class Model extends Renderable {
 
             bool_1 |= model.triangleAlphaValues != null;
             bool_2 |= model.aShortArray12 != null;
-            bool_3 |= model.aByteArray25 != null;
+            bool_3 |= model.texturePoints != null;
          }
       }
 
@@ -172,7 +172,7 @@ public class Model extends Renderable {
       }
 
       if (bool_3) {
-         this.aByteArray25 = new byte[this.triangleCount];
+         this.texturePoints = new byte[this.triangleCount];
       }
 
       if (this.texturedTriangleCount > 0) {
@@ -217,10 +217,10 @@ public class Model extends Renderable {
                }
 
                if (bool_3) {
-                  if (model.aByteArray25 != null && model.aByteArray25[vertex] != -1) {
-                     this.aByteArray25[this.triangleCount] = (byte)(this.texturedTriangleCount + model.aByteArray25[vertex]);
+                  if (model.texturePoints != null && model.texturePoints[vertex] != -1) {
+                     this.texturePoints[this.triangleCount] = (byte)(this.texturedTriangleCount + model.texturePoints[vertex]);
                   } else {
-                     this.aByteArray25[this.triangleCount] = -1;
+                     this.texturePoints[this.triangleCount] = -1;
                   }
                }
 
@@ -413,8 +413,8 @@ public class Model extends Renderable {
          }
 
          if (this.aShortArray12 != null && this.aShortArray12[triangleIndex] != -1) {
-            if (this.aByteArray25 != null && this.aByteArray25[triangleIndex] != -1) {
-               pointIndex = this.aByteArray25[triangleIndex] & 0xFF;
+            if (this.texturePoints != null && this.texturePoints[triangleIndex] != -1) {
+               pointIndex = this.texturePoints[triangleIndex] & 0xFF;
                pointX = this.texturedTrianglePointsX[pointIndex];
                pointY = this.texturedTrianglePointsY[pointIndex];
                pointZ = this.texturedTrianglePointsZ[pointIndex];
@@ -425,9 +425,9 @@ public class Model extends Renderable {
             }
 
             if (this.anIntArray132[triangleIndex] == -1) {
-               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
             } else {
-               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], this.aShortArray12[triangleIndex]);
             }
          } else if (this.anIntArray132[triangleIndex] == -1) {
             Rasterizer3D.drawFlatTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, anIntArray128[this.triangleHSLA[triangleIndex]]);
@@ -442,8 +442,8 @@ public class Model extends Renderable {
          }
 
          if (this.aShortArray12 != null && this.aShortArray12[triangleIndex] != -1) {
-            if (this.aByteArray25 != null && this.aByteArray25[triangleIndex] != -1) {
-               pointIndex = this.aByteArray25[triangleIndex] & 0xFF;
+            if (this.texturePoints != null && this.texturePoints[triangleIndex] != -1) {
+               pointIndex = this.texturePoints[triangleIndex] & 0xFF;
                pointX = this.texturedTrianglePointsX[pointIndex];
                pointY = this.texturedTrianglePointsY[pointIndex];
                pointZ = this.texturedTrianglePointsZ[pointIndex];
@@ -455,11 +455,11 @@ public class Model extends Renderable {
 
             short short_0 = this.aShortArray12[triangleIndex];
             if (this.anIntArray132[triangleIndex] == -1) {
-               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
-               Rasterizer3D.rasterTextureAffine(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], this.triangleHSLA[triangleIndex], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
             } else {
-               Rasterizer3D.rasterTextureAffine(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
-               Rasterizer3D.rasterTextureAffine(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[2], writtenScreenPixelsHLSAColour[3], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY2, pixelY3, mvxPointX, mvyPointX, colour, writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[1], writtenScreenPixelsHLSAColour[2], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
+               Rasterizer3D.drawTexturedTriangle(calc, pixelY3, writtenScreenPixelsY[3], mvxPointX, colour, writtenScreenPixelsX[3], writtenScreenPixelsHLSAColour[0], writtenScreenPixelsHLSAColour[2], writtenScreenPixelsHLSAColour[3], vertexMvX[pointX], vertexMvX[pointY], vertexMvX[pointZ], vertexMvY[pointX], vertexMvY[pointY], vertexMvY[pointZ], vertexMvZ[pointX], vertexMvZ[pointY], vertexMvZ[pointZ], short_0);
             }
          } else if (this.anIntArray132[triangleIndex] == -1) {
             pointX = anIntArray128[this.triangleHSLA[triangleIndex]];
@@ -512,7 +512,7 @@ public class Model extends Renderable {
       model.anIntArray133 = this.anIntArray133;
       model.anIntArray132 = this.anIntArray132;
       model.trianglePriorities = this.trianglePriorities;
-      model.aByteArray25 = this.aByteArray25;
+      model.texturePoints = this.texturePoints;
       model.aShortArray12 = this.aShortArray12;
       model.priorityOffset = this.priorityOffset;
       model.texturedTrianglePointsX = this.texturedTrianglePointsX;
@@ -667,7 +667,7 @@ public class Model extends Renderable {
                model.anIntArray132 = this.anIntArray132;
                model.trianglePriorities = this.trianglePriorities;
                model.triangleAlphaValues = this.triangleAlphaValues;
-               model.aByteArray25 = this.aByteArray25;
+               model.texturePoints = this.texturePoints;
                model.aShortArray12 = this.aShortArray12;
                model.priorityOffset = this.priorityOffset;
                model.texturedTrianglePointsX = this.texturedTrianglePointsX;
@@ -1014,11 +1014,11 @@ public class Model extends Renderable {
             int texturePointX;
             int texturePointY;
             int texturePointZ;
-            if (this.aByteArray25 != null && this.aByteArray25[triangle] != -1) {
-               int int_4 = this.aByteArray25[triangle] & 0xFF;
-               texturePointX = this.texturedTrianglePointsX[int_4];
-               texturePointY = this.texturedTrianglePointsY[int_4];
-               texturePointZ = this.texturedTrianglePointsZ[int_4];
+            if (this.texturePoints != null && this.texturePoints[triangle] != -1) {
+               int texturePoint = this.texturePoints[triangle] & 0xFF;
+               texturePointX = this.texturedTrianglePointsX[texturePoint];
+               texturePointY = this.texturedTrianglePointsY[texturePoint];
+               texturePointZ = this.texturedTrianglePointsZ[texturePoint];
             } else {
                texturePointX = trianglePointX;
                texturePointY = trianglePointY;
@@ -1026,9 +1026,9 @@ public class Model extends Renderable {
             }
 
             if (this.anIntArray132[triangle] == -1) {
-               Rasterizer3D.rasterTextureAffine(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.triangleHSLA[triangle], this.triangleHSLA[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
+               Rasterizer3D.drawTexturedTriangle(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.triangleHSLA[triangle], this.triangleHSLA[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
             } else {
-               Rasterizer3D.rasterTextureAffine(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.anIntArray133[triangle], this.anIntArray132[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
+               Rasterizer3D.drawTexturedTriangle(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], this.triangleHSLA[triangle], this.anIntArray133[triangle], this.anIntArray132[triangle], vertexMvX[texturePointX], vertexMvX[texturePointY], vertexMvX[texturePointZ], vertexMvY[texturePointX], vertexMvY[texturePointY], vertexMvY[texturePointZ], vertexMvZ[texturePointX], vertexMvZ[texturePointY], vertexMvZ[texturePointZ], this.aShortArray12[triangle]);
             }
          } else if (this.anIntArray132[triangle] == -1) {
             Rasterizer3D.drawFlatTriangle(vertexScreenY[trianglePointX], vertexScreenY[trianglePointY], vertexScreenY[trianglePointZ], vertexScreenX[trianglePointX], vertexScreenX[trianglePointY], vertexScreenX[trianglePointZ], anIntArray128[this.triangleHSLA[triangle]]);

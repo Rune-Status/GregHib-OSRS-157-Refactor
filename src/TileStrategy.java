@@ -54,7 +54,7 @@ public class TileStrategy extends RouteStrategy {
                int_3 = int_4 + (int_2 & 0xFF80);
             }
 
-            return Rasterizer3D.colorPalette[int_3] | 0xFF000000;
+            return Rasterizer3D.colourPalette[int_3] | 0xFF000000;
          } else if (overlay_0.color == 16711935) {
             return int_1;
          } else {
@@ -82,7 +82,7 @@ public class TileStrategy extends RouteStrategy {
                int_2 = int_4 + (int_3 & 0xFF80);
             }
 
-            return Rasterizer3D.colorPalette[int_2] | 0xFF000000;
+            return Rasterizer3D.colourPalette[int_2] | 0xFF000000;
          }
       }
    }

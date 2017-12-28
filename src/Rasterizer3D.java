@@ -11,7 +11,7 @@ public class Rasterizer3D extends Rasterizer2D {
    public static int[] COSINE;
    public static int anInt543;
    static int[] rasterClipY;
-   public static int[] colorPalette;
+   public static int[] colourPalette;
    static int[] anIntArray113;
    public static ITextureLoader textureLoader;
    static int[] anIntArray114;
@@ -30,7 +30,7 @@ public class Rasterizer3D extends Rasterizer2D {
       alpha = 0;
       anInt543 = 512;
       rasterClipY = new int[1024];
-      colorPalette = new int[65536];
+      colourPalette = new int[65536];
       anIntArray113 = new int[512];
       anIntArray114 = new int[2048];
       SINE = new int[2048];
@@ -60,17 +60,17 @@ public class Rasterizer3D extends Rasterizer2D {
       return int_2 * int_1 - int_3 * int_0 >> 16;
    }
 
-   static int adjustRGB(int int_0, double double_0) {
-      double double_1 = (double)(int_0 >> 16) / 256.0D;
-      double double_2 = (double)(int_0 >> 8 & 0xFF) / 256.0D;
-      double double_3 = (double)(int_0 & 0xFF) / 256.0D;
-      double_1 = Math.pow(double_1, double_0);
-      double_2 = Math.pow(double_2, double_0);
-      double_3 = Math.pow(double_3, double_0);
-      int int_1 = (int)(double_1 * 256.0D);
-      int int_2 = (int)(double_2 * 256.0D);
-      int int_3 = (int)(double_3 * 256.0D);
-      return int_3 + (int_2 << 8) + (int_1 << 16);
+   static int adjustBrightness(int rgb, double intensity) {
+      double r = (double)(rgb >> 16) / 256.0D;
+      double g = (double)(rgb >> 8 & 0xFF) / 256.0D;
+      double b = (double)(rgb & 0xFF) / 256.0D;
+      r = Math.pow(r, intensity);
+      g = Math.pow(g, intensity);
+      b = Math.pow(b, intensity);
+      int red = (int)(r * 256.0D);
+      int green = (int)(g * 256.0D);
+      int blue = (int)(b * 256.0D);
+      return blue + (green << 8) + (red << 16);
    }
 
    public static void drawFlatTriangle(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
@@ -1063,15 +1063,15 @@ public class Rasterizer3D extends Rasterizer2D {
       anInt547 = graphicsPixelsBottomY - centerY;
    }
 
-   static void rasterTextureAffine(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8, int int_9, int int_10, int int_11, int int_12, int int_13, int int_14, int int_15, int int_16, int int_17, int int_18) {
-      int[] ints_0 = textureLoader.load(int_18);
+   static void drawTexturedTriangle(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8, int int_9, int int_10, int int_11, int int_12, int int_13, int int_14, int int_15, int int_16, int int_17, int textureId) {
+      int[] texturePixels = textureLoader.load(textureId);
       int int_19;
-      if (ints_0 == null) {
-         int_19 = textureLoader.getAverageTextureRGB(int_18);
+      if (texturePixels == null) {
+         int_19 = textureLoader.getAverageTextureRGB(textureId);
          drawShadedTriangle(int_0, int_1, int_2, int_3, int_4, int_5, method965(int_19, int_6), method965(int_19, int_7), method965(int_19, int_8));
       } else {
-         lowMem = textureLoader.method1(int_18);
-         aBool72 = textureLoader.method2(int_18);
+         lowMem = textureLoader.method1(textureId);
+         aBool72 = textureLoader.method2(textureId);
          int_19 = int_4 - int_3;
          int int_20 = int_1 - int_0;
          int int_21 = int_5 - int_3;
@@ -1157,7 +1157,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_5 >> 14, int_4 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_5 >> 14, int_4 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_5 += int_27;
                                  int_4 += int_26;
                                  int_6 += int_30;
@@ -1168,7 +1168,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_5 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_5 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_5 += int_27;
                            int_3 += int_25;
                            int_6 += int_30;
@@ -1191,7 +1191,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_4 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_4 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_5 += int_27;
                                  int_4 += int_26;
                                  int_6 += int_30;
@@ -1202,7 +1202,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_3 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_3 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_5 += int_27;
                            int_3 += int_25;
                            int_6 += int_30;
@@ -1245,7 +1245,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_5 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_5 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_5 += int_26;
                                  int_3 += int_25;
                                  int_6 += int_30;
@@ -1256,7 +1256,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_4 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_4 >> 14, int_3 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_4 += int_27;
                            int_3 += int_25;
                            int_6 += int_30;
@@ -1279,7 +1279,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_3 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_3 >> 14, int_5 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_5 += int_26;
                                  int_3 += int_25;
                                  int_6 += int_30;
@@ -1290,7 +1290,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_0, int_3 >> 14, int_4 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_0, int_3 >> 14, int_4 >> 14, int_6, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_4 += int_27;
                            int_3 += int_25;
                            int_6 += int_30;
@@ -1346,7 +1346,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_3 >> 14, int_5 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_3 >> 14, int_5 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_3 += int_25;
                                  int_5 += int_27;
                                  int_7 += int_30;
@@ -1357,7 +1357,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_3 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_3 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_3 += int_25;
                            int_4 += int_26;
                            int_7 += int_30;
@@ -1380,7 +1380,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_5 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_5 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_3 += int_25;
                                  int_5 += int_27;
                                  int_7 += int_30;
@@ -1391,7 +1391,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_4 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_4 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_3 += int_25;
                            int_4 += int_26;
                            int_7 += int_30;
@@ -1434,7 +1434,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_3 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_3 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_3 += int_27;
                                  int_4 += int_26;
                                  int_7 += int_30;
@@ -1445,7 +1445,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_5 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_5 >> 14, int_4 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_5 += int_25;
                            int_4 += int_26;
                            int_7 += int_30;
@@ -1468,7 +1468,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                     return;
                                  }
 
-                                 method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_4 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                                 method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_4 >> 14, int_3 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                                  int_3 += int_27;
                                  int_4 += int_26;
                                  int_7 += int_30;
@@ -1479,7 +1479,7 @@ public class Rasterizer3D extends Rasterizer2D {
                               }
                            }
 
-                           method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_1, int_4 >> 14, int_5 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                           method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_1, int_4 >> 14, int_5 >> 14, int_7, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                            int_5 += int_25;
                            int_4 += int_26;
                            int_7 += int_30;
@@ -1534,7 +1534,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                  return;
                               }
 
-                              method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_4 >> 14, int_3 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                              method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_4 >> 14, int_3 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                               int_4 += int_26;
                               int_3 += int_25;
                               int_8 += int_30;
@@ -1545,7 +1545,7 @@ public class Rasterizer3D extends Rasterizer2D {
                            }
                         }
 
-                        method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_4 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                        method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_4 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                         int_4 += int_26;
                         int_5 += int_27;
                         int_8 += int_30;
@@ -1568,7 +1568,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                  return;
                               }
 
-                              method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_3 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                              method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_3 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                               int_4 += int_26;
                               int_3 += int_25;
                               int_8 += int_30;
@@ -1579,7 +1579,7 @@ public class Rasterizer3D extends Rasterizer2D {
                            }
                         }
 
-                        method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_5 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                        method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_5 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                         int_4 += int_26;
                         int_5 += int_27;
                         int_8 += int_30;
@@ -1622,7 +1622,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                  return;
                               }
 
-                              method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_4 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                              method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_4 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                               int_4 += int_25;
                               int_5 += int_27;
                               int_8 += int_30;
@@ -1633,7 +1633,7 @@ public class Rasterizer3D extends Rasterizer2D {
                            }
                         }
 
-                        method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_3 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                        method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_3 >> 14, int_5 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                         int_3 += int_26;
                         int_5 += int_27;
                         int_8 += int_30;
@@ -1656,7 +1656,7 @@ public class Rasterizer3D extends Rasterizer2D {
                                  return;
                               }
 
-                              method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_5 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                              method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_5 >> 14, int_4 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                               int_4 += int_25;
                               int_5 += int_27;
                               int_8 += int_30;
@@ -1667,7 +1667,7 @@ public class Rasterizer3D extends Rasterizer2D {
                            }
                         }
 
-                        method971(Rasterizer2D.graphicsPixels, ints_0, 0, 0, int_2, int_5 >> 14, int_3 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
+                        method971(Rasterizer2D.graphicsPixels, texturePixels, 0, 0, int_2, int_5 >> 14, int_3 >> 14, int_8, int_29, int_31, int_34, int_37, int_32, int_35, int_38);
                         int_3 += int_26;
                         int_5 += int_27;
                         int_8 += int_30;
@@ -1683,8 +1683,8 @@ public class Rasterizer3D extends Rasterizer2D {
       }
    }
 
-   public static void setBrightness(double double_0) {
-      method963(double_0, 0, 512);
+   public static void setBrightness(double value) {
+      setBrightness(value, 0, 512);
    }
 
    static void method962(int[] ints_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
@@ -1784,12 +1784,12 @@ public class Rasterizer3D extends Rasterizer2D {
       textureLoader = itextureloader_0;
    }
 
-   static void method963(double double_0, int int_0, int int_1) {
-      int int_3 = int_0 * 128;
+   static void setBrightness(double brightness, int offset, int max) {
+      int index = offset * 128;
 
-      for (int int_4 = int_0; int_4 < int_1; int_4++) {
-         double double_1 = (double)(int_4 >> 3) / 64.0D + 0.0078125D;
-         double double_2 = (double)(int_4 & 0x7) / 8.0D + 0.0625D;
+      for (int i = offset; i < max; i++) {
+         double double_1 = (double)(i >> 3) / 64.0D + 0.0078125D;
+         double double_2 = (double)(i & 0x7) / 8.0D + 0.0625D;
 
          for (int int_5 = 0; int_5 < 128; int_5++) {
             double double_3 = (double)int_5 / 128.0D;
@@ -1846,16 +1846,15 @@ public class Rasterizer3D extends Rasterizer2D {
                }
             }
 
-            int int_6 = (int)(double_4 * 256.0D);
-            int int_7 = (int)(double_5 * 256.0D);
-            int int_8 = (int)(double_6 * 256.0D);
-            int int_2 = int_8 + (int_7 << 8) + (int_6 << 16);
-            int_2 = adjustRGB(int_2, double_0);
-            if (int_2 == 0) {
-               int_2 = 1;
-            }
+            int red = (int)(double_4 * 256.0D);
+            int green = (int)(double_5 * 256.0D);
+            int blue = (int)(double_6 * 256.0D);
+            int rgb = blue + (green << 8) + (red << 16);
+            rgb = adjustBrightness(rgb, brightness);
+            if (rgb == 0)
+               rgb = 1;
 
-            colorPalette[int_3++] = int_2;
+            colourPalette[index++] = rgb;
          }
       }
 
@@ -2523,7 +2522,7 @@ public class Rasterizer3D extends Rasterizer2D {
             if (alpha == 0) {
                if (int_2 > 0) {
                   do {
-                     int_1 = colorPalette[int_5 >> 8];
+                     int_1 = colourPalette[int_5 >> 8];
                      int_5 += int_6;
                      ints_0[int_0++] = int_1;
                      ints_0[int_0++] = int_1;
@@ -2535,7 +2534,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
                int_2 = int_4 - int_3 & 0x3;
                if (int_2 > 0) {
-                  int_1 = colorPalette[int_5 >> 8];
+                  int_1 = colourPalette[int_5 >> 8];
 
                   do {
                      ints_0[int_0++] = int_1;
@@ -2547,7 +2546,7 @@ public class Rasterizer3D extends Rasterizer2D {
                int_8 = 256 - alpha;
                if (int_2 > 0) {
                   do {
-                     int_1 = colorPalette[int_5 >> 8];
+                     int_1 = colourPalette[int_5 >> 8];
                      int_5 += int_6;
                      int_1 = (int_8 * (int_1 & 0xFF00) >> 8 & 0xFF00) + (int_8 * (int_1 & 0xFF00FF) >> 8 & 0xFF00FF);
                      int_9 = ints_0[int_0];
@@ -2564,7 +2563,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
                int_2 = int_4 - int_3 & 0x3;
                if (int_2 > 0) {
-                  int_1 = colorPalette[int_5 >> 8];
+                  int_1 = colourPalette[int_5 >> 8];
                   int_1 = (int_8 * (int_1 & 0xFF00) >> 8 & 0xFF00) + (int_8 * (int_1 & 0xFF00FF) >> 8 & 0xFF00FF);
 
                   do {
@@ -2579,7 +2578,7 @@ public class Rasterizer3D extends Rasterizer2D {
             int_2 = int_4 - int_3;
             if (alpha == 0) {
                do {
-                  ints_0[int_0++] = colorPalette[int_5 >> 8];
+                  ints_0[int_0++] = colourPalette[int_5 >> 8];
                   int_5 += int_6;
                   --int_2;
                } while (int_2 > 0);
@@ -2588,7 +2587,7 @@ public class Rasterizer3D extends Rasterizer2D {
                int_8 = 256 - alpha;
 
                do {
-                  int_1 = colorPalette[int_5 >> 8];
+                  int_1 = colourPalette[int_5 >> 8];
                   int_5 += int_6;
                   int_1 = (int_8 * (int_1 & 0xFF00) >> 8 & 0xFF00) + (int_8 * (int_1 & 0xFF00FF) >> 8 & 0xFF00FF);
                   int_9 = ints_0[int_0];

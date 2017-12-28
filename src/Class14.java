@@ -398,67 +398,67 @@ public final class Class14 {
       Rasterizer3D.method960();
 
       for (int int_8 = 0; int_8 < widgets_0.length; int_8++) {
-         Widget widget_0 = widgets_0[int_8];
-         if (widget_0 != null && (widget_0.parentId == int_0 || int_0 == -1412584499 && widget_0 == Client.aWidget9)) {
+         Widget widget = widgets_0[int_8];
+         if (widget != null && (widget.parentId == int_0 || int_0 == -1412584499 && widget == Client.aWidget9)) {
             int int_9;
             if (int_7 == -1) {
-               Client.widgetPositionX[Client.anInt610] = widget_0.relativeX + int_5;
-               Client.widgetPositionY[Client.anInt610] = int_6 + widget_0.relativeY;
-               Client.widgetBoundsWidth[Client.anInt610] = widget_0.width;
-               Client.widgetBoundsHeight[Client.anInt610] = widget_0.height;
+               Client.widgetPositionX[Client.anInt610] = widget.relativeX + int_5;
+               Client.widgetPositionY[Client.anInt610] = int_6 + widget.relativeY;
+               Client.widgetBoundsWidth[Client.anInt610] = widget.width;
+               Client.widgetBoundsHeight[Client.anInt610] = widget.height;
                int_9 = ++Client.anInt610 - 1;
             } else {
                int_9 = int_7;
             }
 
-            widget_0.boundsIndex = int_9;
-            widget_0.loopCycle = Client.gameCycle;
-            if (!widget_0.hasScript || !CacheableNode_Sub5.method887(widget_0)) {
-               int int_10;
-               if (widget_0.contentType > 0) {
-                  int_10 = widget_0.contentType;
-                  if (int_10 == 324) {
+            widget.boundsIndex = int_9;
+            widget.loopCycle = Client.gameCycle;
+            if (!widget.hasScript || !CacheableNode_Sub5.method887(widget)) {
+               int drawX;
+               if (widget.contentType > 0) {
+                  drawX = widget.contentType;
+                  if (drawX == 324) {
                      if (Client.anInt654 == -1) {
-                        Client.anInt654 = widget_0.disabledImage;
-                        Client.anInt657 = widget_0.enabledImage;
+                        Client.anInt654 = widget.disabledImage;
+                        Client.anInt657 = widget.enabledImage;
                      }
 
                      if (Client.aPlayerComposition1.isFemale) {
-                        widget_0.disabledImage = Client.anInt654;
+                        widget.disabledImage = Client.anInt654;
                      } else {
-                        widget_0.disabledImage = Client.anInt657;
+                        widget.disabledImage = Client.anInt657;
                      }
-                  } else if (int_10 == 325) {
+                  } else if (drawX == 325) {
                      if (Client.anInt654 == -1) {
-                        Client.anInt654 = widget_0.disabledImage;
-                        Client.anInt657 = widget_0.enabledImage;
+                        Client.anInt654 = widget.disabledImage;
+                        Client.anInt657 = widget.enabledImage;
                      }
 
                      if (Client.aPlayerComposition1.isFemale) {
-                        widget_0.disabledImage = Client.anInt657;
+                        widget.disabledImage = Client.anInt657;
                      } else {
-                        widget_0.disabledImage = Client.anInt654;
+                        widget.disabledImage = Client.anInt654;
                      }
-                  } else if (int_10 == 327) {
-                     widget_0.modelRotationX = 150;
-                     widget_0.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
-                     widget_0.disabledMediaType = 5;
-                     widget_0.disabledMediaId = 0;
-                  } else if (int_10 == 328) {
-                     widget_0.modelRotationX = 150;
-                     widget_0.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
-                     widget_0.disabledMediaType = 5;
-                     widget_0.disabledMediaId = 1;
+                  } else if (drawX == 327) {
+                     widget.modelRotationX = 150;
+                     widget.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
+                     widget.disabledMediaType = 5;
+                     widget.disabledMediaId = 0;
+                  } else if (drawX == 328) {
+                     widget.modelRotationX = 150;
+                     widget.modelRotationZ = (int)(Math.sin((double)Client.gameCycle / 40.0D) * 256.0D) & 0x7FF;
+                     widget.disabledMediaType = 5;
+                     widget.disabledMediaId = 1;
                   }
                }
 
-               int_10 = widget_0.relativeX + int_5;
-               int int_11 = int_6 + widget_0.relativeY;
-               int int_12 = widget_0.opacity;
+               drawX = widget.relativeX + int_5;
+               int drawY = int_6 + widget.relativeY;
+               int int_12 = widget.opacity;
                int int_13;
                int int_14;
-               if (widget_0 == Client.aWidget9) {
-                  if (int_0 != -1412584499 && !widget_0.aBool40) {
+               if (widget == Client.aWidget9) {
+                  if (int_0 != -1412584499 && !widget.aBool40) {
                      RSCanvas.aWidgetArray1 = widgets_0;
                      Class18.anInt70 = int_5;
                      ItemLayer.anInt210 = int_6;
@@ -474,145 +474,145 @@ public final class Class14 {
                         int_13 = Client.anInt621;
                      }
 
-                     if (int_13 + widget_0.width > Client.anInt621 + Client.aWidget10.width) {
-                        int_13 = Client.anInt621 + Client.aWidget10.width - widget_0.width;
+                     if (int_13 + widget.width > Client.anInt621 + Client.aWidget10.width) {
+                        int_13 = Client.anInt621 + Client.aWidget10.width - widget.width;
                      }
 
                      if (int_14 < Client.anInt626) {
                         int_14 = Client.anInt626;
                      }
 
-                     if (int_14 + widget_0.height > Client.anInt626 + Client.aWidget10.height) {
-                        int_14 = Client.anInt626 + Client.aWidget10.height - widget_0.height;
+                     if (int_14 + widget.height > Client.anInt626 + Client.aWidget10.height) {
+                        int_14 = Client.anInt626 + Client.aWidget10.height - widget.height;
                      }
 
-                     int_10 = int_13;
-                     int_11 = int_14;
+                     drawX = int_13;
+                     drawY = int_14;
                   }
 
-                  if (!widget_0.aBool40) {
+                  if (!widget.aBool40) {
                      int_12 = 128;
                   }
                }
 
                int int_15;
                int int_16;
-               int int_17;
-               int int_18;
+               int mem;
+               int memColour;
                int int_19;
                int int_20;
-               if (widget_0.type == 2) {
+               if (widget.type == 2) {
                   int_13 = int_1;
                   int_14 = int_2;
                   int_15 = int_3;
                   int_16 = int_4;
-               } else if (widget_0.type == 9) {
-                  int_19 = int_10;
-                  int_17 = int_11;
-                  int_18 = int_10 + widget_0.width;
-                  int_20 = int_11 + widget_0.height;
-                  if (int_18 < int_10) {
-                     int_19 = int_18;
-                     int_18 = int_10;
+               } else if (widget.type == 9) {
+                  int_19 = drawX;
+                  mem = drawY;
+                  memColour = drawX + widget.width;
+                  int_20 = drawY + widget.height;
+                  if (memColour < drawX) {
+                     int_19 = memColour;
+                     memColour = drawX;
                   }
 
-                  if (int_20 < int_11) {
-                     int_17 = int_20;
-                     int_20 = int_11;
+                  if (int_20 < drawY) {
+                     mem = int_20;
+                     int_20 = drawY;
                   }
 
-                  ++int_18;
+                  ++memColour;
                   ++int_20;
                   int_13 = int_19 > int_1 ? int_19 : int_1;
-                  int_14 = int_17 > int_2 ? int_17 : int_2;
-                  int_15 = int_18 < int_3 ? int_18 : int_3;
+                  int_14 = mem > int_2 ? mem : int_2;
+                  int_15 = memColour < int_3 ? memColour : int_3;
                   int_16 = int_20 < int_4 ? int_20 : int_4;
                } else {
-                  int_19 = int_10 + widget_0.width;
-                  int_17 = int_11 + widget_0.height;
-                  int_13 = int_10 > int_1 ? int_10 : int_1;
-                  int_14 = int_11 > int_2 ? int_11 : int_2;
+                  int_19 = drawX + widget.width;
+                  mem = drawY + widget.height;
+                  int_13 = drawX > int_1 ? drawX : int_1;
+                  int_14 = drawY > int_2 ? drawY : int_2;
                   int_15 = int_19 < int_3 ? int_19 : int_3;
-                  int_16 = int_17 < int_4 ? int_17 : int_4;
+                  int_16 = mem < int_4 ? mem : int_4;
                }
 
-               if (!widget_0.hasScript || int_13 < int_15 && int_14 < int_16) {
-                  if (widget_0.contentType != 0) {
-                     if (widget_0.contentType == 1336) {
+               if (!widget.hasScript || int_13 < int_15 && int_14 < int_16) {
+                  if (widget.contentType != 0) {
+                     if (widget.contentType == 1336) {
                         if (Client.displayFps) {
-                           int_11 += 15;
-                           Class4.font_p12full.method1041("Fps:" + GameEngine.FPS, int_10 + widget_0.width, int_11, 16776960, -1);
-                           int_11 += 15;
-                           Runtime runtime_0 = Runtime.getRuntime();
-                           int_17 = (int)((runtime_0.totalMemory() - runtime_0.freeMemory()) / 1024L);
-                           int_18 = 16776960;
-                           if (int_17 > 32768 && Client.lowMemory) {
-                              int_18 = 16711680;
+                           drawY += 15;
+                           Class4.normalFont.drawStringRight("Fps:" + GameEngine.FPS, drawX + widget.width, drawY, 16776960, -1);
+                           drawY += 15;
+                           Runtime runtime = Runtime.getRuntime();
+                           mem = (int)((runtime.totalMemory() - runtime.freeMemory()) / 1024L);
+                           memColour = 16776960;
+                           if (mem > 32768 && Client.lowMemory) {
+                              memColour = 16711680;
                            }
 
-                           if (int_17 > 65536 && !Client.lowMemory) {
-                              int_18 = 16711680;
+                           if (mem > 65536 && !Client.lowMemory) {
+                              memColour = 16711680;
                            }
 
-                           Class4.font_p12full.method1041("Mem:" + int_17 + "k", int_10 + widget_0.width, int_11, int_18, -1);
-                           int_11 += 15;
+                           Class4.normalFont.drawStringRight("Mem:" + mem + "k", drawX + widget.width, drawY, memColour, -1);
+                           drawY += 15;
                         }
                         continue;
                      }
 
-                     if (widget_0.contentType == 1337) {
-                        Client.anInt615 = int_10;
-                        Client.anInt616 = int_11;
-                        Spotanim.method764(int_10, int_11, widget_0.width, widget_0.height);
-                        Client.aBoolArray8[widget_0.boundsIndex] = true;
+                     if (widget.contentType == 1337) {
+                        Client.anInt615 = drawX;
+                        Client.anInt616 = drawY;
+                        Spotanim.method764(drawX, drawY, widget.width, widget.height);
+                        Client.aBoolArray8[widget.boundsIndex] = true;
                         Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
                         continue;
                      }
 
-                     if (widget_0.contentType == 1338) {
-                        Class26.method223(widget_0, int_10, int_11, int_9);
+                     if (widget.contentType == 1338) {
+                        Class26.method223(widget, drawX, drawY, int_9);
                         Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
                         continue;
                      }
 
-                     if (widget_0.contentType == 1339) {
-                        WorldMapData_Sub1.method605(widget_0, int_10, int_11);
+                     if (widget.contentType == 1339) {
+                        WorldMapData_Sub1.method605(widget, drawX, drawY);
                         Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
                         continue;
                      }
 
-                     if (widget_0.contentType == 1400) {
-                        Client.renderOverview.extractWorldmap(int_10, int_11, widget_0.width, widget_0.height, Client.gameCycle);
+                     if (widget.contentType == 1400) {
+                        Client.renderOverview.extractWorldmap(drawX, drawY, widget.width, widget.height, Client.gameCycle);
                      }
 
-                     if (widget_0.contentType == 1401) {
-                        Client.renderOverview.extractData(int_10, int_11, widget_0.width, widget_0.height);
+                     if (widget.contentType == 1401) {
+                        Client.renderOverview.extractData(drawX, drawY, widget.width, widget.height);
                      }
                   }
 
-                  if (widget_0.type == 0) {
-                     if (!widget_0.hasScript && CacheableNode_Sub5.method887(widget_0) && widget_0 != ItemContainer.aWidget6) {
+                  if (widget.type == 0) {
+                     if (!widget.hasScript && CacheableNode_Sub5.method887(widget) && widget != ItemContainer.aWidget6) {
                         continue;
                      }
 
-                     if (!widget_0.hasScript) {
-                        if (widget_0.scrollY > widget_0.scrollHeight - widget_0.height) {
-                           widget_0.scrollY = widget_0.scrollHeight - widget_0.height;
+                     if (!widget.hasScript) {
+                        if (widget.scrollY > widget.scrollHeight - widget.height) {
+                           widget.scrollY = widget.scrollHeight - widget.height;
                         }
 
-                        if (widget_0.scrollY < 0) {
-                           widget_0.scrollY = 0;
+                        if (widget.scrollY < 0) {
+                           widget.scrollY = 0;
                         }
                      }
 
-                     gameDraw(widgets_0, widget_0.id, int_13, int_14, int_15, int_16, int_10 - widget_0.scrollX, int_11 - widget_0.scrollY, int_9);
-                     if (widget_0.children != null) {
-                        gameDraw(widget_0.children, widget_0.id, int_13, int_14, int_15, int_16, int_10 - widget_0.scrollX, int_11 - widget_0.scrollY, int_9);
+                     gameDraw(widgets_0, widget.id, int_13, int_14, int_15, int_16, drawX - widget.scrollX, drawY - widget.scrollY, int_9);
+                     if (widget.children != null) {
+                        gameDraw(widget.children, widget.id, int_13, int_14, int_15, int_16, drawX - widget.scrollX, drawY - widget.scrollY, int_9);
                      }
 
-                     WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
+                     WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long) widget.id);
                      if (widgetnode_0 != null) {
-                        Class47.method309(widgetnode_0.id, int_13, int_14, int_15, int_16, int_10, int_11, int_9);
+                        Class47.method309(widgetnode_0.id, int_13, int_14, int_15, int_16, drawX, drawY, int_9);
                      }
 
                      Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
@@ -620,50 +620,50 @@ public final class Class14 {
                   }
 
                   if (Client.isResized || Client.aBoolArray10[int_9] || Client.gameDrawingMode > 1) {
-                     if (widget_0.type == 0 && !widget_0.hasScript && widget_0.scrollHeight > widget_0.height) {
-                        method189(int_10 + widget_0.width, int_11, widget_0.scrollY, widget_0.height, widget_0.scrollHeight);
+                     if (widget.type == 0 && !widget.hasScript && widget.scrollHeight > widget.height) {
+                        method189(drawX + widget.width, drawY, widget.scrollY, widget.height, widget.scrollHeight);
                      }
 
-                     if (widget_0.type != 1) {
+                     if (widget.type != 1) {
                         int int_21;
                         int int_22;
                         int int_23;
                         int int_24;
-                        if (widget_0.type == 2) {
+                        if (widget.type == 2) {
                            int_19 = 0;
 
-                           for (int_17 = 0; int_17 < widget_0.anInt274; int_17++) {
-                              for (int_18 = 0; int_18 < widget_0.originalWidth; int_18++) {
-                                 int_20 = int_10 + int_18 * (widget_0.paddingX + 32);
-                                 int_21 = int_11 + int_17 * (widget_0.paddingY + 32);
+                           for (mem = 0; mem < widget.anInt274; mem++) {
+                              for (memColour = 0; memColour < widget.originalWidth; memColour++) {
+                                 int_20 = drawX + memColour * (widget.paddingX + 32);
+                                 int_21 = drawY + mem * (widget.paddingY + 32);
                                  if (int_19 < 20) {
-                                    int_20 += widget_0.imageX[int_19];
-                                    int_21 += widget_0.imageY[int_19];
+                                    int_20 += widget.imageX[int_19];
+                                    int_21 += widget.imageY[int_19];
                                  }
 
-                                 if (widget_0.itemIds[int_19] <= 0) {
-                                    if (widget_0.images != null && int_19 < 20) {
-                                       SpritePixels spritepixels_2 = widget_0.getImagePixels(int_19);
+                                 if (widget.itemIds[int_19] <= 0) {
+                                    if (widget.images != null && int_19 < 20) {
+                                       SpritePixels spritepixels_2 = widget.getImagePixels(int_19);
                                        if (spritepixels_2 != null) {
                                           spritepixels_2.drawAt(int_20, int_21);
                                        } else if (Widget.missingData) {
-                                          WorldMapData.method305(widget_0);
+                                          WorldMapData.method305(widget);
                                        }
                                     }
                                  } else {
                                     boolean bool_1 = false;
                                     boolean bool_2 = false;
-                                    int_24 = widget_0.itemIds[int_19] - 1;
-                                    if (int_20 + 32 > int_1 && int_20 < int_3 && int_21 + 32 > int_2 && int_21 < int_4 || widget_0 == ClanMember.aWidget7 && int_19 == Client.anInt635) {
+                                    int_24 = widget.itemIds[int_19] - 1;
+                                    if (int_20 + 32 > int_1 && int_20 < int_3 && int_21 + 32 > int_2 && int_21 < int_4 || widget == ClanMember.aWidget7 && int_19 == Client.anInt635) {
                                        SpritePixels spritepixels_0;
-                                       if (Client.itemSelectionState == 1 && int_19 == GameEngine.selectedItemIndex && widget_0.id == Class48.anInt111) {
-                                          spritepixels_0 = AClass3_Sub2.createSprite(int_24, widget_0.itemQuantities[int_19], 2, 0, 2, false);
+                                       if (Client.itemSelectionState == 1 && int_19 == GameEngine.selectedItemIndex && widget.id == Class48.anInt111) {
+                                          spritepixels_0 = AClass3_Sub2.createSprite(int_24, widget.itemQuantities[int_19], 2, 0, 2, false);
                                        } else {
-                                          spritepixels_0 = AClass3_Sub2.createSprite(int_24, widget_0.itemQuantities[int_19], 1, 3153952, 2, false);
+                                          spritepixels_0 = AClass3_Sub2.createSprite(int_24, widget.itemQuantities[int_19], 1, 3153952, 2, false);
                                        }
 
                                        if (spritepixels_0 != null) {
-                                          if (widget_0 == ClanMember.aWidget7 && int_19 == Client.anInt635) {
+                                          if (widget == ClanMember.aWidget7 && int_19 == Client.anInt635) {
                                              int_22 = MouseInput.anInt260 - Client.anInt628;
                                              int_23 = MouseInput.anInt262 - Client.anInt629;
                                              if (int_22 < 5 && int_22 > -5) {
@@ -713,13 +713,13 @@ public final class Class14 {
                                                    WorldMapData.method305(widget_1);
                                                 }
                                              }
-                                          } else if (widget_0 == Class59.aWidget3 && int_19 == Client.anInt653) {
+                                          } else if (widget == Class59.aWidget3 && int_19 == Client.anInt653) {
                                              spritepixels_0.drawImage(int_20, int_21, 128);
                                           } else {
                                              spritepixels_0.drawAt(int_20, int_21);
                                           }
                                        } else {
-                                          WorldMapData.method305(widget_0);
+                                          WorldMapData.method305(widget);
                                        }
                                     }
                                  }
@@ -727,142 +727,142 @@ public final class Class14 {
                                  ++int_19;
                               }
                            }
-                        } else if (widget_0.type == 3) {
-                           if (Class60.method391(widget_0)) {
-                              int_19 = widget_0.enabledColour;
-                              if (widget_0 == ItemContainer.aWidget6 && widget_0.enabledHoverColour != 0) {
-                                 int_19 = widget_0.enabledHoverColour;
+                        } else if (widget.type == 3) {
+                           if (Class60.method391(widget)) {
+                              int_19 = widget.enabledColour;
+                              if (widget == ItemContainer.aWidget6 && widget.enabledHoverColour != 0) {
+                                 int_19 = widget.enabledHoverColour;
                               }
                            } else {
-                              int_19 = widget_0.disabledColour;
-                              if (widget_0 == ItemContainer.aWidget6 && widget_0.disabledHoverColour != 0) {
-                                 int_19 = widget_0.disabledHoverColour;
+                              int_19 = widget.disabledColour;
+                              if (widget == ItemContainer.aWidget6 && widget.disabledHoverColour != 0) {
+                                 int_19 = widget.disabledHoverColour;
                               }
                            }
 
-                           if (widget_0.rectFilled) {
-                              switch(widget_0.anEnum9_1.anInt392) {
+                           if (widget.rectFilled) {
+                              switch(widget.anEnum9_1.anInt392) {
                               case 1:
-                                 Rasterizer2D.method932(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method932(drawX, drawY, widget.width, widget.height, widget.disabledColour, widget.enabledColour, 256 - (widget.opacity & 0xFF), 256 - (widget.anInt288 & 0xFF));
                                  break;
                               case 2:
-                                 Rasterizer2D.method929(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method929(drawX, drawY, widget.width, widget.height, widget.disabledColour, widget.enabledColour, 256 - (widget.opacity & 0xFF), 256 - (widget.anInt288 & 0xFF));
                                  break;
                               case 3:
-                                 Rasterizer2D.method930(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method930(drawX, drawY, widget.width, widget.height, widget.disabledColour, widget.enabledColour, 256 - (widget.opacity & 0xFF), 256 - (widget.anInt288 & 0xFF));
                                  break;
                               case 4:
-                                 Rasterizer2D.method931(int_10, int_11, widget_0.width, widget_0.height, widget_0.disabledColour, widget_0.enabledColour, 256 - (widget_0.opacity & 0xFF), 256 - (widget_0.anInt288 & 0xFF));
+                                 Rasterizer2D.method931(drawX, drawY, widget.width, widget.height, widget.disabledColour, widget.enabledColour, 256 - (widget.opacity & 0xFF), 256 - (widget.anInt288 & 0xFF));
                                  break;
                               default:
                                  if (int_12 == 0) {
-                                    Rasterizer2D.fillRect(int_10, int_11, widget_0.width, widget_0.height, int_19);
+                                    Rasterizer2D.fillRect(drawX, drawY, widget.width, widget.height, int_19);
                                  } else {
-                                    Rasterizer2D.fillRectangle(int_10, int_11, widget_0.width, widget_0.height, int_19, 256 - (int_12 & 0xFF));
+                                    Rasterizer2D.fillRectangle(drawX, drawY, widget.width, widget.height, int_19, 256 - (int_12 & 0xFF));
                                  }
                               }
                            } else if (int_12 == 0) {
-                              Rasterizer2D.drawRectangle(int_10, int_11, widget_0.width, widget_0.height, int_19);
+                              Rasterizer2D.drawRectangle(drawX, drawY, widget.width, widget.height, int_19);
                            } else {
-                              Rasterizer2D.drawRect(int_10, int_11, widget_0.width, widget_0.height, int_19, 256 - (int_12 & 0xFF));
+                              Rasterizer2D.drawRect(drawX, drawY, widget.width, widget.height, int_19, 256 - (int_12 & 0xFF));
                            }
                         } else {
                            Font font_1;
-                           if (widget_0.type == 4) {
-                              font_1 = widget_0.getFont();
+                           if (widget.type == 4) {
+                              font_1 = widget.getFont();
                               if (font_1 == null) {
                                  if (Widget.missingData) {
-                                    WorldMapData.method305(widget_0);
+                                    WorldMapData.method305(widget);
                                  }
                               } else {
-                                 String string_3 = widget_0.disabledText;
-                                 if (Class60.method391(widget_0)) {
-                                    int_17 = widget_0.enabledColour;
-                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.enabledHoverColour != 0) {
-                                       int_17 = widget_0.enabledHoverColour;
+                                 String string_3 = widget.disabledText;
+                                 if (Class60.method391(widget)) {
+                                    mem = widget.enabledColour;
+                                    if (widget == ItemContainer.aWidget6 && widget.enabledHoverColour != 0) {
+                                       mem = widget.enabledHoverColour;
                                     }
 
-                                    if (widget_0.enabledText.length() > 0) {
-                                       string_3 = widget_0.enabledText;
+                                    if (widget.enabledText.length() > 0) {
+                                       string_3 = widget.enabledText;
                                     }
                                  } else {
-                                    int_17 = widget_0.disabledColour;
-                                    if (widget_0 == ItemContainer.aWidget6 && widget_0.disabledHoverColour != 0) {
-                                       int_17 = widget_0.disabledHoverColour;
+                                    mem = widget.disabledColour;
+                                    if (widget == ItemContainer.aWidget6 && widget.disabledHoverColour != 0) {
+                                       mem = widget.disabledHoverColour;
                                     }
                                  }
 
-                                 if (widget_0.hasScript && widget_0.itemId != -1) {
-                                    ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(widget_0.itemId);
+                                 if (widget.hasScript && widget.itemId != -1) {
+                                    ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(widget.itemId);
                                     string_3 = itemcomposition_1.name;
                                     if (string_3 == null) {
                                        string_3 = "null";
                                     }
 
-                                    if ((itemcomposition_1.isStackable == 1 || widget_0.itemQuantity != 1) && widget_0.itemQuantity != -1) {
-                                       string_3 = Wall.getColTags(16748608) + string_3 + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantity);
+                                    if ((itemcomposition_1.isStackable == 1 || widget.itemQuantity != 1) && widget.itemQuantity != -1) {
+                                       string_3 = Wall.getColTags(16748608) + string_3 + "</col>" + " " + 'x' + Class90.method498(widget.itemQuantity);
                                     }
                                  }
 
-                                 if (widget_0 == Client.aWidget12) {
+                                 if (widget == Client.aWidget12) {
                                     Object object_0 = null;
                                     string_3 = "Please wait...";
-                                    int_17 = widget_0.disabledColour;
+                                    mem = widget.disabledColour;
                                  }
 
-                                 if (!widget_0.hasScript) {
-                                    string_3 = Class52.method337(string_3, widget_0);
+                                 if (!widget.hasScript) {
+                                    string_3 = Class52.method337(string_3, widget);
                                  }
 
-                                 font_1.method1036(string_3, int_10, int_11, widget_0.width, widget_0.height, int_17, widget_0.textShadowed ? 0 : -1, widget_0.textCentered, widget_0.anInt291, widget_0.anInt292);
+                                 font_1.method1036(string_3, drawX, drawY, widget.width, widget.height, mem, widget.textShadowed ? 0 : -1, widget.textCentered, widget.anInt291, widget.anInt292);
                               }
-                           } else if (widget_0.type == 5) {
+                           } else if (widget.type == 5) {
                               SpritePixels spritepixels_1;
-                              if (!widget_0.hasScript) {
-                                 spritepixels_1 = widget_0.getRotatedPixels(Class60.method391(widget_0));
+                              if (!widget.hasScript) {
+                                 spritepixels_1 = widget.getRotatedPixels(Class60.method391(widget));
                                  if (spritepixels_1 != null) {
-                                    spritepixels_1.drawAt(int_10, int_11);
+                                    spritepixels_1.drawAt(drawX, drawY);
                                  } else if (Widget.missingData) {
-                                    WorldMapData.method305(widget_0);
+                                    WorldMapData.method305(widget);
                                  }
                               } else {
-                                 if (widget_0.itemId != -1) {
-                                    spritepixels_1 = AClass3_Sub2.createSprite(widget_0.itemId, widget_0.itemQuantity, widget_0.borderThickness, widget_0.sprite2, widget_0.anInt296, false);
+                                 if (widget.itemId != -1) {
+                                    spritepixels_1 = AClass3_Sub2.createSprite(widget.itemId, widget.itemQuantity, widget.borderThickness, widget.sprite2, widget.anInt296, false);
                                  } else {
-                                    spritepixels_1 = widget_0.getRotatedPixels(false);
+                                    spritepixels_1 = widget.getRotatedPixels(false);
                                  }
 
                                  if (spritepixels_1 == null) {
                                     if (Widget.missingData) {
-                                       WorldMapData.method305(widget_0);
+                                       WorldMapData.method305(widget);
                                     }
                                  } else {
-                                    int_17 = spritepixels_1.maxWidth;
-                                    int_18 = spritepixels_1.maxHeight;
-                                    if (!widget_0.aBool39) {
-                                       int_20 = widget_0.width * 4096 / int_17;
-                                       if (widget_0.textureId != 0) {
-                                          spritepixels_1.method993(widget_0.width / 2 + int_10, widget_0.height / 2 + int_11, widget_0.textureId, int_20);
+                                    mem = spritepixels_1.maxWidth;
+                                    memColour = spritepixels_1.maxHeight;
+                                    if (!widget.aBool39) {
+                                       int_20 = widget.width * 4096 / mem;
+                                       if (widget.textureId != 0) {
+                                          spritepixels_1.method993(widget.width / 2 + drawX, widget.height / 2 + drawY, widget.textureId, int_20);
                                        } else if (int_12 != 0) {
-                                          spritepixels_1.method992(int_10, int_11, widget_0.width, widget_0.height, 256 - (int_12 & 0xFF));
-                                       } else if (int_17 == widget_0.width && int_18 == widget_0.height) {
-                                          spritepixels_1.drawAt(int_10, int_11);
+                                          spritepixels_1.method992(drawX, drawY, widget.width, widget.height, 256 - (int_12 & 0xFF));
+                                       } else if (mem == widget.width && memColour == widget.height) {
+                                          spritepixels_1.drawAt(drawX, drawY);
                                        } else {
-                                          spritepixels_1.method981(int_10, int_11, widget_0.width, widget_0.height);
+                                          spritepixels_1.method981(drawX, drawY, widget.width, widget.height);
                                        }
                                     } else {
-                                       Rasterizer2D.setInnerDrawRegion(int_10, int_11, int_10 + widget_0.width, int_11 + widget_0.height);
-                                       int_20 = (int_17 - 1 + widget_0.width) / int_17;
-                                       int_21 = (int_18 - 1 + widget_0.height) / int_18;
+                                       Rasterizer2D.setInnerDrawRegion(drawX, drawY, drawX + widget.width, drawY + widget.height);
+                                       int_20 = (mem - 1 + widget.width) / mem;
+                                       int_21 = (memColour - 1 + widget.height) / memColour;
 
                                        for (int_22 = 0; int_22 < int_20; int_22++) {
                                           for (int_23 = 0; int_23 < int_21; int_23++) {
-                                             if (widget_0.textureId != 0) {
-                                                spritepixels_1.method993(int_17 / 2 + int_10 + int_22 * int_17, int_18 / 2 + int_11 + int_18 * int_23, widget_0.textureId, 4096);
+                                             if (widget.textureId != 0) {
+                                                spritepixels_1.method993(mem / 2 + drawX + int_22 * mem, memColour / 2 + drawY + memColour * int_23, widget.textureId, 4096);
                                              } else if (int_12 != 0) {
-                                                spritepixels_1.drawImage(int_10 + int_17 * int_22, int_11 + int_23 * int_18, 256 - (int_12 & 0xFF));
+                                                spritepixels_1.drawImage(drawX + mem * int_22, drawY + int_23 * memColour, 256 - (int_12 & 0xFF));
                                              } else {
-                                                spritepixels_1.drawAt(int_10 + int_22 * int_17, int_11 + int_23 * int_18);
+                                                spritepixels_1.drawAt(drawX + int_22 * mem, drawY + int_23 * memColour);
                                              }
                                           }
                                        }
@@ -873,111 +873,111 @@ public final class Class14 {
                               }
                            } else {
                               ItemDefinition itemcomposition_0;
-                              if (widget_0.type == 6) {
-                                 boolean bool_0 = Class60.method391(widget_0);
+                              if (widget.type == 6) {
+                                 boolean bool_0 = Class60.method391(widget);
                                  if (bool_0) {
-                                    int_17 = widget_0.enabledAnimation;
+                                    mem = widget.enabledAnimation;
                                  } else {
-                                    int_17 = widget_0.disabledAnimation;
+                                    mem = widget.disabledAnimation;
                                  }
 
                                  Model model_0 = null;
                                  int_20 = 0;
-                                 if (widget_0.itemId != -1) {
-                                    itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemId);
+                                 if (widget.itemId != -1) {
+                                    itemcomposition_0 = ItemDefinition.getDefinition(widget.itemId);
                                     if (itemcomposition_0 != null) {
-                                       itemcomposition_0 = itemcomposition_0.getItemDefinition(widget_0.itemQuantity);
+                                       itemcomposition_0 = itemcomposition_0.getItemDefinition(widget.itemQuantity);
                                        model_0 = itemcomposition_0.getModel(1);
                                        if (model_0 != null) {
                                           model_0.calculateDiagonals();
                                           int_20 = model_0.modelHeight / 2;
                                        } else {
-                                          WorldMapData.method305(widget_0);
+                                          WorldMapData.method305(widget);
                                        }
                                     }
-                                 } else if (widget_0.disabledMediaType == 5) {
-                                    if (widget_0.disabledMediaId == 0) {
+                                 } else if (widget.disabledMediaType == 5) {
+                                    if (widget.disabledMediaId == 0) {
                                        model_0 = Client.aPlayerComposition1.method505((Sequence) null, -1, (Sequence) null, -1);
                                     } else {
                                        model_0 = Class4.localPlayer.getRotatedModel();
                                     }
-                                 } else if (int_17 == -1) {
-                                    model_0 = widget_0.method593((Sequence) null, -1, bool_0, Class4.localPlayer.composition);
+                                 } else if (mem == -1) {
+                                    model_0 = widget.method593((Sequence) null, -1, bool_0, Class4.localPlayer.composition);
                                     if (model_0 == null && Widget.missingData) {
-                                       WorldMapData.method305(widget_0);
+                                       WorldMapData.method305(widget);
                                     }
                                  } else {
-                                    Sequence sequence_0 = ItemLayer.getAnimation(int_17);
-                                    model_0 = widget_0.method593(sequence_0, widget_0.anInt281, bool_0, Class4.localPlayer.composition);
+                                    Sequence sequence_0 = ItemLayer.getAnimation(mem);
+                                    model_0 = widget.method593(sequence_0, widget.anInt281, bool_0, Class4.localPlayer.composition);
                                     if (model_0 == null && Widget.missingData) {
-                                       WorldMapData.method305(widget_0);
+                                       WorldMapData.method305(widget);
                                     }
                                  }
 
-                                 Rasterizer3D.method970(widget_0.width / 2 + int_10, widget_0.height / 2 + int_11);
-                                 int_21 = Rasterizer3D.SINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
-                                 int_22 = Rasterizer3D.COSINE[widget_0.modelRotationX] * widget_0.modelZoom >> 16;
+                                 Rasterizer3D.method970(widget.width / 2 + drawX, widget.height / 2 + drawY);
+                                 int_21 = Rasterizer3D.SINE[widget.modelRotationX] * widget.modelZoom >> 16;
+                                 int_22 = Rasterizer3D.COSINE[widget.modelRotationX] * widget.modelZoom >> 16;
                                  if (model_0 != null) {
-                                    if (!widget_0.hasScript) {
-                                       model_0.method1027(0, widget_0.modelRotationZ, 0, widget_0.modelRotationX, 0, int_21, int_22);
+                                    if (!widget.hasScript) {
+                                       model_0.method1027(0, widget.modelRotationZ, 0, widget.modelRotationX, 0, int_21, int_22);
                                     } else {
                                        model_0.calculateDiagonals();
-                                       if (widget_0.aBool41) {
-                                          model_0.method1028(0, widget_0.modelRotationZ, widget_0.rotationY, widget_0.modelRotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294, widget_0.modelZoom);
+                                       if (widget.aBool41) {
+                                          model_0.method1028(0, widget.modelRotationZ, widget.rotationY, widget.modelRotationX, widget.anInt293, int_21 + int_20 + widget.anInt294, int_22 + widget.anInt294, widget.modelZoom);
                                        } else {
-                                          model_0.method1027(0, widget_0.modelRotationZ, widget_0.rotationY, widget_0.modelRotationX, widget_0.anInt293, int_21 + int_20 + widget_0.anInt294, int_22 + widget_0.anInt294);
+                                          model_0.method1027(0, widget.modelRotationZ, widget.rotationY, widget.modelRotationX, widget.anInt293, int_21 + int_20 + widget.anInt294, int_22 + widget.anInt294);
                                        }
                                     }
                                  }
 
                                  Rasterizer3D.method961();
                               } else {
-                                 if (widget_0.type == 7) {
-                                    font_1 = widget_0.getFont();
+                                 if (widget.type == 7) {
+                                    font_1 = widget.getFont();
                                     if (font_1 == null) {
                                        if (Widget.missingData) {
-                                          WorldMapData.method305(widget_0);
+                                          WorldMapData.method305(widget);
                                        }
                                        continue;
                                     }
 
-                                    int_17 = 0;
+                                    mem = 0;
 
-                                    for (int_18 = 0; int_18 < widget_0.anInt274; int_18++) {
-                                       for (int_20 = 0; int_20 < widget_0.originalWidth; int_20++) {
-                                          if (widget_0.itemIds[int_17] > 0) {
-                                             itemcomposition_0 = ItemDefinition.getDefinition(widget_0.itemIds[int_17] - 1);
+                                    for (memColour = 0; memColour < widget.anInt274; memColour++) {
+                                       for (int_20 = 0; int_20 < widget.originalWidth; int_20++) {
+                                          if (widget.itemIds[mem] > 0) {
+                                             itemcomposition_0 = ItemDefinition.getDefinition(widget.itemIds[mem] - 1);
                                              String string_0;
-                                             if (itemcomposition_0.isStackable != 1 && widget_0.itemQuantities[int_17] == 1) {
+                                             if (itemcomposition_0.isStackable != 1 && widget.itemQuantities[mem] == 1) {
                                                 string_0 = Wall.getColTags(16748608) + itemcomposition_0.name + "</col>";
                                              } else {
-                                                string_0 = Wall.getColTags(16748608) + itemcomposition_0.name + "</col>" + " " + 'x' + Class90.method498(widget_0.itemQuantities[int_17]);
+                                                string_0 = Wall.getColTags(16748608) + itemcomposition_0.name + "</col>" + " " + 'x' + Class90.method498(widget.itemQuantities[mem]);
                                              }
 
-                                             int_23 = int_20 * (widget_0.paddingX + 115) + int_10;
-                                             int_24 = int_11 + (widget_0.paddingY + 12) * int_18;
-                                             if (widget_0.textCentered == 0) {
-                                                font_1.method1040(string_0, int_23, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
-                                             } else if (widget_0.textCentered == 1) {
-                                                font_1.method1039(string_0, widget_0.width / 2 + int_23, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
+                                             int_23 = int_20 * (widget.paddingX + 115) + drawX;
+                                             int_24 = drawY + (widget.paddingY + 12) * memColour;
+                                             if (widget.textCentered == 0) {
+                                                font_1.drawString(string_0, int_23, int_24, widget.disabledColour, widget.textShadowed ? 0 : -1);
+                                             } else if (widget.textCentered == 1) {
+                                                font_1.drawStringCentred(string_0, widget.width / 2 + int_23, int_24, widget.disabledColour, widget.textShadowed ? 0 : -1);
                                              } else {
-                                                font_1.method1041(string_0, int_23 + widget_0.width - 1, int_24, widget_0.disabledColour, widget_0.textShadowed ? 0 : -1);
+                                                font_1.drawStringRight(string_0, int_23 + widget.width - 1, int_24, widget.disabledColour, widget.textShadowed ? 0 : -1);
                                              }
                                           }
 
-                                          ++int_17;
+                                          ++mem;
                                        }
                                     }
                                  }
 
-                                 if (widget_0.type == 8 && widget_0 == Class47.aWidget1 && Client.anInt668 == Client.anInt670) {
+                                 if (widget.type == 8 && widget == Class47.aWidget1 && Client.anInt668 == Client.anInt670) {
                                     int_19 = 0;
-                                    int_17 = 0;
-                                    Font font_0 = Class4.font_p12full;
-                                    String string_1 = widget_0.disabledText;
+                                    mem = 0;
+                                    Font font_0 = Class4.normalFont;
+                                    String string_1 = widget.disabledText;
 
                                     String string_2;
-                                    for (string_1 = Class52.method337(string_1, widget_0); string_1.length() > 0; int_17 = int_17 + font_0.verticalSpace + 1) {
+                                    for (string_1 = Class52.method337(string_1, widget); string_1.length() > 0; mem = mem + font_0.verticalSpace + 1) {
                                        int_22 = string_1.indexOf("<br>");
                                        if (int_22 != -1) {
                                           string_2 = string_1.substring(0, int_22);
@@ -987,34 +987,34 @@ public final class Class14 {
                                           string_1 = "";
                                        }
 
-                                       int_23 = font_0.method1030(string_2);
+                                       int_23 = font_0.getWidth(string_2);
                                        if (int_23 > int_19) {
                                           int_19 = int_23;
                                        }
                                     }
 
                                     int_19 += 6;
-                                    int_17 += 7;
-                                    int_22 = int_10 + widget_0.width - 5 - int_19;
-                                    int_23 = int_11 + widget_0.height + 5;
-                                    if (int_22 < int_10 + 5) {
-                                       int_22 = int_10 + 5;
+                                    mem += 7;
+                                    int_22 = drawX + widget.width - 5 - int_19;
+                                    int_23 = drawY + widget.height + 5;
+                                    if (int_22 < drawX + 5) {
+                                       int_22 = drawX + 5;
                                     }
 
                                     if (int_19 + int_22 > int_3) {
                                        int_22 = int_3 - int_19;
                                     }
 
-                                    if (int_23 + int_17 > int_4) {
-                                       int_23 = int_4 - int_17;
+                                    if (int_23 + mem > int_4) {
+                                       int_23 = int_4 - mem;
                                     }
 
-                                    Rasterizer2D.fillRect(int_22, int_23, int_19, int_17, 16777120);
-                                    Rasterizer2D.drawRectangle(int_22, int_23, int_19, int_17, 0);
-                                    string_1 = widget_0.disabledText;
+                                    Rasterizer2D.fillRect(int_22, int_23, int_19, mem, 16777120);
+                                    Rasterizer2D.drawRectangle(int_22, int_23, int_19, mem, 0);
+                                    string_1 = widget.disabledText;
                                     int_24 = int_23 + font_0.verticalSpace + 2;
 
-                                    for (string_1 = Class52.method337(string_1, widget_0); string_1.length() > 0; int_24 = int_24 + font_0.verticalSpace + 1) {
+                                    for (string_1 = Class52.method337(string_1, widget); string_1.length() > 0; int_24 = int_24 + font_0.verticalSpace + 1) {
                                        int int_26 = string_1.indexOf("<br>");
                                        if (int_26 != -1) {
                                           string_2 = string_1.substring(0, int_26);
@@ -1024,27 +1024,27 @@ public final class Class14 {
                                           string_1 = "";
                                        }
 
-                                       font_0.method1040(string_2, int_22 + 3, int_24, 0, -1);
+                                       font_0.drawString(string_2, int_22 + 3, int_24, 0, -1);
                                     }
                                  }
 
-                                 if (widget_0.type == 9) {
-                                    if (widget_0.aBool37) {
-                                       int_19 = int_10;
-                                       int_17 = int_11 + widget_0.height;
-                                       int_18 = int_10 + widget_0.width;
-                                       int_20 = int_11;
+                                 if (widget.type == 9) {
+                                    if (widget.aBool37) {
+                                       int_19 = drawX;
+                                       mem = drawY + widget.height;
+                                       memColour = drawX + widget.width;
+                                       int_20 = drawY;
                                     } else {
-                                       int_19 = int_10;
-                                       int_17 = int_11;
-                                       int_18 = int_10 + widget_0.width;
-                                       int_20 = int_11 + widget_0.height;
+                                       int_19 = drawX;
+                                       mem = drawY;
+                                       memColour = drawX + widget.width;
+                                       int_20 = drawY + widget.height;
                                     }
 
-                                    if (widget_0.anInt289 == 1) {
-                                       Rasterizer2D.drawLine(int_19, int_17, int_18, int_20, widget_0.disabledColour);
+                                    if (widget.anInt289 == 1) {
+                                       Rasterizer2D.drawLine(int_19, mem, memColour, int_20, widget.disabledColour);
                                     } else {
-                                       Class50.method318(int_19, int_17, int_18, int_20, widget_0.disabledColour, widget_0.anInt289);
+                                       Class50.method318(int_19, mem, memColour, int_20, widget.disabledColour, widget.anInt289);
                                     }
                                  }
                               }
@@ -1303,12 +1303,12 @@ public final class Class14 {
       Rasterizer2D.fillRect(int_0, int_6 + int_1 + 16, 16, int_5, Client.anInt673);
       Rasterizer2D.drawVerticalLine(int_0, int_6 + int_1 + 16, int_5, Client.anInt675);
       Rasterizer2D.drawVerticalLine(int_0 + 1, int_6 + int_1 + 16, int_5, Client.anInt675);
-      Rasterizer2D.method920(int_0, int_6 + int_1 + 16, 16, Client.anInt675);
-      Rasterizer2D.method920(int_0, int_6 + int_1 + 17, 16, Client.anInt675);
+      Rasterizer2D.drawHorizontal(int_0, int_6 + int_1 + 16, 16, Client.anInt675);
+      Rasterizer2D.drawHorizontal(int_0, int_6 + int_1 + 17, 16, Client.anInt675);
       Rasterizer2D.drawVerticalLine(int_0 + 15, int_6 + int_1 + 16, int_5, Client.anInt674);
       Rasterizer2D.drawVerticalLine(int_0 + 14, int_6 + int_1 + 17, int_5 - 1, Client.anInt674);
-      Rasterizer2D.method920(int_0, int_5 + int_6 + int_1 + 15, 16, Client.anInt674);
-      Rasterizer2D.method920(int_0 + 1, int_5 + int_6 + int_1 + 14, 15, Client.anInt674);
+      Rasterizer2D.drawHorizontal(int_0, int_5 + int_6 + int_1 + 15, 16, Client.anInt674);
+      Rasterizer2D.drawHorizontal(int_0 + 1, int_5 + int_6 + int_1 + 14, 15, Client.anInt674);
    }
 
    static Script method190(int int_0, Class90 class90_0) {
