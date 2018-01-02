@@ -215,7 +215,7 @@ public class Class12 {
                byte_0 = 0;
             }
 
-            if (MouseInput.anInt260 >= int_9 && MouseInput.anInt262 >= int_8 && MouseInput.anInt260 < byte_1 + int_9 && MouseInput.anInt262 < int_8 + byte_2 && bool_1) {
+            if (MouseInput.mouseEventX >= int_9 && MouseInput.mouseEventY >= int_8 && MouseInput.mouseEventX < byte_1 + int_9 && MouseInput.mouseEventY < int_8 + byte_2 && bool_1) {
                Class25.anInt84 = int_11;
                Class2.aSpritePixelsArray1[byte_0].drawImage(int_9, int_8, 128, 16777215);
                bool_0 = true;
@@ -241,9 +241,9 @@ public class Class12 {
          if (bool_0) {
             int_11 = font_1.getWidth(Coordinates.worldList[Class25.anInt84].activity) + 6;
             int int_13 = font_1.verticalSpace + 8;
-            Rasterizer2D.fillRect(MouseInput.anInt260 - int_11 / 2, MouseInput.anInt262 + 20 + 5, int_11, int_13, 16777120);
-            Rasterizer2D.drawRectangle(MouseInput.anInt260 - int_11 / 2, MouseInput.anInt262 + 20 + 5, int_11, int_13, 0);
-            font_1.drawStringCentred(Coordinates.worldList[Class25.anInt84].activity, MouseInput.anInt260, MouseInput.anInt262 + font_1.verticalSpace + 20 + 5 + 4, 0, -1);
+            Rasterizer2D.fillRect(MouseInput.mouseEventX - int_11 / 2, MouseInput.mouseEventY + 20 + 5, int_11, int_13, 16777120);
+            Rasterizer2D.drawRectangle(MouseInput.mouseEventX - int_11 / 2, MouseInput.mouseEventY + 20 + 5, int_11, int_13, 0);
+            font_1.drawStringCentred(Coordinates.worldList[Class25.anInt84].activity, MouseInput.mouseEventX, MouseInput.mouseEventY + font_1.verticalSpace + 20 + 5 + 4, 0, -1);
          }
       }
 

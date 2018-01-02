@@ -1033,7 +1033,7 @@ public class Rasterizer3D extends Rasterizer2D {
       }
    }
 
-   public static void method960() {
+   public static void resetRasterClipping() {
       setRasterClipping(Rasterizer2D.topX, Rasterizer2D.topY, Rasterizer2D.bottomX, Rasterizer2D.bottomY);
    }
 
@@ -2608,12 +2608,12 @@ public class Rasterizer3D extends Rasterizer2D {
       return int_3 * int_0 + int_2 * int_1 >> 16;
    }
 
-   public static void method970(int int_0, int int_1) {
+   public static void setRasterSize(int width, int height) {
       int int_2 = rasterClipY[0];
       int int_3 = int_2 / Rasterizer2D.graphicsPixelsWidth;
       int int_4 = int_2 - int_3 * Rasterizer2D.graphicsPixelsWidth;
-      centerX = int_0 - int_4;
-      centerY = int_1 - int_3;
+      centerX = width - int_4;
+      centerY = height - int_3;
       anInt545 = -centerX;
       anInt544 = rasterClipX - centerX;
       anInt546 = -centerY;

@@ -2,11 +2,11 @@ import java.util.Random;
 
 public abstract class FontTypeFace extends Rasterizer2D {
 
-   static int strikethroughRGB;
-   static String[] aStringArray5;
+   static int strikeThroughRGB;
+   static String[] multiLineText;
    static int underlineRGB;
-   static Random aRandom1;
-   static int anInt567;
+   static Random random;
+   static int minWidth;
    static int prevShadeRGB;
    static int prevColourRGB;
    static int colour;
@@ -26,43 +26,43 @@ public abstract class FontTypeFace extends Rasterizer2D {
    int[] glyphWidths;
 
    static {
-      strikethroughRGB = -1;
+      strikeThroughRGB = -1;
       underlineRGB = -1;
       prevShadeRGB = -1;
       shadow = -1;
       prevColourRGB = 0;
       colour = 0;
-      anInt567 = 256;
+      minWidth = 256;
       anInt568 = 0;
       anInt569 = 0;
-      aRandom1 = new Random();
-      aStringArray5 = new String[100];
+      random = new Random();
+      multiLineText = new String[100];
    }
 
-   FontTypeFace(byte[] bytes_0, int[] ints_0, int[] ints_1, int[] ints_2, int[] ints_3, int[] ints_4, byte[][] bytes_1) {
+   FontTypeFace(byte[] bytes_0, int[] horizontalOffsets, int[] verticalOffsets, int[] gylphHeights, int[] glyphWidths, int[] ints_4, byte[][] pixels) {
       this.gylphs = new byte[256][];
       this.verticalSpace = 0;
-      this.horizontalOffsets = ints_0;
-      this.verticalOffsets = ints_1;
-      this.gylphHeights = ints_2;
-      this.glyphWidths = ints_3;
+      this.horizontalOffsets = horizontalOffsets;
+      this.verticalOffsets = verticalOffsets;
+      this.gylphHeights = gylphHeights;
+      this.glyphWidths = glyphWidths;
       this.method1033(bytes_0);
-      this.gylphs = bytes_1;
-      int int_0 = Integer.MAX_VALUE;
-      int int_1 = Integer.MIN_VALUE;
+      this.gylphs = pixels;
+      int minWidth = Integer.MAX_VALUE;
+      int maxWidth = Integer.MIN_VALUE;
 
-      for (int int_2 = 0; int_2 < 256; int_2++) {
-         if (this.verticalOffsets[int_2] < int_0 && this.glyphWidths[int_2] != 0) {
-            int_0 = this.verticalOffsets[int_2];
+      for (int character = 0; character < 256; character++) {
+         if (this.verticalOffsets[character] < minWidth && this.glyphWidths[character] != 0) {
+            minWidth = this.verticalOffsets[character];
          }
 
-         if (this.verticalOffsets[int_2] + this.glyphWidths[int_2] > int_1) {
-            int_1 = this.verticalOffsets[int_2] + this.glyphWidths[int_2];
+         if (this.verticalOffsets[character] + this.glyphWidths[character] > maxWidth) {
+            maxWidth = this.verticalOffsets[character] + this.glyphWidths[character];
          }
       }
 
-      this.minSpacing = this.verticalSpace - int_0;
-      this.maxSpacing = int_1 - this.verticalSpace;
+      this.minSpacing = this.verticalSpace - minWidth;
+      this.maxSpacing = maxWidth - this.verticalSpace;
    }
 
    FontTypeFace(byte[] bytes_0) {
@@ -80,13 +80,13 @@ public abstract class FontTypeFace extends Rasterizer2D {
    }
 
    void setAttributes(int colour, int shadow) {
-      strikethroughRGB = -1;
+      strikeThroughRGB = -1;
       underlineRGB = -1;
       prevShadeRGB = shadow;
       FontTypeFace.shadow = shadow;
       prevColourRGB = colour;
       FontTypeFace.colour = colour;
-      anInt567 = 256;
+      minWidth = 256;
       anInt568 = 0;
       anInt569 = 0;
    }
@@ -146,107 +146,107 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   public int method1031(String string_0, int[] ints_0, String[] strings_0) {
-      if (string_0 == null) {
+   public int getIndexOfLongestStringInArray(String text, int[] widths, String[] strings) {
+      if (text == null) {
          return 0;
       } else {
-         int int_0 = 0;
-         int int_1 = 0;
-         StringBuilder stringbuilder_0 = new StringBuilder(100);
-         int int_2 = -1;
+         int width = 0;
+         int position = 0;
+         StringBuilder builder = new StringBuilder(100);
+         int lineLength = -1;
          int int_3 = 0;
          byte byte_0 = 0;
-         int int_4 = -1;
-         char char_0 = 0;
-         int int_5 = 0;
-         int int_6 = string_0.length();
+         int tagStart = -1;
+         char secondaryCharacter = 0;
+         int stringIndex = 0;
+         int length = text.length();
 
-         for (int int_7 = 0; int_7 < int_6; int_7++) {
-            char char_1 = string_0.charAt(int_7);
-            if (char_1 == 60) {
-               int_4 = int_7;
+         for (int index = 0; index < length; index++) {
+            char character = text.charAt(index);
+            if (character == 60) {
+               tagStart = index;
             } else {
-               if (char_1 == 62 && int_4 != -1) {
-                  String string_2 = string_0.substring(int_4 + 1, int_7);
-                  int_4 = -1;
-                  stringbuilder_0.append('<');
-                  stringbuilder_0.append(string_2);
-                  stringbuilder_0.append('>');
-                  if (string_2.equals("br")) {
-                     strings_0[int_5] = stringbuilder_0.toString().substring(int_1, stringbuilder_0.length());
-                     ++int_5;
-                     int_1 = stringbuilder_0.length();
-                     int_0 = 0;
-                     int_2 = -1;
-                     char_0 = 0;
-                  } else if (string_2.equals("lt")) {
-                     int_0 += this.method1034('<');
-                     if (this.aByteArray26 != null && char_0 != -1) {
-                        int_0 += this.aByteArray26[(char_0 << 8) + 60];
+               if (character == 62 && tagStart != -1) {
+                  String tagText = text.substring(tagStart + 1, index);
+                  tagStart = -1;
+                  builder.append('<');
+                  builder.append(tagText);
+                  builder.append('>');
+                  if (tagText.equals("br")) {
+                     strings[stringIndex] = builder.toString().substring(position, builder.length());
+                     ++stringIndex;
+                     position = builder.length();
+                     width = 0;
+                     lineLength = -1;
+                     secondaryCharacter = 0;
+                  } else if (tagText.equals("lt")) {
+                     width += this.method1034('<');
+                     if (this.aByteArray26 != null && secondaryCharacter != -1) {
+                        width += this.aByteArray26[(secondaryCharacter << 8) + 60];
                      }
 
-                     char_0 = 60;
-                  } else if (string_2.equals("gt")) {
-                     int_0 += this.method1034('>');
-                     if (this.aByteArray26 != null && char_0 != -1) {
-                        int_0 += this.aByteArray26[(char_0 << 8) + 62];
+                     secondaryCharacter = 60;
+                  } else if (tagText.equals("gt")) {
+                     width += this.method1034('>');
+                     if (this.aByteArray26 != null && secondaryCharacter != -1) {
+                        width += this.aByteArray26[(secondaryCharacter << 8) + 62];
                      }
 
-                     char_0 = 62;
-                  } else if (string_2.startsWith("img=")) {
+                     secondaryCharacter = 62;
+                  } else if (tagText.startsWith("img=")) {
                      try {
-                        int int_8 = getInteger(string_2.substring(4));
-                        int_0 += modIcons[int_8].width;
-                        char_0 = 0;
+                        int iconIndex = getInteger(tagText.substring(4));
+                        width += modIcons[iconIndex].width;
+                        secondaryCharacter = 0;
                      } catch (Exception exception_0) {
                         ;
                      }
                   }
 
-                  char_1 = 0;
+                  character = 0;
                }
 
-               if (int_4 == -1) {
-                  if (char_1 != 0) {
-                     stringbuilder_0.append(char_1);
-                     int_0 += this.method1034(char_1);
-                     if (this.aByteArray26 != null && char_0 != -1) {
-                        int_0 += this.aByteArray26[char_1 + (char_0 << 8)];
+               if (tagStart == -1) {
+                  if (character != 0) {
+                     builder.append(character);
+                     width += this.method1034(character);
+                     if (this.aByteArray26 != null && secondaryCharacter != -1) {
+                        width += this.aByteArray26[character + (secondaryCharacter << 8)];
                      }
 
-                     char_0 = char_1;
+                     secondaryCharacter = character;
                   }
 
-                  if (char_1 == 32) {
-                     int_2 = stringbuilder_0.length();
-                     int_3 = int_0;
+                  if (character == 32) {
+                     lineLength = builder.length();
+                     int_3 = width;
                      byte_0 = 1;
                   }
 
-                  if (ints_0 != null && int_0 > ints_0[int_5 < ints_0.length ? int_5 : ints_0.length - 1] && int_2 >= 0) {
-                     strings_0[int_5] = stringbuilder_0.toString().substring(int_1, int_2 - byte_0);
-                     ++int_5;
-                     int_1 = int_2;
-                     int_2 = -1;
-                     int_0 -= int_3;
-                     char_0 = 0;
+                  if (widths != null && width > widths[stringIndex < widths.length ? stringIndex : widths.length - 1] && lineLength >= 0) {
+                     strings[stringIndex] = builder.toString().substring(position, lineLength - byte_0);
+                     ++stringIndex;
+                     position = lineLength;
+                     lineLength = -1;
+                     width -= int_3;
+                     secondaryCharacter = 0;
                   }
 
-                  if (char_1 == 45) {
-                     int_2 = stringbuilder_0.length();
-                     int_3 = int_0;
+                  if (character == 45) {
+                     lineLength = builder.length();
+                     int_3 = width;
                      byte_0 = 0;
                   }
                }
             }
          }
 
-         String string_1 = stringbuilder_0.toString();
-         if (string_1.length() > int_1) {
-            strings_0[int_5++] = string_1.substring(int_1, string_1.length());
+         String builtString = builder.toString();
+         if (builtString.length() > position) {
+            strings[stringIndex++] = builtString.substring(position, builtString.length());
          }
 
-         return int_5;
+         return stringIndex;
       }
    }
 
@@ -261,7 +261,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
             if (character == 60) {
                tagStart = index;
             } else {
-               int iconId;
+               int height;
                if (character == 62 && tagStart != -1) {
                   String tagText = string.substring(tagStart + 1, index);
                   tagStart = -1;
@@ -271,8 +271,8 @@ public abstract class FontTypeFace extends Rasterizer2D {
                      if (!tagText.equals("gt")) {
                         if (tagText.startsWith("img=")) {
                            try {
-                              iconId = getInteger(tagText.substring(4));
-                              IndexedSprite sprite = modIcons[iconId];
+                              height = getInteger(tagText.substring(4));
+                              IndexedSprite sprite = modIcons[height];
                               sprite.drawSprite(x, y + this.verticalSpace - sprite.originalHeight);
                               x += sprite.width;
                               previousCharacter = -1;
@@ -298,21 +298,21 @@ public abstract class FontTypeFace extends Rasterizer2D {
                      x += this.aByteArray26[character + (previousCharacter << 8)];
                   }
 
-                  int int_5 = this.gylphHeights[character];
-                  iconId = this.glyphWidths[character];
+                  int width = this.gylphHeights[character];
+                  height = this.glyphWidths[character];
                   if (character != 32) {
-                     if (anInt567 == 256) {
+                     if (minWidth == 256) {
                         if (shadow != -1) {
-                           renderShadeRGB(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, int_5, iconId, shadow);
+                           renderShadeRGB(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, width, height, shadow);
                         }
 
-                        this.renderRGB(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], int_5, iconId, colour);
+                        this.renderRGB(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], width, height, colour);
                      } else {
                         if (shadow != -1) {
-                           renderShadeRGBA(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, int_5, iconId, shadow, anInt567);
+                           renderShadeRGBA(this.gylphs[character], x + this.horizontalOffsets[character] + 1, y + this.verticalOffsets[character] + 1, width, height, shadow, minWidth);
                         }
 
-                        this.renderRGBA(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], int_5, iconId, colour, anInt567);
+                        this.renderRGBA(this.gylphs[character], x + this.horizontalOffsets[character], y + this.verticalOffsets[character], width, height, colour, minWidth);
                      }
                   } else if (anInt568 > 0) {
                      anInt569 += anInt568;
@@ -321,8 +321,8 @@ public abstract class FontTypeFace extends Rasterizer2D {
                   }
 
                   int length = this.anIntArray137[character];
-                  if (strikethroughRGB != -1) {
-                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikethroughRGB);
+                  if (strikeThroughRGB != -1) {
+                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikeThroughRGB);
                   }
 
                   if (underlineRGB != -1) {
@@ -338,20 +338,20 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
    }
 
-   void method1033(byte[] bytes_0) {
+   void method1033(byte[] data) {
       this.anIntArray137 = new int[256];
       int int_0;
-      if (bytes_0.length == 257) {
+      if (data.length == 257) {
          for (int_0 = 0; int_0 < this.anIntArray137.length; int_0++) {
-            this.anIntArray137[int_0] = bytes_0[int_0] & 0xFF;
+            this.anIntArray137[int_0] = data[int_0] & 0xFF;
          }
 
-         this.verticalSpace = bytes_0[256] & 0xFF;
+         this.verticalSpace = data[256] & 0xFF;
       } else {
          int_0 = 0;
 
          for (int int_1 = 0; int_1 < 256; int_1++) {
-            this.anIntArray137[int_1] = bytes_0[int_0++] & 0xFF;
+            this.anIntArray137[int_1] = data[int_0++] & 0xFF;
          }
 
          int[] ints_0 = new int[256];
@@ -359,11 +359,11 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
          int int_2;
          for (int_2 = 0; int_2 < 256; int_2++) {
-            ints_0[int_2] = bytes_0[int_0++] & 0xFF;
+            ints_0[int_2] = data[int_0++] & 0xFF;
          }
 
          for (int_2 = 0; int_2 < 256; int_2++) {
-            ints_1[int_2] = bytes_0[int_0++] & 0xFF;
+            ints_1[int_2] = data[int_0++] & 0xFF;
          }
 
          byte[][] bytes_1 = new byte[256][];
@@ -374,7 +374,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
             byte byte_0 = 0;
 
             for (int_4 = 0; int_4 < bytes_1[int_3].length; int_4++) {
-               byte_0 += bytes_0[int_0++];
+               byte_0 += data[int_0++];
                bytes_1[int_3][int_4] = byte_0;
             }
          }
@@ -387,7 +387,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
             byte byte_1 = 0;
 
             for (int int_5 = 0; int_5 < bytes_2[int_6].length; int_5++) {
-               byte_1 += bytes_0[int_0++];
+               byte_1 += data[int_0++];
                bytes_2[int_6][int_5] = byte_1;
             }
          }
@@ -489,7 +489,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
                   ++count;
                   if (character != 32) {
-                     if (anInt567 == 256) {
+                     if (minWidth == 256) {
                         if (shadow != -1) {
                            renderShadeRGB(this.gylphs[character], height + x + this.horizontalOffsets[character] + 1, y + id + this.verticalOffsets[character] + 1, int_6, width, shadow);
                         }
@@ -497,10 +497,10 @@ public abstract class FontTypeFace extends Rasterizer2D {
                         this.renderRGB(this.gylphs[character], height + x + this.horizontalOffsets[character], y + id + this.verticalOffsets[character], int_6, width, colour);
                      } else {
                         if (shadow != -1) {
-                           renderShadeRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character] + 1, y + id + this.verticalOffsets[character] + 1, int_6, width, shadow, anInt567);
+                           renderShadeRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character] + 1, y + id + this.verticalOffsets[character] + 1, int_6, width, shadow, minWidth);
                         }
 
-                        this.renderRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character], y + id + this.verticalOffsets[character], int_6, width, colour, anInt567);
+                        this.renderRGBA(this.gylphs[character], height + x + this.horizontalOffsets[character], y + id + this.verticalOffsets[character], int_6, width, colour, minWidth);
                      }
                   } else if (anInt568 > 0) {
                      anInt569 += anInt568;
@@ -509,8 +509,8 @@ public abstract class FontTypeFace extends Rasterizer2D {
                   }
 
                   int length = this.anIntArray137[character];
-                  if (strikethroughRGB != -1) {
-                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikethroughRGB);
+                  if (strikeThroughRGB != -1) {
+                     Rasterizer2D.drawHorizontal(x, y + (int)((double)this.verticalSpace * 0.7D), length, strikeThroughRGB);
                   }
 
                   if (underlineRGB != -1) {
@@ -533,8 +533,8 @@ public abstract class FontTypeFace extends Rasterizer2D {
       return this.anIntArray137[Class99.convertCharacter(char_0) & 0xFF];
    }
 
-   public int method1035(String string_0, int int_0) {
-      return this.method1031(string_0, new int[] {int_0}, aStringArray5);
+   public int method1035(String string, int width) {
+      return this.getIndexOfLongestStringInArray(string, new int[] {width}, multiLineText);
    }
 
    void setAttribute(String tag) {
@@ -544,11 +544,11 @@ public abstract class FontTypeFace extends Rasterizer2D {
          } else if (tag.equals("/col")) {
             FontTypeFace.colour = prevColourRGB;
          } else if (tag.startsWith("str=")) {
-            strikethroughRGB = getInteger(tag.substring(4), 16);
+            strikeThroughRGB = getInteger(tag.substring(4), 16);
          } else if (tag.equals("str")) {
-            strikethroughRGB = 8388608;
+            strikeThroughRGB = 8388608;
          } else if (tag.equals("/str")) {
-            strikethroughRGB = -1;
+            strikeThroughRGB = -1;
          } else if (tag.startsWith("u=")) {
             underlineRGB = getInteger(tag.substring(2), 16);
          } else if (tag.equals("u")) {
@@ -570,11 +570,11 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
    }
 
-   public int method1036(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7, int int_8) {
+   public int method1036(String string_0, int int_0, int int_1, int int_2, int int_3, int colour, int shadow, int int_6, int int_7, int int_8) {
       if (string_0 == null) {
          return 0;
       } else {
-         this.setAttributes(int_4, int_5);
+         this.setAttributes(colour, shadow);
          if (int_8 == 0) {
             int_8 = this.verticalSpace;
          }
@@ -584,7 +584,7 @@ public abstract class FontTypeFace extends Rasterizer2D {
             ints_0 = null;
          }
 
-         int int_9 = this.method1031(string_0, ints_0, aStringArray5);
+         int int_9 = this.getIndexOfLongestStringInArray(string_0, ints_0, multiLineText);
          if (int_7 == 3 && int_9 == 1) {
             int_7 = 1;
          }
@@ -609,16 +609,16 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
          for (int_11 = 0; int_11 < int_9; int_11++) {
             if (int_6 == 0) {
-               this.drawString(aStringArray5[int_11], int_0, int_10);
+               this.drawString(multiLineText[int_11], int_0, int_10);
             } else if (int_6 == 1) {
-               this.drawString(aStringArray5[int_11], int_0 + (int_2 - this.getWidth(aStringArray5[int_11])) / 2, int_10);
+               this.drawString(multiLineText[int_11], int_0 + (int_2 - this.getWidth(multiLineText[int_11])) / 2, int_10);
             } else if (int_6 == 2) {
-               this.drawString(aStringArray5[int_11], int_0 + int_2 - this.getWidth(aStringArray5[int_11]), int_10);
+               this.drawString(multiLineText[int_11], int_0 + int_2 - this.getWidth(multiLineText[int_11]), int_10);
             } else if (int_11 == int_9 - 1) {
-               this.drawString(aStringArray5[int_11], int_0, int_10);
+               this.drawString(multiLineText[int_11], int_0, int_10);
             } else {
-               this.method1037(aStringArray5[int_11], int_2);
-               this.drawString(aStringArray5[int_11], int_0, int_10);
+               this.setUntaggedCharacterCount(multiLineText[int_11], int_2);
+               this.drawString(multiLineText[int_11], int_0, int_10);
                anInt568 = 0;
             }
 
@@ -629,23 +629,23 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   void method1037(String string_0, int int_0) {
-      int int_1 = 0;
-      boolean bool_0 = false;
+   void setUntaggedCharacterCount(String string, int int_0) {
+      int characterCount = 0;
+      boolean tag = false;
 
-      for (int int_2 = 0; int_2 < string_0.length(); int_2++) {
-         char char_0 = string_0.charAt(int_2);
-         if (char_0 == 60) {
-            bool_0 = true;
-         } else if (char_0 == 62) {
-            bool_0 = false;
-         } else if (!bool_0 && char_0 == 32) {
-            ++int_1;
+      for (int index = 0; index < string.length(); index++) {
+         char character = string.charAt(index);
+         if (character == 60) {
+            tag = true;
+         } else if (character == 62) {
+            tag = false;
+         } else if (!tag && character == 32) {
+            ++characterCount;
          }
       }
 
-      if (int_1 > 0) {
-         anInt568 = (int_0 - this.getWidth(string_0) << 8) / int_1;
+      if (characterCount > 0) {
+         anInt568 = (int_0 - this.getWidth(string) << 8) / characterCount;
       }
 
    }
@@ -654,36 +654,36 @@ public abstract class FontTypeFace extends Rasterizer2D {
 
    abstract void renderRGBA(byte[] var1, int var2, int var3, int var4, int var5, int var6, int var7);
 
-   public int method1038(String string_0, int int_0) {
-      int int_1 = this.method1031(string_0, new int[] {int_0}, aStringArray5);
-      int int_2 = 0;
+   public int getWidth(String string, int width) {
+      int length = this.getIndexOfLongestStringInArray(string, new int[] {width}, multiLineText);
+      int maxWidth = 0;
 
-      for (int int_3 = 0; int_3 < int_1; int_3++) {
-         int int_4 = this.getWidth(aStringArray5[int_3]);
-         if (int_4 > int_2) {
-            int_2 = int_4;
+      for (int index = 0; index < length; index++) {
+         int w = this.getWidth(multiLineText[index]);
+         if (w > maxWidth) {
+            maxWidth = w;
          }
       }
 
-      return int_2;
+      return maxWidth;
    }
 
-   public void drawRandomizedMouseoverText(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (string_0 != null) {
-         this.setAttributes(int_2, int_3);
-         aRandom1.setSeed((long)int_4);
-         anInt567 = 192 + (aRandom1.nextInt() & 0x1F);
-         int[] ints_0 = new int[string_0.length()];
-         int int_5 = 0;
+   public void drawShadowedSeededString(String string, int x, int y, int colour, int shadow, int seed) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         random.setSeed((long)seed);
+         minWidth = 192 + (random.nextInt() & 0x1F);
+         int[] widths = new int[string.length()];
+         int xPos = 0;
 
-         for (int int_6 = 0; int_6 < string_0.length(); int_6++) {
-            ints_0[int_6] = int_5;
-            if ((aRandom1.nextInt() & 0x3) == 0) {
-               ++int_5;
+         for (int index = 0; index < string.length(); index++) {
+            widths[index] = xPos;
+            if ((random.nextInt() & 0x3) == 0) {
+               ++xPos;
             }
          }
 
-         this.drawMouseoverText(string_0, int_0, int_1, ints_0, (int[]) null);
+         this.drawMouseoverText(string, x, y, widths, (int[]) null);
       }
    }
 
@@ -708,20 +708,20 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   public void method1042(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (string_0 != null) {
-         this.setAttributes(int_2, int_3);
-         int[] ints_0 = new int[string_0.length()];
+   public void drawHorizontalStringWave(String string, int x, int y, int colour, int shadow, int wave) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         int[] heights = new int[string.length()];
 
-         for (int int_5 = 0; int_5 < string_0.length(); int_5++) {
-            ints_0[int_5] = (int)(Math.sin((double)int_5 / 2.0D + (double)int_4 / 5.0D) * 5.0D);
+         for (int index = 0; index < string.length(); index++) {
+            heights[index] = (int)(Math.sin((double)index / 2.0D + (double)wave / 5.0D) * 5.0D);
          }
 
-         this.drawMouseoverText(string_0, int_0 - this.getWidth(string_0) / 2, int_1, (int[]) null, ints_0);
+         this.drawMouseoverText(string, x - this.getWidth(string) / 2, y, (int[]) null, heights);
       }
    }
 
-   public void drawWaveStringCentred(String string, int x, int y, int colour, int shadow, int wave) {
+   public void drawVerticalStringWave(String string, int x, int y, int colour, int shadow, int wave) {
       if (string != null) {
          this.setAttributes(colour, shadow);
          int[] xOffset = new int[string.length()];
@@ -736,29 +736,29 @@ public abstract class FontTypeFace extends Rasterizer2D {
       }
    }
 
-   public void method1044(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      if (string_0 != null) {
-         this.setAttributes(int_2, int_3);
-         double double_0 = 7.0D - (double)int_5 / 8.0D;
-         if (double_0 < 0.0D) {
-            double_0 = 0.0D;
+   public void drawHorizonalStringMovingWave(String string, int x, int y, int colour, int shadow, int waveAmount, int waveSpeed) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         double speed = 7.0D - (double)waveSpeed / 8.0D;
+         if (speed < 0.0D) {
+            speed = 0.0D;
          }
 
-         int[] ints_0 = new int[string_0.length()];
+         int[] heights = new int[string.length()];
 
-         for (int int_6 = 0; int_6 < string_0.length(); int_6++) {
-            ints_0[int_6] = (int)(Math.sin((double)int_6 / 1.5D + (double)int_4 / 1.0D) * double_0);
+         for (int index = 0; index < string.length(); index++) {
+            heights[index] = (int)(Math.sin((double)index / 1.5D + (double)waveAmount / 1.0D) * speed);
          }
 
-         this.drawMouseoverText(string_0, int_0 - this.getWidth(string_0) / 2, int_1, (int[]) null, ints_0);
+         this.drawMouseoverText(string, x - this.getWidth(string) / 2, y, (int[]) null, heights);
       }
    }
 
-   public void method1045(String string_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (string_0 != null) {
-         this.setAttributes(int_2, int_3);
-         anInt567 = int_4;
-         this.drawString(string_0, int_0, int_1);
+   public void drawStringWidth(String string, int x, int y, int colour, int shadow, int minWidth) {
+      if (string != null) {
+         this.setAttributes(colour, shadow);
+         FontTypeFace.minWidth = minWidth;
+         this.drawString(string, x, y);
       }
    }
 
@@ -797,149 +797,129 @@ public abstract class FontTypeFace extends Rasterizer2D {
       return -int_8;
    }
 
-   static void renderShadeRGB(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      int int_5 = int_0 + int_1 * Rasterizer2D.graphicsPixelsWidth;
-      int int_6 = Rasterizer2D.graphicsPixelsWidth - int_2;
-      int int_7 = 0;
-      int int_8 = 0;
-      int int_9;
-      if (int_1 < Rasterizer2D.topY) {
-         int_9 = Rasterizer2D.topY - int_1;
-         int_3 -= int_9;
-         int_1 = Rasterizer2D.topY;
-         int_8 += int_2 * int_9;
-         int_5 += int_9 * Rasterizer2D.graphicsPixelsWidth;
+   static void renderShadeRGB(byte[] glyph, int x, int y, int width, int height, int colour) {
+      int rasterIndex = x + y * Rasterizer2D.graphicsPixelsWidth;
+      int rasterClip = Rasterizer2D.graphicsPixelsWidth - width;
+      int glyphClip = 0;
+      int glyphIndex = 0;
+      int dy;
+      if (y < Rasterizer2D.topY) {
+         dy = Rasterizer2D.topY - y;
+         height -= dy;
+         y = Rasterizer2D.topY;
+         glyphIndex += width * dy;
+         rasterIndex += dy * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (int_1 + int_3 > Rasterizer2D.bottomY) {
-         int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
+      if (y + height > Rasterizer2D.bottomY) {
+         height -= y + height - Rasterizer2D.bottomY;
       }
 
-      if (int_0 < Rasterizer2D.topX) {
-         int_9 = Rasterizer2D.topX - int_0;
-         int_2 -= int_9;
-         int_0 = Rasterizer2D.topX;
-         int_8 += int_9;
-         int_5 += int_9;
-         int_7 += int_9;
-         int_6 += int_9;
+      if (x < Rasterizer2D.topX) {
+         dy = Rasterizer2D.topX - x;
+         width -= dy;
+         x = Rasterizer2D.topX;
+         glyphIndex += dy;
+         rasterIndex += dy;
+         glyphClip += dy;
+         rasterClip += dy;
       }
 
-      if (int_2 + int_0 > Rasterizer2D.bottomX) {
-         int_9 = int_2 + int_0 - Rasterizer2D.bottomX;
-         int_2 -= int_9;
-         int_7 += int_9;
-         int_6 += int_9;
+      if (width + x > Rasterizer2D.bottomX) {
+         dy = width + x - Rasterizer2D.bottomX;
+         width -= dy;
+         glyphClip += dy;
+         rasterClip += dy;
       }
 
-      if (int_2 > 0 && int_3 > 0) {
-         render(Rasterizer2D.graphicsPixels, bytes_0, int_4, int_8, int_5, int_2, int_3, int_6, int_7);
+      if (width > 0 && height > 0) {
+         render(Rasterizer2D.graphicsPixels, glyph, colour, glyphIndex, rasterIndex, width, height, rasterClip, glyphClip);
       }
    }
 
-   static void render(int[] ints_0, byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
-      int int_7 = -(int_3 >> 2);
-      int_3 = -(int_3 & 0x3);
+   static void render(int[] raster, byte[] glyph, int colour, int glyphPosition, int rasterPosition, int width, int height, int rasterOffset, int glyphOffset) {
+      int offsetX = -(width >> 2);
+      width = -(width & 0x3);
 
-      for (int int_8 = -int_4; int_8 < 0; int_8++) {
-         int int_9;
-         for (int_9 = int_7; int_9 < 0; int_9++) {
-            if (bytes_0[int_1++] != 0) {
-               ints_0[int_2++] = int_0;
+      for (int y = -height; y < 0; y++) {
+         int x;
+         for (x = offsetX; x < 0; x++) {
+            if (glyph[glyphPosition++] != 0) {
+               raster[rasterPosition++] = colour;
             } else {
-               ++int_2;
+               ++rasterPosition;
             }
 
-            if (bytes_0[int_1++] != 0) {
-               ints_0[int_2++] = int_0;
+            if (glyph[glyphPosition++] != 0) {
+               raster[rasterPosition++] = colour;
             } else {
-               ++int_2;
+               ++rasterPosition;
             }
 
-            if (bytes_0[int_1++] != 0) {
-               ints_0[int_2++] = int_0;
+            if (glyph[glyphPosition++] != 0) {
+               raster[rasterPosition++] = colour;
             } else {
-               ++int_2;
+               ++rasterPosition;
             }
 
-            if (bytes_0[int_1++] != 0) {
-               ints_0[int_2++] = int_0;
+            if (glyph[glyphPosition++] != 0) {
+               raster[rasterPosition++] = colour;
             } else {
-               ++int_2;
-            }
-         }
-
-         for (int_9 = int_3; int_9 < 0; int_9++) {
-            if (bytes_0[int_1++] != 0) {
-               ints_0[int_2++] = int_0;
-            } else {
-               ++int_2;
+               ++rasterPosition;
             }
          }
 
-         int_2 += int_5;
-         int_1 += int_6;
-      }
-
-   }
-
-   static void renderRGBA(int[] ints_0, byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7) {
-      int_0 = ((int_0 & 0xFF00) * int_7 & 0xFF0000) + (int_7 * (int_0 & 0xFF00FF) & 0xFF00FF00) >> 8;
-      int_7 = 256 - int_7;
-
-      for (int int_8 = -int_4; int_8 < 0; int_8++) {
-         for (int int_9 = -int_3; int_9 < 0; int_9++) {
-            if (bytes_0[int_1++] != 0) {
-               int int_10 = ints_0[int_2];
-               ints_0[int_2++] = (((int_10 & 0xFF00) * int_7 & 0xFF0000) + ((int_10 & 0xFF00FF) * int_7 & 0xFF00FF00) >> 8) + int_0;
+         for (x = width; x < 0; x++) {
+            if (glyph[glyphPosition++] != 0) {
+               raster[rasterPosition++] = colour;
             } else {
-               ++int_2;
+               ++rasterPosition;
             }
          }
 
-         int_2 += int_5;
-         int_1 += int_6;
+         rasterPosition += rasterOffset;
+         glyphPosition += glyphOffset;
       }
 
    }
 
-   static void renderShadeRGBA(byte[] bytes_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5) {
-      int int_6 = int_0 + int_1 * Rasterizer2D.graphicsPixelsWidth;
-      int int_7 = Rasterizer2D.graphicsPixelsWidth - int_2;
-      int int_8 = 0;
-      int int_9 = 0;
-      int int_10;
-      if (int_1 < Rasterizer2D.topY) {
-         int_10 = Rasterizer2D.topY - int_1;
-         int_3 -= int_10;
-         int_1 = Rasterizer2D.topY;
-         int_9 += int_2 * int_10;
-         int_6 += int_10 * Rasterizer2D.graphicsPixelsWidth;
+   static void renderShadeRGBA(byte[] bytes_0, int x, int y, int width, int height, int int_4, int int_5) {
+      int rasterIndex = x + y * Rasterizer2D.graphicsPixelsWidth;
+      int rasterClip = Rasterizer2D.graphicsPixelsWidth - width;
+      int glyphClip = 0;
+      int glyphIndex = 0;
+      int dy;
+      if (y < Rasterizer2D.topY) {
+         dy = Rasterizer2D.topY - y;
+         height -= dy;
+         y = Rasterizer2D.topY;
+         glyphIndex += width * dy;
+         rasterIndex += dy * Rasterizer2D.graphicsPixelsWidth;
       }
 
-      if (int_1 + int_3 > Rasterizer2D.bottomY) {
-         int_3 -= int_1 + int_3 - Rasterizer2D.bottomY;
+      if (y + height > Rasterizer2D.bottomY) {
+         height -= y + height - Rasterizer2D.bottomY;
       }
 
-      if (int_0 < Rasterizer2D.topX) {
-         int_10 = Rasterizer2D.topX - int_0;
-         int_2 -= int_10;
-         int_0 = Rasterizer2D.topX;
-         int_9 += int_10;
-         int_6 += int_10;
-         int_8 += int_10;
-         int_7 += int_10;
+      if (x < Rasterizer2D.topX) {
+         dy = Rasterizer2D.topX - x;
+         width -= dy;
+         x = Rasterizer2D.topX;
+         glyphIndex += dy;
+         rasterIndex += dy;
+         glyphClip += dy;
+         rasterClip += dy;
       }
 
-      if (int_2 + int_0 > Rasterizer2D.bottomX) {
-         int_10 = int_2 + int_0 - Rasterizer2D.bottomX;
-         int_2 -= int_10;
-         int_8 += int_10;
-         int_7 += int_10;
+      if (width + x > Rasterizer2D.bottomX) {
+         dy = width + x - Rasterizer2D.bottomX;
+         width -= dy;
+         glyphClip += dy;
+         rasterClip += dy;
       }
 
-      if (int_2 > 0 && int_3 > 0) {
-         renderRGBA(Rasterizer2D.graphicsPixels, bytes_0, int_4, int_9, int_6, int_2, int_3, int_7, int_8, int_5);
+      if (width > 0 && height > 0) {
+         Font.renderRGBA(Rasterizer2D.graphicsPixels, bytes_0, int_4, glyphIndex, rasterIndex, width, height, rasterClip, glyphClip, int_5);
       }
    }
 

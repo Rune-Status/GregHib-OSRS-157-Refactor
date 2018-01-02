@@ -32,12 +32,12 @@ public class Class78 {
       int int_2;
       int int_3;
       if (MouseInput.anInt263 == 4 && Item.aBool73) {
-         int_2 = MouseInput.anInt262 - Client.anInt687;
+         int_2 = MouseInput.mouseEventY - Client.anInt687;
          Client.anInt684 = int_2 * 2;
-         Client.anInt687 = int_2 != -1 && int_2 != 1 ? (MouseInput.anInt262 + Client.anInt687) / 2 : MouseInput.anInt262;
-         int_3 = Client.anInt685 - MouseInput.anInt260;
+         Client.anInt687 = int_2 != -1 && int_2 != 1 ? (MouseInput.mouseEventY + Client.anInt687) / 2 : MouseInput.mouseEventY;
+         int_3 = Client.anInt685 - MouseInput.mouseEventX;
          Client.anInt681 = int_3 * 2;
-         Client.anInt685 = int_3 != -1 && int_3 != 1 ? (Client.anInt685 + MouseInput.anInt260) / 2 : MouseInput.anInt260;
+         Client.anInt685 = int_3 != -1 && int_3 != 1 ? (Client.anInt685 + MouseInput.mouseEventX) / 2 : MouseInput.mouseEventX;
       } else {
          if (KeyFocusListener.aBoolArray3[96]) {
             Client.anInt681 += (-24 - Client.anInt681) / 2;
@@ -55,8 +55,8 @@ public class Class78 {
             Client.anInt684 /= 2;
          }
 
-         Client.anInt687 = MouseInput.anInt262;
-         Client.anInt685 = MouseInput.anInt260;
+         Client.anInt687 = MouseInput.mouseEventY;
+         Client.anInt685 = MouseInput.mouseEventX;
       }
 
       Client.mapAngle = Client.anInt681 / 2 + Client.mapAngle & 0x7FF;

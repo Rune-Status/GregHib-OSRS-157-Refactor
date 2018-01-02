@@ -61,7 +61,7 @@ public class Class29 {
 
             int int_6;
             if (Client.itemSelectionState == 1) {
-               Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16777215) + string_2, 14, int_0, int_1, int_2);
+               Class24.addMenuEntry("Use", Client.selectedItemName + " " + "->" + " " + Wall.getColTags(16777215) + string_2, 14, int_0, int_1, int_2);
             } else if (Client.spellSelected) {
                if ((Enum4.anInt381 & 0x8) == 8) {
                   Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16777215) + string_2, 15, int_0, int_1, int_2);

@@ -78,7 +78,7 @@ public class CombatInfo2 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase19, this.anInt453, 0);
+            spritepixels_0 = CacheableNode_Sub6.decodeSpritePixels(anIndexDataBase19, this.anInt453, 0);
             if (spritepixels_0 != null) {
                spriteCache.put(spritepixels_0, (long)this.anInt453);
             }
@@ -96,7 +96,7 @@ public class CombatInfo2 extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase19, this.anInt452, 0);
+            spritepixels_0 = CacheableNode_Sub6.decodeSpritePixels(anIndexDataBase19, this.anInt452, 0);
             if (spritepixels_0 != null) {
                spriteCache.put(spritepixels_0, (long)this.anInt452);
             }

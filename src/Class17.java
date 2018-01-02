@@ -402,7 +402,7 @@ public class Class17 {
                                                                                                    } else {
                                                                                                       int_5 = ints_1[int_1];
                                                                                                       Settings.widgetSettings[int_5] = Class39.intStack[--Class23.intStackSize];
-                                                                                                      Client.method1064(int_5);
+                                                                                                      Client.updateVarp(int_5);
                                                                                                    }
                                                                                                 } else {
                                                                                                    int_5 = ints_1[int_1];

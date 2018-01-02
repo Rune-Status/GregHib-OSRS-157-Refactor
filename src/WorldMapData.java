@@ -219,19 +219,19 @@ public class WorldMapData {
       Class35.method245(actor_0.x, actor_0.y, int_0);
    }
 
-   static void method306() {
+   static void isOnTutorialIsland() {
       Client.onTutorialIsland = 0;
-      int int_0 = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
-      int int_1 = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
-      if (int_0 >= 3053 && int_0 <= 3156 && int_1 >= 3056 && int_1 <= 3136) {
+      int tileX = (Class4.localPlayer.x >> 7) + Client.regionBaseX;
+      int tileY = (Class4.localPlayer.y >> 7) + Client.regionBaseY;
+      if (tileX >= 3053 && tileX <= 3156 && tileY >= 3056 && tileY <= 3136) {
          Client.onTutorialIsland = 1;
       }
 
-      if (int_0 >= 3072 && int_0 <= 3118 && int_1 >= 9492 && int_1 <= 9535) {
+      if (tileX >= 3072 && tileX <= 3118 && tileY >= 9492 && tileY <= 9535) {
          Client.onTutorialIsland = 1;
       }
 
-      if (Client.onTutorialIsland == 1 && int_0 >= 3139 && int_0 <= 3199 && int_1 >= 3008 && int_1 <= 3062) {
+      if (Client.onTutorialIsland == 1 && tileX >= 3139 && tileX <= 3199 && tileY >= 3008 && tileY <= 3062) {
          Client.onTutorialIsland = 0;
       }
 

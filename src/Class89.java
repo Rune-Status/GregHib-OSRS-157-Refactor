@@ -1,7 +1,7 @@
 public class Class89 {
 
    public static Font decodeFont(IndexDataBase primaryIndex, IndexDataBase secondaryIndex, int archive, int file) {
-      return !TileStrategy.decodeIfExists(primaryIndex, archive, file) ? null : Class103.method533(secondaryIndex.getConfigData(archive, file));
+      return !TileStrategy.decodeIfExists(primaryIndex, archive, file) ? null : Class103.loadFont(secondaryIndex.getConfigData(archive, file));
    }
 
    static void method497(int int_0, int int_1, int int_2, boolean bool_0, int int_3, boolean bool_1) {

@@ -423,7 +423,7 @@ public class Class20 implements Comparator {
                         int_1 = Class39.intStack[Class23.intStackSize];
                         int_9 = Class39.intStack[Class23.intStackSize + 1];
                         int_2 = Class39.intStack[Class23.intStackSize + 2];
-                        if (Client.anInt644 != 0 && int_9 != 0 && Client.anInt647 < 50) {
+                        if (Client.waveVolume != 0 && int_9 != 0 && Client.anInt647 < 50) {
                            Client.anIntArray149[Client.anInt647] = int_1;
                            Client.anIntArray150[Client.anInt647] = int_9;
                            Client.anIntArray152[Client.anInt647] = int_2;
@@ -1329,7 +1329,7 @@ public class Class20 implements Comparator {
                                     int_2 = Class39.intStack[Class23.intStackSize + 1];
                                     bytes_1 = Enum1.fontConfigIndex.getConfigData(int_2, 0);
                                     font_0 = new Font(bytes_1);
-                                    Class39.intStack[++Class23.intStackSize - 1] = font_0.method1038(string_2, int_9);
+                                    Class39.intStack[++Class23.intStackSize - 1] = font_0.getWidth(string_2, int_9);
                                     byte_0 = 1;
                                  } else if (int_0 == 4110) {
                                     Class28.scriptStringStackSize -= 2;

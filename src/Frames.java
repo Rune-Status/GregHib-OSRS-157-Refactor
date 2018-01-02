@@ -77,8 +77,8 @@ public class Frames extends CacheableNode {
                int int_3 = MouseInput.anInt264;
                int int_4 = MouseInput.anInt265;
                if (int_0 == 0) {
-                  int_3 = MouseInput.anInt260;
-                  int_4 = MouseInput.anInt262;
+                  int_3 = MouseInput.mouseEventX;
+                  int_4 = MouseInput.mouseEventY;
                }
 
                if (!Item.aBool73 && int_0 == 4) {

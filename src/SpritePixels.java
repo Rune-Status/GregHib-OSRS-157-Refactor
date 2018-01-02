@@ -873,13 +873,13 @@ public final class SpritePixels extends Rasterizer2D {
       this.pixels = pixels;
    }
 
-   public void setSecondarySprite(int spriteId) {
-      for (int int_1 = this.height - 1; int_1 > 0; --int_1) {
-         int int_2 = int_1 * this.width;
+   public void setBorderPixels(int colour) {
+      for (int height = this.height - 1; height > 0; --height) {
+         int area = height * this.width;
 
-         for (int int_3 = this.width - 1; int_3 > 0; --int_3) {
-            if (this.pixels[int_3 + int_2] == 0 && this.pixels[int_3 + int_2 - 1 - this.width] != 0) {
-               this.pixels[int_3 + int_2] = spriteId;
+         for (int width = this.width - 1; width > 0; --width) {
+            if (this.pixels[width + area] == 0 && this.pixels[width + area - 1 - this.width] != 0) {
+               this.pixels[width + area] = colour;
             }
          }
       }

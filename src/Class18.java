@@ -22,8 +22,8 @@ public class Class18 implements Runnable {
          Object object_0 = this.anObject1;
          synchronized(object_0) {
             if (this.anInt71 < 500) {
-               this.anIntArray5[this.anInt71] = MouseInput.anInt260;
-               this.anIntArray6[this.anInt71] = MouseInput.anInt262;
+               this.anIntArray5[this.anInt71] = MouseInput.mouseEventX;
+               this.anIntArray6[this.anInt71] = MouseInput.mouseEventY;
                ++this.anInt71;
             }
          }

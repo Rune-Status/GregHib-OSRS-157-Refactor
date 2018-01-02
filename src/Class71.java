@@ -21,10 +21,10 @@ public class Class71 {
       }
    }
 
-   static void method423(int int_0, int int_1, int int_2, int int_3) {
-      for (int int_4 = 0; int_4 < Client.anInt610; int_4++) {
-         if (Client.widgetPositionX[int_4] + Client.widgetBoundsWidth[int_4] > int_0 && Client.widgetPositionX[int_4] < int_0 + int_2 && Client.widgetPositionY[int_4] + Client.widgetBoundsHeight[int_4] > int_1 && Client.widgetPositionY[int_4] < int_3 + int_1) {
-            Client.aBoolArray11[int_4] = true;
+   static void method423(int x, int y, int width, int height) {
+      for (int int_4 = 0; int_4 < Client.widgetIndexCount; int_4++) {
+         if (Client.widgetPositionX[int_4] + Client.widgetBoundsWidth[int_4] > x && Client.widgetPositionX[int_4] < x + width && Client.widgetPositionY[int_4] + Client.widgetBoundsHeight[int_4] > y && Client.widgetPositionY[int_4] < height + y) {
+            Client.drawRedFill[int_4] = true;
          }
       }
 

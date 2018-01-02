@@ -6,13 +6,13 @@ public class Class103 {
       aCharArray6 = new char[] {'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'};
    }
 
-   static Font method533(byte[] bytes_0) {
-      if (bytes_0 == null) {
+   static Font loadFont(byte[] data) {
+      if (data == null) {
          return null;
       } else {
-         Font font_0 = new Font(bytes_0, Class111.anIntArray54, Class7.offsetsY, ItemContainer.anIntArray76, Class6.anIntArray3, Class111.loadedPixels, Class111.spritePixels);
+         Font font = new Font(data, Class111.loadedHorizontalOffsets, Class7.loadedVerticalOffsets, ItemContainer.loadedWidths, Class6.loadedHeights, Class111.loadedPixels, Class111.spritePixels);
          Class98.cleanPixelLoader();
-         return font_0;
+         return font;
       }
    }
 

@@ -55,7 +55,7 @@ public class Area extends CacheableNode {
          if (spritepixels_0 != null) {
             return spritepixels_0;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase17, int_0, 0);
+            spritepixels_0 = CacheableNode_Sub6.decodeSpritePixels(anIndexDataBase17, int_0, 0);
             if (spritepixels_0 != null) {
                skeletonsIndex.put(spritepixels_0, (long)int_0);
             }

@@ -50,13 +50,12 @@ public class AClass1_Sub2 extends AClass1 {
       }
    }
 
-   static void method636(int int_0, int int_1, int int_2, int int_3) {
-      for (int int_4 = 0; int_4 < Client.anInt610; int_4++) {
-         if (Client.widgetPositionX[int_4] + Client.widgetBoundsWidth[int_4] > int_0 && Client.widgetPositionX[int_4] < int_0 + int_2 && Client.widgetBoundsHeight[int_4] + Client.widgetPositionY[int_4] > int_1 && Client.widgetPositionY[int_4] < int_3 + int_1) {
-            Client.aBoolArray8[int_4] = true;
+   static void isWithinWidget(int x, int y, int width, int height) {
+      for (int index = 0; index < Client.widgetIndexCount; index++) {
+         if (Client.widgetPositionX[index] + Client.widgetBoundsWidth[index] > x && Client.widgetPositionX[index] < x + width && Client.widgetBoundsHeight[index] + Client.widgetPositionY[index] > y && Client.widgetPositionY[index] < height + y) {
+            Client.aBoolArray8[index] = true;
          }
       }
-
    }
 
    static void method637(Widget[] widgets_0, Widget widget_0, boolean bool_0) {

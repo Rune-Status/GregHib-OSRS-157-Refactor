@@ -640,16 +640,16 @@ public class ObjectDefinition extends CacheableNode {
    }
 
    static SpritePixels[] method829() {
-      SpritePixels[] spritepixelss_0 = new SpritePixels[Class111.anInt216];
+      SpritePixels[] spritepixelss_0 = new SpritePixels[Class111.loadedSpriteSize];
 
-      for (int int_0 = 0; int_0 < Class111.anInt216; int_0++) {
+      for (int int_0 = 0; int_0 < Class111.loadedSpriteSize; int_0++) {
          SpritePixels spritepixels_0 = spritepixelss_0[int_0] = new SpritePixels();
-         spritepixels_0.maxWidth = Class111.anInt214;
-         spritepixels_0.maxHeight = Class111.anInt215;
-         spritepixels_0.offsetX = Class111.anIntArray54[int_0];
-         spritepixels_0.offsetY = Class7.offsetsY[int_0];
-         spritepixels_0.width = ItemContainer.anIntArray76[int_0];
-         spritepixels_0.height = Class6.anIntArray3[int_0];
+         spritepixels_0.maxWidth = Class111.loadedMaxWidth;
+         spritepixels_0.maxHeight = Class111.loadedMaxHeight;
+         spritepixels_0.offsetX = Class111.loadedHorizontalOffsets[int_0];
+         spritepixels_0.offsetY = Class7.loadedVerticalOffsets[int_0];
+         spritepixels_0.width = ItemContainer.loadedWidths[int_0];
+         spritepixels_0.height = Class6.loadedHeights[int_0];
          int int_1 = spritepixels_0.height * spritepixels_0.width;
          byte[] bytes_0 = Class111.spritePixels[int_0];
          spritepixels_0.pixels = new int[int_1];

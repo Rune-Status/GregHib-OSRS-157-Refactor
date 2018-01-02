@@ -414,7 +414,7 @@ public class Ignore {
                         if (widget_1.dynamicValues != null && widget_1.dynamicValues[0][0] == 5) {
                            int_6 = widget_1.dynamicValues[0][1];
                            Settings.widgetSettings[int_6] = 1 - Settings.widgetSettings[int_6];
-                           Client.method1064(int_6);
+                           Client.updateVarp(int_6);
                         }
                      } else if (int_2 == 29) {
                         packetnode_0 = Actor.method953(ClientPacket.aClientPacket34, Client.aClass46_1.cipher);
@@ -425,7 +425,7 @@ public class Ignore {
                            int_6 = widget_1.dynamicValues[0][1];
                            if (Settings.widgetSettings[int_6] != widget_1.anIntArray65[0]) {
                               Settings.widgetSettings[int_6] = widget_1.anIntArray65[0];
-                              Client.method1064(int_6);
+                              Client.updateVarp(int_6);
                            }
                         }
                      } else if (int_2 == 30) {
@@ -511,9 +511,9 @@ public class Ignore {
                            Class48.anInt111 = int_1;
                            KeyFocusListener.anInt128 = int_3;
                            WorldMapData.method305(widget_2);
-                           Client.aString35 = Wall.getColTags(16748608) + ItemDefinition.getDefinition(int_3).name + Wall.getColTags(16777215);
-                           if (Client.aString35 == null) {
-                              Client.aString35 = "null";
+                           Client.selectedItemName = Wall.getColTags(16748608) + ItemDefinition.getDefinition(int_3).name + Wall.getColTags(16777215);
+                           if (Client.selectedItemName == null) {
+                              Client.selectedItemName = "null";
                            }
 
                            return;

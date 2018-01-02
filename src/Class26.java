@@ -142,19 +142,19 @@ public class Class26 {
             Rasterizer2D.method926(int_0, int_1, 0, cacheablenode_sub1_0.pixelsX, cacheablenode_sub1_0.pixelsY);
          }
 
-         Client.aBoolArray11[int_2] = true;
+         Client.drawRedFill[int_2] = true;
       }
    }
 
-   static void method224(Actor actor_0, int int_0, int int_1, int int_2, int int_3, int int_4) {
-      if (actor_0 != null && actor_0.hasConfig()) {
-         if (actor_0 instanceof NPC) {
-            NPCDefinition npccomposition_0 = ((NPC) actor_0).composition;
-            if (npccomposition_0.transformIds != null) {
-               npccomposition_0 = npccomposition_0.transform();
+   static void drawActorOverlays(Actor target, int int_0, int int_1, int int_2, int int_3, int int_4) {
+      if (target != null && target.hasConfig()) {
+         if (target instanceof NPC) {
+            NPCDefinition definition = ((NPC) target).composition;
+            if (definition.transformIds != null) {
+               definition = definition.transform();
             }
 
-            if (npccomposition_0 == null) {
+            if (definition == null) {
                return;
             }
          }
@@ -165,17 +165,17 @@ public class Class26 {
          int int_8;
          int int_13;
          int int_14;
-         if (!actor_0.combatInfoList.method452()) {
-            WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
+         if (!target.combatInfoList.method452()) {
+            WorldMapData.characterToScreen(target, target.anInt521 + 15);
 
-            for (CombatInfoListHolder combatinfolistholder_0 = (CombatInfoListHolder) actor_0.combatInfoList.method454(); combatinfolistholder_0 != null; combatinfolistholder_0 = (CombatInfoListHolder) actor_0.combatInfoList.method456()) {
-               CombatInfo1 combatinfo1_0 = combatinfolistholder_0.method649(Client.gameCycle);
+            for (CombatInfoListHolder combatInfoListHolder = (CombatInfoListHolder) target.combatInfoList.method454(); combatInfoListHolder != null; combatInfoListHolder = (CombatInfoListHolder) target.combatInfoList.method456()) {
+               CombatInfo1 combatinfo1_0 = combatInfoListHolder.method649(Client.gameCycle);
                if (combatinfo1_0 == null) {
-                  if (combatinfolistholder_0.method650()) {
-                     combatinfolistholder_0.unlink();
+                  if (combatInfoListHolder.method650()) {
+                     combatInfoListHolder.unlink();
                   }
                } else {
-                  CombatInfo2 combatinfo2_0 = combatinfolistholder_0.combatInfo2;
+                  CombatInfo2 combatinfo2_0 = combatInfoListHolder.combatInfo2;
                   SpritePixels spritepixels_0 = combatinfo2_0.method818();
                   SpritePixels spritepixels_1 = combatinfo2_0.method819();
                   int int_7 = 0;
@@ -252,13 +252,13 @@ public class Class26 {
          }
 
          if (int_0 < int_5) {
-            Player player_0 = (Player) actor_0;
+            Player player_0 = (Player) target;
             if (player_0.hidden) {
                return;
             }
 
             if (player_0.skullIcon != -1 || player_0.overheadIcon != -1) {
-               WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
+               WorldMapData.characterToScreen(target, target.anInt521 + 15);
                if (Client.screenY > -1) {
                   if (player_0.skullIcon != -1) {
                      CacheFile.headIconsPk[player_0.skullIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
@@ -273,50 +273,50 @@ public class Class26 {
             }
 
             if (int_0 >= 0 && Client.hintArrowTargetType == 10 && ints_0[int_0] == Client.hintArrowPlayerTargetIdx) {
-               WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
+               WorldMapData.characterToScreen(target, target.anInt521 + 15);
                if (Client.screenY > -1) {
                   Class85.headIconsHint[1].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
                }
             }
          } else {
-            NPCDefinition npccomposition_1 = ((NPC) actor_0).composition;
+            NPCDefinition npccomposition_1 = ((NPC) target).composition;
             if (npccomposition_1.transformIds != null) {
                npccomposition_1 = npccomposition_1.transform();
             }
 
             if (npccomposition_1.headIcon >= 0 && npccomposition_1.headIcon < TileStrategy.headIconsPrayer.length) {
-               WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
+               WorldMapData.characterToScreen(target, target.anInt521 + 15);
                if (Client.screenY > -1) {
                   TileStrategy.headIconsPrayer[npccomposition_1.headIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
                }
             }
 
             if (Client.hintArrowTargetType == 1 && Client.npcIndices[int_0 - int_5] == Client.hintArrowNpcTargetIdx && Client.gameCycle % 20 < 10) {
-               WorldMapData.characterToScreen(actor_0, actor_0.anInt521 + 15);
+               WorldMapData.characterToScreen(target, target.anInt521 + 15);
                if (Client.screenY > -1) {
                   Class85.headIconsHint[0].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 28);
                }
             }
          }
 
-         if (actor_0.overhead != null && (int_0 >= int_5 || !actor_0.inSequence && (Client.anInt683 == 4 || !actor_0.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriend(((Player) actor_0).name, false))))) {
-            WorldMapData.characterToScreen(actor_0, actor_0.anInt521);
-            if (Client.screenY > -1 && Client.anInt691 < Client.anInt692) {
-               Client.anIntArray162[Client.anInt691] = Class50.aFont3.getWidth(actor_0.overhead) / 2;
-               Client.anIntArray161[Client.anInt691] = Class50.aFont3.verticalSpace;
-               Client.anIntArray159[Client.anInt691] = Client.screenY;
-               Client.anIntArray160[Client.anInt691] = Client.screenX;
-               Client.anIntArray163[Client.anInt691] = actor_0.textColour;
-               Client.anIntArray165[Client.anInt691] = actor_0.textEffect;
-               Client.anIntArray167[Client.anInt691] = actor_0.textCycle;
-               Client.aStringArray6[Client.anInt691] = actor_0.overhead;
-               ++Client.anInt691;
+         if (target.overhead != null && (int_0 >= int_5 || !target.inSequence && (Client.anInt683 == 4 || !target.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriend(((Player) target).name, false))))) {
+            WorldMapData.characterToScreen(target, target.anInt521);
+            if (Client.screenY > -1 && Client.lastTextMessageIndex < Client.anInt692) {
+               Client.textWidths[Client.lastTextMessageIndex] = Class50.boldFont.getWidth(target.overhead) / 2;
+               Client.textHeights[Client.lastTextMessageIndex] = Class50.boldFont.verticalSpace;
+               Client.textRenderPointsX[Client.lastTextMessageIndex] = Client.screenY;
+               Client.textRenderPointsY[Client.lastTextMessageIndex] = Client.screenX;
+               Client.textColourEffect[Client.lastTextMessageIndex] = target.textColour;
+               Client.textEffects[Client.lastTextMessageIndex] = target.textEffect;
+               Client.textCycles[Client.lastTextMessageIndex] = target.textCycle;
+               Client.textSpokenMessages[Client.lastTextMessageIndex] = target.overhead;
+               ++Client.lastTextMessageIndex;
             }
          }
 
          for (int int_15 = 0; int_15 < 4; int_15++) {
-            int int_16 = actor_0.hitsplatCycles[int_15];
-            int int_17 = actor_0.anIntArray110[int_15];
+            int int_16 = target.hitSplatCycles[int_15];
+            int int_17 = target.anIntArray110[int_15];
             CacheableNode_Sub6 cacheablenode_sub6_1 = null;
             int int_18 = 0;
             if (int_17 >= 0) {
@@ -324,12 +324,12 @@ public class Class26 {
                   continue;
                }
 
-               cacheablenode_sub6_1 = AClass3_Sub2.method753(actor_0.anIntArray110[int_15]);
+               cacheablenode_sub6_1 = AClass3_Sub2.getCacheableNode_Sub6Definition(target.anIntArray110[int_15]);
                int_18 = cacheablenode_sub6_1.anInt484;
                if (cacheablenode_sub6_1 != null && cacheablenode_sub6_1.anIntArray103 != null) {
                   cacheablenode_sub6_1 = cacheablenode_sub6_1.method890();
                   if (cacheablenode_sub6_1 == null) {
-                     actor_0.hitsplatCycles[int_15] = -1;
+                     target.hitSplatCycles[int_15] = -1;
                      continue;
                   }
                }
@@ -337,10 +337,10 @@ public class Class26 {
                continue;
             }
 
-            int_8 = actor_0.anIntArray111[int_15];
+            int_8 = target.anIntArray111[int_15];
             CacheableNode_Sub6 cacheablenode_sub6_0 = null;
             if (int_8 >= 0) {
-               cacheablenode_sub6_0 = AClass3_Sub2.method753(int_8);
+               cacheablenode_sub6_0 = AClass3_Sub2.getCacheableNode_Sub6Definition(int_8);
                if (cacheablenode_sub6_0 != null && cacheablenode_sub6_0.anIntArray103 != null) {
                   cacheablenode_sub6_0 = cacheablenode_sub6_0.method890();
                }
@@ -348,9 +348,9 @@ public class Class26 {
 
             if (int_16 - int_18 <= Client.gameCycle) {
                if (cacheablenode_sub6_1 == null) {
-                  actor_0.hitsplatCycles[int_15] = -1;
+                  target.hitSplatCycles[int_15] = -1;
                } else {
-                  WorldMapData.characterToScreen(actor_0, actor_0.anInt521 / 2);
+                  WorldMapData.characterToScreen(target, target.anInt521 / 2);
                   if (Client.screenY > -1) {
                      if (int_15 == 1) {
                         Client.screenX -= 20;
@@ -403,7 +403,7 @@ public class Class26 {
                         int_21 = spritepixels_2.offsetX;
                      }
 
-                     spritepixels_3 = cacheablenode_sub6_1.method892();
+                     spritepixels_3 = cacheablenode_sub6_1.getCachedSprite();
                      if (spritepixels_3 != null) {
                         int_14 = spritepixels_3.width;
                         int_34 = spritepixels_3.height;
@@ -448,7 +448,7 @@ public class Class26 {
                            int_29 = spritepixels_6.offsetX;
                         }
 
-                        spritepixels_7 = cacheablenode_sub6_0.method892();
+                        spritepixels_7 = cacheablenode_sub6_0.getCachedSprite();
                         if (spritepixels_7 != null) {
                            int_26 = spritepixels_7.width;
                            int_34 = spritepixels_7.height;
@@ -482,14 +482,14 @@ public class Class26 {
                         }
                      }
 
-                     Font font_0 = cacheablenode_sub6_1.method895();
+                     Font font_0 = cacheablenode_sub6_1.getCachedFont();
                      if (font_0 == null) {
                         font_0 = Class1.aFont2;
                      }
 
                      Font font_1;
                      if (cacheablenode_sub6_0 != null) {
-                        font_1 = cacheablenode_sub6_0.method895();
+                        font_1 = cacheablenode_sub6_0.getCachedFont();
                         if (font_1 == null) {
                            font_1 = Class1.aFont2;
                         }
@@ -501,10 +501,10 @@ public class Class26 {
                      String string_1 = null;
                      boolean bool_1 = false;
                      int int_35 = 0;
-                     string_0 = cacheablenode_sub6_1.method896(actor_0.hitsplatTypes[int_15]);
+                     string_0 = cacheablenode_sub6_1.getHitsplatString(target.hitSplatTypes[int_15]);
                      int int_63 = font_0.getWidth(string_0);
                      if (cacheablenode_sub6_0 != null) {
-                        string_1 = cacheablenode_sub6_0.method896(actor_0.anIntArray112[int_15]);
+                        string_1 = cacheablenode_sub6_0.getHitsplatString(target.anIntArray112[int_15]);
                         int_35 = font_1.getWidth(string_1);
                      }
 
@@ -589,7 +589,7 @@ public class Class26 {
                         }
                      }
 
-                     int_49 = actor_0.hitsplatCycles[int_15] - Client.gameCycle;
+                     int_49 = target.hitSplatCycles[int_15] - Client.gameCycle;
                      int int_50 = cacheablenode_sub6_1.anInt485 - int_49 * cacheablenode_sub6_1.anInt485 / cacheablenode_sub6_1.anInt484;
                      int int_51 = int_49 * cacheablenode_sub6_1.anInt487 / cacheablenode_sub6_1.anInt484 + -cacheablenode_sub6_1.anInt487;
                      int int_52 = int_50 + (int_1 + Client.screenY - (int_38 >> 1));
@@ -647,7 +647,7 @@ public class Class26 {
                            spritepixels_5.drawImage(int_43 + int_52 - int_24, int_53, int_60);
                         }
 
-                        font_0.method1045(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.anInt483, 0, int_60);
+                        font_0.drawStringWidth(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.colour, 0, int_60);
                         if (cacheablenode_sub6_0 != null) {
                            if (spritepixels_6 != null) {
                               spritepixels_6.drawImage(int_52 + int_44 - int_29, int_53, int_60);
@@ -667,7 +667,7 @@ public class Class26 {
                               spritepixels_9.drawImage(int_52 + int_47 - int_32, int_53, int_60);
                            }
 
-                           font_1.method1045(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.anInt483, 0, int_60);
+                           font_1.drawStringWidth(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.colour, 0, int_60);
                         }
                      } else {
                         if (spritepixels_2 != null) {
@@ -688,7 +688,7 @@ public class Class26 {
                            spritepixels_5.drawAt(int_52 + int_43 - int_24, int_53);
                         }
 
-                        font_0.drawString(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.anInt483 | 0xFF000000, 0);
+                        font_0.drawString(string_0, int_42 + int_52, int_56, cacheablenode_sub6_1.colour | 0xFF000000, 0);
                         if (cacheablenode_sub6_0 != null) {
                            if (spritepixels_6 != null) {
                               spritepixels_6.drawAt(int_44 + int_52 - int_29, int_53);
@@ -708,7 +708,7 @@ public class Class26 {
                               spritepixels_9.drawAt(int_52 + int_47 - int_32, int_53);
                            }
 
-                           font_1.drawString(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.anInt483 | 0xFF000000, 0);
+                           font_1.drawString(string_1, int_52 + int_48, int_59, cacheablenode_sub6_0.colour | 0xFF000000, 0);
                         }
                      }
                   }

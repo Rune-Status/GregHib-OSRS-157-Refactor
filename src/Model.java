@@ -1424,7 +1424,7 @@ public class Model extends Renderable {
       this.reset();
    }
 
-   public void method1027(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
+   public void render(int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6) {
       anIntArray115[0] = -1;
       if (this.anInt556 != 2 && this.anInt556 != 1) {
          this.method1014();

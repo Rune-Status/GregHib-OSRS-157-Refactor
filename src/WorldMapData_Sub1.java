@@ -146,11 +146,11 @@ public class WorldMapData_Sub1 extends WorldMapData {
             int int_3 = npc_0.y >> 7;
             if (int_2 >= 0 && int_2 < 104 && int_3 >= 0 && int_3 < 104) {
                if (npc_0.anInt513 == 1 && (npc_0.x & 0x7F) == 64 && (npc_0.y & 0x7F) == 64) {
-                  if (Client.anIntArrayArray21[int_2][int_3] == Client.anInt664) {
+                  if (Client.anIntArrayArray21[int_2][int_3] == Client.renderCycle) {
                      continue;
                   }
 
-                  Client.anIntArrayArray21[int_2][int_3] = Client.anInt664;
+                  Client.anIntArrayArray21[int_2][int_3] = Client.renderCycle;
                }
 
                if (!npc_0.composition.aBool66) {

@@ -72,8 +72,8 @@ public class World {
       CombatInfoListHolder.method651();
       VarPlayerType.varPlayerCache.reset();
       CacheableNode_Sub6.aNodeCache16.reset();
-      CacheableNode_Sub6.aNodeCache17.reset();
-      CacheableNode_Sub6.aNodeCache15.reset();
+      CacheableNode_Sub6.spritePixelsCache.reset();
+      CacheableNode_Sub6.fontIndexCache.reset();
       Class41.method261();
       Class62.method398();
       CacheableNode_Sub5.aNodeCache14.reset();

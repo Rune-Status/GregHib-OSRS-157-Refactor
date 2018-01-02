@@ -21,7 +21,7 @@ public final class Client extends GameEngine {
     public static final Class46 aClass46_1;
     static int world;
     static int anInt609;
-    static int anInt610;
+    static int widgetIndexCount;
     static int anInt611;
     static long aLong30;
     static int anInt612;
@@ -36,14 +36,14 @@ public final class Client extends GameEngine {
     static int socketType;
     static boolean isMenuOpen;
     static Class100 aClass100_1;
-    static boolean[] aBoolArray10;
-    static int anInt615;
-    static boolean[] aBoolArray11;
+    static boolean[] drawMagentaFill;
+    static int hoverOptionX;
+    static boolean[] drawRedFill;
     static String[] menuTargets;
     static boolean aBool85;
     public static boolean isMembers;
     static boolean socketError;
-    static int anInt616;
+    static int hoverOptionY;
     static boolean lowMemory;
     static String[] menuOptions;
     static boolean isResized;
@@ -52,7 +52,7 @@ public final class Client extends GameEngine {
     static boolean aBool86;
     static boolean aBool87;
     static int anInt618;
-    static boolean aBool88;
+    static boolean loginScreenShown;
     static int anInt619;
     static boolean aBool89;
     static int[] menuActionParams0;
@@ -95,7 +95,7 @@ public final class Client extends GameEngine {
     static int[] realSkillLevels;
     static int anInt632;
     static String aString34;
-    static String aString35;
+    static String selectedItemName;
     static int objectsNeedingLoad;
     static int hintArrowType;
     static int anInt634;
@@ -106,30 +106,30 @@ public final class Client extends GameEngine {
     static int anInt636;
     static int hintArrowOffsetY;
     static int anInt637;
-    static boolean[] aBoolArray12;
+    static boolean[] cameraAntibanAction;
     static Enum3 anEnum3_5;
-    static int[] anIntArray142;
+    static int[] cameraAntibanCurveXOffsets;
     static int anInt638;
     static Enum2 anEnum2_5;
     static int loadingStage;
-    static int[] anIntArray143;
+    static int[] cameraAntibanAngleOffsets;
     static int weight;
     static int anInt639;
     static Player[] players;
-    static int[] anIntArray144;
+    static int[] cameraAntibanAngleMultiplierOffsets;
     static int cycleCntr;
     static CollisionMap[] collisionMaps;
     static Enum2 anEnum2_6;
     static int anInt640;
     static int anInt641;
-    static int[] anIntArray145;
+    static int[] cameraAntibanCurveYOffsets;
     static boolean aBool92;
     static int[] tileQueueX;
     static int anInt642;
     static int[] tileQueueY;
     static int anInt643;
     static int cursorState;
-    static int anInt644;
+    static int waveVolume;
     static Deque aDeque7;
     static int anInt645;
     static int destinationX;
@@ -189,14 +189,14 @@ public final class Client extends GameEngine {
     static SpritePixels[] mapIcons;
     static int localInteractingIndex;
     static Deque projectiles;
-    static int anInt664;
+    static int renderCycle;
     static int[] anIntArray155;
     static Class72 aClass72_1;
-    static int anInt665;
+    static int iconSettingValue;
     static int[] anIntArray156;
     static GrandExchangeOffer[] grandExchangeOffers;
     static int anInt666;
-    static int anInt667;
+    static int someSelectedPlayerIndex;
     static int anInt668;
     static int anInt669;
     static boolean aBool95;
@@ -227,28 +227,28 @@ public final class Client extends GameEngine {
     static int[] anIntArray158;
     static int anInt689;
     static int anInt690;
-    static int anInt691;
+    static int lastTextMessageIndex;
     static int anInt692;
-    static int[] anIntArray159;
-    static int[] anIntArray160;
-    static int[] anIntArray161;
+    static int[] textRenderPointsX;
+    static int[] textRenderPointsY;
+    static int[] textHeights;
     static short aShort3;
     static short aShort4;
-    static int[] anIntArray162;
-    static int[] anIntArray163;
+    static int[] textWidths;
+    static int[] textColourEffect;
     static int[] anIntArray164;
     static short aShort5;
-    static int[] anIntArray165;
+    static int[] textEffects;
     static short aShort6;
     static int[] anIntArray166;
     static String clanChatOwner;
-    static int[] anIntArray167;
+    static int[] textCycles;
     static short aShort7;
     static short aShort8;
     static Deque aDeque8;
     static short aShort9;
     static short aShort10;
-    static String[] aStringArray6;
+    static String[] textSpokenMessages;
     static Deque aDeque9;
     static boolean aBool97;
     static int scale;
@@ -284,7 +284,7 @@ public final class Client extends GameEngine {
         lowMemory = false;
         languageId = 0;
         gameState = 0;
-        aBool88 = true;
+        loginScreenShown = true;
         gameCycle = 0;
         aLong31 = -1L;
         anInt622 = -1;
@@ -349,18 +349,18 @@ public final class Client extends GameEngine {
         anInt637 = 0;
         aBool92 = false;
         anInt690 = 0;
-        anInt691 = 0;
+        lastTextMessageIndex = 0;
         anInt692 = 50;
-        anIntArray159 = new int[anInt692];
-        anIntArray160 = new int[anInt692];
-        anIntArray161 = new int[anInt692];
-        anIntArray162 = new int[anInt692];
-        anIntArray163 = new int[anInt692];
-        anIntArray165 = new int[anInt692];
-        anIntArray167 = new int[anInt692];
-        aStringArray6 = new String[anInt692];
+        textRenderPointsX = new int[anInt692];
+        textRenderPointsY = new int[anInt692];
+        textHeights = new int[anInt692];
+        textWidths = new int[anInt692];
+        textColourEffect = new int[anInt692];
+        textEffects = new int[anInt692];
+        textCycles = new int[anInt692];
+        textSpokenMessages = new String[anInt692];
         anIntArrayArray21 = new int[104][104];
-        anInt664 = 0;
+        renderCycle = 0;
         screenY = -1;
         screenX = -1;
         anInt641 = 0;
@@ -385,7 +385,7 @@ public final class Client extends GameEngine {
         playerOptions = new String[8];
         playerOptionsPriorities = new boolean[8];
         anIntArray158 = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792};
-        anInt667 = -1;
+        someSelectedPlayerIndex = -1;
         groundItemDeque = new Deque[4][104][104];
         pendingSpawns = new Deque();
         projectiles = new Deque();
@@ -405,12 +405,12 @@ public final class Client extends GameEngine {
         aBoolArray9 = new boolean[500];
         aBool98 = false;
         aBool97 = false;
-        anInt615 = -1;
-        anInt616 = -1;
+        hoverOptionX = -1;
+        hoverOptionY = -1;
         anInt670 = 0;
         anInt668 = 50;
         itemSelectionState = 0;
-        aString35 = null;
+        selectedItemName = null;
         spellSelected = false;
         anInt656 = -1;
         anInt676 = -1;
@@ -418,7 +418,7 @@ public final class Client extends GameEngine {
         aString36 = null;
         widgetRoot = -1;
         widgetNodeTable = new HashTable(8);
-        anInt665 = 0;
+        iconSettingValue = 0;
         anInt672 = 0;
         aWidget12 = null;
         energy = 0;
@@ -459,11 +459,11 @@ public final class Client extends GameEngine {
         aDeque8 = new Deque();
         aDeque9 = new Deque();
         widgetFlags = new HashTable(512);
-        anInt610 = 0;
+        widgetIndexCount = 0;
         anInt611 = -2;
         aBoolArray8 = new boolean[100];
-        aBoolArray11 = new boolean[100];
-        aBoolArray10 = new boolean[100];
+        drawRedFill = new boolean[100];
+        drawMagentaFill = new boolean[100];
         widgetPositionX = new int[100];
         widgetPositionY = new int[100];
         widgetBoundsWidth = new int[100];
@@ -494,7 +494,7 @@ public final class Client extends GameEngine {
         anInt662 = 255;
         anInt643 = -1;
         aBool87 = false;
-        anInt644 = 127;
+        waveVolume = 127;
         anInt646 = 127;
         anInt647 = 0;
         anIntArray149 = new int[50];
@@ -503,11 +503,11 @@ public final class Client extends GameEngine {
         anIntArray153 = new int[50];
         audioEffects = new SoundEffect[50];
         aBool94 = false;
-        aBoolArray12 = new boolean[5];
-        anIntArray142 = new int[5];
-        anIntArray143 = new int[5];
-        anIntArray144 = new int[5];
-        anIntArray145 = new int[5];
+        cameraAntibanAction = new boolean[5];
+        cameraAntibanCurveXOffsets = new int[5];
+        cameraAntibanAngleOffsets = new int[5];
+        cameraAntibanAngleMultiplierOffsets = new int[5];
+        cameraAntibanCurveYOffsets = new int[5];
         aShort4 = 256;
         aShort3 = 205;
         aShort9 = 256;
@@ -550,12 +550,12 @@ public final class Client extends GameEngine {
        return Class91.widgets[id][child];
     }
 
-    static void method1064(int id) {
+    static void updateVarp(int id) {
        Class12.processWidgetQueue();
 
-       for (AudioObject audioObject_0 = (AudioObject) AudioObject.aDeque3.getFront(); audioObject_0 != null; audioObject_0 = (AudioObject) AudioObject.aDeque3.getNext()) {
-          if (audioObject_0.transformationDefinition != null) {
-             audioObject_0.method632();
+       for (AudioObject audioObject = (AudioObject) AudioObject.aDeque3.getFront(); audioObject != null; audioObject = (AudioObject) AudioObject.aDeque3.getNext()) {
+          if (audioObject.transformationDefinition != null) {
+             audioObject.method632();
           }
        }
 
@@ -587,63 +587,63 @@ public final class Client extends GameEngine {
           }
 
           if (type == 3) {
-             short short_0 = 0;
+             short volume = 0;
              if (setting == 0) {
-                short_0 = 255;
+                volume = 255;
              }
 
              if (setting == 1) {
-                short_0 = 192;
+                volume = 192;
              }
 
              if (setting == 2) {
-                short_0 = 128;
+                volume = 128;
              }
 
              if (setting == 3) {
-                short_0 = 64;
+                volume = 64;
              }
 
              if (setting == 4) {
-                short_0 = 0;
+                volume = 0;
              }
 
-             if (short_0 != anInt662) {
+             if (volume != anInt662) {
                 if (anInt662 == 0 && anInt643 != -1) {
-                   Class71.method424(Class38.songsIndex, anInt643, 0, short_0, false);
+                   Class71.method424(Class38.songsIndex, anInt643, 0, volume, false);
                    aBool87 = false;
-                } else if (short_0 == 0) {
+                } else if (volume == 0) {
                    ItemLayer.method545();
                    aBool87 = false;
                 } else if (Class78.anInt172 != 0) {
-                   Class7.anInt40 = short_0;
+                   Class7.anInt40 = volume;
                 } else {
-                   Class78.anAClass6_Sub3_1.method853(short_0);
+                   Class78.anAClass6_Sub3_1.method853(volume);
                 }
 
-                anInt662 = short_0;
+                anInt662 = volume;
              }
           }
 
           if (type == 4) {
              if (setting == 0) {
-                anInt644 = 127;
+                waveVolume = 127;
              }
 
              if (setting == 1) {
-                anInt644 = 96;
+                waveVolume = 96;
              }
 
              if (setting == 2) {
-                anInt644 = 64;
+                waveVolume = 64;
              }
 
              if (setting == 3) {
-                anInt644 = 32;
+                waveVolume = 32;
              }
 
              if (setting == 4) {
-                anInt644 = 0;
+                waveVolume = 0;
              }
           }
 
@@ -652,7 +652,7 @@ public final class Client extends GameEngine {
           }
 
           if (type == 6) {
-             anInt665 = setting;
+             iconSettingValue = setting;
           }
 
           if (type == 9) {
@@ -696,9 +696,9 @@ public final class Client extends GameEngine {
 
           if (type == 19) {
              if (setting == -1) {
-                anInt667 = -1;
+                someSelectedPlayerIndex = -1;
              } else {
-                anInt667 = setting & 0x7FF;
+                someSelectedPlayerIndex = setting & 0x7FF;
              }
           }
 
@@ -715,18 +715,18 @@ public final class Client extends GameEngine {
 
     static void drawStatusBox(String text, boolean buffer) {
        byte byte_0 = 4;
-       int int_0 = byte_0 + 6;
-       int int_1 = byte_0 + 6;
-       int int_2 = Class4.normalFont.method1038(text, 250);
-       int int_3 = Class4.normalFont.method1035(text, 250) * 13;
-       Rasterizer2D.fillRect(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + int_3 + byte_0, 0);
-       Rasterizer2D.drawRectangle(int_0 - byte_0, int_1 - byte_0, byte_0 + int_2 + byte_0, byte_0 + byte_0 + int_3, 16777215);
-       Class4.normalFont.method1036(text, int_0, int_1, int_2, int_3, 16777215, -1, 1, 1, 0);
-       AClass1_Sub2.method636(int_0 - byte_0, int_1 - byte_0, byte_0 + byte_0 + int_2, byte_0 + int_3 + byte_0);
+       int x = byte_0 + 6;
+       int y = byte_0 + 6;
+       int width = Class4.normalFont.getWidth(text, 250);
+       int height = Class4.normalFont.method1035(text, 250) * 13;
+       Rasterizer2D.fillRect(x - byte_0, y - byte_0, byte_0 + width + byte_0, byte_0 + height + byte_0, 0);
+       Rasterizer2D.drawRectangle(x - byte_0, y - byte_0, byte_0 + width + byte_0, byte_0 + byte_0 + height, 16777215);
+       Class4.normalFont.method1036(text, x, y, width, height, 16777215, -1, 1, 1, 0);
+       AClass1_Sub2.isWithinWidget(x - byte_0, y - byte_0, byte_0 + byte_0 + width, byte_0 + height + byte_0);
        if (buffer) {
           Class68_Sub1.aBufferProvider1.method499(0, 0);
        } else {
-          Class71.method423(int_0, int_1, int_2, int_3);
+          Class71.method423(x, y, width, height);
        }
 
     }
@@ -1905,11 +1905,11 @@ public final class Client extends GameEngine {
                     int_0 = packetbuffer_0.getUnsignedByte();
                     int_2 = packetbuffer_0.getUnsignedByte();
                     int_11 = packetbuffer_0.getUnsignedByte();
-                    aBoolArray12[int_1] = true;
-                    anIntArray142[int_1] = int_0;
-                    anIntArray143[int_1] = int_2;
-                    anIntArray144[int_1] = int_11;
-                    anIntArray145[int_1] = 0;
+                    cameraAntibanAction[int_1] = true;
+                    cameraAntibanCurveXOffsets[int_1] = int_0;
+                    cameraAntibanAngleOffsets[int_1] = int_2;
+                    cameraAntibanAngleMultiplierOffsets[int_1] = int_11;
+                    cameraAntibanCurveYOffsets[int_1] = 0;
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -1941,7 +1941,7 @@ public final class Client extends GameEngine {
                     for (int_1 = 0; int_1 < Settings.widgetSettings.length; int_1++) {
                         if (Settings.widgetSettings[int_1] != Settings.settings[int_1]) {
                             Settings.widgetSettings[int_1] = Settings.settings[int_1];
-                            method1064(int_1);
+                            updateVarp(int_1);
                             anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                         }
                     }
@@ -1960,7 +1960,7 @@ public final class Client extends GameEngine {
                     int_1 = packetbuffer_0.getUnsignedShort();
                     int_0 = packetbuffer_0.getUnsignedByte();
                     int_2 = packetbuffer_0.getUnsignedShort();
-                    if (anInt644 != 0 && int_0 != 0 && anInt647 < 50) {
+                    if (waveVolume != 0 && int_0 != 0 && anInt647 < 50) {
                         anIntArray149[anInt647] = int_1;
                         anIntArray150[anInt647] = int_0;
                         anIntArray152[anInt647] = int_2;
@@ -2103,7 +2103,7 @@ public final class Client extends GameEngine {
                         Settings.widgetSettings[int_1] = byte_2;
                     }
 
-                    method1064(int_1);
+                    updateVarp(int_1);
                     anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                     class46_0.serverPacket = null;
                     return true;
@@ -2824,7 +2824,7 @@ public final class Client extends GameEngine {
                         Settings.widgetSettings[int_1] = int_0;
                     }
 
-                    method1064(int_1);
+                    updateVarp(int_1);
                     anIntArray151[++anInt649 - 1 & 0x1F] = int_1;
                     class46_0.serverPacket = null;
                     return true;
@@ -3057,7 +3057,7 @@ public final class Client extends GameEngine {
                     aBool94 = false;
 
                     for (int_1 = 0; int_1 < 5; int_1++) {
-                        aBoolArray12[int_1] = false;
+                        cameraAntibanAction[int_1] = false;
                     }
 
                     class46_0.serverPacket = null;
@@ -3587,12 +3587,12 @@ public final class Client extends GameEngine {
     }
 
     void method1101(int int_0, int int_1) {
-        int int_2 = Class50.aFont3.getWidth("Choose Option");
+        int int_2 = Class50.boldFont.getWidth("Choose Option");
 
         int int_3;
         int int_4;
         for (int_3 = 0; int_3 < menuOptionCount; int_3++) {
-            int_4 = Class50.aFont3.getWidth(Class38.method253(int_3));
+            int_4 = Class50.boldFont.getWidth(Class38.getOptionCount(int_3));
             if (int_4 > int_2) {
                 int_2 = int_4;
             }
@@ -3644,8 +3644,8 @@ public final class Client extends GameEngine {
                 MouseInput mouseinput_0 = MouseInput.mouse;
                 synchronized (mouseinput_0) {
                     MouseInput.anInt263 = MouseInput.anInt257;
-                    MouseInput.anInt260 = MouseInput.mouseX;
-                    MouseInput.anInt262 = MouseInput.mouseY;
+                    MouseInput.mouseEventX = MouseInput.mouseX;
+                    MouseInput.mouseEventY = MouseInput.mouseY;
                     MouseInput.anInt259 = MouseInput.anInt266;
                     MouseInput.anInt264 = MouseInput.anInt258;
                     MouseInput.anInt265 = MouseInput.anInt261;
@@ -3846,65 +3846,65 @@ public final class Client extends GameEngine {
     }
 
     void method1103() {
-        int int_0;
+        int x;
         if (widgetRoot != -1) {
-            int_0 = widgetRoot;
-            if (CombatInfoListHolder.loadWidget(int_0)) {
-                Class49.method314(Class91.widgets[int_0], -1);
+            x = widgetRoot;
+            if (CombatInfoListHolder.loadWidget(x)) {
+                Class49.method314(Class91.widgets[x], -1);
             }
         }
 
-        for (int_0 = 0; int_0 < anInt610; int_0++) {
-            if (aBoolArray8[int_0]) {
-                aBoolArray11[int_0] = true;
+        for (x = 0; x < widgetIndexCount; x++) {
+            if (aBoolArray8[x]) {
+                drawRedFill[x] = true;
             }
 
-            aBoolArray10[int_0] = aBoolArray8[int_0];
-            aBoolArray8[int_0] = false;
+            drawMagentaFill[x] = aBoolArray8[x];
+            aBoolArray8[x] = false;
         }
 
         anInt611 = gameCycle;
-        anInt615 = -1;
-        anInt616 = -1;
+        hoverOptionX = -1;
+        hoverOptionY = -1;
         Class52.aWidget2 = null;
         if (widgetRoot != -1) {
-            anInt610 = 0;
+            widgetIndexCount = 0;
             Class47.method309(widgetRoot, 0, 0, Tile.canvasWidth, Class29.canvasHeight, 0, 0, -1);
         }
 
         Rasterizer2D.resetRegion();
         if (!isMenuOpen) {
-            if (anInt615 != -1) {
-                int_0 = anInt615;
-                int int_1 = anInt616;
+            if (hoverOptionX != -1) {
+                x = hoverOptionX;
+                int y = hoverOptionY;
                 if (menuOptionCount >= 2 || itemSelectionState != 0 || spellSelected) {
-                    int int_2 = menuOptionCount - 1;
-                    String string_0;
+                    int options = menuOptionCount - 1;
+                    String string;
                     if (itemSelectionState == 1 && menuOptionCount < 2) {
-                        string_0 = "Use" + " " + aString35 + " " + "->";
+                        string = "Use" + " " + selectedItemName + " " + "->";
                     } else if (spellSelected && menuOptionCount < 2) {
-                        string_0 = aString34 + " " + aString36 + " " + "->";
+                        string = aString34 + " " + aString36 + " " + "->";
                     } else {
-                        string_0 = Class38.method253(int_2);
+                        string = Class38.getOptionCount(options);
                     }
 
                     if (menuOptionCount > 2) {
-                        string_0 = string_0 + Wall.getColTags(16777215) + " " + '/' + " " + (menuOptionCount - 2) + " more options";
+                        string = string + Wall.getColTags(16777215) + " " + '/' + " " + (menuOptionCount - 2) + " more options";
                     }
 
-                    Class50.aFont3.drawRandomizedMouseoverText(string_0, int_0 + 4, int_1 + 15, 16777215, 0, gameCycle / 1000);
+                    Class50.boldFont.drawShadowedSeededString(string, x + 4, y + 15, 16777215, 0, gameCycle / 1000);
                 }
             }
         } else {
-            Class74.method446();
+            Class74.drawMenuOptions();
         }
 
-        if (gameDrawingMode == 3) {
-            for (int_0 = 0; int_0 < anInt610; int_0++) {
-                if (aBoolArray10[int_0]) {
-                    Rasterizer2D.fillRectangle(widgetPositionX[int_0], widgetPositionY[int_0], widgetBoundsWidth[int_0], widgetBoundsHeight[int_0], 16711935, 128);
-                } else if (aBoolArray11[int_0]) {
-                    Rasterizer2D.fillRectangle(widgetPositionX[int_0], widgetPositionY[int_0], widgetBoundsWidth[int_0], widgetBoundsHeight[int_0], 16711680, 128);
+        if (gameDrawingMode == 3) {//Debug
+            for (x = 0; x < widgetIndexCount; x++) {
+                if (drawMagentaFill[x]) {
+                    Rasterizer2D.fillRectangle(widgetPositionX[x], widgetPositionY[x], widgetBoundsWidth[x], widgetBoundsHeight[x], 16711935, 128);//Magenta
+                } else if (drawRedFill[x]) {
+                    Rasterizer2D.fillRectangle(widgetPositionX[x], widgetPositionY[x], widgetBoundsWidth[x], widgetBoundsHeight[x], 16711680, 128);//Red
                 }
             }
         }
@@ -4352,7 +4352,7 @@ public final class Client extends GameEngine {
                                                                     anInt651 = 10;
                                                                     MouseInput.anInt259 = 0;
                                                                     ClanMember.aWidget7 = null;
-                                                                } else if (anInt627 >= 5 && (MouseInput.anInt260 > anInt628 + 5 || MouseInput.anInt260 < anInt628 - 5 || MouseInput.anInt262 > anInt629 + 5 || MouseInput.anInt262 < anInt629 - 5)) {
+                                                                } else if (anInt627 >= 5 && (MouseInput.mouseEventX > anInt628 + 5 || MouseInput.mouseEventX < anInt628 - 5 || MouseInput.mouseEventY > anInt629 + 5 || MouseInput.mouseEventY < anInt629 - 5)) {
                                                                     aBool91 = true;
                                                                 }
                                                             }
@@ -4412,7 +4412,7 @@ public final class Client extends GameEngine {
                                                             }
 
                                                             for (int_2 = 0; int_2 < 5; int_2++) {
-                                                                ++anIntArray145[int_2];
+                                                                ++cameraAntibanCurveYOffsets[int_2];
                                                             }
 
                                                             Class40.chatMessages.process();
@@ -4836,7 +4836,7 @@ public final class Client extends GameEngine {
                             cachedNPCs[int_0] = null;
                         }
 
-                        anInt667 = -1;
+                        someSelectedPlayerIndex = -1;
                         projectiles.clear();
                         graphicsObjectDeque.clear();
 
@@ -4905,7 +4905,7 @@ public final class Client extends GameEngine {
                         }
 
                         Class21.method213();
-                        aBool88 = true;
+                        loginScreenShown = true;
 
                         for (int_0 = 0; int_0 < 100; int_0++) {
                             aBoolArray8[int_0] = true;
@@ -5099,10 +5099,10 @@ public final class Client extends GameEngine {
         if (gameState == 0) {
             this.drawLoadingScreen(Class25.loadingBarPercentage, Class25.loadingText, bool_0);
         } else if (gameState == 5) {
-            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
+            FileOnDisk.drawLoginScreen(Class50.boldFont, Class1.aFont2, Class4.normalFont, bool_0);
         } else if (gameState != 10 && gameState != 11) {
             if (gameState == 20) {
-                FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
+                FileOnDisk.drawLoginScreen(Class50.boldFont, Class1.aFont2, Class4.normalFont, bool_0);
             } else if (gameState == 25) {
                 if (anInt630 == 1) {
                     if (anInt631 > anInt632) {
@@ -5129,21 +5129,21 @@ public final class Client extends GameEngine {
                 drawStatusBox("Please wait...", false);
             }
         } else {
-            FileOnDisk.drawLoginScreen(Class50.aFont3, Class1.aFont2, Class4.normalFont, bool_0);
+            FileOnDisk.drawLoginScreen(Class50.boldFont, Class1.aFont2, Class4.normalFont, bool_0);
         }
 
         if (gameState == 30 && gameDrawingMode == 0 && !bool_0 && !isResized) {
-            for (int_0 = 0; int_0 < anInt610; int_0++) {
-                if (aBoolArray11[int_0]) {
+            for (int_0 = 0; int_0 < widgetIndexCount; int_0++) {
+                if (drawRedFill[int_0]) {
                     Class68_Sub1.aBufferProvider1.method500(widgetPositionX[int_0], widgetPositionY[int_0], widgetBoundsWidth[int_0], widgetBoundsHeight[int_0]);
-                    aBoolArray11[int_0] = false;
+                    drawRedFill[int_0] = false;
                 }
             }
         } else if (gameState > 0) {
             Class68_Sub1.aBufferProvider1.method499(0, 0);
 
-            for (int_0 = 0; int_0 < anInt610; int_0++) {
-                aBoolArray11[int_0] = false;
+            for (int_0 = 0; int_0 < widgetIndexCount; int_0++) {
+                drawRedFill[int_0] = false;
             }
         }
 
@@ -5213,11 +5213,11 @@ public final class Client extends GameEngine {
                     if (isMenuOpen) {
                         int int_2;
                         if (int_7 != 1 && (Item.aBool73 || int_7 != 4)) {
-                            int_0 = MouseInput.anInt260;
-                            int_2 = MouseInput.anInt262;
+                            int_0 = MouseInput.mouseEventX;
+                            int_2 = MouseInput.mouseEventY;
                             if (int_0 < CacheFile.menuX - 10 || int_0 > Class93.menuWidth + CacheFile.menuX + 10 || int_2 < AClass1_Sub1.menuY - 10 || int_2 > AClass1_Sub1.menuY + Class42.menuHeight + 10) {
                                 isMenuOpen = false;
-                                AClass1_Sub2.method636(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);
+                                AClass1_Sub2.isWithinWidget(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);
                             }
                         }
 
@@ -5241,7 +5241,7 @@ public final class Client extends GameEngine {
                             }
 
                             isMenuOpen = false;
-                            AClass1_Sub2.method636(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);
+                            AClass1_Sub2.isWithinWidget(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);
                         }
                     } else {
                         int_0 = menuOptionCount - 1;
@@ -5312,8 +5312,8 @@ public final class Client extends GameEngine {
         WorldMapData.method305(aWidget9);
         ++ScriptVarType.anInt175;
         if (aBool85 && aBool86) {
-            int int_0 = MouseInput.anInt260;
-            int int_1 = MouseInput.anInt262;
+            int int_0 = MouseInput.mouseEventX;
+            int int_1 = MouseInput.mouseEventY;
             int_0 -= anInt619;
             int_1 -= anInt620;
             if (int_0 < anInt621) {

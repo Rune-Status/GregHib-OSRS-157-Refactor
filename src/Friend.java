@@ -9,7 +9,7 @@ public class Friend {
    int rank;
 
    public static void method535(IndexDataBase indexdatabase_0, IndexDataBase indexdatabase_1, IndexDataBase indexdatabase_2) {
-      CacheableNode_Sub6.anIndexDataBase25 = indexdatabase_0;
+      CacheableNode_Sub6.configCacheIndex = indexdatabase_0;
       CacheableNode_Sub6.anIndexDataBase26 = indexdatabase_1;
       CacheableNode_Sub6.anIndexDataBase27 = indexdatabase_2;
    }

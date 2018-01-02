@@ -2,7 +2,7 @@ public class Class7 {
 
     static byte[][][] overlayRotations;
     public static int anInt40;
-    static int[] offsetsY;
+    static int[] loadedVerticalOffsets;
 
     public static void method101() {
         try {

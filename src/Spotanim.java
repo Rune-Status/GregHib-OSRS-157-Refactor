@@ -138,15 +138,15 @@ public class Spotanim extends CacheableNode {
       }
    }
 
-   static void method764(int int_0, int int_1, int int_2, int int_3) {
-      ++Client.anInt664;
+   static void method764(int textDrawX, int textDrawY, int drawWidth, int drawHeight) {
+      ++Client.renderCycle;
       if (Class4.localPlayer.x >> 7 == Client.destinationX && Class4.localPlayer.y >> 7 == Client.destinationY) {
          Client.destinationX = 0;
       }
 
       Class67.method413(Class4.localPlayer, false);
-      if (Client.anInt667 >= 0 && Client.players[Client.anInt667] != null) {
-         Class67.method413(Client.players[Client.anInt667], false);
+      if (Client.someSelectedPlayerIndex >= 0 && Client.players[Client.someSelectedPlayerIndex] != null) {
+         Class67.method413(Client.players[Client.someSelectedPlayerIndex], false);
       }
 
       WorldMapData_Sub1.method606(true);
@@ -154,125 +154,125 @@ public class Spotanim extends CacheableNode {
       WorldMapData_Sub1.method606(false);
       CombatInfoListHolder.method653();
       MouseInput.method583();
-      Class65.method402(int_0, int_1, int_2, int_3, true);
-      int_0 = Client.anInt679;
-      int_1 = Client.anInt680;
-      int_2 = Client.viewportHeight;
-      int_3 = Client.viewportWidth;
-      Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
-      Rasterizer3D.method960();
+      Class65.method402(textDrawX, textDrawY, drawWidth, drawHeight, true);
+      textDrawX = Client.anInt679;
+      textDrawY = Client.anInt680;
+      drawWidth = Client.viewportHeight;
+      drawHeight = Client.viewportWidth;
+      Rasterizer2D.setDrawRegion(textDrawX, textDrawY, textDrawX + drawWidth, drawHeight + textDrawY);
+      Rasterizer3D.resetRasterClipping();
       int int_4;
-      int int_5;
+      int camPosX;
       if (!Client.aBool94) {
          int_4 = Client.anInt661;
          if (Client.anInt690 / 256 > int_4) {
             int_4 = Client.anInt690 / 256;
          }
 
-         if (Client.aBoolArray12[4] && Client.anIntArray143[4] + 128 > int_4) {
-            int_4 = Client.anIntArray143[4] + 128;
+         if (Client.cameraAntibanAction[4] && Client.cameraAntibanAngleOffsets[4] + 128 > int_4) {
+            int_4 = Client.cameraAntibanAngleOffsets[4] + 128;
          }
 
-         int_5 = Client.mapAngle & 0x7FF;
-         Class36.method251(WorldMapType3.anInt232, Class18.getTileHeight(Class4.localPlayer.x, Class4.localPlayer.y, Ignore.plane) - Client.anInt688, Class9.anInt43, int_4, int_5, int_4 * 3 + 600);
+         camPosX = Client.mapAngle & 0x7FF;
+         Class36.method251(WorldMapType3.anInt232, Class18.getTileHeight(Class4.localPlayer.x, Class4.localPlayer.y, Ignore.plane) - Client.anInt688, Class9.anInt43, int_4, camPosX, int_4 * 3 + 600);
       }
 
-      int int_6;
-      int int_7;
-      int int_8;
-      int int_9;
-      int int_10;
-      int int_11;
+      int camPosZ;
+      int camPosY;
+      int camPitch;
+      int camYaw;
+      int type;
+      int offset;
       int int_12;
       int int_13;
       int int_14;
       if (!Client.aBool94) {
          if (Buffer.preferences.hideRoofs) {
-            int_5 = Ignore.plane;
+            camPosX = Ignore.plane;
          } else {
             label498: {
-               int_6 = 3;
+               camPosZ = 3;
                if (AClass1.cameraPitch < 310) {
-                  int_7 = Class2.cameraX >> 7;
-                  int_8 = Player.cameraY >> 7;
-                  int_9 = Class4.localPlayer.x >> 7;
-                  int_10 = Class4.localPlayer.y >> 7;
-                  if (int_7 < 0 || int_8 < 0 || int_7 >= 104 || int_8 >= 104) {
-                     int_5 = Ignore.plane;
+                  camPosY = Class2.cameraX >> 7;
+                  camPitch = Player.cameraY >> 7;
+                  camYaw = Class4.localPlayer.x >> 7;
+                  type = Class4.localPlayer.y >> 7;
+                  if (camPosY < 0 || camPitch < 0 || camPosY >= 104 || camPitch >= 104) {
+                     camPosX = Ignore.plane;
                      break label498;
                   }
 
-                  if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
-                     int_6 = Ignore.plane;
+                  if ((Region.renderRuleFlags[Ignore.plane][camPosY][camPitch] & 0x4) != 0) {
+                     camPosZ = Ignore.plane;
                   }
 
-                  if (int_9 > int_7) {
-                     int_11 = int_9 - int_7;
+                  if (camYaw > camPosY) {
+                     offset = camYaw - camPosY;
                   } else {
-                     int_11 = int_7 - int_9;
+                     offset = camPosY - camYaw;
                   }
 
-                  if (int_10 > int_8) {
-                     int_12 = int_10 - int_8;
+                  if (type > camPitch) {
+                     int_12 = type - camPitch;
                   } else {
-                     int_12 = int_8 - int_10;
+                     int_12 = camPitch - type;
                   }
 
-                  if (int_11 > int_12) {
-                     int_13 = int_12 * 65536 / int_11;
+                  if (offset > int_12) {
+                     int_13 = int_12 * 65536 / offset;
                      int_14 = 32768;
 
-                     while (int_9 != int_7) {
-                        if (int_7 < int_9) {
-                           ++int_7;
-                        } else if (int_7 > int_9) {
-                           --int_7;
+                     while (camYaw != camPosY) {
+                        if (camPosY < camYaw) {
+                           ++camPosY;
+                        } else if (camPosY > camYaw) {
+                           --camPosY;
                         }
 
-                        if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
-                           int_6 = Ignore.plane;
+                        if ((Region.renderRuleFlags[Ignore.plane][camPosY][camPitch] & 0x4) != 0) {
+                           camPosZ = Ignore.plane;
                         }
 
                         int_14 += int_13;
                         if (int_14 >= 65536) {
                            int_14 -= 65536;
-                           if (int_8 < int_10) {
-                              ++int_8;
-                           } else if (int_8 > int_10) {
-                              --int_8;
+                           if (camPitch < type) {
+                              ++camPitch;
+                           } else if (camPitch > type) {
+                              --camPitch;
                            }
 
-                           if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
-                              int_6 = Ignore.plane;
+                           if ((Region.renderRuleFlags[Ignore.plane][camPosY][camPitch] & 0x4) != 0) {
+                              camPosZ = Ignore.plane;
                            }
                         }
                      }
                   } else {
-                     int_13 = int_11 * 65536 / int_12;
+                     int_13 = offset * 65536 / int_12;
                      int_14 = 32768;
 
-                     while (int_10 != int_8) {
-                        if (int_8 < int_10) {
-                           ++int_8;
-                        } else if (int_8 > int_10) {
-                           --int_8;
+                     while (type != camPitch) {
+                        if (camPitch < type) {
+                           ++camPitch;
+                        } else if (camPitch > type) {
+                           --camPitch;
                         }
 
-                        if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
-                           int_6 = Ignore.plane;
+                        if ((Region.renderRuleFlags[Ignore.plane][camPosY][camPitch] & 0x4) != 0) {
+                           camPosZ = Ignore.plane;
                         }
 
                         int_14 += int_13;
                         if (int_14 >= 65536) {
                            int_14 -= 65536;
-                           if (int_7 < int_9) {
-                              ++int_7;
-                           } else if (int_7 > int_9) {
-                              --int_7;
+                           if (camPosY < camYaw) {
+                              ++camPosY;
+                           } else if (camPosY > camYaw) {
+                              --camPosY;
                            }
 
-                           if ((Region.renderRuleFlags[Ignore.plane][int_7][int_8] & 0x4) != 0) {
-                              int_6 = Ignore.plane;
+                           if ((Region.renderRuleFlags[Ignore.plane][camPosY][camPitch] & 0x4) != 0) {
+                              camPosZ = Ignore.plane;
                            }
                         }
                      }
@@ -281,48 +281,48 @@ public class Spotanim extends CacheableNode {
 
                if (Class4.localPlayer.x >= 0 && Class4.localPlayer.y >= 0 && Class4.localPlayer.x < 13312 && Class4.localPlayer.y < 13312) {
                   if ((Region.renderRuleFlags[Ignore.plane][Class4.localPlayer.x >> 7][Class4.localPlayer.y >> 7] & 0x4) != 0) {
-                     int_6 = Ignore.plane;
+                     camPosZ = Ignore.plane;
                   }
 
-                  int_5 = int_6;
+                  camPosX = camPosZ;
                } else {
-                  int_5 = Ignore.plane;
+                  camPosX = Ignore.plane;
                }
             }
          }
 
-         int_4 = int_5;
+         int_4 = camPosX;
       } else {
          int_4 = FileRequest.method815();
       }
 
-      int_5 = Class2.cameraX;
-      int_6 = Class18.cameraZ;
-      int_7 = Player.cameraY;
-      int_8 = AClass1.cameraPitch;
-      int_9 = Enum4.cameraYaw;
+      camPosX = Class2.cameraX;
+      camPosZ = Class18.cameraZ;
+      camPosY = Player.cameraY;
+      camPitch = AClass1.cameraPitch;
+      camYaw = Enum4.cameraYaw;
 
-      for (int_10 = 0; int_10 < 5; int_10++) {
-         if (Client.aBoolArray12[int_10]) {
-            int_11 = (int)(Math.random() * (double)(Client.anIntArray142[int_10] * 2 + 1) - (double)Client.anIntArray142[int_10] + Math.sin((double)Client.anIntArray144[int_10] / 100.0D * (double)Client.anIntArray145[int_10]) * (double)Client.anIntArray143[int_10]);
-            if (int_10 == 0) {
-               Class2.cameraX += int_11;
+      for (type = 0; type < 5; type++) {
+         if (Client.cameraAntibanAction[type]) {
+            offset = (int)(Math.random() * (double)(Client.cameraAntibanCurveXOffsets[type] * 2 + 1) - (double)Client.cameraAntibanCurveXOffsets[type] + Math.sin((double)Client.cameraAntibanAngleMultiplierOffsets[type] / 100.0D * (double)Client.cameraAntibanCurveYOffsets[type]) * (double)Client.cameraAntibanAngleOffsets[type]);
+            if (type == 0) {
+               Class2.cameraX += offset;
             }
 
-            if (int_10 == 1) {
-               Class18.cameraZ += int_11;
+            if (type == 1) {
+               Class18.cameraZ += offset;
             }
 
-            if (int_10 == 2) {
-               Player.cameraY += int_11;
+            if (type == 2) {
+               Player.cameraY += offset;
             }
 
-            if (int_10 == 3) {
-               Enum4.cameraYaw = int_11 + Enum4.cameraYaw & 0x7FF;
+            if (type == 3) {
+               Enum4.cameraYaw = offset + Enum4.cameraYaw & 0x7FF;
             }
 
-            if (int_10 == 4) {
-               AClass1.cameraPitch += int_11;
+            if (type == 4) {
+               AClass1.cameraPitch += offset;
                if (AClass1.cameraPitch < 128) {
                   AClass1.cameraPitch = 128;
                }
@@ -334,16 +334,16 @@ public class Spotanim extends CacheableNode {
          }
       }
 
-      int_10 = MouseInput.anInt260;
-      int_11 = MouseInput.anInt262;
+      type = MouseInput.mouseEventX;
+      offset = MouseInput.mouseEventY;
       if (MouseInput.anInt259 != 0) {
-         int_10 = MouseInput.anInt264;
-         int_11 = MouseInput.anInt265;
+         type = MouseInput.anInt264;
+         offset = MouseInput.anInt265;
       }
 
-      if (int_10 >= int_0 && int_10 < int_0 + int_2 && int_11 >= int_1 && int_11 < int_3 + int_1) {
-         int_12 = int_10 - int_0;
-         int_13 = int_11 - int_1;
+      if (type >= textDrawX && type < textDrawX + drawWidth && offset >= textDrawY && offset < drawHeight + textDrawY) {
+         int_12 = type - textDrawX;
+         int_13 = offset - textDrawY;
          Class54.anInt138 = int_12;
          Class54.anInt139 = int_13;
          Class54.aBool21 = true;
@@ -354,7 +354,7 @@ public class Spotanim extends CacheableNode {
       }
 
       Enum2.reloadSound();
-      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
+      Rasterizer2D.fillRect(textDrawX, textDrawY, drawWidth, drawHeight, 0);
       Enum2.reloadSound();
       int_12 = Rasterizer3D.anInt543;
       Rasterizer3D.anInt543 = Client.scale;
@@ -363,151 +363,151 @@ public class Spotanim extends CacheableNode {
       Rasterizer3D.anInt543 = int_12;
       Enum2.reloadSound();
       Class23.sceneGraph.clearInteractiveObjectCache();
-      Client.anInt691 = 0;
-      boolean bool_1 = false;
+      Client.lastTextMessageIndex = 0;
+      boolean playerFound = false;
       int_14 = -1;
-      int int_15 = Class27.localPlayerIndexCount;
-      int[] ints_0 = Class27.localPlayerIndices;
+      int playerCount = Class27.localPlayerIndexCount;
+      int[] playerIndices = Class27.localPlayerIndices;
 
-      int int_16;
-      for (int_16 = 0; int_16 < int_15 + Client.npcIndexesCount; int_16++) {
+      int index;
+      for (index = 0; index < playerCount + Client.npcIndexesCount; index++) {
          Object object_0;
-         if (int_16 < int_15) {
-            object_0 = Client.players[ints_0[int_16]];
-            if (ints_0[int_16] == Client.anInt667) {
-               bool_1 = true;
-               int_14 = int_16;
+         if (index < playerCount) {
+            object_0 = Client.players[playerIndices[index]];
+            if (playerIndices[index] == Client.someSelectedPlayerIndex) {
+               playerFound = true;
+               int_14 = index;
                continue;
             }
          } else {
-            object_0 = Client.cachedNPCs[Client.npcIndices[int_16 - int_15]];
+            object_0 = Client.cachedNPCs[Client.npcIndices[index - playerCount]];
          }
 
-         Class26.method224((Actor) object_0, int_16, int_0, int_1, int_2, int_3);
+         Class26.drawActorOverlays((Actor) object_0, index, textDrawX, textDrawY, drawWidth, drawHeight);
       }
 
-      if (bool_1) {
-         Class26.method224(Client.players[Client.anInt667], int_14, int_0, int_1, int_2, int_3);
+      if (playerFound) {
+         Class26.drawActorOverlays(Client.players[Client.someSelectedPlayerIndex], int_14, textDrawX, textDrawY, drawWidth, drawHeight);
       }
 
-      for (int_16 = 0; int_16 < Client.anInt691; int_16++) {
-         int int_17 = Client.anIntArray159[int_16];
-         int int_18 = Client.anIntArray160[int_16];
-         int int_19 = Client.anIntArray162[int_16];
-         int int_20 = Client.anIntArray161[int_16];
-         boolean bool_0 = true;
+      for (index = 0; index < Client.lastTextMessageIndex; index++) {
+         int x = Client.textRenderPointsX[index];
+         int y = Client.textRenderPointsY[index];
+         int width = Client.textWidths[index];
+         int height = Client.textHeights[index];
+         boolean needsWaveApplied = true;
 
-         while (bool_0) {
-            bool_0 = false;
+         while (needsWaveApplied) {
+            needsWaveApplied = false;
 
-            for (int int_21 = 0; int_21 < int_16; int_21++) {
-               if (int_18 + 2 > Client.anIntArray160[int_21] - Client.anIntArray161[int_21] && int_18 - int_20 < Client.anIntArray160[int_21] + 2 && int_17 - int_19 < Client.anIntArray162[int_21] + Client.anIntArray159[int_21] && int_19 + int_17 > Client.anIntArray159[int_21] - Client.anIntArray162[int_21] && Client.anIntArray160[int_21] - Client.anIntArray161[int_21] < int_18) {
-                  int_18 = Client.anIntArray160[int_21] - Client.anIntArray161[int_21];
-                  bool_0 = true;
+            for (int waveIndex = 0; waveIndex < index; waveIndex++) {
+               if (y + 2 > Client.textRenderPointsY[waveIndex] - Client.textHeights[waveIndex] && y - height < Client.textRenderPointsY[waveIndex] + 2 && x - width < Client.textWidths[waveIndex] + Client.textRenderPointsX[waveIndex] && width + x > Client.textRenderPointsX[waveIndex] - Client.textWidths[waveIndex] && Client.textRenderPointsY[waveIndex] - Client.textHeights[waveIndex] < y) {
+                  y = Client.textRenderPointsY[waveIndex] - Client.textHeights[waveIndex];
+                  needsWaveApplied = true;
                }
             }
          }
 
-         Client.screenY = Client.anIntArray159[int_16];
-         Client.screenX = Client.anIntArray160[int_16] = int_18;
-         String string_0 = Client.aStringArray6[int_16];
-         if (Client.anInt665 == 0) {
-            int int_22 = 16776960;
-            if (Client.anIntArray163[int_16] < 6) {
-               int_22 = Client.anIntArray168[Client.anIntArray163[int_16]];
+         Client.screenY = Client.textRenderPointsX[index];
+         Client.screenX = Client.textRenderPointsY[index] = y;
+         String chatMessage = Client.textSpokenMessages[index];
+         if (Client.iconSettingValue == 0) {
+            int textColour = 16776960;
+            if (Client.textColourEffect[index] < 6) {
+               textColour = Client.anIntArray168[Client.textColourEffect[index]];
             }
 
-            if (Client.anIntArray163[int_16] == 6) {
-               int_22 = Client.anInt664 % 20 < 10 ? 16711680 : 16776960;
+            if (Client.textColourEffect[index] == 6) {
+               textColour = Client.renderCycle % 20 < 10 ? 16711680 : 16776960;
             }
 
-            if (Client.anIntArray163[int_16] == 7) {
-               int_22 = Client.anInt664 % 20 < 10 ? 255 : 65535;
+            if (Client.textColourEffect[index] == 7) {
+               textColour = Client.renderCycle % 20 < 10 ? 255 : 65535;
             }
 
-            if (Client.anIntArray163[int_16] == 8) {
-               int_22 = Client.anInt664 % 20 < 10 ? 45056 : 8454016;
+            if (Client.textColourEffect[index] == 8) {
+               textColour = Client.renderCycle % 20 < 10 ? 45056 : 8454016;
             }
 
-            int int_23;
-            if (Client.anIntArray163[int_16] == 9) {
-               int_23 = 150 - Client.anIntArray167[int_16];
-               if (int_23 < 50) {
-                  int_22 = int_23 * 1280 + 16711680;
-               } else if (int_23 < 100) {
-                  int_22 = 16776960 - (int_23 - 50) * 327680;
-               } else if (int_23 < 150) {
-                  int_22 = (int_23 - 100) * 5 + 65280;
+            int cycle;
+            if (Client.textColourEffect[index] == 9) {
+               cycle = 150 - Client.textCycles[index];
+               if (cycle < 50) {
+                  textColour = cycle * 1280 + 16711680;
+               } else if (cycle < 100) {
+                  textColour = 16776960 - (cycle - 50) * 327680;
+               } else if (cycle < 150) {
+                  textColour = (cycle - 100) * 5 + 65280;
                }
             }
 
-            if (Client.anIntArray163[int_16] == 10) {
-               int_23 = 150 - Client.anIntArray167[int_16];
-               if (int_23 < 50) {
-                  int_22 = int_23 * 5 + 16711680;
-               } else if (int_23 < 100) {
-                  int_22 = 16711935 - (int_23 - 50) * 327680;
-               } else if (int_23 < 150) {
-                  int_22 = (int_23 - 100) * 327680 + 255 - (int_23 - 100) * 5;
+            if (Client.textColourEffect[index] == 10) {
+               cycle = 150 - Client.textCycles[index];
+               if (cycle < 50) {
+                  textColour = cycle * 5 + 16711680;
+               } else if (cycle < 100) {
+                  textColour = 16711935 - (cycle - 50) * 327680;
+               } else if (cycle < 150) {
+                  textColour = (cycle - 100) * 327680 + 255 - (cycle - 100) * 5;
                }
             }
 
-            if (Client.anIntArray163[int_16] == 11) {
-               int_23 = 150 - Client.anIntArray167[int_16];
-               if (int_23 < 50) {
-                  int_22 = 16777215 - int_23 * 327685;
-               } else if (int_23 < 100) {
-                  int_22 = (int_23 - 50) * 327685 + 65280;
-               } else if (int_23 < 150) {
-                  int_22 = 16777215 - (int_23 - 100) * 327680;
+            if (Client.textColourEffect[index] == 11) {
+               cycle = 150 - Client.textCycles[index];
+               if (cycle < 50) {
+                  textColour = 16777215 - cycle * 327685;
+               } else if (cycle < 100) {
+                  textColour = (cycle - 50) * 327685 + 65280;
+               } else if (cycle < 150) {
+                  textColour = 16777215 - (cycle - 100) * 327680;
                }
             }
 
-            if (Client.anIntArray165[int_16] == 0) {
-               Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0);
+            if (Client.textEffects[index] == 0) {
+               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0);
             }
 
-            if (Client.anIntArray165[int_16] == 1) {
-               Class50.aFont3.method1042(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0, Client.anInt664);
+            if (Client.textEffects[index] == 1) {
+               Class50.boldFont.drawHorizontalStringWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle);
             }
 
-            if (Client.anIntArray165[int_16] == 2) {
-               Class50.aFont3.drawWaveStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0, Client.anInt664);
+            if (Client.textEffects[index] == 2) {
+               Class50.boldFont.drawVerticalStringWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle);
             }
 
-            if (Client.anIntArray165[int_16] == 3) {
-               Class50.aFont3.method1044(string_0, int_0 + Client.screenY, Client.screenX + int_1, int_22, 0, Client.anInt664, 150 - Client.anIntArray167[int_16]);
+            if (Client.textEffects[index] == 3) {
+               Class50.boldFont.drawHorizonalStringMovingWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle, 150 - Client.textCycles[index]);
             }
 
-            if (Client.anIntArray165[int_16] == 4) {
-               int_23 = (150 - Client.anIntArray167[int_16]) * (Class50.aFont3.getWidth(string_0) + 100) / 150;
-               Rasterizer2D.setInnerDrawRegion(int_0 + Client.screenY - 50, int_1, int_0 + Client.screenY + 50, int_3 + int_1);
-               Class50.aFont3.drawString(string_0, int_0 + Client.screenY + 50 - int_23, Client.screenX + int_1, int_22, 0);
-               Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
+            if (Client.textEffects[index] == 4) {
+               cycle = (150 - Client.textCycles[index]) * (Class50.boldFont.getWidth(chatMessage) + 100) / 150;
+               Rasterizer2D.setInnerDrawRegion(textDrawX + Client.screenY - 50, textDrawY, textDrawX + Client.screenY + 50, drawHeight + textDrawY);
+               Class50.boldFont.drawString(chatMessage, textDrawX + Client.screenY + 50 - cycle, Client.screenX + textDrawY, textColour, 0);
+               Rasterizer2D.setDrawRegion(textDrawX, textDrawY, textDrawX + drawWidth, drawHeight + textDrawY);
             }
 
-            if (Client.anIntArray165[int_16] == 5) {
-               int_23 = 150 - Client.anIntArray167[int_16];
+            if (Client.textEffects[index] == 5) {
+               cycle = 150 - Client.textCycles[index];
                int int_24 = 0;
-               if (int_23 < 25) {
-                  int_24 = int_23 - 25;
-               } else if (int_23 > 125) {
-                  int_24 = int_23 - 125;
+               if (cycle < 25) {
+                  int_24 = cycle - 25;
+               } else if (cycle > 125) {
+                  int_24 = cycle - 125;
                }
 
-               Rasterizer2D.setInnerDrawRegion(int_0, Client.screenX + int_1 - Class50.aFont3.verticalSpace - 1, int_0 + int_2, Client.screenX + int_1 + 5);
-               Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, int_24 + Client.screenX + int_1, int_22, 0);
-               Rasterizer2D.setDrawRegion(int_0, int_1, int_0 + int_2, int_3 + int_1);
+               Rasterizer2D.setInnerDrawRegion(textDrawX, Client.screenX + textDrawY - Class50.boldFont.verticalSpace - 1, textDrawX + drawWidth, Client.screenX + textDrawY + 5);
+               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, int_24 + Client.screenX + textDrawY, textColour, 0);
+               Rasterizer2D.setDrawRegion(textDrawX, textDrawY, textDrawX + drawWidth, drawHeight + textDrawY);
             }
          } else {
-            Class50.aFont3.drawStringCentred(string_0, int_0 + Client.screenY, Client.screenX + int_1, 16776960, 0);
+            Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, 16776960, 0);
          }
       }
 
       if (Client.hintArrowTargetType == 2) {
          Class35.method245((Client.hintArrowX - Client.regionBaseX << 7) + Client.hintArrowOffsetX, (Client.hintArrowY - Client.regionBaseY << 7) + Client.hintArrowOffsetY, Client.hintArrowType * 2);
          if (Client.screenY > -1 && Client.gameCycle % 20 < 10) {
-            Class85.headIconsHint[0].drawAt(int_0 + Client.screenY - 12, Client.screenX + int_1 - 28);
+            Class85.headIconsHint[0].drawAt(textDrawX + Client.screenY - 12, Client.screenX + textDrawY - 28);
          }
       }
 
@@ -520,21 +520,20 @@ public class Spotanim extends CacheableNode {
          CombatInfoListHolder.aSpritePixelsArray2[Client.anInt645 / 100 + 4].drawAt(Client.anInt641 - 8, Client.anInt642 - 8);
       }
 
-      WorldMapData.method306();
-      Class2.cameraX = int_5;
-      Class18.cameraZ = int_6;
-      Player.cameraY = int_7;
-      AClass1.cameraPitch = int_8;
-      Enum4.cameraYaw = int_9;
-      if (Client.aBool88 && Enum6.method702(true, false) == 0) {
-         Client.aBool88 = false;
+      WorldMapData.isOnTutorialIsland();
+      Class2.cameraX = camPosX;
+      Class18.cameraZ = camPosZ;
+      Player.cameraY = camPosY;
+      AClass1.cameraPitch = camPitch;
+      Enum4.cameraYaw = camYaw;
+      if (Client.loginScreenShown && Enum6.method702(true, false) == 0) {
+         Client.loginScreenShown = false;
       }
 
-      if (Client.aBool88) {
-         Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, 0);
+      if (Client.loginScreenShown) {
+         Rasterizer2D.fillRect(textDrawX, textDrawY, drawWidth, drawHeight, 0);
          Client.drawStatusBox("Loading - please wait.", false);
       }
-
    }
 
 }

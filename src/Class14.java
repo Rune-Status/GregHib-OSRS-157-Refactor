@@ -395,18 +395,18 @@ public final class Class14 {
 
    static void gameDraw(Widget[] widgets_0, int int_0, int int_1, int int_2, int int_3, int int_4, int int_5, int int_6, int int_7) {
       Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
-      Rasterizer3D.method960();
+      Rasterizer3D.resetRasterClipping();
 
       for (int int_8 = 0; int_8 < widgets_0.length; int_8++) {
          Widget widget = widgets_0[int_8];
          if (widget != null && (widget.parentId == int_0 || int_0 == -1412584499 && widget == Client.aWidget9)) {
             int int_9;
             if (int_7 == -1) {
-               Client.widgetPositionX[Client.anInt610] = widget.relativeX + int_5;
-               Client.widgetPositionY[Client.anInt610] = int_6 + widget.relativeY;
-               Client.widgetBoundsWidth[Client.anInt610] = widget.width;
-               Client.widgetBoundsHeight[Client.anInt610] = widget.height;
-               int_9 = ++Client.anInt610 - 1;
+               Client.widgetPositionX[Client.widgetIndexCount] = widget.relativeX + int_5;
+               Client.widgetPositionY[Client.widgetIndexCount] = int_6 + widget.relativeY;
+               Client.widgetBoundsWidth[Client.widgetIndexCount] = widget.width;
+               Client.widgetBoundsHeight[Client.widgetIndexCount] = widget.height;
+               int_9 = ++Client.widgetIndexCount - 1;
             } else {
                int_9 = int_7;
             }
@@ -466,8 +466,8 @@ public final class Class14 {
                   }
 
                   if (Client.aBool93 && Client.aBool86) {
-                     int_13 = MouseInput.anInt260;
-                     int_14 = MouseInput.anInt262;
+                     int_13 = MouseInput.mouseEventX;
+                     int_14 = MouseInput.mouseEventY;
                      int_13 -= Client.anInt619;
                      int_14 -= Client.anInt620;
                      if (int_13 < Client.anInt621) {
@@ -561,8 +561,8 @@ public final class Class14 {
                      }
 
                      if (widget.contentType == 1337) {
-                        Client.anInt615 = drawX;
-                        Client.anInt616 = drawY;
+                        Client.hoverOptionX = drawX;
+                        Client.hoverOptionY = drawY;
                         Spotanim.method764(drawX, drawY, widget.width, widget.height);
                         Client.aBoolArray8[widget.boundsIndex] = true;
                         Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
@@ -616,10 +616,10 @@ public final class Class14 {
                      }
 
                      Rasterizer2D.setDrawRegion(int_1, int_2, int_3, int_4);
-                     Rasterizer3D.method960();
+                     Rasterizer3D.resetRasterClipping();
                   }
 
-                  if (Client.isResized || Client.aBoolArray10[int_9] || Client.gameDrawingMode > 1) {
+                  if (Client.isResized || Client.drawMagentaFill[int_9] || Client.gameDrawingMode > 1) {
                      if (widget.type == 0 && !widget.hasScript && widget.scrollHeight > widget.height) {
                         method189(drawX + widget.width, drawY, widget.scrollY, widget.height, widget.scrollHeight);
                      }
@@ -664,8 +664,8 @@ public final class Class14 {
 
                                        if (spritepixels_0 != null) {
                                           if (widget == ClanMember.aWidget7 && int_19 == Client.anInt635) {
-                                             int_22 = MouseInput.anInt260 - Client.anInt628;
-                                             int_23 = MouseInput.anInt262 - Client.anInt629;
+                                             int_22 = MouseInput.mouseEventX - Client.anInt628;
+                                             int_23 = MouseInput.mouseEventY - Client.anInt629;
                                              if (int_22 < 5 && int_22 > -5) {
                                                 int_22 = 0;
                                              }
@@ -914,18 +914,18 @@ public final class Class14 {
                                     }
                                  }
 
-                                 Rasterizer3D.method970(widget.width / 2 + drawX, widget.height / 2 + drawY);
+                                 Rasterizer3D.setRasterSize(widget.width / 2 + drawX, widget.height / 2 + drawY);
                                  int_21 = Rasterizer3D.SINE[widget.modelRotationX] * widget.modelZoom >> 16;
                                  int_22 = Rasterizer3D.COSINE[widget.modelRotationX] * widget.modelZoom >> 16;
                                  if (model_0 != null) {
                                     if (!widget.hasScript) {
-                                       model_0.method1027(0, widget.modelRotationZ, 0, widget.modelRotationX, 0, int_21, int_22);
+                                       model_0.render(0, widget.modelRotationZ, 0, widget.modelRotationX, 0, int_21, int_22);
                                     } else {
                                        model_0.calculateDiagonals();
                                        if (widget.aBool41) {
                                           model_0.method1028(0, widget.modelRotationZ, widget.rotationY, widget.modelRotationX, widget.anInt293, int_21 + int_20 + widget.anInt294, int_22 + widget.anInt294, widget.modelZoom);
                                        } else {
-                                          model_0.method1027(0, widget.modelRotationZ, widget.rotationY, widget.modelRotationX, widget.anInt293, int_21 + int_20 + widget.anInt294, int_22 + widget.anInt294);
+                                          model_0.render(0, widget.modelRotationZ, widget.rotationY, widget.modelRotationX, widget.anInt293, int_21 + int_20 + widget.anInt294, int_22 + widget.anInt294);
                                        }
                                     }
                                  }
@@ -1384,7 +1384,7 @@ public final class Class14 {
                   }
 
                   if (Client.itemSelectionState == 1) {
-                     Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16776960) + string_0, 7, int_0, int_1, int_2);
+                     Class24.addMenuEntry("Use", Client.selectedItemName + " " + "->" + " " + Wall.getColTags(16776960) + string_0, 7, int_0, int_1, int_2);
                   } else if (Client.spellSelected) {
                      if ((Enum4.anInt381 & 0x2) == 2) {
                         Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16776960) + string_0, 8, int_0, int_1, int_2);

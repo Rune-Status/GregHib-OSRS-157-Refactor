@@ -166,7 +166,7 @@ public class Class9 {
             } else {
                int int_0 = font_0.method1035(area_0.name, 1000000);
                String[] strings_0 = new String[int_0];
-               font_0.method1031(area_0.name, (int[]) null, strings_0);
+               font_0.getIndexOfLongestStringInArray(area_0.name, (int[]) null, strings_0);
                int int_1 = strings_0.length * font_0.verticalSpace / 2;
                int int_2 = 0;
                String[] strings_1 = strings_0;
@@ -791,12 +791,12 @@ public class Class9 {
 
    static IndexedSprite loadSpriteData() {
       IndexedSprite sprite = new IndexedSprite();
-      sprite.width = Class111.anInt214;
-      sprite.originalHeight = Class111.anInt215;
-      sprite.offsetX = Class111.anIntArray54[0];
-      sprite.offsetY = Class7.offsetsY[0];
-      sprite.originalWidth = ItemContainer.anIntArray76[0];
-      sprite.height = Class6.anIntArray3[0];
+      sprite.width = Class111.loadedMaxWidth;
+      sprite.originalHeight = Class111.loadedMaxHeight;
+      sprite.offsetX = Class111.loadedHorizontalOffsets[0];
+      sprite.offsetY = Class7.loadedVerticalOffsets[0];
+      sprite.originalWidth = ItemContainer.loadedWidths[0];
+      sprite.height = Class6.loadedHeights[0];
       sprite.palette = Class111.loadedPixels;
       sprite.pixels = Class111.spritePixels[0];
       Class98.cleanPixelLoader();

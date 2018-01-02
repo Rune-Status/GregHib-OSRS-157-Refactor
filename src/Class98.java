@@ -65,10 +65,10 @@ public class Class98 {
    }
 
    static void cleanPixelLoader() {
-      Class111.anIntArray54 = null;
-      Class7.offsetsY = null;
-      ItemContainer.anIntArray76 = null;
-      Class6.anIntArray3 = null;
+      Class111.loadedHorizontalOffsets = null;
+      Class7.loadedVerticalOffsets = null;
+      ItemContainer.loadedWidths = null;
+      Class6.loadedHeights = null;
       Class111.loadedPixels = null;
       Class111.spritePixels = null;
    }

@@ -704,17 +704,17 @@ public class Buffer extends Node {
         WorldMapData_Sub1.anIntArray11 = new int[104];
     }
 
-    public static SpritePixels[] method735(IndexDataBase indexdatabase_0, String string_0, String string_1) {
-        int value = indexdatabase_0.getFile(string_0);
-        int int_1 = indexdatabase_0.getChild(value, string_1);
-        SpritePixels[] spritepixelss_0;
-        if (!TileStrategy.decodeIfExists(indexdatabase_0, value, int_1)) {
-            spritepixelss_0 = null;
+    public static SpritePixels[] method735(IndexDataBase cacheIndex, String fileName, String childName) {
+        int fileId = cacheIndex.getFile(fileName);
+        int childId = cacheIndex.getChild(fileId, childName);
+        SpritePixels[] pixels;
+        if (!TileStrategy.decodeIfExists(cacheIndex, fileId, childId)) {
+            pixels = null;
         } else {
-            spritepixelss_0 = ObjectDefinition.method829();
+            pixels = ObjectDefinition.method829();
         }
 
-        return spritepixelss_0;
+        return pixels;
     }
 
     public static boolean method736(CharSequence charsequence_0) {

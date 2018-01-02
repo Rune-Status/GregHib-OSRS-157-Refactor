@@ -21,7 +21,7 @@ public class Class102 {
          if (this.aHashMap8.containsKey(class97_0)) {
             hashmap_0.put(class97_0, this.aHashMap8.get(class97_0));
          } else {
-            Font font_0 = Class104.method534(this.anIndexDataBase7, this.anIndexDataBase8, class97_0.aString13, "");
+            Font font_0 = Class104.loadFont(this.anIndexDataBase7, this.anIndexDataBase8, class97_0.aString13, "");
             if (font_0 != null) {
                this.aHashMap8.put(class97_0, font_0);
                hashmap_0.put(class97_0, font_0);

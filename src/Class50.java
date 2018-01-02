@@ -2,7 +2,7 @@ import java.io.File;
 
 public class Class50 {
 
-   static Font aFont3;
+   static Font boldFont;
    public static File aFile1;
    static int anInt112;
 

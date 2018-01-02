@@ -50,7 +50,7 @@ public final class Class24 {
 
                   int_8 = (int_2 - int_7) * Client.anInt646 / int_2;
                } else {
-                  int_8 = Client.anInt644;
+                  int_8 = Client.waveVolume;
                }
 
                if (int_8 > 0) {

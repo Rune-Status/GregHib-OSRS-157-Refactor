@@ -1,9 +1,9 @@
 public class Class111 {
 
-   static int anInt214;
-   static int anInt215;
-   static int[] anIntArray54;
-   static int anInt216;
+   static int loadedMaxWidth;
+   static int loadedMaxHeight;
+   static int[] loadedHorizontalOffsets;
+   static int loadedSpriteSize;
    static int[] loadedPixels;
    static byte[][] spritePixels;
 

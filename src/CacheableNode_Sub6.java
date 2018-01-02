@@ -1,21 +1,21 @@
 public class CacheableNode_Sub6 extends CacheableNode {
 
-   public static NodeCache aNodeCache15;
+   public static NodeCache fontIndexCache;
    public static NodeCache aNodeCache16;
-   public static NodeCache aNodeCache17;
-   static IndexDataBase anIndexDataBase25;
+   public static NodeCache spritePixelsCache;
+   static IndexDataBase configCacheIndex;
    static IndexDataBase anIndexDataBase26;
    static IndexDataBase anIndexDataBase27;
-   String aString31;
+   String text;
    int anInt475;
-   int anInt476;
-   int anInt477;
-   int anInt478;
-   int anInt479;
-   int anInt480;
+   int sprite1;
+   int sprite4;
+   int cachedFontIndex;
+   int sprite3;
+   int sprite2;
    int anInt481;
    public int anInt482;
-   public int anInt483;
+   public int colour;
    public int anInt484;
    public int[] anIntArray103;
    public int anInt485;
@@ -25,81 +25,105 @@ public class CacheableNode_Sub6 extends CacheableNode {
 
    static {
       aNodeCache16 = new NodeCache(64);
-      aNodeCache17 = new NodeCache(64);
-      aNodeCache15 = new NodeCache(20);
+      spritePixelsCache = new NodeCache(64);
+      fontIndexCache = new NodeCache(20);
    }
 
    CacheableNode_Sub6() {
-      this.anInt478 = -1;
-      this.anInt483 = 16777215;
+      this.cachedFontIndex = -1;
+      this.colour = 16777215;
       this.anInt484 = 70;
-      this.anInt476 = -1;
-      this.anInt479 = -1;
-      this.anInt480 = -1;
-      this.anInt477 = -1;
+      this.sprite1 = -1;
+      this.sprite3 = -1;
+      this.sprite2 = -1;
+      this.sprite4 = -1;
       this.anInt485 = 0;
       this.anInt487 = 0;
       this.anInt486 = -1;
-      this.aString31 = "";
+      this.text = "";
       this.anInt482 = -1;
       this.anInt488 = 0;
       this.anInt475 = -1;
       this.anInt481 = -1;
    }
 
-   void method888(Buffer buffer_0, int int_0) {
-      if (int_0 == 1) {
-         this.anInt478 = buffer_0.getBigSmart();
-      } else if (int_0 == 2) {
-         this.anInt483 = buffer_0.read24BitInt();
-      } else if (int_0 == 3) {
-         this.anInt476 = buffer_0.getBigSmart();
-      } else if (int_0 == 4) {
-         this.anInt480 = buffer_0.getBigSmart();
-      } else if (int_0 == 5) {
-         this.anInt479 = buffer_0.getBigSmart();
-      } else if (int_0 == 6) {
-         this.anInt477 = buffer_0.getBigSmart();
-      } else if (int_0 == 7) {
-         this.anInt485 = buffer_0.readShort();
-      } else if (int_0 == 8) {
-         this.aString31 = buffer_0.getJagString();
-      } else if (int_0 == 9) {
-         this.anInt484 = buffer_0.getUnsignedShort();
-      } else if (int_0 == 10) {
-         this.anInt487 = buffer_0.readShort();
-      } else if (int_0 == 11) {
+   public static SpritePixels decodeSpritePixels(IndexDataBase indexDataBase, int archive, int file) {
+      if (!TileStrategy.decodeIfExists(indexDataBase, archive, file)) {
+         return null;
+      } else {
+         SpritePixels pixels = new SpritePixels();
+         pixels.maxWidth = Class111.loadedMaxWidth;
+         pixels.maxHeight = Class111.loadedMaxHeight;
+         pixels.offsetX = Class111.loadedHorizontalOffsets[0];
+         pixels.offsetY = Class7.loadedVerticalOffsets[0];
+         pixels.width = ItemContainer.loadedWidths[0];
+         pixels.height = Class6.loadedHeights[0];
+         int area = pixels.height * pixels.width;
+         byte[] pixelIndexes = Class111.spritePixels[0];
+         pixels.pixels = new int[area];
+
+         for (int index = 0; index < area; index++) {
+            pixels.pixels[index] = Class111.loadedPixels[pixelIndexes[index] & 0xFF];
+         }
+
+         Class98.cleanPixelLoader();
+         return pixels;
+      }
+   }
+
+   void decode(Buffer buffer, int opcode) {
+      if (opcode == 1) {
+         this.cachedFontIndex = buffer.getBigSmart();
+      } else if (opcode == 2) {
+         this.colour = buffer.read24BitInt();
+      } else if (opcode == 3) {
+         this.sprite1 = buffer.getBigSmart();
+      } else if (opcode == 4) {
+         this.sprite2 = buffer.getBigSmart();
+      } else if (opcode == 5) {
+         this.sprite3 = buffer.getBigSmart();
+      } else if (opcode == 6) {
+         this.sprite4 = buffer.getBigSmart();
+      } else if (opcode == 7) {
+         this.anInt485 = buffer.readShort();
+      } else if (opcode == 8) {
+         this.text = buffer.getJagString();
+      } else if (opcode == 9) {
+         this.anInt484 = buffer.getUnsignedShort();
+      } else if (opcode == 10) {
+         this.anInt487 = buffer.readShort();
+      } else if (opcode == 11) {
          this.anInt486 = 0;
-      } else if (int_0 == 12) {
-         this.anInt482 = buffer_0.getUnsignedByte();
-      } else if (int_0 == 13) {
-         this.anInt488 = buffer_0.readShort();
-      } else if (int_0 == 14) {
-         this.anInt486 = buffer_0.getUnsignedShort();
-      } else if (int_0 == 17 || int_0 == 18) {
-         this.anInt475 = buffer_0.getUnsignedShort();
+      } else if (opcode == 12) {
+         this.anInt482 = buffer.getUnsignedByte();
+      } else if (opcode == 13) {
+         this.anInt488 = buffer.readShort();
+      } else if (opcode == 14) {
+         this.anInt486 = buffer.getUnsignedShort();
+      } else if (opcode == 17 || opcode == 18) {
+         this.anInt475 = buffer.getUnsignedShort();
          if (this.anInt475 == 65535) {
             this.anInt475 = -1;
          }
 
-         this.anInt481 = buffer_0.getUnsignedShort();
+         this.anInt481 = buffer.getUnsignedShort();
          if (this.anInt481 == 65535) {
             this.anInt481 = -1;
          }
 
          int int_1 = -1;
-         if (int_0 == 18) {
-            int_1 = buffer_0.getUnsignedShort();
+         if (opcode == 18) {
+            int_1 = buffer.getUnsignedShort();
             if (int_1 == 65535) {
                int_1 = -1;
             }
          }
 
-         int int_2 = buffer_0.getUnsignedByte();
+         int int_2 = buffer.getUnsignedByte();
          this.anIntArray103 = new int[int_2 + 2];
 
          for (int int_3 = 0; int_3 <= int_2; int_3++) {
-            this.anIntArray103[int_3] = buffer_0.getUnsignedShort();
+            this.anIntArray103[int_3] = buffer.getUnsignedShort();
             if (this.anIntArray103[int_3] == 65535) {
                this.anIntArray103[int_3] = -1;
             }
@@ -110,14 +134,14 @@ public class CacheableNode_Sub6 extends CacheableNode {
 
    }
 
-   void method889(Buffer buffer_0) {
+   void decode(Buffer buffer) {
       while (true) {
-         int int_0 = buffer_0.getUnsignedByte();
-         if (int_0 == 0) {
+         int opcode = buffer.getUnsignedByte();
+         if (opcode == 0) {
             return;
          }
 
-         this.method888(buffer_0, int_0);
+         this.decode(buffer, opcode);
       }
    }
 
@@ -136,111 +160,111 @@ public class CacheableNode_Sub6 extends CacheableNode {
          int_1 = this.anIntArray103[this.anIntArray103.length - 1];
       }
 
-      return int_1 != -1 ? AClass3_Sub2.method753(int_1) : null;
+      return int_1 != -1 ? AClass3_Sub2.getCacheableNode_Sub6Definition(int_1) : null;
    }
 
    public SpritePixels method891() {
-      if (this.anInt476 < 0) {
+      if (this.sprite1 < 0) {
          return null;
       } else {
-         SpritePixels spritepixels_0 = (SpritePixels) aNodeCache17.get((long)this.anInt476);
-         if (spritepixels_0 != null) {
-            return spritepixels_0;
+         SpritePixels pixels = (SpritePixels) spritePixelsCache.get((long)this.sprite1);
+         if (pixels != null) {
+            return pixels;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt476, 0);
-            if (spritepixels_0 != null) {
-               aNodeCache17.put(spritepixels_0, (long)this.anInt476);
+            pixels = decodeSpritePixels(anIndexDataBase26, this.sprite1, 0);
+            if (pixels != null) {
+               spritePixelsCache.put(pixels, (long)this.sprite1);
             }
 
-            return spritepixels_0;
+            return pixels;
          }
       }
    }
 
-   public SpritePixels method892() {
-      if (this.anInt479 < 0) {
+   public SpritePixels getCachedSprite() {
+      if (this.sprite3 < 0) {
          return null;
       } else {
-         SpritePixels spritepixels_0 = (SpritePixels) aNodeCache17.get((long)this.anInt479);
-         if (spritepixels_0 != null) {
-            return spritepixels_0;
+         SpritePixels pixels = (SpritePixels) spritePixelsCache.get((long)this.sprite3);
+         if (pixels != null) {
+            return pixels;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt479, 0);
-            if (spritepixels_0 != null) {
-               aNodeCache17.put(spritepixels_0, (long)this.anInt479);
+            pixels = decodeSpritePixels(anIndexDataBase26, this.sprite3, 0);
+            if (pixels != null) {
+               spritePixelsCache.put(pixels, (long)this.sprite3);
             }
 
-            return spritepixels_0;
+            return pixels;
          }
       }
    }
 
    public SpritePixels method893() {
-      if (this.anInt480 < 0) {
+      if (this.sprite2 < 0) {
          return null;
       } else {
-         SpritePixels spritepixels_0 = (SpritePixels) aNodeCache17.get((long)this.anInt480);
-         if (spritepixels_0 != null) {
-            return spritepixels_0;
+         SpritePixels pixels = (SpritePixels) spritePixelsCache.get((long)this.sprite2);
+         if (pixels != null) {
+            return pixels;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt480, 0);
-            if (spritepixels_0 != null) {
-               aNodeCache17.put(spritepixels_0, (long)this.anInt480);
+            pixels = decodeSpritePixels(anIndexDataBase26, this.sprite2, 0);
+            if (pixels != null) {
+               spritePixelsCache.put(pixels, (long)this.sprite2);
             }
 
-            return spritepixels_0;
+            return pixels;
          }
       }
    }
 
    public SpritePixels method894() {
-      if (this.anInt477 < 0) {
+      if (this.sprite4 < 0) {
          return null;
       } else {
-         SpritePixels spritepixels_0 = (SpritePixels) aNodeCache17.get((long)this.anInt477);
-         if (spritepixels_0 != null) {
-            return spritepixels_0;
+         SpritePixels pixels = (SpritePixels) spritePixelsCache.get((long)this.sprite4);
+         if (pixels != null) {
+            return pixels;
          } else {
-            spritepixels_0 = Class38.decodeSpritePixels(anIndexDataBase26, this.anInt477, 0);
-            if (spritepixels_0 != null) {
-               aNodeCache17.put(spritepixels_0, (long)this.anInt477);
+            pixels = decodeSpritePixels(anIndexDataBase26, this.sprite4, 0);
+            if (pixels != null) {
+               spritePixelsCache.put(pixels, (long)this.sprite4);
             }
 
-            return spritepixels_0;
+            return pixels;
          }
       }
    }
 
-   public Font method895() {
-      if (this.anInt478 == -1) {
+   public Font getCachedFont() {
+      if (this.cachedFontIndex == -1) {
          return null;
       } else {
-         Font font_0 = (Font) aNodeCache15.get((long)this.anInt478);
-         if (font_0 != null) {
-            return font_0;
+         Font font = (Font) fontIndexCache.get((long)this.cachedFontIndex);
+         if (font != null) {
+            return font;
          } else {
-            font_0 = Class89.decodeFont(anIndexDataBase26, anIndexDataBase27, this.anInt478, 0);
-            if (font_0 != null) {
-               aNodeCache15.put(font_0, (long)this.anInt478);
+            font = Class89.decodeFont(anIndexDataBase26, anIndexDataBase27, this.cachedFontIndex, 0);
+            if (font != null) {
+               fontIndexCache.put(font, (long)this.cachedFontIndex);
             }
 
-            return font_0;
+            return font;
          }
       }
    }
 
-   public String method896(int int_0) {
-      String string_0 = this.aString31;
+   public String getHitsplatString(int hitSplatType) {
+      String string_0 = this.text;
 
       while (true) {
-         int int_1 = string_0.indexOf("%1");
-         if (int_1 < 0) {
+         int index = string_0.indexOf("%1");
+         if (index < 0) {
             return string_0;
          }
 
-         String string_1 = string_0.substring(0, int_1);
-         String string_2 = Integer.toString(int_0);
-         string_0 = string_1 + string_2 + string_0.substring(int_1 + 2);
+         String prefix = string_0.substring(0, index);
+         String string_2 = Integer.toString(hitSplatType);
+         string_0 = prefix + string_2 + string_0.substring(index + 2);
       }
    }
 

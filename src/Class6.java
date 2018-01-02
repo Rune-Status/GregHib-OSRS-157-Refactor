@@ -4,7 +4,7 @@ import java.net.URL;
 
 public class Class6 {
 
-   static int[] anIntArray3;
+   static int[] loadedHeights;
    static IndexData skinsIndex;
    final int anInt37;
    final int anInt38;

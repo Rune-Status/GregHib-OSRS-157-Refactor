@@ -18,65 +18,65 @@ public final class WallDecoration {
       this.objectConfig = 0;
    }
 
-   static void decodeSprite(byte[] bytes_0) {
-      Buffer buffer_0 = new Buffer(bytes_0);
-      buffer_0.position = bytes_0.length - 2;
-      Class111.anInt216 = buffer_0.getUnsignedShort();
-      Class111.anIntArray54 = new int[Class111.anInt216];
-      Class7.offsetsY = new int[Class111.anInt216];
-      ItemContainer.anIntArray76 = new int[Class111.anInt216];
-      Class6.anIntArray3 = new int[Class111.anInt216];
-      Class111.spritePixels = new byte[Class111.anInt216][];
-      buffer_0.position = bytes_0.length - 7 - Class111.anInt216 * 8;
-      Class111.anInt214 = buffer_0.getUnsignedShort();
-      Class111.anInt215 = buffer_0.getUnsignedShort();
-      int int_0 = (buffer_0.getUnsignedByte() & 0xFF) + 1;
+   static void decodeSprite(byte[] data) {
+      Buffer buffer = new Buffer(data);
+      buffer.position = data.length - 2;
+      Class111.loadedSpriteSize = buffer.getUnsignedShort();
+      Class111.loadedHorizontalOffsets = new int[Class111.loadedSpriteSize];
+      Class7.loadedVerticalOffsets = new int[Class111.loadedSpriteSize];
+      ItemContainer.loadedWidths = new int[Class111.loadedSpriteSize];
+      Class6.loadedHeights = new int[Class111.loadedSpriteSize];
+      Class111.spritePixels = new byte[Class111.loadedSpriteSize][];
+      buffer.position = data.length - 7 - Class111.loadedSpriteSize * 8;
+      Class111.loadedMaxWidth = buffer.getUnsignedShort();
+      Class111.loadedMaxHeight = buffer.getUnsignedShort();
+      int size = (buffer.getUnsignedByte() & 0xFF) + 1;
 
-      int int_1;
-      for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class111.anIntArray54[int_1] = buffer_0.getUnsignedShort();
+      int index;
+      for (index = 0; index < Class111.loadedSpriteSize; index++) {
+         Class111.loadedHorizontalOffsets[index] = buffer.getUnsignedShort();
       }
 
-      for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class7.offsetsY[int_1] = buffer_0.getUnsignedShort();
+      for (index = 0; index < Class111.loadedSpriteSize; index++) {
+         Class7.loadedVerticalOffsets[index] = buffer.getUnsignedShort();
       }
 
-      for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         ItemContainer.anIntArray76[int_1] = buffer_0.getUnsignedShort();
+      for (index = 0; index < Class111.loadedSpriteSize; index++) {
+         ItemContainer.loadedWidths[index] = buffer.getUnsignedShort();
       }
 
-      for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         Class6.anIntArray3[int_1] = buffer_0.getUnsignedShort();
+      for (index = 0; index < Class111.loadedSpriteSize; index++) {
+         Class6.loadedHeights[index] = buffer.getUnsignedShort();
       }
 
-      buffer_0.position = bytes_0.length - 7 - Class111.anInt216 * 8 - (int_0 - 1) * 3;
-      Class111.loadedPixels = new int[int_0];
+      buffer.position = data.length - 7 - Class111.loadedSpriteSize * 8 - (size - 1) * 3;
+      Class111.loadedPixels = new int[size];
 
-      for (int_1 = 1; int_1 < int_0; int_1++) {
-         Class111.loadedPixels[int_1] = buffer_0.read24BitInt();
-         if (Class111.loadedPixels[int_1] == 0) {
-            Class111.loadedPixels[int_1] = 1;
+      for (index = 1; index < size; index++) {
+         Class111.loadedPixels[index] = buffer.read24BitInt();
+         if (Class111.loadedPixels[index] == 0) {
+            Class111.loadedPixels[index] = 1;
          }
       }
 
-      buffer_0.position = 0;
+      buffer.position = 0;
 
-      for (int_1 = 0; int_1 < Class111.anInt216; int_1++) {
-         int int_2 = ItemContainer.anIntArray76[int_1];
-         int int_3 = Class6.anIntArray3[int_1];
-         int int_4 = int_2 * int_3;
-         byte[] bytes_1 = new byte[int_4];
-         Class111.spritePixels[int_1] = bytes_1;
-         int int_5 = buffer_0.getUnsignedByte();
-         int int_6;
-         if (int_5 == 0) {
-            for (int_6 = 0; int_6 < int_4; int_6++) {
-               bytes_1[int_6] = buffer_0.readByte();
+      for (index = 0; index < Class111.loadedSpriteSize; index++) {
+         int width = ItemContainer.loadedWidths[index];
+         int height = Class6.loadedHeights[index];
+         int length = width * height;
+         byte[] pixelData = new byte[length];
+         Class111.spritePixels[index] = pixelData;
+         int type = buffer.getUnsignedByte();
+         int i;
+         if (type == 0) {
+            for (i = 0; i < length; i++) {
+               pixelData[i] = buffer.readByte();
             }
-         } else if (int_5 == 1) {
-            for (int_6 = 0; int_6 < int_2; int_6++) {
-               for (int int_7 = 0; int_7 < int_3; int_7++) {
-                  bytes_1[int_6 + int_2 * int_7] = buffer_0.readByte();
+         } else if (type == 1) {
+            for (i = 0; i < width; i++) {
+               for (int int_7 = 0; int_7 < height; int_7++) {
+                  pixelData[i + width * int_7] = buffer.readByte();
                }
             }
          }

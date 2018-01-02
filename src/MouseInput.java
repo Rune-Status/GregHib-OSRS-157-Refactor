@@ -13,9 +13,9 @@ public class MouseInput implements MouseListener, MouseMotionListener, FocusList
    public static volatile int anInt258;
    public static int anInt259;
    public static volatile int mouseY;
-   public static int anInt260;
+   public static int mouseEventX;
    public static volatile int anInt261;
-   public static int anInt262;
+   public static int mouseEventY;
    public static int anInt263;
    public static int anInt264;
    public static int anInt265;
@@ -30,8 +30,8 @@ public class MouseInput implements MouseListener, MouseMotionListener, FocusList
       mouseX = -1;
       mouseY = -1;
       anInt263 = 0;
-      anInt260 = 0;
-      anInt262 = 0;
+      mouseEventX = 0;
+      mouseEventY = 0;
       anInt266 = 0;
       anInt258 = 0;
       anInt261 = 0;

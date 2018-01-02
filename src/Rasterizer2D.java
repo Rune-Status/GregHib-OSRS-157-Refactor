@@ -505,38 +505,38 @@ public class Rasterizer2D extends CacheableNode {
       }
    }
 
-   public static void fillRectangle(int int_0, int int_1, int int_2, int int_3, int int_4, int opacity) {
-      if (int_0 < topX) {
-         int_2 -= topX - int_0;
-         int_0 = topX;
+   public static void fillRectangle(int drawX, int drawY, int width, int height, int colour, int opacity) {
+      if (drawX < topX) {
+         width -= topX - drawX;
+         drawX = topX;
       }
 
-      if (int_1 < topY) {
-         int_3 -= topY - int_1;
-         int_1 = topY;
+      if (drawY < topY) {
+         height -= topY - drawY;
+         drawY = topY;
       }
 
-      if (int_0 + int_2 > bottomX) {
-         int_2 = bottomX - int_0;
+      if (drawX + width > bottomX) {
+         width = bottomX - drawX;
       }
 
-      if (int_3 + int_1 > bottomY) {
-         int_3 = bottomY - int_1;
+      if (height + drawY > bottomY) {
+         height = bottomY - drawY;
       }
 
-      int_4 = (opacity * (int_4 & 0xFF00FF) >> 8 & 0xFF00FF) + (opacity * (int_4 & 0xFF00) >> 8 & 0xFF00);
-      int a = 256 - opacity;
-      int int_7 = graphicsPixelsWidth - int_2;
-      int int_8 = int_0 + graphicsPixelsWidth * int_1;
+      colour = (opacity * (colour & 0xFF00FF) >> 8 & 0xFF00FF) + (opacity * (colour & 0xFF00) >> 8 & 0xFF00);
+      int inverseAlpha = 256 - opacity;
+      int dx = graphicsPixelsWidth - width;
+      int pixel = drawX + graphicsPixelsWidth * drawY;
 
-      for (int int_9 = 0; int_9 < int_3; int_9++) {
-         for (int int_10 = -int_2; int_10 < 0; int_10++) {
-            int int_11 = graphicsPixels[int_8];
-            int_11 = ((int_11 & 0xFF00FF) * a >> 8 & 0xFF00FF) + (a * (int_11 & 0xFF00) >> 8 & 0xFF00);
-            graphicsPixels[int_8++] = int_11 + int_4;
+      for (int y = 0; y < height; y++) {
+         for (int x = -width; x < 0; x++) {
+            int rgb = graphicsPixels[pixel];
+            rgb = ((rgb & 0xFF00FF) * inverseAlpha >> 8 & 0xFF00FF) + (inverseAlpha * (rgb & 0xFF00) >> 8 & 0xFF00);
+            graphicsPixels[pixel++] = rgb + colour;
          }
 
-         int_8 += int_7;
+         pixel += dx;
       }
 
    }

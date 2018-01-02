@@ -34,27 +34,27 @@ public class Class74 {
       }
    }
 
-   static void method446() {
-      int int_0 = CacheFile.menuX;
-      int int_1 = AClass1_Sub1.menuY;
-      int int_2 = Class93.menuWidth;
-      int int_3 = Class42.menuHeight;
-      int int_4 = 6116423;
-      Rasterizer2D.fillRect(int_0, int_1, int_2, int_3, int_4);
-      Rasterizer2D.fillRect(int_0 + 1, int_1 + 1, int_2 - 2, 16, 0);
-      Rasterizer2D.drawRectangle(int_0 + 1, int_1 + 18, int_2 - 2, int_3 - 19, 0);
-      Class50.aFont3.drawString("Choose Option", int_0 + 3, int_1 + 14, int_4, -1);
-      int int_5 = MouseInput.anInt260;
-      int int_6 = MouseInput.anInt262;
+   static void drawMenuOptions() {
+      int x = CacheFile.menuX;
+      int y = AClass1_Sub1.menuY;
+      int width = Class93.menuWidth;
+      int height = Class42.menuHeight;
+      int colour = 6116423;
+      Rasterizer2D.fillRect(x, y, width, height, colour);
+      Rasterizer2D.fillRect(x + 1, y + 1, width - 2, 16, 0);
+      Rasterizer2D.drawRectangle(x + 1, y + 18, width - 2, height - 19, 0);
+      Class50.boldFont.drawString("Choose Option", x + 3, y + 14, colour, -1);
+      int mouseX = MouseInput.mouseEventX;
+      int mouseY = MouseInput.mouseEventY;
 
       for (int int_7 = 0; int_7 < Client.menuOptionCount; int_7++) {
-         int int_8 = (Client.menuOptionCount - 1 - int_7) * 15 + int_1 + 31;
-         int int_9 = 16777215;
-         if (int_5 > int_0 && int_5 < int_2 + int_0 && int_6 > int_8 - 13 && int_6 < int_8 + 3) {
-            int_9 = 16776960;
+         int textY = (Client.menuOptionCount - 1 - int_7) * 15 + y + 31;
+         int textColour = 16777215;
+         if (mouseX > x && mouseX < width + x && mouseY > textY - 13 && mouseY < textY + 3) {
+            textColour = 16776960;
          }
 
-         Class50.aFont3.drawString(Class38.method253(int_7), int_0 + 3, int_8, int_9, 0);
+         Class50.boldFont.drawString(Class38.getOptionCount(int_7), x + 3, textY, textColour, 0);
       }
 
       Class71.method423(CacheFile.menuX, AClass1_Sub1.menuY, Class93.menuWidth, Class42.menuHeight);

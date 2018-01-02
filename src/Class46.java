@@ -199,7 +199,7 @@ public class Class46 {
             } else {
                Class1.aFont2 = (Font) Client.aHashMap9.get(Class97.aClass97_5);
                Class4.normalFont = (Font) Client.aHashMap9.get(Class97.aClass97_8);
-               Class50.aFont3 = (Font) Client.aHashMap9.get(Class97.aClass97_9);
+               Class50.boldFont = (Font) Client.aHashMap9.get(Class97.aClass97_9);
                CombatInfo1.aMachineInfo1 = new MachineInfo(true);
                Class25.loadingText = "Loaded fonts";
                Class25.loadingBarPercentage = 40;
@@ -437,7 +437,7 @@ public class Class46 {
             } else {
                if (Client.renderOverview == null) {
                   Client.renderOverview = new RenderOverview();
-                  Client.renderOverview.method34(RSCanvas.worldMapIndex, Class50.aFont3, Client.aHashMap9, BuildType.mapscene);
+                  Client.renderOverview.method34(RSCanvas.worldMapIndex, Class50.boldFont, Client.aHashMap9, BuildType.mapscene);
                }
 
                index = Client.renderOverview.method33();

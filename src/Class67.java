@@ -40,11 +40,11 @@ public class Class67 {
                Class23.sceneGraph.method378(Ignore.plane, player.x, player.y, player.anInt598, 60, player, player.angle, int_0, player.anInt604, player.anInt605, player.anInt606, player.anInt607);
             } else {
                if ((player.x & 0x7F) == 64 && (player.y & 0x7F) == 64) {
-                  if (Client.anIntArrayArray21[int_1][int_2] == Client.anInt664) {
+                  if (Client.anIntArrayArray21[int_1][int_2] == Client.renderCycle) {
                      return;
                   }
 
-                  Client.anIntArrayArray21[int_1][int_2] = Client.anInt664;
+                  Client.anIntArrayArray21[int_1][int_2] = Client.renderCycle;
                }
 
                player.anInt598 = Class18.getTileHeight(player.x, player.y, Ignore.plane);

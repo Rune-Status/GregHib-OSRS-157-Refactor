@@ -1,7 +1,7 @@
 public class ItemContainer extends Node {
 
    static HashTable itemContainers;
-   static int[] anIntArray76;
+   static int[] loadedWidths;
    static Widget aWidget6;
    static IndexedSprite anIndexedSprite7;
    int[] itemIds;
@@ -71,8 +71,8 @@ public class ItemContainer extends Node {
             }
 
             if (!widget_0.hasScript || int_10 < int_12 && int_11 < int_13) {
-               int_14 = MouseInput.anInt260;
-               int_15 = MouseInput.anInt262;
+               int_14 = MouseInput.mouseEventX;
+               int_15 = MouseInput.mouseEventY;
                if (MouseInput.anInt259 != 0) {
                   int_14 = MouseInput.anInt264;
                   int_15 = MouseInput.anInt265;
@@ -90,7 +90,7 @@ public class ItemContainer extends Node {
                int int_26;
                int int_27;
                if (widget_0.contentType == 1337) {
-                  if (!Client.aBool88 && !Client.isMenuOpen && bool_2) {
+                  if (!Client.loginScreenShown && !Client.isMenuOpen && bool_2) {
                      if (Client.itemSelectionState == 0 && !Client.spellSelected) {
                         Class24.addMenuEntry("Walk here", "", 23, 0, int_14 - int_10, int_15 - int_11);
                      }
@@ -117,7 +117,7 @@ public class ItemContainer extends Node {
                               }
 
                               if (Client.itemSelectionState == 1) {
-                                 Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(65535) + objectcomposition_0.name, 1, int_20, int_21, int_22);
+                                 Class24.addMenuEntry("Use", Client.selectedItemName + " " + "->" + " " + Wall.getColTags(65535) + objectcomposition_0.name, 1, int_20, int_21, int_22);
                               } else if (Client.spellSelected) {
                                  if ((Enum4.anInt381 & 0x4) == 4) {
                                     Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(65535) + objectcomposition_0.name, 2, int_20, int_21, int_22);
@@ -217,7 +217,7 @@ public class ItemContainer extends Node {
                                  }
                               }
 
-                              if (int_24 != Client.anInt667) {
+                              if (int_24 != Client.someSelectedPlayerIndex) {
                                  Class29.method235(player_2, int_24, int_21, int_22);
                               } else {
                                  int_17 = int_20;
@@ -230,7 +230,7 @@ public class ItemContainer extends Node {
                                  for (Item item_0 = (Item) deque_0.getTail(); item_0 != null; item_0 = (Item) deque_0.getPrevious()) {
                                     ItemDefinition itemcomposition_1 = ItemDefinition.getDefinition(item_0.id);
                                     if (Client.itemSelectionState == 1) {
-                                       Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_1.name, 16, item_0.id, int_21, int_22);
+                                       Class24.addMenuEntry("Use", Client.selectedItemName + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_1.name, 16, item_0.id, int_21, int_22);
                                     } else if (Client.spellSelected) {
                                        if ((Enum4.anInt381 & 0x1) == 1) {
                                           Class24.addMenuEntry(Client.aString34, Client.aString36 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_1.name, 17, item_0.id, int_21, int_22);
@@ -281,8 +281,8 @@ public class ItemContainer extends Node {
                      if (int_17 != -1) {
                         int_19 = int_17 & 0x7F;
                         int_20 = int_17 >> 7 & 0x7F;
-                        Player player_1 = Client.players[Client.anInt667];
-                        Class29.method235(player_1, Client.anInt667, int_19, int_20);
+                        Player player_1 = Client.players[Client.someSelectedPlayerIndex];
+                        Class29.method235(player_1, Client.someSelectedPlayerIndex, int_19, int_20);
                      }
                   }
                } else if (widget_0.contentType == 1338) {
@@ -324,7 +324,7 @@ public class ItemContainer extends Node {
                   }
                } else {
                   if (widget_0.contentType == 1400) {
-                     Client.renderOverview.method38(MouseInput.anInt260, MouseInput.anInt262, bool_2, int_8, int_9, widget_0.width, widget_0.height);
+                     Client.renderOverview.method38(MouseInput.mouseEventX, MouseInput.mouseEventY, bool_2, int_8, int_9, widget_0.width, widget_0.height);
                   }
 
                   if (!Client.isMenuOpen && bool_2) {
@@ -392,7 +392,7 @@ public class ItemContainer extends Node {
                                              bool_0 = (int_25 >> 30 & 0x1) != 0;
                                              if (bool_0) {
                                                 if (widget_0.id != Class48.anInt111 || int_19 != GameEngine.selectedItemIndex) {
-                                                   Class24.addMenuEntry("Use", Client.aString35 + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_0.name, 31, itemcomposition_0.id, int_19, widget_0.id);
+                                                   Class24.addMenuEntry("Use", Client.selectedItemName + " " + "->" + " " + Wall.getColTags(16748608) + itemcomposition_0.name, 31, itemcomposition_0.id, int_19, widget_0.id);
                                                 }
                                                 break label1900;
                                              }
@@ -556,7 +556,7 @@ public class ItemContainer extends Node {
 
                      WidgetNode widgetnode_0 = (WidgetNode) Client.widgetNodeTable.get((long)widget_0.id);
                      if (widgetnode_0 != null) {
-                        if (widgetnode_0.owner == 0 && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13 && !Client.isMenuOpen && !Client.aBool89) {
+                        if (widgetnode_0.owner == 0 && MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13 && !Client.isMenuOpen && !Client.aBool89) {
                            for (ScriptEvent scriptevent_0 = (ScriptEvent) Client.aDeque7.getFront(); scriptevent_0 != null; scriptevent_0 = (ScriptEvent) Client.aDeque7.getNext()) {
                               if (scriptevent_0.aBool56) {
                                  scriptevent_0.unlink();
@@ -586,14 +586,14 @@ public class ItemContainer extends Node {
                   if (widget_0.hasScript) {
                      ScriptEvent scriptevent_2;
                      if (!widget_0.aBool38) {
-                        if (widget_0.aBool44 && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                        if (widget_0.aBool44 && MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13) {
                            for (scriptevent_2 = (ScriptEvent) Client.aDeque7.getFront(); scriptevent_2 != null; scriptevent_2 = (ScriptEvent) Client.aDeque7.getNext()) {
                               if (scriptevent_2.aBool56 && scriptevent_2.widget.scrollListener == scriptevent_2.anObjectArray22) {
                                  scriptevent_2.unlink();
                               }
                            }
                         }
-                     } else if (MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                     } else if (MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13) {
                         for (scriptevent_2 = (ScriptEvent) Client.aDeque7.getFront(); scriptevent_2 != null; scriptevent_2 = (ScriptEvent) Client.aDeque7.getNext()) {
                            if (scriptevent_2.aBool56) {
                               scriptevent_2.unlink();
@@ -616,7 +616,7 @@ public class ItemContainer extends Node {
                         }
                      }
 
-                     if (MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                     if (MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13) {
                         bool_2 = true;
                      } else {
                         bool_2 = false;
@@ -637,7 +637,7 @@ public class ItemContainer extends Node {
                      }
 
                      if (widget_0.contentType == 1400) {
-                        Client.renderOverview.method42(MouseInput.anInt260, MouseInput.anInt262, bool_2 & bool_4, bool_2 & bool_3);
+                        Client.renderOverview.method42(MouseInput.mouseEventX, MouseInput.mouseEventY, bool_2 & bool_4, bool_2 & bool_3);
                      }
 
                      if (Client.aWidget9 != null && widget_0 != Client.aWidget9 && bool_2 && FrameMap.method691(Preferences.getWidgetConfig(widget_0))) {
@@ -684,8 +684,8 @@ public class ItemContainer extends Node {
                            scriptevent_3 = new ScriptEvent();
                            scriptevent_3.aBool56 = true;
                            scriptevent_3.widget = widget_0;
-                           scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                           scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                           scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                           scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                            scriptevent_3.anObjectArray22 = widget_0.anObjectArray14;
                            Client.aDeque7.addFront(scriptevent_3);
                         }
@@ -696,8 +696,8 @@ public class ItemContainer extends Node {
                               scriptevent_3 = new ScriptEvent();
                               scriptevent_3.aBool56 = true;
                               scriptevent_3.widget = widget_0;
-                              scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                              scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                              scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                              scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                               scriptevent_3.anObjectArray22 = widget_0.anObjectArray13;
                               Client.aDeque9.addFront(scriptevent_3);
                            }
@@ -707,8 +707,8 @@ public class ItemContainer extends Node {
                            scriptevent_3 = new ScriptEvent();
                            scriptevent_3.aBool56 = true;
                            scriptevent_3.widget = widget_0;
-                           scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                           scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                           scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                           scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                            scriptevent_3.anObjectArray22 = widget_0.anObjectArray12;
                            Client.aDeque7.addFront(scriptevent_3);
                         }
@@ -719,8 +719,8 @@ public class ItemContainer extends Node {
                               scriptevent_3 = new ScriptEvent();
                               scriptevent_3.aBool56 = true;
                               scriptevent_3.widget = widget_0;
-                              scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                              scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                              scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                              scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                               scriptevent_3.anObjectArray22 = widget_0.mouseEnterListener;
                               Client.aDeque7.addFront(scriptevent_3);
                            }
@@ -730,8 +730,8 @@ public class ItemContainer extends Node {
                            scriptevent_3 = new ScriptEvent();
                            scriptevent_3.aBool56 = true;
                            scriptevent_3.widget = widget_0;
-                           scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                           scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                           scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                           scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                            scriptevent_3.anObjectArray22 = widget_0.mouseHoverListener;
                            Client.aDeque7.addFront(scriptevent_3);
                         }
@@ -742,8 +742,8 @@ public class ItemContainer extends Node {
                               scriptevent_3 = new ScriptEvent();
                               scriptevent_3.aBool56 = true;
                               scriptevent_3.widget = widget_0;
-                              scriptevent_3.anInt393 = MouseInput.anInt260 - int_8;
-                              scriptevent_3.anInt394 = MouseInput.anInt262 - int_9;
+                              scriptevent_3.anInt393 = MouseInput.mouseEventX - int_8;
+                              scriptevent_3.anInt394 = MouseInput.mouseEventY - int_9;
                               scriptevent_3.anObjectArray22 = widget_0.mouseExitListener;
                               Client.aDeque9.addFront(scriptevent_3);
                            }
@@ -892,7 +892,7 @@ public class ItemContainer extends Node {
                   }
 
                   if (!widget_0.hasScript && Client.aWidget9 == null && ClanMember.aWidget7 == null && !Client.isMenuOpen) {
-                     if ((widget_0.anInt282 >= 0 || widget_0.disabledHoverColour != 0) && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                     if ((widget_0.anInt282 >= 0 || widget_0.disabledHoverColour != 0) && MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13) {
                         if (widget_0.anInt282 >= 0) {
                            aWidget6 = widgets_0[widget_0.anInt282];
                         } else {
@@ -900,7 +900,7 @@ public class ItemContainer extends Node {
                         }
                      }
 
-                     if (widget_0.type == 8 && MouseInput.anInt260 >= int_10 && MouseInput.anInt262 >= int_11 && MouseInput.anInt260 < int_12 && MouseInput.anInt262 < int_13) {
+                     if (widget_0.type == 8 && MouseInput.mouseEventX >= int_10 && MouseInput.mouseEventY >= int_11 && MouseInput.mouseEventX < int_12 && MouseInput.mouseEventY < int_13) {
                         Class47.aWidget1 = widget_0;
                      }
 
@@ -908,8 +908,8 @@ public class ItemContainer extends Node {
                         int_17 = int_8 + widget_0.width;
                         int_18 = widget_0.height;
                         int_19 = widget_0.scrollHeight;
-                        int_20 = MouseInput.anInt260;
-                        int_21 = MouseInput.anInt262;
+                        int_20 = MouseInput.mouseEventX;
+                        int_21 = MouseInput.mouseEventY;
                         if (Client.aBool96) {
                            Client.anInt677 = 32;
                         } else {

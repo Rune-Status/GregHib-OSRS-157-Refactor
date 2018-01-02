@@ -263,7 +263,7 @@ public class Widget extends Node {
          if (pixels != null) {
             return pixels;
          } else {
-            pixels = Class38.decodeSpritePixels(Enum1.spriteCacheIndex, spriteId, 0);
+            pixels = CacheableNode_Sub6.decodeSpritePixels(Enum1.spriteCacheIndex, spriteId, 0);
             if (pixels == null) {
                missingData = true;
                return null;
@@ -289,7 +289,7 @@ public class Widget extends Node {
                }
 
                if (this.sprite2 != 0) {
-                  pixels.setSecondarySprite(this.sprite2);
+                  pixels.setBorderPixels(this.sprite2);
                }
 
                spritePixelsCache.put(pixels, key);
@@ -847,7 +847,7 @@ public class Widget extends Node {
             if (pixels != null) {
                return pixels;
             } else {
-               pixels = Class38.decodeSpritePixels(Enum1.spriteCacheIndex, key, 0);
+               pixels = CacheableNode_Sub6.decodeSpritePixels(Enum1.spriteCacheIndex, key, 0);
                if (pixels != null) {
                   spritePixelsCache.put(pixels, (long)key);
                } else {
