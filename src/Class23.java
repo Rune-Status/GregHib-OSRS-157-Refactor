@@ -8,7 +8,7 @@ public class Class23 {
    static Interface4 anInterface4_1;
    static SceneGraph sceneGraph;
    static IndexedSprite[] anIndexedSpriteArray4;
-   static int anInt75;
+   static int localX;
    static IndexData mapsIndex;
    static int intStackSize;
 

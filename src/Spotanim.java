@@ -408,8 +408,8 @@ public class Spotanim extends CacheableNode {
             }
          }
 
-         Client.screenY = Client.textRenderPointsX[index];
-         Client.screenX = Client.textRenderPointsY[index] = y;
+         Client.screenX = Client.textRenderPointsX[index];
+         Client.screenY = Client.textRenderPointsY[index] = y;
          String chatMessage = Client.textSpokenMessages[index];
          if (Client.iconSettingValue == 0) {
             int textColour = 16776960;
@@ -464,50 +464,50 @@ public class Spotanim extends CacheableNode {
             }
 
             if (Client.textEffects[index] == 0) {
-               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0);
+               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenX, Client.screenY + textDrawY, textColour, 0);
             }
 
             if (Client.textEffects[index] == 1) {
-               Class50.boldFont.drawHorizontalStringWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle);
+               Class50.boldFont.drawHorizontalStringWave(chatMessage, textDrawX + Client.screenX, Client.screenY + textDrawY, textColour, 0, Client.renderCycle);
             }
 
             if (Client.textEffects[index] == 2) {
-               Class50.boldFont.drawVerticalStringWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle);
+               Class50.boldFont.drawVerticalStringWave(chatMessage, textDrawX + Client.screenX, Client.screenY + textDrawY, textColour, 0, Client.renderCycle);
             }
 
             if (Client.textEffects[index] == 3) {
-               Class50.boldFont.drawHorizonalStringMovingWave(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, textColour, 0, Client.renderCycle, 150 - Client.textCycles[index]);
+               Class50.boldFont.drawHorizonalStringMovingWave(chatMessage, textDrawX + Client.screenX, Client.screenY + textDrawY, textColour, 0, Client.renderCycle, 150 - Client.textCycles[index]);
             }
 
             if (Client.textEffects[index] == 4) {
                cycle = (150 - Client.textCycles[index]) * (Class50.boldFont.getWidth(chatMessage) + 100) / 150;
-               Rasterizer2D.setInnerDrawRegion(textDrawX + Client.screenY - 50, textDrawY, textDrawX + Client.screenY + 50, drawHeight + textDrawY);
-               Class50.boldFont.drawString(chatMessage, textDrawX + Client.screenY + 50 - cycle, Client.screenX + textDrawY, textColour, 0);
+               Rasterizer2D.setInnerDrawRegion(textDrawX + Client.screenX - 50, textDrawY, textDrawX + Client.screenX + 50, drawHeight + textDrawY);
+               Class50.boldFont.drawString(chatMessage, textDrawX + Client.screenX + 50 - cycle, Client.screenY + textDrawY, textColour, 0);
                Rasterizer2D.setDrawRegion(textDrawX, textDrawY, textDrawX + drawWidth, drawHeight + textDrawY);
             }
 
             if (Client.textEffects[index] == 5) {
                cycle = 150 - Client.textCycles[index];
-               int int_24 = 0;
+               int yOffset = 0;
                if (cycle < 25) {
-                  int_24 = cycle - 25;
+                  yOffset = cycle - 25;
                } else if (cycle > 125) {
-                  int_24 = cycle - 125;
+                  yOffset = cycle - 125;
                }
 
-               Rasterizer2D.setInnerDrawRegion(textDrawX, Client.screenX + textDrawY - Class50.boldFont.verticalSpace - 1, textDrawX + drawWidth, Client.screenX + textDrawY + 5);
-               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, int_24 + Client.screenX + textDrawY, textColour, 0);
+               Rasterizer2D.setInnerDrawRegion(textDrawX, Client.screenY + textDrawY - Class50.boldFont.verticalSpace - 1, textDrawX + drawWidth, Client.screenY + textDrawY + 5);
+               Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenX, yOffset + Client.screenY + textDrawY, textColour, 0);
                Rasterizer2D.setDrawRegion(textDrawX, textDrawY, textDrawX + drawWidth, drawHeight + textDrawY);
             }
          } else {
-            Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenY, Client.screenX + textDrawY, 16776960, 0);
+            Class50.boldFont.drawStringCentred(chatMessage, textDrawX + Client.screenX, Client.screenY + textDrawY, 16776960, 0);
          }
       }
 
       if (Client.hintArrowTargetType == 2) {
          Class35.method245((Client.hintArrowX - Client.regionBaseX << 7) + Client.hintArrowOffsetX, (Client.hintArrowY - Client.regionBaseY << 7) + Client.hintArrowOffsetY, Client.hintArrowType * 2);
-         if (Client.screenY > -1 && Client.gameCycle % 20 < 10) {
-            Class85.headIconsHint[0].drawAt(textDrawX + Client.screenY - 12, Client.screenX + textDrawY - 28);
+         if (Client.screenX > -1 && Client.gameCycle % 20 < 10) {
+            Class85.headIconsHint[0].drawAt(textDrawX + Client.screenX - 12, Client.screenY + textDrawY - 28);
          }
       }
 
@@ -526,7 +526,7 @@ public class Spotanim extends CacheableNode {
       Player.cameraY = camPosY;
       AClass1.cameraPitch = camPitch;
       Enum4.cameraYaw = camYaw;
-      if (Client.loginScreenShown && Enum6.method702(true, false) == 0) {
+      if (Client.loginScreenShown && GameType.method702(true, false) == 0) {
          Client.loginScreenShown = false;
       }
 

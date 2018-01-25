@@ -28,16 +28,16 @@ final class Class35 implements Interface1 {
          int_8 = int_3 * int_5 - int_4 * int_1 >> 16;
          int_1 = int_5 * int_1 + int_4 * int_3 >> 16;
          if (int_1 >= 50) {
-            Client.screenY = int_0 * Client.scale / int_1 + Client.viewportHeight / 2;
-            Client.screenX = Client.viewportWidth / 2 + int_8 * Client.scale / int_1;
+            Client.screenX = int_0 * Client.scale / int_1 + Client.viewportHeight / 2;
+            Client.screenY = Client.viewportWidth / 2 + int_8 * Client.scale / int_1;
          } else {
-            Client.screenY = -1;
             Client.screenX = -1;
+            Client.screenY = -1;
          }
 
       } else {
-         Client.screenY = -1;
          Client.screenX = -1;
+         Client.screenY = -1;
       }
    }
 

@@ -1,6 +1,6 @@
 public final class InteractiveObject {
 
-   static int anInt222;
+   static int localY;
    int relativeX;
    int offsetX;
    public int hash;

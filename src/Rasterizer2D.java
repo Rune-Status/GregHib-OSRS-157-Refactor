@@ -632,21 +632,21 @@ public class Rasterizer2D extends CacheableNode {
       }
    }
 
-   public static void setInnerDrawRegion(int int_0, int int_1, int int_2, int int_3) {
-      if (topX < int_0) {
-         topX = int_0;
+   public static void setInnerDrawRegion(int left, int bottom, int right, int top) {
+      if (topX < left) {
+         topX = left;
       }
 
-      if (topY < int_1) {
-         topY = int_1;
+      if (topY < bottom) {
+         topY = bottom;
       }
 
-      if (bottomX > int_2) {
-         bottomX = int_2;
+      if (bottomX > right) {
+         bottomX = right;
       }
 
-      if (bottomY > int_3) {
-         bottomY = int_3;
+      if (bottomY > top) {
+         bottomY = top;
       }
 
    }

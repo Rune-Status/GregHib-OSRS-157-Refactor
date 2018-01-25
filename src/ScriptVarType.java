@@ -451,101 +451,101 @@ public class ScriptVarType implements RSEnum, Interface6 {
    }
 
    static void method468(Class59 class59_0) {
-      PacketBuffer packetbuffer_0 = Client.aClass46_1.aPacketBuffer1;
-      int int_0;
-      int int_1;
-      int delay;
-      int int_3;
+      PacketBuffer buffer = Client.aClass46_1.aPacketBuffer1;
+      int positionOffset;
+      int x;
+      int y;
+      int info;
       int locationHash;
       int locX;
       int locY;
       if (Class59.aClass59_9 == class59_0) {
-         int_0 = packetbuffer_0.getUnsignedByteS();
-         int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
-         delay = (int_0 & 0x7) + InteractiveObject.anInt222;
-         int_3 = packetbuffer_0.getUnsignedByteS();
-         locationHash = int_3 >> 2;
-         locX = int_3 & 0x3;
+         positionOffset = buffer.getUnsignedByteS();
+         x = (positionOffset >> 4 & 0x7) + Class23.localX;
+         y = (positionOffset & 0x7) + InteractiveObject.localY;
+         info = buffer.getUnsignedByteS();
+         locationHash = info >> 2;
+         locX = info & 0x3;
          locY = Client.OBJECT_GROUPS[locationHash];
-         if (int_1 >= 0 && delay >= 0 && int_1 < 104 && delay < 104) {
-            Preferences.spawnObject(Ignore.plane, int_1, delay, locY, -1, locationHash, locX, 0, -1);
+         if (x >= 0 && y >= 0 && x < 104 && y < 104) {
+            Preferences.spawnObject(Ignore.plane, x, y, locY, -1, locationHash, locX, 0, -1);
          }
 
       } else {
          int int_7;
          int spawnTypeHash;
          if (Class59.aClass59_8 == class59_0) {
-            int_0 = packetbuffer_0.getUnsignedByteC();
-            int_1 = (int_0 >> 4 & 0x7) + Class23.anInt75;
-            delay = (int_0 & 0x7) + InteractiveObject.anInt222;
-            int_3 = packetbuffer_0.getUnsignedByte();
-            locationHash = int_3 >> 2;
-            locX = int_3 & 0x3;
+            positionOffset = buffer.getUnsignedByteC();
+            x = (positionOffset >> 4 & 0x7) + Class23.localX;
+            y = (positionOffset & 0x7) + InteractiveObject.localY;
+            info = buffer.getUnsignedByte();
+            locationHash = info >> 2;
+            locX = info & 0x3;
             locY = Client.OBJECT_GROUPS[locationHash];
-            int_7 = packetbuffer_0.readUnsignedShortOb1();
-            if (int_1 >= 0 && delay >= 0 && int_1 < 103 && delay < 103) {
+            int_7 = buffer.readUnsignedShortOb1();
+            if (x >= 0 && y >= 0 && x < 103 && y < 103) {
                if (locY == 0) {
-                  Wall wallobject_0 = Class23.sceneGraph.method361(Ignore.plane, int_1, delay);
+                  Wall wallobject_0 = Class23.sceneGraph.method361(Ignore.plane, x, y);
                   if (wallobject_0 != null) {
                      spawnTypeHash = wallobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash == 2) {
-                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, 2, locX + 4, Ignore.plane, int_1, delay, int_7, false, wallobject_0.primaryRenderable);
-                        wallobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, int_1, delay, int_7, false, wallobject_0.secondaryRenderable);
+                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, 2, locX + 4, Ignore.plane, x, y, int_7, false, wallobject_0.primaryRenderable);
+                        wallobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 2, locX + 1 & 0x3, Ignore.plane, x, y, int_7, false, wallobject_0.secondaryRenderable);
                      } else {
-                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, wallobject_0.primaryRenderable);
+                        wallobject_0.primaryRenderable = new GameObject(spawnTypeHash, locationHash, locX, Ignore.plane, x, y, int_7, false, wallobject_0.primaryRenderable);
                      }
                   }
                }
 
                if (locY == 1) {
-                  WallDecoration decorativeobject_0 = Class23.sceneGraph.method363(Ignore.plane, int_1, delay);
+                  WallDecoration decorativeobject_0 = Class23.sceneGraph.method363(Ignore.plane, x, y);
                   if (decorativeobject_0 != null) {
                      spawnTypeHash = decorativeobject_0.hash >> 14 & 0x7FFF;
                      if (locationHash != 4 && locationHash != 5) {
                         if (locationHash == 6) {
-                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, x, y, int_7, false, decorativeobject_0.primaryRenderable);
                         } else if (locationHash == 7) {
-                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, x, y, int_7, false, decorativeobject_0.primaryRenderable);
                         } else if (locationHash == 8) {
-                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
-                           decorativeobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.secondaryRenderable);
+                           decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX + 4, Ignore.plane, x, y, int_7, false, decorativeobject_0.primaryRenderable);
+                           decorativeobject_0.secondaryRenderable = new GameObject(spawnTypeHash, 4, (locX + 2 & 0x3) + 4, Ignore.plane, x, y, int_7, false, decorativeobject_0.secondaryRenderable);
                         }
                      } else {
-                        decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX, Ignore.plane, int_1, delay, int_7, false, decorativeobject_0.primaryRenderable);
+                        decorativeobject_0.primaryRenderable = new GameObject(spawnTypeHash, 4, locX, Ignore.plane, x, y, int_7, false, decorativeobject_0.primaryRenderable);
                      }
                   }
                }
 
                if (locY == 2) {
-                  InteractiveObject gameobject_0 = Class23.sceneGraph.method370(Ignore.plane, int_1, delay);
+                  InteractiveObject gameobject_0 = Class23.sceneGraph.method370(Ignore.plane, x, y);
                   if (locationHash == 11) {
                      locationHash = 10;
                   }
 
                   if (gameobject_0 != null) {
-                     gameobject_0.renderable = new GameObject(gameobject_0.hash >> 14 & 0x7FFF, locationHash, locX, Ignore.plane, int_1, delay, int_7, false, gameobject_0.renderable);
+                     gameobject_0.renderable = new GameObject(gameobject_0.hash >> 14 & 0x7FFF, locationHash, locX, Ignore.plane, x, y, int_7, false, gameobject_0.renderable);
                   }
                }
 
                if (locY == 3) {
-                  FloorDecoration floor = Class23.sceneGraph.getFloorDecoration(Ignore.plane, int_1, delay);
+                  FloorDecoration floor = Class23.sceneGraph.getFloorDecoration(Ignore.plane, x, y);
                   if (floor != null) {
-                     floor.renderable = new GameObject(floor.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, int_1, delay, int_7, false, floor.renderable);
+                     floor.renderable = new GameObject(floor.hash >> 14 & 0x7FFF, 22, locX, Ignore.plane, x, y, int_7, false, floor.renderable);
                   }
                }
             }
 
          } else if (Class59.aClass59_4 == class59_0) {
-            int_0 = packetbuffer_0.readUnsignedShortOb1();
-            int_1 = packetbuffer_0.getUnsignedShortAInverse();
-            delay = packetbuffer_0.getUnsignedByte();
-            int_3 = (delay >> 4 & 0x7) + Class23.anInt75;
-            locationHash = (delay & 0x7) + InteractiveObject.anInt222;
-            locX = packetbuffer_0.readNegUByte();
-            if (int_3 >= 0 && locationHash >= 0 && int_3 < 104 && locationHash < 104) {
-               int_3 = int_3 * 128 + 64;
+            positionOffset = buffer.readUnsignedShortOb1();
+            x = buffer.getUnsignedShortAInverse();
+            y = buffer.getUnsignedByte();
+            info = (y >> 4 & 0x7) + Class23.localX;
+            locationHash = (y & 0x7) + InteractiveObject.localY;
+            locX = buffer.readNegUByte();
+            if (info >= 0 && locationHash >= 0 && info < 104 && locationHash < 104) {
+               info = info * 128 + 64;
                locationHash = locationHash * 128 + 64;
-               GraphicsObject graphicsobject_0 = new GraphicsObject(int_0, Ignore.plane, int_3, locationHash, Class18.getTileHeight(int_3, locationHash, Ignore.plane) - locX, int_1, Client.gameCycle);
+               GraphicsObject graphicsobject_0 = new GraphicsObject(positionOffset, Ignore.plane, info, locationHash, Class18.getTileHeight(info, locationHash, Ignore.plane) - locX, x, Client.gameCycle);
                Client.graphicsObjectDeque.addFront(graphicsobject_0);
             }
 
@@ -555,19 +555,19 @@ public class ScriptVarType implements RSEnum, Interface6 {
             int face;
             int group;
             if (Class59.aClass59_5 == class59_0) {
-               int_0 = packetbuffer_0.readNegUByte() * 4;
-               int_1 = packetbuffer_0.getUnsignedShortInverse();
-               delay = packetbuffer_0.getUnsignedByteC() * 4;
-               int_3 = packetbuffer_0.getUnsignedByte();
-               locationHash = packetbuffer_0.readNegUByte();
-               byte byte_4 = packetbuffer_0.getByteA();
-               locY = packetbuffer_0.getUnsignedByte();
-               int_7 = (locY >> 4 & 0x7) + Class23.anInt75;
-               playerIndex = (locY & 0x7) + InteractiveObject.anInt222;
-               spawnTypeHash = packetbuffer_0.getUnsignedShort();
-               byte byte_6 = packetbuffer_0.method717();
-               face = packetbuffer_0.getUnsignedShortInverse();
-               group = packetbuffer_0.method707();
+               positionOffset = buffer.readNegUByte() * 4;
+               x = buffer.getUnsignedShortInverse();
+               y = buffer.getUnsignedByteC() * 4;
+               info = buffer.getUnsignedByte();
+               locationHash = buffer.readNegUByte();
+               byte byte_4 = buffer.getByteA();
+               locY = buffer.getUnsignedByte();
+               int_7 = (locY >> 4 & 0x7) + Class23.localX;
+               playerIndex = (locY & 0x7) + InteractiveObject.localY;
+               spawnTypeHash = buffer.getUnsignedShort();
+               byte byte_6 = buffer.method717();
+               face = buffer.getUnsignedShortInverse();
+               group = buffer.method707();
                spawnTypeIndex = byte_6 + int_7;
                locX = byte_4 + playerIndex;
                if (int_7 >= 0 && playerIndex >= 0 && int_7 < 104 && playerIndex < 104 && spawnTypeIndex >= 0 && locX >= 0 && spawnTypeIndex < 104 && locX < 104 && spawnTypeHash != 65535) {
@@ -575,37 +575,37 @@ public class ScriptVarType implements RSEnum, Interface6 {
                   playerIndex = playerIndex * 128 + 64;
                   spawnTypeIndex = spawnTypeIndex * 128 + 64;
                   locX = locX * 128 + 64;
-                  Projectile projectile_0 = new Projectile(spawnTypeHash, Ignore.plane, int_7, playerIndex, Class18.getTileHeight(int_7, playerIndex, Ignore.plane) - int_0, face + Client.gameCycle, int_1 + Client.gameCycle, int_3, locationHash, group, delay);
-                  projectile_0.method1005(spawnTypeIndex, locX, Class18.getTileHeight(spawnTypeIndex, locX, Ignore.plane) - delay, face + Client.gameCycle);
+                  Projectile projectile_0 = new Projectile(spawnTypeHash, Ignore.plane, int_7, playerIndex, Class18.getTileHeight(int_7, playerIndex, Ignore.plane) - positionOffset, face + Client.gameCycle, x + Client.gameCycle, info, locationHash, group, y);
+                  projectile_0.method1005(spawnTypeIndex, locX, Class18.getTileHeight(spawnTypeIndex, locX, Ignore.plane) - y, face + Client.gameCycle);
                   Client.projectiles.addFront(projectile_0);
                }
 
             } else if (Class59.aClass59_10 == class59_0) {
-               int_0 = packetbuffer_0.getUnsignedShortInverse();
-               int_1 = packetbuffer_0.getUnsignedByteS();
-               delay = int_1 >> 2;
-               int_3 = int_1 & 0x3;
-               locationHash = Client.OBJECT_GROUPS[delay];
-               locX = packetbuffer_0.getUnsignedByte();
-               locY = (locX >> 4 & 0x7) + Class23.anInt75;
-               int_7 = (locX & 0x7) + InteractiveObject.anInt222;
+               positionOffset = buffer.getUnsignedShortInverse();
+               x = buffer.getUnsignedByteS();
+               y = x >> 2;
+               info = x & 0x3;
+               locationHash = Client.OBJECT_GROUPS[y];
+               locX = buffer.getUnsignedByte();
+               locY = (locX >> 4 & 0x7) + Class23.localX;
+               int_7 = (locX & 0x7) + InteractiveObject.localY;
                if (locY >= 0 && int_7 >= 0 && locY < 104 && int_7 < 104) {
-                  Preferences.spawnObject(Ignore.plane, locY, int_7, locationHash, int_0, delay, int_3, 0, -1);
+                  Preferences.spawnObject(Ignore.plane, locY, int_7, locationHash, positionOffset, y, info, 0, -1);
                }
 
             } else if (Class59.aClass59_2 == class59_0) {
-               int_0 = packetbuffer_0.getUnsignedShort();
-               int_1 = packetbuffer_0.getUnsignedShort();
-               delay = packetbuffer_0.getUnsignedShort();
-               int_3 = packetbuffer_0.readNegUByte();
-               locationHash = (int_3 >> 4 & 0x7) + Class23.anInt75;
-               locX = (int_3 & 0x7) + InteractiveObject.anInt222;
+               positionOffset = buffer.getUnsignedShort();
+               x = buffer.getUnsignedShort();
+               y = buffer.getUnsignedShort();
+               info = buffer.readNegUByte();
+               locationHash = (info >> 4 & 0x7) + Class23.localX;
+               locX = (info & 0x7) + InteractiveObject.localY;
                if (locationHash >= 0 && locX >= 0 && locationHash < 104 && locX < 104) {
                   Deque deque_0 = Client.groundItemDeque[Ignore.plane][locationHash][locX];
                   if (deque_0 != null) {
                      for (Item item_0 = (Item) deque_0.getFront(); item_0 != null; item_0 = (Item) deque_0.getNext()) {
-                        if ((int_1 & 0x7FFF) == item_0.id && delay == item_0.quantity) {
-                           item_0.quantity = int_0;
+                        if ((x & 0x7FFF) == item_0.id && y == item_0.quantity) {
+                           item_0.quantity = positionOffset;
                            break;
                         }
                      }
@@ -617,86 +617,86 @@ public class ScriptVarType implements RSEnum, Interface6 {
             } else {
                Item item_1;
                if (Class59.aClass59_7 == class59_0) {
-                  int_0 = packetbuffer_0.getUnsignedShort();
-                  int_1 = packetbuffer_0.readNegUByte();
-                  delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                  int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
-                  locationHash = packetbuffer_0.readUnsignedShortOb1();
-                  if (delay >= 0 && int_3 >= 0 && delay < 104 && int_3 < 104) {
+                  positionOffset = buffer.getUnsignedShort();
+                  x = buffer.readNegUByte();
+                  y = (x >> 4 & 0x7) + Class23.localX;
+                  info = (x & 0x7) + InteractiveObject.localY;
+                  locationHash = buffer.readUnsignedShortOb1();
+                  if (y >= 0 && info >= 0 && y < 104 && info < 104) {
                      item_1 = new Item();
                      item_1.id = locationHash;
-                     item_1.quantity = int_0;
-                     if (Client.groundItemDeque[Ignore.plane][delay][int_3] == null) {
-                        Client.groundItemDeque[Ignore.plane][delay][int_3] = new Deque();
+                     item_1.quantity = positionOffset;
+                     if (Client.groundItemDeque[Ignore.plane][y][info] == null) {
+                        Client.groundItemDeque[Ignore.plane][y][info] = new Deque();
                      }
 
-                     Client.groundItemDeque[Ignore.plane][delay][int_3].addFront(item_1);
-                     Enum1.groundItemSpawned(delay, int_3);
+                     Client.groundItemDeque[Ignore.plane][y][info].addFront(item_1);
+                     Enum1.groundItemSpawned(y, info);
                   }
 
                } else {
                   if (Class59.aClass59_1 == class59_0) {
-                     int_0 = packetbuffer_0.getUnsignedByte();
-                     int_1 = packetbuffer_0.readNegUByte();
-                     delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                     int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
-                     locationHash = packetbuffer_0.getUnsignedByteC();
+                     positionOffset = buffer.getUnsignedByte();
+                     x = buffer.readNegUByte();
+                     y = (x >> 4 & 0x7) + Class23.localX;
+                     info = (x & 0x7) + InteractiveObject.localY;
+                     locationHash = buffer.getUnsignedByteC();
                      locX = locationHash >> 4 & 0xF;
                      locY = locationHash & 0x7;
-                     int_7 = packetbuffer_0.getUnsignedShortInverse();
-                     if (delay >= 0 && int_3 >= 0 && delay < 104 && int_3 < 104) {
+                     int_7 = buffer.getUnsignedShortInverse();
+                     if (y >= 0 && info >= 0 && y < 104 && info < 104) {
                         playerIndex = locX + 1;
-                        if (Class4.localPlayer.pathX[0] >= delay - playerIndex && Class4.localPlayer.pathX[0] <= playerIndex + delay && Class4.localPlayer.pathY[0] >= int_3 - playerIndex && Class4.localPlayer.pathY[0] <= playerIndex + int_3 && Client.anInt646 != 0 && locY > 0 && Client.anInt647 < 50) {
+                        if (Class4.localPlayer.pathX[0] >= y - playerIndex && Class4.localPlayer.pathX[0] <= playerIndex + y && Class4.localPlayer.pathY[0] >= info - playerIndex && Class4.localPlayer.pathY[0] <= playerIndex + info && Client.anInt646 != 0 && locY > 0 && Client.anInt647 < 50) {
                            Client.anIntArray149[Client.anInt647] = int_7;
                            Client.anIntArray150[Client.anInt647] = locY;
-                           Client.anIntArray152[Client.anInt647] = int_0;
+                           Client.anIntArray152[Client.anInt647] = positionOffset;
                            Client.audioEffects[Client.anInt647] = null;
-                           Client.anIntArray153[Client.anInt647] = locX + (int_3 << 8) + (delay << 16);
+                           Client.anIntArray153[Client.anInt647] = locX + (info << 8) + (y << 16);
                            ++Client.anInt647;
                         }
                      }
                   }
 
                   if (Class59.aClass59_6 == class59_0) {
-                     int_0 = packetbuffer_0.readUnsignedShortOb1();
-                     int_1 = packetbuffer_0.getUnsignedByteC();
-                     delay = (int_1 >> 4 & 0x7) + Class23.anInt75;
-                     int_3 = (int_1 & 0x7) + InteractiveObject.anInt222;
-                     if (delay >= 0 && int_3 >= 0 && delay < 104 && int_3 < 104) {
-                        Deque deque_1 = Client.groundItemDeque[Ignore.plane][delay][int_3];
+                     positionOffset = buffer.readUnsignedShortOb1();
+                     x = buffer.getUnsignedByteC();
+                     y = (x >> 4 & 0x7) + Class23.localX;
+                     info = (x & 0x7) + InteractiveObject.localY;
+                     if (y >= 0 && info >= 0 && y < 104 && info < 104) {
+                        Deque deque_1 = Client.groundItemDeque[Ignore.plane][y][info];
                         if (deque_1 != null) {
                            for (item_1 = (Item) deque_1.getFront(); item_1 != null; item_1 = (Item) deque_1.getNext()) {
-                              if ((int_0 & 0x7FFF) == item_1.id) {
+                              if ((positionOffset & 0x7FFF) == item_1.id) {
                                  item_1.unlink();
                                  break;
                               }
                            }
 
                            if (deque_1.getFront() == null) {
-                              Client.groundItemDeque[Ignore.plane][delay][int_3] = null;
+                              Client.groundItemDeque[Ignore.plane][y][info] = null;
                            }
 
-                           Enum1.groundItemSpawned(delay, int_3);
+                           Enum1.groundItemSpawned(y, info);
                         }
                      }
 
                   } else {
                      if (Class59.aClass59_3 == class59_0) {
-                        byte byte_1 = packetbuffer_0.getByteS();
-                        byte byte_2 = packetbuffer_0.method717();
-                        delay = packetbuffer_0.getUnsignedShort();
-                        byte byte_3 = packetbuffer_0.readByte();
-                        locationHash = packetbuffer_0.getUnsignedByte();
-                        locX = (locationHash >> 4 & 0x7) + Class23.anInt75;
-                        locY = (locationHash & 0x7) + InteractiveObject.anInt222;
-                        byte byte_5 = packetbuffer_0.getByteA();
-                        playerIndex = packetbuffer_0.readUnsignedShortOb1();
-                        spawnTypeHash = packetbuffer_0.getUnsignedByteC();
+                        byte byte_1 = buffer.getByteS();
+                        byte byte_2 = buffer.method717();
+                        y = buffer.getUnsignedShort();
+                        byte byte_3 = buffer.readByte();
+                        locationHash = buffer.getUnsignedByte();
+                        locX = (locationHash >> 4 & 0x7) + Class23.localX;
+                        locY = (locationHash & 0x7) + InteractiveObject.localY;
+                        byte byte_5 = buffer.getByteA();
+                        playerIndex = buffer.readUnsignedShortOb1();
+                        spawnTypeHash = buffer.getUnsignedByteC();
                         spawnTypeIndex = spawnTypeHash >> 2;
                         face = spawnTypeHash & 0x3;
                         group = Client.OBJECT_GROUPS[spawnTypeIndex];
-                        int definitionId = packetbuffer_0.readUnsignedShortOb1();
-                        int int_14 = packetbuffer_0.getUnsignedShort();
+                        int definitionId = buffer.readUnsignedShortOb1();
+                        int int_14 = buffer.getUnsignedShort();
                         Player player;
                         if (playerIndex == Client.localInteractingIndex) {
                            player = Class4.localPlayer;
@@ -726,8 +726,8 @@ public class ScriptVarType implements RSEnum, Interface6 {
                            int middleY = (locY << 7) + (sizeY << 6);
                            Model model = definition.getModelAt(spawnTypeIndex, face, heights, middleX, mean, middleY);
                            if (model != null) {
-                              Preferences.spawnObject(Ignore.plane, locX, locY, group, -1, 0, 0, delay + 1, int_14 + 1);
-                              player.anInt594 = delay + Client.gameCycle;
+                              Preferences.spawnObject(Ignore.plane, locX, locY, group, -1, 0, 0, y + 1, int_14 + 1);
+                              player.anInt594 = y + Client.gameCycle;
                               player.anInt595 = int_14 + Client.gameCycle;
                               player.playerModel = model;
                               player.boundsOffsetX = locX * 128 + sizeX * 64;

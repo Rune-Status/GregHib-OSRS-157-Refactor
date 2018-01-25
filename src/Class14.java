@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class Class14 {
 
-   static Enum6 anEnum6_1;
+   static GameType anGameType_1;
    boolean aBool5;
    SpritePixels aSpritePixels2;
    boolean aBool6;
@@ -1059,69 +1059,69 @@ public final class Class14 {
 
    }
 
-   static void method188(boolean bool_0, PacketBuffer packetbuffer_0) {
+   static void method188(boolean bool_0, PacketBuffer buffer) {
       Client.anInt666 = 0;
       Client.pendingNpcFlagsCount = 0;
       method673();
 
-      int int_0;
+      int flagIndex;
       NPC npc;
-      int int_1;
-      int int_2;
-      int int_3;
+      int hash;
+      int info;
+      int length;
       int int_4;
       int int_7;
-      while (packetbuffer_0.bitsAvail(Client.aClass46_1.packetLength) >= 27) {
-         int_0 = packetbuffer_0.getBits(15);
-         if (int_0 == 32767) {
+      while (buffer.bitsAvail(Client.aClass46_1.packetLength) >= 27) {
+         flagIndex = buffer.getBits(15);
+         if (flagIndex == 32767) {
             break;
          }
 
          boolean bool_1 = false;
-         if (Client.cachedNPCs[int_0] == null) {
-            Client.cachedNPCs[int_0] = new NPC();
+         if (Client.cachedNPCs[flagIndex] == null) {
+            Client.cachedNPCs[flagIndex] = new NPC();
             bool_1 = true;
          }
 
-         npc = Client.cachedNPCs[int_0];
-         Client.npcIndices[++Client.npcIndexesCount - 1] = int_0;
+         npc = Client.cachedNPCs[flagIndex];
+         Client.npcIndices[++Client.npcIndexesCount - 1] = flagIndex;
          npc.anInt531 = Client.gameCycle;
-         int_1 = Client.anIntArray158[packetbuffer_0.getBits(3)];
+         hash = Client.anIntArray158[buffer.getBits(3)];
          if (bool_1) {
-            npc.orientation = npc.angle = int_1;
+            npc.orientation = npc.angle = hash;
          }
 
-         int_2 = packetbuffer_0.getBits(1);
-         if (int_2 == 1) {
-            Client.pendingNpcFlagsIndices[++Client.pendingNpcFlagsCount - 1] = int_0;
+         info = buffer.getBits(1);
+         if (info == 1) {
+            Client.pendingNpcFlagsIndices[++Client.pendingNpcFlagsCount - 1] = flagIndex;
          }
 
          if (bool_0) {
-            int_3 = packetbuffer_0.getBits(8);
-            if (int_3 > 127) {
-               int_3 -= 256;
+            length = buffer.getBits(8);
+            if (length > 127) {
+               length -= 256;
             }
          } else {
-            int_3 = packetbuffer_0.getBits(5);
-            if (int_3 > 15) {
-               int_3 -= 32;
+            length = buffer.getBits(5);
+            if (length > 15) {
+               length -= 32;
             }
          }
 
-         npc.composition = NPCDefinition.getNpcDefinition(packetbuffer_0.getBits(14));
+         npc.composition = NPCDefinition.getNpcDefinition(buffer.getBits(14));
          if (bool_0) {
-            int_7 = packetbuffer_0.getBits(8);
+            int_7 = buffer.getBits(8);
             if (int_7 > 127) {
                int_7 -= 256;
             }
          } else {
-            int_7 = packetbuffer_0.getBits(5);
+            int_7 = buffer.getBits(5);
             if (int_7 > 15) {
                int_7 -= 32;
             }
          }
 
-         int_4 = packetbuffer_0.getBits(1);
+         int_4 = buffer.getBits(1);
          npc.anInt513 = npc.composition.boundaryDimension;
          npc.anInt533 = npc.composition.degreesToTurn;
          if (npc.anInt533 == 0) {
@@ -1135,26 +1135,26 @@ public final class Class14 {
          npc.idlePoseAnimation = npc.composition.standAnimationId;
          npc.turnAnimation = npc.composition.anInt492;
          npc.anInt515 = npc.composition.anInt493;
-         npc.method1067(Class4.localPlayer.pathX[0] + int_3, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
+         npc.method1067(Class4.localPlayer.pathX[0] + length, Class4.localPlayer.pathY[0] + int_7, int_4 == 1);
       }
 
-      packetbuffer_0.byteAccess();
+      buffer.byteAccess();
 
-      int int_10;
-      for (int_0 = 0; int_0 < Client.pendingNpcFlagsCount; int_0++) {
-         int_10 = Client.pendingNpcFlagsIndices[int_0];
-         npc = Client.cachedNPCs[int_10];
-         int_1 = packetbuffer_0.getUnsignedByte();
-         if ((int_1 & 0x8) != 0) {
-            npc.overhead = packetbuffer_0.readString();
+      int npcIndex;
+      for (flagIndex = 0; flagIndex < Client.pendingNpcFlagsCount; flagIndex++) {
+         npcIndex = Client.pendingNpcFlagsIndices[flagIndex];
+         npc = Client.cachedNPCs[npcIndex];
+         hash = buffer.getUnsignedByte();
+         if ((hash & 0x8) != 0) {
+            npc.overhead = buffer.readString();
             npc.textCycle = 100;
          }
 
-         if ((int_1 & 0x2) != 0) {
-            npc.graphic = packetbuffer_0.getUnsignedShortAInverse();
-            int_2 = packetbuffer_0.method714();
-            npc.graphicHeight = int_2 >> 16;
-            npc.graphicDelay = (int_2 & 0xFFFF) + Client.gameCycle;
+         if ((hash & 0x2) != 0) {
+            npc.graphic = buffer.getUnsignedShortAInverse();
+            info = buffer.method714();
+            npc.graphicHeight = info >> 16;
+            npc.graphicDelay = (info & 0xFFFF) + Client.gameCycle;
             npc.currentAnimation = 0;
             npc.anInt530 = 0;
             if (npc.graphicDelay > Client.gameCycle) {
@@ -1166,42 +1166,42 @@ public final class Class14 {
             }
          }
 
-         if ((int_1 & 0x4) != 0) {
-            int_2 = packetbuffer_0.readNegUByte();
+         if ((hash & 0x4) != 0) {
+            info = buffer.readNegUByte();
             int int_5;
             int int_6;
             int int_8;
-            if (int_2 > 0) {
-               for (int_3 = 0; int_3 < int_2; int_3++) {
+            if (info > 0) {
+               for (length = 0; length < info; length++) {
                   int_4 = -1;
                   int_5 = -1;
                   int_6 = -1;
-                  int_7 = packetbuffer_0.getUSmart();
+                  int_7 = buffer.getUSmart();
                   if (int_7 == 32767) {
-                     int_7 = packetbuffer_0.getUSmart();
-                     int_5 = packetbuffer_0.getUSmart();
-                     int_4 = packetbuffer_0.getUSmart();
-                     int_6 = packetbuffer_0.getUSmart();
+                     int_7 = buffer.getUSmart();
+                     int_5 = buffer.getUSmart();
+                     int_4 = buffer.getUSmart();
+                     int_6 = buffer.getUSmart();
                   } else if (int_7 != 32766) {
-                     int_5 = packetbuffer_0.getUSmart();
+                     int_5 = buffer.getUSmart();
                   } else {
                      int_7 = -1;
                   }
 
-                  int_8 = packetbuffer_0.getUSmart();
+                  int_8 = buffer.getUSmart();
                   npc.method949(int_7, int_5, int_4, int_6, Client.gameCycle, int_8);
                }
             }
 
-            int_3 = packetbuffer_0.getUnsignedByteS();
-            if (int_3 > 0) {
-               for (int_7 = 0; int_7 < int_3; int_7++) {
-                  int_4 = packetbuffer_0.getUSmart();
-                  int_5 = packetbuffer_0.getUSmart();
+            length = buffer.getUnsignedByteS();
+            if (length > 0) {
+               for (int_7 = 0; int_7 < length; int_7++) {
+                  int_4 = buffer.getUSmart();
+                  int_5 = buffer.getUSmart();
                   if (int_5 != 32767) {
-                     int_6 = packetbuffer_0.getUSmart();
-                     int_8 = packetbuffer_0.getUnsignedByteC();
-                     int int_9 = int_5 > 0 ? packetbuffer_0.getUnsignedByteC() : int_8;
+                     int_6 = buffer.getUSmart();
+                     int_8 = buffer.getUnsignedByteC();
+                     int int_9 = int_5 > 0 ? buffer.getUnsignedByteC() : int_8;
                      npc.method952(int_4, Client.gameCycle, int_5, int_6, int_8, int_9);
                   } else {
                      npc.method951(int_4);
@@ -1210,47 +1210,47 @@ public final class Class14 {
             }
          }
 
-         if ((int_1 & 0x10) != 0) {
-            int_2 = packetbuffer_0.readUnsignedShortOb1();
-            if (int_2 == 65535) {
-               int_2 = -1;
+         if ((hash & 0x10) != 0) {
+            info = buffer.readUnsignedShortOb1();
+            if (info == 65535) {
+               info = -1;
             }
 
-            int_3 = packetbuffer_0.getUnsignedByteC();
-            if (int_2 == npc.animation && int_2 != -1) {
-               int_7 = ItemLayer.getAnimation(int_2).replyMode;
+            length = buffer.getUnsignedByteC();
+            if (info == npc.animation && info != -1) {
+               int_7 = ItemLayer.getAnimation(info).replyMode;
                if (int_7 == 1) {
                   npc.actionFrame = 0;
                   npc.anInt528 = 0;
-                  npc.actionAnimationDisable = int_3;
+                  npc.actionAnimationDisable = length;
                   npc.anInt529 = 0;
                }
 
                if (int_7 == 2) {
                   npc.anInt529 = 0;
                }
-            } else if (int_2 == -1 || npc.animation == -1 || ItemLayer.getAnimation(int_2).forcedPriority >= ItemLayer.getAnimation(npc.animation).forcedPriority) {
-               npc.animation = int_2;
+            } else if (info == -1 || npc.animation == -1 || ItemLayer.getAnimation(info).forcedPriority >= ItemLayer.getAnimation(npc.animation).forcedPriority) {
+               npc.animation = info;
                npc.actionFrame = 0;
                npc.anInt528 = 0;
-               npc.actionAnimationDisable = int_3;
+               npc.actionAnimationDisable = length;
                npc.anInt529 = 0;
                npc.anInt511 = npc.queueSize;
             }
          }
 
-         if ((int_1 & 0x40) != 0) {
-            int_2 = packetbuffer_0.getUnsignedShort();
-            int_3 = packetbuffer_0.readUnsignedShortOb1();
-            int_7 = npc.x - (int_2 - Client.regionBaseX - Client.regionBaseX) * 64;
-            int_4 = npc.y - (int_3 - Client.regionBaseY - Client.regionBaseY) * 64;
+         if ((hash & 0x40) != 0) {
+            info = buffer.getUnsignedShort();
+            length = buffer.readUnsignedShortOb1();
+            int_7 = npc.x - (info - Client.regionBaseX - Client.regionBaseX) * 64;
+            int_4 = npc.y - (length - Client.regionBaseY - Client.regionBaseY) * 64;
             if (int_7 != 0 || int_4 != 0) {
                npc.nextStepOrientation = (int)(Math.atan2((double)int_7, (double)int_4) * 325.949D) & 0x7FF;
             }
          }
 
-         if ((int_1 & 0x1) != 0) {
-            npc.composition = NPCDefinition.getNpcDefinition(packetbuffer_0.getUnsignedShortAInverse());
+         if ((hash & 0x1) != 0) {
+            npc.composition = NPCDefinition.getNpcDefinition(buffer.getUnsignedShortAInverse());
             npc.anInt513 = npc.composition.boundaryDimension;
             npc.anInt533 = npc.composition.degreesToTurn;
             npc.walkingAnimation = npc.composition.walkAnimationId;
@@ -1262,28 +1262,28 @@ public final class Class14 {
             npc.anInt515 = npc.composition.anInt493;
          }
 
-         if ((int_1 & 0x20) != 0) {
-            npc.interacting = packetbuffer_0.getUnsignedShort();
+         if ((hash & 0x20) != 0) {
+            npc.interacting = buffer.getUnsignedShort();
             if (npc.interacting == 65535) {
                npc.interacting = -1;
             }
          }
       }
 
-      for (int_0 = 0; int_0 < Client.anInt666; int_0++) {
-         int_10 = Client.anIntArray157[int_0];
-         if (Client.cachedNPCs[int_10].anInt531 != Client.gameCycle) {
-            Client.cachedNPCs[int_10].composition = null;
-            Client.cachedNPCs[int_10] = null;
+      for (flagIndex = 0; flagIndex < Client.anInt666; flagIndex++) {
+         npcIndex = Client.anIntArray157[flagIndex];
+         if (Client.cachedNPCs[npcIndex].anInt531 != Client.gameCycle) {
+            Client.cachedNPCs[npcIndex].composition = null;
+            Client.cachedNPCs[npcIndex] = null;
          }
       }
 
-      if (packetbuffer_0.position != Client.aClass46_1.packetLength) {
-         throw new RuntimeException(packetbuffer_0.position + "," + Client.aClass46_1.packetLength);
+      if (buffer.position != Client.aClass46_1.packetLength) {
+         throw new RuntimeException(buffer.position + "," + Client.aClass46_1.packetLength);
       } else {
-         for (int_0 = 0; int_0 < Client.npcIndexesCount; int_0++) {
-            if (Client.cachedNPCs[Client.npcIndices[int_0]] == null) {
-               throw new RuntimeException(int_0 + "," + Client.npcIndexesCount);
+         for (flagIndex = 0; flagIndex < Client.npcIndexesCount; flagIndex++) {
+            if (Client.cachedNPCs[Client.npcIndices[flagIndex]] == null) {
+               throw new RuntimeException(flagIndex + "," + Client.npcIndexesCount);
             }
          }
 

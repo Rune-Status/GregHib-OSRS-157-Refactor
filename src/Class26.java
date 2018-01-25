@@ -211,8 +211,8 @@ public class Class26 {
                      int_62 = 1;
                   }
 
-                  int_12 = int_1 + Client.screenY - (int_8 >> 1);
-                  int_13 = int_2 + Client.screenX - int_6;
+                  int_12 = int_1 + Client.screenX - (int_8 >> 1);
+                  int_13 = int_2 + Client.screenY - int_6;
                   if (spritepixels_0 != null && spritepixels_1 != null) {
                      int_12 -= int_7;
                      if (int_8 == int_62) {
@@ -236,7 +236,7 @@ public class Class26 {
                      Rasterizer2D.setDrawRegion(int_1, int_2, int_1 + int_3, int_2 + int_4);
                      int_6 += 2;
                   } else {
-                     if (Client.screenY > -1) {
+                     if (Client.screenX > -1) {
                         Rasterizer2D.fillRect(int_12, int_13, int_62, 5, 65280);
                         Rasterizer2D.fillRect(int_62 + int_12, int_13, int_8 - int_62, 5, 16711680);
                      }
@@ -259,14 +259,14 @@ public class Class26 {
 
             if (player_0.skullIcon != -1 || player_0.overheadIcon != -1) {
                WorldMapData.characterToScreen(target, target.anInt521 + 15);
-               if (Client.screenY > -1) {
+               if (Client.screenX > -1) {
                   if (player_0.skullIcon != -1) {
-                     CacheFile.headIconsPk[player_0.skullIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
+                     CacheFile.headIconsPk[player_0.skullIcon].drawAt(int_1 + Client.screenX - 12, int_2 + Client.screenY - int_6);
                      int_6 += 25;
                   }
 
                   if (player_0.overheadIcon != -1) {
-                     TileStrategy.headIconsPrayer[player_0.overheadIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
+                     TileStrategy.headIconsPrayer[player_0.overheadIcon].drawAt(int_1 + Client.screenX - 12, int_2 + Client.screenY - int_6);
                      int_6 += 25;
                   }
                }
@@ -274,8 +274,8 @@ public class Class26 {
 
             if (int_0 >= 0 && Client.hintArrowTargetType == 10 && ints_0[int_0] == Client.hintArrowPlayerTargetIdx) {
                WorldMapData.characterToScreen(target, target.anInt521 + 15);
-               if (Client.screenY > -1) {
-                  Class85.headIconsHint[1].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - int_6);
+               if (Client.screenX > -1) {
+                  Class85.headIconsHint[1].drawAt(int_1 + Client.screenX - 12, int_2 + Client.screenY - int_6);
                }
             }
          } else {
@@ -286,26 +286,26 @@ public class Class26 {
 
             if (npccomposition_1.headIcon >= 0 && npccomposition_1.headIcon < TileStrategy.headIconsPrayer.length) {
                WorldMapData.characterToScreen(target, target.anInt521 + 15);
-               if (Client.screenY > -1) {
-                  TileStrategy.headIconsPrayer[npccomposition_1.headIcon].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 30);
+               if (Client.screenX > -1) {
+                  TileStrategy.headIconsPrayer[npccomposition_1.headIcon].drawAt(int_1 + Client.screenX - 12, int_2 + Client.screenY - 30);
                }
             }
 
             if (Client.hintArrowTargetType == 1 && Client.npcIndices[int_0 - int_5] == Client.hintArrowNpcTargetIdx && Client.gameCycle % 20 < 10) {
                WorldMapData.characterToScreen(target, target.anInt521 + 15);
-               if (Client.screenY > -1) {
-                  Class85.headIconsHint[0].drawAt(int_1 + Client.screenY - 12, int_2 + Client.screenX - 28);
+               if (Client.screenX > -1) {
+                  Class85.headIconsHint[0].drawAt(int_1 + Client.screenX - 12, int_2 + Client.screenY - 28);
                }
             }
          }
 
          if (target.overhead != null && (int_0 >= int_5 || !target.inSequence && (Client.anInt683 == 4 || !target.aBool71 && (Client.anInt683 == 0 || Client.anInt683 == 3 || Client.anInt683 == 1 && Client.isFriend(((Player) target).name, false))))) {
             WorldMapData.characterToScreen(target, target.anInt521);
-            if (Client.screenY > -1 && Client.lastTextMessageIndex < Client.anInt692) {
+            if (Client.screenX > -1 && Client.lastTextMessageIndex < Client.anInt692) {
                Client.textWidths[Client.lastTextMessageIndex] = Class50.boldFont.getWidth(target.overhead) / 2;
                Client.textHeights[Client.lastTextMessageIndex] = Class50.boldFont.verticalSpace;
-               Client.textRenderPointsX[Client.lastTextMessageIndex] = Client.screenY;
-               Client.textRenderPointsY[Client.lastTextMessageIndex] = Client.screenX;
+               Client.textRenderPointsX[Client.lastTextMessageIndex] = Client.screenX;
+               Client.textRenderPointsY[Client.lastTextMessageIndex] = Client.screenY;
                Client.textColourEffect[Client.lastTextMessageIndex] = target.textColour;
                Client.textEffects[Client.lastTextMessageIndex] = target.textEffect;
                Client.textCycles[Client.lastTextMessageIndex] = target.textCycle;
@@ -351,19 +351,19 @@ public class Class26 {
                   target.hitSplatCycles[int_15] = -1;
                } else {
                   WorldMapData.characterToScreen(target, target.anInt521 / 2);
-                  if (Client.screenY > -1) {
+                  if (Client.screenX > -1) {
                      if (int_15 == 1) {
-                        Client.screenX -= 20;
+                        Client.screenY -= 20;
                      }
 
                      if (int_15 == 2) {
-                        Client.screenY -= 15;
-                        Client.screenX -= 10;
+                        Client.screenX -= 15;
+                        Client.screenY -= 10;
                      }
 
                      if (int_15 == 3) {
-                        Client.screenY += 15;
-                        Client.screenX -= 10;
+                        Client.screenX += 15;
+                        Client.screenY -= 10;
                      }
 
                      SpritePixels spritepixels_2 = null;
@@ -592,8 +592,8 @@ public class Class26 {
                      int_49 = target.hitSplatCycles[int_15] - Client.gameCycle;
                      int int_50 = cacheablenode_sub6_1.anInt485 - int_49 * cacheablenode_sub6_1.anInt485 / cacheablenode_sub6_1.anInt484;
                      int int_51 = int_49 * cacheablenode_sub6_1.anInt487 / cacheablenode_sub6_1.anInt484 + -cacheablenode_sub6_1.anInt487;
-                     int int_52 = int_50 + (int_1 + Client.screenY - (int_38 >> 1));
-                     int int_53 = int_2 + Client.screenX - 12 + int_51;
+                     int int_52 = int_50 + (int_1 + Client.screenX - (int_38 >> 1));
+                     int int_53 = int_2 + Client.screenY - 12 + int_51;
                      int int_54 = int_53;
                      int int_55 = int_33 + int_53;
                      int int_56 = int_53 + cacheablenode_sub6_1.anInt488 + 15;

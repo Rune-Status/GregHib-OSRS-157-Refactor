@@ -97,8 +97,8 @@ public class Class52 {
       Class17.method200(scriptevent_0, 200000);
    }
 
-   public static Enum6[] method336() {
-      return new Enum6[] {Enum6.anEnum6_7, Enum6.anEnum6_5, Enum6.anEnum6_4, Enum6.anEnum6_3, Enum6.anEnum6_2, Enum6.anEnum6_6};
+   public static GameType[] getGameTypes() {
+      return new GameType[] {GameType.OSRS, GameType.GAME4, GameType.GAME3, GameType.STELLARDAWN, GameType.RUNESCAPE, GameType.GAME5};
    }
 
    static String method337(String string_0, Widget widget_0) {

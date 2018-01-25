@@ -94,7 +94,7 @@ public class Class4 implements WorldMapSectionBase {
          int int_9 = Class54.anInt141 - int_3;
          int int_10 = Class54.anInt142 - int_4;
          int int_11 = Class12.anInt56 - int_5;
-         return Math.abs(int_9) > int_6 + Varcs.anInt209 ? false : (Math.abs(int_10) > int_7 + Class54.anInt143 ? false : (Math.abs(int_11) > int_8 + Enum6.anInt385 ? false : (Math.abs(int_11 * CacheableNode_Sub5.anInt473 - int_10 * Class54.anInt144) > int_7 * Enum6.anInt385 + int_8 * Class54.anInt143 ? false : (Math.abs(int_9 * Class54.anInt144 - int_11 * Class54.anInt145) > int_8 * Varcs.anInt209 + int_6 * Enum6.anInt385 ? false : Math.abs(int_10 * Class54.anInt145 - int_9 * CacheableNode_Sub5.anInt473) <= int_6 * Class54.anInt143 + int_7 * Varcs.anInt209))));
+         return Math.abs(int_9) > int_6 + Varcs.anInt209 ? false : (Math.abs(int_10) > int_7 + Class54.anInt143 ? false : (Math.abs(int_11) > int_8 + GameType.anInt385 ? false : (Math.abs(int_11 * CacheableNode_Sub5.anInt473 - int_10 * Class54.anInt144) > int_7 * GameType.anInt385 + int_8 * Class54.anInt143 ? false : (Math.abs(int_9 * Class54.anInt144 - int_11 * Class54.anInt145) > int_8 * Varcs.anInt209 + int_6 * GameType.anInt385 ? false : Math.abs(int_10 * Class54.anInt145 - int_9 * CacheableNode_Sub5.anInt473) <= int_6 * Class54.anInt143 + int_7 * Varcs.anInt209))));
       }
    }
 

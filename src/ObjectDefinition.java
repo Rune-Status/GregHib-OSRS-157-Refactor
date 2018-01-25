@@ -307,8 +307,8 @@ public class ObjectDefinition extends CacheableNode {
    }
 
    ModelHeader getModel(int type, int face) {
-      ModelHeader subModel = null;
-      boolean scale;
+      ModelHeader model = null;
+      boolean invert;
       int length;
       int modelId;
       if (this.modelTypes == null) {
@@ -320,40 +320,40 @@ public class ObjectDefinition extends CacheableNode {
             return null;
          }
 
-         scale = this.isRotated;
+         invert = this.isRotated;
          if (type == 2 && face > 3) {
-            scale = !scale;
+            invert = !invert;
          }
 
          length = this.modelIds.length;
 
          for (int modelIndex = 0; modelIndex < length; modelIndex++) {
             modelId = this.modelIds[modelIndex];
-            if (scale) {
+            if (invert) {
                modelId += 65536;
             }
 
-            subModel = (ModelHeader) modelCache.get((long)modelId);
-            if (subModel == null) {
-               subModel = ModelHeader.getModel(ObjectDefinition.modelIndex, modelId & 0xFFFF, 0);
-               if (subModel == null) {
+            model = (ModelHeader) modelCache.get((long)modelId);
+            if (model == null) {
+               model = ModelHeader.getModel(ObjectDefinition.modelIndex, modelId & 0xFFFF, 0);
+               if (model == null) {
                   return null;
                }
 
-               if (scale) {
-                  subModel.mirror();
+               if (invert) {
+                  model.mirror();
                }
 
-               modelCache.put(subModel, (long)modelId);
+               modelCache.put(model, (long)modelId);
             }
 
             if (length > 1) {
-               models[modelIndex] = subModel;
+               models[modelIndex] = model;
             }
          }
 
          if (length > 1) {
-            subModel = new ModelHeader(models, length);
+            model = new ModelHeader(models, length);
          }
       } else {
          int modelType = -1;
@@ -375,25 +375,25 @@ public class ObjectDefinition extends CacheableNode {
             length += 65536;
          }
 
-         subModel = (ModelHeader) modelCache.get((long)length);
-         if (subModel == null) {
-            subModel = ModelHeader.getModel(modelIndex, length & 0xFFFF, 0);
-            if (subModel == null) {
+         model = (ModelHeader) modelCache.get((long)length);
+         if (model == null) {
+            model = ModelHeader.getModel(modelIndex, length & 0xFFFF, 0);
+            if (model == null) {
                return null;
             }
 
             if (mirror) {
-               subModel.mirror();
+               model.mirror();
             }
 
-            modelCache.put(subModel, (long)length);
+            modelCache.put(model, (long)length);
          }
       }
 
       if (this.modelSizeX == 128 && this.modelSizeY == 128 && this.modelSizeZ == 128) {
-         scale = false;
+         invert = false;
       } else {
-         scale = true;
+         invert = true;
       }
 
       boolean needsTranslation;
@@ -403,7 +403,7 @@ public class ObjectDefinition extends CacheableNode {
          needsTranslation = true;
       }
 
-      ModelHeader animatedModel = new ModelHeader(subModel, face == 0 && !scale && !needsTranslation, this.recolorToFind == null, this.textureToFind == null, true);
+      ModelHeader animatedModel = new ModelHeader(model, face == 0 && !invert && !needsTranslation, this.recolorToFind == null, this.textureToFind == null, true);
       if (type == 4 && face > 3) {
          animatedModel.method1055(256);
          animatedModel.translate(45, 0, -45);
@@ -430,7 +430,7 @@ public class ObjectDefinition extends CacheableNode {
          }
       }
 
-      if (scale) {
+      if (invert) {
          animatedModel.scaleTriangle(this.modelSizeX, this.modelSizeY, this.modelSizeZ);
       }
 
@@ -597,46 +597,46 @@ public class ObjectDefinition extends CacheableNode {
       }
    }
 
-   public Renderable getModel(int int_0, int int_1, int[][] ints_0, int int_2, int int_3, int int_4) {
-      long long_0;
+   public Renderable getModel(int type, int face, int[][] ints_0, int int_2, int int_3, int int_4) {
+      long hash;
       if (this.modelTypes == null) {
-         long_0 = (long)(int_1 + (this.id << 10));
+         hash = (long)(face + (this.id << 10));
       } else {
-         long_0 = (long)(int_1 + (int_0 << 3) + (this.id << 10));
+         hash = (long)(face + (type << 3) + (this.id << 10));
       }
 
-      Object object_0 = (Renderable) cachedModels.get(long_0);
-      if (object_0 == null) {
-         ModelHeader modeldata_0 = this.getModel(int_0, int_1);
-         if (modeldata_0 == null) {
+      Object cached = (Renderable) cachedModels.get(hash);
+      if (cached == null) {
+         ModelHeader header = this.getModel(type, face);
+         if (header == null) {
             return null;
          }
 
          if (!this.nonFlatShading) {
-            object_0 = modeldata_0.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+            cached = header.applyLighting(this.ambient + 64, this.contrast + 768, -50, -10, -50);
          } else {
-            modeldata_0.aShort2 = (short)(this.ambient + 64);
-            modeldata_0.contrast = (short)(this.contrast + 768);
-            modeldata_0.computeNormals();
-            object_0 = modeldata_0;
+            header.aShort2 = (short)(this.ambient + 64);
+            header.contrast = (short)(this.contrast + 768);
+            header.computeNormals();
+            cached = header;
          }
 
-         cachedModels.put((CacheableNode) object_0, long_0);
+         cachedModels.put((CacheableNode) cached, hash);
       }
 
       if (this.nonFlatShading) {
-         object_0 = ((ModelHeader) object_0).method1049();
+         cached = ((ModelHeader) cached).method1049();
       }
 
       if (this.clipType >= 0) {
-         if (object_0 instanceof Model) {
-            object_0 = ((Model) object_0).adjustToTerrain(ints_0, int_2, int_3, int_4, true, this.clipType);
-         } else if (object_0 instanceof ModelHeader) {
-            object_0 = ((ModelHeader) object_0).method1053(ints_0, int_2, int_3, int_4, true, this.clipType);
+         if (cached instanceof Model) {
+            cached = ((Model) cached).adjustToTerrain(ints_0, int_2, int_3, int_4, true, this.clipType);
+         } else if (cached instanceof ModelHeader) {
+            cached = ((ModelHeader) cached).method1053(ints_0, int_2, int_3, int_4, true, this.clipType);
          }
       }
 
-      return (Renderable) object_0;
+      return (Renderable) cached;
    }
 
    static SpritePixels[] method829() {

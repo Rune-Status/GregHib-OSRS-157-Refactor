@@ -78,7 +78,7 @@ public class Varcs {
    }
 
    FileOnDisk getVarPrefs(boolean bool_0) {
-      return getPreferencesFile("2", Class14.anEnum6_1.aString27, bool_0);
+      return getPreferencesFile("2", Class14.anGameType_1.name, bool_0);
    }
 
    boolean changed() {
@@ -294,7 +294,7 @@ public class Varcs {
          Class54.anInt144 = (int_10 - int_9) / 2;
          anInt209 = Math.abs(Class54.anInt145);
          Class54.anInt143 = Math.abs(CacheableNode_Sub5.anInt473);
-         Enum6.anInt385 = Math.abs(Class54.anInt144);
+         GameType.anInt385 = Math.abs(Class54.anInt144);
       }
    }
 

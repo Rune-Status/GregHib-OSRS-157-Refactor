@@ -39,7 +39,7 @@ public class Class36 {
       Preferences preferences_0 = new Preferences();
 
       try {
-         fileondisk_0 = Varcs.getPreferencesFile("", Class14.anEnum6_1.aString27, false);
+         fileondisk_0 = Varcs.getPreferencesFile("", Class14.anGameType_1.name, false);
          byte[] bytes_0 = new byte[(int)fileondisk_0.length()];
 
          int int_1;

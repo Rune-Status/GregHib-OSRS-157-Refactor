@@ -253,8 +253,8 @@ public final class Client extends GameEngine {
     static boolean aBool97;
     static int scale;
     static int clanChatCount;
-    static int screenY;
     static int screenX;
+    static int screenY;
     static boolean aBool98;
     static String clanChatName;
     static Class20 aClass20_1;
@@ -361,8 +361,8 @@ public final class Client extends GameEngine {
         textSpokenMessages = new String[anInt692];
         anIntArrayArray21 = new int[104][104];
         renderCycle = 0;
-        screenY = -1;
         screenX = -1;
+        screenY = -1;
         anInt641 = 0;
         anInt642 = 0;
         anInt645 = 0;
@@ -2636,8 +2636,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket31 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.getUnsignedByte();
-                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    Class23.localX = packetbuffer_0.getUnsignedByte();
+                    InteractiveObject.localY = packetbuffer_0.getUnsignedByteS();
                     class46_0.serverPacket = null;
                     return true;
                 }
@@ -2924,11 +2924,11 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket29 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
-                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    Class23.localX = packetbuffer_0.getUnsignedByteS();
+                    InteractiveObject.localY = packetbuffer_0.getUnsignedByteS();
 
-                    for (int_1 = Class23.anInt75; int_1 < Class23.anInt75 + 8; int_1++) {
-                        for (int_0 = InteractiveObject.anInt222; int_0 < InteractiveObject.anInt222 + 8; int_0++) {
+                    for (int_1 = Class23.localX; int_1 < Class23.localX + 8; int_1++) {
+                        for (int_0 = InteractiveObject.localY; int_0 < InteractiveObject.localY + 8; int_0++) {
                             if (groundItemDeque[Ignore.plane][int_1][int_0] != null) {
                                 groundItemDeque[Ignore.plane][int_1][int_0] = null;
                                 Enum1.groundItemSpawned(int_1, int_0);
@@ -2937,7 +2937,7 @@ public final class Client extends GameEngine {
                     }
 
                     for (SceneSpawnNode pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getFront(); pendingspawn_0 != null; pendingspawn_0 = (SceneSpawnNode) pendingSpawns.getNext()) {
-                        if (pendingspawn_0.x >= Class23.anInt75 && pendingspawn_0.objectFace < Class23.anInt75 + 8 && pendingspawn_0.y >= InteractiveObject.anInt222 && pendingspawn_0.y < InteractiveObject.anInt222 + 8 && pendingspawn_0.plane == Ignore.plane) {
+                        if (pendingspawn_0.x >= Class23.localX && pendingspawn_0.objectFace < Class23.localX + 8 && pendingspawn_0.y >= InteractiveObject.localY && pendingspawn_0.y < InteractiveObject.localY + 8 && pendingspawn_0.plane == Ignore.plane) {
                             pendingspawn_0.timeLeftTillSpawn = 0;
                         }
                     }
@@ -3065,8 +3065,8 @@ public final class Client extends GameEngine {
                 }
 
                 if (ServerPacket.aServerPacket27 == class46_0.serverPacket) {
-                    Class23.anInt75 = packetbuffer_0.getUnsignedByteS();
-                    InteractiveObject.anInt222 = packetbuffer_0.getUnsignedByteS();
+                    Class23.localX = packetbuffer_0.getUnsignedByteS();
+                    InteractiveObject.localY = packetbuffer_0.getUnsignedByteS();
 
                     while (packetbuffer_0.position < class46_0.packetLength) {
                         int_1 = packetbuffer_0.getUnsignedByte();
@@ -5454,8 +5454,8 @@ public final class Client extends GameEngine {
                         default:
                             break;
                         case 6:
-                            Class14.anEnum6_1 = (Enum6) Class1.forOrdinal(Class52.method336(), Integer.parseInt(value));
-                            if (Enum6.anEnum6_7 == Class14.anEnum6_1) {
+                            Class14.anGameType_1 = (GameType) Class1.forOrdinal(Class52.getGameTypes(), Integer.parseInt(value));
+                            if (GameType.OSRS == Class14.anGameType_1) {
                                 Class24.aClass109_1 = Class109.aClass109_2;
                             } else {
                                 Class24.aClass109_1 = Class109.aClass109_10;
